@@ -62,14 +62,26 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Topics:
-    - Agentic AI: topics/agentic-ai.md
-    - Single-Cell & Spatial Omics: topics/single-cell-spatial-omics.md
+    - Agentic AI:
+      - Overview: topics/agentic-ai/index.md
+      - Landscape: topics/agentic-ai/landscape.md
+      - Synthesis — AT02 vs corpus: topics/agentic-ai/synthesis-at02-vs-corpus.md
+    - Single-Cell & Spatial Omics:
+      - Overview: topics/single-cell-spatial-omics/index.md
+      - Landscape: topics/single-cell-spatial-omics/landscape.md
+      - Synthesis — spatial eating scRNA: topics/single-cell-spatial-omics/synthesis-spatial-eating-sc.md
     - Virtual Cells:
       - Overview: topics/virtual-cells/index.md
       - Landscape: topics/virtual-cells/landscape.md
       - Synthesis — ED03 vs corpus: topics/virtual-cells/synthesis-ed03-vs-corpus.md
-    - Bioinfo / Comp Bio / AI Methods: topics/bioinfo-tools.md
-    - Clinical Trials: topics/clinical-trials.md
+    - Bioinfo / Comp Bio / AI Methods:
+      - Overview: topics/bioinfo-tools/index.md
+      - Landscape: topics/bioinfo-tools/landscape.md
+      - Synthesis — FM pathology traction: topics/bioinfo-tools/synthesis-fm-pathology-traction.md
+    - Clinical Trials:
+      - Overview: topics/clinical-trials/index.md
+      - Landscape: topics/clinical-trials/landscape.md
+      - Synthesis — trial-design methodology: topics/clinical-trials/synthesis-trial-design-methodology.md
   - Session Transcripts:
     - All sessions: sessions/index.md
   - Notes:
