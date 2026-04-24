@@ -1,0 +1,73 @@
+site_name: AACR Annual Meeting 2026
+site_description: Session transcripts and poster abstracts from the AACR Annual Meeting 2026, organized by topic.
+repo_url: https://github.com/LiudengZhang/aacr-2026
+repo_name: LiudengZhang/aacr-2026
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.instant
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.tabs.link
+    - toc.follow
+
+extra_css:
+  - stylesheets/tabulator.min.css
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/tabulator.min.js
+  - javascripts/posters.js
+
+plugins:
+  - search
+  - tags
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: true
+  - attr_list
+  - md_in_html
+
+nav:
+  - Home: index.md
+  - Topics:
+    - Agentic AI: topics/agentic-ai.md
+    - Single-Cell & Spatial Omics: topics/single-cell-spatial-omics.md
+    - Virtual Cells: topics/virtual-cells.md
+    - Bioinfo / Comp Bio / AI Methods: topics/bioinfo-tools.md
+    - Clinical Trials: topics/clinical-trials.md
+  - Session Transcripts:
+    - All sessions: sessions/index.md
+  - Notes:
+    - Extraction method: notes/extraction.md
+    - Caveats: notes/caveats.md

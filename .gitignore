@@ -14,3 +14,16 @@ _awesome-virtual-cell/
 # Temporary/scratch
 /tmp/
 /_scratch/
+
+# MkDocs build output
+site/
+# Cloudflare Pages local state
+.wrangler/
+
+# Generated at build time
+docs/assets/*-posters.json
+docs/javascripts/tabulator.min.js
+docs/sessions/*.md
+!docs/sessions/index.md
+
+docs/stylesheets/tabulator.min.css
