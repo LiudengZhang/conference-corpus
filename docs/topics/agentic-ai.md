@@ -1,6 +1,6 @@
 # Agentic AI
 
-**5 full parent sessions + 3 AT02 per-speaker slices, ~67,000 words, ~8 hours of video.**
+**5 full parent sessions + 3 AT02 per-speaker slices, ~67,000 words, ~8 hours of video. 57 poster abstracts, ~23,000 words.**
 
 Sessions covering AI agents, autonomous scientific discovery, pathology foundation models in agentic pipelines, and large language models for cancer-research reasoning.
 
@@ -16,6 +16,10 @@ Sessions covering AI agents, autonomous scientific discovery, pathology foundati
 
 The AT02 session has additional per-speaker transcript slices in `transcripts/agentic-ai/at02-per-speaker/` (not rendered on this site — available in the GitHub repo).
 
-## No posters track
+## Posters — 57 abstracts
 
-Agentic AI doesn't have its own poster corpus here — the relevant posters are surfaced under [Bioinfo / Comp Bio / AI Methods](bioinfo-tools.md) (especially the "Agentic AI in Cancer" session) and [Virtual Cells](virtual-cells.md).
+Harvested via a phrase-quoted keyword union (`"agentic AI"`, `"AI agent"`, `"multi-agent"`, `"agent-based"`, `"agentic workflow"`, `"large language model"`). 102 unique Ids → 57 after Activity + PlayerUrl filter. 18 of these are from the core "Agentic AI in Cancer" session (the AT02 poster track, Apr 19); the remaining 39 are adjacent posters from "Large Language Models in the Clinic", Project GENIE AI sessions, bioinformatics computational sessions, and late-breaking tracks.
+
+<div class="poster-filters"></div>
+<div class="poster-table" data-src="../../assets/agentic-ai-posters.json"></div>
+<div class="poster-stats"></div>

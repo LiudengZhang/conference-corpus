@@ -18,9 +18,9 @@
 
 **Keyword-union** (virtual-cells, clinical-trials, single-cell-spatial-omics): Best for narrow topics.
 
-1. Log into `cattendee.abstractsonline.com/meeting/21436` (last name + 7-digit Registration ID).
+1. Log into `cattendee.abstractsonline.com/meeting/21436` (last name + 7-digit Registration ID) — this is the frontend. The API is hosted at `www.abstractsonline.com` (the `cattendee.` subdomain is CloudFront-fronted and 403s on `/oe3/*`).
 2. Read Backpack auth token from `localStorage.token`.
-3. For each quoted phrase, `POST /oe3/Program/21436/Search/new/presentation` with `{"Phrase": "<query>"}` header `Backpack: <uuid>`.
+3. For each quoted phrase, `POST https://www.abstractsonline.com/oe3/Program/21436/Search/new/presentation` with `{"Phrase": "<query>"}`, headers `Backpack: <uuid>` and `Accept: application/json` (omit the Accept header and the API returns XML).
 4. Poll `/Search/<SearchId>/Results?page=1&pagesize=2500` until `Search.Status == "Complete"`.
 5. Union unique `Id` values across all queries.
 6. For each `Id`, `GET /Presentation/<Id>` for full record.
