@@ -41,6 +41,7 @@ extra_css:
 extra_javascript:
   - javascripts/tabulator.min.js
   - javascripts/posters.js
+  - https://hypothes.is/embed.js
 
 plugins:
   - search
@@ -63,7 +64,10 @@ nav:
   - Topics:
     - Agentic AI: topics/agentic-ai.md
     - Single-Cell & Spatial Omics: topics/single-cell-spatial-omics.md
-    - Virtual Cells: topics/virtual-cells.md
+    - Virtual Cells:
+      - Overview: topics/virtual-cells/index.md
+      - Landscape: topics/virtual-cells/landscape.md
+      - Synthesis — ED03 vs corpus: topics/virtual-cells/synthesis-ed03-vs-corpus.md
     - Bioinfo / Comp Bio / AI Methods: topics/bioinfo-tools.md
     - Clinical Trials: topics/clinical-trials.md
   - Session Transcripts:
