@@ -1,6 +1,13 @@
 # AACR Annual Meeting 2026 — Session Transcripts & Poster Abstracts
 
-Curated topic-specific subsets of AACR 2026 content. Session transcripts are Vimeo auto-generated English captions from `connect.aacr26.org`; poster abstracts are structured extracts from `cattendee.abstractsonline.com`.
+Curated topic-specific subsets of AACR 2026 content. Session transcripts are Vimeo auto-generated English captions from `connect.aacr26.org`; poster abstracts are structured extracts from `www.abstractsonline.com` (frontend at `cattendee.abstractsonline.com`).
+
+## Interactive site
+
+An MkDocs Material site is generated from this repo and deployed on Cloudflare Pages (private, Basic Auth). It renders the corpus as filterable poster tables (Tabulator) + one page per unique session transcript, plus topic-level analysis pages (Overview / Landscape / Synthesis) — starting with Virtual Cells (ED03 theses vs 48-poster corpus). Hypothes.is annotation layer enabled site-wide.
+
+- Source: `docs/` (MkDocs), `scripts/build_site.py` (preprocessor), `functions/_middleware.js` (Basic Auth)
+- Build: `pip install -r requirements.txt && python scripts/build_site.py && mkdocs build`
 
 ## Layout
 
@@ -8,8 +15,9 @@ Curated topic-specific subsets of AACR 2026 content. Session transcripts are Vim
 AACR/
 ├── transcripts/
 │   ├── agentic-ai/                  ← 5 full parent sessions + 3 AT02 per-speaker slices
-│   │   ├── full-sessions/
+│   │   ├── full-sessions/                + 57 posters
 │   │   ├── at02-per-speaker/
+│   │   ├── posters/
 │   │   └── README.md
 │   ├── single-cell-spatial-omics/   ← 20 full parent sessions (19 unique + 1 symlinked overlap)
 │   │   ├── full-sessions/                + 1,015 posters
@@ -39,12 +47,12 @@ AACR/
 
 | Topic | Sessions | Words | Posters | Poster words |
 |---|---|---|---|---|
-| Agentic AI | 5 full + 3 AT02 slices | ~67,000 | — | — |
+| Agentic AI | 5 full + 3 AT02 slices | ~67,000 | 57 | ~19,000 |
 | Single-cell & spatial omics | 20 full (1 shared) | ~273,000 | 1,015 | ~328,000 |
-| Virtual cells | 1 native + 5 symlinks | ~80,500 | 48 | ~19,000 |
-| Bioinfo / comp bio / AI methods | 12 symlinks (all borrowed) | ~162,000 | 536 | ~210,000 |
-| Clinical trials | Deferred | — | 642 | ~294,000 |
-| **Totals** | ~26 unique sessions | ~464,000 | ~2,241 unique | ~871,000 |
+| Virtual cells | 1 native + 5 symlinks | ~80,500 | 48 | ~16,000 |
+| Bioinfo / comp bio / AI methods | 12 symlinks (all borrowed) | ~162,000 | 536 | ~170,000 |
+| Clinical trials | Deferred | — | 642 | ~230,000 |
+| **Totals** | ~26 unique sessions | ~464,000 | 2,298 (1,953 unique by Id) | ~763,000 |
 
 (Session word totals are sums of the underlying unique transcripts; symlinked sessions are not double-counted at the topic level.)
 
@@ -64,13 +72,14 @@ Posters are harvested independently per topic and duplicated on disk rather than
 
 | Topic | Total posters | Unique to topic |
 |---|---|---|
-| single-cell-spatial-omics | 1,015 | 779 |
-| virtual-cells | 48 | 31 |
-| bioinfo-tools | 536 | 351 |
-| clinical-trials | 642 | 546 |
-| **Total posters across topics (sum)** | 2,241 | 1,707 unique by Id |
+| agentic-ai | 57 | 10 |
+| single-cell-spatial-omics | 1,015 | 784 |
+| virtual-cells | 48 | 3 |
+| bioinfo-tools | 536 | 308 |
+| clinical-trials | 642 | 544 |
+| **Total posters across topics (sum)** | 2,298 | 1,953 unique by Id |
 
-Duplication cost is ~4 KB × ~534 duplicates ≈ 2 MB — trivial.
+Note the low virtual-cells unique count (3): 45 of the 48 VC posters also surface under bioinfo-tools or agentic-ai, because the FM / agent / multimodal keywords overlap heavily. Duplication cost is ~4 KB × ~345 cross-topic duplicates ≈ 1.4 MB — trivial.
 
 ## Caveats
 
@@ -93,7 +102,7 @@ Duplication cost is ~4 KB × ~534 duplicates ≈ 2 MB — trivial.
 
 Two patterns:
 
-- **Keyword-union** (virtual-cells, clinical-trials, single-cell-spatial-omics): `POST /oe3/Program/21436/Search/new/presentation` with phrase-quoted queries; poll `Search/<sid>/Results` until `Status=Complete`; union unique `Id` values; fetch `/Presentation/<Id>` for details; filter `Activity ∈ {Abstract Submission, Late Breaking and Clinical Trials}` + `PlayerUrl present`. Best for narrow topics.
+- **Keyword-union** (agentic-ai, virtual-cells, clinical-trials, single-cell-spatial-omics): `POST https://www.abstractsonline.com/oe3/Program/21436/Search/new/presentation` with phrase-quoted queries and `Accept: application/json` header; poll `Search/<sid>/Results` until `Status=Complete`; union unique `Id` values; fetch `/Presentation/<Id>` for details; filter `Activity ∈ {Abstract Submission, Late Breaking and Clinical Trials}` + `PlayerUrl present`. Best for narrow topics.
 - **Session endpoint** (bioinfo-tools): `GET /Session/<sid>/Presentations` for known methods-oriented sessions. Returns all presentations in the session directly — complete session coverage, no false positives. Best for broad methods topics.
 
 HTML-decode via `DOMParser`, strip tags, emit JSONL. If Chrome download flow is blocked, POST the JSONL to `httpbin.org/anything` and capture the echoed response via MCP's `get_network_request --responseFilePath`; extract the `.data` field with `jq`.
