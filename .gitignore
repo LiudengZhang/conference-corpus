@@ -1,0 +1,16 @@
+# Separate public repo, cloned here as a working copy
+_awesome-virtual-cell/
+
+# Claude Code project metadata
+.claude/
+
+# macOS
+.DS_Store
+
+# Large binary artifacts (PDFs downloaded on demand, not versioned)
+**/pdfs/
+*.pdf
+
+# Temporary/scratch
+/tmp/
+/_scratch/
