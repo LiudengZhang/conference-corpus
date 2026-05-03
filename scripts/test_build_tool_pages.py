@@ -17,3 +17,22 @@ def test_tools_constant_loads():
         assert isinstance(slug, str) and slug.replace("-", "").isalnum()
         assert family in {"path-fm", "sc-fm", "spatial", "perturbation", "protein"}
         assert isinstance(aliases, list) and aliases
+
+
+def test_match_aliases_word_boundary():
+    from build_site import match_aliases
+    text = "We applied scGPT and SC-GPT variants alongside Geneformer."
+    aliases = ["scGPT", "SC-GPT"]
+    assert match_aliases(text, aliases) is True
+
+
+def test_match_aliases_negative_inside_word():
+    from build_site import match_aliases
+    # 'UCE' should not match inside 'reduces' or 'produces'
+    text = "This reduces noise and produces clean embeddings."
+    assert match_aliases(text, ["UCE"]) is False
+
+
+def test_match_aliases_case_insensitive():
+    from build_site import match_aliases
+    assert match_aliases("we used cell2location to deconvolve", ["Cell2Location"]) is True
