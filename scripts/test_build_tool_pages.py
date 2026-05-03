@@ -55,3 +55,18 @@ def test_load_corpus_dedups_posters():
         assert "_topics" in p and isinstance(p["_topics"], list) and p["_topics"]
     # at least one poster surfaces in multiple topics (cross-topic dedup actually happened)
     assert any(len(p["_topics"]) > 1 for p in corpus["posters"])
+
+
+def test_scan_mentions_returns_structured_hits():
+    from build_site import load_corpus, scan_mentions
+    corpus = load_corpus()
+    # CHIEF should have at least one hit somewhere in the corpus
+    hits = scan_mentions(corpus, ["CHIEF"])
+    assert "posters" in hits and "sessions" in hits
+    # Each hit has the fields the renderer needs
+    if hits["posters"]:
+        h = hits["posters"][0]
+        assert "Id" in h and "Title" in h and "context" in h and "_topics" in h
+    if hits["sessions"]:
+        h = hits["sessions"][0]
+        assert "stem" in h and "context" in h

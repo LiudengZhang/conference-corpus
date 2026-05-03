@@ -134,6 +134,65 @@ def load_corpus() -> dict:
     }
 
 
+def _context_window(text: str, alias: str, chars: int = 220) -> str:
+    """Return ~`chars` chars of `text` centered on the first alias hit, single line."""
+    pat = _alias_pattern(alias)
+    m = pat.search(text)
+    if not m:
+        return ""
+    start = max(0, m.start() - chars // 2)
+    end = min(len(text), m.end() + chars // 2)
+    snippet = text[start:end].strip()
+    snippet = re.sub(r"\s+", " ", snippet)
+    if start > 0:
+        snippet = "…" + snippet
+    if end < len(text):
+        snippet = snippet + "…"
+    return snippet
+
+
+def scan_mentions(corpus: dict, aliases: list[str]) -> dict:
+    """Find unique poster + session hits for any alias in `aliases`.
+
+    Returns {"posters": [...], "sessions": [...]}, each item a dict
+    augmented with `context` (~220-char snippet around first match).
+    """
+    poster_hits = []
+    for p in corpus["posters"]:
+        haystack = (p.get("Title", "") or "") + "\n" + (p.get("Abstract", "") or "")
+        if not match_aliases(haystack, aliases):
+            continue
+        ctx = ""
+        for a in aliases:
+            ctx = _context_window(haystack, a)
+            if ctx:
+                break
+        poster_hits.append({
+            "Id": p["Id"],
+            "Title": p.get("Title", ""),
+            "PresentationNumber": p.get("PresentationNumber", "") or p.get("Id", ""),
+            "context": ctx,
+            "_topics": p.get("_topics", [p.get("_topic", "")]),
+        })
+
+    session_hits = []
+    for s in corpus["sessions"]:
+        if not match_aliases(s["text"], aliases):
+            continue
+        ctx = ""
+        for a in aliases:
+            ctx = _context_window(s["text"], a)
+            if ctx:
+                break
+        session_hits.append({
+            "stem": s["stem"],
+            "context": ctx,
+            "_topics": s["_topics"],
+        })
+
+    return {"posters": poster_hits, "sessions": session_hits}
+
+
 def ensure_dirs():
     for d in (ASSETS, SESSIONS, JS_DIR):
         d.mkdir(parents=True, exist_ok=True)
