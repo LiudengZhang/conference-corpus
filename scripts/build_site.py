@@ -83,6 +83,57 @@ def match_aliases(text: str, aliases: list[str]) -> bool:
     return any(_alias_pattern(a).search(text) for a in aliases)
 
 
+def load_corpus() -> dict:
+    """Load every poster JSONL across all 5 topics (deduped by Id) and every
+    unique session .txt (deduped by canonical slug, follows symlinks).
+
+    Returns: {"posters": [{"Id","Title","Abstract","_topic"}, ...],
+              "sessions": [{"stem","text","_topics":[...]}, ...]}
+    """
+    posters_by_id: dict[str, dict] = {}
+    for topic_slug, _ in TOPICS:
+        jsonl = TRANSCRIPTS / topic_slug / "posters" / "abstracts.jsonl"
+        if not jsonl.exists():
+            continue
+        with jsonl.open() as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                p = json.loads(line)
+                pid = p.get("Id")
+                if not pid:
+                    continue
+                if pid in posters_by_id:
+                    posters_by_id[pid].setdefault("_topics", []).append(topic_slug)
+                else:
+                    p["_topic"] = topic_slug
+                    p["_topics"] = [topic_slug]
+                    posters_by_id[pid] = p
+
+    sessions_by_stem: dict[str, dict] = {}
+    for topic_slug, _ in TOPICS:
+        fs_dir = TRANSCRIPTS / topic_slug / "full-sessions"
+        if not fs_dir.exists():
+            continue
+        for txt in sorted(fs_dir.glob("*.txt")):
+            stem = txt.stem
+            if stem in sessions_by_stem:
+                sessions_by_stem[stem]["_topics"].append(topic_slug)
+                continue
+            text = resolve_symlink(txt).read_text()
+            sessions_by_stem[stem] = {
+                "stem": stem,
+                "text": text,
+                "_topics": [topic_slug],
+            }
+
+    return {
+        "posters": list(posters_by_id.values()),
+        "sessions": list(sessions_by_stem.values()),
+    }
+
+
 def ensure_dirs():
     for d in (ASSETS, SESSIONS, JS_DIR):
         d.mkdir(parents=True, exist_ok=True)

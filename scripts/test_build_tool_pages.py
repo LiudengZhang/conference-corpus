@@ -36,3 +36,16 @@ def test_match_aliases_negative_inside_word():
 def test_match_aliases_case_insensitive():
     from build_site import match_aliases
     assert match_aliases("we used cell2location to deconvolve", ["Cell2Location"]) is True
+
+
+def test_load_corpus_dedups_posters():
+    from build_site import load_corpus
+    corpus = load_corpus()
+    # poster Ids must be unique
+    poster_ids = [p["Id"] for p in corpus["posters"]]
+    assert len(poster_ids) == len(set(poster_ids))
+    # session keys must be unique stems
+    assert len(corpus["sessions"]) == len(set(s["stem"] for s in corpus["sessions"]))
+    # corpus has substantial content
+    assert len(corpus["posters"]) > 1500
+    assert len(corpus["sessions"]) >= 20
