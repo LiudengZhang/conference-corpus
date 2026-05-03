@@ -276,6 +276,106 @@ def inject_mentions_block(md_text: str, new_block: str) -> str:
     return md_text + sep + "\n" + new_block + "\n"
 
 
+def stub_dossier(name: str, slug: str, family: str, also_in: list[str]) -> str:
+    """Author-fillable scaffold for a new tool dossier."""
+    also = ", ".join(sorted(set(also_in))) if also_in else "(none)"
+    return f"""# {name}
+
+**Family:** {family}
+**Modality:** TODO
+**Released:** TODO
+**License:** TODO
+**Code/checkpoint:** TODO
+**Also surfaced in:** {also}
+
+> TODO — one-paragraph plain-language description (~3 sentences). What
+> the tool does, what it trains on, what its standout claim is.
+
+## Architecture & training
+
+TODO — backbone, pretraining corpus, objective, parameter count.
+
+## Use in the AACR 2026 corpus
+
+{MENTIONS_START}
+_Auto-generated on next build._
+{MENTIONS_END}
+
+## What's missing / where evidence is weak
+
+- TODO
+
+## Takeaway
+
+TODO — one paragraph on what the AACR 2026 corpus uniquely teaches us
+about {name}.
+"""
+
+
+def build_tool_pages():
+    """Survey the corpus, gate, then write/refresh dossier mention blocks
+    and emit the matrix + mentions JSON for the index page."""
+    tools_dir = DOCS / "topics" / "bioinfo-tools" / "tools"
+    tools_dir.mkdir(parents=True, exist_ok=True)
+    assets_dir = DOCS / "assets" / "bioinfo-tools"
+    assets_dir.mkdir(parents=True, exist_ok=True)
+
+    survey = survey_tools()
+    survivors = survey["survivors"]
+    dropped = survey["dropped"]
+
+    matrix_rows = []
+    mentions_dump = {}
+    metadata_re = re.compile(r"^\*\*([\w/ ]+?):\*\*\s*(.+)$", re.MULTILINE)
+
+    for r in survivors:
+        slug, name, family, hits = r["slug"], r["name"], r["family"], r["hits"]
+        page = tools_dir / f"{slug}.md"
+
+        topics_for_tool = set()
+        for h in hits["posters"]:
+            topics_for_tool.update(h["_topics"])
+        for h in hits["sessions"]:
+            topics_for_tool.update(h["_topics"])
+        topics_for_tool.discard("bioinfo-tools")
+        also_in = sorted(topics_for_tool)
+
+        if not page.exists():
+            page.write_text(stub_dossier(name, slug, family, also_in))
+            print(f"→ scaffolded {page.relative_to(ROOT)}")
+
+        md = page.read_text()
+        new_block = render_mentions_block(name, hits)
+        md = inject_mentions_block(md, new_block)
+        page.write_text(md)
+
+        meta = dict(metadata_re.findall(md))
+        matrix_rows.append({
+            "tool": name,
+            "slug": slug,
+            "family": family,
+            "modality": meta.get("Modality", "").strip(),
+            "released": meta.get("Released", "").strip(),
+            "license": meta.get("License", "").strip(),
+            "n_posters": r["n_posters"],
+            "n_sessions": r["n_sessions"],
+            "also_in": also_in,
+        })
+        mentions_dump[slug] = hits
+
+    (assets_dir / "tool-matrix.json").write_text(
+        json.dumps(matrix_rows, ensure_ascii=False, indent=2)
+    )
+    (assets_dir / "tool-mentions.json").write_text(
+        json.dumps(mentions_dump, ensure_ascii=False)
+    )
+    print(f"→ {len(survivors)} dossiers + tool-matrix.json + tool-mentions.json")
+    if dropped:
+        print(f"  dropped (n<{INCLUSION_GATE}): " + ", ".join(
+            f"{d['name']} (n={d['total']})" for d in dropped
+        ))
+
+
 def ensure_dirs():
     for d in (ASSETS, SESSIONS, JS_DIR):
         d.mkdir(parents=True, exist_ok=True)
@@ -433,6 +533,7 @@ def main():
     for topic_slug, _ in TOPICS:
         total_posters += build_poster_json(topic_slug)
     total_sessions = build_session_pages()
+    build_tool_pages()
     print(f"\nBuild preprocessing complete.")
     print(f"  Posters  : {total_posters:>5} total across {len(TOPICS)} topics")
     print(f"  Sessions : {total_sessions:>5} unique transcript pages")

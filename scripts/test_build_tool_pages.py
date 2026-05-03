@@ -113,3 +113,24 @@ Hand-written notes preserved.
     assert "Hand-written notes preserved." in out
     assert "new auto" in out
     assert "old auto content" not in out
+
+
+def test_stub_template_has_all_required_sections():
+    from build_site import stub_dossier
+    out = stub_dossier(
+        name="CHIEF", slug="chief", family="path-fm",
+        also_in=["virtual-cells"],
+    )
+    assert "# CHIEF" in out
+    assert "**Family:**" in out
+    assert "**Modality:**" in out
+    assert "**License:**" in out
+    assert "**Code/checkpoint:**" in out
+    assert "**Also surfaced in:**" in out
+    assert "## Architecture & training" in out
+    assert "## Use in the AACR 2026 corpus" in out
+    assert "<!-- mentions:start -->" in out
+    assert "<!-- mentions:end -->" in out
+    assert "## What's missing" in out
+    assert "## Takeaway" in out
+    assert "TODO" in out
