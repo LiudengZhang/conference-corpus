@@ -193,6 +193,33 @@ def scan_mentions(corpus: dict, aliases: list[str]) -> dict:
     return {"posters": poster_hits, "sessions": session_hits}
 
 
+def survey_tools() -> dict:
+    """Compute mention counts for every tool in TOOLS and report which pass the gate.
+
+    Returns {"survivors": [...], "dropped": [...]}, each list item a dict.
+    Prints a summary table to stdout.
+    """
+    corpus = load_corpus()
+    survivors, dropped = [], []
+    for name, slug, family, aliases in TOOLS:
+        hits = scan_mentions(corpus, aliases)
+        np_, ns_ = len(hits["posters"]), len(hits["sessions"])
+        total = np_ + ns_
+        row = {"name": name, "slug": slug, "family": family,
+               "n_posters": np_, "n_sessions": ns_, "total": total,
+               "hits": hits}
+        (survivors if total >= INCLUSION_GATE else dropped).append(row)
+
+    print(f"\n{'Tool':<24} {'Family':<14} {'Posters':>8} {'Sessions':>9} {'Total':>6}")
+    print("-" * 65)
+    for r in sorted(survivors, key=lambda x: -x["total"]):
+        print(f"{r['name']:<24} {r['family']:<14} {r['n_posters']:>8} {r['n_sessions']:>9} {r['total']:>6}  ✓")
+    for r in sorted(dropped, key=lambda x: -x["total"]):
+        print(f"{r['name']:<24} {r['family']:<14} {r['n_posters']:>8} {r['n_sessions']:>9} {r['total']:>6}  dropped")
+    print(f"\n{len(survivors)} survivors, {len(dropped)} dropped (gate={INCLUSION_GATE})")
+    return {"survivors": survivors, "dropped": dropped}
+
+
 def ensure_dirs():
     for d in (ASSETS, SESSIONS, JS_DIR):
         d.mkdir(parents=True, exist_ok=True)
@@ -341,6 +368,9 @@ def build_session_pages():
 
 
 def main():
+    if "--survey" in sys.argv:
+        survey_tools()
+        return
     ensure_dirs()
     vendor_tabulator()
     total_posters = 0
