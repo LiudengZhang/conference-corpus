@@ -49,3 +49,9 @@ def test_load_corpus_dedups_posters():
     # corpus has substantial content
     assert len(corpus["posters"]) > 1500
     assert len(corpus["sessions"]) >= 20
+    # every poster carries the topic-tracking fields
+    for p in corpus["posters"]:
+        assert "_topic" in p and isinstance(p["_topic"], str)
+        assert "_topics" in p and isinstance(p["_topics"], list) and p["_topics"]
+    # at least one poster surfaces in multiple topics (cross-topic dedup actually happened)
+    assert any(len(p["_topics"]) > 1 for p in corpus["posters"])
