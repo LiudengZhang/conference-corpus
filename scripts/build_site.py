@@ -220,6 +220,62 @@ def survey_tools() -> dict:
     return {"survivors": survivors, "dropped": dropped}
 
 
+MENTIONS_START = "<!-- mentions:start -->"
+MENTIONS_END = "<!-- mentions:end -->"
+
+
+def render_mentions_block(tool_name: str, hits: dict) -> str:
+    """Build the markdown block (markers included) for a tool's corpus mentions."""
+    lines = [MENTIONS_START, ""]
+    posters = hits["posters"]
+    sessions = hits["sessions"]
+
+    lines.append(f"**Posters mentioning {tool_name} (n={len(posters)}):**")
+    lines.append("")
+    if not posters:
+        lines.append("_No posters in the AACR 2026 corpus mention this tool._")
+    else:
+        for p in sorted(posters, key=lambda x: x.get("PresentationNumber", "")):
+            num = p.get("PresentationNumber") or p.get("Id", "")
+            title = p.get("Title", "").strip()
+            ctx = p.get("context", "")
+            lines.append(f"- **{num}** — *{title}*")
+            if ctx:
+                lines.append(f"  {ctx}")
+    lines.append("")
+
+    lines.append(f"**Sessions mentioning {tool_name} (n={len(sessions)}):**")
+    lines.append("")
+    if not sessions:
+        lines.append("_No session transcripts in the AACR 2026 corpus mention this tool._")
+    else:
+        for s in sorted(sessions, key=lambda x: x["stem"]):
+            stem = s["stem"]
+            ctx = s.get("context", "")
+            lines.append(f"- [{stem}](../../../sessions/{stem}.md)")
+            if ctx:
+                lines.append(f"  {ctx}")
+    lines.append("")
+    lines.append(MENTIONS_END)
+    return "\n".join(lines)
+
+
+def inject_mentions_block(md_text: str, new_block: str) -> str:
+    """Replace the existing mentions block (between markers) with `new_block`.
+
+    If markers are missing, append `new_block` to the end. `new_block` must
+    contain its own start/end markers.
+    """
+    if MENTIONS_START in md_text and MENTIONS_END in md_text:
+        pattern = re.compile(
+            re.escape(MENTIONS_START) + r".*?" + re.escape(MENTIONS_END),
+            re.DOTALL,
+        )
+        return pattern.sub(new_block, md_text)
+    sep = "" if md_text.endswith("\n") else "\n"
+    return md_text + sep + "\n" + new_block + "\n"
+
+
 def ensure_dirs():
     for d in (ASSETS, SESSIONS, JS_DIR):
         d.mkdir(parents=True, exist_ok=True)
