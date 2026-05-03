@@ -40,6 +40,33 @@ TOPICS = [
     ("clinical-trials", "Clinical Trials"),
 ]
 
+INCLUSION_GATE = 3  # min unique mentions (posters + sessions, deduped) to ship a dossier
+
+# (display_name, slug, family, [aliases])
+# aliases are matched case-insensitive with word boundaries on both sides
+TOOLS = [
+    ("CHIEF",                 "chief",          "path-fm",     ["CHIEF"]),
+    ("UNI / UNI2",            "uni",            "path-fm",     ["UNI", "UNI2", "UNI-2"]),
+    ("CONCH",                 "conch",          "path-fm",     ["CONCH"]),
+    ("PathChat",              "pathchat",       "path-fm",     ["PathChat", "Path-Chat"]),
+    ("Virchow / Virchow2",    "virchow",        "path-fm",     ["Virchow", "Virchow2", "Virchow-2"]),
+    ("Prov-GigaPath",         "prov-gigapath",  "path-fm",     ["Prov-GigaPath", "GigaPath"]),
+    ("TITAN",                 "titan",          "path-fm",     ["TITAN"]),
+    ("PLIP",                  "plip",           "path-fm",     ["PLIP"]),
+    ("scGPT",                 "scgpt",          "sc-fm",       ["scGPT", "SC-GPT"]),
+    ("Geneformer",            "geneformer",     "sc-fm",       ["Geneformer"]),
+    ("UCE",                   "uce",            "sc-fm",       ["UCE", "Universal Cell Embeddings"]),
+    ("scFoundation",          "scfoundation",   "sc-fm",       ["scFoundation"]),
+    ("scBERT",                "scbert",         "sc-fm",       ["scBERT"]),
+    ("Nicheformer",           "nicheformer",    "sc-fm",       ["Nicheformer"]),
+    ("Cell2Sentence",         "cell2sentence",  "sc-fm",       ["Cell2Sentence", "C2S"]),
+    ("Tangram",               "tangram",        "spatial",     ["Tangram"]),
+    ("Cell2Location",         "cell2location",  "spatial",     ["Cell2Location", "cell2location"]),
+    ("GEARS",                 "gears",          "perturbation",["GEARS"]),
+    ("AlphaFold-Multimer",    "alphafold-multimer", "protein", ["AlphaFold-Multimer", "AlphaFold Multimer"]),
+    ("ESM",                   "esm",            "protein",     ["ESM-2", "ESM2", "ESMFold"]),
+]
+
 
 def ensure_dirs():
     for d in (ASSETS, SESSIONS, JS_DIR):
