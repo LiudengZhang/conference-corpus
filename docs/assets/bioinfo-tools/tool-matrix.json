@@ -1,0 +1,89 @@
+[
+  {
+    "tool": "CHIEF",
+    "slug": "chief",
+    "family": "path-fm",
+    "modality": "TODO",
+    "released": "TODO",
+    "license": "TODO",
+    "n_posters": 0,
+    "n_sessions": 6,
+    "also_in": [
+      "agentic-ai",
+      "single-cell-spatial-omics",
+      "virtual-cells"
+    ]
+  },
+  {
+    "tool": "UNI / UNI2",
+    "slug": "uni",
+    "family": "path-fm",
+    "modality": "TODO",
+    "released": "TODO",
+    "license": "TODO",
+    "n_posters": 9,
+    "n_sessions": 1,
+    "also_in": [
+      "clinical-trials",
+      "single-cell-spatial-omics",
+      "virtual-cells"
+    ]
+  },
+  {
+    "tool": "Prov-GigaPath",
+    "slug": "prov-gigapath",
+    "family": "path-fm",
+    "modality": "TODO",
+    "released": "TODO",
+    "license": "TODO",
+    "n_posters": 2,
+    "n_sessions": 1,
+    "also_in": [
+      "single-cell-spatial-omics",
+      "virtual-cells"
+    ]
+  },
+  {
+    "tool": "scGPT",
+    "slug": "scgpt",
+    "family": "sc-fm",
+    "modality": "TODO",
+    "released": "TODO",
+    "license": "TODO",
+    "n_posters": 2,
+    "n_sessions": 1,
+    "also_in": [
+      "agentic-ai",
+      "single-cell-spatial-omics",
+      "virtual-cells"
+    ]
+  },
+  {
+    "tool": "Geneformer",
+    "slug": "geneformer",
+    "family": "sc-fm",
+    "modality": "TODO",
+    "released": "TODO",
+    "license": "TODO",
+    "n_posters": 4,
+    "n_sessions": 0,
+    "also_in": [
+      "agentic-ai",
+      "single-cell-spatial-omics",
+      "virtual-cells"
+    ]
+  },
+  {
+    "tool": "Cell2Location",
+    "slug": "cell2location",
+    "family": "spatial",
+    "modality": "TODO",
+    "released": "TODO",
+    "license": "TODO",
+    "n_posters": 3,
+    "n_sessions": 0,
+    "also_in": [
+      "single-cell-spatial-omics"
+    ]
+  }
+]
