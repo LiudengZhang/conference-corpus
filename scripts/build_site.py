@@ -68,6 +68,21 @@ TOOLS = [
 ]
 
 
+def _alias_pattern(alias: str) -> re.Pattern:
+    """Word-boundary, case-insensitive match for one alias.
+
+    Standard \\b doesn't handle aliases that begin or end with non-word
+    characters (like 'SC-GPT'). Custom lookbehind/lookahead checks for
+    [A-Za-z0-9_] on either side instead.
+    """
+    return re.compile(rf"(?<![A-Za-z0-9_]){re.escape(alias)}(?![A-Za-z0-9_])", re.IGNORECASE)
+
+
+def match_aliases(text: str, aliases: list[str]) -> bool:
+    """Return True if any alias matches `text` with word boundaries."""
+    return any(_alias_pattern(a).search(text) for a in aliases)
+
+
 def ensure_dirs():
     for d in (ASSETS, SESSIONS, JS_DIR):
         d.mkdir(parents=True, exist_ok=True)
