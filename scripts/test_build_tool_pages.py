@@ -70,3 +70,46 @@ def test_scan_mentions_returns_structured_hits():
     if hits["sessions"]:
         h = hits["sessions"][0]
         assert "stem" in h and "context" in h
+
+
+def test_render_mentions_block_format():
+    from build_site import render_mentions_block
+    hits = {
+        "posters": [
+            {"Id": "3074", "Title": "SPOT-Met: …", "PresentationNumber": "LB123",
+             "context": "We used CHIEF to predict outcomes…", "_topics": ["bioinfo-tools"]},
+        ],
+        "sessions": [
+            {"stem": "2026-04-17-pm-foundation-models-multimodal-ai-cancer-research",
+             "context": "…CHIEF demo by the Mahmood lab…", "_topics": ["bioinfo-tools"]},
+        ],
+    }
+    block = render_mentions_block("CHIEF", hits)
+    assert "<!-- mentions:start -->" in block
+    assert "<!-- mentions:end -->" in block
+    assert "Posters mentioning CHIEF (n=1)" in block
+    assert "Sessions mentioning CHIEF (n=1)" in block
+    assert "**LB123**" in block
+    assert "../../../sessions/2026-04-17-pm-foundation-models" in block
+
+
+def test_inject_mentions_block_preserves_prose():
+    from build_site import inject_mentions_block
+    md = """# CHIEF
+
+Hand-written intro.
+
+<!-- mentions:start -->
+old auto content
+<!-- mentions:end -->
+
+## What's missing
+
+Hand-written notes preserved.
+"""
+    new_block = "<!-- mentions:start -->\nnew auto\n<!-- mentions:end -->"
+    out = inject_mentions_block(md, new_block)
+    assert "Hand-written intro." in out
+    assert "Hand-written notes preserved." in out
+    assert "new auto" in out
+    assert "old auto content" not in out
