@@ -24,8 +24,8 @@ roughly 100 million tiles from ~100,000 diagnostic H&E slides spanning
 backbone to ViT-H/14 with register tokens and is trained on more than
 200 million H&E and IHC tiles sampled from over 350,000 whole-slide
 images. Both models are tile encoders (no slide-level head) returning
-1024–1536-dimensional embeddings, designed to be paired with attention
-MIL or similar aggregators downstream. Reported claims include
+1024-dimensional embeddings (UNI) or 1536-dimensional embeddings (UNI2-h),
+designed to be paired with attention MIL or similar aggregators downstream. Reported claims include
 strong few-shot transfer and consistent gains over CTransPath and
 generic ImageNet ViTs across more than 30 clinical histopathology
 benchmarks.
