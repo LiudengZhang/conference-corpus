@@ -1,7 +1,7 @@
 # Prov-GigaPath
 
 **Family:** path-fm
-**Modality:** H&E whole-slide image tiles (256×256, 20×) plus a slide-level encoder
+**Modality:** H&E whole-slide image tiles (256×256 at 20×, resized to 224 for the ViT) plus a slide-level encoder
 **Released:** 2024 (Nature)
 **License:** Code Apache-2.0; model weights gated, non-commercial research only (Microsoft Research / Providence terms)
 **Code/checkpoint:** [github.com/prov-gigapath/prov-gigapath](https://github.com/prov-gigapath/prov-gigapath); checkpoint on HuggingFace ([prov-gigapath/prov-gigapath](https://huggingface.co/prov-gigapath/prov-gigapath))

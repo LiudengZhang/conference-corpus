@@ -1,7 +1,7 @@
 # CHIEF
 
 **Family:** path-fm
-**Modality:** H&E whole-slide image patches (256×256, ~10×–20×) and slide-level aggregation
+**Modality:** H&E whole-slide image patches (256×256 at 10×) and slide-level aggregation
 **Released:** 2024 (Nature)
 **License:** AGPL-3.0, non-commercial academic use only
 **Code/checkpoint:** [github.com/hms-dbmi/CHIEF](https://github.com/hms-dbmi/CHIEF) (weights gated via repo request form)
