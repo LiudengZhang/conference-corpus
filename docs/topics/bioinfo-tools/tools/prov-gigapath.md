@@ -1,18 +1,35 @@
 # Prov-GigaPath
 
 **Family:** path-fm
-**Modality:** TODO
-**Released:** TODO
-**License:** TODO
-**Code/checkpoint:** TODO
+**Modality:** H&E whole-slide image tiles (256×256, 20×) plus a slide-level encoder
+**Released:** 2024 (Nature)
+**License:** Code Apache-2.0; model weights gated, non-commercial research only (Microsoft Research / Providence terms)
+**Code/checkpoint:** [github.com/prov-gigapath/prov-gigapath](https://github.com/prov-gigapath/prov-gigapath); checkpoint on HuggingFace ([prov-gigapath/prov-gigapath](https://huggingface.co/prov-gigapath/prov-gigapath))
 **Also surfaced in:** single-cell-spatial-omics, virtual-cells
 
-> TODO — one-paragraph plain-language description (~3 sentences). What
-> the tool does, what it trains on, what its standout claim is.
+> Prov-GigaPath is a whole-slide pathology foundation model from
+> Microsoft Research and Providence Health that pairs a tile-level
+> encoder with a slide-level aggregator, so a single forward pass can
+> turn an entire gigapixel slide into a fixed-length representation.
+> It is pretrained on more than 1.3 billion tiles from over 170,000
+> real-world H&E slides drawn from 31 Providence-affiliated hospitals,
+> making it one of the largest published pathology corpora to date.
+> The Nature 2024 paper claims state-of-the-art results across cancer
+> subtyping, mutation prediction, and pathology-genomics retrieval.
 
 ## Architecture & training
 
-TODO — backbone, pretraining corpus, objective, parameter count.
+The tile encoder is a ViT-style backbone trained with DINOv2-style
+self-supervision on roughly 1.3 billion 256×256 H&E patches sampled
+from 171,189 whole-slide images. The slide-level encoder uses a
+LongNet-based dilated-attention transformer that ingests the full
+sequence of tile tokens for a slide (tens of thousands per WSI) and
+is pretrained with a masked tile-modeling objective, producing a
+single slide embedding without needing weakly supervised MIL. The
+public checkpoint comprises both the tile and slide encoders; the
+authors report improved performance over UNI, CTransPath, and other
+pathology backbones across 26 downstream clinical and biomarker
+tasks.
 
 ## Use in the AACR 2026 corpus
 

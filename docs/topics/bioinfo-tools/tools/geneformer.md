@@ -1,18 +1,38 @@
 # Geneformer
 
 **Family:** sc-fm
-**Modality:** TODO
-**Released:** TODO
-**License:** TODO
-**Code/checkpoint:** TODO
+**Modality:** Single-cell RNA-seq (rank-encoded gene expression, human)
+**Released:** 2023 (Nature); V2 update 2024
+**License:** Apache-2.0
+**Code/checkpoint:** [huggingface.co/ctheodoris/Geneformer](https://huggingface.co/ctheodoris/Geneformer)
 **Also surfaced in:** agentic-ai, single-cell-spatial-omics, virtual-cells
 
-> TODO — one-paragraph plain-language description (~3 sentences). What
-> the tool does, what it trains on, what its standout claim is.
+> Geneformer is a transformer foundation model for single-cell
+> transcriptomics from Christina Theodoris's group at Gladstone/UCSF
+> that represents each cell as a rank-ordered list of its most
+> distinctively expressed genes and learns gene-context relationships
+> via masked language modeling. It is pretrained on Genecorpus-30M, a
+> ~30 million-cell corpus assembled from public human scRNA-seq, and
+> was the first widely adopted single-cell FM. Standout claims center
+> on zero- and few-shot transfer to disease modeling, in-silico
+> perturbation, and identifying candidate gene targets in
+> data-limited settings such as cardiomyopathy.
 
 ## Architecture & training
 
-TODO — backbone, pretraining corpus, objective, parameter count.
+Geneformer encodes a cell as the ranked list of its top expressed
+genes (rank-value encoding, deprioritizing housekeeping genes) and
+runs a BERT-style transformer encoder over that sequence. The
+original V1 model (2023) is ~10M parameters with a 2,048-token input
+and ~25K-gene vocabulary, pretrained with 15% masked-gene-prediction
+on Genecorpus-30M (~30M human single-cell transcriptomes). V2 (2024)
+scales to 104M and 316M parameter variants with a 4,096-token input,
+restricts the vocabulary to ~20K protein-coding genes, and is
+pretrained on a ~104M-cell expanded corpus, with a separate
+14M-cell cancer-domain-tuned variant. Pretraining is fully
+self-supervised and the released models are typically used either
+zero-shot for embeddings/perturbation or fine-tuned on small labeled
+sets.
 
 ## Use in the AACR 2026 corpus
 
