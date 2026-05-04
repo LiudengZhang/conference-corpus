@@ -64,9 +64,11 @@ benchmarks.
 
 ## What's missing / where evidence is weak
 
-- TODO
+- **Two of the nine "poster" hits are alias collisions, not the model.** Poster 6446 ("Uni- and multivariable binary logistic regression") and LB159 ("uni- and multimodal foundation models") match on the prefix "uni" but refer to univariate analysis and unimodal models, not UNI / UNI2-h. The true-positive poster count is closer to 7.
+- **No outcome / external-validation data in the corpus.** Posters use UNI(2) as a frozen feature extractor feeding ABMIL or similar aggregators, but none report prospective clinical validation, calibration, or fairness analyses.
+- **Almost no head-to-head benchmarking against other pathology FMs.** Poster 4163 (KRONOS) and 5470 (low-mag HER2) are the only entries that compare UNI(2) directly to an alternative; there is no poster systematically evaluating UNI vs. Prov-GigaPath vs. CONCH on identical tasks.
+- **The CC-BY-NC-ND license is invisible in the corpus** — no poster discusses commercial-use constraints despite many appearing to come from translational / industry-adjacent groups.
 
 ## Takeaway
 
-TODO — one paragraph on what the AACR 2026 corpus uniquely teaches us
-about UNI / UNI2.
+UNI / UNI2-h is the most-evidenced pathology foundation model in AACR 2026: nine poster mentions (≈7 true-positive) plus one session, almost all using it as a drop-in tile encoder feeding attention-MIL pipelines for tumor subtyping, biomarker prediction, mutation prediction, or fusion calling. The corpus pattern is striking — UNI shows up as the default backbone the way ResNet-50 once did, beating CTransPath but matched or modestly beaten by domain-specific successors (KRONOS for spatial proteomics, a custom low-magnification model for HER2). What is conspicuously missing is any prospective clinical evaluation; UNI is being used as feature plumbing, not yet as a deployed decision-support component.

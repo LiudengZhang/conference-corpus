@@ -57,9 +57,11 @@ _No session transcripts in the AACR 2026 corpus mention this tool._
 
 ## What's missing / where evidence is weak
 
-- TODO
+- **No primary application** — every poster mention treats Geneformer as a baseline to beat (poster 2752 CancerSTFormer outperforms a fine-tuned Geneformer; poster 5478 benchmarks it alongside five other single-cell FMs on bulk RNA-seq), as a generic rank-based reference (poster 978), or as a comparator that "exhibits distinct biases" (poster LB169 scCAP). The corpus contains no poster that uses Geneformer as the primary tool driving a discovery.
+- **Zero session mentions.** Despite being one of the earliest single-cell FMs and frequently named alongside scGPT, Geneformer is absent from all 12 bioinfo-tools session transcripts.
+- **No explicit V1-vs-V2 comparison.** The released 104M / 316M-parameter V2 variants and the 14M-cell cancer-domain-tuned model are not differentiated in any corpus mention; posters refer to "Geneformer" generically.
+- **No in-silico perturbation or drug-target discovery work** — Geneformer's headline use case from the original Nature paper does not appear in any corpus entry.
 
 ## Takeaway
 
-TODO — one paragraph on what the AACR 2026 corpus uniquely teaches us
-about Geneformer.
+In AACR 2026, Geneformer is the canonical "previous-generation" single-cell foundation model: cited in four posters, but always as a benchmark baseline that newer methods (CancerSTFormer, scCAP, BulkFormer, custom rank-based pipelines) measure themselves against — never as the primary engine of a result. The corpus thus tells a consistent story across single-cell FMs: Geneformer set the template, and the field has moved on to larger or more domain-specific successors without abandoning it as a reference point.

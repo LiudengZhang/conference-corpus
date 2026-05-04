@@ -51,9 +51,11 @@ tasks.
 
 ## What's missing / where evidence is weak
 
-- TODO
+- **Only the tile encoder is being used.** Both poster mentions (1457 NSCLC gene expression; 1470 3D spatial-transcriptomics tile selection) extract patch / tile embeddings — neither exercises the LongNet slide-level encoder that is Prov-GigaPath's actual architectural contribution.
+- **No head-to-head benchmark in the corpus.** None of the posters compare Prov-GigaPath against UNI / UNI2-h or CONCH on a shared task; the choice of backbone reads as convenience, not the result of evaluation.
+- **The session mention is glancing.** The April-20 session reference is a name-drop ("using gigapath to … model pathology slide") with no method detail, so it adds no evidence beyond the posters.
+- **No discussion of the gated weights or non-commercial terms** in any corpus mention, despite this being a real adoption barrier for industry-adjacent work.
 
 ## Takeaway
 
-TODO — one paragraph on what the AACR 2026 corpus uniquely teaches us
-about Prov-GigaPath.
+Prov-GigaPath shows up as a working tile-feature backbone in two specialized methods posters — gene-expression prediction from H&E in NSCLC, and tile-similarity-based section selection for 3D spatial transcriptomics — plus one passing session reference. The AACR 2026 corpus thus uses Prov-GigaPath the same way it uses UNI: as a frozen patch encoder feeding a downstream model. The slide-level LongNet encoder, which is the paper's main novelty, never appears in the corpus, suggesting that even where Prov-GigaPath is preferred over UNI, it is not yet preferred *because of* its slide-level capability.

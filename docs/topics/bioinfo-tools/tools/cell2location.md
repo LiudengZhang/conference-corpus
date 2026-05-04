@@ -56,9 +56,11 @@ _No session transcripts in the AACR 2026 corpus mention this tool._
 
 ## What's missing / where evidence is weak
 
-- TODO
+- **No comparison against alternative deconvolution methods.** All three posters (1442 TNBC tumor purity, 4952 NSCLC neoadjuvant chemoimmunotherapy resistance niches, 773 lung squamous cell carcinoma fibrosis) use Cell2Location as the chosen tool without benchmarking against RCTD, Tangram, CARD, or stereoscope. There is no AACR 2026 evidence for which spot-resolution deconvolver is preferable for which tissue.
+- **No discussion of compute or runtime.** Cell2Location's per-dataset variational fitting can take hours on GPU; none of the posters report runtime, slide count, or convergence diagnostics.
+- **Reference-scRNA-seq dependence is unexamined.** The fidelity of Cell2Location output is bounded by the quality and cell-type coverage of the matched single-cell reference, but corpus posters describe their references in passing rather than as a controlled variable.
+- **Zero session mentions.** Despite being a workhorse spatial-transcriptomics tool, Cell2Location does not surface in any of the 12 bioinfo-tools session transcripts.
 
 ## Takeaway
 
-TODO — one paragraph on what the AACR 2026 corpus uniquely teaches us
-about Cell2Location.
+Cell2Location is the quiet utility of AACR 2026's spatial-transcriptomics work — three posters use it as the primary deconvolution step in real analyses (TNBC tumor-cell proportions as supervisory labels, NSCLC resistance-niche composition, IPF-associated lung-cancer cell-state mapping) and treat the choice as routine. Unlike the pathology and single-cell foundation models in this index, Cell2Location is not being evaluated, benchmarked, or compared; it is simply being *used*. The corpus thus reinforces its status as the default Bayesian deconvolver for Visium/ST data, while highlighting that the community is no longer asking whether to use it but only what to do with its output.
