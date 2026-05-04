@@ -4,6 +4,10 @@
 
 The methods slice of AACR 2026: foundation models, pipelines, benchmarks, ML/DL applications, digital pathology, agentic AI, LLMs in the clinic.
 
+## Tool dossiers
+
+Some of the named tools below — CHIEF, scGPT, Geneformer, Cell2Location, etc. — have dedicated reference dossiers covering every corpus mention plus what the evidence is missing. See **[Tools index](tools/index.md)** for the full sortable matrix.
+
 ## Sessions (all symlinks)
 
 Every session in this topic is the canonical transcript from another topic folder, surfaced here because of heavy methods content (ranked by "foundation model / ML / DL / algorithm / benchmark / toolkit" keyword density).
