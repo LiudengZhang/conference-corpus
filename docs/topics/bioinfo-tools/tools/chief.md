@@ -58,9 +58,11 @@ _No posters in the AACR 2026 corpus mention this tool._
 
 ## What's missing / where evidence is weak
 
-- TODO
+- **Every corpus hit above is a false positive.** "Chief AI for Science", "Chief Scientific Advisor", "Chief of AI", "chief scientist officer", and the gastric-biology references to "chief stem cells" / "chief cell loss" all share the substring "chief" but none refer to the CHIEF pathology foundation model. The tool cleared the inclusion gate purely on alias collision.
+- **No posters in the AACR 2026 corpus mention the actual model.** This is the cleanest signal that despite CHIEF being a flagship 2024 pathology FM, it did not surface in the abstracts harvested for this meeting.
+- **No head-to-head benchmark against UNI or Prov-GigaPath in the corpus** — the posters that do compare pathology FMs (e.g., 4163, 5478, LB159) name UNI / UNI2 / GigaPath but not CHIEF.
+- **No discussion of the AGPL-3.0 + non-commercial-academic gating** in any corpus mention; the licensing constraint is invisible here even though it likely shapes adoption.
 
 ## Takeaway
 
-TODO — one paragraph on what the AACR 2026 corpus uniquely teaches us
-about CHIEF.
+CHIEF is the textbook case for why an alias-based mention scanner needs a human pass: it scored highest of any tool by raw session count, yet none of those hits is real. The genuine signal AACR 2026 carries about CHIEF is its absence — a widely cited pathology FM that simply did not appear in the harvested abstracts or transcripts, while UNI and Prov-GigaPath did. That absence, not the false-positive count, is the data point.

@@ -51,9 +51,11 @@ Geneformer, and scVI baselines across these tasks.
 
 ## What's missing / where evidence is weak
 
-- TODO
+- **The pan-cancer checkpoint is absent.** Despite a 5.7M tumor-cell pan-cancer variant being released alongside the whole-human default, no corpus mention uses or evaluates it. Both poster mentions reach for the v1.0 whole-human checkpoint or a generic "scGPT" baseline.
+- **No fine-tuning protocol detail in the corpus.** Poster 4212 (PBMC peripheral-blood AI estimator) calls out scGPT v1.0 as a feature extractor, and poster 5478 benchmarks it, but neither describes fine-tuning hyperparameters, organ-specific checkpoint choice, or perturbation evaluation.
+- **The session mention is a name-check.** The April-20 AI Revolution session lists scGPT alongside ExCell as "virtual cell models" without methodological detail; it adds no evidence beyond the posters.
+- **No tumor-microenvironment or perturbation work.** scGPT's headline capabilities (perturbation prediction, GRN inference) do not appear in any corpus mention.
 
 ## Takeaway
 
-TODO — one paragraph on what the AACR 2026 corpus uniquely teaches us
-about scGPT.
+scGPT is present in AACR 2026 as a representative single-cell foundation model — invoked in two posters and one session — but always as a context entry in a foundation-model lineup (typically alongside scFoundation or Geneformer) rather than as the primary engine of an analysis. The corpus pattern mirrors Geneformer's: scGPT is widely *known* and consistently *named*, but no AACR 2026 contribution leans on its generative or perturbation capabilities to drive a finding.
