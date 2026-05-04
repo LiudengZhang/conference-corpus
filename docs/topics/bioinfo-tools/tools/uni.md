@@ -1,18 +1,34 @@
 # UNI / UNI2
 
 **Family:** path-fm
-**Modality:** TODO
-**Released:** TODO
-**License:** TODO
-**Code/checkpoint:** TODO
+**Modality:** H&E (and IHC for UNI2) whole-slide image patches (224×224, 20×)
+**Released:** UNI: 2024 (Nature Medicine); UNI2-h: 2025 (Mahmood Lab release)
+**License:** CC-BY-NC-ND 4.0, non-commercial academic use; commercial use requires Mass General Brigham approval
+**Code/checkpoint:** [github.com/mahmoodlab/UNI](https://github.com/mahmoodlab/UNI); checkpoints on HuggingFace ([MahmoodLab/uni](https://huggingface.co/MahmoodLab/uni), [MahmoodLab/UNI2-h](https://huggingface.co/MahmoodLab/UNI2-h))
 **Also surfaced in:** clinical-trials, single-cell-spatial-omics, virtual-cells
 
-> TODO — one-paragraph plain-language description (~3 sentences). What
-> the tool does, what it trains on, what its standout claim is.
+> UNI is a self-supervised pathology foundation model from the Mahmood
+> Lab that produces general-purpose tile embeddings for H&E whole-slide
+> images, intended as a drop-in feature extractor for downstream tasks
+> like tumor detection, subtyping, biomarker prediction, and survival
+> analysis. UNI2-h is a larger 2025 successor trained on a substantially
+> expanded corpus that adds IHC alongside H&E. The line is one of the
+> most widely benchmarked pathology backbones, frequently used as the
+> tile encoder feeding ABMIL or other slide-level aggregators.
 
 ## Architecture & training
 
-TODO — backbone, pretraining corpus, objective, parameter count.
+UNI uses a ViT-L/16 backbone pretrained with DINOv2 self-supervision on
+roughly 100 million tiles from ~100,000 diagnostic H&E slides spanning
+20 major tissue types from Mass General Brigham. UNI2-h scales the
+backbone to ViT-H/14 with register tokens and is trained on more than
+200 million H&E and IHC tiles sampled from over 350,000 whole-slide
+images. Both models are tile encoders (no slide-level head) returning
+1024–1536-dimensional embeddings, designed to be paired with attention
+MIL or similar aggregators downstream. Reported claims include
+strong few-shot transfer and consistent gains over CTransPath and
+generic ImageNet ViTs across more than 30 clinical histopathology
+benchmarks.
 
 ## Use in the AACR 2026 corpus
 

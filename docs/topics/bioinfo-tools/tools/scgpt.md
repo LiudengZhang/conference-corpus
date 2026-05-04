@@ -1,18 +1,35 @@
 # scGPT
 
 **Family:** sc-fm
-**Modality:** TODO
-**Released:** TODO
-**License:** TODO
-**Code/checkpoint:** TODO
+**Modality:** Single-cell RNA-seq (gene-expression value tokens)
+**Released:** 2024 (Nature Methods)
+**License:** MIT (code); checkpoints distributed via Google Drive under the same terms
+**Code/checkpoint:** [github.com/bowang-lab/scGPT](https://github.com/bowang-lab/scGPT) (whole-human, organ-specific, and pan-cancer checkpoints)
 **Also surfaced in:** agentic-ai, single-cell-spatial-omics, virtual-cells
 
-> TODO — one-paragraph plain-language description (~3 sentences). What
-> the tool does, what it trains on, what its standout claim is.
+> scGPT is a generative single-cell foundation model from the Bo Wang
+> Lab at the University of Toronto that treats each cell as a sequence
+> of gene–value tokens and pretrains a transformer to reconstruct
+> masked expression values. It is trained on more than 33 million
+> human cells from CELLxGENE and supports cell-type annotation,
+> integration, perturbation prediction, and gene-regulatory inference
+> after lightweight fine-tuning. Organ-specific (brain, blood, lung,
+> heart, kidney) and pan-cancer (5.7M cells) checkpoints are released
+> alongside the whole-human default.
 
 ## Architecture & training
 
-TODO — backbone, pretraining corpus, objective, parameter count.
+scGPT uses a transformer encoder with a custom generative attention
+mask: gene tokens are paired with binned expression-value tokens and
+condition tokens (batch, modality), and the model is trained to
+predict masked expression values given the unmasked context. The
+flagship "whole-human" checkpoint is pretrained on ~33M normal human
+cells aggregated from CELLxGENE; organ-specific variants range from
+~0.8M to ~13M cells, and a pan-cancer variant is trained on ~5.7M
+tumor cells. Fine-tuning uses a small task head for cell-type
+classification, batch integration, or perturbation response, and the
+paper reports competitive or improved performance over scBERT,
+Geneformer, and scVI baselines across these tasks.
 
 ## Use in the AACR 2026 corpus
 

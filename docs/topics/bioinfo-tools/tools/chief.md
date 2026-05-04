@@ -1,18 +1,35 @@
 # CHIEF
 
 **Family:** path-fm
-**Modality:** TODO
-**Released:** TODO
-**License:** TODO
-**Code/checkpoint:** TODO
+**Modality:** H&E whole-slide image patches (256×256, ~10×–20×) and slide-level aggregation
+**Released:** 2024 (Nature)
+**License:** AGPL-3.0, non-commercial academic use only
+**Code/checkpoint:** [github.com/hms-dbmi/CHIEF](https://github.com/hms-dbmi/CHIEF) (weights gated via repo request form)
 **Also surfaced in:** agentic-ai, single-cell-spatial-omics, virtual-cells
 
-> TODO — one-paragraph plain-language description (~3 sentences). What
-> the tool does, what it trains on, what its standout claim is.
+> CHIEF (Clinical Histopathology Imaging Evaluation Foundation) is a
+> two-stage pathology foundation model from the Mahmood Lab that maps
+> H&E whole-slide images to patch- and slide-level embeddings for
+> cancer detection, subtyping, biomarker prediction, and outcome
+> stratification. It is trained on a multi-cancer cohort spanning 19
+> anatomical sites and is positioned as a generalist model whose
+> embeddings can be reused across downstream histology tasks without
+> task-specific retraining.
 
 ## Architecture & training
 
-TODO — backbone, pretraining corpus, objective, parameter count.
+CHIEF is built in two stages: a CTransPath-based patch encoder
+(CHIEF-CTransPath) producing 768-dimensional tile embeddings, and a
+weakly supervised attention-based aggregator that pools tile features
+into a slide-level representation. Patch-level pretraining uses
+self-supervised contrastive learning over ~15 million tiles drawn from
+~60,530 whole-slide images spanning 19 anatomical sites (~44 TB of
+pixel data); the slide-level head is then trained with anatomic-site
+conditioning so embeddings carry organ context. The released
+checkpoints are evaluated across 19,491 WSIs from 32 independent
+cohorts at 24 hospitals, with reported gains on cancer detection,
+genomic biomarker prediction, and survival prediction relative to
+prior pathology backbones.
 
 ## Use in the AACR 2026 corpus
 

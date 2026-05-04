@@ -1,18 +1,39 @@
 # Cell2Location
 
 **Family:** spatial
-**Modality:** TODO
-**Released:** TODO
-**License:** TODO
-**Code/checkpoint:** TODO
+**Modality:** Spot-resolution spatial transcriptomics (Visium, ST), paired with a scRNA-seq reference
+**Released:** 2022 (Nature Biotechnology)
+**License:** Apache-2.0
+**Code/checkpoint:** [github.com/BayraktarLab/cell2location](https://github.com/BayraktarLab/cell2location) (fitted per dataset; no pretrained weights)
 **Also surfaced in:** single-cell-spatial-omics
 
-> TODO — one-paragraph plain-language description (~3 sentences). What
-> the tool does, what it trains on, what its standout claim is.
+> Cell2Location is a Bayesian spatial-transcriptomics deconvolution
+> method from the Bayraktar Lab at the Sanger Institute that maps
+> fine-grained cell types onto Visium / ST spots by integrating a
+> single-cell reference with the spatial counts. It first estimates
+> reference cell-type expression signatures from annotated scRNA-seq,
+> then fits a hierarchical Negative Binomial model per dataset to
+> infer the absolute abundance of each cell type at each spot while
+> accounting for technical effects. It is a probabilistic model
+> rather than a foundation model: there is no pretrained checkpoint —
+> users fit it on their own scRNA-seq + spatial pair.
 
 ## Architecture & training
 
-TODO — backbone, pretraining corpus, objective, parameter count.
+Cell2Location is a hierarchical Bayesian Negative Binomial model
+implemented in PyTorch / Pyro on top of the scvi-tools framework. It
+factorises the observed spot count matrix into per-cell-type
+reference signatures (estimated separately from annotated scRNA-seq
+via a regression NB model) multiplied by latent per-spot cell-type
+abundances, with explicit nuisance terms for slide-level batch
+effects, ambient/contaminating RNA, and gene- and location-specific
+overdispersion. Inference is done with stochastic variational
+inference; informative gamma priors on per-spot total cell count and
+per-cell-type abundance provide the regularisation that lets the
+model resolve dozens of cell types per spot. There is no pretraining
+or shared checkpoint — the model is fit from scratch on each
+scRNA-seq + spatial pair, with GPU runtimes of minutes-to-hours per
+slide.
 
 ## Use in the AACR 2026 corpus
 
