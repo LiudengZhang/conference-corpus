@@ -4,7 +4,7 @@ Curated topic-specific subsets of AACR 2026 content. Session transcripts are Vim
 
 ## Interactive site
 
-An MkDocs Material site is generated from this repo and deployed on Cloudflare Pages (private, Basic Auth). It renders the corpus as filterable poster tables (Tabulator) + one page per unique session transcript, plus topic-level analysis pages (Overview / Landscape / Synthesis) — starting with Virtual Cells (ED03 theses vs 48-poster corpus). Hypothes.is annotation layer enabled site-wide.
+An MkDocs Material site is generated from this repo and deployed on Cloudflare Pages (private, Basic Auth). It renders the corpus as filterable poster tables (Tabulator) + one page per unique session transcript, plus topic-level analysis pages (Overview / Landscape / Synthesis) — starting with Virtual Cells (ED03 theses vs 48-poster corpus) — and a dedicated **Tools** sub-section under bioinfo-tools with reference dossiers for the named foundation models / methods that cleared a 3-mention inclusion gate against the corpus (CHIEF, UNI/UNI2, Prov-GigaPath, Geneformer, scGPT, Cell2Location). Hypothes.is annotation layer enabled site-wide.
 
 - Source: `docs/` (MkDocs), `scripts/build_site.py` (preprocessor), `functions/_middleware.js` (Basic Auth)
 - Build: `pip install -r requirements.txt && python scripts/build_site.py && mkdocs build`
