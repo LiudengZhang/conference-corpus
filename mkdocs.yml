@@ -79,6 +79,14 @@ nav:
       - Overview: topics/bioinfo-tools/index.md
       - Landscape: topics/bioinfo-tools/landscape.md
       - Synthesis — FM pathology traction: topics/bioinfo-tools/synthesis-fm-pathology-traction.md
+      - Tools:
+        - Index: topics/bioinfo-tools/tools/index.md
+        - CHIEF: topics/bioinfo-tools/tools/chief.md
+        - Prov-GigaPath: topics/bioinfo-tools/tools/prov-gigapath.md
+        - UNI / UNI2: topics/bioinfo-tools/tools/uni.md
+        - Geneformer: topics/bioinfo-tools/tools/geneformer.md
+        - scGPT: topics/bioinfo-tools/tools/scgpt.md
+        - Cell2Location: topics/bioinfo-tools/tools/cell2location.md
     - Clinical Trials:
       - Overview: topics/clinical-trials/index.md
       - Landscape: topics/clinical-trials/landscape.md
