@@ -22,6 +22,8 @@ import urllib.request
 from pathlib import Path
 from collections import defaultdict
 
+from conferences import CONFERENCES
+
 ROOT = Path(__file__).resolve().parent.parent
 TRANSCRIPTS = ROOT / "transcripts"
 DOCS = ROOT / "docs"
