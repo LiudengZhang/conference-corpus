@@ -13,7 +13,7 @@ CONFERENCES = [
     {
         "slug": "aacr-2026",
         "label": "AACR 2026",
-        "data_dir": "",                              # repo root; becomes "aacr-2026" in Task 4
+        "data_dir": "aacr-2026",                     # was: ""
         "docs_dir": "docs",                          # becomes "docs/conferences/aacr-2026" in Task 5
         "topics": [
             ("agentic-ai", "Agentic AI"),
