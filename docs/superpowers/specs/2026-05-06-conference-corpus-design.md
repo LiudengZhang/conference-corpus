@@ -29,10 +29,10 @@ conference-corpus/                          # repo root (renamed from aacr-2026)
 │   ├── transcripts/{agentic-ai,...,clinical-trials}/...   (moved from repo root)
 │   └── raw/{agentic-ai,...,clinical-trials}/...           (moved from repo root)
 ├── nextflow-2026/
-│   └── transcripts/sessions/                              (3 .md files moved from _Extra/Nextflow)
-│       ├── 2026-04-30-vicksville-summit-day-1-am.md       (was transcript_day_1_before_lunch.md)
-│       ├── 2026-04-30-vicksville-summit-day-1-pm.md       (was transcript_day_1_after_lunch.md, empty placeholder)
-│       └── 2026-05-01-nextflow-community-training.md      (was transcript_day_2.md)
+│   └── transcripts/sessions/                              (3 .md files moved from _Extra/Nextflow, all populated)
+│       ├── 2026-04-30-vicksville-summit-day-1-am.md       (was transcript_day_1_before_lunch.md, ~108 KB)
+│       ├── 2026-04-30-vicksville-summit-day-1-pm.md       (was transcript_day_1_after_lunch.md, ~121 KB — protein-design competition + AI workflows)
+│       └── 2026-05-01-nextflow-community-training.md      (was transcript_day_2.md, ~142 KB)
 ├── jpm-2026/
 │   └── README.md                                          (placeholder; "no content yet")
 ├── docs/
@@ -166,7 +166,7 @@ Curated transcripts and abstracts from biomedical and computational biology meet
 American Association for Cancer Research Annual Meeting. ~26 sessions, ~2,300 posters across 5 topics: agentic AI, single-cell & spatial omics, virtual cells, bioinfo / comp bio / AI methods, and clinical trials.
 
 [**Nextflow Summit 2026**](conferences/nextflow-2026/){ .md-button }
-Vicksville Summit + Nextflow community training (April 30 – May 1, 2026). 3 session transcripts on AI in scientific workflows and Nextflow training.
+Vicksville Summit + Nextflow community training. 3 session transcripts (~370 KB total) on AI in scientific workflows, protein-design competition pipelines, and Nextflow community training.
 
 [**JPM 2026**](conferences/jpm-2026/){ .md-button }
 J.P. Morgan Healthcare Conference 2026. Placeholder — no content yet.
@@ -202,15 +202,15 @@ Steps 2–7 each end in a passing `mkdocs build --strict` (modulo the 49 pre-exi
 
 - After step 3: `mkdocs build` warning count unchanged from pre-refactor baseline.
 - After step 4: every URL that was `/topics/X/...` now redirects via the new `/conferences/aacr-2026/topics/X/...` path; navigate the site locally and click 5 representative pages (one per topic).
-- After step 5: Nextflow sessions list renders, each transcript page is non-empty (except the known-empty `day-1-pm` placeholder).
+- After step 5: Nextflow sessions list renders, each of the 3 transcript pages is non-empty.
 - After step 7: home page lists all 3 conferences, each card link works.
 - After step 9: Cloudflare Pages preview deploy succeeds, Basic Auth still gates the site.
 - Word counts and file checksums for AACR transcripts before/after the move match (paranoia check that no content was lost).
 
 ## Open questions
 
-1. **Nextflow session naming.** I'm proposing `2026-04-30-vicksville-summit-day-1-am.md` etc. Is "Vicksville" the official summit name, or is this a stand-in / hosted-at name? If the official event name is different, I'll use that.
-2. **Empty `transcript_day_1_after_lunch.md`.** Carry it forward as an empty placeholder, or omit from the site nav until populated? (Default: include with a "transcript pending" note.)
+1. **Nextflow event name.** I'm proposing `2026-04-30-vicksville-summit-day-1-am.md` etc. Is "Vicksville" the official summit name, or is this a stand-in / hosted-at name? If the official event name is different, I'll use that.
+2. **Date discrepancy on day-1 PM transcript.** The day-1 morning transcript header says April 30; the day-2 transcript header says May 1; but the newly-populated `transcript_day_1_after_lunch.md` header says **May 3** despite the filename suggesting day 1. Is the May 3 date a captioning artifact (likely), or is this transcript actually from a different day and the filename is misleading? Affects the date prefix in the slug.
 3. **JPM 2026 placeholder content.** What goes on the placeholder page beyond "no content yet"? E.g., expected content (sessions only? press releases? company presentations?), expected timeline.
 4. **Repo rename timing.** Rename on GitHub before or after the refactor PR merges? Renaming after is safer (PR doesn't span a rename); renaming before lets you start using the new name immediately.
 
