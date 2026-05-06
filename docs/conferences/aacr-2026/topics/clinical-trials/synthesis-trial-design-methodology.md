@@ -2,7 +2,7 @@
 
 **Thesis:** Bayesian, adaptive, and model-assisted dose-finding designs have crossed from academic-biostatistics novelty into a plurality of early-phase CT poster readouts at AACR 2026 — but the penetration is lopsided. BOIN is now the de-facto industry default for sponsor-run Phase I dose-escalation; Bayesian Phase 2 extensions (BOP2, Bayesian borrowing in basket trials) are visible; **adaptive** and **platform** designs remain rare; and meaningful usage of **synthetic / external controls** is absent from the corpus entirely.
 
-This page parses the full 642-poster JSONL for design-pattern keyword hits (Title + Abstract + SessionTitle, case-insensitive), cites every claim to a specific PresentationNumber, and closes with an institutional analysis of whether this is a real methodology shift or a Chinese-industry-sponsor concentration. No session transcripts exist for the Clinical Trials track (see [caveats](../../notes/caveats.md)), so this is a corpus-only synthesis.
+This page parses the full 642-poster JSONL for design-pattern keyword hits (Title + Abstract + SessionTitle, case-insensitive), cites every claim to a specific PresentationNumber, and closes with an institutional analysis of whether this is a real methodology shift or a Chinese-industry-sponsor concentration. No session transcripts exist for the Clinical Trials track (see [caveats](../../../../notes/caveats.md)), so this is a corpus-only synthesis.
 
 **Quantitative scan — total design-pattern hits (of 642):**
 

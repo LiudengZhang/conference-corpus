@@ -47,13 +47,6 @@ def conf_assets_path(conf: dict, *parts: str) -> Path:
     return base.joinpath(*parts) if parts else base
 
 
-def legacy_assets_path(*parts: str) -> Path:
-    """Pre-refactor flat docs/assets/ layout. AACR uses this until Task 5
-    flips poster JSON output to the slug-namespaced layout. Removed then."""
-    base = DOCS / "assets"
-    return base.joinpath(*parts) if parts else base
-
-
 TABULATOR_JS_URL = "https://cdn.jsdelivr.net/npm/tabulator-tables@6.2.5/dist/js/tabulator.min.js"
 TABULATOR_CSS_URL = "https://cdn.jsdelivr.net/npm/tabulator-tables@6.2.5/dist/css/tabulator.min.css"
 
@@ -331,7 +324,7 @@ def build_tool_pages(conf: dict):
         return
     tools_dir = docs_path(conf, "topics", "bioinfo-tools", "tools")
     tools_dir.mkdir(parents=True, exist_ok=True)
-    assets_dir = legacy_assets_path("bioinfo-tools")  # flipped to conf_assets_path in Task 5
+    assets_dir = conf_assets_path(conf, "bioinfo-tools")
     assets_dir.mkdir(parents=True, exist_ok=True)
 
     survey = survey_tools(conf)
@@ -394,7 +387,6 @@ def ensure_dirs():
     """Create global directories that exist regardless of conference.
     Per-conference directories are created lazily by their respective
     build_* functions when needed."""
-    legacy_assets_path().mkdir(parents=True, exist_ok=True)
     JS_DIR.mkdir(parents=True, exist_ok=True)
 
 
@@ -418,7 +410,8 @@ def build_poster_json(conf: dict, topic_slug: str) -> int:
     src = data_path(conf, "transcripts", topic_slug, "posters", "abstracts.jsonl")
     if not src.exists():
         return 0
-    out = legacy_assets_path(f"{topic_slug}-posters.json")  # flipped to conf_assets_path in Task 5
+    out = conf_assets_path(conf, "posters", f"{topic_slug}.json")
+    out.parent.mkdir(parents=True, exist_ok=True)
     rows = []
     with src.open() as f:
         for line in f:

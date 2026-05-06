@@ -3,10 +3,8 @@
 Each entry describes one conference. `build_site.py` iterates this list and
 dispatches per-conference work. Path fields are repo-relative.
 
-Initial AACR `data_dir` and `docs_dir` mirror the pre-refactor layout
-(`transcripts/` at repo root, `docs/topics/...`); they flip to
-`aacr-2026/` and `docs/conferences/aacr-2026/` in later tasks of the
-refactor when the actual files move.
+AACR `data_dir` was moved to `aacr-2026/` in Task 4; `docs_dir` was
+moved to `docs/conferences/aacr-2026/` in Task 5.
 """
 
 CONFERENCES = [
@@ -14,7 +12,7 @@ CONFERENCES = [
         "slug": "aacr-2026",
         "label": "AACR 2026",
         "data_dir": "aacr-2026",                     # was: ""
-        "docs_dir": "docs",                          # becomes "docs/conferences/aacr-2026" in Task 5
+        "docs_dir": "docs/conferences/aacr-2026",     # was: "docs" (moved in Task 5)
         "topics": [
             ("agentic-ai", "Agentic AI"),
             ("single-cell-spatial-omics", "Single-Cell & Spatial Omics"),
