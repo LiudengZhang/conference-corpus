@@ -31,5 +31,5 @@ If specific sessions are needed, the IDs are documented in `transcripts/clinical
 ## Posters — 642 abstracts
 
 <div class="poster-filters"></div>
-<div class="poster-table" data-src="../../assets/clinical-trials-posters.json"></div>
+<div class="poster-table" data-src="../../../../assets/aacr-2026/posters/clinical-trials.json"></div>
 <div class="poster-stats"></div>
