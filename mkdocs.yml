@@ -99,6 +99,8 @@ nav:
     - Day 1 (AM): conferences/nextflow-2026/sessions/2026-04-30-nextflow-summit-day-1-am.md
     - Day 1 (PM): conferences/nextflow-2026/sessions/2026-04-30-nextflow-summit-day-1-pm.md
     - Day 2: conferences/nextflow-2026/sessions/2026-05-01-nextflow-summit-day-2.md
+  - JPM 2026:
+    - Overview: conferences/jpm-2026/index.md
   - Notes:
     - Extraction method: notes/extraction.md
     - Caveats: notes/caveats.md
