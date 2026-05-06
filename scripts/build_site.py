@@ -25,22 +25,36 @@ from collections import defaultdict
 from conferences import CONFERENCES
 
 ROOT = Path(__file__).resolve().parent.parent
-TRANSCRIPTS = ROOT / "transcripts"
 DOCS = ROOT / "docs"
-ASSETS = DOCS / "assets"
-SESSIONS = DOCS / "sessions"
 JS_DIR = DOCS / "javascripts"
+
+
+def data_path(conf: dict, *parts: str) -> Path:
+    """Resolve a path under a conference's data_dir (transcripts/, raw/)."""
+    base = ROOT / conf["data_dir"] if conf["data_dir"] else ROOT
+    return base.joinpath(*parts)
+
+
+def docs_path(conf: dict, *parts: str) -> Path:
+    """Resolve a path under a conference's docs_dir (topics/, sessions/)."""
+    return ROOT.joinpath(conf["docs_dir"], *parts)
+
+
+def conf_assets_path(conf: dict, *parts: str) -> Path:
+    """Resolve a path under docs/assets/<conf>/ with optional sub-parts."""
+    base = DOCS / "assets" / conf["slug"]
+    return base.joinpath(*parts) if parts else base
+
+
+def legacy_assets_path(*parts: str) -> Path:
+    """Pre-refactor flat docs/assets/ layout. AACR uses this until Task 5
+    flips poster JSON output to the slug-namespaced layout. Removed then."""
+    base = DOCS / "assets"
+    return base.joinpath(*parts) if parts else base
+
 
 TABULATOR_JS_URL = "https://cdn.jsdelivr.net/npm/tabulator-tables@6.2.5/dist/js/tabulator.min.js"
 TABULATOR_CSS_URL = "https://cdn.jsdelivr.net/npm/tabulator-tables@6.2.5/dist/css/tabulator.min.css"
-
-TOPICS = [
-    ("agentic-ai", "Agentic AI"),
-    ("single-cell-spatial-omics", "Single-Cell & Spatial Omics"),
-    ("virtual-cells", "Virtual Cells"),
-    ("bioinfo-tools", "Bioinfo / Comp Bio / AI Methods"),
-    ("clinical-trials", "Clinical Trials"),
-]
 
 INCLUSION_GATE = 3  # min unique mentions (posters + sessions, deduped) to ship a dossier
 
@@ -85,16 +99,15 @@ def match_aliases(text: str, aliases: list[str]) -> bool:
     return any(_alias_pattern(a).search(text) for a in aliases)
 
 
-def load_corpus() -> dict:
-    """Load every poster JSONL across all 5 topics (deduped by Id) and every
-    unique session .txt (deduped by canonical slug, follows symlinks).
+def load_corpus(conf: dict) -> dict:
+    """Load every poster JSONL and unique session .txt for the given conference.
 
     Returns: {"posters": [{"Id","Title","Abstract","_topic"}, ...],
               "sessions": [{"stem","text","_topics":[...]}, ...]}
     """
     posters_by_id: dict[str, dict] = {}
-    for topic_slug, _ in TOPICS:
-        jsonl = TRANSCRIPTS / topic_slug / "posters" / "abstracts.jsonl"
+    for topic_slug, _ in conf["topics"]:
+        jsonl = data_path(conf, "transcripts", topic_slug, "posters", "abstracts.jsonl")
         if not jsonl.exists():
             continue
         with jsonl.open() as f:
@@ -114,8 +127,8 @@ def load_corpus() -> dict:
                     posters_by_id[pid] = p
 
     sessions_by_stem: dict[str, dict] = {}
-    for topic_slug, _ in TOPICS:
-        fs_dir = TRANSCRIPTS / topic_slug / "full-sessions"
+    for topic_slug, _ in conf["topics"]:
+        fs_dir = data_path(conf, "transcripts", topic_slug, "full-sessions")
         if not fs_dir.exists():
             continue
         for txt in sorted(fs_dir.glob("*.txt")):
@@ -195,13 +208,9 @@ def scan_mentions(corpus: dict, aliases: list[str]) -> dict:
     return {"posters": poster_hits, "sessions": session_hits}
 
 
-def survey_tools() -> dict:
-    """Compute mention counts for every tool in TOOLS and report which pass the gate.
-
-    Returns {"survivors": [...], "dropped": [...]}, each list item a dict.
-    Prints a summary table to stdout.
-    """
-    corpus = load_corpus()
+def survey_tools(conf: dict) -> dict:
+    """Compute mention counts for every tool in TOOLS and report which pass the gate."""
+    corpus = load_corpus(conf)
     survivors, dropped = [], []
     for name, slug, family, aliases in TOOLS:
         hits = scan_mentions(corpus, aliases)
@@ -314,15 +323,17 @@ about {name}.
 """
 
 
-def build_tool_pages():
+def build_tool_pages(conf: dict):
     """Survey the corpus, gate, then write/refresh dossier mention blocks
     and emit the matrix + mentions JSON for the index page."""
-    tools_dir = DOCS / "topics" / "bioinfo-tools" / "tools"
+    if not conf.get("has_tools_index"):
+        return
+    tools_dir = docs_path(conf, "topics", "bioinfo-tools", "tools")
     tools_dir.mkdir(parents=True, exist_ok=True)
-    assets_dir = DOCS / "assets" / "bioinfo-tools"
+    assets_dir = legacy_assets_path("bioinfo-tools")  # flipped to conf_assets_path in Task 5
     assets_dir.mkdir(parents=True, exist_ok=True)
 
-    survey = survey_tools()
+    survey = survey_tools(conf)
     survivors = survey["survivors"]
     dropped = survey["dropped"]
 
@@ -378,9 +389,10 @@ def build_tool_pages():
         ))
 
 
-def ensure_dirs():
-    for d in (ASSETS, SESSIONS, JS_DIR):
-        d.mkdir(parents=True, exist_ok=True)
+def ensure_dirs(conf: dict):
+    legacy_assets_path().mkdir(parents=True, exist_ok=True)
+    docs_path(conf, "sessions").mkdir(parents=True, exist_ok=True)
+    JS_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def vendor_tabulator():
@@ -399,11 +411,11 @@ def vendor_tabulator():
             out.write_bytes(r.read())
 
 
-def build_poster_json(topic_slug: str) -> int:
-    src = TRANSCRIPTS / topic_slug / "posters" / "abstracts.jsonl"
+def build_poster_json(conf: dict, topic_slug: str) -> int:
+    src = data_path(conf, "transcripts", topic_slug, "posters", "abstracts.jsonl")
     if not src.exists():
         return 0
-    out = ASSETS / f"{topic_slug}-posters.json"
+    out = legacy_assets_path(f"{topic_slug}-posters.json")  # flipped to conf_assets_path in Task 5
     rows = []
     with src.open() as f:
         for line in f:
@@ -448,12 +460,16 @@ def read_transcript_text(txt_path: Path) -> str:
     return wrapped
 
 
-def build_session_pages():
+def build_session_pages(conf: dict):
     """Create one MD page per unique transcript file, tracking which topics link to it."""
-    # key = (resolved_path, session_slug); value = list of topic_slugs that include it
+    if conf.get("session_source") != "txt-transcripts":
+        return 0
+    sessions_out = docs_path(conf, "sessions")
+    sessions_out.mkdir(parents=True, exist_ok=True)
+
     by_resolved = defaultdict(list)
-    for topic_slug, _ in TOPICS:
-        fs_dir = TRANSCRIPTS / topic_slug / "full-sessions"
+    for topic_slug, _ in conf["topics"]:
+        fs_dir = data_path(conf, "transcripts", topic_slug, "full-sessions")
         if not fs_dir.exists():
             continue
         for txt in sorted(fs_dir.glob("*.txt")):
@@ -467,18 +483,15 @@ def build_session_pages():
         body = read_transcript_text(resolved)
         word_count = len(body.split())
 
-        # Figure out where this transcript "primarily lives" (first topic that has the native file)
         primary_topic = None
         for ts in topics_in:
-            candidate = TRANSCRIPTS / ts / "full-sessions" / f"{stem}.txt"
+            candidate = data_path(conf, "transcripts", ts, "full-sessions", f"{stem}.txt")
             if candidate.exists() and not candidate.is_symlink():
                 primary_topic = ts
                 break
         if not primary_topic:
             primary_topic = topics_in[0]
 
-        # Build page
-        title = stem.replace("-", " ").replace("2026 04", "Apr").title()
         cross_topics = ", ".join(sorted(set(topics_in)))
         md = f"""# {stem}
 
@@ -496,19 +509,18 @@ def build_session_pages():
 
 </div>
 """
-        (SESSIONS / f"{stem}.md").write_text(md)
+        (sessions_out / f"{stem}.md").write_text(md)
         written += 1
         for ts in topics_in:
             index_entries_by_topic[ts].append((stem, word_count, primary_topic))
 
-    # Build sessions/index.md
     idx_lines = [
         "# Session Transcripts",
         "",
-        f"All {written} unique session transcripts from AACR 2026, grouped by topic. Cross-topic symlinks mean the same video may appear under multiple topics — each transcript has one canonical page here.",
+        f"All {written} unique session transcripts from {conf['label']}, grouped by topic. Cross-topic symlinks mean the same video may appear under multiple topics — each transcript has one canonical page here.",
         "",
     ]
-    for topic_slug, topic_label in TOPICS:
+    for topic_slug, topic_label in conf["topics"]:
         entries = index_entries_by_topic.get(topic_slug, [])
         if not entries:
             continue
@@ -520,24 +532,33 @@ def build_session_pages():
             is_primary = "✓" if primary == topic_slug else ""
             idx_lines.append(f"| [{stem}]({stem}.md) | ~{wc:,} | {is_primary} |")
         idx_lines.append("")
-    (SESSIONS / "index.md").write_text("\n".join(idx_lines))
-    print(f"→ {written} session pages + sessions/index.md")
+    (sessions_out / "index.md").write_text("\n".join(idx_lines))
+    print(f"→ {written} session pages + sessions/index.md for {conf['slug']}")
     return written
 
 
 def main():
     if "--survey" in sys.argv:
-        survey_tools()
+        for conf in CONFERENCES:
+            if conf.get("has_tools_index"):
+                survey_tools(conf)
         return
-    ensure_dirs()
     vendor_tabulator()
     total_posters = 0
-    for topic_slug, _ in TOPICS:
-        total_posters += build_poster_json(topic_slug)
-    total_sessions = build_session_pages()
-    build_tool_pages()
+    total_sessions = 0
+    for conf in CONFERENCES:
+        if conf.get("placeholder_only"):
+            continue
+        ensure_dirs(conf)
+        if conf.get("has_posters"):
+            for topic_slug, _ in conf["topics"]:
+                total_posters += build_poster_json(conf, topic_slug)
+        if conf.get("session_source") == "txt-transcripts":
+            total_sessions += build_session_pages(conf)
+        if conf.get("has_tools_index"):
+            build_tool_pages(conf)
     print(f"\nBuild preprocessing complete.")
-    print(f"  Posters  : {total_posters:>5} total across {len(TOPICS)} topics")
+    print(f"  Posters  : {total_posters:>5} total")
     print(f"  Sessions : {total_sessions:>5} unique transcript pages")
 
 
