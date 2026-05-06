@@ -533,6 +533,61 @@ def build_session_pages(conf: dict):
     return written
 
 
+def build_md_session_pages(conf: dict) -> int:
+    """Copy each .md transcript from data_dir/transcripts/sessions/ into
+    docs_dir/sessions/, wrapped with a header admonition. Generates an
+    index.md listing all sessions for the conference.
+
+    Suitable for conferences whose transcripts are already markdown
+    (e.g., Nextflow Summit), as opposed to AACR's plain-text captions.
+    """
+    if conf.get("session_source") != "md-transcripts":
+        return 0
+    src_dir = data_path(conf, "transcripts", "sessions")
+    if not src_dir.exists():
+        return 0
+    out_dir = docs_path(conf, "sessions")
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    written = 0
+    entries = []
+    for src in sorted(src_dir.glob("*.md")):
+        body = src.read_text()
+        slug = src.stem
+        date = slug[:10] if len(slug) >= 10 and slug[4] == "-" and slug[7] == "-" else "(unknown)"
+        word_count = len(body.split())
+        wrapped = f"""# {slug}
+
+**Date:** {date}
+**Source:** `{conf['data_dir']}/transcripts/sessions/{src.name}`
+**Word count:** ~{word_count:,}
+
+!!! note "Auto-generated captions"
+    This transcript is from auto-generated English captions on the live event stream. Expect misheard names and technical terms (e.g., "Vicksville" for "Nextflow"). Use search for exact quotes.
+
+{body}
+"""
+        (out_dir / src.name).write_text(wrapped)
+        entries.append((slug, word_count))
+        written += 1
+
+    idx_lines = [
+        f"# {conf['label']} — Session Transcripts",
+        "",
+        f"All {written} session transcripts from {conf['label']}.",
+        "",
+        "| Session | Date | Words |",
+        "|---|---|---|",
+    ]
+    for slug, wc in sorted(entries):
+        date = slug[:10]
+        idx_lines.append(f"| [{slug}]({slug}.md) | {date} | ~{wc:,} |")
+    idx_lines.append("")
+    (out_dir / "index.md").write_text("\n".join(idx_lines))
+    print(f"→ {written} session pages + sessions/index.md for {conf['slug']}")
+    return written
+
+
 def main():
     if "--survey" in sys.argv:
         for conf in CONFERENCES:
@@ -550,6 +605,7 @@ def main():
             for topic_slug, _ in conf["topics"]:
                 total_posters += build_poster_json(conf, topic_slug)
         total_sessions += build_session_pages(conf)
+        total_sessions += build_md_session_pages(conf)
         build_tool_pages(conf)
     print(f"\nBuild preprocessing complete.")
     print(f"  Posters  : {total_posters:>5} total")
