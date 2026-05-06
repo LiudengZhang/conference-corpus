@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
-"""
-Site-build preprocessor for aacr-2026.
+"""Site-build preprocessor for the conference corpus.
 
-Runs before `mkdocs build` on Cloudflare Pages. Produces:
+Runs before `mkdocs build` on Cloudflare Pages. Iterates the CONFERENCES
+registry from scripts/conferences.py and dispatches per-conference work:
 
-  docs/assets/<topic>-posters.json      — compact JSON for Tabulator tables
-  docs/sessions/<slug>.md               — one page per unique session transcript
-  docs/sessions/index.md                — grouped index of all transcripts
-  docs/javascripts/tabulator.min.js     — vendored from CDN at build time
+  - Poster JSON for Tabulator tables (where conf.has_posters)
+  - One MD page per unique session transcript (where conf.session_source set)
+  - Tool-dossier mention blocks + matrix JSON (where conf.has_tools_index)
+  - Tabulator JS/CSS vendored from CDN once at the top of the build
 
-Reads from: transcripts/<topic>/posters/abstracts.jsonl
-            transcripts/<topic>/full-sessions/<slug>.txt (resolved if symlink)
+Path resolution flows through data_path(conf, ...), docs_path(conf, ...),
+and conf_assets_path(conf, ...) so per-conference layout migrations are a
+config edit, not a code change.
 
 Idempotent: overwrites generated files on each run.
 """
@@ -389,9 +390,11 @@ def build_tool_pages(conf: dict):
         ))
 
 
-def ensure_dirs(conf: dict):
+def ensure_dirs():
+    """Create global directories that exist regardless of conference.
+    Per-conference directories are created lazily by their respective
+    build_* functions when needed."""
     legacy_assets_path().mkdir(parents=True, exist_ok=True)
-    docs_path(conf, "sessions").mkdir(parents=True, exist_ok=True)
     JS_DIR.mkdir(parents=True, exist_ok=True)
 
 
@@ -549,14 +552,12 @@ def main():
     for conf in CONFERENCES:
         if conf.get("placeholder_only"):
             continue
-        ensure_dirs(conf)
+        ensure_dirs()
         if conf.get("has_posters"):
             for topic_slug, _ in conf["topics"]:
                 total_posters += build_poster_json(conf, topic_slug)
-        if conf.get("session_source") == "txt-transcripts":
-            total_sessions += build_session_pages(conf)
-        if conf.get("has_tools_index"):
-            build_tool_pages(conf)
+        total_sessions += build_session_pages(conf)
+        build_tool_pages(conf)
     print(f"\nBuild preprocessing complete.")
     print(f"  Posters  : {total_posters:>5} total")
     print(f"  Sessions : {total_sessions:>5} unique transcript pages")
