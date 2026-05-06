@@ -1,5 +1,5 @@
-site_name: AACR Annual Meeting 2026
-site_description: Session transcripts and poster abstracts from the AACR Annual Meeting 2026, organized by topic.
+site_name: Conference Corpus
+site_description: Session transcripts and poster abstracts from AACR 2026, Nextflow Summit 2026, and JPM 2026 (placeholder), unified into one searchable site.
 repo_url: https://github.com/LiudengZhang/aacr-2026
 repo_name: LiudengZhang/aacr-2026
 
@@ -41,6 +41,7 @@ extra_css:
 extra_javascript:
   - javascripts/tabulator.min.js
   - javascripts/posters.js
+  - javascripts/tools-table.js
   - https://hypothes.is/embed.js
 
 plugins:
@@ -61,29 +62,45 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Topics:
+  - AACR 2026:
+    - Overview: conferences/aacr-2026/index.md
     - Agentic AI:
-      - Overview: topics/agentic-ai/index.md
-      - Landscape: topics/agentic-ai/landscape.md
-      - Synthesis — AT02 vs corpus: topics/agentic-ai/synthesis-at02-vs-corpus.md
+      - Overview: conferences/aacr-2026/topics/agentic-ai/index.md
+      - Landscape: conferences/aacr-2026/topics/agentic-ai/landscape.md
+      - Synthesis — AT02 vs corpus: conferences/aacr-2026/topics/agentic-ai/synthesis-at02-vs-corpus.md
     - Single-Cell & Spatial Omics:
-      - Overview: topics/single-cell-spatial-omics/index.md
-      - Landscape: topics/single-cell-spatial-omics/landscape.md
-      - Synthesis — spatial eating scRNA: topics/single-cell-spatial-omics/synthesis-spatial-eating-sc.md
+      - Overview: conferences/aacr-2026/topics/single-cell-spatial-omics/index.md
+      - Landscape: conferences/aacr-2026/topics/single-cell-spatial-omics/landscape.md
+      - Synthesis — spatial eating scRNA: conferences/aacr-2026/topics/single-cell-spatial-omics/synthesis-spatial-eating-sc.md
     - Virtual Cells:
-      - Overview: topics/virtual-cells/index.md
-      - Landscape: topics/virtual-cells/landscape.md
-      - Synthesis — ED03 vs corpus: topics/virtual-cells/synthesis-ed03-vs-corpus.md
+      - Overview: conferences/aacr-2026/topics/virtual-cells/index.md
+      - Landscape: conferences/aacr-2026/topics/virtual-cells/landscape.md
+      - Synthesis — ED03 vs corpus: conferences/aacr-2026/topics/virtual-cells/synthesis-ed03-vs-corpus.md
     - Bioinfo / Comp Bio / AI Methods:
-      - Overview: topics/bioinfo-tools/index.md
-      - Landscape: topics/bioinfo-tools/landscape.md
-      - Synthesis — FM pathology traction: topics/bioinfo-tools/synthesis-fm-pathology-traction.md
+      - Overview: conferences/aacr-2026/topics/bioinfo-tools/index.md
+      - Landscape: conferences/aacr-2026/topics/bioinfo-tools/landscape.md
+      - Synthesis — FM pathology traction: conferences/aacr-2026/topics/bioinfo-tools/synthesis-fm-pathology-traction.md
+      - Tools:
+        - Index: conferences/aacr-2026/topics/bioinfo-tools/tools/index.md
+        - CHIEF: conferences/aacr-2026/topics/bioinfo-tools/tools/chief.md
+        - Prov-GigaPath: conferences/aacr-2026/topics/bioinfo-tools/tools/prov-gigapath.md
+        - UNI / UNI2: conferences/aacr-2026/topics/bioinfo-tools/tools/uni.md
+        - Geneformer: conferences/aacr-2026/topics/bioinfo-tools/tools/geneformer.md
+        - scGPT: conferences/aacr-2026/topics/bioinfo-tools/tools/scgpt.md
+        - Cell2Location: conferences/aacr-2026/topics/bioinfo-tools/tools/cell2location.md
     - Clinical Trials:
-      - Overview: topics/clinical-trials/index.md
-      - Landscape: topics/clinical-trials/landscape.md
-      - Synthesis — trial-design methodology: topics/clinical-trials/synthesis-trial-design-methodology.md
-  - Session Transcripts:
-    - All sessions: sessions/index.md
+      - Overview: conferences/aacr-2026/topics/clinical-trials/index.md
+      - Landscape: conferences/aacr-2026/topics/clinical-trials/landscape.md
+      - Synthesis — trial-design methodology: conferences/aacr-2026/topics/clinical-trials/synthesis-trial-design-methodology.md
+    - All AACR sessions: conferences/aacr-2026/sessions/index.md
+  - Nextflow Summit 2026:
+    - Overview: conferences/nextflow-2026/index.md
+    - All sessions: conferences/nextflow-2026/sessions/index.md
+    - Day 1 (AM): conferences/nextflow-2026/sessions/2026-04-30-nextflow-summit-day-1-am.md
+    - Day 1 (PM): conferences/nextflow-2026/sessions/2026-04-30-nextflow-summit-day-1-pm.md
+    - Day 2: conferences/nextflow-2026/sessions/2026-05-01-nextflow-summit-day-2.md
+  - JPM 2026:
+    - Overview: conferences/jpm-2026/index.md
   - Notes:
     - Extraction method: notes/extraction.md
     - Caveats: notes/caveats.md

@@ -1,34 +1,22 @@
-# AACR Annual Meeting 2026 — Corpus
+# Conference Corpus
 
-Session transcripts and poster abstracts harvested from the AACR 2026 virtual platform, organized by topic for searchable browsing.
+Curated transcripts and abstracts from biomedical and computational biology meetings, organized into a single searchable site.
 
-## At a glance
+## Conferences
 
-| Topic | Sessions (unique) | Posters |
-|---|---|---|
-| [Agentic AI](topics/agentic-ai.md) | 5 | — |
-| [Single-Cell & Spatial Omics](topics/single-cell-spatial-omics.md) | 20 (19 unique + 1 symlink) | 1,015 |
-| [Virtual Cells](topics/virtual-cells.md) | 1 native + 5 symlinks | 48 |
-| [Bioinfo / Comp Bio / AI Methods](topics/bioinfo-tools.md) | 12 (all symlinked) | 536 |
-| [Clinical Trials](topics/clinical-trials.md) | deferred | 642 |
-| **Totals** | **25 unique** | **2,241** (~1,707 unique by Id) |
+[**AACR 2026**](conferences/aacr-2026/){ .md-button }
+American Association for Cancer Research Annual Meeting. ~26 sessions, ~2,300 posters across 5 topics: agentic AI, single-cell & spatial omics, virtual cells, bioinfo / comp bio / AI methods, and clinical trials.
 
-**Session transcripts**: ~464,000 words from Vimeo auto-generated English captions.
-**Poster abstracts**: ~871,000 words from AACR's e-poster platform.
+[**Nextflow Summit 2026**](conferences/nextflow-2026/){ .md-button }
+Nextflow Summit (April 30 – May 1, 2026). 3 session transcripts (~370 KB total) on AI in scientific workflows, protein-design competition pipelines, and Nextflow community training.
+
+[**JPM 2026**](conferences/jpm-2026/){ .md-button }
+J.P. Morgan Healthcare Conference 2026. Placeholder — no content yet.
 
 ## How to use this site
 
-1. **Browse by topic** — each topic tab has a filterable, sortable poster table and a session list. Click any poster row to expand its full abstract in place.
-2. **Search** — the top-right search indexes session transcripts and page content. Poster abstracts are in the embedded tables (use the per-table search box for those).
-3. **Read a session transcript** — open the "Session Transcripts" tab for the full list, or click through from any topic page.
+1. **Pick a conference tab** — top nav has one tab per conference plus a global Notes section.
+2. **Within a conference** — each conference has its own structure. AACR is split by topic with filterable poster tables; Nextflow is a flat session list; JPM is a stub.
+3. **Search** — the top-right search indexes session transcripts and page content site-wide.
 
-!!! tip "Cross-topic symlinks"
-    Sessions often belong to multiple topics (e.g., Bo Wang's talk is both "agentic-ai" and "virtual-cells"). Each transcript has exactly one canonical page here; a topic page may list the same transcript cross-referenced from elsewhere.
-
-## Corpus notes
-
-- All session captions are Vimeo AI-generated English. Expect misheard names ("Bunne" → "Bonner", "Foersch" → "Firsch") and acronyms ("scGPT" → "SC-GPT"). See [Caveats](notes/caveats.md).
-- Poster abstracts are HTML-decoded and tag-stripped from the AACR Abstracts Online JSON; original HTML entities preserved.
-- Clinical-trial session transcripts were deferred — minisymposium content is largely a serial read of the posters. See the [Clinical Trials](topics/clinical-trials.md) page for the list of session IDs extractable on demand.
-
-Source data lives in the `transcripts/` and `raw/` directories of the [aacr-2026 GitHub repo](https://github.com/LiudengZhang/aacr-2026) (private).
+See [extraction notes](notes/extraction.md) and [caveats](notes/caveats.md) for details on how transcripts and abstracts were sourced.
