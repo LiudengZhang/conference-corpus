@@ -27,3 +27,6 @@ docs/sessions/*.md
 !docs/sessions/index.md
 
 docs/stylesheets/tabulator.min.css
+
+# Baseline snapshot for refactor validation
+_baseline/
