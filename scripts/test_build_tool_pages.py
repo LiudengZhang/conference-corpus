@@ -40,7 +40,9 @@ def test_match_aliases_case_insensitive():
 
 def test_load_corpus_dedups_posters():
     from build_site import load_corpus
-    corpus = load_corpus()
+    from conferences import CONFERENCES
+    aacr_conf = next(c for c in CONFERENCES if c["slug"] == "aacr-2026")
+    corpus = load_corpus(aacr_conf)
     # poster Ids must be unique
     poster_ids = [p["Id"] for p in corpus["posters"]]
     assert len(poster_ids) == len(set(poster_ids))
@@ -59,7 +61,9 @@ def test_load_corpus_dedups_posters():
 
 def test_scan_mentions_returns_structured_hits():
     from build_site import load_corpus, scan_mentions
-    corpus = load_corpus()
+    from conferences import CONFERENCES
+    aacr_conf = next(c for c in CONFERENCES if c["slug"] == "aacr-2026")
+    corpus = load_corpus(aacr_conf)
     # CHIEF should have at least one hit somewhere in the corpus
     hits = scan_mentions(corpus, ["CHIEF"])
     assert "posters" in hits and "sessions" in hits
