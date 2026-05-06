@@ -1,7 +1,7 @@
 site_name: Conference Corpus
 site_description: Session transcripts and poster abstracts from AACR 2026, Nextflow Summit 2026, and JPM 2026 (placeholder), unified into one searchable site.
-repo_url: https://github.com/LiudengZhang/aacr-2026
-repo_name: LiudengZhang/aacr-2026
+repo_url: https://github.com/LiudengZhang/conference-corpus
+repo_name: LiudengZhang/conference-corpus
 
 docs_dir: docs
 site_dir: site
