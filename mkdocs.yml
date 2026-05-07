@@ -1,5 +1,5 @@
 site_name: Conference Corpus
-site_description: Session transcripts and poster abstracts from AACR 2026, Nextflow Summit 2026, and JPM 2026 (placeholder), unified into one searchable site.
+site_description: Conference intelligence for 2026 — built vaults for AACR, Nextflow Summit, and JPM, plus scaffolded coverage for ASCO, ESMO, SITC, ASH, ISMB, RECOMB, NeurIPS, RSNA, and AGBT.
 repo_url: https://github.com/LiudengZhang/conference-corpus
 repo_name: LiudengZhang/conference-corpus
 
@@ -113,6 +113,16 @@ nav:
       - Day 2 (Tue): conferences/jpm-2026/digest/day-2.md
       - Day 3 (Wed): conferences/jpm-2026/digest/day-3.md
       - Day 4 (Thu): conferences/jpm-2026/digest/day-4.md
+  - More 2026 conferences:
+    - AGBT 2026 (Feb): conferences/agbt-2026/index.md
+    - RECOMB 2026 (Apr): conferences/recomb-2026/index.md
+    - ASCO 2026 (May–Jun): conferences/asco-2026/index.md
+    - ISMB 2026 (Jul): conferences/ismb-2026/index.md
+    - ESMO 2026 (Oct): conferences/esmo-2026/index.md
+    - SITC 2026 (Nov): conferences/sitc-2026/index.md
+    - RSNA 2026 (Nov–Dec): conferences/rsna-2026/index.md
+    - ASH 2026 (Dec): conferences/ash-2026/index.md
+    - NeurIPS 2026 (Dec): conferences/neurips-2026/index.md
   - Notes:
     - Extraction method: notes/extraction.md
     - Caveats: notes/caveats.md
