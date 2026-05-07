@@ -107,6 +107,12 @@ nav:
       - Day 2: conferences/nextflow-2026/sessions/2026-05-01-nextflow-summit-day-2.md
   - JPM 2026:
     - Overview: conferences/jpm-2026/index.md
+    - Themes & takeaways: conferences/jpm-2026/themes.md
+    - Digests:
+      - Day 1 (Mon): conferences/jpm-2026/digest/day-1.md
+      - Day 2 (Tue): conferences/jpm-2026/digest/day-2.md
+      - Day 3 (Wed): conferences/jpm-2026/digest/day-3.md
+      - Day 4 (Thu): conferences/jpm-2026/digest/day-4.md
   - Notes:
     - Extraction method: notes/extraction.md
     - Caveats: notes/caveats.md
