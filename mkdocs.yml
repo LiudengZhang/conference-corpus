@@ -118,8 +118,28 @@ nav:
     - Overview: conferences/eurobioc-2025/index.md
     - Tools:
       - Index: conferences/eurobioc-2025/tools/index.md
-      - DESpace: conferences/eurobioc-2025/tools/despace.md
+      - notame: conferences/eurobioc-2025/tools/notame.md
+      - Metabonaut: conferences/eurobioc-2025/tools/metabonaut.md
+      - omicsGMF: conferences/eurobioc-2025/tools/omicsgmf.md
+      - miaTime: conferences/eurobioc-2025/tools/miatime.md
+      - SpectriPy: conferences/eurobioc-2025/tools/spectripy.md
+      - RCX: conferences/eurobioc-2025/tools/rcx.md
+      - MIRit: conferences/eurobioc-2025/tools/mirit.md
       - DeeDeeExperiment: conferences/eurobioc-2025/tools/deedeeexperiment.md
+      - edgeR: conferences/eurobioc-2025/tools/edger.md
+      - MOSClip: conferences/eurobioc-2025/tools/mosclip.md
+      - Rega: conferences/eurobioc-2025/tools/rega.md
+      - footprintR: conferences/eurobioc-2025/tools/footprintr.md
+      - decemedip: conferences/eurobioc-2025/tools/decemedip.md
+      - SpatialData: conferences/eurobioc-2025/tools/spatialdata.md
+      - DESpace: conferences/eurobioc-2025/tools/despace.md
+      - spatialFDA: conferences/eurobioc-2025/tools/spatialfda.md
+      - consICA: conferences/eurobioc-2025/tools/consica.md
+      - barbieQ: conferences/eurobioc-2025/tools/barbieq.md
+      - OSTA: conferences/eurobioc-2025/tools/osta.md
+      - mia: conferences/eurobioc-2025/tools/mia.md
+      - msqrob2: conferences/eurobioc-2025/tools/msqrob2.md
+      - Workshop Platform: conferences/eurobioc-2025/tools/workshop-platform.md
       - iSEE: conferences/eurobioc-2025/tools/isee.md
   - More 2026 conferences:
     - AGBT 2026 (Feb): conferences/agbt-2026/index.md

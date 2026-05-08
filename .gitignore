@@ -39,3 +39,4 @@ docs/assets/*/bioinfo-tools/
 
 # Baseline snapshot for refactor validation
 _baseline/
+.codex-output/
