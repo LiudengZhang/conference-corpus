@@ -116,6 +116,18 @@ nav:
       - Day 4 (Thu): conferences/jpm-2026/digest/day-4.md
   - EuroBioC 2025 (pilot):
     - Overview: conferences/eurobioc-2025/index.md
+    - Themes & takeaways: conferences/eurobioc-2025/themes.md
+    - Day digests:
+      - Day 1 (Wed Sep 17): conferences/eurobioc-2025/digest/day-1.md
+      - Day 2 (Thu Sep 18): conferences/eurobioc-2025/digest/day-2.md
+      - Day 3 (Fri Sep 19): conferences/eurobioc-2025/digest/day-3.md
+    - Keynotes:
+      - Vince Carey (Day 1) — 25 years of Bioconductor: conferences/eurobioc-2025/keynotes/carey.md
+      - Helena Crowell (Day 1) — whole-transcriptome imaging: conferences/eurobioc-2025/keynotes/crowell.md
+      - Susan Holmes (Day 1) — latent variables: conferences/eurobioc-2025/keynotes/holmes.md
+      - James Sharpe (Day 2) — C3PO optical positioning: conferences/eurobioc-2025/keynotes/sharpe.md
+      - Noelia Ferruz (Day 2) — protein design with LMs: conferences/eurobioc-2025/keynotes/ferruz.md
+      - Jacques Serizay (Day 3) — community-driven software: conferences/eurobioc-2025/keynotes/serizay.md
     - Tools:
       - Index: conferences/eurobioc-2025/tools/index.md
       - notame: conferences/eurobioc-2025/tools/notame.md
@@ -141,6 +153,10 @@ nav:
       - msqrob2: conferences/eurobioc-2025/tools/msqrob2.md
       - Workshop Platform: conferences/eurobioc-2025/tools/workshop-platform.md
       - iSEE: conferences/eurobioc-2025/tools/isee.md
+  - GBCC 2025 (scaffold):
+    - Overview: conferences/gbcc-2025/index.md
+    - Tools (template): conferences/gbcc-2025/tools/index.md
+    - Program notes (research): conferences/gbcc-2025/program-notes.md
   - More 2026 conferences:
     - AGBT 2026 (Feb): conferences/agbt-2026/index.md
     - RECOMB 2026 (Apr): conferences/recomb-2026/index.md
