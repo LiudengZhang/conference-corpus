@@ -153,10 +153,44 @@ nav:
       - msqrob2: conferences/eurobioc-2025/tools/msqrob2.md
       - Workshop Platform: conferences/eurobioc-2025/tools/workshop-platform.md
       - iSEE: conferences/eurobioc-2025/tools/isee.md
-  - GBCC 2025 (scaffold):
+  - GBCC 2025:
     - Overview: conferences/gbcc-2025/index.md
-    - Tools (template): conferences/gbcc-2025/tools/index.md
+    - Themes & takeaways: conferences/gbcc-2025/themes.md
+    - Day digests:
+      - Day 2 (Tue Jun 24): conferences/gbcc-2025/digest/day-2.md
+      - Day 3 (Wed Jun 25): conferences/gbcc-2025/digest/day-3.md
+      - Day 4 (Thu Jun 26): conferences/gbcc-2025/digest/day-4.md
+    - Keynotes:
+      - Sergei Kosakovsky Pond (Day 2) — interactive analytics: conferences/gbcc-2025/keynotes/pond.md
+      - Charlotte Soneson (Day 3) — classes to community: conferences/gbcc-2025/keynotes/soneson.md
+      - Jason Williams (Day 4) — Conquest of Abundance: conferences/gbcc-2025/keynotes/williams.md
     - Program notes (research): conferences/gbcc-2025/program-notes.md
+    - Tools:
+      - Index: conferences/gbcc-2025/tools/index.md
+      - GAIA: conferences/gbcc-2025/tools/gaia.md
+      - GalaxyMCP: conferences/gbcc-2025/tools/galaxymcp.md
+      - AnVIL: conferences/gbcc-2025/tools/anvil.md
+      - torch: conferences/gbcc-2025/tools/torch.md
+      - Galaxy-ML2: conferences/gbcc-2025/tools/galaxy-ml2.md
+      - NOVA: conferences/gbcc-2025/tools/nova.md
+      - TPV Broker: conferences/gbcc-2025/tools/tpv-broker.md
+      - gINTomics: conferences/gbcc-2025/tools/gintomics.md
+      - RAIDS: conferences/gbcc-2025/tools/raids.md
+      - signifinder: conferences/gbcc-2025/tools/signifinder.md
+      - SEMPLR: conferences/gbcc-2025/tools/semplr.md
+      - Meta-iPep: conferences/gbcc-2025/tools/meta-ipep.md
+      - HiFi-MAG: conferences/gbcc-2025/tools/hifi-mag.md
+      - atena: conferences/gbcc-2025/tools/atena.md
+      - iscream: conferences/gbcc-2025/tools/iscream.md
+      - sosta: conferences/gbcc-2025/tools/sosta.md
+      - IWC: conferences/gbcc-2025/tools/iwc.md
+      - mia: conferences/gbcc-2025/tools/mia.md
+      - Tidyomics: conferences/gbcc-2025/tools/tidyomics.md
+      - bioc-to-galaxy: conferences/gbcc-2025/tools/bioc-to-galaxy.md
+      - plyxp: conferences/gbcc-2025/tools/plyxp.md
+      - mitology: conferences/gbcc-2025/tools/mitology.md
+      - FAIR-EASE: conferences/gbcc-2025/tools/fair-ease.md
+      - GSVA→Galaxy: conferences/gbcc-2025/tools/gsva-galaxy.md
   - More 2026 conferences:
     - AGBT 2026 (Feb): conferences/agbt-2026/index.md
     - RECOMB 2026 (Apr): conferences/recomb-2026/index.md

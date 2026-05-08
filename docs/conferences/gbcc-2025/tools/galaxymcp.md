@@ -1,0 +1,33 @@
+# GalaxyMCP
+
+**Model Context Protocol bridge for Galaxy** — an MCP server that exposes Galaxy's tools, workflows, histories, and datasets to any MCP-aware AI client (Claude Desktop, IDE assistants, custom agents). Turns a Galaxy instance into a first-class context source for AI assistants, with conversational analyses materialising as fully reproducible Galaxy histories.
+
+- **Authors:** Dannon Baker, Junhao Qiu, Jeremy Goecks, Mike Schatz
+- **Galaxy tool / platform:** [galaxyproject/galaxy-mcp](https://github.com/galaxyproject/galaxy-mcp)
+- **Source:** [github.com/galaxyproject/galaxy-mcp](https://github.com/galaxyproject/galaxy-mcp)
+- **Documentation / training:** [server README](https://github.com/galaxyproject/galaxy-mcp/blob/main/mcp-server-galaxy-py/README.md)
+- **Status at GBCC2025:** oral talk on an MCP server for Galaxy
+
+## Talk at GBCC2025
+
+- **Speakers:** Dannon Baker, Junhao Qiu, Jeremy Goecks, Mike Schatz
+- **Day / session:** Day 2 (Tue Jun 24, 2025) — Oral Session 1, Grace Auditorium (chair: Sehyun Oh)
+- **Talk title:** "Introducing GalaxyMCP: Integrating AI Assistants with Galaxy Through the Model Context Protocol"
+- **Slides:** TBD
+- **Video:** TBD
+- **Abstract / schedule:** [GBCC2025 program](https://gbcc2025.bioconductor.org/program/scientific_program/)
+
+## What it does
+
+GalaxyMCP is a Python MCP server (FastMCP + BioBlend) that exposes Galaxy operations — tool search, workflow invocation, history/dataset access, result retrieval — as MCP tools. An AI assistant connects to a Galaxy instance, then accepts human-language instructions and translates them into BioBlend API calls, leaving behind the same auditable Galaxy history a hand-driven session would. Where GAIA is a complete agent product, GalaxyMCP is the substrate: any MCP client (Claude Desktop, Cursor, custom agents) can drive Galaxy through it.
+
+## Where it fits in the corpus
+
+- **AACR 2026:** axis = agentic AI; the protocol-layer story complements GAIA's product-layer one
+- **GAIA** ([entry](gaia.md)) — sister talk, same authors, same session
+- **EuroBioC 2025:** no direct equivalent (Bioconductor side has no MCP server yet — gap worth flagging)
+- **Nextflow Summit 2026:** parallel to "AI control of Nextflow pipelines" discussions
+
+## Notes
+
+MCP is Anthropic's open protocol for tool/context exchange between AI assistants and external systems. GalaxyMCP makes Galaxy itself an MCP server, joining the broader MCP ecosystem (filesystem, GitHub, databases, etc.). Strategically the more durable of the two GBCC2025 AI talks — protocol bets tend to outlive specific agent products.

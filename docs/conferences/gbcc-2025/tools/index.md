@@ -2,7 +2,7 @@
 
 GBCC2025 ran 3 keynotes + 53 oral talks across 5 sessions + 11 lightning talks + 10 hands-on workshops + 50+ posters. A substantial fraction of the oral and lightning talks introduce or update a named Bioconductor package, a Galaxy tool, or a cross-platform integration artifact — that's what this directory captures. Each entry below corresponds to **one tool presented at GBCC2025** (Bioconductor package, Galaxy tool, or integration scaffolding).
 
-> **Status:** Scaffold — talks-with-packages list compiled in `../_program-extracted.md`; bulk extraction queued. The per-tool template below mirrors EuroBioC2025's; the only addition is an "ecosystem" line so a reader can tell at a glance whether they're looking at an R/Bioconductor package, a Galaxy XML tool, or a cross-platform piece (and Open Question 5 below tracks whether that even survives review).
+> **Status:** Active — bulk extraction complete (24 tool entries across Bioconductor packages, Galaxy tools, and cross-platform integration). Talks-with-packages source list at [../program-notes.md](../program-notes.md). Slide DOIs (Zenodo) and YouTube playlist links TBD pending Bioconductor community deposits.
 
 ## Per-tool entry template
 
@@ -46,25 +46,38 @@ Each tool gets its own page (`tools/<package-slug>.md`) following this structure
 Free-form impressions, benchmarks claimed, comparisons to alternatives. For Galaxy-wrapped Bioconductor tools: link the wrapper PR or the `tools-iuc` shed entry.
 ````
 
-## Planned tool index
+## Tool index
 
-Targeting ~25–30 entries across Bioconductor packages, Galaxy tools, and cross-platform integration artifacts. Ordered by day and session. The placeholder table below shows the columns; rows will be filled by the bulk extraction pass from `../_program-extracted.md`.
+24 entries from oral sessions, lightning talks, workshops, and the post-conference CoFest deliverable, ordered by day/session. Three keynotes deferred to the keynotes/ subdirectory and day digests.
 
-Skipped (not in this table): community / training / non-tool talks (Doyle on Bioconductor in Africa; Gauthier on UseGalaxy Canada; Santana on sertão research; Kucher on AnVIL training; Williams keynote on training equity); methods talks without a clearly named package anchor (Hansen on allele-specific methylation; Nanda on viral-infection signaling networks; Lakshman on orthology-at-scale); the three keynotes (deferred to a separate digest pass).
+Skipped (not in this table): community / training / non-tool talks (Doyle on Bioconductor in Africa; Gauthier on UseGalaxy Canada; Santana on sertão research; Kucher on AnVIL training); methods talks without a clearly named package anchor (Hansen on allele-specific methylation; Nanda on viral-infection signaling networks; Lakshman on orthology-at-scale; Eagles on Visium HD; Moses on LUAD spatial; Campillo on differential transcript usage — flagged for follow-up after the abstract book is retrieved).
 
 | Package / Tool | Ecosystem | Domain | Speaker | Day / Session | Slides | Video | Mentioned elsewhere |
 |---|---|---|---|---|---|---|---|
-| *example* GAIA | Galaxy | NL agent / AI | Junhao Qiu, Jeremy Goecks | Day 2 / Oral 1 | TBD | TBD | — |
-| *example* GalaxyMCP | Galaxy | AI integration / MCP | Dannon Baker et al. | Day 2 / Oral 1 | TBD | TBD | — |
-| *example* RAIDS | Bioconductor | ancestry inference | Pascal Belleau et al. | Day 2 / Oral 2B | TBD | TBD | — |
-| *example* signifinder | Bioconductor | cancer signatures | Stefania Pirrotta et al. | Day 2 / Oral 2B | TBD | TBD | — |
-| *example* sosta | Bioconductor | spatial omics | Samuel Gunz, Mark D. Robinson | Day 3 / Oral 3 | TBD | TBD | — |
-| *example* atena | Bioconductor | transposable elements | Robert Castelo | Day 3 / Lightning | TBD | TBD | — |
-| *example* iscream | R / htslib | BED queries (Rcpp) | James Eapen | Day 3 / Lightning | TBD | TBD | — |
-| *example* Tidyomics | Bioconductor | tidyverse for omics | Stefano Mangiola | Day 3 / Lightning + Oral 4 | TBD | TBD | — |
-| *example* plyxp | Bioconductor | dplyr for SE objects | Justin Landis, Michael Love | Day 4 / Oral 5 | TBD | TBD | — |
-| *example* mitology | Bioconductor | mitochondrial activity | Stefania Pirrotta et al. | Day 4 / Oral 5 | TBD | TBD | — |
-| *(~15–20 more)* | | | | | | | |
+| [GAIA](gaia.md) | Galaxy | AI agent / NLI | Qiu, Goecks | Day 2 / Oral 1 | TBD | TBD | [GalaxyMCP](galaxymcp.md) |
+| [GalaxyMCP](galaxymcp.md) | Galaxy | AI / MCP | Baker, Qiu, Goecks, Schatz | Day 2 / Oral 1 | TBD | TBD | [GAIA](gaia.md) |
+| [AnVIL](anvil.md) | Galaxy + cloud | cloud platform | Mosher, Schatz et al. | Day 2 / Oral 1 + Day 3 workshop | TBD | TBD | [bioc-to-galaxy](bioc-to-galaxy.md) |
+| [torch](torch.md) | CRAN / R | DL / epigenetic clock | Jamie Park | Day 2 / Oral 2A | TBD | TBD | — |
+| [Galaxy-ML2](galaxy-ml2.md) | Galaxy | ML tool suite | Lyra Junior, Qiu | Day 2 / Oral 2A | TBD | TBD | — |
+| [NOVA](nova.md) | Galaxy | neutron scattering | Gregory R Watson | Day 2 / Oral 2A | TBD | TBD | — |
+| [TPV Broker](tpv-broker.md) | Galaxy | scheduler | De Geest, Srikakulam et al. | Day 2 / Oral 2A | TBD | TBD | — |
+| [gINTomics](gintomics.md) | Bioconductor | multi-omics integration | Velle, Romualdi | Day 2 / Oral 2A | TBD | TBD | [MOSClip ↗ EuroBioC](../../eurobioc-2025/tools/mosclip.md) |
+| [RAIDS](raids.md) | Bioconductor | ancestry inference | Belleau, Deschênes et al. | Day 2 / Oral 2B | TBD | TBD | — |
+| [signifinder](signifinder.md) | Bioconductor | cancer signatures | Stefania Pirrotta | Day 2 / Oral 2B | TBD | TBD | [mitology](mitology.md) |
+| [SEMPLR](semplr.md) | Bioconductor | TF-binding variants | Kenney, Boyle, Phanstiel | Day 2 / Oral 2B | TBD | TBD | — |
+| [Meta-iPep](meta-ipep.md) | Galaxy | metaimmunopeptidomics | Do, Mehta | Day 2 / Oral 2B | TBD | TBD | — |
+| [HiFi-MAG](hifi-mag.md) | Galaxy | long-read metagenomics | Collins, Schatz | Day 2 / Oral 2B | TBD | TBD | [mia](mia.md) |
+| [atena](atena.md) | Bioconductor | transposable elements | Robert Castelo | Day 3 / Lightning | TBD | TBD | [GSVA→Galaxy](gsva-galaxy.md) |
+| [iscream](iscream.md) | Bioconductor | BED queries (Rcpp) | James Eapen | Day 3 / Lightning | TBD | TBD | — |
+| [sosta](sosta.md) | Bioconductor | spatial omics | Gunz, Robinson | Day 3 / Oral 3 | TBD | TBD | [spatialFDA ↗ EuroBioC](../../eurobioc-2025/tools/spatialfda.md), [SpatialData ↗ EuroBioC](../../eurobioc-2025/tools/spatialdata.md) |
+| [IWC](iwc.md) | Galaxy | workflow registry | Marius van den Beek | Day 3 / Oral 3 | TBD | TBD | — |
+| [mia](mia.md) | Bioconductor | microbiome | Tuomas Borman | Day 3 workshop + Day 4 / Oral 5 | TBD | TBD | [mia ↗ EuroBioC](../../eurobioc-2025/tools/mia.md), [miaTime ↗ EuroBioC](../../eurobioc-2025/tools/miatime.md) |
+| [Tidyomics](tidyomics.md) | Bioconductor | tidyverse for omics | Stefano Mangiola | Day 3 / Lightning + Oral 4 | TBD | TBD | [plyxp](plyxp.md) |
+| [bioc-to-galaxy](bioc-to-galaxy.md) | Integration | auto-wrap pipeline | Joshi, Cumbo, Blankenberg | Day 2 + Day 3 workshop | TBD | TBD | [GSVA→Galaxy](gsva-galaxy.md), [mia](mia.md) |
+| [plyxp](plyxp.md) | Bioconductor | dplyr for SummarizedExperiment | Landis, Love | Day 4 / Oral 5 | TBD | TBD | [Tidyomics](tidyomics.md), [DeeDeeExperiment ↗ EuroBioC](../../eurobioc-2025/tools/deedeeexperiment.md) |
+| [mitology](mitology.md) | Bioconductor | mitochondrial activity | Pirrotta, Bonora, Calura | Day 4 / Oral 5 | TBD | TBD | [signifinder](signifinder.md) |
+| [FAIR-EASE](fair-ease.md) | Galaxy | Earth-system | Jossé, Detoc, Bodéré | Day 4 / Oral 5 | TBD | TBD | — |
+| [GSVA→Galaxy](gsva-galaxy.md) | Integration | wrapper deliverable | Cumbo, Joshi, Raubenolt, Blankenberg | CoFest (Jun 27-28) | — | — | [bioc-to-galaxy](bioc-to-galaxy.md), [atena](atena.md) |
 
 ## Why this format
 
