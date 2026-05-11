@@ -67,7 +67,7 @@ This page tracks **why each conference is in the corpus**, **when it lands**, an
   <div class="gantt-row">
     <div class="gantt-label"><a href="conferences/esmo-2026/">ESMO 2026</a></div>
     <div class="gantt-track">
-      <a class="gantt-bar upcoming tier-clinical" style="left: 79.2%;" title="ESMO Congress · Oct 16–20 · upcoming · light scaffold" href="conferences/esmo-2026/">Oct 16</a>
+      <a class="gantt-bar upcoming tier-clinical" style="left: 81.1%;" title="ESMO Congress · Oct 23–27 · Madrid · scaffold" href="conferences/esmo-2026/">Oct 23</a>
     </div>
   </div>
   <div class="gantt-row">
@@ -85,7 +85,7 @@ This page tracks **why each conference is in the corpus**, **when it lands**, an
   <div class="gantt-row">
     <div class="gantt-label"><a href="conferences/ash-2026/">ASH 2026</a></div>
     <div class="gantt-track">
-      <a class="gantt-bar upcoming tier-clinical" style="left: 92.9%;" title="ASH Annual · Dec 5–8 · upcoming" href="conferences/ash-2026/">Dec 5</a>
+      <a class="gantt-bar upcoming tier-clinical" style="left: 94.8%;" title="ASH Annual · Dec 12–15 · New Orleans · scaffold" href="conferences/ash-2026/">Dec 12</a>
     </div>
   </div>
   <div class="gantt-row">
@@ -137,11 +137,11 @@ We score each conference 0–2 on four criteria.
 | [Nextflow Summit](conferences/nextflow-2026/) | Apr 30 – May 1 | methods | 1 | 2 | 2 | 2 | **7** | full | ✅ built |
 | [ASCO 2026](conferences/asco-2026/) | May 29 – Jun 2 | clinical | 2 | 2 | 1 | 2 | **7** | full | upcoming |
 | [ISMB 2026](conferences/ismb-2026/) | Jul 12–16 | methods | 2 | 2 | 2 | 2 | **8** | full | scaffold |
-| [ESMO 2026](conferences/esmo-2026/) | Oct 16–20 | clinical | 1 | 2 | 1 | 1 | **5** | light | upcoming |
-| [SITC 2026](conferences/sitc-2026/) | Nov 4–8 | clinical | 2 | 2 | 2 | 2 | **8** | full | upcoming |
-| [RSNA 2026](conferences/rsna-2026/) | Nov 29 – Dec 3 | adjacent | 1 | 2 | 1 | 2 | **6** | full | upcoming |
-| [ASH 2026](conferences/ash-2026/) | Dec 5–8 | clinical | 2 | 2 | 2 | 2 | **8** | full | upcoming |
-| [NeurIPS 2026](conferences/neurips-2026/) | Dec 6–12 | methods | 1 | 2 | 0 | 1 | **4** | light | upcoming |
+| [ESMO 2026](conferences/esmo-2026/) | Oct 23–27 | clinical | 1 | 2 | 1 | 1 | **5** | light | scaffold |
+| [SITC 2026](conferences/sitc-2026/) | Nov 4–8 | clinical | 2 | 2 | 2 | 2 | **8** | full | scaffold |
+| [RSNA 2026](conferences/rsna-2026/) | Nov 29 – Dec 3 | adjacent | 1 | 2 | 1 | 2 | **6** | full | scaffold |
+| [ASH 2026](conferences/ash-2026/) | Dec 12–15 | clinical | 2 | 2 | 2 | 2 | **8** | full | scaffold |
+| [NeurIPS 2026](conferences/neurips-2026/) | Dec 6–13 (Sydney/Atlanta/Paris) | methods | 1 | 2 | 0 | 1 | **4** | light | scaffold |
 
 ## What we're skipping (and why)
 

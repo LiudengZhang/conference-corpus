@@ -242,12 +242,27 @@ nav:
     - Overview: conferences/ismb-2026/index.md
     - Program notes (research): conferences/ismb-2026/program-notes.md
     - Tools (template): conferences/ismb-2026/tools/index.md
-  - More 2026 conferences:
-    - ESMO 2026 (Oct): conferences/esmo-2026/index.md
-    - SITC 2026 (Nov): conferences/sitc-2026/index.md
-    - RSNA 2026 (Nov–Dec): conferences/rsna-2026/index.md
-    - ASH 2026 (Dec): conferences/ash-2026/index.md
-    - NeurIPS 2026 (Dec): conferences/neurips-2026/index.md
+  - ESMO 2026 (scaffold):
+    - Overview: conferences/esmo-2026/index.md
+    - Program notes (research): conferences/esmo-2026/program-notes.md
+    - Trials (template): conferences/esmo-2026/trials/index.md
+  - SITC 2026 (scaffold):
+    - Overview: conferences/sitc-2026/index.md
+    - Program notes (research): conferences/sitc-2026/program-notes.md
+    - Trials (template): conferences/sitc-2026/trials/index.md
+    - Tools (template): conferences/sitc-2026/tools/index.md
+  - RSNA 2026 (scaffold):
+    - Overview: conferences/rsna-2026/index.md
+    - Program notes (research): conferences/rsna-2026/program-notes.md
+    - Tools (template): conferences/rsna-2026/tools/index.md
+  - ASH 2026 (scaffold):
+    - Overview: conferences/ash-2026/index.md
+    - Program notes (research): conferences/ash-2026/program-notes.md
+    - Trials (template): conferences/ash-2026/trials/index.md
+  - NeurIPS 2026 (light scaffold):
+    - Overview: conferences/neurips-2026/index.md
+    - Program notes (research): conferences/neurips-2026/program-notes.md
+    - Tools (template, filtered): conferences/neurips-2026/tools/index.md
   - Notes:
     - Extraction method: notes/extraction.md
     - Caveats: notes/caveats.md
