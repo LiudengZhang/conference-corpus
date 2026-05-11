@@ -59,15 +59,39 @@ This page tracks **why each conference is in the corpus**, **when it lands**, an
     </div>
   </div>
   <div class="gantt-row">
+    <div class="gantt-label"><a href="conferences/icml-2026/">ICML 2026</a></div>
+    <div class="gantt-track">
+      <a class="gantt-bar upcoming tier-methods" style="left: 51.2%;" title="ICML · Jul 6–11 · Seoul · scaffold (light)" href="conferences/icml-2026/">Jul 6</a>
+    </div>
+  </div>
+  <div class="gantt-row">
     <div class="gantt-label"><a href="conferences/ismb-2026/">ISMB 2026</a></div>
     <div class="gantt-track">
-      <a class="gantt-bar upcoming tier-methods" style="left: 52.9%;" title="ISMB · Jul 12–16 · Washington DC · upcoming" href="conferences/ismb-2026/">Jul 12</a>
+      <a class="gantt-bar upcoming tier-methods" style="left: 52.9%;" title="ISMB · Jul 12–16 · Washington DC · scaffold" href="conferences/ismb-2026/">Jul 12</a>
+    </div>
+  </div>
+  <div class="gantt-row">
+    <div class="gantt-label"><a href="conferences/miccai-2026/">MICCAI 2026</a></div>
+    <div class="gantt-track">
+      <a class="gantt-bar upcoming tier-methods" style="left: 74.0%;" title="MICCAI · Sep 27 – Oct 1 · Strasbourg · scaffold" href="conferences/miccai-2026/">Sep 27</a>
     </div>
   </div>
   <div class="gantt-row">
     <div class="gantt-label"><a href="conferences/esmo-2026/">ESMO 2026</a></div>
     <div class="gantt-track">
       <a class="gantt-bar upcoming tier-clinical" style="left: 81.1%;" title="ESMO Congress · Oct 23–27 · Madrid · scaffold" href="conferences/esmo-2026/">Oct 23</a>
+    </div>
+  </div>
+  <div class="gantt-row">
+    <div class="gantt-label"><a href="conferences/ashg-2026/">ASHG 2026</a></div>
+    <div class="gantt-track">
+      <a class="gantt-bar upcoming tier-clinical" style="left: 80.3%;" title="ASHG · Oct 20–24 · Montreal · scaffold" href="conferences/ashg-2026/">Oct 20</a>
+    </div>
+  </div>
+  <div class="gantt-row">
+    <div class="gantt-label"><a href="conferences/cshl-bds-2026/">CSHL BDS 2026</a></div>
+    <div class="gantt-track">
+      <a class="gantt-bar upcoming tier-methods" style="left: 84.0%;" title="CSHL Biological Data Science · Nov 4–7 · Cold Spring Harbor · scaffold" href="conferences/cshl-bds-2026/">Nov 4</a>
     </div>
   </div>
   <div class="gantt-row">
@@ -86,6 +110,12 @@ This page tracks **why each conference is in the corpus**, **when it lands**, an
     <div class="gantt-label"><a href="conferences/ash-2026/">ASH 2026</a></div>
     <div class="gantt-track">
       <a class="gantt-bar upcoming tier-clinical" style="left: 94.8%;" title="ASH Annual · Dec 12–15 · New Orleans · scaffold" href="conferences/ash-2026/">Dec 12</a>
+    </div>
+  </div>
+  <div class="gantt-row">
+    <div class="gantt-label"><a href="conferences/sabcs-2026/">SABCS 2026</a></div>
+    <div class="gantt-track">
+      <a class="gantt-bar upcoming tier-clinical" style="left: 93.7%;" title="SABCS · Dec 8–11 · San Antonio · scaffold" href="conferences/sabcs-2026/">Dec 8</a>
     </div>
   </div>
   <div class="gantt-row">
@@ -142,6 +172,11 @@ We score each conference 0–2 on four criteria.
 | [RSNA 2026](conferences/rsna-2026/) | Nov 29 – Dec 3 | adjacent | 1 | 2 | 1 | 2 | **6** | full | scaffold |
 | [ASH 2026](conferences/ash-2026/) | Dec 12–15 | clinical | 2 | 2 | 2 | 2 | **8** | full | scaffold |
 | [NeurIPS 2026](conferences/neurips-2026/) | Dec 6–13 (Sydney/Atlanta/Paris) | methods | 1 | 2 | 0 | 1 | **4** | light | scaffold |
+| [ICML 2026](conferences/icml-2026/) | Jul 6–11 (Seoul) | methods | 1 | 2 | 0 | 1 | **4** | light | scaffold |
+| [MICCAI 2026](conferences/miccai-2026/) | Sep 27 – Oct 1 (Strasbourg) | methods | 2 | 2 | 2 | 1 | **7** | full | scaffold |
+| [ASHG 2026](conferences/ashg-2026/) | Oct 20–24 (Montreal) | clinical | 2 | 2 | 1 | 2 | **7** | full | scaffold |
+| [CSHL BDS 2026](conferences/cshl-bds-2026/) | Nov 4–7 (Cold Spring Harbor) | methods | 2 | 1 | 2 | 2 | **7** | full | scaffold |
+| [SABCS 2026](conferences/sabcs-2026/) | Dec 8–11 (San Antonio) | clinical | 2 | 2 | 2 | 2 | **8** | full | scaffold |
 
 ## What we're skipping (and why)
 

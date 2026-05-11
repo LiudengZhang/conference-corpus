@@ -263,6 +263,26 @@ nav:
     - Overview: conferences/neurips-2026/index.md
     - Program notes (research): conferences/neurips-2026/program-notes.md
     - Tools (template, filtered): conferences/neurips-2026/tools/index.md
+  - ICML 2026 (light scaffold):
+    - Overview: conferences/icml-2026/index.md
+    - Program notes (research): conferences/icml-2026/program-notes.md
+    - Tools (template, filtered): conferences/icml-2026/tools/index.md
+  - MICCAI 2026 (scaffold):
+    - Overview: conferences/miccai-2026/index.md
+    - Program notes (research): conferences/miccai-2026/program-notes.md
+    - Tools (template): conferences/miccai-2026/tools/index.md
+  - ASHG 2026 (scaffold):
+    - Overview: conferences/ashg-2026/index.md
+    - Program notes (research): conferences/ashg-2026/program-notes.md
+    - Talks (template): conferences/ashg-2026/talks/index.md
+  - CSHL BDS 2026 (scaffold):
+    - Overview: conferences/cshl-bds-2026/index.md
+    - Program notes (research): conferences/cshl-bds-2026/program-notes.md
+    - Tools (template): conferences/cshl-bds-2026/tools/index.md
+  - SABCS 2026 (scaffold):
+    - Overview: conferences/sabcs-2026/index.md
+    - Program notes (research): conferences/sabcs-2026/program-notes.md
+    - Trials (template): conferences/sabcs-2026/trials/index.md
   - Notes:
     - Extraction method: notes/extraction.md
     - Caveats: notes/caveats.md
