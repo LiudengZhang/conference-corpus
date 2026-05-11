@@ -22,6 +22,18 @@
 
 Most spatial-omics tooling stops at the cell — segmentation, neighborhood graphs, niche detection. sosta goes one level up: take a spatial-omics object and reconstruct anatomical structures (e.g. islets, glomeruli, tumor regions, lobules) from molecular features or cell-type labels, then compute morphology and composition metrics on the resulting structures. That gives downstream analysis a tissue-architecture handle that doesn't require external segmentation masks.
 
+## How it works
+
+**Core idea.** Density-based reconstruction of multicellular structures: starting from labeled cell coordinates (a cell type, or a molecular-feature threshold), sosta builds a spatial density field across the tissue and converts the density landscape into polygonal structure boundaries, which then become first-class objects for downstream metric calculation.
+
+**Inputs / outputs.** Input: a `SpatialExperiment` with single-cell coordinates, an image identifier, and a cell-type (or molecular-feature) label whose spatial accumulation defines the target structure. Output: an `sf` (simple-features) polygon set representing reconstructed structures plus two metric tables — structure-level (shape descriptors, area, cell-type composition) and cell-level (distance-to-border, inside/outside boundary classification).
+
+**Key innovation.** The Gunz/Crowell/Robinson preprint (bioRxiv 2025.10.13.682065) frames the gap explicitly: existing spatial-omics methods analyze "spatial arrangements of single cells, even though biological function often emerges from multicellular arrangements." sosta is the structure-level companion — it reconstructs anatomical regions directly from molecular/cell-type signal rather than requiring an external segmentation mask (CellPose, Mesmer, manual annotation). *Direct head-to-head benchmark tools not enumerated in vignette excerpt.*
+
+**Parameters worth knowing.** The cell-type or feature label that defines the structure (e.g. islet cells for pancreatic islets). Bandwidth/smoothing for the density field. Density threshold for boundary extraction. Minimum structure size to filter noise. *Exact parameter names and defaults not surfaced in vignette excerpt; needs talk slides.*
+
+**Canonical example.** Damond et al. (2019) IMC pancreatic-islets dataset — type-1-diabetes donors versus healthy controls across multiple images per donor. Pipeline: `reconstructStructures` builds islet polygons from islet-cell coordinates; `getStructureMetrics` computes per-islet shape and composition; mixed-effects models (`lme4`/`lmerTest`) compare metrics across disease groups while accounting for donor-level correlation. The overview vignette uses a simulated `sostaSPE` (5,641 cells, 3 images, 3 cell types A/B/C) as the introductory worked example.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis single-cell-spatial-omics — structural-level readouts complement the cell-level dossiers (Cell2Location, etc.)

@@ -20,6 +20,18 @@
 
 SpatialData defines a Zarr-backed FAIR storage format and a Python library stack for multi-modal spatial-omics data — co-registered images, tables, shapes (cells, regions), and points (transcripts) — with consistent transforms for alignment across modalities. The Bioconductor angle is interop: how `SpatialExperiment` / `SingleCellExperiment` objects round-trip to and from on-disk SpatialData stores so an R analyst can pick up a scverse-prepared dataset (or vice versa) without losing structure.
 
+## How it works
+
+**Core idea.** Define a single on-disk container (Zarr + Parquet, built on the OME-NGFF specification) that holds the five element types of a spatial-omics experiment plus a coordinate-system graph; every element declares one or more named extrinsic coordinate systems via affine transformations, so cross-modality alignment becomes a graph traversal rather than a re-resampling.
+
+**Inputs / outputs.** Input: raw vendor outputs from Visium, Xenium, MERFISH, CosMx, IMC, etc., loaded via reader functions. Output: a single SpatialData store on disk (Zarr + Parquet) containing five element types — **images** (multiscale arrays, xarray/dask-backed), **labels** (integer pixel masks), **shapes** (geopandas polygons/circles, e.g. Visium spots or cell outlines), **points** (Parquet-backed single-molecule coordinates), and **tables** (AnnData objects annotating any of the above via `region_key`/`instance_key`).
+
+**Key innovation.** Prior substrates handled one modality cleanly but composed badly: `AnnData` is table-first, `SpatialExperiment` is R-only, `Squidpy`/`Giotto` are tool-specific containers. SpatialData's contribution is the coordinate-system layer — intrinsic systems tied to each element plus named extrinsic systems linked by `scale`/`translation`/`rotation`/sequence transformations — which lets Visium spots, an H&E image, and a Xenium transcript map all live in one store and align on demand. The OME-NGFF foundation makes the format FAIR-by-construction (findable, interoperable, web-accessible via Zarr).
+
+**Parameters worth knowing.** Coordinate-system names — the strings analysts use to ask "render everything aligned to `global`." Transformation type — `Identity`, `Scale`, `Translation`, `Affine`, `Sequence`. Multiscale image levels — pyramidal storage for lazy zoom. `region_key` / `instance_key` on tables — the join keys back to shapes or labels.
+
+**Canonical example.** *Cross-language interop is the focus of the EuroBioC2025 talk and the specific R-side reader/writer story is not specified in vignette; needs talk slides.* The published paper demonstrates Visium + Xenium co-registration on a single tissue section and integrated multi-modal queries spanning images, transcripts, and cell tables in one store.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = single-cell & spatial omics; SpatialData is the de facto Python-side data substrate for spatial-omics pipelines

@@ -22,6 +22,22 @@
 
 plyxp uses rlang data masks to make a `SummarizedExperiment` behave like a tidy data context for dplyr verbs — `mutate()`, `filter()`, `summarise()` — across the three logical "frames" of an SE: row metadata, column metadata, and assay matrices. The user keeps the SE structure (no flatten / pivot round-trip) but writes expressions in dplyr syntax. It's a syntactic bridge, not a replacement for the underlying S4 contract.
 
+## How it works
+
+**Core idea.** plyxp wraps a `SummarizedExperiment` in a `plyxp` object that exposes three rlang data masks — one each for the assay matrix, `rowData`, and `colData` — and dispatches standard dplyr verbs so expressions evaluate against the appropriate context without flattening the SE to a tibble.
+
+**Inputs / outputs.** Input is a `SummarizedExperiment` (the vignette uses `airway`). Output is a `plyxp` object that retains the SE structure; `se()` extracts the underlying `SummarizedExperiment` back out when the user is done piping.
+
+**Key innovation.** Context routing inside a single `mutate()`/`filter()` call. Rather than an `@`-prefix grammar, plyxp uses **contextual helper functions**: `rows()` directs an expression to `rowData`, `cols()` directs it to `colData`, and bare expressions operate on the assay matrix — so one piped verb can write to all three frames simultaneously.
+
+**Parameters / API surface worth knowing.**
+- `new_plyxp(se)` — constructor wrapping an SE in the plyxp context.
+- `rows(...)` / `cols(...)` — helpers that scope expressions to `rowData` / `colData`; bare expressions hit assays.
+- Supported verbs: `mutate`, `select`, `summarize`, `pull`, `filter`, `arrange` — standard dplyr API.
+- `se()` — accessor that returns the underlying `SummarizedExperiment`.
+
+**Canonical example.** From the vignette: `xp <- new_plyxp(airway); xp |> mutate(log_counts = log1p(counts), cols(treated = dex == "trt"), rows(new_id = paste0("gene-", gene_name)))`. A single piped `mutate()` adds a log-transformed assay, a treatment indicator on `colData`, and a renamed gene ID on `rowData` — three frames updated in one expression.
+
 ## Where it fits in the corpus
 
 - **Tidyomics** ([entry](tidyomics.md)) — same axis (tidy syntax for Bioc data classes); plyxp + tidyomics together signal the maturity shift in how Bioc users interact with their data

@@ -22,6 +22,21 @@
 
 Tidyomics overloads dplyr/tidyverse verbs (`filter`, `mutate`, `group_by`, `summarise`, `nest`, `pivot_*`, etc.) so they operate directly on Bioconductor S4 containers without first coercing to a data frame. `tidySingleCellExperiment` makes a `SingleCellExperiment` look like a tibble (one row per cell, columns from `colData` + reduced dims), `tidybulk` wraps bulk RNA-seq, `tidySummarizedExperiment` handles the general SE case, `tidyseurat` covers Seurat objects, and `plyranges` provides tidy verbs over `GRanges`. All members share API conventions so a user who learns one transfers fluently to the others. The Mangiola GBCC talk frames this as the ergonomics layer that lets cell-atlas-scale analyses be written and read as readable pipelines.
 
+## How it works
+
+**Core idea.** `tidyomics` is an *umbrella* meta-package: loading it attaches the member packages in one call and guarantees they expose consistent dplyr/tidyverse method dispatch on top of Bioconductor's S4 containers. The S4 object stays the ground truth — tidy verbs are implemented as methods that intercept dispatch and route to the appropriate slot, so no coercion / flatten step is needed.
+
+**Inputs / outputs.** Inputs are unchanged Bioconductor objects (`SummarizedExperiment`, `SingleCellExperiment`, `SpatialExperiment`, `Seurat`, `GRanges`). Outputs are the same objects after verb application — the tibble-like printing is a view, not a representation change.
+
+**Key innovation.** Ecosystem-level coordination. Each member package independently provides a tibble abstraction for its respective S4 class, but they share API conventions and a single install/load entry point, so a user who learns `tidySingleCellExperiment` transfers fluently to `tidySpatialExperiment` or `tidybulk`. The 2024 Nature Methods paper benchmarks this by running a 7.5M-PBMC Human Cell Atlas analysis across six data frameworks and ten tools using shared tidy syntax ([Hutchison, Keyes, Crowell et al., *Nat Methods* 21:1166–1170, 2024](https://www.nature.com/articles/s41592-024-02299-2)).
+
+**Parameters / API surface worth knowing.**
+- `library(tidyomics)` — attaches `tidySummarizedExperiment`, `tidySingleCellExperiment`, `tidySpatialExperiment`, `tidyseurat`, `plyranges` (and others) in one call.
+- Verb coverage: `filter`, `mutate`, `select`, `group_by`, `summarise`, `nest`, `pivot_*`, plus the package-specific extensions (e.g. `tidybulk`'s differential-expression wrappers).
+- Philosophy — "tidy data principles on top of S4 objects": the container is canonical, the syntax is tidyverse.
+
+**Canonical example.** *Not specified in vignette* (the umbrella package's own page mainly orchestrates loading); member-package vignettes carry the worked examples — e.g. `tidySingleCellExperiment` lets a user write `sce |> filter(cell_type == "T cell") |> ggplot(aes(UMAP_1, UMAP_2)) + geom_point()` directly on an SCE.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axes = single-cell-spatial-omics + bioinfo-tools (any AACR talk that ships an SCE / SE result is a candidate downstream user)

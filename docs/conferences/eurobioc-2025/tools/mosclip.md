@@ -22,6 +22,22 @@
 
 MOSClip overlays multi-omics measurements onto pathway topology and tests pathway modules for association with survival or two-class outcomes. It returns both a pathway-level test and a finer-grained module-level test, so users can localize *which* part of a pathway carries the signal rather than only learning that the pathway is hit.
 
+## How it works
+
+**Core idea.** Pathways are represented as graphs via `graphite`/`graphNEL`; within each pathway the package extracts connected-component "modules," reduces the multi-omics measurements over those modules to a small number of covariates, and tests those covariates jointly against outcome — Cox proportional hazards for survival, a generalized linear model for two-class comparisons.
+
+**Inputs / outputs.** Input is an `Omics` object (a `MultiAssayExperiment` subclass) holding any combination of expression, methylation, mutations, and CNV, plus a pathway list (e.g. Reactome). Output is a per-module table of p-values with the contributing omic-covariates labelled (e.g. `expPC1-3`, `met2k2`, `cnvPOS`, `mut`).
+
+**Key innovation.** Topology-aware multi-omics survival testing at module resolution: rather than collapsing a whole pathway to one score, MOSClip localizes the signal to a connected sub-graph and attributes it to specific omics layers.
+
+**Parameters worth knowing.**
+- Reduction method per omic — `summarizeWithPca` (expression), `summarizeInCluster` (methylation CpG clusters), `summarizeToBinaryEvents` / `summarizeToNumberOfEvents` (mutations, CNV).
+- `useTheseGenes` — pre-filter genes considered for module construction.
+- `specificArgs` — per-omic arguments (e.g. methylation gene dictionary).
+- `seed` — reproducibility for the dimensionality-reduction steps.
+
+**Canonical example.** The vignette runs `multiOmicsSurvivalModuleTest()` over `reactSmall` (three Reactome pathways) on `multiOmics`, a 50-sample ovarian-cancer TCGA cut, then aggregates results with `multiPathwayModuleReport()`. The output is a top-modules table ranked by Cox p-value, where the contributing covariates (expPC1–3, met2k2, cnvPOS, mut) make explicit which omics drove the association.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** no current dossier; relevant axis is clinical-trials / survival modeling — MOSClip's explicit survival framing maps onto outcome-prediction talks

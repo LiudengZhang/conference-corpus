@@ -22,6 +22,22 @@
 
 DeeDeeExperiment is a thin extension on top of `SingleCellExperiment` that adds dedicated, schema-validated slots for differential-expression results (e.g. DESeq2, edgeR, limma output tables) and functional-enrichment results (e.g. GSEA, ORA). Instead of a downstream user keeping the SCE alongside loose result `data.frame`s, everything travels together in one object — which makes apps like iSEE, gating pipelines, and reproducibility wrappers trivially aware of "what tests were run on this data."
 
+## How it works
+
+**Core idea.** `DeeDeeExperiment` is an S4 class that inherits from `SingleCellExperiment`, adding named slots for DEA (differential expression) and FEA (functional enrichment) result tables — so the result objects ride inside the same container as the counts, `colData`, `rowData`, and reduced dimensions they were derived from.
+
+**Inputs / outputs.** Construction takes an existing `SingleCellExperiment` plus a named list of result tables; the returned `DeeDeeExperiment` preserves every SCE component and exposes the results through dedicated accessors. Downstream tools that already speak SCE (iSEE, scran, scater) keep working unchanged.
+
+**Key innovation.** A schema-validated, single-object contract for DEA/FEA results. Prior practice scattered result `data.frame`s as loose files alongside the SCE; DeeDeeExperiment standardizes the contract so consumers can introspect what tests were run without bespoke parsing.
+
+**Parameters / API surface worth knowing.**
+- `DeeDeeExperiment(sce = ..., de_results = ...)` — constructor; accepts an SCE plus a named list of DEA tables.
+- `getDEA()`, `getDEANames()` — accessors that retrieve named DEA result tables (analogous accessors exist for FEA).
+- Expected single-cell `colData` columns when working with pseudobulk: `sample_id`, `cluster_id`, `group_id`.
+- Naming convention for results: `"contrast_celltype"` (e.g. `"stim-ctrl_NK cells"`), so per-cluster contrasts are addressable by name.
+
+**Canonical example.** The single-cell vignette walks SCE → QC with scater → `prepSCE()` → pseudobulk via muscat's `aggregateData()` and `pbDS()` → conversion with `muscat_list_for_dde()` → `dde <- DeeDeeExperiment(sce = sce, de_results = muscat_list)`. The resulting object is then queried with `getDEA()` / `getDEANames()` to inspect contrasts by cell type.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** no current dossier — this is plumbing rather than science; relevant if any AACR talk uses iSEE / SCE infrastructure to ship results

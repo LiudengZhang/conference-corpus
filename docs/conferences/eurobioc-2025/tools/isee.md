@@ -22,6 +22,22 @@
 
 iSEE turns a `SummarizedExperiment` into a live, multi-panel Shiny app where each panel (reduced-dimension plot, heatmap, gene-feature plot, sample table, …) can be linked: clicking a cell on a UMAP filters the gene heatmap, etc. Every panel exports the underlying R code that produced its current state, so an exploration session converts cleanly to a reproducible script. Custom panel types are added via S4, which is how iSEE has grown an extension ecosystem (iSEEde, iSEEpathways, iSEEtree, …).
 
+## How it works
+
+**Core idea.** iSEE wraps a `SummarizedExperiment` / `SingleCellExperiment` in a Shiny app composed of typed, S4-defined panels; panels publish selections (sending) and subscribe to selections from other panels (receiving), so the app behaves as a reactive graph over a single data object.
+
+**Inputs / outputs.** Input is any `SummarizedExperiment` derivative. Outputs are (a) the live Shiny session and (b) the exact R code that reproduces every panel's current state, retrievable via the "Extract the R code" modal — making interactive exploration convertible to a script.
+
+**Key innovation.** Panel-to-panel selection transmission plus the S4 extension API: third-party packages (iSEEde, iSEEpathways, iSEEtree) plug new panel classes into the same linking graph without forking the core app.
+
+**Parameters / API surface worth knowing.**
+- `iSEE(se, initial = list(...))` — top-level launcher; `initial` is a list of `Panel` objects describing the starting layout.
+- Built-in panel classes: `ReducedDimensionPlot`, `FeatureAssayPlot`, `ColumnDataPlot`, `RowDataTable`, `ComplexHeatmapPlot`, `ColumnDataTable`, `RowDataPlot`, `SampleAssayPlot`.
+- Selection sources — each panel exposes "Selection parameters" naming a transmitting panel; ordering matters because senders must execute before receivers in the exported script.
+- Custom panels — quick path via `createCustomPlot()` / `createCustomTable()`; full S4 path subclasses `Panel` / `ColumnDotPlot` / `RowDotPlot` (documented in the iSEE book, not the basic vignette).
+
+**Canonical example.** The minimal invocation is `iSEE(sce)`; from there the user picks panels from the UI. The "Examine panel chart" view renders the send/receive graph so linking can be inspected, and the code-extraction modal returns the syntax-highlighted R block that regenerates every plot.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** no current dossier; iSEE is a tool researchers *use* to explore single-cell results, so it could appear as a runtime component in any AACR talk that ships an SCE

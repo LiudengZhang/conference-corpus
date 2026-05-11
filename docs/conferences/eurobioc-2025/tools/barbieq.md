@@ -22,6 +22,21 @@
 
 barbieQ ingests barcode count tables from clonal-tracking experiments (lentiviral or CRISPR-based barcode libraries delivered into cell populations), performs preprocessing and quality filtering, runs statistical tests for differential clone abundance across experimental conditions, and visualizes how individual clones expand or contract over time. The package is built around a dedicated barcode-experiment data class so that downstream comparisons stay aware of clone-level structure rather than collapsing to bulk counts.
 
+## How it works
+
+**Core idea.** barbieQ wraps a barcode count matrix in a `SummarizedExperiment`-backed `barbieQ` object, partitions clones into "top" vs. low-abundance tails, and applies regression-based tests for significant clonal change across conditions. The specific distribution family used by `testBarcodeSignif()` is *not specified in vignette; needs talk slides*.
+
+**Inputs / outputs.** Input is a barcode-by-sample count matrix plus a sample-metadata data frame; the vignette example is a 16,603 × 62 monkey HSPC matrix. Output is the augmented `barbieQ` object carrying preprocessing flags (top-barcode tags, automatic transformations), pairwise correlations, and test results.
+
+**Key innovation.** Clonal-tracking-specific workflow rather than re-purposing bulk DE machinery — the object carries a top/bottom-barcode partition through downstream steps, so abundance tests are anchored to clones that have enough support to model rather than to the long tail of singletons.
+
+**Parameters worth knowing.**
+- `nSampleThreshold` (in `tagTopBarcodes`) — minimum number of samples a barcode must appear in to qualify as "top"; controls the abundance-tail cut.
+- `sampleMetadata` (in `createBarbieQ`) — the condition / time-point design used by downstream tests.
+- Automatic transformations on object creation — exact set of transformations *not specified in vignette; needs talk slides*.
+
+**Canonical example.** The vignette builds `exampleBBQ <- createBarbieQ(object = assay(monkeyHSPC), sampleMetadata = colData(monkeyHSPC)$sampleMetadata)`, tags abundant clones with `tagTopBarcodes(barbieQ = exampleBBQ, nSampleThreshold = 6)`, then visualizes the partition with `plotBarcodePareto()` and `plotBarcodeSankey()`. Pairwise QC uses `plotBarcodePairCorrelation()` and `plotSamplePairCorrelation()`; statistical testing for condition-specific abundance change runs through `testBarcodeSignif()`.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** clinical-trials axis — clonal tracking is heavily used for drug-resistance and metastasis lineage analysis, which is core AACR territory

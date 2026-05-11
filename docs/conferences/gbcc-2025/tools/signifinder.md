@@ -22,6 +22,22 @@
 
 signifinder is a curation play: 70+ published cancer signatures (hypoxia, EMT, immune-infiltrate, stemness, and dozens of indication-specific scores) packaged with one consistent scoring API that runs across bulk RNA-seq, microarray, single-cell, and spatial inputs. Instead of every analyst re-implementing each signature from a paper's supplement, signifinder has them in one place with the same input contract — so a user can compute and compare a panel of signatures on the same object.
 
+## How it works
+
+**Core idea.** Each bundled signature is re-implemented in its original published form — some as weighted sums of gene-level coefficients (e.g. `Pyroptosis_Ye` uses per-gene weights in the −0.187 to 0.130 range), others as enrichment scores via `ssGSEA` or `GSVA`, depending on what the source paper specified. The scoring is per-sample (or per cell / per spot), so the same code path runs across modalities.
+
+**Inputs / outputs.** Input is normalized RNA-seq counts or microarray data wrapped in a `SummarizedExperiment`, `SingleCellExperiment`, or `SpatialExperiment`; gene IDs can be symbols, Entrez, or Ensembl. Output is the same object with one column per signature appended to `colData`.
+
+**Key innovation.** A single API spanning bulk, single-cell, and spatial — earlier signature collections targeted bulk only — plus an evaluation layer that reports the fraction of signature genes actually present in the dataset (e.g. "is using 100% of signature genes").
+
+**Parameters worth knowing.**
+- `inputType` — `"rnaseq"` or `"microarray"`, switches normalization assumptions.
+- `nametype` — gene-ID convention used in the assay.
+- `whichSign` / `tissue` / `tumor` / `topic` — filters in `multipleSign()` for computing a batch of signatures at once.
+- `whichAssay` — which assay slot to score when the object holds multiple.
+
+**Canonical example.** The vignette loads `ovse`, an ovarian-cancer bulk RNA-seq `SummarizedExperiment`, and calls `ferroptosisSign(dataset = ovse, inputType = "rnaseq")`. The returned object carries the ferroptosis score in `colData`, and the same object is then chained into further signature calls (e.g. `EMTSign`, `ImmunoScore_Hao`) so a panel of scores accumulates on one object. `availableSignatures()` and `evaluationSignPlot()` support browsing and QC.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axes single-cell-spatial-omics + clinical-trials — cancer signatures are clinically-actionable readouts and the cross-modality coverage matches the AACR spatial / single-cell dossiers
