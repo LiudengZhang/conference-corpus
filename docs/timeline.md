@@ -59,9 +59,9 @@ This page tracks **why each conference is in the corpus**, **when it lands**, an
     </div>
   </div>
   <div class="gantt-row">
-    <div class="gantt-label"><a href="conferences/ismb-2026/">ISMB / ECCB</a></div>
+    <div class="gantt-label"><a href="conferences/ismb-2026/">ISMB 2026</a></div>
     <div class="gantt-track">
-      <a class="gantt-bar upcoming tier-methods" style="left: 52.9%;" title="ISMB / ECCB · Jul 12–16 · upcoming" href="conferences/ismb-2026/">Jul 12</a>
+      <a class="gantt-bar upcoming tier-methods" style="left: 52.9%;" title="ISMB · Jul 12–16 · Washington DC · upcoming" href="conferences/ismb-2026/">Jul 12</a>
     </div>
   </div>
   <div class="gantt-row">
@@ -136,7 +136,7 @@ We score each conference 0–2 on four criteria.
 | [RECOMB 2026](conferences/recomb-2026/) | Apr 26–29 | methods | 1 | 2 | 2 | 2 | **7** | full | queued |
 | [Nextflow Summit](conferences/nextflow-2026/) | Apr 30 – May 1 | methods | 1 | 2 | 2 | 2 | **7** | full | ✅ built |
 | [ASCO 2026](conferences/asco-2026/) | May 29 – Jun 2 | clinical | 2 | 2 | 1 | 2 | **7** | full | upcoming |
-| [ISMB / ECCB 2026](conferences/ismb-2026/) | Jul 12–16 | methods | 2 | 2 | 2 | 2 | **8** | full | upcoming |
+| [ISMB 2026](conferences/ismb-2026/) | Jul 12–16 | methods | 2 | 2 | 2 | 2 | **8** | full | scaffold |
 | [ESMO 2026](conferences/esmo-2026/) | Oct 16–20 | clinical | 1 | 2 | 1 | 1 | **5** | light | upcoming |
 | [SITC 2026](conferences/sitc-2026/) | Nov 4–8 | clinical | 2 | 2 | 2 | 2 | **8** | full | upcoming |
 | [RSNA 2026](conferences/rsna-2026/) | Nov 29 – Dec 3 | adjacent | 1 | 2 | 1 | 2 | **6** | full | upcoming |
