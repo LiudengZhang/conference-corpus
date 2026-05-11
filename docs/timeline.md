@@ -23,6 +23,12 @@ This page tracks **why each conference is in the corpus**, **when it lands**, an
     </div>
   </div>
   <div class="gantt-row">
+    <div class="gantt-label"><a href="conferences/asco-gi-2026/">ASCO GI 2026</a></div>
+    <div class="gantt-track">
+      <a class="gantt-bar queued tier-clinical" style="left: 1.9%;" title="ASCO GI · Jan 8–10 · San Francisco · scaffold (post-meeting)" href="conferences/asco-gi-2026/">Jan 8</a>
+    </div>
+  </div>
+  <div class="gantt-row">
     <div class="gantt-label"><a href="conferences/jpm-2026/">JPM 2026</a></div>
     <div class="gantt-track">
       <a class="gantt-bar built tier-industry" style="left: 3.3%;" title="JPM Healthcare Conference · Jan 12–15 · built" href="conferences/jpm-2026/">Jan 12</a>
@@ -32,6 +38,12 @@ This page tracks **why each conference is in the corpus**, **when it lands**, an
     <div class="gantt-label"><a href="conferences/agbt-2026/">AGBT 2026</a></div>
     <div class="gantt-track">
       <a class="gantt-bar queued tier-adjacent" style="left: 14.5%;" title="AGBT · Feb 22–25 · queued" href="conferences/agbt-2026/">Feb 22</a>
+    </div>
+  </div>
+  <div class="gantt-row">
+    <div class="gantt-label"><a href="conferences/asco-gu-2026/">ASCO GU 2026</a></div>
+    <div class="gantt-track">
+      <a class="gantt-bar queued tier-clinical" style="left: 15.6%;" title="ASCO GU · Feb 26–28 · San Francisco · scaffold (post-meeting)" href="conferences/asco-gu-2026/">Feb 26</a>
     </div>
   </div>
   <div class="gantt-row">
@@ -47,6 +59,12 @@ This page tracks **why each conference is in the corpus**, **when it lands**, an
     </div>
   </div>
   <div class="gantt-row">
+    <div class="gantt-label"><a href="conferences/iclr-2026/">ICLR 2026</a></div>
+    <div class="gantt-track">
+      <a class="gantt-bar queued tier-methods" style="left: 31.0%;" title="ICLR · Apr 23–27 · Rio de Janeiro · scaffold (post-meeting, filtered)" href="conferences/iclr-2026/">Apr 23</a>
+    </div>
+  </div>
+  <div class="gantt-row">
     <div class="gantt-label"><a href="conferences/nextflow-2026/">Nextflow Summit</a></div>
     <div class="gantt-track">
       <a class="gantt-bar built tier-methods" style="left: 32.9%;" title="Nextflow Summit · Apr 30 – May 1 · built" href="conferences/nextflow-2026/">Apr 30</a>
@@ -59,6 +77,18 @@ This page tracks **why each conference is in the corpus**, **when it lands**, an
     </div>
   </div>
   <div class="gantt-row">
+    <div class="gantt-label"><a href="conferences/cvpr-2026/">CVPR 2026</a></div>
+    <div class="gantt-track">
+      <a class="gantt-bar upcoming tier-methods" style="left: 42.5%;" title="CVPR · Jun 3–7 · Denver · scaffold (filtered)" href="conferences/cvpr-2026/">Jun 3</a>
+    </div>
+  </div>
+  <div class="gantt-row">
+    <div class="gantt-label"><a href="conferences/eha-2026/">EHA 2026</a></div>
+    <div class="gantt-track">
+      <a class="gantt-bar upcoming tier-clinical" style="left: 44.7%;" title="EHA · Jun 11–14 · Stockholm · scaffold" href="conferences/eha-2026/">Jun 11</a>
+    </div>
+  </div>
+  <div class="gantt-row">
     <div class="gantt-label"><a href="conferences/icml-2026/">ICML 2026</a></div>
     <div class="gantt-track">
       <a class="gantt-bar upcoming tier-methods" style="left: 51.2%;" title="ICML · Jul 6–11 · Seoul · scaffold (light)" href="conferences/icml-2026/">Jul 6</a>
@@ -68,6 +98,12 @@ This page tracks **why each conference is in the corpus**, **when it lands**, an
     <div class="gantt-label"><a href="conferences/ismb-2026/">ISMB 2026</a></div>
     <div class="gantt-track">
       <a class="gantt-bar upcoming tier-methods" style="left: 52.9%;" title="ISMB · Jul 12–16 · Washington DC · scaffold" href="conferences/ismb-2026/">Jul 12</a>
+    </div>
+  </div>
+  <div class="gantt-row">
+    <div class="gantt-label"><a href="conferences/eccb-2026/">ECCB 2026</a></div>
+    <div class="gantt-track">
+      <a class="gantt-bar upcoming tier-methods" style="left: 66.6%;" title="ECCB · Aug 31 – Sep 4 · Geneva · scaffold" href="conferences/eccb-2026/">Aug 31</a>
     </div>
   </div>
   <div class="gantt-row">
@@ -177,6 +213,12 @@ We score each conference 0–2 on four criteria.
 | [ASHG 2026](conferences/ashg-2026/) | Oct 20–24 (Montreal) | clinical | 2 | 2 | 1 | 2 | **7** | full | scaffold |
 | [CSHL BDS 2026](conferences/cshl-bds-2026/) | Nov 4–7 (Cold Spring Harbor) | methods | 2 | 1 | 2 | 2 | **7** | full | scaffold |
 | [SABCS 2026](conferences/sabcs-2026/) | Dec 8–11 (San Antonio) | clinical | 2 | 2 | 2 | 2 | **8** | full | scaffold |
+| [ASCO GI 2026](conferences/asco-gi-2026/) | Jan 8–10 (San Francisco) | clinical | 2 | 2 | 2 | 1 | **7** | full | scaffold (post-meeting) |
+| [ASCO GU 2026](conferences/asco-gu-2026/) | Feb 26–28 (San Francisco) | clinical | 2 | 2 | 2 | 1 | **7** | full | scaffold (post-meeting) |
+| [ICLR 2026](conferences/iclr-2026/) | Apr 23–27 (Rio de Janeiro) | methods | 1 | 2 | 0 | 1 | **4** | light | scaffold (post-meeting) |
+| [CVPR 2026](conferences/cvpr-2026/) | Jun 3–7 (Denver) | methods | 1 | 2 | 0 | 1 | **4** | light | scaffold |
+| [EHA 2026](conferences/eha-2026/) | Jun 11–14 (Stockholm) | clinical | 2 | 2 | 2 | 2 | **8** | full | scaffold |
+| [ECCB 2026](conferences/eccb-2026/) | Aug 31 – Sep 4 (Geneva) | methods | 2 | 2 | 2 | 1 | **7** | full | scaffold |
 
 ## What we're skipping (and why)
 

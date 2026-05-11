@@ -283,6 +283,30 @@ nav:
     - Overview: conferences/sabcs-2026/index.md
     - Program notes (research): conferences/sabcs-2026/program-notes.md
     - Trials (template): conferences/sabcs-2026/trials/index.md
+  - ASCO GI 2026 (post-meeting scaffold):
+    - Overview: conferences/asco-gi-2026/index.md
+    - Program notes (research): conferences/asco-gi-2026/program-notes.md
+    - Trials (template): conferences/asco-gi-2026/trials/index.md
+  - ASCO GU 2026 (post-meeting scaffold):
+    - Overview: conferences/asco-gu-2026/index.md
+    - Program notes (research): conferences/asco-gu-2026/program-notes.md
+    - Trials (template): conferences/asco-gu-2026/trials/index.md
+  - ICLR 2026 (post-meeting scaffold):
+    - Overview: conferences/iclr-2026/index.md
+    - Program notes (research): conferences/iclr-2026/program-notes.md
+    - Tools (template, filtered): conferences/iclr-2026/tools/index.md
+  - CVPR 2026 (scaffold):
+    - Overview: conferences/cvpr-2026/index.md
+    - Program notes (research): conferences/cvpr-2026/program-notes.md
+    - Tools (template, filtered): conferences/cvpr-2026/tools/index.md
+  - EHA 2026 (scaffold):
+    - Overview: conferences/eha-2026/index.md
+    - Program notes (research): conferences/eha-2026/program-notes.md
+    - Trials (template): conferences/eha-2026/trials/index.md
+  - ECCB 2026 (scaffold):
+    - Overview: conferences/eccb-2026/index.md
+    - Program notes (research): conferences/eccb-2026/program-notes.md
+    - Tools (template): conferences/eccb-2026/tools/index.md
   - Notes:
     - Extraction method: notes/extraction.md
     - Caveats: notes/caveats.md
