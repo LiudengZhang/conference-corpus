@@ -21,6 +21,22 @@
 
 GalaxyMCP is a Python MCP server (FastMCP + BioBlend) that exposes Galaxy operations — tool search, workflow invocation, history/dataset access, result retrieval — as MCP tools. An AI assistant connects to a Galaxy instance, then accepts human-language instructions and translates them into BioBlend API calls, leaving behind the same auditable Galaxy history a hand-driven session would. Where GAIA is a complete agent product, GalaxyMCP is the substrate: any MCP client (Claude Desktop, Cursor, custom agents) can drive Galaxy through it.
 
+## How it works
+
+**Core idea.** A FastMCP-based Python server wraps BioBlend (the official Python client for the Galaxy REST API) and re-exposes Galaxy operations as MCP tools that any MCP-aware client can call. The server is the protocol adapter; BioBlend does the actual REST work.
+
+**Inputs / outputs.** Input is a Galaxy connection (URL + API key, or OAuth-issued temporary key) plus MCP tool calls from a client. Output is JSON-shaped results — search hits, tool descriptors, history/dataset metadata, workflow invocation IDs — flowing back to the AI client over MCP.
+
+**Key innovation.** Roughly 21 specialized MCP tools across five functional groups — tool management (search / view / execute), workflow integration (including pulls from the Interactive Workflow Composer), history operations, dataset and file management, and server info — turning a full Galaxy instance into a first-class MCP context source rather than a single ad-hoc tool.
+
+**Parameters / API surface worth knowing.**
+- Transport: stdio (default, local) or streamable HTTP with optional OAuth (remote / browser clients).
+- Auth: API key via environment variables, or OAuth flow that exchanges credentials for a temporary Galaxy API key.
+- Quickstart: `uvx galaxy-mcp` (stdio) or `uvx galaxy-mcp --transport streamable-http --host 0.0.0.0 --port 8000` (HTTP).
+- Configuration: register the server in `claude_desktop_config.json` with `GALAXY_URL` and `GALAXY_API_KEY` env vars.
+
+**Canonical example.** From the README: configure the server in Claude Desktop, then ask the model something like "give a summary with my histories" — Claude calls the MCP `list_histories` tool, which calls BioBlend, which calls the Galaxy REST API, and the result flows back into the chat as a human-readable summary.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = agentic AI; the protocol-layer story complements GAIA's product-layer one

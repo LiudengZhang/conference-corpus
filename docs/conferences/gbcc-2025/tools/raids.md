@@ -22,6 +22,22 @@
 
 RAIDS infers genetic ancestry from cancer sequencing data — RNA-seq, exome, WGS — without requiring matched germline sequencing. The "data synthesis" angle is the differentiator: rather than projecting samples onto a 1000G PCA and hoping the variant calls survive low coverage, RAIDS synthesizes cancer-like reference data and uses it to anchor a more robust inference. That makes it usable on the kinds of inputs (FFPE exomes, shallow tumor RNA-seq) that biobank- and TCGA-style retrospective cohorts actually have.
 
+## How it works
+
+**Core idea.** RAIDS generates *synthetic* genotype profiles for reference-panel donors that mimic the coverage and noise characteristics of the target sample, then projects the target onto the reference PCA and classifies its ancestry against those synthetics — so the inference parameters (PC count, k-NN window) are tuned on profiles that look like the actual data, not on idealized reference genotypes.
+
+**Inputs / outputs.** Input is germline-overlapping reads or genotype calls at variant positions with sufficient coverage and population frequency, plus a population reference dataset (1000 Genomes is the canonical panel). Output is an ancestry classification, ancestry probabilities, and a profile-specific accuracy estimate.
+
+**Key innovation.** Profile-specific inference parameter optimization via data synthesis — RAIDS uses synthetic profiles built from reference donors to estimate per-sample accuracy and pick parameters, instead of using one global setting for all inputs. This is what makes the method robust on cancer-derived, low-coverage, or fragmented data.
+
+**Parameters worth knowing.**
+- Reference panel selection — determines which ancestral backgrounds can be assigned.
+- Coverage threshold — minimum read depth per variant for inclusion.
+- Variant frequency cutoff — restricts inference to common population variants.
+- PCA projection dimensionality — number of principal components retained.
+
+**Canonical example.** The vignette walks through setting up a working directory with the population-reference GDS files, sampling reference donors to generate synthetic profiles, optimizing inference parameters on those synthetics, running ancestry inference on the target, and inspecting the resulting calls and accuracy estimates. The accompanying Belleau et al. 2023 *Cancer Research* paper benchmarks the approach on TCGA samples.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis clinical-trials / translational-genomics — ancestry-aware QC is a prerequisite for fair biomarker discovery across diverse cohorts

@@ -23,6 +23,28 @@
 
 iscream wraps htslib's tabix-indexed BED reader in Rcpp and exposes a query API that returns either a tibble, a `GenomicRanges` object, or a numeric matrix (e.g. methylation calls per region × sample) without round-tripping through R-level text parsers. The `tabix` vignette benchmarks against Rsamtools; the `TSS` vignette demonstrates the end-use case (per-TSS methylation matrices across many samples) where the throughput difference matters.
 
+## How it works
+
+**Core idea.** iscream binds htslib through Rcpp so that tabix-indexed BED queries run in C++ and parse directly into native R structures, skipping the R-level text-parsing step that dominates Rsamtools-based workflows. It compiles against Rhtslib by default but performs best when linked to htslib built with libdeflate.
+
+**Inputs / outputs.** Input is one or more tabix-indexed, gzip-compressed BED (or BED-like) files plus a set of query regions. Output can be a `data.table`, a `GRanges`, a `RangedSummarizedExperiment`, a sparse matrix, or a `BSseq` object — chosen via the function called.
+
+**Key innovation.** Multi-file tabix querying in a single call: unlike Rsamtools, which operates on one file at a time, iscream accepts a vector of BED files and returns parsed results in one shot — exactly the shape needed for building region × sample matrices across hundreds of methylation BEDs.
+
+**Parameters worth knowing.**
+- `tabix()` / `tabix_gr()` — query regions across multiple files, returning a `data.table` or `GRanges`.
+- `summarize_regions()` — aggregate per-region statistics (mean, sum, median, variance) without first materializing the full table.
+- `make_mat()` / `make_mat_se()` — assemble dense or sparse matrices with loci as rows and files as columns.
+- Threading control — operations support parallel execution via a configurable thread count.
+
+**Canonical example.** The vignette lists a directory of single-cell methylation BEDs (`cell[1-5].bed.gz`) and queries two regions:
+```r
+bedfiles <- list.files(data_dir, pattern = "cell[1-5].bed.gz$", full.names = TRUE)
+regions  <- c("chr1:184577-680065", "chrY:56877780-56882524")
+tabix_gr(bedfiles, regions, col.names = c("beta", "coverage"))
+summarize_regions(bedfiles, regions, columns = c(4, 5), col_names = c("beta", "coverage"))
+```
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = bioinfo-tools (infrastructure layer; relevant to any methylation / ChIP / ATAC dossier that builds region × sample matrices)

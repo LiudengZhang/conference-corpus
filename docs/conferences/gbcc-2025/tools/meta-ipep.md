@@ -21,6 +21,22 @@
 
 Meta-iPep is an end-to-end Galaxy workflow for immunopeptidomics: from raw MS spectra of HLA-class-I/II eluted peptides through database search (extended with microbial peptide databases — the "meta" prefix), FDR control, and HLA binding-affinity filtering. The output is a list of high-confidence HLA-bound peptides annotated with origin (human / microbial), suitable for neoantigen ranking or microbial-antigen discovery. Implementing it in Galaxy makes the pipeline reproducible and shareable across the immunopeptidomics community.
 
+## How it works
+
+**Core idea.** Meta-iPep follows the U Minnesota Galaxy-P group's metaproteomics blueprint — a Galaxy workflow that chains custom database construction → peptide-spectrum matching → FDR-controlled identification → taxonomic / functional annotation — and re-targets it at HLA-eluted peptides, with the database extended to include microbial sequences alongside the host proteome.
+
+**Inputs / outputs.** Input: raw MS spectra from HLA class-I / class-II immunoprecipitation eluates (mzML / RAW). Output: an FDR-filtered list of HLA-bound peptides annotated by source organism (human / microbial), suitable for neoantigen ranking or microbial-antigen discovery.
+
+**Key innovation.** The "meta" prefix — extending the immunopeptidomics search space to microbial peptides. Standard HLA peptidomics pipelines search only the human proteome and discard everything else; Meta-iPep builds a composite human + microbial database so tumor-associated microbial peptides (gut or intratumoral) get a chance to be identified rather than silently rejected.
+
+**Parameters / API surface worth knowing.**
+- Search engine — *not specified in the public Zenodo landing*; the related U Minnesota clinical-metaproteomics workflow (Do et al., JoVE 2025) uses SearchGUI-orchestrated engines (X!Tandem / MS-GF+ / Comet) within Galaxy, which is the likely substrate.
+- Database construction — composite host + microbial peptide database (the "meta" step); microbial sequences likely sourced from a curated metaproteomics database such as MetaPep.
+- FDR control — standard target-decoy strategy at the PSM / peptide level; specific tool — *not specified in landing*.
+- HLA binding filter — predictor (NetMHCpan-family) and threshold not specified in the public abstract.
+
+**Canonical example.** *Not specified in the public Zenodo landing for slides 10.5281/zenodo.15982018.* The talk's framing positions the canonical run as HLA-I/II eluates from a tumor sample passed through the Galaxy workflow, yielding a peptide list partitioned into human-derived (candidate neoantigens) and microbial-derived (candidate microbial antigens) for immunotherapy follow-up.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axes = clinical-trials + bioinfo-tools — HLA-bound peptide characterization is the MHC-I/II ligandome readout that drives neoantigen-based vaccines and TCR-T therapies, AACR-bread-and-butter

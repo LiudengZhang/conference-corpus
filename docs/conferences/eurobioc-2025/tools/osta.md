@@ -24,6 +24,18 @@
 
 OSTA is an online textbook (in the OSCA / OHCA tradition) that walks through spatial-transcriptomics analysis end-to-end on the Bioconductor stack — preprocessing, QC, normalization, clustering, spatially-variable-gene detection, cell-type deconvolution, and cross-language interop with Python. The companion `OSTA.data` Bioconductor package provides the example datasets across multiple spatial-omics platforms (Visium, Xenium, MERFISH, etc.) so every chapter is runnable.
 
+## How it works
+
+**Core idea.** OSTA is a Quarto-rendered book, not a package — its "mechanism" is editorial: it organizes the spatial-transcriptomics workflow into six parts (Background, Sequencing-based platforms, Imaging-based platforms, Platform-independent analyses, Multiple-sample analyses, Cross-platform analyses) so that the same dataset can be carried through preprocessing → QC → normalization → dimensionality reduction → clustering → spatial statistics → deconvolution → cell-cell communication chapters.
+
+**Inputs / outputs.** Input for the reader: an R session with Bioconductor (the book reports being compiled on Bioconductor 3.23 / R 4.6.0). Input for the chapters: example datasets shipped by the `OSTA.data` companion package, loaded by name so every chapter is runnable without external downloads. Output: a `SpatialExperiment` (or platform-specific subclass) carried across chapters as the running object.
+
+**Key innovation.** The book/data-package split is the operational design: chapters reference datasets by stable identifier, `OSTA.data` ships those datasets versioned on Bioconductor, and a Python-interop section bridges to the SpatialData / scverse stack so the book can teach R-side analysis without pretending the rest of the ecosystem doesn't exist. Splitting code (chapter) from data (package) keeps the book reproducible across Bioc releases.
+
+**Parameters worth knowing.** Reader-facing decisions are mostly per-chapter (which clustering algorithm, which SVG method, which normalization). At the book level: which platform substrate to follow — sequencing-based (Visium / Visium HD) or imaging-based (Xenium, CosMx) — since the two halves diverge on QC and segmentation. *MERFISH coverage not confirmed in the current table of contents (book lists Visium, Visium HD, Xenium, CosMx explicitly).*
+
+**Canonical example.** Each chapter pulls a worked dataset from `OSTA.data`; the sequencing-based section is anchored on Visium (including HD with binned and segmented variants), the imaging-based section on Xenium and CosMx. The multi-sample and cross-platform parts then re-use those same objects to demonstrate integration without re-importing raw data.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = single-cell & spatial omics — OSTA is the curricular spine for the R/Bioconductor side of the spatial-omics dossiers

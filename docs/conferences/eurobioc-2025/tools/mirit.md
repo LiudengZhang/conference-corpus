@@ -22,6 +22,18 @@
 
 MIRit jointly models miRNA and mRNA expression to recover regulatory relationships across biological conditions. It performs differential expression analysis on both modalities and characterizes miRNA-mRNA interaction networks, so that pathway-level signal is interpreted through the regulatory layer rather than from gene expression alone.
 
+## How it works
+
+**Core idea.** A `MultiAssayExperiment`-based container (`MirnaExperiment`) holds matched miRNA and mRNA expression matrices; MIRit runs differential expression on each modality, retrieves predicted and validated miRNA-target interactions, and integrates the two sides — via correlation analysis for paired samples and via association tests / rotation gene-set tests for unpaired designs — to flag miRNA-target pairs whose joint dysregulation is consistent with regulatory action.
+
+**Inputs / outputs.** Input: a gene-expression matrix (HGNC gene symbols × samples), a miRNA-expression matrix (miRBase miRNA names × samples), and a sample metadata data.frame keyed by subject ID with miRNA/gene column mappings and a condition variable. Output: a `MirnaExperiment` annotated with per-modality DE results, retrieved target interactions, integrative significance per miRNA-target pair, and enrichment results (ORA, GSEA, CAMERA).
+
+**Key innovation.** Wraps the miRNA-target integration workflow — DE on both layers, target lookup, paired-vs-unpaired integration, enrichment, and SNP-disease association at miRNA loci — into a single Bioconductor container, rather than leaving it as a series of bespoke scripts. The specific DE algorithm and target databases are not explicitly named in the introduction vignette — *not specified in vignette excerpt; needs talk slides*.
+
+**Parameters worth knowing.** `pairedSamples` in the `MirnaExperiment` constructor — switches the integrative test between correlation (paired) and association/rotation gene-set tests (unpaired). `primary` / `mirnaCol` / `geneCol` columns in the metadata data.frame — the join keys for the two matrices.
+
+**Canonical example.** Vignette uses an RNA-Seq thyroid-cancer dataset from Riesco-Eizaguirre et al. (2015): 8 papillary thyroid carcinoma tumors with matched contralateral normal thyroid tissue from the same patients. Workflow: build the `MirnaExperiment` with `pairedSamples = TRUE`, visualize with `plotDimensions()` (MDS by condition), run DE on each modality, retrieve targets, then integrate to recover miRNA-gene pairs whose paired dysregulation is consistent with target repression.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** no current dossier; relevant axis is bioinfo / AI methods — network-based miRNA-mRNA integration is conceptually adjacent to MOSClip's pathway-based multi-omics

@@ -21,6 +21,22 @@
 
 AnVIL is the NHGRI's strategic genomic-data analysis cloud — a Terra / Google-Cloud-backed environment where controlled-access cohorts (TCGA, dbGaP, *All of Us*) live and compute happens in-place. Researchers spin up Galaxy, Jupyter, RStudio / Bioconductor, or WDL workflow runners adjacent to the data, with NIH-compliant access controls. The GBCC coverage spans (1) the platform itself, (2) a hands-on workshop on running controlled-access analyses, and (3) the training / education pipeline that onboards new users.
 
+## How it works
+
+**Core idea.** AnVIL inverts the conventional "download cohort, analyze locally" pattern: large controlled-access genomic datasets live on AnVIL's cloud storage, and researchers bring compute (notebooks, workflows, R/Bioc sessions) to the data inside Terra workspaces — eliminating bulk egress and the duplication of restricted data across institutional servers.
+
+**Inputs / outputs.** Input is a NIH dbGaP-approved researcher account plus a Terra workspace. Output is whatever the user's analysis produces — a Galaxy history, a Jupyter notebook, an R session, a WDL run — persisted into the workspace's cloud bucket under AnVIL's NIH-compliant access controls.
+
+**Key innovation.** A single substrate (Terra on Google Cloud + Gen3 data commons) hosting both the data and the four main analysis surfaces — Galaxy, Bioconductor / RStudio, Jupyter, and WDL via Dockstore — so cross-toolkit pipelines run in-place against the same data without re-exporting between environments.
+
+**Parameters / API surface worth knowing.**
+- **Terra workspaces** — the unit of collaboration and billing; each holds data references, notebooks, workflows, and access controls.
+- **Gen3 data commons** — the data-indexing layer that exposes 4.7 PB+ across ~293k participants and 380+ datasets (GTEx, CCDG, CMG, GREGoR, *All of Us*, 1000 Genomes, plus dbGaP studies).
+- **Compute runtimes** — Galaxy server, JupyterLab, RStudio/Bioconductor, WDL via Cromwell/Dockstore.
+- **Access tiers** — open datasets vs dbGaP-controlled access requiring NIH approval and project-level data-access agreements.
+
+**Canonical example.** From AnVIL documentation: a researcher with dbGaP approval for a TCGA cohort opens a Terra workspace, references the cohort's Gen3-indexed data, launches an RStudio runtime preloaded with Bioconductor, and runs a `SummarizedExperiment`-based analysis against BAMs that never leave the cloud — outputs land in the workspace bucket, and the workspace itself is shareable with named collaborators under the same access controls.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = clinical-trials (controlled-access cohorts — TCGA, dbGaP, *All of Us* — are AACR-relevant for translational and population-genomics work)

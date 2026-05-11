@@ -22,6 +22,18 @@
 
 consICA runs Independent Component Analysis many times with different initializations, then aggregates the results into stable consensus components — the "consensus" step is what turns ICA from a stochastic exploratory method into a reproducible deconvolution tool. The output is a set of statistically independent signal components extracted from heterogeneous omics data, with downstream utilities for linking components to patient survival, clinical covariates, and gene-set enrichment.
 
+## How it works
+
+**Core idea.** Run fastICA `ntry` times with different random initializations on the same expression matrix, then aggregate the per-run components into stable "consensus" components — a standard remedy for the well-known non-determinism of single-run ICA. The aggregation step (matching components across runs and averaging) is what turns ICA from an exploratory tool into a reproducible deconvolution method.
+
+**Inputs / outputs.** Input: a `SummarizedExperiment` carrying an expression matrix (genes × samples), sample metadata, and optionally survival time/event columns. Output: an `S` matrix of consensus metagenes (genes × components), an `M` matrix of component weights per sample (components × samples), and per-component stability scores; downstream utilities link components to survival, clinical covariates, and gene-set enrichment.
+
+**Key innovation.** The consensus criterion — components from independent runs that match consistently across initializations are kept; unstable components are flagged or discarded — is the methodological signature. Components are then explicitly framed as deconvolution signals to be tested against clinical metadata and pathway databases rather than treated as black-box features.
+
+**Parameters worth knowing.** `ncomp` — the number of independent components to extract (analyst-chosen, the primary modeling decision). `ntry` — how many ICA restarts to aggregate (more restarts → more stable consensus, more compute). Sample metadata columns to test against (`Var`) and survival columns drive the downstream component-interpretation tooling. *Specific aggregation algorithm not detailed in the vignette excerpt accessed.*
+
+**Canonical example.** The vignette uses TCGA skin cutaneous melanoma (SKCM) — 472 samples × the 2,454 most variable genes, plus 103 metadata columns and survival data — pre-loaded as a `SummarizedExperiment` via `data("samples_data")`. Consensus components are then linked to melanoma subtype and survival as the worked example.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** no current dossier; relevant axis is bioinfo / AI methods — consICA complements PCA/NMF/omicsGMF dimensionality reduction with an ICA-based alternative

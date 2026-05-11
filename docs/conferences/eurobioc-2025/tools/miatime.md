@@ -22,6 +22,18 @@
 
 miaTime layers time-aware analyses (e.g. trajectories, time-resolved dissimilarity, change-point detection) on top of `mia`'s TreeSummarizedExperiment containers. The split keeps the core `mia` package focused on cross-sectional analyses while letting longitudinal users opt in to the time-series surface separately.
 
+## How it works
+
+**Core idea.** Time-aware operations on a `TreeSummarizedExperiment`: per-subject samples are ordered by a time column, then beta-diversity (Bray-Curtis by default) is computed either against a reference baseline sample (`addBaselineDivergence`) or between consecutive timepoints (`addStepwiseDivergence`). The output is a per-sample divergence score appended to `colData` so it can be modeled, plotted, or used to flag change-points.
+
+**Inputs / outputs.** Input: a `TreeSummarizedExperiment` whose `colData` includes a time-of-sampling column and a subject/group column. Output: the same object with new `colData` columns for divergence, time-difference to reference, and reference-sample IDs.
+
+**Key innovation.** Keeping longitudinal microbiome methods inside the same `(Tree)SummarizedExperiment` substrate as the rest of `mia`, rather than spinning out a parallel data class — so a user can move from cross-sectional `mia` analysis to time-resolved analysis without reshaping data.
+
+**Parameters worth knowing.** `time.col` — colData column with sampling time. `group` — subject/group identifier (divergence is computed within group). `name` — prefix for the new colData columns. The dissimilarity metric is inherited from `mia::getDissimilarity` (Bray-Curtis default).
+
+**Canonical example.** Vignette uses the `hitchip1006` human-gut dataset: `addStepwiseDivergence(tse, time.col = "time")` appends a Bray-Curtis dissimilarity between each sample and its predecessor in the same subject's series. The resulting `colData` column can be plotted against `time` to surface periods of rapid community change versus stability.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** no current dossier

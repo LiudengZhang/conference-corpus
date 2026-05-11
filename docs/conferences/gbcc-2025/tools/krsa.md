@@ -23,6 +23,22 @@
 
 KRSA targets the specific data product of the PamGene PamChip system — a kinome microarray that measures peptide-substrate phosphorylation across hundreds of peptides as a proxy for kinase activity. The package automates the full upstream-kinase-analysis workflow: filtering noisy peptides, running random-sampling permutation tests to identify enriched upstream kinases, generating diagnostic heatmaps, and emitting kinase-network visualizations. The Shiny app makes the same pipeline accessible to wet-lab users who don't want to script R directly. It's a tightly scoped tool — built around one specific functional-proteomics modality — but exhaustive within that scope.
 
+## How it works
+
+**Core idea.** For each candidate upstream kinase, KRSA repeatedly draws random subsets of peptides (matched in size to that kinase's known substrate set) from the full PamChip peptide universe and builds a null distribution of phosphorylation summary statistics, then scores the observed substrate set against that random background.
+
+**Inputs / outputs.** Inputs are (1) raw PamChip kinome-array signal — median peptide-spot intensities across conditions — and (2) a kinase–peptide association file (e.g. from GPS 3.0 or Kinexus Phosphonet) that maps each peptide to its known upstream kinases. Output is a ranked kinase table with mean phosphorylation, SD, and Z-score against the random background, plus peptide heatmaps and a kinase-signaling-network visualization.
+
+**Key innovation.** Random-sampling permutation as the null model: instead of assuming a parametric distribution of peptide-level effects, KRSA bootstraps a background per-kinase by sampling matched-size peptide sets, sidestepping the small-N problem typical of PamChip experiments and providing a Z-score with a directly empirical interpretation.
+
+**Parameters / API surface worth knowing.**
+- Number of random-sampling iterations (controls null-distribution resolution).
+- Peptide filter thresholds (signal/quality cutoffs before analysis).
+- Kinase–peptide mapping database (GPS, Kinexus, or user-supplied).
+- Comparison contrast (which experimental conditions to score against each other).
+
+**Canonical example.** From the project documentation: load PamChip median-intensity output → filter low-quality peptides → fit a per-peptide effect across conditions → run KRSA's random-sampling routine against a kinase-peptide table → emit a ranked kinase table with Z-scores plus a network plot showing the implicated signaling cascade. The Shiny app exposes the same pipeline through point-and-click.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = bioinfo / AI methods; functional-kinome readouts are upstream of any kinase-inhibitor pharmacology dossier

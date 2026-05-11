@@ -22,6 +22,23 @@
 
 torch gives R users PyTorch-equivalent functionality without requiring Python: tensor algebra, autograd, `nn_module` definitions, optimizers, dataloaders, GPU placement (CUDA / MPS), and JIT-traced model export. Because the backend is libtorch (the same C++ library PyTorch wraps), models trained in R-torch are bit-compatible with PyTorch checkpoints. For Bioconductor-adjacent users, this means deep-learning methods can be developed alongside SE / SCE workflows without language-switching.
 
+## How it works
+
+**Core idea.** torch binds R directly to libtorch — the same C++ library PyTorch wraps — via Rcpp, so R code calls into the identical tensor/autograd kernels Python uses, with no Python interpreter in the stack and no `reticulate` bridge.
+
+**Inputs / outputs.** Input is R-native data (vectors, matrices, arrays, R6-defined `dataset` objects). Output is `torch_tensor` objects living on CPU or GPU, `nn_module` instances with learnable parameters, fitted weights serializable to libtorch state-dict format, and predictions returned as R arrays.
+
+**Key innovation.** A Python-free PyTorch port: libtorch binaries ship with the package (no Python install required), and because the kernels are the same C++ library PyTorch uses, weights are interchangeable with PyTorch checkpoints — making R a first-class language for deep-learning method development rather than a Python wrapper.
+
+**Parameters / API surface worth knowing.**
+- `torch_tensor()`, `torch_randn()`, `torch_zeros()` — tensor constructors with `device = "cuda"` / `"mps"` / `"cpu"` placement.
+- `nn_module()` — R6-style class for defining custom network architectures with `forward()` methods.
+- `optim_adam()`, `optim_sgd()`, `nnf_*` functional API — optimizers and stateless ops mirroring PyTorch's `torch.nn.functional`.
+- `dataset()` + `dataloader()` — coroutine-based (`coro`) iterator infrastructure for batching.
+- Autograd: `tensor$backward()` and `with_no_grad()` for gradient control.
+
+**Canonical example.** From the torch documentation: define an `nn_module` subclass with `initialize()` declaring layers and `forward()` defining the forward pass; instantiate, move to GPU with `model$to(device = "cuda")`, loop over a `dataloader`, call `loss$backward()` and `optimizer$step()` — the idioms are line-for-line equivalent to PyTorch. Park's GBCC talk uses this skeleton to train an epigenetic-clock network on methylation arrays from R.
+
 ## What the GBCC talk contributes
 
 Park's talk frames torch as the *substrate*; the contribution is a deep-learning architecture for epigenetic-clock estimation (predicting biological age from DNA-methylation arrays). Epigenetic clocks (Horvath, GrimAge, PhenoAge, DunedinPACE) are increasingly used as biomarkers in oncology, aging, and clinical trials, and the field has been moving from penalized-regression (elastic net) clocks to deep-learning variants — Park's work sits squarely in that transition.

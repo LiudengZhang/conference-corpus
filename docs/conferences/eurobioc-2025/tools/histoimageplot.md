@@ -23,6 +23,18 @@
 
 HistoImagePlot bridges the gap between a deep-learning histopathology pipeline (HoVer-Net for simultaneous nuclear segmentation and classification) and a Bioconductor spatial-data workflow. It ingests HoVer-Net's per-nucleus output, lays it back over the tissue thumbnail, and produces side-by-side visualizations colored by predicted cell-type label — making the segmentation inspectable as part of a standard R analysis rather than a separate image-viewer step. The companion **ImageTCGA** Shiny app extends the same primitives to TCGA cohorts, letting an analyst link image-derived morphology features back to the multi-omics layer for the same sample.
 
+## How it works
+
+**Core idea.** Take the HoVer-Net deep-learning histopathology pipeline's per-nucleus output (segmentation contours + cell-type predictions + per-nucleus features), import it into a `SpatialExperiment`, and render it as a side-by-side overlay on the source H&E thumbnail. This makes nuclear segmentation and cell-type classification first-class entries in a Bioconductor analysis object instead of artifacts trapped in a separate image-viewer.
+
+**Inputs / outputs.** Input: HoVer-Net output as either JSON files (cell coordinates, types, contours) or H5AD AnnData files (with computed features like intensity metrics and neighbor distances), plus the source tissue thumbnail PNG. Files are typically fetched from a remote URL with `BiocFileCache` for caching. Output: a `SpatialExperiment` carrying the per-nucleus features + spatial coordinates, plus overlay plots from `plotHoverNetH5ADOverlay()` that show the thumbnail beside the colored-by-cell-type segmentation.
+
+**Key innovation.** Standardizing the H&E-side data on a `SpatialExperiment` substrate — the same container OSTA uses for transcriptomic spatial data — so image-derived nuclear features can be joined cell-by-cell with downstream multi-omics layers. The `ImageTCGA` companion Shiny app demonstrates this by indexing HoVer-Net-processed TCGA WSIs against the same sample identifiers TCGA uses for its omics data, making cross-modal queries trivial.
+
+**Parameters worth knowing.** `outClass` in the `HoverNet()` ingestion (`"SpatialExperiment"` is the documented target). Input file format (JSON for coordinates-only; H5AD when per-nucleus features are already computed). Thumbnail path for the overlay. TCGA sample identifier when sourcing data through the `imageFeatureTCGA` dataset.
+
+**Canonical example.** The vignette walks through loading a HoVer-Net H5AD file from a remote URL via the `imageFeatureTCGA` dataset, converting it into a `SpatialExperiment` with `HoverNet()` + `import()`, and producing the H&E-thumbnail-plus-segmentation-overlay plot for a TCGA sample. The overlay is colored by HoVer-Net's predicted cell-type label per nucleus.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = bioinfo / AI methods (digital pathology); HistoImagePlot is exactly the kind of small bridge package that lets a histopathology AI model show up inside a Bioc analysis

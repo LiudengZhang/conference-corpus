@@ -28,6 +28,27 @@ GBCC2025 workshop / oral pair on the Bioconductor microbiome ecosystem. See [Eur
 
 mia gives microbiome data a `TreeSummarizedExperiment` home — abundances, taxonomy, phylogenetic tree, and per-sample metadata in one S4 object — and supplies the standard analysis vocabulary (alpha/beta diversity, ordination, agglomeration to taxonomic ranks, differential abundance via several backends, transformation utilities). The mia* family extends this with time-series (miaTime), visualization (miaViz), simulation (miaSim), and Shiny GUIs (iSEEtree). The OMA book is the curated walkthrough.
 
+## How it works
+
+**Core idea.** mia treats the microbiome as a single `TreeSummarizedExperiment` object that keeps abundance assays, taxonomy `rowData` (Kingdom → Species), phylogeny in `rowTree`, and sample metadata in `colData` synchronized — so subsetting and analysis propagate through every layer at once.
+
+**Inputs / outputs.** Inputs are imported from BIOM files, QIIME2 output, DADA2 objects, or phyloseq objects via the mia importers. Outputs include alpha- and beta-diversity values (Shannon, Simpson, JSD, UniFrac, …), agglomerated assays at a chosen taxonomic rank, transformed assays (log, rarefaction), differential-abundance results, and tidy data frames for downstream plotting.
+
+**Key innovation.** A single S4 container that unifies microbiome operations — abundance, taxonomy, and phylogeny stay aligned under the standard SummarizedExperiment idioms — which makes mia the substrate for the OMA book and the broader mia* family (miaTime, miaViz, miaSim, iSEEtree).
+
+**Parameters worth knowing.**
+- `agglomerateByRank()` — collapse features to a taxonomic rank (e.g. `rank = "Family"`).
+- `addAlpha()` — compute and attach alpha-diversity indices (`index = "shannon"`, etc.) to `colData`.
+- `transformAssay()` — apply a transformation (log, relative abundance, CLR, …) and store it as a new assay.
+- `rarefyAssay()` — equalize sequencing depth across samples.
+
+**Canonical example.** The vignette loads the bundled `GlobalPatterns` dataset and agglomerates 19,216 OTUs down to 341 families, then attaches Shannon diversity in one step:
+```r
+data(GlobalPatterns, package = "mia")
+tse <- agglomerateByRank(GlobalPatterns, rank = "Family")
+tse <- addAlpha(tse, index = "shannon")
+```
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axes = bioinfo-tools (microbiome–cancer interfaces appear in immune-microenvironment and cancer-prevention dossiers)

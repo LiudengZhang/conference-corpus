@@ -26,6 +26,22 @@
 
 When an outcome variable in a downstream regression is partially imputed by an ML model (e.g. predicted survival from a deep model, predicted phenotype from an LLM, predicted cell-type label from a foundation model), naive statistical inference on that mixed real-and-predicted outcome is biased and has wrong standard errors. ipd implements the recent statistical-correction methods — PostPI, Prediction-Powered Inference (PPI / PPI++), PSPA, PSPS, Chen & Chen — behind a single user-facing `ipd()` wrapper that takes the labeled data, the unlabeled (predicted) data, and a formula, and returns a properly-corrected fit with valid coverage. Custom `print`, `summary`, `tidy`, `glance`, and `augment` methods make the corrected fit drop in to a tidyverse-style modeling pipeline.
 
+## How it works
+
+**Core idea.** ipd uses the small labeled subset (where both the true outcome and the ML prediction exist) to estimate the bias and residual variance of the predictor, then propagates that correction through the regression fitted on the much-larger unlabeled subset — so the prediction error is treated as a measurement-error problem rather than ignored.
+
+**Inputs / outputs.** Input is a single dataset with a `label` column flagging which rows are `"labeled"` (true outcome observed) vs `"unlabeled"` (only the predicted outcome), a formula relating the outcome and predictions to covariates, and a method choice. Output is an `ipd` fit object with corrected point estimates, valid standard errors / confidence intervals, and `tidy`/`glance`/`augment` accessors.
+
+**Key innovation.** A single wrapper that dispatches across the major post-prediction-inference families (PostPI bootstrap + analytic, PPI, PPI++, PPI-All, PSPA, Chen & Chen) so users compare methods without learning six different APIs — and the inference results are valid under the underlying paper's assumptions even when the prediction model itself is biased.
+
+**Parameters / API surface worth knowing.**
+- `formula` — for Chen & Chen the form is `Y - f ~ X1` (Y = true outcome, f = predictions, X = covariates); other methods use standard regression formulas.
+- `method` — one of `"chen"`, `"postpi_boot"`, `"postpi_analytic"`, `"ppi"`, `"ppi_plusplus"`, `"pspa"`.
+- `model` — `"mean"`, `"quantile"`, `"ols"`, `"logistic"`, or `"poisson"`.
+- `label` — column name identifying labeled vs unlabeled rows.
+
+**Canonical example.** From the getting-started vignette: `ipd(Y - f ~ X1, method = "chen", model = "ols", data = df, label = "set_label")`. The labeled rows (where `Y` is observed) calibrate the bias of predictor `f`; the much larger unlabeled portion (where only `f` exists) supplies the precision; the returned fit's CIs cover at the nominal rate even though most rows used a machine-predicted outcome.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = agentic AI / ML; valid inference on ML-predicted outcomes is one of the foundational methodological questions for any "AI-first" cancer-biology workflow

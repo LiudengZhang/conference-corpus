@@ -22,6 +22,18 @@
 
 RCX is the canonical R reader/writer for the Cytoscape Exchange (CX) network format used by NDEx and Cytoscape itself. It validates network structure, round-trips to igraph/graphNEL for downstream analysis, and provides a visualization layer. The "RCX2" talk title points to a v2 upgrade — the released Bioconductor package is named `RCX` (currently v1.16.0); the v2 changes likely shipped under the same package name.
 
+## How it works
+
+**Core idea.** The CX format is a JSON document split into aspect-modules (nodes, edges, nodeAttributes, edgeAttributes, networkAttributes, cartesianLayout, cyVisualProperties, metaData), each with its own schema and cross-references by integer IDs. RCX mirrors that as an R `RCX` object whose slots are aspects, and validates referential integrity (every edge's source/target must resolve to a node ID, attribute aspects reference valid node/edge IDs, etc.) on import.
+
+**Inputs / outputs.** Input: a CX JSON file (from NDEx, Cytoscape, or another producer). Output: an `RCX` R object; round-trippable to `igraph` via `toIgraph()` and to Bioconductor's `graphNEL` for downstream graph algorithms; serializable back to CX with `writeCX()`.
+
+**Key innovation.** Native R support for the full aspect model — including Cytoscape visual properties and metaData — so a CX file edited in R is still a valid CX file when opened in Cytoscape or pushed to NDEx. Earlier R network packages strip presentation when converting to igraph; RCX preserves it.
+
+**Parameters worth knowing.** `readCX(file)` for full-file read; the lower-level `readJSON` / `parseJSON` / `processCX` triple for incremental parsing when a CX file has deprecated or unknown aspects. `toIgraph(rcx)` for graph-library export. `$metaData` accessor to inventory which aspects an object actually carries.
+
+**Canonical example.** Vignette walks through the bundled "Imatinib-Inhibition-of-BCR-ABL" pathway (an NDEx network): load with `readCX()`, inspect aspects with `summary()` and `$metaData`, modify node or edge attributes, then write back with `writeCX()` for re-upload to NDEx.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** no current dossier; relevant axis is bioinfo / AI methods (network-based analyses, gene-regulatory inference)

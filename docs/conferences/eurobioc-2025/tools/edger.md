@@ -22,6 +22,18 @@
 
 edgeR fits negative-binomial GLMs to count data and tests for differential abundance using exact tests, likelihood-ratio tests, or quasi-likelihood F-tests, with empirical-Bayes shrinkage of dispersions. It is technology-agnostic across count-based assays — RNA-seq, ChIP/ATAC-seq, BS-seq, SAGE/CAGE, spectral-count proteomics — and operates at gene or isoform resolution.
 
+## How it works
+
+**Core idea.** Counts are modeled as negative binomial with a gene-specific dispersion. Dispersions are estimated by Cox-Reid profile-adjusted likelihood and shrunk toward a common or trended value with empirical Bayes, so that low-count genes borrow strength from the dataset as a whole. The standard differential-abundance test is the quasi-likelihood F-test (`glmQLFTest`), which adds a second-level QL dispersion to account for uncertainty in the gene-wise dispersion estimate — giving more reliable type-I error control on small replicate sets than the older likelihood-ratio test.
+
+**Inputs / outputs.** Input: an integer count matrix (genes × samples) and a design matrix; wrapped as a `DGEList`. Output: a `DGELRT` / `DGEGLM` result object with log-fold-changes, p-values, FDR; `topTags()` ranks the gene table.
+
+**Key innovation (and what v4 added).** The original innovation was the NB-with-empirical-Bayes-dispersion framework — the model that effectively defined RNA-seq DE testing alongside DESeq/DESeq2 and limma-voom. The v4 release (2025) is described by the authors as extending edgeR with expanded functionality and improved handling of small counts and larger datasets — relevant for single-cell-scale matrices, which is what the EuroBioC2025 v4-expansion talk foregrounds.
+
+**Parameters worth knowing.** `filterByExpr()` — filter low-count genes before dispersion estimation. `normLibSizes()` (formerly `calcNormFactors`) — TMM normalization by default. `estimateDisp(..., robust = TRUE)` — robust empirical-Bayes shrinkage that down-weights outlier genes. Choice of `glmQLFit` + `glmQLFTest` (recommended) versus the older `glmFit` + `glmLRT` pipeline.
+
+**Canonical example.** The introductory vignette walks through a standard RNA-seq design: build a `DGEList`, `filterByExpr`, `normLibSizes` (TMM), `estimateDisp` against a model matrix, `glmQLFit` + `glmQLFTest` for the contrast of interest, then `topTags` for the ranked DE table.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** no current dossier as a standalone tool, but edgeR is the substrate underlying many AACR transcriptomic analyses

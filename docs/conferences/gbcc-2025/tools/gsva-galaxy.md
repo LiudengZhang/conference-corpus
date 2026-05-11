@@ -22,6 +22,22 @@
 
 GSVA computes per-sample gene-set enrichment scores from an expression matrix — turning a genes-by-samples matrix into a gene-sets-by-samples matrix that downstream tools can treat as features. The Galaxy wrapper exposes this as a tool with the same arguments (method = `gsva` / `ssgsea` / `plage` / `zscore`, kernel choice, min/max set size) so a Galaxy user can run GSVA on a workflow output without writing R. The deeper goal is the auto-wrap pipeline behind it: GSVA is the visible test case demonstrating that the Bioconductor-to-Galaxy pipeline works end-to-end on a non-trivial package.
 
+## How it works
+
+**Core idea.** The Galaxy tool is a thin XML wrapper around the upstream `GSVA::gsva()` Bioconductor entry point. The wrapper declares the tool's parameters, points the Galaxy job runner at a Conda environment with R + Bioc + GSVA installed, runs an R driver script that loads the user's expression matrix and gene sets, and surfaces the resulting matrix as a Galaxy dataset.
+
+**Inputs / outputs.** Input: an expression matrix (genes × samples, microarray or RNA-seq) and a gene-set collection (e.g. MSigDB GMT). Output: a gene-sets × samples score matrix that downstream Galaxy tools (clustering, differential analysis, survival modelling) treat as features.
+
+**Key innovation.** GSVA performs a non-parametric coordinate-system change from genes to gene sets — preserving per-sample resolution while collapsing thousands of genes into hundreds of pathway scores, unsupervised and reference-free. As a Galaxy wrapper, the innovation is the auto-wrap pipeline: the initial wrapper was drafted by an LLM (Gemini) from the GSVA package's R-side metadata, then refined by humans — the CoFest deliverable proves the LLM-assisted bioc-to-galaxy path works on a real, widely-cited package.
+
+**Parameters / API surface worth knowing.**
+- `method` — one of `gsva`, `ssgsea`, `plage`, `zscore` (algorithm choice).
+- `kernel` — controls the ranking approach for the non-parametric enrichment calculation.
+- `min.sz` / `max.sz` — gene-set size filters (drop sets outside the range).
+- Conda dependency — R + `bioconductor-gsva` pinned in the wrapper's `<requirements>` block.
+
+**Canonical example.** From the GSVA vignette: load an `ExpressionSet` (e.g. a TCGA RNA-seq subset), pass MSigDB Hallmark gene sets, call `gsva(expr, gene_sets, method = "gsva")`, get a Hallmark-by-sample matrix. The Galaxy wrapper exposes exactly this call as a form: upload matrix, upload GMT, pick method, click run, download the score matrix.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = bioinfo-tools (gene-set enrichment is a default feature-engineering step for any cancer-omics analysis)

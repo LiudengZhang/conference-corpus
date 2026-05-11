@@ -23,6 +23,29 @@
 
 bsseq stores and analyzes whole-genome cytosine methylation data — originally from WGBS but now extended to Oxford Nanopore long reads. Core capabilities: smoothing methylation estimates (BSmooth), F-statistic-based differentially methylated region (DMR) calling, and methylation summarization across regions. The Hansen-lab 2025 extension (bsseq >=1.45.1, slated for Bioconductor 3.22) adds allele-specific methylation (ASM) analysis from ONT long reads, leveraging the fact that long reads physically link CpG sites to the haplotype they sit on — letting an analyst test for methylation differences between maternal and paternal alleles without needing trio data or a separate phasing step.
 
+## How it works
+
+**Core idea.** BSmooth fits a local-likelihood (locally weighted) regression of methylation along the genome, borrowing strength across nearby CpGs within a CpG cluster so sparse-coverage loci still get a stable estimate. A two-group t-statistic with optional large-scale-bias correction is then thresholded, and contiguous super-threshold runs are emitted as DMRs.
+
+**Inputs / outputs.** Input is a `BSseq` object holding per-CpG coverage matrices and methylated-read (M) counts from WGBS aligners (the reference implementation uses Merman output); for the ONT extension, methylation calls from long-read pipelines are loaded into the same container. Output is smoothed methylation estimates per CpG and a DMR table with `areaStat`, `meanDiff`, width, and cluster membership.
+
+**Key innovation.** Adaptive local smoothing that preserves spatial resolution while sharing power across neighboring CpGs, with explicit handling of large-scale methylation shifts (common in cancer). The 2025 extension layers haplotype-resolved ASM on top by exploiting the physical phasing native to ONT long reads — no trio or separate phasing step required.
+
+**Parameters worth knowing.**
+- `h` — half-width of the smoothing window (default 1000 bp).
+- `ns` — minimum CpGs per window (default 70).
+- `maxGap` — distance at which CpG clusters are split (default 100 Mb).
+- `mc.cores` — parallelization across samples.
+
+**Canonical example.** The vignette uses `BS.cancer.ex` (chr21–22 cancer vs. normal colon, ABI SOLiD 50 bp):
+```r
+library(bsseq)
+data(BS.cancer.ex)
+BS.fit   <- BSmooth(BS.cancer.ex, mc.cores=6)
+BS.tstat <- BSmooth.tstat(BS.fit, group1=c("C1","C2","C3"), group2=c("N1","N2","N3"))
+dmrs     <- dmrFinder(BS.tstat, cutoff=c(-4.6, 4.6))
+```
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = bioinfo / AI methods; ASM is one of the more interesting non-cancer-specific extensions of long-read methylation analysis with cancer-imprinting and tumor-suppressor-silencing implications

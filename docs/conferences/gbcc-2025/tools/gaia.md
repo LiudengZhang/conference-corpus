@@ -21,6 +21,22 @@
 
 GAIA wraps Galaxy's tool registry, workflow engine, and history/dataset model behind an LLM-driven conversational layer. A user describes an analysis in English ("run variant calling on these PacBio reads, then annotate with VEP"); the agent picks tools, sets parameters, kicks off jobs, and surfaces results — federating across multiple Galaxy instances rather than locking the user to one server. The pitch is to lower the on-ramp for biologists who'd otherwise hit the Galaxy UI's tool-discovery cliff.
 
+## How it works
+
+**Core idea.** GAIA is an agentic LLM front-end that translates natural-language requests into Galaxy API calls. The agent loop is: parse user intent, select tools/workflows from the Galaxy tool registry, fill parameters, invoke the BioBlend API, monitor histories, and report results — chained across turns so multi-step analyses build up in conversation.
+
+**Inputs / outputs.** Input is a natural-language prompt (plus optional dataset references) and a target Galaxy instance (or set of federated instances). Output is one or more Galaxy histories with completed jobs, plus a conversational summary of what was run and where outputs live.
+
+**Key innovation.** Cross-Galaxy federation in a single agent: the same chat session can run tools on `usegalaxy.org`, `.eu`, `.org.au`, or a private instance depending on data residency, tool availability, or load — the agent abstracts the "which server" decision away from the user.
+
+**Parameters / API surface worth knowing.**
+- LLM backend — *not specified in docs* (talk-stage tool; repo / model choice TBD).
+- Galaxy connection layer — almost certainly BioBlend, the same Python client GalaxyMCP uses.
+- Tool / workflow selection — likely retrieval-augmented over the Galaxy ToolShed and IWC workflow registry.
+- History as memory — completed Galaxy histories provide the reproducibility / audit trail an LLM session would otherwise lack.
+
+**Canonical example.** *Not specified in public docs.* The talk title frames the canonical interaction as a researcher asking GAIA to run an analysis spanning multiple Galaxy servers without manually choosing between them.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = agentic AI; this is the most-relevant non-AACR talk for the agentic-AI dossier — a working agent grounded in a real, large bioinformatics tool ecosystem rather than a benchmark

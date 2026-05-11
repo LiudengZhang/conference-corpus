@@ -20,6 +20,18 @@
 
 footprintR ingests base-modification calls (from BAM files or from `modkit`) and lays them out as a `SummarizedExperiment` keyed by genomic position × sample, with assays for modified and total base counts. From there it provides manipulation and visualization functions tailored to single-molecule footprinting (SMF) experiments — where exogenous methyltransferase footprints reveal TF binding at single-DNA-molecule resolution.
 
+## How it works
+
+**Core idea.** Read per-base modification calls (typically from Oxford Nanopore data processed by `modkit`) into a `SummarizedExperiment` whose rows are genomic positions and columns are samples, with two key assays: `Nmod` (count of modified bases observed at that position in that sample) and `Nvalid` (count of total valid base calls at the same position). Methylation rate per position per sample is then simply `Nmod / Nvalid`, but keeping the two counts separate preserves the coverage information needed for downstream statistics.
+
+**Inputs / outputs.** Input: BAM files with MM/ML modification tags, or a bedMethyl-format file produced by `modkit pileup`. Output: a `SummarizedExperiment` with `rowRanges` of positions, `colData` of samples, and `Nmod` / `Nvalid` assays.
+
+**Key innovation.** Modern Bioconductor-style data class for SMF data — `SummarizedExperiment` rather than bespoke list/array structures — which makes SMF analyses composable with the rest of the Bioconductor ecosystem (e.g. `GenomicRanges` subsetting, `plyranges` operations). Successor in spirit to the older `SingleMoleculeFootprinting` package from the same FMI group, with more modern data structures.
+
+**Parameters worth knowing.** `readBedMethyl()` arguments controlling which modification type to ingest (e.g. 5mC vs 6mA from a multi-mod modkit output). Standard `SummarizedExperiment` subsetting on `rowRanges` to restrict to regions of interest before plotting.
+
+**Canonical example.** The package ships an example `modkit_pileup_1.bed.gz` (accessible via `system.file("extdata", ...)`). Vignette workflow: `readBedMethyl()` loads the bedMethyl file into a `SummarizedExperiment`, `plotRegion()` then visualizes modification rates across a genomic region of interest — the SMF readout that maps TF footprints at single-molecule resolution.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = epigenomics / regulatory genomics; SMF is a niche but powerful TF-binding readout

@@ -22,6 +22,22 @@
 
 splicelogic takes the output of a DTU analysis (e.g. from DRIMSeq, fishpond, or another transcript-level test) and resolves the transcript-level effect into pairwise exon-level comparisons. For each pair of transcripts that shift in relative abundance, it classifies the structural difference as a discrete splicing event class (cassette exon, alt-5' SS, alt-3' SS, intron retention, mutually exclusive exons, alt-first/last exon) and produces visualizations that make the underlying splice change inspectable. The aim is to bridge the gap between "transcript X went up while transcript Y went down" and "exon E is being included more often in condition A".
 
+## How it works
+
+**Core idea.** Rather than operate on splice junctions, splicelogic works on whole transcript structures — each transcript and all its exons carry the DTU effect estimate forward, and pairwise up-vs-down transcript comparisons are decomposed into the discrete splicing event that distinguishes them.
+
+**Inputs / outputs.** Input is a `TxDb` object (transcript annotation) plus a DTU result table with a per-transcript effect-size column. Output is a per-event table classifying each detected change as skipped exon, included exon, mutually exclusive exons, retained intron, or alternative splice site, stored as `GRanges` objects.
+
+**Key innovation.** Method-agnostic upstream coupling: splicelogic accepts transcript-level effect estimates from any DTU tester — DRIMSeq, DEXSeq, satuRn, edgeR-diffSplice — so the interpretation layer is decoupled from the statistical-testing layer. Preserving full isoform context (rather than junction-level evidence) keeps the event call grounded in the annotated transcript model.
+
+**Parameters / API surface worth knowing.**
+- `prepare_exons(txdb, dtu_table, coef_col)` — joins exon annotation to DTU results; `coef_col` names the effect-size column.
+- `preprocess()` — prepares exons for event detection.
+- `find_se()` — detects skipped exons specifically.
+- `find_all_events()` — runs the full event-classification sweep.
+
+**Canonical example.** From the README workflow: load a `TxDb`, run DRIMSeq (or another DTU tester), pass its coefficient table through `prepare_exons()` → `preprocess()` → `find_all_events()` to get a per-event classification table tying each annotated transcript-pair shift to a specific splicing event class.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = bioinfo / AI methods; DTU interpretation matters for any cancer-splicing dossier (oncogene isoform switching, neoantigen-from-cryptic-splice work)

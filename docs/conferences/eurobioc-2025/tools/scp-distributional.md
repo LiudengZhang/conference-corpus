@@ -22,6 +22,18 @@
 
 Single-cell proteomics (SCP) is heteroskedastic, sparse, and right-skewed: a point-estimate-only summary collapses a lot of the cell-to-cell biological signal. The Beerland talk argues for *distributional* inference — modeling the per-cell protein-abundance distribution (mean, variance, skew, etc.) jointly — using a Lindsey's-method-flavored approach so that downstream differential analyses can flag cells/proteins where the *shape* of the distribution shifts even when the mean does not. The package is positioned as a method-layer on top of `scp`'s `SingleCellExperiment`/`QFeatures` data container rather than a replacement.
 
+## How it works
+
+**Core idea.** Underneath: `scp` organizes single-cell proteomics data as a hierarchical `QFeatures` container nesting `SingleCellExperiment` assays at PSM, peptide, and protein levels, with explicit links between levels so preprocessing decisions propagate upward through aggregation. On top: the Beerland method models each per-cell protein-abundance distribution rather than a point estimate, using a Lindsey's-method-flavored distributional-regression scheme to estimate mean, variance, and higher moments jointly so downstream tests can detect shape shifts (not just mean shifts).
+
+**Inputs / outputs.** `scp` input: MS quantification tables (e.g., MaxQuant `evidence.txt` with PSM IDs, reporter ion intensities across TMT channels, PIF/PEP quality metrics) plus a sample annotation table mapping channels to single cells / carrier / reference / blank — ingested via `readSCP()`. `scp` output: a multi-level `QFeatures` with PSM → peptide → protein assays. Distributional-layer output: per-cell distributional parameters (e.g., location, scale, skew) and contrast tests on those parameters. *Exact output object format not specified — package release status TBD.*
+
+**Key innovation.** Treating the per-cell protein-abundance *distribution* as the first-class statistical object rather than the per-cell mean. The Lindsey's-method route fits the distribution via a Poisson-regression-on-binned-counts trick, which keeps the estimator interpretable and avoids prescribing a fixed parametric family for SCP's heavy-tailed signal.
+
+**Parameters worth knowing.** Upstream (`scp`): aggregation choice (`aggregateFeaturesOverAssays()` PSM → peptide → protein), normalization scheme, contaminant/reverse-sequence filters. Distributional-layer: choice of basis / bin grid for Lindsey's method, which moments to model, and how to contrast distributions across groups — *full parameter list pending the package release / paper*.
+
+**Canonical example.** `scp` ships `mqScpData` (a MaxQuant evidence table with TMT-11 and TMT-16 multiplexed single-cell samples) and `sampleAnnotation` as the worked example for the container layer. The distributional-inference layer's canonical demonstration *is pending the speaker's slides / forthcoming preprint*; the EuroBioC2025 talk used SCP data in the same Gatto-lab orbit as the substrate.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = single-cell & spatial omics (proteomics flank); distributional methods for SCP are an emerging methodology area

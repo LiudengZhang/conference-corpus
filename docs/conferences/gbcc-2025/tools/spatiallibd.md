@@ -24,6 +24,22 @@
 
 spatialLIBD ships the LIBD DLPFC Visium dataset and an accompanying Shiny app for interactive layer-annotation, gene-expression overlay, and cluster comparison on `SpatialExperiment` objects. The Day-3 GBCC talk is about the *Visium HD* transition — Visium HD's 2-µm bins explode the data-volume and memory cost vs. classic 55-µm spots, and the talk walks through the practical Bioconductor-side adaptations (binning strategies, memory-mapped backends, plotting at scale) needed to keep the workflow tractable.
 
+## How it works
+
+**Core idea.** spatialLIBD is a `golem`-structured Shiny application backed by `SpatialExperiment` objects: the SE carries counts, spot coordinates, and image tiles, and the Shiny layer exposes interactive overlays (cluster labels, gene expression, layer annotations) on top of the histology image.
+
+**Inputs / outputs.** Input is a `SpatialExperiment` (≥ 1.3.3) — typically built from 10x Genomics Visium SpaceRanger output — plus optional reference annotations (manual layer labels, registration coordinates). Output is the running Shiny app for interactive exploration, plus publication-quality static figures via `ggplot2` / `plotly` / `cowplot` and downstream cluster/annotation tables.
+
+**Key innovation.** Pairing the LIBD human DLPFC Visium reference atlas with a reusable visualization app: the same `run_app()` machinery used for the DLPFC dataset is the substrate any new spatial dataset can plug into, so a lab gets the LIBD-style explorer for its own Visium data by supplying its own SpatialExperiment.
+
+**Parameters / API surface worth knowing.**
+- `run_app()` — launches the Shiny explorer against a supplied `SpatialExperiment`.
+- `vis_gene()` / `vis_clus()` — static spot-overlay plotting for gene expression or cluster labels.
+- Spatial-registration helpers (per the "Guide to Spatial Registration" vignette) for aligning new datasets to the LIBD reference.
+- Multi-gene plotting helpers (per the "Guide to Multi-Gene Plots" vignette).
+
+**Canonical example.** From the intro vignette: pull the LIBD DLPFC `SpatialExperiment` via `fetch_data()`, then `run_app(sce)` to open the interactive explorer — users can overlay any gene's expression on the H&E image, toggle between manually annotated cortical layers, and compare cluster assignments across samples. The Visium HD talk extends this pattern with binning and memory-aware backends for the 2-µm grid.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axis = single-cell & spatial omics; Visium HD adoption is one of the operative storylines for spatial-omics dossiers

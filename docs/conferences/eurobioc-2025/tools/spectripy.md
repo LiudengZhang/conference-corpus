@@ -22,6 +22,18 @@
 
 SpectriPy converts R `Spectra` objects to and from Python MS data structures, then wraps Python similarity-scoring functions from `matchms` so they can be called from R as if they were native. The practical effect: R-pipeline authors can pull in Python MS-ML models without rewriting them, and Python authors can ship their work to R-heavy MS communities.
 
+## How it works
+
+**Core idea.** Bidirectional conversion between R `Spectra` objects and Python `matchms.Spectrum` / `spectrum_utils` objects, plus R wrappers around `matchms` similarity scoring so Python MS routines look like native R calls. The Python side is reached through `reticulate`; in current versions the Python environment is declared via `py_require()` so dependencies (matchms, spectrum_utils, numpy) are pulled in automatically on first use.
+
+**Inputs / outputs.** Input: an R `Spectra` object (from raw `mzML` via the Spectra package). Output: a Python list of `matchms.Spectrum` objects in the R session (via `rspec_to_pyspec`), or an R `Spectra` back the other way (`pyspec_to_rspec`), or an R numeric similarity matrix from `compareSpectriPy`.
+
+**Key innovation.** Removes the practical wall between R-side and Python-side MS ecosystems — the R user keeps a single `Spectra` workflow but can invoke matchms scoring (CosineGreedy, ModifiedCosine, etc.) without writing Python. Comparable in spirit to `reticulate` for general R↔Python but specialized for MS data classes so the conversion is lossless.
+
+**Parameters worth knowing.** Python dependency versions (matchms ≥ 0.1, spectrum_utils ≥ 0.3.2, numpy ≥ 2.2, Python ≥ 3.12 as of v0.99.6). The similarity-method object passed to `compareSpectriPy` (e.g. `CosineGreedy`). Optional reticulate environment overrides if a project already has a managed Python env.
+
+**Canonical example.** Vignette loads a DDA mzML file via `MsDataHub::PestMix1_DDA.mzML()`, builds a `Spectra` object, filters to MS2 spectra with ≥3 peaks, then calls `rspec_to_pyspec(mzml_r)` — yielding a Python list of `matchms.Spectrum` ready for similarity scoring from R.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** no current dossier; cross-language interop is conceptually adjacent to AACR's pathology FM dossiers (also Python-trained, R-consumed)

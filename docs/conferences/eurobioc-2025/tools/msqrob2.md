@@ -23,6 +23,18 @@
 
 msqrob2 frames LC-MS proteomics differential abundance as a robust linear mixed model on either peptide-level or protein-level intensities, stabilizing variance via ridge penalties and empirical Bayes shrinkage, and handling outliers through M-estimation. The hurdle workflow is the methodological signature: rather than imputing missing peptide intensities (and propagating untestable assumptions), it splits the inference into a presence/absence component and an intensity component combined into a single test.
 
+## How it works
+
+**Core idea.** Fit a robust linear mixed model to peptide intensities with ridge regression on peptide-specific effects and empirical Bayes shrinkage on the residual variance, then test contrasts. M-estimation downweights outliers; ridge regularizes the many peptide-level random effects; empirical Bayes borrows variance information across proteins.
+
+**Inputs / outputs.** Input: a `QFeatures` object that holds the peptide-level intensity matrix, sample metadata, and the peptide-to-protein mapping. Output: per-protein effect estimates, standard errors, t-statistics, p-values, and FDR for each contrast specified in the design — attached back to the `QFeatures` rowData so the chain is traceable.
+
+**Key innovation.** The Stage1 / Stage2 decomposition splits the problem cleanly: **Stage1** aggregates peptide-level information into protein-level summaries while estimating MSqRob parameters; **Stage2** performs hypothesis tests on those protein summaries. The hurdle workflow then handles missingness without imputation by combining a presence/absence component with an intensity component into a single test, avoiding the untestable MAR/MCAR assumptions standard imputation requires.
+
+**Parameters worth knowing.** Design formula (fixed and random effects). Ridge penalty for peptide-specific random effects (regularization strength). Choice of Stage1 aggregation (peptide-to-protein summarization) vs running msqrob directly on peptide intensities. Whether to enable the hurdle path for proteins with substantial missingness. Key functions: `msqrob()`, `msqrobAggregate()`, `hypothesisTest()`.
+
+**Canonical example.** The CPTAC vignette uses a Clinical Proteomic Technology Assessment for Cancer spike-in dataset where UPS1 proteins are added at known differential concentrations into a constant background — ground truth for benchmarking effect-size recovery and FDR control. The workflow loads the data into `QFeatures`, runs the Stage1 + Stage2 pipeline, and recovers the spiked UPS1 proteins at the expected fold-changes.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** no current dossier; proteomics is an emerging axis at AACR via translational/biomarker tracks

@@ -23,6 +23,28 @@
 
 mitology takes an expression matrix (bulk or single-cell) and returns sample-level scores for mitochondria-centric pathways — OXPHOS, TCA, mitochondrial translation, fission/fusion, mitophagy, etc. — drawn from a curated reorganization of Reactome and GO terms plus the MitoCarta3.0 inventory. The package abstracts away the gene-set wrangling so an analyst can ask "which samples have low Complex I activity?" or "which clusters lean glycolytic vs. OXPHOS?" without hand-assembling pathway lists.
 
+## How it works
+
+**Core idea.** mitology runs single-sample gene-set scoring (ssGSEA-like, per the vignette's "single-sample assessments" framing) against a curated mitochondrial pathway library, so each sample gets one score per mito gene set. The exact scoring algorithm is *not specified in vignette* beyond the single-sample framing.
+
+**Inputs / outputs.** Input is a transcriptomic expression matrix (bulk or single-cell) with ENSEMBL IDs or gene symbols; `SummarizedExperiment` objects are supported. Output is a per-sample matrix of mitochondrial pathway activity scores, one row per gene set.
+
+**Key innovation.** The gene-set library — mitology reorganizes Reactome and Gene Ontology pathways to focus on mitochondrial components and merges them with **MitoCarta3.0, IMPI, MSeqDR, and GO** mitochondrial inventories. This compensates for the way generic pathway databases tend to dilute mitochondrial signal inside broader cellular-signaling categories.
+
+**Parameters worth knowing.**
+- Gene-set source — choice between MitoCarta3.0 pathways and the reorganized Reactome/GO sets.
+- Three-tier MitoCarta3.0 hierarchy — pathway organization level (broad function → process → specific complex).
+- Sample-level vs. group-level assessment mode.
+- Remaining tunables — *not specified in vignette*.
+
+**Canonical example.** The vignette opens with the bundled gene-set database:
+```r
+library(mitology)
+data(MitoGenesDB)
+head(MitoGenesDB)   # ENSEMBL, SYMBOL, DB columns
+```
+Subsequent sections (truncated in the rendered vignette) chain this into a scoring call on an expression matrix to produce per-sample mitochondrial pathway scores.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** axes = bioinfo-tools (mitochondrial metabolism is a recurring cancer-biology theme; mitology gives a transcriptome readout that complements metabolomics dossiers)
