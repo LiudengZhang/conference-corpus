@@ -58,6 +58,7 @@ Skipped (not in this table): community / non-package talks (Laurah Ondari on Bio
 | [miaTime](miatime.md) | microbiome (time series) | Geraldson T. Muluh | Day 1 (AM) | TBD | not recorded | [mia](mia.md) |
 | [SpectriPy](spectripy.md) | mass spec (cross-lang) | Johannes Rainer | Day 1 (AM) | TBD | not recorded | [Metabonaut](metabonaut.md) |
 | [RCX](rcx.md) | networks | Florian Auer | Day 1 (AM) | TBD | not recorded | — |
+| [scp-distributional](scp-distributional.md) | single-cell proteomics | Lucas Beerland | Day 1 (AM) | TBD | not recorded | [msqrob2](msqrob2.md), [omicsGMF](omicsgmf.md) |
 | [MIRit](mirit.md) | miRNA-mRNA | Jacopo Ronchi | Day 1 (PM) | TBD | not recorded | [MOSClip](mosclip.md) |
 | [DeeDeeExperiment](deedeeexperiment.md) | infra / data class | Najla Abassi | Day 1 (PM) | TBD | not recorded | [iSEE](isee.md) |
 | [edgeR](edger.md) | RNA-seq DE | Lizhong Chen | Day 1 (PM) | TBD | not recorded | [DESpace](despace.md) |
@@ -65,11 +66,13 @@ Skipped (not in this table): community / non-package talks (Laurah Ondari on Bio
 | [Rega](rega.md) | EGA submission | Igor Cervenka | Day 1 (PM) | TBD | not recorded | — |
 | [footprintR](footprintr.md) | epigenomics | Charlotte Soneson | Day 2 (AM) | TBD | not recorded | — |
 | [decemedip](decemedip.md) | methylation deconvolution | Ning Shen | Day 2 (AM) | TBD | not recorded | — |
+| [atacseq-biascorrection](atacseq-biascorrection.md) | ATAC-seq bias correction | Jiayi Wang | Day 2 (AM) | TBD | not recorded | — |
 | [SpatialData](spatialdata.md) | spatial omics (Python) | Luca Marconato | Day 2 (late AM) | TBD | not recorded | [OSTA](osta.md), [DESpace](despace.md) |
 | [DESpace](despace.md) | spatial DE | Peiying Cai | Day 2 (late AM) | TBD | not recorded | [edgeR](edger.md), [spatialFDA](spatialfda.md) |
 | [spatialFDA](spatialfda.md) | spatial multi-sample | Martin Emons | Day 2 (late AM) | TBD | not recorded | [DESpace](despace.md) |
 | [consICA](consica.md) | ICA / signal decomp. | Maryna Chepeleva | Day 2 (late AM) | TBD | not recorded | [omicsGMF](omicsgmf.md) |
 | [barbieQ](barbieq.md) | clonal tracking | Liyang Fei | Day 2 (late AM) | TBD | not recorded | — |
+| [HistoImagePlot](histoimageplot.md) | histopath image integration | Ilaria Billato | Day 2 (late AM) | TBD | not recorded | [OSTA](osta.md) |
 | [OSTA](osta.md) | spatial omics (book) | Dong & Patrick | Day 2 (workshop) | TBD | not recorded | [DESpace](despace.md), [SpatialData](spatialdata.md) |
 | [mia](mia.md) | microbiome | Tuomas Borman | Day 2 (workshop) | TBD | not recorded | [miaTime](miatime.md) |
 | [msqrob2](msqrob2.md) | proteomics | Christophe Vanderaa | Day 2 (workshop) | TBD | not recorded | [omicsGMF](omicsgmf.md) |

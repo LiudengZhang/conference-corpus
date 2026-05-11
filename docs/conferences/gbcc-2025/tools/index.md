@@ -67,16 +67,24 @@ Skipped (not in this table): community / training / non-tool talks (Doyle on Bio
 | [SEMPLR](semplr.md) | Bioconductor | TF-binding variants | Kenney, Boyle, Phanstiel | Day 2 / Oral 2B | TBD | TBD | — |
 | [Meta-iPep](meta-ipep.md) | Galaxy | metaimmunopeptidomics | Do, Mehta | Day 2 / Oral 2B | TBD | TBD | — |
 | [HiFi-MAG](hifi-mag.md) | Galaxy | long-read metagenomics | Collins, Schatz | Day 2 / Oral 2B | TBD | TBD | [mia](mia.md) |
+| [bsseq](bsseq.md) | Bioconductor | ASM methylation (ONT) | Kasper D Hansen | Day 2 / Oral 2B | TBD | TBD | — |
+| [SynExtend](synextend.md) | Bioconductor | orthology / ExoLabel | Lakshman, Wright | Day 2 / Oral 2B | TBD | TBD | — |
+| [SeqArray](seqarray.md) | Bioconductor | rare-variant annotation | Xiuwen Zheng | Day 2 / Oral 2B | TBD | TBD | — |
+| [Voyager](voyager.md) | Bioconductor | spatial multiscale (LUAD) | Lambda Moses | Day 2 / Oral 2B | TBD | TBD | [SpatialData ↗ EuroBioC](../../eurobioc-2025/tools/spatialdata.md) |
+| [splicelogic](splicelogic.md) | Bioconductor | differential transcript usage | Campillo, Love | Day 2 / Oral 2B | TBD | TBD | [plyxp](plyxp.md) |
 | [atena](atena.md) | Bioconductor | transposable elements | Robert Castelo | Day 3 / Lightning | TBD | TBD | [GSVA→Galaxy](gsva-galaxy.md) |
 | [iscream](iscream.md) | Bioconductor | BED queries (Rcpp) | James Eapen | Day 3 / Lightning | TBD | TBD | — |
+| [KRSA](krsa.md) | Bioconductor | kinome analysis | Ali Imami | Day 3 / Lightning | TBD | TBD | — |
 | [sosta](sosta.md) | Bioconductor | spatial omics | Gunz, Robinson | Day 3 / Oral 3 | TBD | TBD | [spatialFDA ↗ EuroBioC](../../eurobioc-2025/tools/spatialfda.md), [SpatialData ↗ EuroBioC](../../eurobioc-2025/tools/spatialdata.md) |
 | [IWC](iwc.md) | Galaxy | workflow registry | Marius van den Beek | Day 3 / Oral 3 | TBD | TBD | — |
+| [spatialLIBD](spatiallibd.md) | Bioconductor | Visium HD | Nicholas Eagles | Day 3 / Oral 3 | TBD | TBD | [Voyager](voyager.md), [SpatialData ↗ EuroBioC](../../eurobioc-2025/tools/spatialdata.md) |
 | [mia](mia.md) | Bioconductor | microbiome | Tuomas Borman | Day 3 workshop + Day 4 / Oral 5 | TBD | TBD | [mia ↗ EuroBioC](../../eurobioc-2025/tools/mia.md), [miaTime ↗ EuroBioC](../../eurobioc-2025/tools/miatime.md) |
 | [Tidyomics](tidyomics.md) | Bioconductor | tidyverse for omics | Stefano Mangiola | Day 3 / Lightning + Oral 4 | TBD | TBD | [plyxp](plyxp.md) |
 | [bioc-to-galaxy](bioc-to-galaxy.md) | Integration | auto-wrap pipeline | Joshi, Cumbo, Blankenberg | Day 2 + Day 3 workshop | TBD | TBD | [GSVA→Galaxy](gsva-galaxy.md), [mia](mia.md) |
 | [plyxp](plyxp.md) | Bioconductor | dplyr for SummarizedExperiment | Landis, Love | Day 4 / Oral 5 | TBD | TBD | [Tidyomics](tidyomics.md), [DeeDeeExperiment ↗ EuroBioC](../../eurobioc-2025/tools/deedeeexperiment.md) |
 | [mitology](mitology.md) | Bioconductor | mitochondrial activity | Pirrotta, Bonora, Calura | Day 4 / Oral 5 | TBD | TBD | [signifinder](signifinder.md) |
 | [FAIR-EASE](fair-ease.md) | Galaxy | Earth-system | Jossé, Detoc, Bodéré | Day 4 / Oral 5 | TBD | TBD | — |
+| [ipd](ipd.md) | CRAN / R | post-prediction inference | Stephen Salerno | Day 2 workshop + Day 4 / Oral 5 | TBD | TBD | — |
 | [GSVA→Galaxy](gsva-galaxy.md) | Integration | wrapper deliverable | Cumbo, Joshi, Raubenolt, Blankenberg | CoFest (Jun 27-28) | — | — | [bioc-to-galaxy](bioc-to-galaxy.md), [atena](atena.md) |
 
 ## Why this format
