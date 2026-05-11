@@ -43,7 +43,7 @@ This page tracks **why each conference is in the corpus**, **when it lands**, an
   <div class="gantt-row">
     <div class="gantt-label"><a href="conferences/recomb-2026/">RECOMB 2026</a></div>
     <div class="gantt-track">
-      <a class="gantt-bar queued tier-methods" style="left: 31.8%;" title="RECOMB · Apr 26–29 · queued" href="conferences/recomb-2026/">Apr 26</a>
+      <a class="gantt-bar upcoming tier-methods" style="left: 39.7%;" title="RECOMB 2026 · May 26–29 · Thessaloniki · upcoming" href="conferences/recomb-2026/">May 26</a>
     </div>
   </div>
   <div class="gantt-row">
@@ -131,9 +131,9 @@ We score each conference 0–2 on four criteria.
 | Conference | Date | Tier | Axis | Source | Signal | Vantage | **Total** | Decision | Status |
 |---|---|---|:---:|:---:|:---:|:---:|:---:|---|---|
 | [JPM 2026](conferences/jpm-2026/) | Jan 12–15 | industry | 1 | 1 | 2 | 2 | **6** | full (JPM-template) | ✅ built |
-| [AGBT 2026](conferences/agbt-2026/) | Feb 22–25 | adjacent | 1 | 1 | 2 | 2 | **6** | full (JPM-template) | queued |
+| [AGBT 2026](conferences/agbt-2026/) | Feb 22–25 | adjacent | 1 | 1 | 2 | 2 | **6** | full (JPM-template) | scaffold |
 | [AACR 2026](conferences/aacr-2026/) | Apr 17–22 | anchor | 2 | 2 | 2 | 2 | **8** | full (anchor) | ✅ built |
-| [RECOMB 2026](conferences/recomb-2026/) | Apr 26–29 | methods | 1 | 2 | 2 | 2 | **7** | full | queued |
+| [RECOMB 2026](conferences/recomb-2026/) | May 26–29 | methods | 1 | 2 | 2 | 2 | **7** | full | scaffold |
 | [Nextflow Summit](conferences/nextflow-2026/) | Apr 30 – May 1 | methods | 1 | 2 | 2 | 2 | **7** | full | ✅ built |
 | [ASCO 2026](conferences/asco-2026/) | May 29 – Jun 2 | clinical | 2 | 2 | 1 | 2 | **7** | full | upcoming |
 | [ISMB 2026](conferences/ismb-2026/) | Jul 12–16 | methods | 2 | 2 | 2 | 2 | **8** | full | scaffold |

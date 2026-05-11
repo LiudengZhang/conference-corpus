@@ -202,14 +202,23 @@ nav:
       - FAIR-EASE: conferences/gbcc-2025/tools/fair-ease.md
       - ipd: conferences/gbcc-2025/tools/ipd.md
       - GSVA→Galaxy: conferences/gbcc-2025/tools/gsva-galaxy.md
+  - AGBT 2026:
+    - Overview: conferences/agbt-2026/index.md
+    - Program notes (research): conferences/agbt-2026/program-notes.md
+    - Launches (template): conferences/agbt-2026/launches/index.md
+  - RECOMB 2026 (scaffold):
+    - Overview: conferences/recomb-2026/index.md
+    - Program notes (research): conferences/recomb-2026/program-notes.md
+    - Tools (template): conferences/recomb-2026/tools/index.md
+  - ASCO 2026 (scaffold):
+    - Overview: conferences/asco-2026/index.md
+    - Program notes (research): conferences/asco-2026/program-notes.md
+    - Trials (template): conferences/asco-2026/trials/index.md
   - ISMB 2026 (scaffold):
     - Overview: conferences/ismb-2026/index.md
     - Program notes (research): conferences/ismb-2026/program-notes.md
     - Tools (template): conferences/ismb-2026/tools/index.md
   - More 2026 conferences:
-    - AGBT 2026 (Feb): conferences/agbt-2026/index.md
-    - RECOMB 2026 (Apr): conferences/recomb-2026/index.md
-    - ASCO 2026 (May–Jun): conferences/asco-2026/index.md
     - ESMO 2026 (Oct): conferences/esmo-2026/index.md
     - SITC 2026 (Nov): conferences/sitc-2026/index.md
     - RSNA 2026 (Nov–Dec): conferences/rsna-2026/index.md
