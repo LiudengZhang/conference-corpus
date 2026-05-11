@@ -14,7 +14,7 @@
 - **Speaker:** Najla Abassi (IMBEI Mainz)
 - **Day / session:** Day 1 (Wed Sep 17, 2025) — afternoon short-talk session, after the Susan Holmes keynote
 - **Talk title:** "DeeDeeExperiment class for omics analysis results"
-- **Slides (Zenodo DOI):** *to verify after publish*
+- **Slides:** [Zenodo 10.5281/zenodo.17184376](https://zenodo.org/records/17184376)
 - **Video:** not recorded — short talks were not part of the plenary YouTube playlist
 - **Abstract / schedule:** [eurobioc2025 schedule](https://eurobioc2025.bioconductor.org/pages/schedule.html)
 

@@ -4,7 +4,7 @@
 **Day / session:** Day 3 (Wed Jun 25, 2025) — Keynote 2, Grace Auditorium (9:00–10:00)
 **Talk title:** "From classes to community — How Bioconductor has advanced my research"
 **Slides (Zenodo DOI):** *to verify after publish — Bioconductor speakers typically deposit within ~2 weeks of the meeting*
-**Video:** TBD (GBCC2025 YouTube playlist URL not yet surfaced as of vault build)
+**Video:** [GBCC2025 playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQTJ0O_FIO9ayqaUDfnMo4-4)
 **Abstract / schedule:** [GBCC2025 program](https://gbcc2025.bioconductor.org/program/scientific_program/)
 
 ## Thesis

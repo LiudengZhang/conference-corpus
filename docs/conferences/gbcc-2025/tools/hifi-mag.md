@@ -14,7 +14,7 @@
 - **Day / session:** Day 2 (Tue Jun 24, 2025) — Oral Session 2B
 - **Talk title:** "Broadening Metagenomic Horizons in Galaxy: Introducing the HiFi-MAG Pipeline, New Profilers, and Insights from BioDIGS"
 - **Slides:** TBD
-- **Video:** TBD
+- **Video:** [GBCC2025 playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQTJ0O_FIO9ayqaUDfnMo4-4)
 - **Abstract / schedule:** [GBCC2025 program](https://gbcc2025.bioconductor.org/program/scientific_program/)
 
 ## What it does

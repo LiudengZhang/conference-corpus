@@ -21,7 +21,7 @@ GBCC2025 workshop / oral pair on the Bioconductor microbiome ecosystem. See [Eur
 - **Oral session:** Day 4 — Oral Session 5
 - **Format:** hands-on workshop drawing on the OMA book; companion oral talk on ecosystem direction
 - **Slides / materials:** *to verify after publish — typically a per-event GitHub repo under [github.com/microbiome](https://github.com/microbiome)*
-- **Video:** *to verify (TBD)*
+- **Video:** [GBCC2025 playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQTJ0O_FIO9ayqaUDfnMo4-4)
 - **Abstract / schedule:** [GBCC2025 program](https://gbcc2025.bioconductor.org/program/scientific_program/)
 
 ## What it does

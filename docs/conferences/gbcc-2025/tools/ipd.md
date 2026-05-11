@@ -19,7 +19,7 @@
 - **Talk title:** "Inference with predicted data – what do we do after we have machine learned everything?"
 - **Companion workshop:** Day 2 (Tue Jun 24) — "Inference Challenges and Corrections for AI-Predicted Outcomes"
 - **Slides:** TBD
-- **Video:** TBD
+- **Video:** [GBCC2025 playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQTJ0O_FIO9ayqaUDfnMo4-4)
 - **Abstract / schedule:** [GBCC2025 program](https://gbcc2025.bioconductor.org/program/scientific_program/)
 
 ## What it does

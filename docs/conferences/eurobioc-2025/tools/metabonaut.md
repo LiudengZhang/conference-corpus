@@ -13,7 +13,7 @@
 - **Speaker:** Philippine Louail
 - **Day / session:** Day 1 (Wed Sep 17, 2025) — morning short-talk session, after the Crowell keynote
 - **Talk title:** "Metabonaut tutorials for metabolomics workflows"
-- **Slides (Zenodo DOI):** *to verify after publish*
+- **Slides:** [Zenodo 10.5281/zenodo.17120470](https://zenodo.org/records/17120470)
 - **Video:** not recorded
 - **Abstract / schedule:** [eurobioc2025 schedule](https://eurobioc2025.bioconductor.org/pages/schedule.html)
 

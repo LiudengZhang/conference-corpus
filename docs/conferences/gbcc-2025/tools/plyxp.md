@@ -15,7 +15,7 @@
 - **Day / session:** Day 4 (Thu Jun 26, 2025) — Oral Session 5, Grace Auditorium (chair: Scott Cain)
 - **Talk title:** "plyxp: reimagining dplyr syntax for SummarizedExperiment objects"
 - **Slides (Zenodo DOI):** *TBD — Zenodo deposits typically 2–4 weeks post-conference*
-- **Video:** *TBD — GBCC2025 YouTube playlist not yet surfaced*
+- **Video:** [GBCC2025 playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQTJ0O_FIO9ayqaUDfnMo4-4)
 - **Abstract / schedule:** [GBCC2025 program](https://gbcc2025.bioconductor.org/program/scientific_program/)
 
 ## What it does

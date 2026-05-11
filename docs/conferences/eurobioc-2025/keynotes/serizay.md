@@ -3,7 +3,7 @@
 **Affiliation:** Institut Pasteur, Paris — Spatial Regulation of Genomes unit
 **Day / session:** Day 3 (Fri Sep 19, 2025) — closing keynote
 **Talk title:** "Enhancing genomic research with community-driven flexible software"
-**Slides (Zenodo DOI):** *to verify after publish*
+**Slides:** [Zenodo 10.5281/zenodo.17191256](https://zenodo.org/records/17191256)
 **Video:** [Bioconductor YouTube — plenaries playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQS_qvtLJNdDqHL6z5jj5y_7) (keynotes recorded)
 **Abstract / schedule:** [eurobioc2025 schedule](https://eurobioc2025.bioconductor.org/pages/schedule.html)
 

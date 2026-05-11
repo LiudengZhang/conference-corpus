@@ -16,7 +16,7 @@
 - **Day / session:** Day 3 (Wed Jun 25, 2025) — lightning-talks block, 10:30–11:15 AM, Grace Auditorium (opening speaker)
 - **Talk title:** Demystifying kinome analysis through a streamlined R package designed for functional proteomics
 - **Slides:** TBD
-- **Video:** TBD
+- **Video:** [GBCC2025 playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQTJ0O_FIO9ayqaUDfnMo4-4)
 - **Abstract / schedule:** [GBCC2025 program](https://gbcc2025.bioconductor.org/program/scientific_program/) · [Galaxy June 2025 meeting report](https://galaxyproject.org/news/2025-07-11-june2025-newsletter/)
 
 ## What it does

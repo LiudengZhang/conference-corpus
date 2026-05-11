@@ -17,7 +17,7 @@
 - **Day / session:** Day 3 (Wed Jun 25, 2025) — Oral Session 3, Grace Auditorium (chair: Lambda Moses)
 - **Talk title:** "Computational considerations for analysis of Visium HD: A Bioconductor user's perspective"
 - **Slides:** TBD
-- **Video:** TBD
+- **Video:** [GBCC2025 playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQTJ0O_FIO9ayqaUDfnMo4-4)
 - **Abstract / schedule:** [GBCC2025 program](https://gbcc2025.bioconductor.org/program/scientific_program/)
 
 ## What it does

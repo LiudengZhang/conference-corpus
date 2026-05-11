@@ -13,8 +13,8 @@
 - **Speakers:** Katherine T Do, Subina Mehta
 - **Day / session:** Day 2 (Tue Jun 24, 2025) — Oral Session 2B
 - **Talk title:** "Meta-iPep: A metaimmunopeptidomics pipeline implemented within Galaxy platform to characterize HLA-bound microbial peptides for immunotherapy"
-- **Slides:** TBD
-- **Video:** TBD
+- **Slides:** [Zenodo 10.5281/zenodo.15982018](https://zenodo.org/records/15982018)
+- **Video:** [GBCC2025 playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQTJ0O_FIO9ayqaUDfnMo4-4)
 - **Abstract / schedule:** [GBCC2025 program](https://gbcc2025.bioconductor.org/program/scientific_program/)
 
 ## What it does

@@ -14,7 +14,7 @@
 - **Speaker:** Johannes Rainer (Eurac Research)
 - **Day / session:** Day 1 (Wed Sep 17, 2025) — morning short-talk session, after the Crowell keynote
 - **Talk title:** "SpectriPy for cross-language mass spectrometry analysis"
-- **Slides (Zenodo DOI):** *to verify after publish*
+- **Slides:** [Zenodo 10.5281/zenodo.17119120](https://zenodo.org/records/17119120)
 - **Video:** not recorded
 - **Abstract / schedule:** [eurobioc2025 schedule](https://eurobioc2025.bioconductor.org/pages/schedule.html)
 

@@ -15,7 +15,7 @@
 - **Day / session:** Day 2 — Oral Session 2A
 - **Talk title:** "Leveraging Deep Learning with torch in R for Next-Generation Epigenetic Clock Development"
 - **Slides:** *to verify after publish*
-- **Video:** *to verify (TBD)*
+- **Video:** [GBCC2025 playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQTJ0O_FIO9ayqaUDfnMo4-4)
 - **Abstract / schedule:** [GBCC2025 program](https://gbcc2025.bioconductor.org/program/scientific_program/)
 
 ## What it does

@@ -14,7 +14,7 @@
 - **Speaker:** Liyang Fei (Peter MacCallum Cancer Centre)
 - **Day / session:** Day 2 (Thu Sep 18, 2025) — late-morning short-talk session, before the Ferruz keynote
 - **Talk title:** "barbieQ package for clonal tracking barcode analysis"
-- **Slides (Zenodo DOI):** *to verify after publish*
+- **Slides:** [Zenodo 10.5281/zenodo.17239082](https://zenodo.org/records/17239082)
 - **Video:** not recorded
 - **Abstract / schedule:** [eurobioc2025 schedule](https://eurobioc2025.bioconductor.org/pages/schedule.html)
 

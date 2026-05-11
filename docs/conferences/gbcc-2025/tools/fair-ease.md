@@ -14,7 +14,7 @@
 - **Day / session:** Day 4 (Thu Jun 26, 2025) — Oral Session 5
 - **Talk title:** "Bridging Earth System Sciences with Galaxy: Two Years of FAIR-EASE"
 - **Slides:** TBD
-- **Video:** TBD
+- **Video:** [GBCC2025 playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQTJ0O_FIO9ayqaUDfnMo4-4)
 - **Abstract / schedule:** [GBCC2025 program](https://gbcc2025.bioconductor.org/program/scientific_program/)
 
 ## What it does

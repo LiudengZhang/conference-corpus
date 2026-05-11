@@ -16,7 +16,7 @@
 - **Day / session:** Day 2 (Tue Jun 24, 2025) — Oral Session 2B, Grace Auditorium (chair: Vincent Carey)
 - **Talk title:** "Analyzing allele-specific methylation using Oxford Nanopore long-read DNA sequencing"
 - **Slides:** TBD (Zenodo deposit typically 2-4 weeks post-conference)
-- **Video:** TBD
+- **Video:** [GBCC2025 playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQTJ0O_FIO9ayqaUDfnMo4-4)
 - **Abstract / schedule:** [GBCC2025 program](https://gbcc2025.bioconductor.org/program/scientific_program/)
 
 ## What it does

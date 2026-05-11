@@ -3,7 +3,7 @@
 **Affiliation:** IRB Barcelona (Institute for Research in Biomedicine); Ferruz Lab — protein language models (ProtGPT2, ZymCTRL, and successors)
 **Day / session:** Day 2 (Thu Sep 18, 2025) — afternoon keynote
 **Talk title:** "Controllable protein design with language models"
-**Slides (Zenodo DOI):** *to verify after publish*
+**Slides:** [Zenodo 10.5281/zenodo.17193056](https://zenodo.org/records/17193056)
 **Video:** [Bioconductor YouTube — plenaries playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQS_qvtLJNdDqHL6z5jj5y_7) (keynotes recorded)
 **Abstract / schedule:** [eurobioc2025 schedule](https://eurobioc2025.bioconductor.org/pages/schedule.html)
 

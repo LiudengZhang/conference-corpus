@@ -4,7 +4,7 @@
 **Day / session:** Day 2 (Tue Jun 24, 2025) — Keynote 1, Grace Auditorium (9:00–10:00)
 **Talk title:** "Interactive Genomic Analytics with responsive notebooks, in-the-browser computation, and AI-assisted development"
 **Slides (Zenodo DOI):** *to verify after publish*
-**Video:** TBD (GBCC2025 YouTube playlist URL not yet surfaced as of vault build)
+**Video:** [GBCC2025 playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQTJ0O_FIO9ayqaUDfnMo4-4)
 **Abstract / schedule:** [GBCC2025 program](https://gbcc2025.bioconductor.org/program/scientific_program/)
 
 ## Thesis

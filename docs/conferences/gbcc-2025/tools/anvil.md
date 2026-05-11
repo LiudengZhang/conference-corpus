@@ -14,7 +14,7 @@
 - **Day 3 (Wed Jun 25) — workshop:** "AnVIL: Secure, scalable computing for controlled access data" (Frederick Tan)
 - **Day 3 — Oral Session 4, talk #4:** "Training and education in the cloud with the NHGRI AnVIL" (Kucher / Schatz) — community / training-flavored
 - **Slides:** TBD
-- **Video:** TBD
+- **Video:** [GBCC2025 playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQTJ0O_FIO9ayqaUDfnMo4-4)
 - **Abstract / schedule:** [GBCC2025 program](https://gbcc2025.bioconductor.org/program/scientific_program/)
 
 ## What it does

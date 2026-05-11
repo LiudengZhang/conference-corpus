@@ -3,7 +3,7 @@
 **Affiliation:** Charité — Universitätsmedizin Berlin; scverse community core developer
 **Day / session:** Day 1 (Wed Sep 17, 2025) — morning keynote 2
 **Talk title:** "Colorectal cancer through the lens of whole transcriptome imaging"
-**Slides (Zenodo DOI):** *to verify after publish*
+**Slides:** [Zenodo 10.5281/zenodo.17189967](https://zenodo.org/records/17189967)
 **Video:** [Bioconductor YouTube — plenaries playlist](https://www.youtube.com/playlist?list=PLdl4u5ZRDMQS_qvtLJNdDqHL6z5jj5y_7) (keynotes recorded)
 **Abstract / schedule:** [eurobioc2025 schedule](https://eurobioc2025.bioconductor.org/pages/schedule.html)
 

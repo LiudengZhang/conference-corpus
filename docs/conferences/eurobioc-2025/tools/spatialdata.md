@@ -12,7 +12,7 @@
 - **Speaker:** Luca Marconato (lead Python author)
 - **Day / session:** Day 2 (Thu Sep 18, 2025) — late-morning short-talk session, before the Ferruz keynote
 - **Talk title:** "SpatialData framework for cross-language interoperability"
-- **Slides (Zenodo DOI):** *to verify after publish*
+- **Slides:** [Zenodo 10.5281/zenodo.17293885](https://zenodo.org/records/17293885) (Marconato et al. — cross-community spatial-biology talk)
 - **Video:** not recorded
 - **Abstract / schedule:** [eurobioc2025 schedule](https://eurobioc2025.bioconductor.org/pages/schedule.html)
 
