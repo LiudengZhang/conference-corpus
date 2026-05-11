@@ -205,7 +205,31 @@ nav:
   - AGBT 2026:
     - Overview: conferences/agbt-2026/index.md
     - Program notes (research): conferences/agbt-2026/program-notes.md
-    - Launches (template): conferences/agbt-2026/launches/index.md
+    - Launches:
+      - Index: conferences/agbt-2026/launches/index.md
+      - Axelios 1 (Roche): conferences/agbt-2026/launches/roche-axelios-1.md
+      - VITARI (Element): conferences/agbt-2026/launches/element-vitari.md
+      - UG200 / UG200 Ultra (Ultima): conferences/agbt-2026/launches/ultima-ug200.md
+      - DNBSEQ-T7+ (Complete): conferences/agbt-2026/launches/complete-dnbseq-t7-plus.md
+      - TruPath (Illumina): conferences/agbt-2026/launches/illumina-trupath.md
+      - Q70 duplex kits (Illumina): conferences/agbt-2026/launches/illumina-q70-duplex.md
+      - CiFi (PacBio): conferences/agbt-2026/launches/pacbio-cifi.md
+      - SPRQ-Hq (PacBio): conferences/agbt-2026/launches/pacbio-sprq-hq.md
+      - PureTarget (PacBio): conferences/agbt-2026/launches/pacbio-puretarget.md
+      - PromethION cfDNA/cfRNA (ONT): conferences/agbt-2026/launches/ont-promethion-cf-multiomic.md
+      - G4X (Singular): conferences/agbt-2026/launches/singular-g4x.md
+      - Xenium RNA+Protein (10x): conferences/agbt-2026/launches/10x-xenium-rna-protein.md
+      - Atera (10x): conferences/agbt-2026/launches/10x-atera.md
+      - CellScape (Bruker): conferences/agbt-2026/launches/bruker-cellscape.md
+      - PaintScape (Bruker): conferences/agbt-2026/launches/bruker-paintscape.md
+      - CosMx mouse WT (Bruker): conferences/agbt-2026/launches/bruker-cosmx-mouse-wt.md
+      - MERSCOPE Ultra (Vizgen): conferences/agbt-2026/launches/vizgen-merscope-ultra.md
+      - Pyxa (Stellaromics): conferences/agbt-2026/launches/stellaromics-pyxa.md
+      - Rhapsody (Waters): conferences/agbt-2026/launches/waters-rhapsody.md
+      - Concerto (Codetta): conferences/agbt-2026/launches/codetta-concerto.md
+      - CellCage (Cellanome): conferences/agbt-2026/launches/cellanome-cellcage.md
+      - mcPCR (Syndex): conferences/agbt-2026/launches/syndex-mcpcr.md
+      - Callisto (Volta): conferences/agbt-2026/launches/volta-callisto.md
   - RECOMB 2026 (scaffold):
     - Overview: conferences/recomb-2026/index.md
     - Program notes (research): conferences/recomb-2026/program-notes.md
