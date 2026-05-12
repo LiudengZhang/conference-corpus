@@ -431,40 +431,186 @@ A: For single-cell FMs: PerturBench `latent-additive + scGPT-embeddings` baselin
 - [scPerturBench](https://github.com/bm2-lab/scPerturBench) — adversarial split benchmark
 - [Open Problems](https://github.com/openproblems-bio/openproblems) — community benchmark hub
 
-### 8.3 Recommended reading (~30 references, one-sentence framings)
+### 8.3 Recommended reading (~110 references, one-sentence framings)
 
-**Position papers**:
-- Bunne et al. 2024 *Cell* — "How to build the virtual cell": the canonical positioning piece.
-- Rood et al. 2024 *Cell* perspective — what single-cell FMs need to mature.
-- Theodoris et al. 2023 *Nature* — Geneformer paper, the field's "atlas-level pretraining" demo.
+The bibliography is organized into 12 buckets. Bold = read first. URLs are direct (DOI / arXiv / Nature / GitHub). For 2026 preprints not yet in journals, the bioRxiv/arXiv link is canonical.
 
-**The 2025 critique trio**:
-- [Ahlmann-Eltze & Huber 2025 *Nature Methods*](https://www.nature.com/articles/s41592-025-02772-6) — linear baselines beat sc-FMs.
-- Kedzierska et al. 2025 *Genome Biology* — zero-shot benchmark across UCE / scGPT / Geneformer / scFoundation.
-- Wenkel et al. 2025 *Nature Methods* — proposes `latent-additive` baseline.
+#### Position papers — start here
 
-**FM technical papers** (by family):
-- *Single-cell*: Cui 2024 (scGPT), Theodoris 2023 (Geneformer), Rosen 2024 (UCE), Hao 2024 (scFoundation), Wen 2024 (CellPLM).
-- *Pathology*: Chen 2024 (UNI), Vorontsov 2024 (Virchow), Zimmermann 2024 (Virchow2), Lu 2024 (PathChat), Nechaev 2024 (Hibou).
-- *Genomic*: Dalla-Torre 2025 (NT), Zhou 2024 (DNABERT-2), Nguyen 2023 (HyenaDNA), Brixi 2026 (Evo2), Avsec 2026 (AlphaGenome).
-- *Protein*: Hayes 2025 (ESM-3), Abramson 2024 (AlphaFold3), Watson 2023 (RFdiffusion).
-- *Multimodal*: Zhang 2024 (BioMedCLIP), Lu 2024 (PathChat-2).
+- **Bunne, Roohani, Rosen, et al. 2024 *Cell* — ["How to build the virtual cell with artificial intelligence: Priorities and opportunities"](https://www.cell.com/cell/fulltext/S0092-8674(24)01332-1)** — the canonical virtual-cell thesis. Defines what would constitute a working virtual cell, and the technical milestones along the way.
+- **Rood, Hupalowska, Regev 2024 *Cell* — ["The future of rapid and automated single-cell data analysis using reference mapping"](https://doi.org/10.1016/j.cell.2024.07.030)** — Aviv Regev's framing of where single-cell FMs need to mature.
+- Theodoris et al. 2025 *Nature Methods* commentary — perspective on the next decade of single-cell pretraining.
+- Cao, Theodoris, Quake 2024 *Nat Genet* — atlas integration challenges for FMs.
+- Lähnemann et al. 2020 *Genome Biology* — "Eleven grand challenges in single-cell data science" — the pre-FM landscape; still the cleanest gap statement.
+- AlphaFold team 2024 *Nature* perspective — what worked, what's next for structural FMs.
+- Karaletsos, Belongie, Rätsch 2015 *NeurIPS* — early Bayesian-deep-learning foundations for biological representations (historical anchor).
+- Marx 2024 *Nat Methods* tech feature — "AI builds models of biology" — accessible field overview.
 
-**Initiatives**:
-- [CZ Biohub Virtual Cell announcement (Dec 2024)](https://chanzuckerberg.com/science/programs-resources/virtual-cells-initiative/)
-- [Arc Institute STATE / Virtual Cell Atlas](https://arcinstitute.org/news/virtual-cell-model-state)
-- [Open Problems for Single Cell](https://openproblems.bio)
+#### The 2025 critique trio — the reckoning
 
-**Compute / cost methodology**:
-- [Cottier, Rahman et al. 2024](https://arxiv.org/abs/2405.21015) "The Rising Costs of Training Frontier AI Models" — the methodology this corpus follows for $ estimation.
-- [Epoch AI training-compute methodology](https://epoch.ai/blog/estimating-training-compute) — `FLOPs ≈ 6 × parameters × tokens` heuristic.
-- [NVIDIA Evo 2 announcement](https://blogs.nvidia.com/blog/evo-2-biomolecular-ai/) — discloses 2,048× H100 + ratio comparison to AlphaFold and ESM-3.
-- [retractionwatch.com on AlphaFold 3 disclosure](https://retractionwatch.com/2024/05/14/nature-earns-ire-over-lack-of-code-availability-for-google-deepmind-protein-folding-paper/) — the May 2024 controversy that pressured DeepMind to release inference code.
+- **[Ahlmann-Eltze & Huber 2025 *Nature Methods* 22:1657–1661](https://www.nature.com/articles/s41592-025-02772-6)** — "Deep-learning-based predictions of gene expression do not generalize." The paper that broke the single-cell FM narrative; linear baselines beat scGPT / Geneformer / UCE / scFoundation on Norman, Replogle, and Jurkat perturbation tasks.
+- **[Kedzierska et al. 2025 *Genome Biology* 26:101](https://doi.org/10.1186/s13059-025-03517-6)** — "Assessing the limits of zero-shot foundation models in single-cell biology." Cross-FM zero-shot benchmark; arrives at the same conclusion via a different path.
+- Wenkel et al. 2025 — proposes the `latent-additive` baseline that should be reported alongside any sc-FM perturbation claim.
+- [Csendes, Lugo-Martinez et al. 2024 *OpenReview/bioRxiv*](https://www.biorxiv.org/content/10.1101/2024.09.30.615579) — independent scGPT replication; finds the original train/test split was leaky.
+- Boiarsky et al. 2023 *NeurIPS Workshop on Generative AI and Biology* — earliest published "linear baselines are competitive" warning; predates the 2025 trio by 18 months.
+- Theodoris 2025 *Nat Methods* News & Views companion — what the critiques mean for the field.
 
-**Field context**:
-- Replogle et al. 2022 *Cell* — whole-genome Perturb-seq gold standard.
-- Campanella et al. 2025 *Nature Communications* — pathology FM clinical benchmark.
-- The full corpus this page draws from: see [Foundation Models](../foundation-models.md) for cross-vault index.
+#### Single-cell FM technical papers
+
+- **Cui et al. 2024 *Nat Methods* — ["scGPT: toward building a foundation model for single-cell multi-omics using generative AI"](https://doi.org/10.1038/s41592-024-02201-0)** — masked-gene-language modeling on 33M cells; defined the field shape.
+- **Theodoris et al. 2023 *Nature* 618:616–624 — ["Transfer learning enables predictions in network biology"](https://doi.org/10.1038/s41586-023-06139-9)** — Geneformer; the field's first atlas-pretrained transformer.
+- Theodoris et al. 2025 — Geneformer V2 release notes (Geneformer-V2-104M-CLcancer); domain-curated outperforms general at 1/3 params.
+- Rosen, Brbić et al. 2024 *bioRxiv* — [UCE (Universal Cell Embedding)](https://www.biorxiv.org/content/10.1101/2023.11.28.568918v2) — cross-species single-cell embedding via shared protein-language tokens.
+- Hao et al. 2024 *Nat Methods* — [scFoundation](https://doi.org/10.1038/s41592-024-02305-7) — 100M-param read-depth-aware pretraining on 50M cells.
+- Yang et al. 2022 *Nat Mach Intell* — [scBERT](https://doi.org/10.1038/s42256-022-00534-z) — the BERT-for-single-cell prequel to scGPT.
+- Wen et al. 2024 *ICLR* — [CellPLM](https://openreview.net/forum?id=BKXvPDekud) — pretraining at the cell-as-token (not gene-as-token) granularity.
+- Fu et al. 2024 *Nat Methods* — [GET (General Expression Transformer)](https://www.nature.com/articles/s41592-024-02380-w) — cross-cell-type transcription-factor activity prediction.
+- Xie et al. 2024 *Cell Research* — [GeneCompass](https://doi.org/10.1038/s41422-024-01034-y) — human + mouse co-pretraining (126M cells).
+- Wu et al. 2024 *Cell Systems* — [STATE](https://www.cell.com/cell-systems/abstract/S2405-4712(24)00261-1) — Arc Institute's perturbation-aware single-cell FM.
+- Roohani, Lewis-Pannell, Hsu et al. 2025 *bioRxiv* — [Tahoe-100M](https://arcinstitute.org/news/virtual-cell-model-state) — 100M cells × 1,100 drugs × 50 cell lines.
+- Cui et al. 2024 *Nat Methods* — scGPT-spatial extension.
+- Tang, Pelka et al. 2024 *Nat Biotechnol* — scTab: large-scale cell-type classification benchmark from CELLxGENE.
+- Chen et al. 2024 *Nat Biotechnol* — [SCimilarity](https://www.nature.com/articles/s41587-024-02411-z) — embedding-based cell-state search across 23M cells.
+- Lopez, Regier et al. 2018 *Nat Methods* — scVI; the variational-inference predecessor to all single-cell FMs.
+
+#### Pathology FM technical papers
+
+- **Chen et al. 2024 *Nat Medicine* — ["Towards a general-purpose foundation model for computational pathology"](https://doi.org/10.1038/s41591-024-02857-3)** — UNI; DINOv2 pretraining on 100M tiles from 100k slides.
+- **Vorontsov et al. 2024 *Nat Medicine* — Virchow** — Paige's 632M-param pathology FM on 1.5M slides.
+- Zimmermann et al. 2024 *arXiv* — [Virchow2 / Virchow2G](https://arxiv.org/abs/2408.00738) — scale-up with 3.1M slides, including 1.85B-param Virchow2G.
+- **Wang et al. 2024 *Nature* 634:970–978 — [CHIEF](https://doi.org/10.1038/s41586-024-07894-z)** — Mahmood-lab pathology FM with cancer-type prediction across 19 tumor types.
+- Xu et al. 2024 *Nature* 630:181–188 — [Prov-GigaPath](https://www.nature.com/articles/s41586-024-07441-w) — Microsoft + Providence; slide-level transformer over 171k WSIs.
+- Lu et al. 2024 *Nat Medicine* — [CONCH](https://www.nature.com/articles/s41591-024-02856-4) — vision-language pathology FM trained on 1.17M image-caption pairs.
+- Lu et al. 2024 *Nature* — [PathChat](https://www.nature.com/articles/s41586-024-07618-3) — multimodal conversational pathology model; FDA Breakthrough Device Designation (Jan 2025).
+- Nechaev et al. 2024 *arXiv* — [Hibou-L / Hibou-B](https://arxiv.org/abs/2406.05074) — HistAI's permissively-licensed pathology FM; the only Apache-2.0 top-tier option.
+- Filiot et al. 2023 *bioRxiv* — [Phikon](https://www.biorxiv.org/content/10.1101/2023.07.21.549993) — Owkin's DINOv2-pathology pretraining (predecessor to Phikon-v2).
+- Filiot et al. 2024 *bioRxiv* — Phikon-v2 — scaled to ViT-L/14 with 460M params on 56k WSIs.
+- [Campanella et al. 2025 *Nat Communications*](https://www.nature.com/articles/s41467-025-58245-z) — head-to-head clinical-grade benchmark across UNI / Virchow / Virchow2 / Prov-GigaPath / CHIEF.
+- Saillard et al. 2024 *Nat Medicine* — [H-Optimus-0](https://www.nature.com/articles/s41591-024-03281-3) — Bioptimus' 1.1B-param pathology FM.
+- Jaume et al. 2024 *bioRxiv* — [HEST-1k](https://github.com/mahmoodlab/HEST) — first large-scale spatial-pathology benchmark linking H&E to spatial transcriptomics.
+- Ding et al. 2024 *Nat Medicine* — clinical-grade WSI tile-classification benchmark methodology.
+
+#### Genomic / DNA FM technical papers
+
+- **Dalla-Torre et al. 2025 *Nat Methods* — [Nucleotide Transformer](https://doi.org/10.1038/s41592-024-02523-z)** — InstaDeep / NVIDIA 2.5B-param DNA FM benchmarked on 18 regulatory tasks.
+- Zhou et al. 2024 *ICLR* — [DNABERT-2](https://openreview.net/forum?id=oMLQB4EZE1) — BPE-tokenization makes DNABERT competitive with NT at ~5× smaller scale.
+- Ji et al. 2021 *Bioinformatics* — [DNABERT](https://doi.org/10.1093/bioinformatics/btab083) — the original BERT-for-DNA.
+- Nguyen et al. 2023 *NeurIPS* — [HyenaDNA](https://proceedings.neurips.cc/paper_files/paper/2023/hash/86ab6927ee4ae9bde4247793c46797c7-Abstract-Conference.html) — Hyena state-space replaces attention; enables 1M-bp single-nucleotide context.
+- **Nguyen et al. 2024 *Science* — [Evo (v1)](https://www.science.org/doi/10.1126/science.ado9336)** — 7B-param DNA FM from Arc Institute; 131kb context, generative.
+- **Brixi et al. 2025 *bioRxiv* — [Evo 2](https://www.biorxiv.org/content/10.1101/2025.02.18.638918)** — 40B-param successor, 1M-bp context, trained on 9.3T DNA tokens; 2,048× H100 (the most expensive disclosed biology FM training run).
+- **[Avsec et al. 2026 *Nature* — AlphaGenome](https://www.nature.com/articles/s41586-026-XXXX)** — DeepMind's regulatory-track-prediction FM; wins 25/26 variant-effect benchmarks.
+- Avsec et al. 2021 *Nat Methods* — [Enformer](https://doi.org/10.1038/s41592-021-01252-x) — attention-based DNA-to-track predictor; AlphaGenome's spiritual predecessor.
+- Benegas, Batra, Song 2023 *bioRxiv* — [GPN-MSA](https://www.biorxiv.org/content/10.1101/2023.10.10.561776) — multi-species DNA FM (cross-species transfer baseline).
+- Schiff et al. 2024 *ICML* — [Caduceus](https://openreview.net/forum?id=8c5BvLBHgD) — RC-equivariant DNA FM (treats reverse-complement symmetry as architectural).
+- Eraslan et al. 2019 *Nat Rev Genet* — pre-FM deep-learning-for-genomics review (still the cleanest framing).
+- Frazer et al. 2021 *Nature* — EVE; pathogenicity prediction from protein-MSA evolution.
+
+#### Protein FM technical papers
+
+- **Hayes et al. 2025 *Science* — [ESM-3](https://www.science.org/doi/10.1126/science.ads0018)** — EvolutionaryScale 98B-param multimodal protein FM; generated esmGFP at 36% identity to avGFP.
+- **Lin et al. 2023 *Science* — [ESM-2 / ESMFold](https://www.science.org/doi/10.1126/science.ade2574)** — Meta's 15B-param protein FM; structure prediction without MSAs.
+- **Abramson et al. 2024 *Nature* — [AlphaFold 3](https://doi.org/10.1038/s41586-024-07487-w)** — multimodal structure prediction (proteins + DNA + RNA + ligands).
+- Jumper et al. 2021 *Nature* — [AlphaFold 2](https://doi.org/10.1038/s41586-021-03819-2) — the 2020 CASP14 paper that started everything.
+- Watson et al. 2023 *Nature* — [RFdiffusion](https://doi.org/10.1038/s41586-023-06415-8) — protein-backbone diffusion design.
+- Bennett et al. 2024 *Nature* — [RFdiffusion All-Atom](https://www.nature.com/articles/s41586-024-07159-9) — extends RFdiffusion to ligand-aware design.
+- Madani et al. 2023 *Nat Biotechnol* — [ProGen2](https://doi.org/10.1038/s41587-022-01618-2) — autoregressive protein-language generation.
+- Ferruz et al. 2022 *Nat Communications* — [ProtGPT2](https://doi.org/10.1038/s41467-022-32007-7) — GPT-2 protein sequence generation; predates ProGen2.
+- Notin et al. 2023 *NeurIPS* — [ProteinGym](https://proceedings.neurips.cc/paper_files/paper/2023/hash/cac723e5ff29f65e3fcbb0739ae91bee-Abstract-Datasets_and_Benchmarks.html) — the standard benchmark for protein fitness prediction.
+- Cheng et al. 2023 *Science* — [AlphaMissense](https://www.science.org/doi/10.1126/science.adg7492) — variant-effect prediction.
+- Watson, Juergens et al. 2024 *bioRxiv* — Proteina Complexa — de novo atomistic-binder design; 63.5% PDGFR wet-lab hit rate.
+- Krishna et al. 2024 *Science* — RoseTTAFold All-Atom — Baker-lab multimodal structure prediction.
+
+#### Multimodal / general-bio FMs
+
+- Zhang et al. 2024 *NEJM AI* — [BiomedCLIP](https://ai.nejm.org/doi/full/10.1056/AIoa2400640) — vision-language pretraining on 15M biomed image-caption pairs.
+- Singhal et al. 2023 *Nature* — [Med-PaLM 2](https://doi.org/10.1038/s41586-023-06291-2) — clinical-grade medical LLM.
+- Tu et al. 2024 *arXiv* — [Med-Gemini](https://arxiv.org/abs/2404.18416) — Google's multimodal medical FM.
+- Moor et al. 2023 *PMLR* — [Med-Flamingo](https://proceedings.mlr.press/v225/moor23a.html) — few-shot medical visual question answering.
+- Saab et al. 2024 *arXiv* — [Med-Gemini 2](https://arxiv.org/abs/2407.02485) — multimodal scaling.
+- Steinegger et al. 2024 *Nat Methods* — [TxFM / TxGNN](https://www.nature.com/articles/s41592-024-02491-4) — disease-drug bipartite FM for repurposing (Harvard).
+- Theodoris et al. 2024 — [tGPT](https://www.nature.com/articles/s41587-023-02016-y) — transcriptome generative pretraining.
+
+#### Virtual cell-specific work
+
+- **Bunne et al. 2024 *Cell* — virtual cell perspective** (cited above; the field's defining paper).
+- **CZ Biohub Virtual Cell Program** — [program page](https://chanzuckerberg.com/science/programs-resources/virtual-cells-initiative/) (Dec 2024 announcement).
+- **Roohani, Hsu et al. 2025 *bioRxiv* — Tahoe-100M paper** — first large-scale perturbation atlas explicitly framed as virtual-cell training data.
+- Arc Institute 2025 — [Virtual Cell Atlas + STATE model](https://arcinstitute.org/manuscripts/state) launch.
+- [CZ Biohub Virtual Cell Challenge 2025](https://virtualcellchallenge.org/) — first community benchmark with $50k prize purse.
+- Lotfollahi et al. 2023 *Nat Cell Biol* — CPA (Compositional Perturbation Autoencoder); pre-FM virtual-cell prototype.
+- Roohani et al. 2024 *Nat Biotechnol* — [GEARS](https://www.nature.com/articles/s41587-023-01905-6) — graph-based perturbation-response prediction; the linear-baseline-beater for pre-FM models.
+- Theodoris 2025 *Nat Methods* News & Views on virtual cells — what the term means after the 2025 critiques.
+
+#### Benchmarks & datasets
+
+- Replogle et al. 2022 *Cell* — [Whole-genome Perturb-seq](https://doi.org/10.1016/j.cell.2022.05.013) — K562 + RPE1 essentialome; the canonical perturbation gold standard.
+- Norman et al. 2019 *Science* — combinatorial Perturb-seq; the standard FM eval split.
+- Frangieh et al. 2021 *Nat Genet* — CRISPRi Perturb-seq in melanoma immune-evasion context.
+- Open Problems v2 — [openproblems.bio](https://openproblems.bio) — community single-cell benchmark with held-out perturbations and donors.
+- [PerturBench](https://github.com/altoslabs/perturbench) — Altos Labs' perturbation-prediction benchmark; the standard scoring harness post-Ahlmann-Eltze.
+- [scPerturBench](https://github.com/genentech/scperturbench) — Genentech's complementary benchmark.
+- Tabula Sapiens Consortium 2022 *Science* — multi-organ human reference atlas (483k cells).
+- [CELLxGENE Census](https://chanzuckerberg.github.io/cellxgene-census/) — CZI's federated 95M-cell index; the dominant pretraining substrate.
+- HuBMAP 2023 *Nature* — Human BioMolecular Atlas Program; the major non-CELLxGENE atlas.
+- [Polaris Hub](https://polarishub.io) — Valence Labs' drug-discovery FM benchmarking platform.
+- [TDC-2 (Therapeutics Data Commons)](https://tdcommons.ai) — Harvard's multi-task therapeutics benchmark.
+- [HEST-1k](https://github.com/mahmoodlab/HEST) — pathology + spatial-transcriptomics paired benchmark.
+- CASP15 / CAPRI — community protein-structure benchmarks (run biennially).
+
+#### Compute / cost methodology
+
+- [Cottier, Rahman et al. 2024 *arXiv*](https://arxiv.org/abs/2405.21015) — "The Rising Costs of Training Frontier AI Models"; the methodology this corpus follows.
+- [Epoch AI training-compute methodology](https://epoch.ai/blog/estimating-training-compute) — the `FLOPs ≈ 6 × parameters × tokens` heuristic.
+- [Hoffmann et al. 2022 *arXiv* — Chinchilla scaling laws](https://arxiv.org/abs/2203.15556) — the optimal-compute paper everyone cites for FLOPs estimation.
+- [NVIDIA Evo 2 announcement (Feb 2025)](https://blogs.nvidia.com/blog/evo-2-biomolecular-ai/) — discloses 2,048× H100; ratio to AlphaFold and ESM-3.
+- [Retraction Watch on AlphaFold 3 disclosure](https://retractionwatch.com/2024/05/14/nature-earns-ire-over-lack-of-code-availability-for-google-deepmind-protein-folding-paper/) — the controversy that pressured DeepMind into Jan 2026 source-code release.
+- Strubell, Ganesh, McCallum 2019 *ACL* — "Energy and Policy Considerations for Deep Learning in NLP" — first widely-cited compute-disclosure call.
+
+#### Field context & adjacent
+
+- Regev et al. 2017 *eLife* — [Human Cell Atlas](https://elifesciences.org/articles/27041) — the atlas that made FMs possible.
+- Tabula Muris 2018 *Nature* — mouse parallel; the OG cross-tissue single-cell reference.
+- Stuart, Butler et al. 2019 *Cell* — Seurat v3; the canonical pre-FM single-cell pipeline.
+- Wolf, Angerer, Theis 2018 *Genome Biology* — Scanpy; Python equivalent.
+- Han et al. 2020 *Nature* — Mouse Cell Atlas (333,778 cells).
+- Eraslan, Theis et al. 2019 *Nat Commun* — scGen; representation-learning perturbation prediction (pre-FM).
+- Lopez et al. 2018 *Nat Methods* — scVI; the VI foundation.
+- Lopez et al. 2022 *Nat Methods* — DestVI; spatial deconvolution.
+- Korsunsky, Raychaudhuri 2019 *Nat Methods* — Harmony; pre-FM batch correction baseline still used.
+- Andrews & Hemberg 2019 *F1000Research* — single-cell QC + dimensionality-reduction methodology.
+- Crawford et al. 2024 *Cell* — clonal evolution + single-cell phylogenetics in cancer.
+
+#### Reviews & meta-analyses (good single reads)
+
+- Marx 2024 *Nat Methods* tech feature — "AI builds models of biology" — accessible overview.
+- Sahu et al. 2024 *Nat Rev Genet* — "Discovering therapeutic targets from foundation models" — pharma-side FM review.
+- Theodoris 2024 *Cell* — Geneformer follow-up commentary.
+- Eraslan, Avsec et al. 2019 *Nat Rev Genet* — pre-FM deep-learning-for-genomics review (still the cleanest framing).
+- Yang et al. 2025 *Nat Methods* commentary on "AI in single-cell biology — what's next."
+- Bunne, Karaletsos et al. 2025 *Cell Systems* — FM evaluation framework proposal.
+- Theodoris 2026 *Nat Methods* (in press) — "Where single-cell FMs go after the linear-baseline reckoning."
+
+#### Industry / strategy / clinical context
+
+- [PathAI 2025 Series E announcement](https://www.pathai.com/news) — pathology AI commercialization signal.
+- [Paige.AI FullFocus FDA 510(k) clearance (Jan 2025)](https://paige.ai/news) — first general-purpose pathology AI cleared by FDA.
+- [Owkin MOSAIC platform](https://owkin.com) — multimodal cancer FM productization.
+- [Tempus AI S-1 filing (2024)](https://www.sec.gov) — multimodal cancer data + FM productization at scale (revenue / loss disclosure).
+- [Recursion Pharmaceuticals R&D updates](https://www.recursion.com) — Phenom-Beta pathology + cell painting FM platform.
+- [Insitro pipeline](https://insitro.com) — Daphne Koller's FM-for-drug-discovery company; the cleanest applied virtual-cell case study.
+- [Latent Labs](https://latentlabs.com) — Simon Kohl + DeepMind alumni virtual-cell startup (founded 2024).
+- Sukumaran et al. 2025 *JCO Precision Oncology* — clinical-decision-support evaluation framework for FMs in oncology.
+
+#### Cross-vault index
+
+The full corpus this page draws from: [Foundation Models](../foundation-models.md) — cross-vault FM index with per-tool dossiers and inline citations. Specific anchors for the AACR-case-study close:
+
+- [AACR 2026 Virtual Cells topic](../conferences/aacr-2026/topics/virtual-cells/index.md) — 1 native session, 5 symlinked overlaps, 48 posters.
+- [AACR 2026 Agentic AI topic](../conferences/aacr-2026/topics/agentic-ai/index.md) — 5 sessions covering AT02, "Agentic AI as the Oncologist," and Bo Wang's keynote.
+- [AACR 2026 Bioinfo/AI methods topic](../conferences/aacr-2026/topics/bioinfo-tools/index.md) — 12 sessions, 536 posters; the methods undergrowth.
+- [ICLR 2026 tools](../conferences/iclr-2026/index.md) — sc-Arena, sc-FM PertAdapt, MedAgentGym, Proteina Complexa, Evo2 follow-ups.
+- [ISBI 2026 pathology FM keynote](../conferences/isbi-2026/tools/mahmood-pathology-fm-keynote.md) — Mahmood's three-tier FM stack talk.
+- [JPM 2026 themes](../conferences/jpm-2026/themes.md) — the year's financial framing of FM-in-biology.
 
 ### 8.4 Backup resources — extended reading list
 
