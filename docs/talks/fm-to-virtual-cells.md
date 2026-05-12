@@ -42,7 +42,7 @@ The talk frames this as the **trough between hype and clinical-grade utility**: 
 
 In one sentence: **foundation models in biology are not yet virtual cells — but the gap between them is the most concrete research agenda single-cell biology has had in a decade.**
 
-The talk's structure follows that gap. §2–3 map what exists. §4 explains the 2025 correction. §5 names the five field-wide gaps. §6 gives five things any computational biologist can do *today* to close them.
+The talk's structure follows that gap. §2–3 map what exists. §4 explains the 2025 correction. §5 names the five field-wide gaps. §6 gives five things any computational biologist can do *today* to close them. §7 closes by using AACR 2026 as a live case study: what happens when these models meet a clinical audience that doesn't grade on novelty.
 
 ---
 
@@ -337,9 +337,59 @@ Compute disclosure is now field standard in NLP (NeurIPS/ICLR require it). Biolo
 
 ---
 
-## §7. Appendix
+## §7. Closing — conferences as the ground truth (3 min)
 
-### 7.1 Likely Q&A questions + scripted answers
+For a methods audience, the natural close is to flip the frame: the conferences are not where you *see* FMs in biology — they are the *evaluation surface*. Methods conferences (NeurIPS / ICLR / ICML) tell you what works on benchmarks; clinical conferences (AACR / ASCO / ESMO) tell you what works on cancer. Use AACR 2026 — happening *this April 17–22*, the week before ICLR — as the live case study.
+
+### 7.1 The two-track timeline (1 min, 1 slide)
+
+Two parallel timelines, deliberately scrambled together so the audience can see how often the methods track ran ahead of the clinical track.
+
+| Year | Methods conferences / journals | Clinical / industry signal |
+|---|---|---|
+| 2023 | scGPT (Nature Methods), Geneformer (Nature), UNI submitted | — |
+| 2024 | UCE, scFoundation, AlphaFold3 (Nature), Virchow (Nature), CHIEF (Nature) | Bunne et al. *Cell* perspective coins the **virtual cell** thesis |
+| **Dec 2024** | — | **CZI announces multi-year Virtual Cell Program** |
+| **Jan 2025** | — | **PathChat DX — first FDA Breakthrough Device Designation for generative-AI pathology** |
+| **Feb 2025** | — | **Arc Institute + Vevo release Tahoe-100M** (100M cells × 1,100 drugs × 50 cell lines) |
+| 2025 | **Ahlmann-Eltze & Huber** (*Nature Methods*) + Kedzierska (*Genome Biology*) + Wenkel — **the reckoning**: linear baselines beat scGPT / Geneformer / UCE / scFoundation on perturbation prediction | Virchow2 wins Campanella et al. multi-task clinical benchmark |
+| Apr 2026 | ICLR 2026 (Apr 23–27, Rio): sc-Arena, sc-FM PertAdapt, MedAgentGym, Proteina Complexa | **AACR 2026 (Apr 17–22, Chicago)** — first AACR with a *dedicated* FM session **and** a dedicated agentic-AI session |
+
+The visual punchline: **the clinical track is one year behind the methods track on awareness, and one year ahead on accountability**. The reckoning didn't come from ICLR — it came from *Nature Methods*. The deployment bar isn't being set by NeurIPS — it's being set by the FDA.
+
+### 7.2 AACR 2026 as the case study (90 sec, 1 slide)
+
+The corpus from this site ([aacr-2026.pages.dev](https://aacr-2026.pages.dev/conferences/aacr-2026/)): **25 unique sessions, ~464,000 words of transcripts, 2,241 poster abstracts (~871,000 words)** — organized into five axes: agentic AI, single-cell/spatial, virtual cells, bioinfo/AI methods, clinical trials.
+
+Three things AACR 2026 gives us that ICLR/NeurIPS structurally cannot:
+
+1. **The deployment reality check — [ED03 "Foundation Models and Multimodal AI for Cancer Research"](../conferences/aacr-2026/sessions/2026-04-17-pm-foundation-models-multimodal-ai-cancer-research.md) (Fri Apr 17, PM)** with **Charlotte Bunne / Serena Yeung-Levy / Michael Moor**. Bunne wrote the 2024 *Cell* virtual-cell perspective. Moor brings the agentic-AI-in-oncology-workflow slot. This is the field's first AACR-stage definitional panel — not "does our model beat a benchmark," but "what does deployment even mean here?"
+
+2. **The donor-diversity stress test — [single-cell & spatial track](../conferences/aacr-2026/topics/single-cell-spatial-omics/index.md) (20 sessions, 1,015 posters)**. Spans HTAN tumor-evolution, clonal-hematopoiesis, TME heterogeneity, neural-immune crosstalk, fibroblast-state plasticity. ML conferences evaluate FMs on synthetic perturb-seq splits; AACR is where the actual heterogeneity surface lives. The **§5.1 donor-diversity gap either shows up here loudly, or it doesn't.**
+
+3. **The agentic-AI-for-discovery proof — [AT02 "Agentic AI as the Cancer Researcher" (Tue Apr 21)](../conferences/aacr-2026/sessions/2026-04-21-at02-agentic-ai-cancer-researcher.md) + ["Agentic AI as the Oncologist" (Wed Apr 22)](../conferences/aacr-2026/sessions/2026-04-22-agentic-ai-as-the-oncologist.md)**. ICLR 2026 gave us MedAgentGym (72k task sandbox); AACR gives us *the actual research and clinical workflows* those agents are supposed to inhabit. Two sessions in one week is a deliberate field statement.
+
+Cross-link the corpus: [AACR 2026 Virtual Cells topic](../conferences/aacr-2026/topics/virtual-cells/index.md) · [Agentic AI topic](../conferences/aacr-2026/topics/agentic-ai/index.md) · [Bioinfo/AI methods topic](../conferences/aacr-2026/topics/bioinfo-tools/index.md).
+
+### 7.3 What we knew before → what AACR 2026 changes (30 sec, 1 slide)
+
+The before/after, in one table:
+
+| The five gaps (from §5) | What we knew before AACR 2026 | What AACR 2026 lets us answer |
+|---|---|---|
+| **Donor diversity** | sc-FMs trained on CELLxGENE Census ≈ 50M cells, donor-skewed | Do the AACR spatial/HTAN posters show real heterogeneity coverage, or the same skew? |
+| **Cross-species** | Mouse-only models still dominate; few human-validated readouts | The 1,015 single-cell/spatial posters are mostly human-patient cohorts — first real-population test |
+| **Causal vs correlational** | sc-Arena, PerturBench show benchmark-level concerns | AT02 + ED03 are the first conference venue where agentic AI is asked to *propose interventions*, not just retrieve |
+| **Compute access** | Evo2 + ESM-3 = >$7M of the ~$15M total identified FM training spend across 14 models | Is academic single-cell FM work actually competitive at AACR, or do industry-trained models dominate the posters? |
+| **Honest evaluation** | 2025 critique trio set the bar; ICLR 2026 sc-Arena formalized it | Does AACR 2026 cite the linear-baseline papers in the FM-using posters, or quietly ignore them? |
+
+The closing line: **the talk's thesis was that the gap between FMs and virtual cells is the field's most concrete research agenda. The corpus on this site is one way to track whether the field is actually closing that gap, conference by conference.**
+
+---
+
+## §8. Appendix
+
+### 8.1 Likely Q&A questions + scripted answers
 
 **Q: Are FMs ready for clinical deployment?**
 A: In pathology, yes — PathChat DX has FDA Breakthrough Designation, and Virchow2 / UNI2-h are in active clinical-grade evaluation. In single-cell biology, no — the linear-baseline reckoning means we don't yet have a single-cell FM whose predictions can be trusted for clinical decisions. Genomic FMs (AlphaGenome) are an intermediate case: they predict variant effects well in benchmark settings but have not been deployed against clinical decision-making at scale.
@@ -356,7 +406,7 @@ A: Mixed picture. Single-cell FMs (scGPT, Geneformer, UCE, scFoundation, CellPLM
 **Q: What benchmark would I actually trust?**
 A: For single-cell FMs: PerturBench `latent-additive + scGPT-embeddings` baseline is the floor; clear it first, then report your task. For pathology: Campanella et al. 2025 *Nature Communications* multi-task panel. For genomic: gnomAD-pathogenic + ENCODE/GTEx variant-effect benchmark (AlphaGenome's home territory). For protein: CASP15/16 + retro-validated novel-binder hit rates.
 
-### 7.2 Datasets, weights, code — concrete starting points
+### 8.2 Datasets, weights, code — concrete starting points
 
 **Datasets**:
 - [Tahoe-100M](https://www.tahoe.ai) — 100M cells × 1,100 drugs × 50 cell lines (Vevo / Arc Institute)
@@ -381,7 +431,7 @@ A: For single-cell FMs: PerturBench `latent-additive + scGPT-embeddings` baselin
 - [scPerturBench](https://github.com/bm2-lab/scPerturBench) — adversarial split benchmark
 - [Open Problems](https://github.com/openproblems-bio/openproblems) — community benchmark hub
 
-### 7.3 Recommended reading (~30 references, one-sentence framings)
+### 8.3 Recommended reading (~30 references, one-sentence framings)
 
 **Position papers**:
 - Bunne et al. 2024 *Cell* — "How to build the virtual cell": the canonical positioning piece.
@@ -416,20 +466,119 @@ A: For single-cell FMs: PerturBench `latent-additive + scGPT-embeddings` baselin
 - Campanella et al. 2025 *Nature Communications* — pathology FM clinical benchmark.
 - The full corpus this page draws from: see [Foundation Models](../foundation-models.md) for cross-vault index.
 
-### 7.4 Timing cheat sheet
+### 8.4 Backup resources — extended reading list
+
+A field-survey-grade list of people, venues, benchmarks, datasets, talks, critique papers, and communities to follow up on after the talk. Verified to working state as of 2026-05-12. Where a URL is uncertain it is flagged *URL unverified*.
+
+#### People to follow
+
+- **Christina Theodoris** (Gladstone / UCSF) — creator of Geneformer; cardiovascular gene-network ML. [Lab page](https://www.theodorislab.gladstone.org/) · [Gladstone bio](https://gladstone.org/people/christina-theodoris).
+- **Bo Wang** (U. Toronto / Vector Institute / UHN) — scGPT PI; Canada CIFAR AI Chair, Chief AI Scientist at UHN. [WangLab](https://wanglab.ai/) · [X @BoWang87](https://x.com/bowang87).
+- **Mohammad Lotfollahi** (Wellcome Sanger / Open Targets) — scArches, scPoli, multimodal cell perturbation generative models. [Lotfollahi lab site](https://lotfollahi.com/research/).
+- **Aviv Regev** (Genentech, ex-Broad) — Head of gRED, Human Cell Atlas co-founder; the "causal foundation model of cells" agenda. [Genentech bio](https://www.gene.com/scientists/our-scientists/aviv-regev).
+- **Patrick Hsu** (Arc Institute / Stanford / UC Berkeley) — Evo2 + STATE virtual cell co-PI; CRISPR-Cas13 originator. [Hsu Lab @ Arc](https://arcinstitute.org/labs/hsulab) · [patrickhsu.com](https://patrickhsu.com/).
+- **Faisal Mahmood** (Harvard / BWH / MGB) — UNI, CONCH, PathChat, TITAN pathology FM stack. [faisal.ai](https://faisal.ai/).
+- **Jure Leskovec** (Stanford / SNAP) — UCE co-PI; GNNs for biology; CRFM affiliate. [cs.stanford.edu/~jure](https://cs.stanford.edu/people/jure/) · [SNAP](https://snap.stanford.edu/).
+- **Sara Mostafavi** (UW Allen School) — deep-learning models of differential gene expression; co-founder MLCB. [Mostafavi Lab](http://saramostafavi.github.io/).
+- **Constantin Ahlmann-Eltze** (Isomorphic Labs, ex-Huber/EMBL) — first author of the 2025 *Nat Methods* linear-baseline reckoning. [const-ae.name](https://const-ae.name/).
+- **Wolfgang Huber** (EMBL Heidelberg) — Bioconductor + statistics-of-genomics elder; senior author on the 2025 reckoning. [Huber Group @ EMBL](https://www.huber.embl.de/).
+- **Theofanis Karaletsos** (CZI, Head of AI for Science) — runs CZI's virtual-cell program + rBio. [CZI tech blog](https://tech.chanzuckerberg.com/ai-powering-biomedical-science/).
+- **Kasia Z. Kedzierska** (Oxford / Microsoft Research) — first author on the zero-shot single-cell FM critique. [Google Scholar](https://scholar.google.com/citations?user=lvJpQGUAAAAJ).
+- **Hani Goodarzi** (Arc Institute / UCSF) — STATE co-lead; RNA biology + ML. [Goodarzi Lab @ Arc](https://arcinstitute.org/labs/goodarzilab).
+- **Stephan Sanders / Smita Krishnaswamy / Lior Pachter** — auxiliary voices in the eval-honesty conversation; Pachter's [blog](https://liorpachter.wordpress.com/) is a long-running antidote to hype.
+
+#### Newsletters / blogs / podcasts
+
+- **Owl Posting** — Abhishaike Mahajan's biology + ML essays (Noetik); deep weekly tear-downs of FM startups. [owlposting.com](https://www.owlposting.com/).
+- **Decoding Bio** — weekly BioByte digest of biotech + AI papers, funding, and ideas. [decodingbio.substack.com](https://decodingbio.substack.com/).
+- **Asimov Press** — long-form bio writing (Mukherjee, Wilke, etc.); confirms reckoning-style narratives. [press.asimov.com](https://press.asimov.com/).
+- **CZ Biohub Data Science blog** — Tabula, CELLxGENE, and virtual-cell engineering notes from the source. [ds.czbiohub.org/blog](https://ds.czbiohub.org/blog/).
+- **Arc Institute News** — primary venue for STATE, Evo2, Virtual Cell Atlas releases. [arcinstitute.org/news](https://arcinstitute.org/news).
+- **M2D2 — Molecular Modelling & Drug Discovery** (Valence + Mila) — weekly reading group + podcast covering ML-for-drug-discovery papers. [portal.valencelabs.com/m2d2](https://portal.valencelabs.com/m2d2) · [Substack](https://m2d2.substack.com/).
+- **The Gradient** — ML-for-science long-form pieces with healthy skepticism. [thegradient.pub](https://thegradient.pub/).
+- **Latent Space** — Swyx & Alessio's ML podcast; occasionally hosts bio-FM founders (Arc, EvolutionaryScale). [latent.space](https://www.latent.space/).
+- **Eric Topol's Substack** — clinician-investigator coverage of biomedical AI; useful counterpoint when judging clinical-deployment claims. [erictopol.substack.com](https://erictopol.substack.com/).
+- **PreLights** (Company of Biologists) — community preprint commentary; the Ahlmann-Eltze paper got a useful PreLights write-up. [prelights.biologists.com](https://prelights.biologists.com/).
+
+#### Live benchmarks / leaderboards
+
+- **Open Problems for Single Cell v2** — community benchmark hub; perturbation-prediction, label-projection, batch-integration tasks. [openproblems.bio](https://openproblems.bio).
+- **PerturBench** (Altos Labs) — single-cell perturbation benchmark; the framework that flagged mode collapse + rank-metric importance. [github.com/altoslabs/perturbench](https://github.com/altoslabs/perturbench).
+- **scPerturBench** (BM2-Lab) — generalization-stressed perturbation benchmark with adversarial splits. [bm2-lab.github.io/scPerturBench-reproducibility](https://bm2-lab.github.io/scPerturBench-reproducibility/).
+- **CZI Virtual Cells Platform Benchmarks** — community-driven cell-model benchmarks hosted alongside the VCP. [virtualcellmodels.cziscience.com/benchmarks](https://virtualcellmodels.cziscience.com/benchmarks).
+- **Arc Virtual Cell Challenge** — public competition modeled as a "Turing test" for virtual cells (Cell 2025). [arcinstitute.org/news/behind-the-data-virtual-cell-challenge](https://arcinstitute.org/news/behind-the-data-virtual-cell-challenge).
+- **Polaris Hub** (Valence Labs + industry consortium) — drug-discovery ML benchmarks with cross-company governance. [polarishub.io](https://polarishub.io/).
+- **Therapeutics Data Commons (TDC-2)** — multi-task ML therapeutics benchmark suite (Harvard). [tdcommons.ai](https://tdcommons.ai/).
+- **CASP / CAPRI** — community-wide protein structure & docking blind tests. [predictioncenter.org](https://predictioncenter.org/).
+- **HEST-1k benchmark** — 1k WSI + spatial transcriptomics benchmark (Mahmood lab). [github.com/mahmoodlab/HEST](https://github.com/mahmoodlab/HEST).
+
+#### Datasets / weights access
+
+- **CELLxGENE Census** — ~50M+ standardized cells (LTS 2025-11-08, schema 7.0.0). [cellxgene.cziscience.com](https://cellxgene.cziscience.com) · [docs](https://chanzuckerberg.github.io/cellxgene-census/).
+- **Tahoe-100M** (Vevo + Arc) — 100M cells × ~1,100 drugs × 50 cell lines perturbation atlas. [tahoe.ai](https://www.tahoe.ai/).
+- **Arc Virtual Cell Atlas** — observational + perturbational corpora used to train STATE. [arcinstitute.org/tools/state](https://arcinstitute.org/tools/state).
+- **Replogle whole-genome Perturb-seq** — gold-standard CRISPRi atlas. [gwps.wi.mit.edu](https://gwps.wi.mit.edu/).
+- **HEST-1k** — 1,000 paired H&E + Visium WSI dataset. [github.com/mahmoodlab/HEST](https://github.com/mahmoodlab/HEST).
+- **InstaDeepAI Nucleotide Transformer org (HF)** — pretrained genomic FM weights (NT v2, Agro-NT, SegmentNT). [huggingface.co/InstaDeepAI](https://huggingface.co/InstaDeepAI).
+- **Evo2 weights** — Apache-2.0, 7B + 40B. [github.com/ArcInstitute/evo2](https://github.com/ArcInstitute/evo2).
+- **ESM-3 (1.4B open)** — Cambrian Non-Commercial. [github.com/evolutionaryscale/esm](https://github.com/evolutionaryscale/esm).
+- **ESM Metagenomic Atlas** — 772M predicted metagenomic protein structures. [esmatlas.com](https://esmatlas.com/).
+- **gnomAD v4** — 807k exomes/genomes; the variant-effect benchmark substrate. [gnomad.broadinstitute.org](https://gnomad.broadinstitute.org/).
+- **ENCODE / GTEx tracks** — chromatin + expression substrate for AlphaGenome / Borzoi / Enformer. [encodeproject.org](https://www.encodeproject.org/) · [gtexportal.org](https://gtexportal.org/).
+- **RCSB PDB** — canonical structure repository underpinning AlphaFold3 / ESM-3 training. [rcsb.org](https://www.rcsb.org/).
+
+#### Recorded talks / lecture series
+
+- **M2D2 Talks** (Valence + Mila) — weekly recorded ML-for-drug-discovery seminars; ~200 archived talks. [portal.valencelabs.com/m2d2](https://portal.valencelabs.com/m2d2).
+- **CZI Virtual Cells Platform — workshops & webinars** — recorded sessions on FM training, benchmarks, evaluation. [virtualcellmodels.cziscience.com](https://virtualcellmodels.cziscience.com/).
+- **scverse community talks / annual conference** — recorded scverse 2024 + 2025 conference sessions, summer-school lectures. [scverse.org/learn](https://scverse.org/learn/).
+- **Simons Institute "ML & Statistics for Single-Cell Genomics" program** — public lectures incl. Mostafavi, Pachter, Regev. [simons.berkeley.edu](https://simons.berkeley.edu/) (browse program archive).
+- **Broad Institute "Models, Inference & Algorithms" + MIA seminars** — bio-ML talks; Mahmood's "Multimodal, Generative, and Agentic AI for Pathology" lives here. [broadinstitute.org/talks](https://www.broadinstitute.org/talks).
+- **Cell Symposia — Virtual Cells / Foundation Models** — Cell Press recorded plenary sessions; *URL unverified, search "Cell Symposia foundation models"*.
+- **NeurIPS / ICLR Generative & Experimental Perturbations workshops** — recorded since 2023; the natural venue for the Generative Virtual Cells program. [generative-and-experimental-perturbations.github.io](https://generative-and-experimental-perturbations.github.io/) *(URL unverified, check workshop site for current year)*.
+
+#### Key 2025 critique papers — the reckoning
+
+- **Ahlmann-Eltze, C., Huber, W. & Anders, S. (2025).** "Deep-learning-based gene perturbation effect prediction does not yet outperform simple linear baselines." *Nature Methods* 22, 1657–1661. [nature.com/articles/s41592-025-02772-6](https://www.nature.com/articles/s41592-025-02772-6) · [bioRxiv v5](https://www.biorxiv.org/content/10.1101/2024.09.16.613342v5) · [Zenodo code/data](https://zenodo.org/records/16092690).
+- **Kedzierska, K. Z., Crawford, L., Amini, A. P. & Lu, A. X. (2025).** "Zero-shot evaluation reveals limitations of single-cell foundation models." *Genome Biology* 26:101. [link.springer.com/article/10.1186/s13059-025-03574-x](https://link.springer.com/article/10.1186/s13059-025-03574-x) · [PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC12007350/) · [bioRxiv original](https://www.biorxiv.org/content/10.1101/2023.10.16.561085v1).
+- **Wenkel, F., et al. (2025).** "Biology-driven insights into the power of single-cell foundation models." Proposes the `latent-additive + scGPT-embeddings` baseline as the new floor. [PubMed 41044630](https://pubmed.ncbi.nlm.nih.gov/41044630/) · [PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC12492631/). *Full citation venue URL unverified — confirm against final published version before slide use.*
+- **Csendes, G., et al. (2025).** "A benchmark for prediction of transcriptomic responses to chemical perturbations across cell types." OpenReview. [openreview.net/forum?id=WTI4RJYSVm](https://openreview.net/forum?id=WTI4RJYSVm).
+- **Bunne, C., et al. (2024).** "How to build the virtual cell with artificial intelligence: Priorities and opportunities." *Cell* 187, 7045-7063. [cell.com/cell/fulltext/S0092-8674(24)01332-1](https://www.cell.com/cell/fulltext/S0092-8674(24)01332-1) — positioning piece that the critique trio implicitly responds to.
+- **Adduri, A., et al. (2025).** "Virtual Cell Challenge: Toward a Turing test for the virtual cell." *Cell* 188, 3370-3374. [cell.com/cell/fulltext/S0092-8674(25)00675-0](https://www.cell.com/cell/fulltext/S0092-8674(25)00675-0).
+- *(2026 follow-ups to watch)* PertAdapt and reinforcement-learning fine-tuning preprints arguing the FMs can clear the linear floor with the right adaptation — early bioRxiv only, no peer review yet. [PertAdapt bioRxiv](https://www.biorxiv.org/content/10.1101/2025.11.21.689655v1.full-text).
+
+#### Communities / Discord / Slack
+
+- **scverse Zulip** — main developer chat for Scanpy / AnnData / squidpy / scvi-tools. [scverse.zulipchat.com](https://scverse.zulipchat.com/) · [Discourse forum](https://discourse.scverse.org/).
+- **Open Problems community** — GitHub Discussions + Slack for benchmark contributors. [github.com/openproblems-bio](https://github.com/openproblems-bio).
+- **Polaris Hub Slack** — drug-discovery ML benchmark community. Linked from [polarishub.io](https://polarishub.io/).
+- **Hugging Face Biology / Bio-ML community** — model cards + discussion threads for NT, Geneformer, scGPT, UNI. [huggingface.co/biology](https://huggingface.co/biology) *(URL unverified — discoverable via topic tag)*.
+- **EleutherAI #biology channel** — open-research community with active bio-ML thread; *Discord invite via [eleuther.ai](https://www.eleuther.ai/), channel name unverified*.
+
+#### Bonus — high-signal one-offs
+
+- **Epoch AI training-compute methodology** — the `FLOPs ≈ 6 × params × tokens` heuristic this corpus relies on. [epoch.ai/blog/estimating-training-compute](https://epoch.ai/blog/estimating-training-compute).
+- **NVIDIA BioNeMo Framework** — the only public training-cost reproduction recipe for Geneformer V2; treats compute as a co-marketing disclosure. [github.com/NVIDIA/bionemo-framework](https://github.com/NVIDIA/bionemo-framework).
+- **PREreview platform** — community pre-prints reviews including a thorough one of the Ahlmann-Eltze reckoning. [prereview.org/reviews/14019384](https://prereview.org/reviews/14019384).
+- **Retraction Watch** — covered the AlphaFold 3 code-release controversy that pressured DeepMind in May 2024; the field's main enforcement mechanism on disclosure norms. [retractionwatch.com](https://retractionwatch.com/).
+
+---
+
+### 8.5 Timing cheat sheet
 
 | Section | Time | Slides | Pace |
 |---|---|---|---|
 | §1 Opening | 3 min | 3 | ~60 sec/slide |
-| §2 Landscape | 5 min | 5 | ~60 sec/slide |
-| §3 Deep dives | 10 min | 10 | ~60 sec/slide |
+| §2 Landscape | 4 min | 5 | ~50 sec/slide |
+| §3 Deep dives | 8 min | 10 | ~50 sec/slide |
 | §4 Crisis | 4 min | 3 | ~80 sec/slide |
 | §5 Gaps | 4 min | 3 | ~80 sec/slide |
 | §6 What to do | 3 min | 3 | ~60 sec/slide |
+| §7 Closing — AACR 2026 case study | 3 min | 3 | ~60 sec/slide |
 | Q&A buffer | 1 min | — | — |
-| **Total** | **30 min** | **27** | — |
+| **Total** | **30 min** | **30** | — |
 
-If you're running long, cut §3 from 10 to 6 anchor models (drop UCE, STATE, AlphaGenome, ESM-3 → keep scGPT, Geneformer V2, Virchow2, Evo2). Section §4–6 are non-negotiable — they're where the *"what can we do?"* answer lives.
+If you're running long, cut §3 from 10 to 6 anchor models (drop UCE, STATE, AlphaGenome, ESM-3 → keep scGPT, Geneformer V2, Virchow2, Evo2). Sections §4–7 are non-negotiable — §4-6 are where the *"what can we do?"* answer lives, and §7 is where the corpus you built lives.
 
 ---
 
