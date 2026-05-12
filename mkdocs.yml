@@ -359,10 +359,18 @@ nav:
     - Overview: conferences/astro-2026/index.md
     - Program notes (research): conferences/astro-2026/program-notes.md
     - Trials (template): conferences/astro-2026/trials/index.md
-  - ACMG 2026 (post-meeting scaffold):
+  - ACMG 2026 (post-meeting, built):
     - Overview: conferences/acmg-2026/index.md
     - Program notes (research): conferences/acmg-2026/program-notes.md
-    - Talks (template): conferences/acmg-2026/talks/index.md
+    - Talks:
+      - Index: conferences/acmg-2026/talks/index.md
+      - Presidential Plenary — NBS expansion: conferences/acmg-2026/talks/presidential-plenary-nbs-expansion.md
+      - LLM ACMG/AMP reproducibility: conferences/acmg-2026/talks/llm-acmg-amp-reproducibility.md
+      - CHIP / mosaicism in cancer panels: conferences/acmg-2026/talks/chip-mosaicism-cancer-panels.md
+      - NIFS (non-invasive fetal sequencing): conferences/acmg-2026/talks/nifs-non-invasive-fetal-sequencing.md
+      - ACMG SF v3.3 — Secondary Findings: conferences/acmg-2026/talks/acmg-sf-v33-secondary-findings.md
+      - Platform 1 — Hereditary cancer + adult genetics: conferences/acmg-2026/talks/hereditary-cancer-adult-genetics.md
+      - Rimoin Award — John C. Carey: conferences/acmg-2026/talks/rimoin-award-carey.md
   - SGO 2026 (post-meeting, built):
     - Overview: conferences/sgo-2026/index.md
     - Program notes (research): conferences/sgo-2026/program-notes.md
@@ -380,10 +388,19 @@ nav:
     - Overview: conferences/eshg-2026/index.md
     - Program notes (research): conferences/eshg-2026/program-notes.md
     - Talks (template): conferences/eshg-2026/talks/index.md
-  - ISBI 2026 (post-meeting scaffold):
+  - ISBI 2026 (post-meeting, built):
     - Overview: conferences/isbi-2026/index.md
     - Program notes (research): conferences/isbi-2026/program-notes.md
-    - Tools (template): conferences/isbi-2026/tools/index.md
+    - Tools:
+      - Index: conferences/isbi-2026/tools/index.md
+      - Mahmood — pathology FM (keynote): conferences/isbi-2026/tools/mahmood-pathology-fm-keynote.md
+      - Golland — MRI/registration (keynote): conferences/isbi-2026/tools/golden-keynote.md
+      - van Ginneken — radiology AI (keynote): conferences/isbi-2026/tools/van-ginneken-keynote.md
+      - RIVA Cervical Cytology Challenge: conferences/isbi-2026/tools/riva-cervical-cytology-challenge.md
+      - WBCBench2026 (leukemia diagnosis): conferences/isbi-2026/tools/wbcbench2026.md
+      - MPI Low-Concentration Challenge: conferences/isbi-2026/tools/mpi-low-concentration-challenge.md
+      - FAIBI workshop (Wu MD Anderson): conferences/isbi-2026/tools/faibi-workshop.md
+      - Segmentation FMs synthesis: conferences/isbi-2026/tools/segmentation-foundation-models-isbi.md
   - ECCV 2026 (scaffold):
     - Overview: conferences/eccv-2026/index.md
     - Program notes (research): conferences/eccv-2026/program-notes.md
