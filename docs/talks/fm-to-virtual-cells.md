@@ -4,11 +4,13 @@
 
 ## How to use this page
 
-This page is a reference, not a slide deck. It is structured as a 30-min talk script (~24 slides at 75 sec each) you can lift onto your own slides, plus deeper background you can dip into for Q&A. Numbers marked **[DISCLOSED]** come from the original paper, technical report, or vendor disclosure. Numbers marked **[ESTIMATED]** are derived (arithmetic shown). Numbers marked **[UNKNOWN]** were not disclosed and could not be estimated reliably.
+This page is a reference, not a slide deck. **Venue: group meeting (60–75 min with discussion throughout)**, not a conference plenary — so technical depth and methods detail are appropriate. The audience is comp-bio peers who can follow methods notation; assume they want the *interesting bits*, not the executive summary.
+
+Structure: a long-form script you can lift onto your own slides, **plus** the deeper background that makes Q&A productive in a peer setting. Discussion prompts are bundled at §9 to give the group concrete decision points at the end. Numbers marked **[DISCLOSED]** come from the original paper, technical report, or vendor disclosure. Numbers marked **[ESTIMATED]** are derived (arithmetic shown). Numbers marked **[UNKNOWN]** were not disclosed and could not be estimated reliably.
 
 Cross-links jump to the per-tool dossiers in the [Foundation Models](../foundation-models.md) corpus, where every claim has an inline citation.
 
-**Reading time**: ~25 min cold; ~10 min if you skim the §3 deep dives.
+**Reading time**: ~30 min cold for the full page; ~12 min if you skim the §3 deep dives.
 
 ---
 
@@ -42,7 +44,7 @@ The talk frames this as the **trough between hype and clinical-grade utility**: 
 
 In one sentence: **foundation models in biology are not yet virtual cells — but the gap between them is the most concrete research agenda single-cell biology has had in a decade.**
 
-The talk's structure follows that gap. §2–3 map what exists. §4 explains the 2025 correction. §5 names the five field-wide gaps. §6 gives five high-level things any computational biologist can do *today*. §7 is the **small-lab playbook for applying FMs** — 7 lanes with real exemplars and budget tiers for groups that cannot afford to train their own FM. §8 is the **innovation tracks for FMs themselves** — 6 frontier methods-research lanes where small labs can publish original work at <$10k compute. §9 closes by using AACR 2026 as a live case study: what happens when these models meet a clinical audience that doesn't grade on novelty.
+The talk's structure follows that gap. §2–3 map what exists. §4 explains the 2025 correction. §5 names the five field-wide gaps. §6 gives five high-level things any computational biologist can do *today*. §7 is the **small-lab playbook for applying FMs** — 7 lanes with real exemplars and budget tiers for groups that cannot afford to train their own FM. §8 is the **innovation tracks for FMs themselves** — 6 frontier methods-research lanes where small labs can publish original work at <$10k compute. §9 is the **group-meeting discussion** — three concrete project pitches and the decision questions to pick one. §10 closes by using AACR 2026 as a live case study: what happens when these models meet a clinical audience that doesn't grade on novelty.
 
 ---
 
@@ -565,11 +567,55 @@ These are the lanes where a single PhD student or postdoc can publish a *Nature 
 
 ---
 
-## §9. Closing — conferences as the ground truth (3 min)
+## §9. Discussion — picking our lane (10 min, group conversation)
+
+This is the point of the meeting. The §7 + §8 inventory was the menu; this is where we decide what's actually on our plate. Below are concrete project pitches sized for one PhD student or postdoc over 12 months — each combines a §7 lane (publishable applied) with a §8 track (publishable methods) so the same project lands two papers from different angles.
+
+### 9.1 Three concrete project pitches we could take on
+
+**Pitch A — Pathology FM interpretability + clinical UQ.** Combines §8 Track 1 (sparse autoencoders on pathology FMs) + §8 Track 5 (uncertainty quantification on frozen FMs) + §7 Lane 7 (clinical application). The work: take UNI2-h (or Virchow2 — pick based on license), train sparse autoencoders on its residual-stream activations over a TCGA slice, cluster features and map them to histology grammar (tumor regions, stromal compartments, immune infiltrate patterns). Then layer a post-hoc Bayesian or conformal-prediction head and evaluate calibration on TCGA → CPTAC distribution shift. **Output**: NeurIPS Mech-Interp workshop (interpretability), *Nature Methods* Resource (UQ), AACR-Annual-style clinical poster. **Compute**: <$3k. **Time**: 12 months. **Why us**: builds on existing TCGA familiarity; no wet-lab required.
+
+**Pitch B — Compositional perturbation benchmark + linear-baseline re-audit on cancer perturb-seq.** Combines §7 Lane 4 (replication) + §8 Track 3 (compositional benchmarks). The work: rebuild scGPT + Geneformer + UCE evaluation pipelines on Norman 2019 + Replogle 2022 + Tahoe-100M with cancer-specific cell-line subsets. Add the Ahlmann-Eltze linear baseline and the Wenkel latent-additive baseline. Then design a formal compositional split (A+B held out when A and B seen separately) and prove a theoretical lower bound on what additivity achieves. **Output**: NeurIPS D&B (benchmark), *Nature Methods* (linear-baseline replication in cancer context), maybe a second *Genome Biology* paper. **Compute**: <$2k. **Time**: 8 months. **Why us**: leverages the AACR-corpus context; cancer-specific findings are differentiating.
+
+**Pitch C — FM-aided rare-cancer subtyping + small domain FM.** Combines §7 Lane 7 (FM-aided application) + §7 Lane 3 (domain-specific small FM). The work: pick a rare-cancer cohort the public pathology-FM training corpora missed (rhabdomyosarcoma, ATC, NET, mesothelioma, etc.). First publish a frozen-encoder application paper (like AACR #2758 PAX3/7::FOXO1 in rhabdomyosarcoma — Lane 7). Then continual-pretrain a Geneformer-V2-104M-style domain FM on the cohort's matched scRNA-seq + a 100k-cell rare-cancer reference. **Output**: AACR poster + *Clinical Cancer Research* or *npj Precision Oncology* (Year 1), then *Nature Methods* domain-FM paper (Year 2). **Compute**: <$25k all-in. **Time**: 18–24 months. **Why us**: most defensible if we have a clinical collaborator with a rare-cancer cohort.
+
+### 9.2 Decision questions for the group
+
+A short list to surface what we have and what we need. Run through these explicitly — don't let "we'll figure it out" stand in for an answer.
+
+**Strengths**
+- Which of the five FM families (§2) is closest to existing group expertise?
+- Of the 14 anchor models (§3), which two could anyone here actually rederive on a whiteboard?
+- Do we have any in-house data the public FM training corpora *didn't* see (rare cohort, novel modality, new tissue type)?
+
+**Constraints**
+- Real cloud / on-prem GPU budget per year for FM work specifically?
+- Any postdoc / PhD-student bandwidth that could be 50%-allocated to one of these for 12 months?
+- Wet-lab or clinical collaborators we'd need to recruit for Pitch C (rare-cancer cohort)?
+
+**Strategic**
+- Which is more valuable for our PI's tenure / grant story — *applied paper in a clinical venue* (Pitch C Year 1) or *methods paper in a top ML venue* (Pitches A or B)?
+- Are we trying to attract ML talent (Pitches A/B do this) or clinical talent (Pitch C does this)?
+- Do we want a 6-month-output project (Pitch B replication) or an 18-month-output project (Pitch C subtype FM)?
+
+**Tactical**
+- Of the three pitches, who would lead each? Who would co-author?
+- Can we run TWO in parallel — one applied (Pitch C Year 1) + one methods (Pitch A or B)?
+- What's the no-go signal that tells us to drop a pitch at month 3?
+
+### 9.3 The honest framing for this meeting
+
+The §1.3 thesis was: *the gap between FMs and virtual cells is the most concrete research agenda single-cell biology has had in a decade*. The §8 innovation tracks specify the gap. The §7 playbook specifies the work that's adjacent enough to be safe. **The right project for this group is one §7 lane plus one §8 track, run in parallel, so we publish a low-risk applied paper while a higher-risk methods paper develops.**
+
+The §10 closing argues that AACR-style clinical conferences will be the evaluation surface for whichever lane we pick. If our methods paper survives the AACR-corpus-style stress test (Lane 7 posters, donor-diversity, clinical heterogeneity), it's the real thing. If it doesn't, we've replicated the field's 2023–2024 mistake at smaller scale.
+
+---
+
+## §10. Closing — conferences as the ground truth (3 min)
 
 For a methods audience, the natural close is to flip the frame: the conferences are not where you *see* FMs in biology — they are the *evaluation surface*. Methods conferences (NeurIPS / ICLR / ICML) tell you what works on benchmarks; clinical conferences (AACR / ASCO / ESMO) tell you what works on cancer. Use AACR 2026 — happening *this April 17–22*, the week before ICLR — as the live case study.
 
-### 9.1 The two-track timeline (1 min, 1 slide)
+### 10.1 The two-track timeline (1 min, 1 slide)
 
 Two parallel timelines, deliberately scrambled together so the audience can see how often the methods track ran ahead of the clinical track.
 
@@ -585,7 +631,7 @@ Two parallel timelines, deliberately scrambled together so the audience can see 
 
 The visual punchline: **the clinical track is one year behind the methods track on awareness, and one year ahead on accountability**. The reckoning didn't come from ICLR — it came from *Nature Methods*. The deployment bar isn't being set by NeurIPS — it's being set by the FDA.
 
-### 9.2 AACR 2026 as the case study (90 sec, 1 slide)
+### 10.2 AACR 2026 as the case study (90 sec, 1 slide)
 
 The corpus from this site ([aacr-2026.pages.dev](https://aacr-2026.pages.dev/conferences/aacr-2026/)): **25 unique sessions, ~464,000 words of transcripts, 2,241 poster abstracts (~871,000 words)** — organized into five axes: agentic AI, single-cell/spatial, virtual cells, bioinfo/AI methods, clinical trials.
 
@@ -599,7 +645,7 @@ Three things AACR 2026 gives us that ICLR/NeurIPS structurally cannot:
 
 Cross-link the corpus: [AACR 2026 Virtual Cells topic](../conferences/aacr-2026/topics/virtual-cells/index.md) · [Agentic AI topic](../conferences/aacr-2026/topics/agentic-ai/index.md) · [Bioinfo/AI methods topic](../conferences/aacr-2026/topics/bioinfo-tools/index.md).
 
-### 9.3 What we knew before → what AACR 2026 changes (30 sec, 1 slide)
+### 10.3 What we knew before → what AACR 2026 changes (30 sec, 1 slide)
 
 The before/after, in one table:
 
@@ -615,9 +661,9 @@ The closing line: **the talk's thesis was that the gap between FMs and virtual c
 
 ---
 
-## §10. Appendix
+## §11. Appendix
 
-### 10.1 Likely Q&A questions + scripted answers
+### 11.1 Likely Q&A questions + scripted answers
 
 **Q: Are FMs ready for clinical deployment?**
 A: In pathology, yes — PathChat DX has FDA Breakthrough Designation, and Virchow2 / UNI2-h are in active clinical-grade evaluation. In single-cell biology, no — the linear-baseline reckoning means we don't yet have a single-cell FM whose predictions can be trusted for clinical decisions. Genomic FMs (AlphaGenome) are an intermediate case: they predict variant effects well in benchmark settings but have not been deployed against clinical decision-making at scale.
@@ -634,7 +680,7 @@ A: Mixed picture. Single-cell FMs (scGPT, Geneformer, UCE, scFoundation, CellPLM
 **Q: What benchmark would I actually trust?**
 A: For single-cell FMs: PerturBench `latent-additive + scGPT-embeddings` baseline is the floor; clear it first, then report your task. For pathology: Campanella et al. 2025 *Nature Communications* multi-task panel. For genomic: gnomAD-pathogenic + ENCODE/GTEx variant-effect benchmark (AlphaGenome's home territory). For protein: CASP15/16 + retro-validated novel-binder hit rates.
 
-### 10.2 Datasets, weights, code — concrete starting points
+### 11.2 Datasets, weights, code — concrete starting points
 
 **Datasets**:
 - [Tahoe-100M](https://www.tahoe.ai) — 100M cells × 1,100 drugs × 50 cell lines (Vevo / Arc Institute)
@@ -659,7 +705,7 @@ A: For single-cell FMs: PerturBench `latent-additive + scGPT-embeddings` baselin
 - [scPerturBench](https://github.com/bm2-lab/scPerturBench) — adversarial split benchmark
 - [Open Problems](https://github.com/openproblems-bio/openproblems) — community benchmark hub
 
-### 10.3 Recommended reading (~110 references, one-sentence framings)
+### 11.3 Recommended reading (~110 references, one-sentence framings)
 
 The bibliography is organized into 12 buckets. Bold = read first. URLs are direct (DOI / arXiv / Nature / GitHub). For 2026 preprints not yet in journals, the bioRxiv/arXiv link is canonical.
 
@@ -840,7 +886,7 @@ The full corpus this page draws from: [Foundation Models](../foundation-models.m
 - [ISBI 2026 pathology FM keynote](../conferences/isbi-2026/tools/mahmood-pathology-fm-keynote.md) — Mahmood's three-tier FM stack talk.
 - [JPM 2026 themes](../conferences/jpm-2026/themes.md) — the year's financial framing of FM-in-biology.
 
-### 10.4 Backup resources — extended reading list
+### 11.4 Backup resources — extended reading list
 
 A field-survey-grade list of people, venues, benchmarks, datasets, talks, critique papers, and communities to follow up on after the talk. Verified to working state as of 2026-05-12. Where a URL is uncertain it is flagged *URL unverified*.
 
@@ -938,58 +984,30 @@ A field-survey-grade list of people, venues, benchmarks, datasets, talks, critiq
 
 ---
 
-### 10.5 Timing cheat sheet
+### 11.5 Timing cheat sheet
 
-The talk has TWO answers to "what can we do?" — §7 (apply FMs) and §8 (innovate on FMs). **You cannot fit both inside 30 min.** Pick one based on your audience.
+**Venue: 60–75 min group meeting with discussion throughout.** Both §7 (apply) and §8 (innovate) fit; the group-meeting format is the natural setting for both, because the right outcome is *picking what we work on*, not telling a polished story.
 
-#### Option A — "use" audience (clinical/translational, AACR-style) → present §7, skip §8
+#### Recommended plan — 60 min, both §7 and §8
 
-| Section | Time | Slides |
-|---|---|---|
-| §1 Opening | 3 min | 3 |
-| §2 Landscape | 3 min | 5 |
-| §3 Deep dives | 7 min | 10 |
-| §4 Crisis | 3 min | 3 |
-| §5 Gaps | 3 min | 3 |
-| §6 What to do (5 lanes) | 2 min | 2 |
-| §7 Small-lab playbook (7 lanes) | 5 min | 5 |
-| §9 Closing — AACR 2026 case study | 3 min | 3 |
-| Q&A buffer | 1 min | — |
-| **Total** | **30 min** | **34** |
+| Section | Time | Slides | Discussion pivot |
+|---|---|---|---|
+| §1 Opening — virtual-cell definitions + 2024–25 inflection | 4 min | 3 | — |
+| §2 Five-family landscape | 5 min | 5 | "Which family is closest to our existing work?" |
+| §3 Deep dives — 10 anchor models × 4-question matrix | 10 min | 10 | — |
+| §4 The 2025 discipline crisis | 4 min | 3 | "Has anyone here actually reproduced the linear-baseline result?" |
+| §5 The 5-gap framework | 4 min | 3 | "Which gap shows up in our own data?" |
+| §6 5 things comp bios can do TODAY | 3 min | 3 | — |
+| §7 Small-lab playbook — 7 lanes that use existing FMs | 6 min | 5 | "Lane 1 + Lane 7 are the AACR posters. Which of our datasets fits?" |
+| §8 Real innovation tracks — 6 frontier methods lanes | 7 min | 6 | "Track 1 + Track 6 are publishable in 12 months at <$3k. Real?" |
+| §9 Discussion — picking our lane | 10 min | 3 | The whole point — see below |
+| §10 Closing — AACR 2026 case study | 3 min | 3 | — |
+| Buffer | 4 min | — | for tangents |
+| **Total** | **60 min** | **44** | — |
 
-#### Option B — "innovate" audience (methods/comp-bio, ICLR-style) → present §8, skip §7
+If the meeting can run 75 min, expand §9 (discussion) to 20 min — that's where the project decisions actually get made. If 90 min, also expand §3 deep dives (let people stop you on specific models).
 
-| Section | Time | Slides |
-|---|---|---|
-| §1 Opening | 3 min | 3 |
-| §2 Landscape | 3 min | 5 |
-| §3 Deep dives | 6 min | 10 |
-| §4 Crisis | 4 min | 3 |
-| §5 Gaps | 3 min | 3 |
-| §6 What to do (5 lanes) | 2 min | 2 |
-| §8 Real innovation tracks (6 tracks) | 5 min | 6 |
-| §9 Closing — AACR 2026 case study | 3 min | 3 |
-| Q&A buffer | 1 min | — |
-| **Total** | **30 min** | **35** |
-
-#### Option C — "this is your room" audience (PhD students, postdocs at academic medical centers — the most common AACR-adjacent setting) → blend §7 and §8
-
-Take §7's decision tree + Lane 4/7 as the "you can already publish" anchor (2 min), then pivot to §8's Track 1 + Track 2 + Track 6 as the "and here's where the real frontier is" pitch (3 min). Drop §6 entirely. **This is the recommended blend if you can pick the audience.**
-
-| Section | Time | Slides |
-|---|---|---|
-| §1 Opening | 3 min | 3 |
-| §2 Landscape | 3 min | 5 |
-| §3 Deep dives | 7 min | 10 |
-| §4 Crisis | 3 min | 3 |
-| §5 Gaps | 3 min | 3 |
-| §7 highlights (decision tree + Lane 4 + Lane 7) | 2 min | 2 |
-| §8 highlights (Tracks 1 + 2 + 6) | 3 min | 3 |
-| §9 Closing — AACR 2026 case study | 3 min | 3 |
-| Q&A buffer | 1 min | — |
-| **Total** | **30 min** | **32** |
-
-If you're still running long, cut §3 from 10 to 6 anchor models (drop UCE, STATE, AlphaGenome, ESM-3 → keep scGPT, Geneformer V2, Virchow2, Evo2).
+If you're running *short* (say a lab meeting is constrained to 45 min): cut §3 from 10 to 6 anchor models (drop UCE, STATE, AlphaGenome, ESM-3 → keep scGPT, Geneformer V2, Virchow2, Evo2) and trim §9 discussion to 5 min.
 
 ---
 
