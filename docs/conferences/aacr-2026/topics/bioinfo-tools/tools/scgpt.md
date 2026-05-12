@@ -59,3 +59,21 @@ Geneformer, and scVI baselines across these tasks.
 ## Takeaway
 
 scGPT is present in AACR 2026 as a representative single-cell foundation model — invoked in two posters and one session — but always as a context entry in a foundation-model lineup (typically alongside scFoundation or Geneformer) rather than as the primary engine of an analysis. The corpus pattern mirrors Geneformer's: scGPT is widely *known* and consistently *named*, but no AACR 2026 contribution leans on its generative or perturbation capabilities to drive a finding.
+
+## FM comparison & 2026 status
+
+**Where it sits in the FM landscape.** scGPT is a generative, decoder-style transformer in the single-cell FM family — distinguished from Geneformer (encoder-only, rank-based) and Cell2Location (Bayesian, not an FM at all) by a gene-value tokenization that lets it run masked expression *regression* rather than just rank-token masking. The flagship whole-human checkpoint is ~51M parameters, with a 53M-parameter pan-cancer variant and several organ-specific releases; this puts scGPT at the smaller end of the modern single-cell FM cohort (UCE: 650M; scFoundation: 100M; CellPLM: 80M; Geneformer-V2-Deep: 316M).
+
+**Direct peers.**
+
+| Model | Architecture | Pretraining corpus | Public weights | Headline benchmark |
+| --- | --- | --- | --- | --- |
+| scGPT v1.0 | Decoder transformer, gene-value tokens, ~51M params | 33M human cells (CELLxGENE) + 5.7M pan-cancer variant | MIT, Google Drive | Cell-type annotation, integration, perturbation (Nature Methods 2024) |
+| UCE (Universal Cell Embeddings) | Encoder transformer, protein-sequence-conditioned gene embeddings, 650M params | 36M cells, 8 species | MIT, GitHub + HF | Strongest cross-dataset zero-shot embedding in 2025 scFM benchmarks |
+| scFoundation | xTrimoGene encoder, continuous-value embedding, 100M params | 50M human cells | Code MIT, weights gated | Tumor-tissue tasks (best in pooled-data eval) |
+| GET | Sequence + chromatin-accessibility transformer | 213 fetal/adult cell types (multi-omics) | MIT, GitHub | Cross-cell-type expression prediction (Nature 2025) |
+| CellPLM | Cell-as-token encoder, ~80M params | 11M cells with spatial context | MIT, GitHub | Spatial-context cell-state inference |
+
+**What changed in 2025-2026.** Three things matter. First, the Bo Wang lab released **scGPT-spatial** (bioRxiv Feb 2025), a continually pretrained variant on SpatialHuman30M (~30M spatial profiles) with a Mixture-of-Experts decoder for protocol-aware deconvolution and imputation — the spatial successor that AACR 2026 has not yet caught up to. Second, **a series of 2025 benchmark papers** (Kedzierska et al., *Genome Biology* 2025; Wenkel et al., *Nature Methods* 2025) showed that scGPT, Geneformer, and scFoundation **do not outperform simple linear baselines on perturbation prediction** and have weak zero-shot embedding quality — a credibility hit that has not surfaced in any AACR 2026 poster framing. Third, the scGPT-cancer (pan-cancer) checkpoint has been reported to *underperform* the generic whole-human checkpoint on several non-cancer tasks, raising the question of whether domain-specific continual pretraining was worth the 5.7M-cell investment. No formal retraction or concern flag has been issued on the published paper.
+
+**AACR-relevant use cases.** Three live use modes appear in the 2026 corpus or are visible immediately adjacent to it: (1) **PBMC response prediction** — poster 4212 uses scGPT v1.0 + scFoundation embeddings as MIL features to predict RECIST response from peripheral-blood scRNA-seq, the only "primary engine" usage in the corpus; (2) **Bulk-RNA-seq benchmarking** — poster 5478 evaluates scGPT alongside five other scFMs on bulk-RNA-seq embeddings, an off-label use that the recent zero-shot critique literature would predict to fail; (3) **Virtual-cell scaffolding** — the [April 20 AI Revolution session](../../../sessions/2026-04-20-am-ai-revolution-in-cancer-research.md) name-checks scGPT alongside ExCell as a virtual-cell substrate, framing it as a building block for cell-simulation agents rather than an end-user analysis tool. The pan-cancer 5.7M-cell checkpoint and scGPT-spatial are absent from both posters and sessions — a substantive gap given that scGPT-spatial would directly compete with Cell2Location on spot-resolution deconvolution.

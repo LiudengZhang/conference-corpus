@@ -42,3 +42,30 @@ TBD — keynote-level synthesis; specific benchmark deltas not in program-notes.
 ## Notes
 
 Keynote itself is not a tool page — any new model announced gets either (a) in-place update to the AACR dossier (incremental work) or (b) a new ISBI tool page if fundamentally new. Watch Mahmood Lab GitHub / HuggingFace through May–July 2026 for the artifact drop. Likely TBME Special Section pipeline if a methods companion paper exists.
+
+## FM comparison & 2026 status
+
+**Where it sits in the FM landscape.** Mahmood's keynote is a **survey / synthesis** of the pathology foundation-model field, not a model release. The artifacts it discusses (UNI, UNI2, CHIEF, CONCH, KRONOS for spatial proteomics, the multimodal PathChat / CONCH agent line) are the underlying objects; the keynote's value is the landscape framing, the cross-model comparison, and the forward-look on multimodal pretraining + agentic deployment. Direct peers are therefore *other pathology FM landscape surveys* and *individual pathology FMs* — the keynote sits methodologically next to bioRxiv landscape reviews like ["Understanding Foundation Models in Digital Pathology"](https://www.biorxiv.org/content/10.1101/2025.09.12.675923v1.full.pdf) (Sep 2025) and the EUCAIM / community clinical-benchmark efforts ([clinical benchmark of public self-supervised pathology FMs, 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12003829/)).
+
+**Direct peers — pathology foundation models the keynote anchored.**
+
+| Model | Lab / Vendor | Backbone | Parameters | Pretraining tiles / slides | Released |
+|---|---|---|---|---|---|
+| **UNI** | Mahmood Lab (Harvard / BWH) | ViT-L/16 (DINOv2) | ~300M | ~100M H&E tiles | *Nature Medicine* 2024 |
+| **UNI2** | Mahmood Lab | ViT-H (DINOv2) | larger than UNI | 200M+ H&E + IHC tiles / 350K+ WSIs | **Jan 14 2025 release** ([UNI GitHub](https://github.com/mahmoodlab/UNI)) |
+| **Virchow / Virchow2** | Paige.ai | ViT-H | 632M (Virchow2) | 1.7B tiles / 3.1M WSIs / 225K patients / 45 countries | [Virchow2 arXiv 2408.00738](https://arxiv.org/pdf/2408.00738), 2024 |
+| **CHIEF** | Mahmood Lab | tile encoder + slide-level aggregator | TBD | 19 cancer types, 60K+ slides | *Nature* 2024 |
+| **Prov-GigaPath** | Microsoft Research / Providence | ViT + LongNet slide-aggregator | ~1B | 1.3B tiles / 171K WSIs | *Nature* 2024 |
+| **Hibou** | HistAI | ViT (DINOv2) | tile encoder | ~1B tiles | 2024 |
+
+UNI2 (Jan 2025) and Virchow2 (2024) are the most recent generation; UNI2 reports a perfect Balanced Accuracy (1.0) on BACH breast-cancer histology and 79.7 on pan-cancer tissue classification, while Virchow2 leads on CRC polyp classification (52.1) ([UNI2 release notes](https://github.com/mahmoodlab/UNI)). The keynote framed these as complementary rather than ranked — different backbones suit different downstream task families.
+
+**What changed in 2025–2026.**
+
+- **UNI2 release (Jan 14 2025)** — 200M+ H&E and IHC tiles across 350K+ WSIs; 25K+ pre-extracted WSI embeddings released for TCGA, CPTAC, PANDA ([Mahmood Lab GitHub](https://github.com/mahmoodlab/UNI)).
+- **Virchow2 (Paige.ai, 2024–2025)** — scaling to 1.7B tiles and 3.1M WSIs from 225K patients; state-of-the-art on 12 tile-level tasks ([Virchow2 paper](https://arxiv.org/pdf/2408.00738)).
+- **CHIEF v2 / agentic-CHIEF (signposted in keynote).** Methods companion paper expected through MICCAI 2026 / TBME pipeline — not yet released as of May 2026.
+- **Clinical-benchmark traction.** [A clinical benchmark of public self-supervised pathology FMs](https://pmc.ncbi.nlm.nih.gov/articles/PMC12003829/) (2025) is the first published head-to-head clinical comparison; complements but does not replace lab-internal benchmarks.
+- **No retraction events** affecting any of the named pathology FMs as of May 12 2026.
+
+**Cross-AACR relevance.** Mahmood's keynote anchors a dense AACR 2026 cross-link cluster. The [AACR bioinfo-tools landscape](../../aacr-2026/topics/bioinfo-tools/landscape.md) audit found **18 AACR 2026 posters citing pathology FMs by name** — UNI / UNI2 (6 posters: #1441, #5470, #2758, #71, #4163, #5505), Lunit-SCOPE (2: #80, #1465), Virchow2 (1: #1442), Prov-GigaPath (1: #1470), plus CONCH, TITAN, H-optimus, CTransPath, Hibou, MUSK, DINOv2, KRONOS, LOKI, MADELEINE, CA-MAE as named encoders. Direct dossier links: [AACR CHIEF](../../aacr-2026/topics/bioinfo-tools/tools/chief.md), [AACR UNI](../../aacr-2026/topics/bioinfo-tools/tools/uni.md), [AACR Prov-GigaPath](../../aacr-2026/topics/bioinfo-tools/tools/prov-gigapath.md). The relevant AACR 2026 sessions are [Foundation Models & Multimodal AI in Cancer Research (Apr 17 PM)](../../aacr-2026/sessions/2026-04-17-pm-foundation-models-multimodal-ai-cancer-research.md), [Decoding the Cancer Ecosystem: Pathology + TME Heterogeneity (Apr 20 AM)](../../aacr-2026/sessions/2026-04-20-am-decoding-cancer-ecosystem-pathology-tme-heterogeneity.md), [AI + Spatial Transcriptomics + Pathology (Apr 20 PM)](../../aacr-2026/sessions/2026-04-20-pm-ai-spatial-transcriptomics-pathology.md), and [3D Tissue Imaging and Cancer (Apr 18 PM)](../../aacr-2026/sessions/2026-04-18-pm-3d-tissue-imaging-and-cancer.md). The existing AACR cross-synthesis [synthesis-fm-pathology-traction.md](../../aacr-2026/topics/bioinfo-tools/synthesis-fm-pathology-traction.md) is the page where Mahmood's ISBI keynote should be cited as the ground-truth landscape framing.

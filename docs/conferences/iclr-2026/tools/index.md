@@ -69,6 +69,12 @@ Free-form: benchmarks claimed, comparisons to scGPT / Geneformer / UCE / ESM / R
 
 | Method / Tool | Track | Modality | Authors | Format | OpenReview | Code | Mentioned elsewhere |
 |---|---|---|---|---|---|---|---|
+| [ESM-3](esm-3.md) | Foundation-model dependency | Protein sequence + structure + function | Hayes et al. (EvolutionaryScale) | *Science* 2025 (not ICLR) | n/a | [evolutionaryscale/esm](https://github.com/evolutionaryscale/esm) | Backbone for Proteina-Complexa, TEA-alphabet, GEM workshop binder pipelines |
+| [BioMedCLIP](biomedclip.md) | Foundation-model dependency | Biomedical image-text (CLIP) | Zhang, Xu et al. (Microsoft Research) | *NEJM AI* 2024 (not ICLR) | n/a | [microsoft/BiomedCLIP_data_pipeline](https://github.com/microsoft/BiomedCLIP_data_pipeline) | Default baseline for ICLR 2026 imaging tracks; AACR 2026 pathology axis |
+| [Nucleotide Transformer](nucleotide-transformer.md) | Foundation-model dependency | DNA / genomic FM (encoder, MLM, 6-mer; 50M–2.5B params) | Dalla-Torre et al. (InstaDeep + NVIDIA + TU Munich) | *Nature Methods* 2025 (not ICLR) | n/a | [instadeepai/nucleotide-transformer](https://github.com/instadeepai/nucleotide-transformer) | Canonical 2.5B baseline cited across MLGenX / Gen² / FM4Science |
+| [DNABERT-2](dnabert-2.md) | Foundation-model dependency | DNA / genomic FM (encoder, MLM, BPE + ALiBi; 117M params) | Zhou et al. (Northwestern MAGICS Lab) | ICLR 2024 poster (not ICLR 2026) | [oMLQB4EZE1](https://openreview.net/forum?id=oMLQB4EZE1) | [MAGICS-LAB/DNABERT_2](https://github.com/MAGICS-LAB/DNABERT_2) | GUE benchmark canonical across MLGenX / Gen² submissions |
+| [HyenaDNA](hyenadna.md) | Foundation-model dependency | DNA / genomic FM (causal LM, Hyena operators, single-nt; 1 Mb context) | Nguyen et al. (Stanford Hazy Research + Harvard + Mila) | NeurIPS 2023 poster (not ICLR) | [ubzNoJjOKj](https://openreview.net/forum?id=ubzNoJjOKj) | [HazyResearch/hyena-dna](https://github.com/HazyResearch/hyena-dna) | Hyena lineage → Evo / Evo2 (Sci4DL ICLR 2026) |
+| [AlphaGenome](alphagenome.md) | Foundation-model dependency | DNA → multi-modal functional tracks (U-Net + transformer; 1 Mb, ~450M params) | Avsec et al. (Google DeepMind) | *Nature* 2026 (not ICLR) | n/a | [google-deepmind/alphagenome](https://github.com/google-deepmind/alphagenome) | Variant-effect benchmark referenced by Gen² / LMRL clinical-genomics submissions |
 
 ## Why this format
 

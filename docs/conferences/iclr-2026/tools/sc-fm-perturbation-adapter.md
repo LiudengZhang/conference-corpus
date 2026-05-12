@@ -40,3 +40,30 @@ The paper reports **state-of-the-art performance across multiple evaluation scen
 ## Notes
 
 Prescient Design / Genentech is the same group that ships LBSTER and related single-cell tooling; the lineage here is "use the pretrained scFoundation-class model + a thin adapter" rather than "train a new bigger model" — the parameter-efficiency framing matters because it is the pattern most likely to be adopted by smaller oncology-focused groups that cannot afford fresh pretraining runs. Note the **Nature Methods 2025 caveat**: linear baselines remain competitive with deep methods on this task, so any 2026 perturbation-prediction claim should be checked against the Csendes et al. simple-baseline analysis.
+
+## FM comparison & 2026 status
+
+**Where it sits in the FM landscape.** This is an **adapter layer**, not a foundation model — a <1% trainable-parameter projection that conditions a frozen scGPT / Geneformer / scFoundation / scMulan-class backbone on a drug input. It is therefore not a peer to scGPT itself; it is a peer to other parameter-efficient perturbation-conditioning methods (LoRA / IA³ / prefix-tuning variants) and to perturbation-prediction architectures that have a *drug* input alongside the *cell* input. The closest direct competitors are the train-from-scratch supervised predictors (CPA, GEARS, scGen, ChemCPA) and the explicit adapter / decoupled-encoder lines in PerturBench's reference implementations.
+
+**Direct peers — drug-conditional / perturbation-prediction models.**
+
+| Model | Architecture | Trainable params (relative) | Zero-shot to unseen drugs? | Released |
+|---|---|---|---|---|
+| **Maleki et al. adapter** (this paper) | frozen scGPT / Geneformer / scFoundation + thin drug-conditional adapter | <1% of base FM | yes | ICLR 2025 main + ICLR 2026 LMRL |
+| **CPA** (Lotfollahi et al. 2023) | compositional perturbation autoencoder | trained from scratch | no — needs drug seen at train | 2023 |
+| **GEARS** (Roohani et al. 2023) | GNN over gene-perturbation graph | trained from scratch | partial — needs gene-pair graph node | *Nat Biotech* 2023 |
+| **scGen** (Lotfollahi et al. 2019) | VAE + arithmetic latent shift | trained from scratch | no | 2019 |
+| **ChemCPA** (Hetzel et al. 2022) | CPA + chemical encoder | trained from scratch | partial | 2022 |
+| **PerturBench LA + scGPT embeddings** ([arXiv 2408.10609](https://arxiv.org/abs/2408.10609)) | latent additive over scGPT cell embeddings | linear head only | benchmark reference | 2024–2025 |
+
+The PerturBench result is the load-bearing comparator here — PerturBench's strongest reference baseline is *latent-additive on scGPT embeddings*, which is conceptually adjacent to (and a more minimal version of) the Maleki et al. adapter. Any claim of "state-of-the-art" therefore has to clear both the linear baseline (Ahlmann-Eltze & Huber) and the latent-additive baseline (PerturBench LA + scGPT).
+
+**What changed in 2025–2026.**
+
+- **Linear-baseline reckoning (load-bearing critique).** Ahlmann-Eltze & Huber, *Nature Methods* 2025, showed that across CRISPRi Perturb-seq datasets, scGPT, UCE, scBERT, GEARS, and scFoundation do not consistently beat a mean-of-training-perturbations baseline ([Nature Methods article](https://www.nature.com/articles/s41592-025-02772-6)). Any 2026 perturbation-prediction claim — including this adapter's — must be re-stated against this baseline.
+- **scPerturBench (2025).** Independent benchmark replication: [github.com/bm2-lab/scPerturBench](https://github.com/bm2-lab/scPerturBench) confirms the linear-baseline result and gives a clean re-runnable harness.
+- **Tahoe-100M (Feb 2025).** 100M cells × 1,200 drugs × 50 cancer lines is the natural training and evaluation substrate this adapter would have benefited from; the original ICLR 2025 submission predates Tahoe-100M and the LMRL 2026 continuation does not yet integrate it (TBD-confirm from camera-ready).
+- **Diversity-by-design / mode collapse critique** ([arXiv 2506.22641](https://arxiv.org/html/2506.22641v1)) — single-cell perturbation predictors including scGPT, UCE, and scBERT show *mode collapse*: predictions barely vary across perturbations. Adapter approaches inherit this risk and should be re-evaluated under rank metrics, not just RMSE.
+- **No retraction events**, but the field has effectively retired pre-2025 perturbation-prediction leaderboard numbers as primary evidence.
+
+**Cross-AACR relevance.** Primary cross-link to the [AACR 2026 ED03 virtual-cells session](../../aacr-2026/topics/virtual-cells/landscape.md), specifically the perturbation-prediction-and-in-silico-screens family (6 posters including #1464 CELLama-Perturb, #4181 Turbine Virtual Lab, #1467 mechanism-aware therapy planning). The [AACR scGPT dossier](../../aacr-2026/topics/bioinfo-tools/tools/scgpt.md) and [Geneformer dossier](../../aacr-2026/topics/bioinfo-tools/tools/geneformer.md) are the direct backbone references. The AACR virtual-cells landscape audit notes that "scGPT, Geneformer, and Universal Cell Embeddings do not appear in any title in this slice — they show up only as comparators in abstract bodies" — meaning the adapter-on-frozen-FM pattern Maleki et al. demonstrate is *exactly* what most AACR perturbation posters are implicitly doing (using a pretrained FM as an encoder + a thin head) without naming the recipe. Pair with the [synthesis-ed03-vs-corpus.md](../../aacr-2026/topics/virtual-cells/synthesis-ed03-vs-corpus.md) cross-synthesis when writing the perturbation-prediction methods stack-up.

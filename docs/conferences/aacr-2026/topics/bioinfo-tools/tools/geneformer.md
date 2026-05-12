@@ -65,3 +65,21 @@ _No session transcripts in the AACR 2026 corpus mention this tool._
 ## Takeaway
 
 In AACR 2026, Geneformer is the canonical "previous-generation" single-cell foundation model: cited in four posters, but always as a benchmark baseline that newer methods (CancerSTFormer, scCAP, BulkFormer, custom rank-based pipelines) measure themselves against — never as the primary engine of a result. The corpus thus tells a consistent story across single-cell FMs: Geneformer set the template, and the field has moved on to larger or more domain-specific successors without abandoning it as a reference point.
+
+## FM comparison & 2026 status
+
+**Where it sits in the FM landscape.** Geneformer is the encoder-only, rank-token branch of the single-cell FM family — distinguished from scGPT's decoder-style gene-value generation by discarding magnitude and learning only relative gene ordering. V1 (2023) was ~10M parameters; V2 (Dec 2024) released **104M and 316M parameter variants** under the names Geneformer-V2-104M and Geneformer-V2-316M, with a separate **Geneformer-V2-104M_CLcancer** continually pretrained on ~14M cancer cells. At 316M parameters, V2-Deep is the largest published rank-encoded scFM, and one of the two largest single-cell FMs of any kind (UCE at 650M is the only larger commonly cited model).
+
+**Direct peers.**
+
+| Model | Architecture | Pretraining corpus | Public weights | Headline benchmark |
+| --- | --- | --- | --- | --- |
+| Geneformer V2-316M | BERT encoder, rank-value tokens, 4,096-token input | 104M cells, ~20K protein-coding genes | Apache-2.0, HF | Top AUPRC on cancer-task suite (Helical Bio 2025 benchmark) |
+| scGPT v1.0 | Decoder, gene-value tokens, ~51M params | 33M cells + 5.7M pan-cancer | MIT, Google Drive | Cell-type annotation + perturbation (Nature Methods 2024) |
+| UCE | Encoder, protein-sequence-conditioned, 650M params | 36M cells, 8 species | MIT, GitHub | Strongest cross-dataset zero-shot embedding (Liu et al. 2025) |
+| scFoundation | xTrimoGene encoder, continuous-value, 100M params | 50M human cells | Code MIT, weights gated | Tumor-tissue pooled-data benchmarks |
+| CellPLM | Cell-as-token encoder, ~80M params | 11M cells with spatial context | MIT, GitHub | Spatial-aware cell-state inference |
+
+**What changed in 2025-2026.** Three things. First, the V2 family is now the default — the HuggingFace `main` branch was retargeted to V2-316M, and V1 is preserved only as a legacy directory. Geneformer-V2-104M_CLcancer (the cancer continual-learning variant) **matched or exceeded the 316M deep model** on cancer benchmarks at one-third the parameter count, which inverted the "scale wins" narrative the field had assumed in 2024. Second, the same 2025 critique wave that hit scGPT (Kedzierska et al., *Genome Biology* 2025; Wenkel et al., *Nature Methods* 2025) hit Geneformer harder — its rank-encoding deliberately throws away expression magnitude, and benchmark studies show this leaves it behind UCE and scFoundation on most embedding-quality and zero-shot classification tasks. Third, no retraction or formal concern has been issued, and the license remains permissive (Apache-2.0).
+
+**AACR-relevant use cases.** The corpus shows Geneformer in three distinct AACR-relevant modes: (1) **As a baseline to beat** — poster 2752 (CancerSTFormer) explicitly fine-tunes Geneformer as the comparator and reports their spatial transformer wins, the cleanest "old-FM-vs-new-method" framing in the meeting; (2) **As a rank-based feature extractor** — poster 978 cites Geneformer as the rank-based model anchoring their cell-to-patient drug-response framework; (3) **As a single-cell annotator under critique** — poster LB169 (scCAP) names Geneformer among tools that "exhibit distinct biases" in cell-type annotation. Notably absent: Geneformer's headline **in-silico perturbation / drug-target discovery** use case from the original Theodoris *Nature* 2023 paper does not appear in any 2026 abstract, despite this being the workflow most directly relevant to AACR's translational audience. No session transcripts mention Geneformer at all (n=0) — strikingly low for a model with 4 poster hits.

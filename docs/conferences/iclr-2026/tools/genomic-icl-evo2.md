@@ -40,3 +40,29 @@ The paper reports **log-linear gains in pattern induction as the number of in-co
 ## Notes
 
 Evo2 itself (Arc Institute, Hyena-based, 40B params, 1Mb context) was published in *Nature* March 2026; this ICLR 2026 Sci4DL paper is a methodological study *of* Evo2 rather than a new model release. It serves the AACR vault's "long-context genomic LM" slot as the canonical 2026-era reference point — and the JHU-led "Evo2 as in-context learner" framing is the bridge between the genomic-FM and LLM-reasoning communities that the AACR agentic-AI axis sits on top of. The Sci4DL workshop venue (not LMRL or MLGenX) is itself notable — this is methods-paper community, not bio community, signalling that genomic LMs are now methodologically interesting *on their own terms*.
+
+## FM comparison & 2026 status
+
+**Where it sits in the FM landscape.** Breslow et al. is an **ICL benchmark study performed on Evo2**, not a new model and not a stand-alone benchmark suite. Evo2 (Arc Institute / NVIDIA / Stanford / UC Berkeley / UCSF, 40B parameters, 1Mb context, 9.3 trillion nucleotide pretraining; *Nature* 2026) is the underlying model whose capabilities are being probed — the paper's contribution is the *finding* that ICL emerges in genomic next-token predictors, not the Evo2 release itself. The competing object class is therefore the set of *genomic foundation models* that could in principle be re-evaluated with the same paired NL-vs-DNA protocol, plus the small handful of "genomic ICL"-style probing studies.
+
+**Direct peers — long-context genomic foundation models.**
+
+| Model | Backbone | Parameters | Context | Pretraining substrate | Released |
+|---|---|---|---|---|---|
+| **Evo2** (Arc Institute) | Hyena / StripedHyena | 40B | 1 Mb (single-nucleotide) | 9.3 T nucleotides, all-domains | *Nature* 2026 ([Arc Evo2](https://arcinstitute.org/tools/evo)) |
+| **AlphaGenome** (Google DeepMind) | Transformer | TBD-disclosed | 1 Mb input → base-pair tracks | human + mouse genomes | *Nature* 2025 ([DeepMind AlphaGenome](https://deepmind.google/blog/alphagenome-ai-for-better-understanding-the-genome/)) |
+| **Nucleotide Transformer** (InstaDeep / NVIDIA) | Transformer | 50M – 2.5B | 6 kb – 12 kb | 850 species | *Nat Methods* 2024 |
+| **HyenaDNA** (Stanford) | Hyena | 0.4M – 6.6M | up to 1 Mb | human reference | NeurIPS 2023 |
+| **Caduceus** (Cornell / Stanford) | bidirectional Mamba / Hyena | tens of M | up to 131 kb | human reference | ICML 2024 |
+
+Evo2 is unique in this peer set for combining 40B parameters, a 1 Mb context, and all-domains-of-life pretraining; AlphaGenome is its primary 2025 competitor and **outperforms or matches Evo2 in 25 of 26 regulatory-variant-effect evaluations** ([AlphaGenome Nature paper](https://www.nature.com/articles/s41586-025-10014-0)), though only on a human + mouse pretraining substrate and with a *different model class* (track-prediction transformer, not generative DNA LM). For the *ICL phenomenon Breslow et al. study*, none of AlphaGenome / Nucleotide Transformer / HyenaDNA has been shown to exhibit log-linear ICL scaling — Evo2 is the load-bearing positive case.
+
+**What changed in 2025–2026.**
+
+- **Evo2 *Nature* publication, March 2026.** Confirmed: 40B parameters, 1 Mb context, 9.3 trillion nucleotides, predicts BRCA1 variant pathogenicity zero-shot ([Arc Institute Evo2 release](https://arcinstitute.org/news/evo2); [Nature article](https://www.nature.com/articles/s41586-026-10176-5)).
+- **AlphaGenome (Google DeepMind, June 2025).** Direct head-to-head competitor; outperforms or matches Evo2 in 25/26 regulatory-variant-effect benchmarks; available via API for non-commercial use ([github.com/google-deepmind/alphagenome](https://github.com/google-deepmind/alphagenome)). Crucially, AlphaGenome is a *track-prediction* model, not a generative LM, so it cannot be probed for ICL the same way Evo2 can.
+- **BioReason (AACR 2026, surfaced via the AI Revolution in Cancer Research session, 2026-04-20).** Freezes Evo2 and aligns DNA-sequence tokens to language tokens with RL to teach DNA-in-context-of-language ([transcript line 619](../../aacr-2026/sessions/2026-04-20-am-ai-revolution-in-cancer-research.md)). This is the *clinical-genomics analogue* of Breslow et al.'s ICL claim — same backbone, different downstream framing.
+- **Evo 2 "One Year Later"** ([Arc Institute retrospective](https://arcinstitute.org/news/evo-2-one-year-later)) — community traction, fine-tuning recipes, downstream applications.
+- **No retraction events** affecting Evo2, AlphaGenome, or this Breslow et al. paper.
+
+**Cross-AACR relevance.** Direct cross-link to the [AACR 2026 AI Revolution session](../../aacr-2026/sessions/2026-04-20-am-ai-revolution-in-cancer-research.md), which contains the only explicit Evo2 references in the AACR 2026 vault — specifically the BioReason talk (transcript lines 619 and 629) that freezes Evo2 and aligns it to language tokens. Breslow et al.'s ICL finding is the methodological substrate that makes that BioReason pipeline plausible: if Evo2 already exhibits ICL on genomic sequences, then aligning DNA tokens to NL tokens via a frozen-backbone RL recipe is asking the model to do something it has already learned to do natively. Indirect cross-link to the [AACR virtual-cells landscape](../../aacr-2026/topics/virtual-cells/landscape.md) — none of the 48 AACR virtual-cells posters cites Evo2 directly, which makes this dossier the *external anchor* for genomic-LM ICL at AACR 2026. The AACR vault has no Evo2 tool dossier; this ICLR 2026 entry is the de-facto placeholder until one is written.
