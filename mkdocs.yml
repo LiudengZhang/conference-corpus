@@ -283,18 +283,41 @@ nav:
     - Overview: conferences/sabcs-2026/index.md
     - Program notes (research): conferences/sabcs-2026/program-notes.md
     - Trials (template): conferences/sabcs-2026/trials/index.md
-  - ASCO GI 2026 (post-meeting scaffold):
+  - ASCO GI 2026 (post-meeting, built):
     - Overview: conferences/asco-gi-2026/index.md
     - Program notes (research): conferences/asco-gi-2026/program-notes.md
-    - Trials (template): conferences/asco-gi-2026/trials/index.md
-  - ASCO GU 2026 (post-meeting scaffold):
+    - Trials:
+      - Index: conferences/asco-gi-2026/trials/index.md
+      - HERIZON-GEA-01 (zani+chemo HER2+ G/GEJ): conferences/asco-gi-2026/trials/herizon-gea-01.md
+      - BREAKWATER cohort 3 (BRAF mCRC): conferences/asco-gi-2026/trials/breakwater-cohort3.md
+      - Daraxonrasib + zoldonrasib PDAC: conferences/asco-gi-2026/trials/daraxonrasib-zoldonrasib-pdac.md
+      - REFOCUS lirafugratinib (FGFR2 CCA): conferences/asco-gi-2026/trials/refocus-lirafugratinib.md
+      - KEYNOTE-937 (adjuvant pembro HCC — negative): conferences/asco-gi-2026/trials/keynote-937.md
+      - MSS-CRC novel classes synthesis: conferences/asco-gi-2026/trials/asco-gi-mss-crc-novel.md
+  - ASCO GU 2026 (post-meeting, built):
     - Overview: conferences/asco-gu-2026/index.md
     - Program notes (research): conferences/asco-gu-2026/program-notes.md
-    - Trials (template): conferences/asco-gu-2026/trials/index.md
-  - ICLR 2026 (post-meeting scaffold):
+    - Trials:
+      - Index: conferences/asco-gu-2026/trials/index.md
+      - KEYNOTE-B15 / EV-304 (MIBC): conferences/asco-gu-2026/trials/keynote-b15-ev304.md
+      - LITESPARK-022 (adjuvant ccRCC): conferences/asco-gu-2026/trials/litespark-022.md
+      - PEACE-3 (mCRPC enza+Ra-223): conferences/asco-gu-2026/trials/peace-3.md
+      - PSMAaddition (1L mHSPC): conferences/asco-gu-2026/trials/psmaaddition.md
+      - CAPItello-281 (PTEN mHSPC): conferences/asco-gu-2026/trials/capitello-281.md
+      - IMvigor011 ctDNA-guided MIBC: conferences/asco-gu-2026/trials/asco-gu-rlt-bladder-emerging.md
+  - ICLR 2026 (post-meeting, built):
     - Overview: conferences/iclr-2026/index.md
     - Program notes (research): conferences/iclr-2026/program-notes.md
-    - Tools (template, filtered): conferences/iclr-2026/tools/index.md
+    - Tools:
+      - Index: conferences/iclr-2026/tools/index.md
+      - sc-Arena (virtual-cell benchmark): conferences/iclr-2026/tools/sc-arena.md
+      - MedAgentGym (biomedical reasoning gym): conferences/iclr-2026/tools/medagentgym.md
+      - Generative Virtual Cells (Gen²): conferences/iclr-2026/tools/generative-virtual-cells.md
+      - Proteina Complexa (atomistic binder design): conferences/iclr-2026/tools/proteina-complexa.md
+      - sc-FM Perturbation Adapter: conferences/iclr-2026/tools/sc-fm-perturbation-adapter.md
+      - MMedAgent-RL (multi-agent medical reasoning): conferences/iclr-2026/tools/mmedagent-rl.md
+      - Genomic ICL in Evo2: conferences/iclr-2026/tools/genomic-icl-evo2.md
+      - TEA (de novo protein design): conferences/iclr-2026/tools/tea-de-novo-protein.md
   - CVPR 2026 (scaffold):
     - Overview: conferences/cvpr-2026/index.md
     - Program notes (research): conferences/cvpr-2026/program-notes.md
@@ -319,10 +342,19 @@ nav:
     - Overview: conferences/aacr-pancreatic-2026/index.md
     - Program notes (research): conferences/aacr-pancreatic-2026/program-notes.md
     - Talks (template): conferences/aacr-pancreatic-2026/talks/index.md
-  - AACR Brain Tumors 2026 (post-meeting scaffold):
+  - AACR Brain Tumors 2026 (post-meeting, built):
     - Overview: conferences/aacr-brain-tumors-2026/index.md
     - Program notes (research): conferences/aacr-brain-tumors-2026/program-notes.md
-    - Talks (template): conferences/aacr-brain-tumors-2026/talks/index.md
+    - Talks:
+      - Index: conferences/aacr-brain-tumors-2026/talks/index.md
+      - UPenn ICV bivalent CAR-T (GBM): conferences/aacr-brain-tumors-2026/talks/upenn-icv-bivalent-cart.md
+      - City of Hope IL-13Rα2 / chlorotoxin CAR-T: conferences/aacr-brain-tumors-2026/talks/city-of-hope-il13ra2-cart.md
+      - Monje GD2 CAR-T (DIPG/DMG): conferences/aacr-brain-tumors-2026/talks/monje-gd2-cart-dipg.md
+      - Vorasidenib post-INDIGO: conferences/aacr-brain-tumors-2026/talks/vorasidenib-post-indigo.md
+      - DKFZ IDH-mutant vaccine: conferences/aacr-brain-tumors-2026/talks/dkfz-idh-vaccine.md
+      - Suva — glioma cell states (keynote): conferences/aacr-brain-tumors-2026/talks/suva-glioma-cell-states.md
+      - Parrinello — injury programs (keynote): conferences/aacr-brain-tumors-2026/talks/parrinello-injury-programs.md
+      - Neuroscience of gliomas + TAM (synthesis): conferences/aacr-brain-tumors-2026/talks/neuroscience-of-gliomas-tam.md
   - ASTRO 2026 (scaffold):
     - Overview: conferences/astro-2026/index.md
     - Program notes (research): conferences/astro-2026/program-notes.md
@@ -331,10 +363,19 @@ nav:
     - Overview: conferences/acmg-2026/index.md
     - Program notes (research): conferences/acmg-2026/program-notes.md
     - Talks (template): conferences/acmg-2026/talks/index.md
-  - SGO 2026 (post-meeting scaffold):
+  - SGO 2026 (post-meeting, built):
     - Overview: conferences/sgo-2026/index.md
     - Program notes (research): conferences/sgo-2026/program-notes.md
-    - Trials (template): conferences/sgo-2026/trials/index.md
+    - Trials:
+      - Index: conferences/sgo-2026/trials/index.md
+      - ROSELLA (relacorilant + nab-pac, plat-resistant ovarian): conferences/sgo-2026/trials/rosella.md
+      - RUBY 4-yr OS (dostarlimab+chemo dMMR endometrial): conferences/sgo-2026/trials/ruby-4yr-os.md
+      - BLUESTAR (puxitatug B7-H4 ADC endometrial): conferences/sgo-2026/trials/bluestar-puxitatug.md
+      - Mirvetuximab + carbo maintenance (FRα+ PSOC): conferences/sgo-2026/trials/mirvetuximab-maintenance.md
+      - REJOICE-Ovarian01 (raludotatug CDH6 ADC): conferences/sgo-2026/trials/rejoice-ovarian01.md
+      - KEYNOTE-A18 mature OS (cervical): conferences/sgo-2026/trials/keynote-a18-mature.md
+      - NRG-GY019 (LGSOC — negative): conferences/sgo-2026/trials/nrg-gy019.md
+      - InnovaTV 205 Arm H (1L cervical): conferences/sgo-2026/trials/innovatv-205-arm-h.md
   - ESHG 2026 (scaffold):
     - Overview: conferences/eshg-2026/index.md
     - Program notes (research): conferences/eshg-2026/program-notes.md
