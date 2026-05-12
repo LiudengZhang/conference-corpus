@@ -42,7 +42,7 @@ The talk frames this as the **trough between hype and clinical-grade utility**: 
 
 In one sentence: **foundation models in biology are not yet virtual cells — but the gap between them is the most concrete research agenda single-cell biology has had in a decade.**
 
-The talk's structure follows that gap. §2–3 map what exists. §4 explains the 2025 correction. §5 names the five field-wide gaps. §6 gives five things any computational biologist can do *today* to close them. §7 closes by using AACR 2026 as a live case study: what happens when these models meet a clinical audience that doesn't grade on novelty.
+The talk's structure follows that gap. §2–3 map what exists. §4 explains the 2025 correction. §5 names the five field-wide gaps. §6 gives five things any computational biologist can do *today* to close them. §7 is the small-lab playbook — 7 lanes with real exemplars for groups that cannot afford to train their own FM. §8 closes by using AACR 2026 as a live case study: what happens when these models meet a clinical audience that doesn't grade on novelty.
 
 ---
 
@@ -337,11 +337,136 @@ Compute disclosure is now field standard in NLP (NeurIPS/ICLR require it). Biolo
 
 ---
 
-## §7. Closing — conferences as the ground truth (3 min)
+## §7. The small-lab playbook — 7 lanes that work without a $5M GPU budget (4 min)
+
+> **Framing.** §3 priced the frontier: $20k (Geneformer V2-104M_CLcancer, the cheapest fully-disclosed model in our matrix) to $5M+ (Evo2, ESM-3). The middle does not exist as a *training* tier — you are either a few wall-clock days on 8 A100s, or you are spending Arc-Institute money. So if your lab cannot pretrain, the right question is: **what kind of FM-area contribution is publishable at <$5k?** Seven lanes; each has real 2023–2026 exemplars from academic or small-industry labs.
+
+### 7.1 Budget tier overview (30 sec, 1 slide)
+
+| Lane | Typical $ | Compute | Time | Risk |
+|---|---|---|---|---|
+| 1. FM embeddings as features | $0–$500 | inference-only, 1× consumer GPU | weeks | low — worst case, you publish a null lift |
+| 2. PEFT / LoRA / adapters | $500–$5k | 1–8× A100 for days | 2–4 months | medium — must beat frozen-embedding baseline |
+| 3. Domain-specific small FM | $10k–$50k | 8–64× A100 for ~1 week | 6–12 months | medium-high — depends on domain corpus quality |
+| 4. Negative results / replication | $0–$2k | inference + linear regression | 3–6 months | low scientifically, medium reputationally |
+| 5. Benchmark / dataset curation | $0–$5k + curator time | de minimis compute | 6–18 months | low — community credit is durable |
+| 6. FM-wrapper tools / pipelines | $0–$5k | dev box, inference for tests | 6–12 months | low — adoption is the risk, not training |
+| 7. FM-aided wet-lab / clinical study | $5k–$50k FM-side | mostly inference | 12–24 months | low for FM side; standard biology risk for the rest |
+
+Lanes 1–6 are pure dry-lab; Lane 7 is the dry-lab portion of a hybrid project where the FM is *instrumentation*, not the deliverable.
+
+### 7.2 Lane 1 — FM embeddings as features ($0–$500)
+
+A 1B-param model trained on someone else's $200k cluster, used as a frozen encoder, is the cheapest 2026 way to publish a clinically-meaningful classifier — and the field has stopped pretending the wrapper architecture is the contribution.
+
+**Anchor exemplar — AACR 2026 poster #5470** (academic, not Mahmood/Paige): UNI2-h tile embeddings → attention-MIL → HER2 prediction in breast cancer. **AUC 0.715, tied with full UNI2-h**, but with lower runtime and lower scanner cost — the publishable finding is *parity at a fraction of deployment cost*. Compute: <$500, inference-only.
+
+Other AACR 2026 examples: **#1441** (UNI2-h + CLAM for prostate-cancer risk stratification, <$500) · **#2758** (UNI2-h + ABMIL for PAX3/7::FOXO1 fusion detection in rhabdomyosarcoma, <$1k — first published H&E predictor of a pathognomonic fusion in this rare paediatric disease).
+
+**Venue picks**: *Cancer Discovery*, *JCO CCI*, *npj Precision Oncology* for clinical wrap. **CSHL BDS 2026** (Nov 4–7) for methods-light. **MICCAI 2026** (Sep 27–Oct 1) if the contribution is the MIL head.
+
+### 7.3 Lane 2 — PEFT / LoRA / adapters ($500–$5k)
+
+A <1% parameter adapter is the highest-leverage technical contribution a small lab can make — it inherits the base model's $250k of pretraining and slots into a public benchmark.
+
+**Exemplar A — sc-FM Perturbation Adapter** (Maleki et al., ICLR 2026 LMRL): drug-conditional adapter, <1% trainable params, frozen scGPT/Geneformer/scFoundation backbone. *Caveat: Genentech lead authors* — but the recipe is the contribution. Budget ~$2k inferred. **Win**: zero-shot generalisation to unseen drugs and cell lines where CPA / GEARS / scGen cannot extrapolate.
+
+**Exemplar B — scGPT-spatial / LoRA-fine-tuned scGPT** (Wang lab, U Toronto, bioRxiv 2024): LoRA rank-8 adapters on scGPT's attention layers for Visium decomposition. ~$1.5k on a single 8× A100 node over 24–48h. **Win**: clean transfer to spatial tasks without retraining scGPT.
+
+**Exemplar C — GenePT / scELMo** (Liu et al. 2023 Yale; Chen & Zou 2024 Stanford): frozen LLM (GPT-3.5/4) embeddings of gene names + a logistic-regression head. ~$200 compute + API calls. **Win**: matches or beats scGPT zero-shot on cell-type annotation. Pure small-lab result.
+
+**Venue picks**: **ICLR / NeurIPS LMRL workshops**; *Genome Biology*, *Bioinformatics*; **ISMB 2026** (Jul 12–16).
+
+### 7.4 Lane 3 — Domain-specific small FM ($10k–$50k)
+
+Continual-pretrain a *smaller* general model on *your* domain corpus. 2025 evidence shows this consistently matches the 3× larger general model on in-domain tasks.
+
+**Exemplar A — Geneformer V2-104M_CLcancer** (Theodoris lab, Gladstone/UCSF, Dec 2024): **$16,640 disclosed** for V2-104M base (64× A100 × 4d 8h) + ~<$3k for the 14M-cancer-cell continual step ≈ **$20k all-in**. Matches the 316M general-domain V2 at ⅓ the parameters and ⅓ the compute. The cleanest published evidence that *domain curation beats parameter count*.
+
+**Exemplar B — Nicheformer** (Theis lab, Helmholtz Munich, bioRxiv 2024): 80M-param transformer pretrained on ~110M dissociated + spatial cells with a niche-aware objective. ~$25k estimated. **Win**: niche-aware spatial decomposition outperforming general single-cell FMs.
+
+**Exemplar C — scTab + CellPLM** (Theis + Yan/Hu): both **beat scGPT and Geneformer on cell-typing benchmarks while costing 10–20× less to train**. Direct evidence that scale wasn't the load-bearing variable.
+
+**Venue picks**: *Nature Methods*, *Genome Biology*, *Cell Systems*. **CSHL BDS 2026** for methods talk. **Single Cell Genomics 2026** if the corpus is the contribution.
+
+### 7.5 Lane 4 — Negative results / replication / critique ($0–$2k)
+
+The single most valuable thing a small comp-bio lab can publish in 2026 is a rigorous demonstration that a published FM does not beat a baseline — and *Nature Methods* will take it.
+
+**Anchor exemplar — Ahlmann-Eltze, Gerard, Huber** (EMBL Heidelberg) — *Nature Methods* 2025: pure inference on six published FMs + a one-line `mean-of-training-perturbations` linear baseline. **<$2k compute. Retired the entire sc-FM perturbation-prediction leaderboard.**
+
+Companion examples: **Csendes scPerturBench** (BM2 Lab, Beijing Normal — independent scGPT replication exposing train/test leakage, <$1k) · **Kedzierska *Genome Biology* 2025** (Cambridge + Broad — zero-shot sc-FMs lose to PCA + kNN, <$1k) · **Wenkel *Nature Methods* 2025** — proposes `latent-additive` as the new baseline FMs must clear.
+
+**Venue picks**: *Nature Methods*, *Genome Biology*, bioRxiv. **RECOMB 2026** (May 26–29) for methods-track replication. A dedicated negative-results venue does not yet exist — that's a §5.5 open problem.
+
+### 7.6 Lane 5 — Benchmark curation / dataset contribution ($0–$5k + time)
+
+Held-out splits, donor-split benchmarks, and modality-specific evaluation suites are the most under-priced contributions in the FM era — your dataset becomes infrastructure every subsequent model has to cite.
+
+**Exemplars**: **Replogle et al. 2022 *Cell*** (Weissman lab — genome-wide Perturb-seq; cited more than most FM papers) · **Open Problems for Single Cell** (Luecken, Lance, Dann et al. — *Nat Biotechnol* 2024, ~$5k compute per task track; actively recruiting contributors as of 2026) · **HEST-1k** (Jaume et al., NeurIPS D&B 2024 — paired H&E + spatial transcriptomics, now the standard for any "H&E → spatial" model including AACR 2026 #2778 and #1442). Tahoe-100M (Vevo + Arc, Feb 2025) is industry but is the *contribution pattern* — open-source as benchmark infrastructure.
+
+**Venue picks**: **NeurIPS Datasets & Benchmarks track** (Dec 2026). *Scientific Data*, *Nat Methods* Resource articles. **Single Cell Genomics 2026** for the curation talk.
+
+### 7.7 Lane 6 — FM-wrapper tools / pipelines ($0–$5k)
+
+Scverse and Bioconductor still want maintainers — a well-designed wrapper that lets non-Python users feed their data to scGPT or UNI will out-cite the underlying FM in clinical-application papers.
+
+**Exemplars**: **signifinder** (Calura lab, U Padua; GBCC 2025 talk; Bioconductor v1.13 — 70+ curated cancer signatures with a unified API across bulk/sc/spatial) · **mia / miaTime / miaViz** (Borman, Turku; EuroBioC 2025 workshop — replaced phyloseq/QIIME2 fragmentation with one substrate) · **SpatialData** (Marconato, Palla et al., Theis + Stegle labs — the canonical Python container for paired spatial-omics + imaging; every 2026 spatial-FM paper increasingly uses it as input format).
+
+**Venue picks**: **GBCC / EuroBioC** (annual). **scverse community paper** (next Resource update). *Bioinformatics*, *JOSS*, *F1000Research*. **CSHL BDS 2026**.
+
+### 7.8 Lane 7 — FM-aided wet-lab / clinical application ($5k–$50k)
+
+Once an FM is publicly available, using it as instrumentation inside a clinical or wet-lab study is *a clinical paper that happens to use a frozen FM* — and AACR 2026 has at least 18 such posters in our pathology slice alone.
+
+**AACR 2026 exemplars**: **#4163 KRONOS** (Stanford + Mahmood collabs — general-purpose spatial-proteomics FM; outperforms UNI/CA-MAE on the relevant tasks) · **#1442 Virchow2 + VIDCellTyper** (TNBC tumour-proportion from H&E without IHC, <$2k) · **#2778 DINOv2 spatial-transcriptomics joint fine-tune** (~$5–10k for the joint fine-tune; DINOv2 backbone free) · **#1444 H-optimus-0 + ABMIL** (Owkin H-optimus for Lauren-subtype gastric classification, <$2k).
+
+**Venue picks**: *Clinical Cancer Research*, *JCO CCI*, *npj Precision Oncology*, *Cancer Discovery*. **AACR Annual** (Apr); **AACR Pancreatic / SITC 2026** for indication-specific; **ASCO 2026** if endpoint is treatment-response.
+
+### 7.9 The decision tree — which lane is yours? (30 sec, 1 slide)
+
+```
+Do you have wet-lab/clinical data the FM authors did not see?
+├── YES → Lane 7 (FM-aided application). Pick a frozen FM whose pretraining
+│         corpus excludes your tissue/donor type; that gap is your contribution.
+└── NO
+    │
+    Do you have a curated dataset or held-out split no public benchmark uses?
+    ├── YES → Lane 5 (benchmark / dataset). Submit to Open Problems v2 / NeurIPS D&B.
+    └── NO
+        │
+        Can you write a model adapter / LoRA layer in PyTorch?
+        ├── YES → Lane 2 (PEFT). scGPT/Geneformer-V2/UNI2 + your task; <1% params;
+        │         ICLR/NeurIPS workshop track.
+        └── NO
+            │
+            Do you have ~$10k of cloud credit + a domain corpus?
+            ├── YES → Lane 3 (domain FM). Geneformer-V2-104M_CLcancer playbook
+            │         on your disease area.
+            └── NO
+                │
+                Strong R/Python/Bioconductor maintainer?
+                ├── YES → Lane 6 (wrapper tool). Pick the FM your audience can't
+                │         run themselves; ship a Bioconductor/scverse package.
+                └── NO
+                    │
+                    Default → Lane 1 (embeddings as features) OR Lane 4 (replication).
+                    Both <$500 with *Nature Methods* precedents.
+```
+
+### 7.10 The bridge to AACR 2026 (30 sec)
+
+In our AACR 2026 bioinfo-tools slice, **18 of 536 posters cite a named pathology FM by model name** — and almost every one of them uses the FM as a frozen encoder for a clinical readout, *not* training a new FM. **Lane 7 (FM-aided application) is the dominant pattern at AACR 2026 by an order of magnitude.** Lane 1 (embeddings as features) is the structural prerequisite for almost all of Lane 7. Lanes 2–6 are the methodological substrate for what AACR application papers will look like in 2027–2028.
+
+The honest framing for an academic comp-bio audience in 2026 is not *"can I compete with Arc Institute on training?"* (no) but *"which of these seven lanes is mine?"* — one of them, definitely, and the answer is in **your data, not your GPU budget**.
+
+---
+
+## §8. Closing — conferences as the ground truth (3 min)
 
 For a methods audience, the natural close is to flip the frame: the conferences are not where you *see* FMs in biology — they are the *evaluation surface*. Methods conferences (NeurIPS / ICLR / ICML) tell you what works on benchmarks; clinical conferences (AACR / ASCO / ESMO) tell you what works on cancer. Use AACR 2026 — happening *this April 17–22*, the week before ICLR — as the live case study.
 
-### 7.1 The two-track timeline (1 min, 1 slide)
+### 8.1 The two-track timeline (1 min, 1 slide)
 
 Two parallel timelines, deliberately scrambled together so the audience can see how often the methods track ran ahead of the clinical track.
 
@@ -357,7 +482,7 @@ Two parallel timelines, deliberately scrambled together so the audience can see 
 
 The visual punchline: **the clinical track is one year behind the methods track on awareness, and one year ahead on accountability**. The reckoning didn't come from ICLR — it came from *Nature Methods*. The deployment bar isn't being set by NeurIPS — it's being set by the FDA.
 
-### 7.2 AACR 2026 as the case study (90 sec, 1 slide)
+### 8.2 AACR 2026 as the case study (90 sec, 1 slide)
 
 The corpus from this site ([aacr-2026.pages.dev](https://aacr-2026.pages.dev/conferences/aacr-2026/)): **25 unique sessions, ~464,000 words of transcripts, 2,241 poster abstracts (~871,000 words)** — organized into five axes: agentic AI, single-cell/spatial, virtual cells, bioinfo/AI methods, clinical trials.
 
@@ -371,7 +496,7 @@ Three things AACR 2026 gives us that ICLR/NeurIPS structurally cannot:
 
 Cross-link the corpus: [AACR 2026 Virtual Cells topic](../conferences/aacr-2026/topics/virtual-cells/index.md) · [Agentic AI topic](../conferences/aacr-2026/topics/agentic-ai/index.md) · [Bioinfo/AI methods topic](../conferences/aacr-2026/topics/bioinfo-tools/index.md).
 
-### 7.3 What we knew before → what AACR 2026 changes (30 sec, 1 slide)
+### 8.3 What we knew before → what AACR 2026 changes (30 sec, 1 slide)
 
 The before/after, in one table:
 
@@ -387,9 +512,9 @@ The closing line: **the talk's thesis was that the gap between FMs and virtual c
 
 ---
 
-## §8. Appendix
+## §9. Appendix
 
-### 8.1 Likely Q&A questions + scripted answers
+### 9.1 Likely Q&A questions + scripted answers
 
 **Q: Are FMs ready for clinical deployment?**
 A: In pathology, yes — PathChat DX has FDA Breakthrough Designation, and Virchow2 / UNI2-h are in active clinical-grade evaluation. In single-cell biology, no — the linear-baseline reckoning means we don't yet have a single-cell FM whose predictions can be trusted for clinical decisions. Genomic FMs (AlphaGenome) are an intermediate case: they predict variant effects well in benchmark settings but have not been deployed against clinical decision-making at scale.
@@ -406,7 +531,7 @@ A: Mixed picture. Single-cell FMs (scGPT, Geneformer, UCE, scFoundation, CellPLM
 **Q: What benchmark would I actually trust?**
 A: For single-cell FMs: PerturBench `latent-additive + scGPT-embeddings` baseline is the floor; clear it first, then report your task. For pathology: Campanella et al. 2025 *Nature Communications* multi-task panel. For genomic: gnomAD-pathogenic + ENCODE/GTEx variant-effect benchmark (AlphaGenome's home territory). For protein: CASP15/16 + retro-validated novel-binder hit rates.
 
-### 8.2 Datasets, weights, code — concrete starting points
+### 9.2 Datasets, weights, code — concrete starting points
 
 **Datasets**:
 - [Tahoe-100M](https://www.tahoe.ai) — 100M cells × 1,100 drugs × 50 cell lines (Vevo / Arc Institute)
@@ -431,7 +556,7 @@ A: For single-cell FMs: PerturBench `latent-additive + scGPT-embeddings` baselin
 - [scPerturBench](https://github.com/bm2-lab/scPerturBench) — adversarial split benchmark
 - [Open Problems](https://github.com/openproblems-bio/openproblems) — community benchmark hub
 
-### 8.3 Recommended reading (~110 references, one-sentence framings)
+### 9.3 Recommended reading (~110 references, one-sentence framings)
 
 The bibliography is organized into 12 buckets. Bold = read first. URLs are direct (DOI / arXiv / Nature / GitHub). For 2026 preprints not yet in journals, the bioRxiv/arXiv link is canonical.
 
@@ -612,7 +737,7 @@ The full corpus this page draws from: [Foundation Models](../foundation-models.m
 - [ISBI 2026 pathology FM keynote](../conferences/isbi-2026/tools/mahmood-pathology-fm-keynote.md) — Mahmood's three-tier FM stack talk.
 - [JPM 2026 themes](../conferences/jpm-2026/themes.md) — the year's financial framing of FM-in-biology.
 
-### 8.4 Backup resources — extended reading list
+### 9.4 Backup resources — extended reading list
 
 A field-survey-grade list of people, venues, benchmarks, datasets, talks, critique papers, and communities to follow up on after the talk. Verified to working state as of 2026-05-12. Where a URL is uncertain it is flagged *URL unverified*.
 
@@ -710,21 +835,27 @@ A field-survey-grade list of people, venues, benchmarks, datasets, talks, critiq
 
 ---
 
-### 8.5 Timing cheat sheet
+### 9.5 Timing cheat sheet
 
 | Section | Time | Slides | Pace |
 |---|---|---|---|
 | §1 Opening | 3 min | 3 | ~60 sec/slide |
-| §2 Landscape | 4 min | 5 | ~50 sec/slide |
-| §3 Deep dives | 8 min | 10 | ~50 sec/slide |
-| §4 Crisis | 4 min | 3 | ~80 sec/slide |
-| §5 Gaps | 4 min | 3 | ~80 sec/slide |
-| §6 What to do | 3 min | 3 | ~60 sec/slide |
-| §7 Closing — AACR 2026 case study | 3 min | 3 | ~60 sec/slide |
+| §2 Landscape | 3 min | 5 | ~36 sec/slide |
+| §3 Deep dives | 7 min | 10 | ~42 sec/slide |
+| §4 Crisis | 3 min | 3 | ~60 sec/slide |
+| §5 Gaps | 3 min | 3 | ~60 sec/slide |
+| §6 What to do (5 lanes) | 3 min | 3 | ~60 sec/slide |
+| §7 Small-lab playbook (7 lanes) | 4 min | 4 | ~60 sec/slide |
+| §8 Closing — AACR 2026 case study | 3 min | 3 | ~60 sec/slide |
 | Q&A buffer | 1 min | — | — |
-| **Total** | **30 min** | **30** | — |
+| **Total** | **30 min** | **34** | — |
 
-If you're running long, cut §3 from 10 to 6 anchor models (drop UCE, STATE, AlphaGenome, ESM-3 → keep scGPT, Geneformer V2, Virchow2, Evo2). Sections §4–7 are non-negotiable — §4-6 are where the *"what can we do?"* answer lives, and §7 is where the corpus you built lives.
+Two ways to keep the talk inside 30 min:
+
+- **Option A — keep both §6 and §7 (recommended).** §6 stays at 3 min as the high-level "5 things you can do" framing; §7 spends 4 min on the resource-constrained version with real exemplars and the decision tree. Trim §2 + §3 + §4 + §5 each by ~1 min as shown above. Total: 30 min.
+- **Option B — merge §6 into §7.** Drop §6 entirely; use §7's 7-lane playbook as the whole "what comp bios do" section. Total: 27 min, leaving 3 min Q&A buffer. This is the cleanest if the audience is mostly small/academic labs.
+
+If you're still running long, cut §3 from 10 to 6 anchor models (drop UCE, STATE, AlphaGenome, ESM-3 → keep scGPT, Geneformer V2, Virchow2, Evo2). Sections §4–8 are non-negotiable — §4-7 are where the *"what can we do?"* answer lives, and §8 is where the corpus you built lives.
 
 ---
 
