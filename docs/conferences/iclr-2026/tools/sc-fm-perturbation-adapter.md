@@ -16,7 +16,15 @@ This paper attacks the single-cell perturbation-prediction problem by *re-using*
 
 ## How it works
 
-A drug-conditional adapter — fewer than 1 % of the original foundation-model parameters — is inserted on top of the pretrained single-cell LM and trained on a limited perturbation dataset. The adapter encodes molecular structure (likely a SMILES-conditioned or molecular-graph projection — TBD-verify against camera-ready) and modulates the cell-token representations of the base model. At inference, the model takes a control-cell embedding and a query drug, and predicts the perturbed expression profile zero-shot — even for unseen drugs and unseen cell types.
+**Core idea.** Freeze a pretrained single-cell foundation model (scGPT / Geneformer / scFoundation / scMulan-class) and insert a small drug-conditional adapter (<1 % of base parameters) that modulates cell-token representations conditional on a query drug — preserving pretrained cell knowledge while learning the perturbation map.
+
+**Inputs / outputs.** Inputs are (a) a control single-cell expression profile / token sequence and (b) a query drug representation (SMILES or molecular graph — TBD-verify against camera-ready); output is the predicted perturbed expression profile.
+
+**Key innovation.** Prior perturbation predictors fall into two camps: train-from-scratch supervised models (scGen, CPA, GEARS, ChemCPA) that don't leverage the cell-knowledge encoded in foundation-model pretraining, and full-fine-tune approaches that overfit on small perturbation datasets. The adapter-based approach gives zero-shot generalisation to *unseen* drugs and *unseen* cell lines at <1 % trainable-parameter cost — the key gap closed.
+
+**Parameters / training details.** Adapter size: <1 % of base FM parameters. Base FMs: scGPT, Geneformer, scFoundation, scMulan-class (multiple base models swept). Training data: limited perturbation datasets (Perturb-seq / drug-screen-class). The adapter projects molecular structure into the FM's cell-token modulation space.
+
+**Canonical experiment.** Across multiple zero-shot evaluation scenarios — held-out drugs and held-out cell lines — the adapter reports state-of-the-art performance vs scGen / CPA / GEARS baselines, with the headline gains concentrated in *few-shot and zero-shot generalisation to new cell types* (TBD — exact per-task PCC / MMD from camera-ready). The Nature Methods 2025 Csendes et al. linear-baseline caveat applies: any deep-perturbation claim should be checked against the simple baselines.
 
 ## Headline benchmarks
 

@@ -15,6 +15,16 @@ The Secondary Findings list — first published 2013 with 56 genes, now at **v3.
 
 Framework discussion: (a) actionability criteria — clinical-management change must be available, validated, and meaningful; (b) penetrance thresholds — minimum age-of-onset-adjusted penetrance for inclusion; (c) gene-list maintenance cadence vs framework-based opt-in; (d) pediatric reporting framing — should adult-onset cancer-predisposition genes (BRCA, Lynch) be reported in pediatric WGS at all? Cross-references ClinGen Hereditary Cancer VCEPs for gene-disease validity backbone.
 
+## Lab-translation deep dive
+
+**Validation requirements.** SF reporting requires the lab to validate the same genes on the same sample to the same depth / completeness as the primary indication — there is no half-validated SF tier. Practical floor: ≥20x at >99% of coding bases for the entire 81-gene v3.3 list, with explicit PMS2 / PMS2-pseudogene disambiguation (a perennial SF-list bioinformatics failure mode), PMS2CL handling, MSH2 inversion detection, and SMN1/SMN2 distinguishing capability for any genes with paralog issues. Validation packages must include exon-level CNV detection for relevant genes (BRCA1, BRCA2, MLH1, MSH2, MSH6, PMS2, EPCAM).
+
+**Lab-stack changes.** WGS labs absorb SF reporting more easily than panel / exome labs because coverage is uniform; panel labs must explicitly add SF capture probes when SF is offered as opt-in. Operational adds: opt-in / opt-out consent capture at order, SF-specific curation queue, separate SF report (or clearly delineated SF section), and patient-facing return-of-results workflow for the inevitable BRCA / Lynch positive that lands on a patient consented to SF but ordered for an unrelated indication.
+
+**Regulatory / insurance.** SF reporting is in-scope under CLIA / CAP as part of any test offering SF — no separate FDA pathway. Payer coverage is the load-bearing constraint: BRCA / Lynch positives identified via SF need downstream surveillance / risk-reducing intervention coverage that often hinges on family-history criteria the patient may not meet. Equity / access is the most-cited gap.
+
+**Variant curation.** ClinGen Hereditary Cancer VCEPs are the gene-disease-validity backbone; SF v3.3 already incorporates VCEP curation. SF v3.4 framework-vs-list question (TBD pending GIM supplement) materially changes curation cadence — a framework-based SF requires per-variant actionability gating, not just per-gene inclusion.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** hereditary-cancer panel composition and universal-testing implementation sessions — the SF list is the floor below which cancer-genetics labs cannot go

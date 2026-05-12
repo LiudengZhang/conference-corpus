@@ -16,7 +16,15 @@ MedAgentGym is an interactive training-and-evaluation environment for LLM agents
 
 ## How it works
 
-Each task is encapsulated with detailed specifications, an interactive feedback channel, ground-truth checkers, and scalable trajectory-generation hooks. The team benchmarks 29 LLMs (commercial + open-source) on the environment, then trains a domain-specialised **Med-Copilot-7B** agent via multi-threaded multi-turn trajectory sampling, supervised fine-tuning, and online RL. The environment doubles as a benchmark suite and as a training loop — the standard recipe for "Gym"-class agentic infrastructure adapted to biomedical code.
+**Core idea.** MedAgentGym wraps 72,413 biomedical task instances in sandboxed, executable environments with verifiable ground-truth checkers, then uses the same environment as both an evaluation benchmark and a training loop — supervised fine-tuning plus online RL on multi-turn agent trajectories yields the Med-Copilot-7B model.
+
+**Inputs / outputs.** Inputs are natural-language biomedical task specs (e.g. "compute Kaplan-Meier survival for the high-mutational-burden cohort in this EHR slice") plus optional dataset handles; outputs are executable code, intermediate execution traces, and final answers checked against ground-truth annotations.
+
+**Key innovation.** Versus AgentClinic (NeurIPS 2025, bedside dialogue) and prior medical LLM benchmarks (MedQA, MedMCQA — single-turn QA), MedAgentGym is broader (129 categories across 12 scenarios — EHR cohort analytics, biostats, single-cell / bulk omics, medical imaging), code-centric, and explicitly trains agents — not just evaluates them.
+
+**Parameters / training details.** Base model: Qwen-2.5-7B-class for Med-Copilot-7B (TBD-verify backbone). Training: multi-threaded multi-turn trajectory sampling, SFT on filtered successful trajectories, then offline + online RL. 29 commercial + open-source LLMs benchmarked at zero-shot.
+
+**Canonical experiment.** Across the full 72k-task suite, Med-Copilot-7B reports +43.02 % gain from offline RL and +45.28 % from online RL over the SFT baseline, ultimately performing competitively with GPT-4o despite the 7B parameter budget — the headline result the paper uses to argue for the privacy-preserving open-source code-agent recipe.
 
 ## Headline benchmarks
 

@@ -17,7 +17,15 @@ Proteina-Complexa generates fully atomistic protein binders against protein and 
 
 ## How it works
 
-The base generative model extends La-Proteina, a flow-matching architecture for atomistic protein generation, with a binder-conditioning track. Pretraining uses **Teddymer**, a synthetic dataset built from domain-domain interactions of computationally predicted monomeric structures — sidestepping the experimental binder dataset bottleneck. At inference, novel test-time-compute strategies (latent generative search, normalised against fixed compute budgets) outperform classical hallucination loops. The method generalises beyond simple protein targets to small-molecule docking, enzyme design, fold-class-guided generation, and interface hydrogen-bond optimisation.
+**Core idea.** Combine a flow-matching atomistic generative model (La-Proteina) with binder-conditioning and test-time-compute optimisation, so the same pipeline emits both diverse generative samples and high-hit-rate binders refined at inference.
+
+**Inputs / outputs.** Inputs are a target structure (protein receptor, small molecule, or carbohydrate) plus optional conditioning (fold class, hot-spot residues, hydrogen-bond constraints); outputs are fully atomistic binder designs ready for downstream wet-lab validation.
+
+**Key innovation.** Prior generative binder methods split between (a) RFdiffusion-class structure-conditioned generators (trained on experimental complexes — data-bottlenecked) and (b) hallucination loops against AlphaFold/Boltz (compute-heavy, single-target). Proteina-Complexa unifies the two: pretraining on **Teddymer**, a synthetic dataset built from domain-domain interactions of computationally predicted monomers (sidesteps the experimental-complex bottleneck), plus a novel latent generative search at inference that beats classical hallucination loops under matched compute.
+
+**Parameters / training details.** Backbone: La-Proteina flow-matching architecture extended with a binder-conditioning track. Pretraining corpus: Teddymer synthetic domain-domain dataset. Test-time-compute: latent generative search normalised against fixed compute budgets. Public github release + pretrained checkpoints confirmed in NVIDIA dev-blog companion.
+
+**Canonical experiment.** On the standard PDGFR generative-binder benchmark, Proteina-Complexa reports a 63.5 % in-silico hit rate — state of the art. Wet-lab follow-up produced nanomolar binders against Nipah-virus glycoprotein and a myostatin-pathway receptor, plus the first de novo carbohydrate binders, generalising the method beyond protein-protein interfaces.
 
 ## Headline benchmarks
 

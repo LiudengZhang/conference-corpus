@@ -16,6 +16,16 @@ Three threads in one session: (1) post-INDIGO biology and post-marketing surveil
 
 Vorasidenib is a brain-penetrant dual mutant IDH1 / IDH2 inhibitor that suppresses oncometabolite D-2-hydroxyglutarate (D-2-HG), driving downstream re-expression of methylation-silenced tumor-suppressor and differentiation programs. The TTF combination rationale (per the CDA award) is that low-intensity alternating electric fields disrupt mitosis and may synergize with IDH-inhibitor-induced differentiation pressure; the program is preclinical-to-Ph1. Vaccine combinations leverage the IDH1R132H peptide (see `dkfz-idh-vaccine.md`).
 
+## Mechanism / methodology deep dive
+
+**Underlying biology.** Mutant IDH1 (R132H most common) and IDH2 produce the oncometabolite D-2-hydroxyglutarate (D-2-HG), which competitively inhibits α-KG-dependent dioxygenases including TET2 (DNA demethylation) and the KDM family (histone demethylation), producing the hypermethylator (G-CIMP) phenotype and a differentiation block. D-2-HG also suppresses local T-cell and NK function, contributing to an immunologically cold TME.
+
+**Therapeutic design.** Vorasidenib (AG-881) is an orally bioavailable, brain-penetrant dual allosteric inhibitor of mutant IDH1/IDH2, designed for CNS exposure that ivosidenib (IDH1-only) and enasidenib (IDH2-only) lack. INDIGO (NEJM 2023) used 40 mg QD in non-enhancing grade 2 IDH-mut glioma post-surgery; combination arms layer (a) TTF at 200 kHz (Optune-class) per the Wang CDA, (b) RT timing studies, and (c) IDH1R132H peptide vaccine + checkpoint.
+
+**Resistance / failure modes.** Known: incomplete D-2-HG suppression in tumor core, intra-tumoral heterogeneity of IDH activity, and second-site mutations / dimer-interface mutations conferring inhibitor resistance (documented for ivosidenib in AML, plausible in glioma). Anticipated: clonal selection of IDH-wild-type-like glioblastoma transformation under prolonged inhibition.
+
+**Translational gaps.** Optimal sequencing with RT/TMZ in higher-grade IDH-mut, biomarkers for vorasidenib responders beyond IDH-mut status, and whether 2-HG suppression genuinely improves vaccine immunogenicity are all open. TTF + vorasidenib remains preclinical → Ph1 with no efficacy readout yet.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** IDH-mut targeted-therapy biology echoed in Annual; cross-link to the IDH-mut neoantigen vaccine session.

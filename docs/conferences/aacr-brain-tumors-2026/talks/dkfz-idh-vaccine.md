@@ -16,6 +16,16 @@ Updated cohort and follow-on data from the DKFZ IDH1R132H peptide vaccine progra
 
 The vaccine is a long-peptide formulation of the IDH1R132H neoepitope, presented through HLA-DR class II to drive a tumor-selective CD4 T-cell response (the IDH1R132H mutation is a shared, truncal driver, making it a near-universal target across IDH-mut glioma). Combination arms layer PD-1 or PD-L1 blockade on top of vaccination to overcome the strongly immunosuppressive D-2-HG-driven TME — a logic that intersects with vorasidenib's ability to lower 2-HG and potentially "open" the TME for IO.
 
+## Mechanism / methodology deep dive
+
+**Underlying biology.** The IDH1R132H point mutation creates a tumor-restricted neoepitope spanning the mutated arginine-to-histidine residue, presented promiscuously on multiple HLA class II alleles (notably HLA-DR1 / DRB1 broadly) — making it one of the few truly "off-the-shelf" shared neoantigens across IDH-mut glioma. The mutation is truncal (present in essentially all tumor cells), and homozygous expression on all malignant clones makes immune editing / antigen loss biologically constrained — losing IDH-mut would also lose the oncogenic driver.
+
+**Therapeutic design.** A 20-mer synthetic long peptide spanning the IDH1R132H mutation (NOA-16 construct: p123–142 IDH1(R132H)), formulated with Montanide ISA-51 adjuvant and topical imiquimod (TLR7 agonist) at the injection site to drive class-II–restricted CD4 helper responses. Subcutaneous prime-boost schedule; combination arms add anti-PD-L1 (avelumab/atezolizumab-class) per the public NOA-16 and follow-on protocols. Specific 2026 combination cohort schedule TBD.
+
+**Resistance / failure modes.** Documented: pseudoprogression (vaccine-driven immune infiltrate mimicking tumor growth on MRI) requiring careful Rx-response distinction; modest durability of peripheral T-cell responses without boost. Anticipated escape: HLA class II downregulation on tumor cells; D-2-HG–driven local immunosuppression limiting effector trafficking; outgrowth of IDH-mut–retaining but antigen-presentation-defective subclones.
+
+**Translational gaps.** Optimal sequencing with vorasidenib (does 2-HG suppression enhance or reduce neoepitope presentation?), durability of response, and whether a class I–restricted booster could add CD8 effector activity remain undefined.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** IDH-mut and neoantigen-vaccine sessions in San Diego pick up the same thread.

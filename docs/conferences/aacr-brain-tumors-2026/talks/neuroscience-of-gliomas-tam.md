@@ -16,6 +16,16 @@ The two halves of glioma neuro-biology — (a) neurons-to-glioma synaptic integr
 
 Methodology spans patch-clamp electrophysiology in tumor slices (neuron-glioma synapses), optogenetic / chemogenetic perturbation of cortical activity in glioma-bearing mice, intravital imaging of tumor-microtube networks, single-cell and spatial atlases of TAM states across glioma grades and treatment status, and TAM-reprogramming pharmacology (CSF-1R inhibitors, complement / TREM2-class targets). Window-of-opportunity / Phase-0 trials testing circuit-modulator agents alongside standard of care are referenced as the clinical translation layer.
 
+## Mechanism / methodology deep dive
+
+**Underlying biology.** Two converging axes: (1) Neurons form bona fide AMPA-receptor-mediated glutamatergic synapses onto glioma cells (Monje, Venkatesh, Winkler 2019 Nature trio), with electrical activity also coupling glioma cells via connexin-43–containing gap junctions in tumor-microtube networks (Winkler). Activity-dependent secretion of NLGN3 and BDNF drives proliferation. Dopaminergic and serotonergic inputs (Venkatesh) extend the framework beyond glutamate. (2) Microglia and tumor-associated macrophages (the dominant immune infiltrate, 30–50% of GBM mass) occupy a spectrum of disease-associated states (Joyce, Bowman, Quail single-cell atlases) characterized by TREM2, SPP1, APOE, MARCO, and CSF1R-dependent survival programs.
+
+**Therapeutic design.** Circuit-modulator side: gabapentinoids (gabapentin, perampanel — AMPAR antagonist), levetiracetam (SV2A), tested as add-on to standard of care in window-of-opportunity / Phase-0 designs. TAM side: small-molecule CSF-1R inhibitors (pexidartinib, BLZ945-class), TREM2 antibodies, complement (C1q, C5aR) blockade, and antibody-drug conjugates against TAM markers; combinations with CAR-T (TAM reprogramming as adjuvant to relieve CNS T-cell exhaustion) are an early translational layer.
+
+**Resistance / failure modes.** CSF-1R monotherapy has failed in randomized GBM trials (BLZ945, pexidartinib) due to TAM-state plasticity — depletion is incomplete and surviving TAMs re-skew toward immunosuppressive phenotypes. Circuit-modulator trials are limited by single-agent effect size and seizure-confounded endpoints.
+
+**Translational gaps.** Whether neural-circuit + TAM combinations are additive vs redundant, and whether either translates to a randomized PFS/OS signal, remains unresolved.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** AACR Annual neuro-onc and TME sessions extend Monje, Venkatesh, Joyce, Quail talks four weeks later.

@@ -25,6 +25,22 @@ OS HR 0.76 (95% CI 0.60–0.96, one-sided p=0.0096). Median OS 42.3 vs 35.0 mont
 
 Radium-223 (Xofigo): alpha-emitting calcium mimetic, targets osteoblastic bone metastases. Approved 2013 for symptomatic CRPC bone-mets monotherapy (ALSYMPCA OS positive). Enzalutamide: 2nd-gen androgen receptor inhibitor. PEACE-3 is the first Ph3 to combine the alpha-emitter with an ARPI **and** rigorous bone protection — the design lesson learned from ERA-223.
 
+## Trial design deep dive
+
+**Study architecture.** Open-label academic-sponsored (EORTC) Ph3, 1:1 randomization, 446 bone-metastatic mCRPC patients with asymptomatic / mildly symptomatic disease. Experimental arm: enzalutamide 160 mg PO daily + radium-223 55 kBq/kg IV q4w × 6 cycles; control arm: enzalutamide monotherapy. Protocol amended mid-trial after ERA-223 (2018) to mandate a bone-protective agent (denosumab 120 mg SC q4w or zoledronic acid 4 mg IV q4w) in both arms. Stratification factors: prior docetaxel for mHSPC, opioid use for cancer pain, geographic region. 
+
+**Endpoint definitions.** Primary: rPFS (PCWG-modified RECIST, including bone-scan lesion counts and soft-tissue progression) — readout ESMO 2024. Key secondary in this GU readout: OS (time from randomization to death from any cause, one-sided alpha 0.025). 
+
+**Key subgroup analyses.** 
+- Prior docetaxel for mHSPC vs ARPI-naive — OS benefit reportedly consistent (TBD magnitude per stratum).
+- Extent of bone disease (≤6 lesions vs >6) — TBD; ALSYMPCA precedent suggests larger benefit in higher-burden disease.
+- Bone-protective agent received (denosumab vs zoledronic acid vs none pre-amendment) — fracture-rate equivalence is the headline safety finding.
+- Visceral metastases at baseline — small subset; Ra-223 mechanism is bone-restricted.
+
+**Comparator context.** Enza monotherapy is a standard 1L mCRPC option for ARPI-naive patients (post-PREVAIL/AFFIRM). PEACE-3 positions Ra-223 as an additive bone-directed agent rather than competing with PSMA RLT for the soft-tissue compartment.
+
+**FDA / regulatory implications.** Investigator-initiated EORTC trial; Bayer is expected to pursue a label expansion for combination use with enzalutamide + bone-protective agent. No PDUFA on the horizon — filing strategy TBD. NCCN prostate update likely to elevate enza + Ra-223 (with mandatory bone-protective agent) as a Category 1 option in bone-mets mCRPC. Filing in EU via EMA also anticipated given EORTC sponsorship.
+
 ## Discussant takeaway
 
 Discussant (Karim Fizazi, Gustave Roussy) framed it as a "rehabilitation of radium-223" in the modern ARPI era. Stephen Freedland (Cedars-Sinai) emphasized the mandatory bone-protective agent as a non-negotiable protocol element. Open question: how this competes against ¹⁷⁷Lu-PSMA-617 (PSMAfore, PSMAaddition) for the same bone-mets niche.

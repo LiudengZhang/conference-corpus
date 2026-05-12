@@ -16,6 +16,16 @@ Plenary keynote arguing that glioblastoma growth, invasion, and recurrence are o
 
 Mouse models of glioma initiation and recurrence, paired with single-cell and spatial profiling of human glioma specimens, used to identify injury-program transcription factors and downstream effectors active in tumor cells, reactive astrocytes, and TAMs. The Parrinello lab's prior work on perivascular niche and stem-like glioma cell biology feeds the model. The keynote frames neurosurgical resection cavities and radiation-injured peritumoral tissue as a permissive niche for residual disease.
 
+## Mechanism / methodology deep dive
+
+**Underlying biology.** Normal CNS injury (stab wound, stroke, demyelination) activates a stereotyped transcriptional program across astrocytes (reactive astrogliosis: GFAP, vimentin, LCN2), oligodendrocyte-lineage cells (OPC mobilization, PDGFRA re-expression), and microglia/TAMs (DAM-like states: TREM2, APOE, SPP1), governed by core TFs including STAT3, AP-1 (FOS/JUN), C/EBP family, and NF-κB. Parrinello's model: gliomagenesis hijacks these same programs — the MES-like glioma state in the Suva framework is, mechanistically, an injury-program state — and surgical / radiation injury at the resection cavity creates a permissive niche that selects for and expands injury-program-positive residual tumor cells.
+
+**Therapeutic design.** Not a drug per se but a target-discovery framework. Tractable nodes nominated by the Parrinello lab and aligned work include: STAT3 (clinical-grade inhibitors available), C/EBPβ, AP-1 modulators, and injury-niche–restricted ligands (e.g., osteopontin/SPP1, CHI3L1). The peri-surgical / peri-RT window is the proposed clinical entry point — interrupting injury-program induction during the 2–4 week post-op window.
+
+**Resistance / failure modes.** Injury-program activation is functionally redundant (multiple TF inputs converge on overlapping effector programs), making single-node pharmacology likely to be evaded; injury-program-positive cells are also intrinsically more resistant to chemo/RT (slow-cycling, stem-like).
+
+**Translational gaps.** No clinical trial yet specifically targets the peri-surgical injury window with an injury-program inhibitor; biomarkers to identify injury-program-high tumors prospectively are unproven.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** the injury-program framing dovetails with Suva-lineage cell-state biology and the Monje neural-circuit thread.

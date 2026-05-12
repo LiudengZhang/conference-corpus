@@ -15,7 +15,15 @@ The paper asks whether *in-context learning* — the well-known LLM phenomenon w
 
 ## How it works
 
-The methodology is a paired controlled experiment: identical symbolic reasoning tasks are encoded both in natural-language form (presented to a language model like Qwen3) and in genomic form (presented to Evo2). The in-context demonstration count is varied; ICL is measured as task accuracy versus number of demonstrations. The log-linear scaling is the load-bearing result — it suggests Evo2's pretraining on 9.3 trillion nucleotides has induced general-purpose pattern-induction capabilities, not just sequence-specific memorisation.
+**Core idea.** Use a paired controlled-experiment design: encode identical symbolic reasoning tasks in two forms — natural-language (fed to a language model) and genomic-sequence (fed to Evo2) — and test whether the genomic FM exhibits in-context learning as the number of in-context demonstrations grows.
+
+**Inputs / outputs.** Inputs are k-shot demonstrations of a symbolic reasoning task plus a query, encoded either as natural-language tokens or as DNA bases; outputs are next-token predictions decoded back to task answers, scored against ground truth.
+
+**Key innovation.** Prior genomic FM evaluations (Nucleotide Transformer, Caduceus, Hyena-DNA) probed *task-specific* downstream performance after fine-tuning; this paper is the first systematic evidence that genomic next-token predictors exhibit *organically emergent* in-context learning — the LLM-style scaling phenomenon — without any task-specific tuning. The comparison baseline is a modern LLM (Qwen3-class).
+
+**Parameters / training details.** Evaluation target: Evo2 (Arc Institute, Hyena-based, 40B parameters, 1Mb context, pretrained on 9.3 trillion nucleotides — *Nature* March 2026). LLM baseline: Qwen3-class. Variable swept: number of in-context demonstrations. Metric: task accuracy vs demonstration count, log-linear fit.
+
+**Canonical experiment.** On the symbolic-reasoning task suite encoded in both forms, Evo2 shows log-linear gains in pattern-induction accuracy as the number of in-context demonstrations grows — mirroring the canonical LLM ICL scaling curve. This is the load-bearing result: it argues Evo2's pretraining has induced general-purpose pattern-induction capabilities rather than only sequence-specific memorisation (TBD — exact accuracy curves from workshop PDF).
 
 ## Headline benchmarks
 

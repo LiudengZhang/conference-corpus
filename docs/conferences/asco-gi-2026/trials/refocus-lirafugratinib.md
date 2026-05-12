@@ -20,6 +20,23 @@ Phase 2 expansion showed durable confirmed responses in FGFRi-naive FGFR2-fusion
 
 Lirafugratinib (RLY-4008) is an irreversible, highly selective FGFR2 inhibitor designed using Relay's motion-based drug design platform to discriminate FGFR2 from FGFR1/3/4. Selectivity avoids the FGFR1-driven hyperphosphatemia and FGFR3/4-driven dermatologic/GI toxicity of pan-FGFR agents.
 
+## Trial design deep dive
+
+**Study architecture.** Phase 1/2 single-arm, open-label, multi-cohort. Phase 2 expansion enrolled ~100 FGFRi-naive FGFR2-fusion/rearrangement intrahepatic CCA patients (separate cohort for FGFRi-pretreated patients with acquired resistance mutations). RP2D 70 mg QD. No randomization; historical reference frame is pemigatinib (FIGHT-202) and futibatinib (FOENIX-CCA2).
+
+**Endpoint definitions.** Primary ORR by BICR per RECIST 1.1; secondary DoR, PFS, safety. Confirmed responses (≥4 weeks separation) required for ORR primary analysis. Resistance-mutation coverage (FGFR2 V564 gatekeeper, molecular brake mutations N549/E565) tracked in pretreated cohort. AE grading by CTCAE v5.0 with prespecified hyperphosphatemia and ocular-event categorical reporting.
+
+**Key subgroup analyses.**
+
+- **FGFR2 fusion partner:** BICC1 vs non-BICC1 partners reported separately — ORR consistent across partner classes per Relay program notes.
+- **Number of prior lines:** 2L vs 3L+ — durability reported strongest in earlier-line; TBD on stratified ORR numbers.
+- **Co-occurring TP53 / CDKN2A mutations:** TBD on co-mutation subgroup analysis.
+- **Hyperphosphatemia rate (Grade ≥3):** reported markedly lower than pemigatinib/futibatinib historical (~25-30% Grade ≥3 with pan-FGFR); TBD on exact lirafugratinib numbers but framed as low-single-digit Grade ≥3.
+
+**Comparator context.** Pemigatinib (Pemazyre, Incyte) and futibatinib (Lytgobi, Taiho) are the two approved 2L+ FGFR2-fusion CCA agents with ORR ~37-42% and significant FGFR1-driven toxicity. Lirafugratinib's class-differentiating premise is tolerability + V564 resistance-mutation coverage.
+
+**FDA / regulatory implications.** Lirafugratinib carries FDA Breakthrough Therapy Designation in FGFR2-fusion CCA (granted 2023). NDA filing expected H2 2026 based on REFOCUS Phase 2 data; accelerated approval pathway. Head-to-head vs pemigatinib not run — comparison will rely on cross-trial framing.
+
 ## Discussant takeaway
 
 Robin Kate Kelley / Ghassan Abou-Alfa anchored the hepatobiliary discussant slot. Framing: FGFR2 CCA is moving from a single first-generation TKI era (pemigatinib / futibatinib) into a class-differentiated era where AE tolerability and resistance-mutation coverage (gatekeeper V564, molecular brake mutations) become the decision axis.

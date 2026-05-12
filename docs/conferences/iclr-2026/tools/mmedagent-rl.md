@@ -15,7 +15,15 @@ MMedAgent-RL coordinates a team of specialist LLM-based agents — each pinned t
 
 ## How it works
 
-Each specialist agent is initialised from a domain-tuned LLM (radiology VLM, pathology VLM, EHR-trained LLM). A planner agent issues sub-queries, aggregates evidence, and emits the final diagnosis or recommendation. RL is used to optimise *which* specialist gets called *when*, using verifiable medical reasoning tasks (likely multi-modal MedQA-class benchmarks) as reward. The methodology aligns with the broader 2026 wave of agent-RL papers (AgentFlow, GLM-Agent) but ports the recipe into the clinical-imaging multi-agent setting.
+**Core idea.** Coordinate a team of modality-specialist LLM agents (radiology VLM, pathology VLM, EHR-tuned LLM, free-text clinical-note LLM) via a planner agent, and use reinforcement learning to optimise the *coordination policy* — when each specialist is invoked and how their evidence is aggregated.
+
+**Inputs / outputs.** Inputs are multi-modal clinical cases (CT/MRI volumes, whole-slide pathology, structured EHR, free-text notes); outputs are the planner's final diagnosis or recommendation plus the agent dialogue trace explaining the reasoning chain.
+
+**Key innovation.** Single-agent medical VLMs (Med-PaLM-M, LLaVA-Med, RadFM) collapse all modalities into one backbone; prior multi-agent medical systems (AgentClinic, MedAgent) hard-code the coordination policy. MMedAgent-RL learns the coordination policy via RL on verifiable medical reasoning rewards — the recipe shared with the 2026 AgentFlow / GLM-Agent wave, ported into the clinical-imaging multi-agent setting (TBD-verify against camera-ready for the exact RL algorithm — likely GRPO / PPO-class).
+
+**Parameters / training details.** Specialist agents initialised from domain-tuned VLMs / LLMs (TBD — specific backbones from camera-ready). RL reward: verifiable multi-modal medical-reasoning task accuracy. Training environment: multi-modal MedQA-class benchmarks (TBD-verify).
+
+**Canonical experiment.** The paper benchmarks MMedAgent-RL against single-agent VLM baselines and rule-coordinated multi-agent baselines on multi-modal medical reasoning suites; Paper Copilot / Bohrium ICLR 2026 digests cluster it with MedAgentGym, M3CoTBench, MedVLSynther, and CARE as the main-track medical-AI cohort, with the headline accuracy numbers in the camera-ready (TBD — full parse).
 
 ## Headline benchmarks
 

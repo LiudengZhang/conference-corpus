@@ -27,6 +27,22 @@ Positive DFS per topline. Trade-press synthesis: DFS HR ~0.5 range in the ctDNA+
 
 Atezolizumab: anti-PD-L1 (Tecentriq). The mechanism is not the story here — IMvigor011 is a **design-driven** practice change, not a drug-driven one. The story is the ctDNA assay (tumor-informed, in this trial Signatera-anchored) as the patient-selection gate. The same paradigm read out positive in CRC adjuvant (DYNAMIC, GALAXY) and is in Ph3 in HR+ breast (LEADER, c-TRAK TN), but bladder MIBC is the first to land it for IO specifically.
 
+## Trial design deep dive
+
+**Study architecture.** Open-label Ph3, 1:1 randomization, ~495 ctDNA-positive post-cystectomy MIBC patients (from a screened pool of ~1,200 high-risk MIBC patients undergoing serial ctDNA surveillance). Surveillance phase: tumor-informed Signatera assay drawn at pre-defined timepoints (typically 4-, 12-, 24-week post-cystectomy and quarterly thereafter) for up to ~20 months. Randomization triggered on first positive ctDNA result with no radiographic disease. Experimental arm: atezolizumab 1,200 mg IV q3w × up to 12 months; control arm: observation with continued ctDNA monitoring. Stratification factors (per ClinicalTrials.gov): pathologic stage at cystectomy, prior neoadjuvant chemotherapy receipt, PD-L1 status. Blinding: open-label. 
+
+**Endpoint definitions.** Primary: DFS in the randomized ctDNA+ population (time from randomization to recurrence or death). Key secondaries: OS, ctDNA clearance rate (proportion achieving undetectable ctDNA after start of atezo), DFS by PD-L1, safety. The ctDNA-clearance endpoint is unusual for a pivotal IO trial and may anchor future surrogate-endpoint discussions. 
+
+**Key subgroup analyses.** 
+- Prior neoadjuvant chemotherapy (yes/no) — DFS benefit reportedly consistent; addresses the IMvigor010 negative-trial overlap concern.
+- PD-L1 IC2/3 vs <IC2 — TBD; IMvigor010 had a PD-L1 subgroup signal.
+- Pathologic stage at cystectomy (ypT2 vs ypT3-4 vs N+) — TBD; higher-stage patients have higher ctDNA-positivity rate.
+- Time-to-ctDNA-positivity (early vs late post-cystectomy) — biomarker subgroup; TBD.
+
+**Comparator context.** Observation has been the SOC for ctDNA+ but radiographically NED MIBC post-cystectomy. Nivolumab adjuvant (CheckMate 274) is approved for all-comer post-cystectomy MIBC with high-risk features; IMvigor011 carves out a smaller, more enriched population using ctDNA, addressing the over-treatment problem that sank IMvigor010 (negative in all comers).
+
+**FDA / regulatory implications.** Roche/Genentech sBLA filing for ctDNA-guided adjuvant atezo expected 2026, with the Signatera assay (or comparable tumor-informed test) as a co-developed companion diagnostic. Regulatory precedent — FDA has not previously approved a ctDNA-trigger indication, so this would be a first-in-class label. NCCN bladder anticipated to add as an option for ctDNA+ post-cystectomy MIBC; reimbursement for serial Signatera testing is the practical adoption gate.
+
 ## Discussant takeaway
 
 Discussant (Andrea Apolo, NCI) framed it as the **proof-of-concept for ctDNA-guided adjuvant IO** — generalizes beyond bladder into the broader perioperative IO question (lung ALCHEMIST, melanoma adjuvant). Matthew Galsky emphasized that the assay infrastructure (Signatera turnaround, payer coverage) is now the gating issue, not the science.

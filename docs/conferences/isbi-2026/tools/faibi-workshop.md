@@ -21,6 +21,18 @@ Workshop-format: invited talks + short oral / poster papers (typical FAIBI 2026 
 
 TBD — workshop-level synthesis; named-tool papers from the program will get individual tool pages where artifacts are released. Targeted: any oncology-imaging FM update, any pathology FM evaluation paper, any radiology FM with a cancer subgroup analysis.
 
+## How it works
+
+**Core idea.** FAIBI is a curation venue, not a single methodology — but the workshop's structure operationalizes a shared methodological program across pathology, radiology, microscopy, and multimodal foundation models: SSL pretraining at scale, downstream task adaptation with minimal labels, and clinical-translation-aware evaluation (fairness, OOD robustness, regulatory pathway).
+
+**Inputs / outputs.** Inputs (across the program): H&E whole-slide images, CT / MR / US volumes, microscopy stacks, and paired text / molecular labels. Outputs span the full medical-imaging task surface — classification, segmentation, generation, retrieval, captioning, agentic workflows — with a common emphasis on **transfer to oncology-imaging endpoints** under the Jia Wu co-organizer steering.
+
+**Key innovation.** The cancer-center-organized workshop slot is the load-bearing methodological framing: FAIBI 2nd edition explicitly biases toward FM evaluations that include cancer-relevant cohorts and outcomes (lung CT screening cohorts, breast mammography reader studies, pathology survival prediction, radiogenomics) rather than generic medical-imaging benchmarks. The implicit hypothesis tested across the program is that domain-pretrained FMs + cancer-specific adaptation outperform generalist medical FMs on oncology tasks.
+
+**Parameters.** Workshop-level — papers span small (single-modality, sub-10M parameter) adaptations to large (>1B-parameter foundation-model) updates. Typical FAIBI 2026 program likely contains ~10–20 short oral / poster papers across pathology / radiology / multimodal tracks.
+
+**Canonical example.** A representative FAIBI 2nd-edition paper type: take a published pathology FM (UNI, CHIEF) or radiology FM (Med-PaLM-class, BiomedCLIP), apply minimal adaptation (linear probe, LoRA, few-shot prompting) to a cancer-axis downstream task (lung-CT nodule malignancy, breast-MRI lesion classification, pathology-based survival prediction), and report performance with fairness / OOD / radiologist-reader-study comparison. Named-tool releases from the workshop graduate to individual tool pages.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** indirect via Jia Wu / MD Anderson radiomics line; pathology FM updates cross-link to [CHIEF](../../aacr-2026/topics/bioinfo-tools/tools/chief.md), [UNI](../../aacr-2026/topics/bioinfo-tools/tools/uni.md), [Prov-GigaPath](../../aacr-2026/topics/bioinfo-tools/tools/prov-gigapath.md)

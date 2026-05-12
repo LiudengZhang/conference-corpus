@@ -25,6 +25,22 @@ Positive rPFS per AZ topline (pre-meeting press release) and confirmed at the GU
 
 Capivasertib: oral pan-AKT (1/2/3) inhibitor. Approved 2023 (US) for HR+/HER2- breast cancer with PIK3CA/AKT1/PTEN alterations (CAPItello-291). PTEN loss is one of the most common genomic alterations in prostate cancer (~40-50% of metastatic disease) and drives AKT-pathway activation. Mechanistically the rationale parallels the breast-cancer CAPItello-291 success — biomarker-selected AKT inhibition with an established backbone.
 
+## Trial design deep dive
+
+**Study architecture.** Double-blind, placebo-controlled Ph3, 1:1 randomization, ~1,000 PTEN-deficient mHSPC patients. Experimental arm: capivasertib 400 mg PO BID (4 days on / 3 days off) + abiraterone 1,000 mg PO daily + prednisone 5 mg BID + ADT; control arm: matched placebo + abi + prednisone + ADT. PTEN-deficiency required by central immunohistochemistry on archival or fresh tumor at screening. Stratification factors (per ClinicalTrials.gov): disease volume (high vs low per CHAARTED), prior docetaxel for mHSPC, geographic region. 
+
+**Endpoint definitions.** Primary: rPFS by investigator (PCWG3-modified RECIST). Key secondaries: OS, time to PSA progression, time to symptomatic skeletal event, ORR, safety, PRO (FACT-P, BPI-SF). 
+
+**Key subgroup analyses.** 
+- Disease volume (high vs low) — TBD; LATITUDE backbone has greatest benefit in high-volume.
+- Prior docetaxel for mHSPC — TBD.
+- PTEN IHC depth (complete vs partial loss) — central pathology continuum; biomarker-grading analysis is the key translational readout.
+- De novo vs metachronous mHSPC — TBD.
+
+**Comparator context.** Abiraterone + prednisone + ADT is the post-LATITUDE intensification SOC for high-volume mHSPC and a common 1L choice across volumes. CAPItello-281 layers capivasertib on top, parallel to how PSMAaddition adds RLT to the ADT + ARPI doublet — but for a biomarker-selected ~40–50% of patients.
+
+**FDA / regulatory implications.** AZ sNDA filing for capivasertib + abi in PTEN-deficient mHSPC anticipated 2026; FDA action likely H2 2026 / 2027 contingent on OS maturity. Companion-diagnostic strategy is the regulatory wildcard — AZ partnered with Roche/Ventana for the breast-cancer PTEN IHC; whether prostate uses the same assay (or a genomic loss readout) is TBD. NCCN prostate guideline anticipated to require PTEN testing in mHSPC if FDA approves.
+
 ## Discussant takeaway
 
 Discussant (Stephen Freedland, Cedars-Sinai) framed it as the **first prospective biomarker-selected Ph3 win in mHSPC** — the field has long talked about precision-oncology in prostate cancer but trials like CHAARTED, LATITUDE, ARASENS treated all comers. Fizazi himself emphasized that PTEN-IHC testing infrastructure is the next bottleneck: most US labs do not routinely run prostate PTEN IHC.

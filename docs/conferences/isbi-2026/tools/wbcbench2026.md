@@ -23,6 +23,18 @@ Single-cell crops or full-FOV bone-marrow / peripheral-blood images labeled acro
 - Class-balanced F1 / balanced accuracy headline metrics
 - Top-1 winner + any baseline-beating workshop paper are candidate tool-page entries (TBD post-IEEE-Xplore indexing)
 
+## How it works
+
+**Core idea.** WBCBench2026 evaluates fine-grained white-blood-cell classification on peripheral-blood and bone-marrow smears under strict **patient-level held-out splits** and **class-balanced metrics** — two evaluation-discipline choices specifically aimed at exposing the over-fitting / inflated-accuracy failures that plagued earlier WBC-classification benchmarks.
+
+**Inputs / outputs.** Inputs: single-cell crops or full-FOV images (typically 100x oil-immersion microscopy of stained smears at 224x224 to 512x512 per cell crop, or larger for FOV-level inputs). Outputs: WBC morphological class (neutrophil, lymphocyte, monocyte, eosinophil, basophil, plus blast / atypical-lymphocyte / promyelocyte / metamyelocyte / band-cell categories relevant to leukemia diagnosis — exact class count TBD pending challenge writeup).
+
+**Key innovation.** Patient-level partitioning of train / val / test (no FOV from the same patient appears in multiple splits) plus class-balanced macro-F1 / balanced accuracy as the leaderboard metric. Pre-2024 hematopathology benchmarks routinely used FOV-level splits — a model could memorize per-patient staining / scanner / cell-density signatures and over-report performance. WBCBench2026 forecloses that shortcut and surfaces rare-blast-class performance, which is the clinically critical regime.
+
+**Parameters.** Submission-dependent; typical strong baselines are ResNet-50 / EfficientNet / Swin-Tiny classifiers fine-tuned from ImageNet or from a pathology / microscopy FM checkpoint. The benchmark itself is parameter-agnostic — any model that produces a probability vector over WBC classes can submit.
+
+**Canonical example.** Input a single-cell crop of a candidate blast from a bone-marrow smear. The model outputs probabilities across all morphological classes; the leaderboard scores macro-F1 across classes (weighting rare blast / atypical classes equally with abundant neutrophil / lymphocyte classes). Held-out test patients are drawn from institutions / scanners not present in training, so model robustness to domain shift is implicitly tested.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** connects to hematologic-malignancies dossiers; downstream evaluation candidate for general pathology FMs ([CHIEF](../../aacr-2026/topics/bioinfo-tools/tools/chief.md), [UNI](../../aacr-2026/topics/bioinfo-tools/tools/uni.md))

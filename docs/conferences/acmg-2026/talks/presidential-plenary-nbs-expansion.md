@@ -15,6 +15,16 @@ The plenary is the field's coordinating moment on **how, when, and with what con
 
 Panel format combining cohort readouts (BabySeq2 randomized return-of-results trial; GUARDIAN's >100k-infant screening pilot; NBSeq; EarlyCheck) with framework discussion of the ACMG/AMP variant-classification thresholds appropriate for asymptomatic newborns, the role of the ACMG Secondary Findings v3.3 list, and gene-list selection (actionable pediatric-onset only, vs adult-onset cancer-predisposition genes reported deferred-to-adulthood vs reported-to-parents).
 
+## Lab-translation deep dive
+
+**Validation requirements.** Moving newborn screening from biochemical panels to WGS requires net-new CLIA/CAP validation packages for every step the pilots formalized as research-grade: maternal-blood / heel-stick DNA extraction reproducibility at neonatal volumes, library-prep performance on low-input gDNA, WGS coverage uniformity across the actionable gene list (≥20x median, ≥10x at >99% of targeted bases as a working floor — formal NBS-WGS minimums TBD pending plenary recommendations), and bioinformatics-pipeline validation against a contrived NBS truth set. The four pilots (BabySeq2, GUARDIAN, NBSeq, EarlyCheck) used overlapping but non-identical gene lists, which is itself a validation-portability problem.
+
+**Lab-stack changes.** Existing biochemical NBS labs (state public-health labs) are not configured for clinical WGS turnaround; the plenary's translation question is whether NBS-WGS sits in (a) the existing state-public-health lab footprint with new sequencer capex, (b) a centralized reference-lab model (akin to current expanded carrier screening), or (c) hybrid biochemical-first / WGS-reflex. TAT expectations (current biochemical NBS: 5–7 days from heel stick) are a hard constraint that shapes the answer.
+
+**Regulatory / insurance.** No CMS coverage policy for routine newborn WGS as of 2026; state Medicaid coverage is patchwork. FDA's stance on NBS-WGS as a screening (not diagnostic) modality is unresolved. ACMG SF v3.3 interaction is the load-bearing payer question.
+
+**Variant curation.** Requires ClinGen-VCEP-aware automated triage at NBS scale (millions of births/year if universal). Manual sign-out per infant is not operationally viable; the workflow must be variant-prefiltered, with human review only for borderline P/LP and any reportable SF variant. Specific automation thresholds TBD pending plenary.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** Pediatric Cancer Predisposition Working Group sessions (Apr 17–22, Chicago) — same gene set, downstream of newborn-WGS reporting decisions

@@ -21,6 +21,18 @@ The shared recipe: pretrain a large image encoder (often initialized from SAM / 
 
 TBD — synthesis-level. Anchor benchmarks across the SAM-medical line: BraTS (brain tumor MR), KiTS (kidney CT), LiTS (liver CT), TotalSegmentator (multi-organ CT), MSD (Medical Segmentation Decathlon), AMOS (abdominal multi-organ). Specific ISBI 2026 paper-level deltas extracted into per-tool pages once IEEE Xplore indexes proceedings (~early May 2026).
 
+## How it works
+
+**Core idea.** Promptable segmentation foundation models replace per-task / per-dataset segmentation training with a single large model that produces segmentation masks **conditional on a prompt** (point, box, mask, or text). Medical adaptations (MedSAM, SegVol, SAM-3-medical successors) port this promptable paradigm to CT / MR / US / pathology / microscopy, where the prompt encodes clinician intent (point at a tumor, click on an organ, describe an anatomical structure).
+
+**Inputs / outputs.** Inputs: an image (2D slice or 3D volume) plus one or more prompts (points with positive/negative polarity, bounding boxes, coarse masks, or natural-language descriptions like "left kidney"). Outputs: a binary or multi-class segmentation mask aligned with the prompt; for some variants, ranked candidate masks with quality scores.
+
+**Key innovation.** Three shifts from per-dataset U-Nets: (1) pretraining on >1M masks across heterogeneous medical modalities so the same model handles CT, MR, US, and pathology, (2) prompt conditioning that decouples model capability from task specification, (3) zero-shot generalization to anatomical structures never explicitly labeled in training. SegVol-line models extend this to native 3D promptable volumetric segmentation, closing the 2D-to-3D gap that hampered earlier SAM-medical adaptations.
+
+**Parameters.** SAM-3 / MedSAM scale: ViT-H/16 image encoder (~600M parameters), small prompt encoder (<10M), mask decoder (~10M). SegVol-class 3D: typically 100–300M parameters with patch-based volumetric processing. Training compute: thousands of GPU-days on multi-million-mask corpora.
+
+**Canonical example.** Tumor segmentation on a 3D liver CT: clinician places a single positive point inside the tumor and an optional negative point on adjacent vessel; SegVol returns a 3D tumor mask in seconds; mask quality measured against the LiTS / KiTS held-out annotation. BraTS brain-tumor canonical example: text prompt "enhancing tumor" applied to a 3D MRI → segmentation mask scored against BraTS multi-region ground truth.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** indirect — tumor segmentation feeds radiomics and treatment-response endpoints; no direct pathology-FM crosswalk but cross-modal generalist medical FMs may overlap

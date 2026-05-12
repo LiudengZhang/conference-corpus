@@ -23,6 +23,18 @@ In the dMMR/MSI-H subgroup, 4-year OS HR 0.32 (95% CI 0.17–0.63) — 68% morta
 
 Dostarlimab is a humanized IgG4 anti–PD-1 monoclonal antibody. RUBY is the cycle-defining mature OS confirmation of the chemo-immunotherapy 1L paradigm in endometrial cancer (alongside NRG-GY018 with pembrolizumab).
 
+## Trial design deep dive
+
+**Study architecture:** Phase 3 randomized double-blind placebo-controlled, 1:1 to dostarlimab 500 mg IV Q3W + carboplatin AUC5 / paclitaxel 175 mg/m² for 6 cycles → dostarlimab 1,000 mg Q6W maintenance up to 3 years, vs placebo + chemo → placebo maintenance. 494 patients total (245 vs 249). Stratification by MMR/MSI status, prior anti-cancer therapy, and disease status (recurrent vs primary advanced) — the MMR stratification is the design feature that enabled the dMMR primary analysis subgroup to be powered separately.
+
+**Endpoint definitions:** PFS by investigator assessment per RECIST 1.1 (primary, with dMMR subgroup as primary analysis population); OS (key secondary, gated on PFS positivity per hierarchical testing). The 4-year mature OS update reported at SGO 2026 follows the original PFS readout (SGO/NEJM 2023) and the interim OS update (ESMO 2024).
+
+**Key subgroup analyses:** dMMR/MSI-H subgroup HR 0.32 (the headline plateau) vs MMRp HR 0.79. POLE-mutated and p53-abnormal molecular subgroups (per ProMisE/TCGA endometrial classifier) reserved for ASCO 2026 follow-up. Geographic, age, BMI, and prior-therapy subgroups TBD in plenary deck.
+
+**Comparator context:** Carboplatin/paclitaxel + placebo with placebo maintenance reflects pre-2023 SOC. The 4-year placebo-arm OS in dMMR (TBD per slide) provides the historical floor against which the 73% dostarlimab plateau is judged.
+
+**FDA implications:** Confirmatory — accelerated approval (dMMR) and full approval (all-comer) already in place; the 4-yr OS locks in the magnitude of benefit and rules out late curve crossing, supporting durable NCCN preferred status.
+
 ## Discussant takeaway
 
 Plenary III framing: the dMMR OS curve flattens to ~73% at 4 years — exceptional plateau-like behavior consistent with durable immune control. Reinforces molecular triage (dMMR/MMRp split) as the cornerstone of endometrial therapy selection.

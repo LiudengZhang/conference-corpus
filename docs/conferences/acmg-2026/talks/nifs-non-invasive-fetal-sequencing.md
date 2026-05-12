@@ -15,6 +15,16 @@ NIFS — extracting **fetal whole-genome sequence** from maternal cell-free DNA,
 
 Technical stack: deep WGS of maternal plasma cfDNA (typically 30–60x of mixed maternal+fetal DNA), fetal-fraction estimation, fetal-genotype inference via maternal-haplotype subtraction or direct fetal-read identification. Comparator: matched amniocentesis / CVS WGS for clinical-validation cohorts. ACMG/AMP variant classification applied to fetal calls; reporting framework for incidental findings (including ACMG SF v3.3 cancer-predisposition genes) is an open ELSI question this symposium addresses directly.
 
+## Lab-translation deep dive
+
+**Validation requirements.** NIFS is a screening modality that aims at diagnostic-grade per-variant sensitivity and specificity, which collapses the traditional NIPT validation envelope. Required: (a) fetal-fraction-stratified analytical sensitivity (typical NIPT validates ≥4% fetal fraction; NIFS likely needs ≥6–8% per-gene minimums TBD), (b) per-disorder per-gene clinical sensitivity from prospective amnio / CVS-matched cohorts, (c) PPV reporting per disorder (a hard learning from NIPT's microdeletion false-positive press), (d) gestational-age and maternal-condition (BMI, multiples, vanishing-twin, maternal cancer / CHIP) stratification.
+
+**Lab-stack changes.** NIFS extends existing NIPT lab infrastructure with deeper WGS (30–60x mixed-DNA depth vs ~0.1–0.3x for aneuploidy NIPT) and fetal-fraction-aware fetal-genotype inference (haplotype subtraction or direct fetal-read calling). Throughput economics shift substantially — what was a low-pass massively-parallel assay becomes a deep-WGS workflow. Bioinformatics validation includes the maternal-CHIP false-positive failure mode (a maternal clonal variant misclassified as fetal).
+
+**Regulatory / insurance.** FDA's LDT final rule and IVDR (Europe) materially shape the path; current US NIPT lives largely as LDT, and NIFS will inherit that posture with closer scrutiny given the per-variant diagnostic-adjacent claims. Payer coverage trajectory in 2026–2028 is the load-bearing commercial question — replacement of NIPT line-item vs supplemental coding.
+
+**Variant curation.** Reporting framework for fetal incidental findings (ACMG SF v3.3, particularly adult-onset cancer-predisposition genes BRCA1/2, Lynch, TP53) is an open ELSI question this symposium addresses directly. Termination-decision ethics frame curation-policy choices, not just lab-stack choices. Specific fetal-NIFS curation recommendations TBD pending GIM supplement.
+
 ## Where it fits in the corpus
 
 - **ASHG 2026:** prenatal-genomics methods sessions; sibling cohort framing

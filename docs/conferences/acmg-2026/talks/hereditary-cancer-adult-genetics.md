@@ -15,6 +15,16 @@ Platform 1 is the load-bearing cancer-genetics slot of the 2026 program — six 
 
 Clinical-lab cohort designs: multi-site hereditary-cancer panel submissions analyzed retrospectively for (a) pathogenic / likely-pathogenic detection rate stratified by ordering indication, (b) VUS reclassification rate using ClinGen VCEP-specific evidence frameworks (PS3 functional evidence recalibration, splice-evidence PVS1, multifactorial likelihood ratios for BRCA), (c) cascade-testing uptake from probands to first-degree relatives, (d) outcome implications for risk-reducing surgery and surveillance. ACMG/AMP 2015 framework with ClinGen Hereditary Cancer VCEP gene-specific specifications.
 
+## Lab-translation deep dive
+
+**Validation requirements.** Hereditary-cancer-panel labs are in a constant re-validation cycle as ClinGen VCEPs publish gene-specific evidence-code recalibrations. Each VCEP update (BRCA PS3 functional-evidence weighting, MMR-gene PVS1 splice-evidence, multifactorial-likelihood evidence integration for BRCA1/2) triggers a re-classification sweep across the historical VUS population and a validation refresh of the curation pipeline. CNV detection (BRCA1/2 exon-level, MLH1 / MSH2 / EPCAM 5' deletion, MSH2 inversion) remains a lab-stack differentiator and a recurring validation concern.
+
+**Lab-stack changes.** Universal-testing scale (universal breast / ovarian / pancreatic / colorectal hereditary-cancer testing pilots) collapses sample volumes onto fewer reference labs and demands faster TAT (≤14 days as a working floor for treatment-decision pathways like PARP-inhibitor eligibility). Pipeline-side: structural-variant calling parity with SNV calling, exon-CNV detection, splice-impact prediction integration (SpliceAI as a near-universal PP3 / BP4 input), and ClinGen-VCEP-aware classification logic.
+
+**Regulatory / insurance.** FDA LDT final rule applies — most hereditary-cancer panels operate as LDTs, with FDA-cleared kits (Myriad BRCA, Ambry / GeneDx panels) coexisting. Payer coverage hinges on NCCN guidelines (which moved toward universal breast / colorectal testing in recent revisions); cascade-testing reimbursement for first-degree relatives is the load-bearing implementation question for the universal-testing axis.
+
+**Variant curation.** ClinGen VCEPs (HBOP — BRCA1/2; HBOP — PALB2; InSiGHT for MMR genes; CDH1; PTEN; etc.) provide the gene-specific evidence frameworks. VUS reclassification cadence (Open Question #3) reflects steady-state VCEP throughput. Multifactorial-likelihood evidence integration for BRCA1/2 is the most-mature curation paradigm — other genes are catching up.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** Hereditary Cancer / Pediatric Cancer Predisposition / germline-somatic integration sessions (Apr 17–22, Chicago) — 4–6 week follow-on with the same PI pool

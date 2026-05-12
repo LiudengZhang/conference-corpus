@@ -20,6 +20,23 @@ Zoldonrasib delivered an ORR of 30% and DCR of 80% in evaluable KRAS-G12D PDAC p
 
 Daraxonrasib (RMC-6236) is a pan-RAS(ON) tri-complex inhibitor that traps active GTP-bound RAS in a non-productive complex with cyclophilin A. Zoldonrasib (RMC-9805) is a covalent KRAS-G12D(ON)-selective tri-complex variant of the same chemotype — first selective G12D drug to reach the clinic with PDAC efficacy.
 
+## Trial design deep dive
+
+**Study architecture.** Two parallel single-arm Phase 1/2 dose-expansion programs: daraxonrasib (RMC-6236-001) in pan-RAS-mutant PDAC across monotherapy and chemo-combination cohorts; zoldonrasib (RMC-9805-001) in KRAS-G12D-mutant PDAC at 1200 mg QD vs 600 mg BID. No randomization at this stage; the Phase 3 randomized comparator (Rasolute-302) reads at ASCO 2026 Plenary (May 31).
+
+**Endpoint definitions.** Investigator-assessed ORR per RECIST 1.1 as primary efficacy; DCR, DoR, PFS, and safety as secondary. ctDNA KRAS-G12D allele-frequency dynamics tracked as exploratory pharmacodynamic readout with prespecified thresholds (>50% decline; complete molecular clearance defined as variant allele frequency below assay LOD). No BICR for Phase 1/2 dose-expansion.
+
+**Key subgroup analyses.**
+
+- **KRAS-G12D vs G12V vs G12R subsets (daraxonrasib):** activity reported across G12 variants — discussant framing emphasized G12-subgroup parity as differentiating from G12C-selective era.
+- **Prior lines of therapy (1L vs 2L+ daraxonrasib):** Rasolute-302 was 2L+ post-gemcitabine/nab-paclitaxel or FOLFIRINOX; 1L combo cohorts are exploratory.
+- **ctDNA responders vs non-responders:** 86% of zoldonrasib-evaluable patients with >50% ctDNA G12D decline; 39% complete molecular clearance — clearance correlated with radiographic response.
+- **Performance status (ECOG 0 vs 1):** TBD — not broken out publicly for this dose-expansion.
+
+**Comparator context.** SOC 2L+ PDAC remains liposomal irinotecan + 5-FU (NAPOLI-3) or 5-FU/leucovorin with historical mOS ~6-7 months. Daraxonrasib Rasolute-302 topline (mOS 13.2 vs 6.7 mo) doubles control benchmark.
+
+**FDA / regulatory implications.** Daraxonrasib carries FDA Breakthrough Therapy Designation in 2L+ metastatic PDAC (granted 2024). BLA filing pending Rasolute-302 full data presentation at ASCO 2026 Plenary; accelerated approval pathway feasible Q3-Q4 2026. Zoldonrasib remains pre-pivotal.
+
 ## Discussant takeaway
 
 Eileen O'Reilly framed the RAS-class signal as the inflection point for PDAC — the first credible molecular-targeted PDAC story since gemcitabine. Discussant framing of toxicity (rash, GI) and G12-subgroup parity will carry directly into the Rasolute-302 Plenary discussant slot at ASCO May 31.

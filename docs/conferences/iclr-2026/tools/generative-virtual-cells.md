@@ -15,7 +15,15 @@ The paper argues that "virtual cell" research treats the world model and the exp
 
 ## How it works
 
-On the inner timescale, the planner queries the current world model, selects a Perturb-seq-style perturbation, the simulator returns noisy single-cell data, and the world model updates its weights. On the outer timescale, the agent proposes changes to the world-model architecture and training scheme, evaluates them against validation and capacity constraints, and accepts or rejects the change. The planner adapts its exploration strategy based on model uncertainty and recent error patterns. The current paper uses a synthetic simulator and a small MLP/transformer world model as a proof-of-concept; future work explicitly targets diffusion- and transformer-based generative architectures on real Perturb-seq data.
+**Core idea.** Treat the virtual-cell world model and the experimental planner as a *co-evolutionary* system updated on two timescales — fast joint adaptation in response to each experiment, and slower validation-gated changes to the world-model architecture itself.
+
+**Inputs / outputs.** Inputs are a current world-model checkpoint, a candidate perturbation library (Perturb-seq-style genetic or small-molecule), and a held-out validation set; outputs are (a) selected next perturbations to run, (b) updated world-model weights, and (c) accepted/rejected architecture proposals.
+
+**Key innovation.** Prior virtual-cell pipelines (scGen, CPA, GEARS, and the broader Arc / Recursion virtual-cell wave) train the world model on fixed perturbation datasets and treat experimental design as a downstream step; this paper argues the two should be jointly adapted, with the planner's exploration strategy conditioned on world-model uncertainty and recent error patterns, and architecture moves gated by a validation criterion to prevent catastrophic regression.
+
+**Parameters / training details.** Proof-of-concept uses a synthetic Perturb-seq simulator and a small MLP / transformer world model; planner exploration is uncertainty-weighted; the outer-loop architecture-change criterion compares validation loss + capacity constraints before commit (TBD — exact thresholds in workshop PDF).
+
+**Canonical experiment.** On the toy Perturb-seq simulator, the co-evolutionary loop is compared against a fixed-world-model baseline and a fixed-planner baseline; the paper reports that joint adaptation under validation gating outperforms both, with the architecture-change mechanism preventing the runaway drift that plagues naive joint training (TBD — exact numbers behind workshop PDF).
 
 ## Headline benchmarks
 

@@ -15,6 +15,16 @@ First systematic clinical-lab benchmark of **base** (off-the-shelf, non-fine-tun
 
 Benchmark design likely: curated test set of variants with established ClinVar expert-panel classifications (ClinGen VCEPs as gold standard); LLM prompted to apply ACMG/AMP 2015 rules to a structured evidence package; multiple reruns per variant to measure intra-model reproducibility; cross-model comparison for inter-model concordance. Distinguishes **evidence-code assignment accuracy** from **final tier assignment accuracy** — a model can hit the right tier with the wrong evidence stack. Critical comparison to existing classification aids (Franklin, VarSome, InterVar, CardioBoost, BayesDel as PP3 proxy).
 
+## Lab-translation deep dive
+
+**Validation requirements.** A base LLM that participates in any classification decision triggers CLIA-style analytical validation: stability of output across reruns (intra-run reproducibility), stability across model versions (vendor silently rotates model weights — a load-bearing validation hazard), and accuracy against ClinVar 2-star+ / VCEP-curated ground truth stratified by gene, evidence-code mix, and variant rarity. The reproducibility framing of the talk is precisely the failure mode CLIA requires labs to characterize before clinical use. Concordance floors and stability windows TBD pending GIM supplement.
+
+**Lab-stack changes.** Most clinical hereditary-cancer labs already run rule-based classifiers (Franklin, VarSome, InterVar) under a curator-in-the-loop model. Inserting an LLM means: (a) prompt-engineering as a versioned, change-controlled lab document; (b) input-evidence package construction as its own validated module (PubMed search, population-frequency lookup, functional-evidence retrieval, splice-prediction summary); (c) audit-trail logging of every prompt + response per variant; (d) periodic re-validation when the underlying model is updated. RAG-with-ClinGen and fine-tuning shift more validation burden onto the lab.
+
+**Regulatory / insurance.** FDA has signaled (via the LDT final rule and AI/ML guidance) that AI-augmented classification is in-scope as a clinical decision support tool. CAP MIN-checklist updates anticipated for AI-augmented variant curation. Payer impact is indirect — reclassification of historical VUS triggers re-billing and re-counseling pathways.
+
+**Variant curation.** Highest-value role is likely **VUS-triage assist** (auto-summarize literature, propose evidence codes, flag candidate reclassifications) with mandatory human sign-out, rather than autonomous classification. Liability and CLIA framing currently preclude autonomous LLM classification.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** every cancer-variant classification in hereditary-cancer panels rests on this framework; LLM-assisted curation feeds AACR cohort-classification posters downstream

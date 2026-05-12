@@ -15,6 +15,16 @@ Multigene cancer panels run on **blood DNA** routinely surface variants in genes
 
 Operational framework combining: (1) VAF distribution analysis with tissue-comparator (buccal / fibroblast / skin) when available; (2) gene-list stratification (canonical CHIP drivers vs hereditary-cancer-syndrome genes with CHIP overlap, particularly TP53, CHEK2, ATM); (3) deeper sequencing of borderline VAFs; (4) longitudinal resampling for suspected clonal expansion. ACMG/AMP framework adaptation: PM6 / PS2 cannot apply to clonal events; PM2 / BS1 frequency thresholds need clonal-event-aware modification.
 
+## Lab-translation deep dive
+
+**Validation requirements.** Disambiguating CHIP from post-zygotic mosaicism vs germline-with-allelic-imbalance requires the lab to validate (a) VAF accuracy at low fractions (10–40%) with replicate variance characterized, (b) sensitivity of variant callers at sub-50% VAF on hereditary-cancer-panel coverage depths (typically 300–500x), and (c) a tissue-comparator workflow (buccal swab, cultured fibroblast, or skin punch) with its own end-to-end validation. Many existing hereditary-cancer panels were validated only for germline (~50% / ~100% VAF expectations) — extension to clonal calls is a net-new analytical-validation event.
+
+**Lab-stack changes.** Operational additions: reflex tissue-comparator collection workflow (logistics + consent), deeper sequencing for borderline VAFs, longitudinal resampling at defined intervals (6–12 months) for suspected clonal expansion, and pipeline-level flags that block germline-style reporting on canonical CHIP-driver variants (DNMT3A, TET2, ASXL1, PPM1D, JAK2). LIMS schema needs a clonal-status field per variant.
+
+**Regulatory / insurance.** No CAP-checklist requirement specific to CHIP disambiguation as of 2026 (TBD pending symposium recommendations and ACMG Practice Resources). Payer coverage for reflex tissue-comparator testing is patchwork — typically billed against the hereditary-cancer-panel CPT code rather than separately. Insurance implications of incidental CHIP reporting (life / long-term-care underwriting) are an emerging ELSI question.
+
+**Variant curation.** ACMG/AMP framework modifications required: PM6 / PS2 (de novo) cannot apply to clonal events; PM2 / BS1 (population frequency) needs clonal-event-aware thresholds; functional-evidence interpretation (PS3 / BS3) must consider clonal-selection bias. Gene-specific guidance for TP53 / CHEK2 / ATM (overlap genes) is the highest-leverage curation deliverable from this symposium.
+
 ## Where it fits in the corpus
 
 - **ASH 2026:** clinical sequelae — CHIP → CCUS → MDS / AML progression; same investigator pool with the outcomes framing

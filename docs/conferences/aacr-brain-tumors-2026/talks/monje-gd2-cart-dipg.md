@@ -16,6 +16,16 @@ Updated, expanded cohort of autologous GD2-CAR-T (4-1BB costim) in H3K27M-mutant
 
 Autologous patient T cells transduced with a GD2-directed CAR (4-1BB / CD3ζ); GD2 is uniformly and highly expressed on H3K27M DMG. Initial cell dose is delivered intravenously after lymphodepletion, followed by intracerebroventricular re-dosing via Ommaya to address CNS pharmacokinetics. ICANS-class neuroinflammatory toxicity is managed proactively given tumor location in brainstem / thalamus. Biomarker workup includes CSF cytokine profiles, TCR-seq of expanded CAR-T product, and serial MRI volumetric response.
 
+## Mechanism / methodology deep dive
+
+**Underlying biology.** H3K27M mutation in histone H3.3 / H3.1 globally reduces H3K27me3, locking DMG cells in an OPC-like / neural-precursor-like state with uniformly high GD2 disialoganglioside surface expression — a developmentally restricted antigen otherwise largely absent from postnatal CNS at high density. The H3K27M-driven OPC-like state also confers responsiveness to neural-circuit / activity-dependent inputs (the Monje thread linking neuron-glioma synapses to growth).
+
+**Therapeutic design.** Autologous patient T cells lentivirally transduced with a GD2-CAR using the 14g2a-derived scFv, a CD8α hinge/transmembrane, 4-1BB costimulatory domain, and CD3ζ (the Mackall lab construct also used in pediatric neuroblastoma). Manufacturing is standard 9–14-day expansion. Lymphodepletion with fludarabine + cyclophosphamide precedes a single IV dose, followed by Ommaya-administered ICV re-doses at escalating cadence. Tocilizumab, anakinra, and intrathecal steroids are pre-positioned for tumor-inflammation-associated neurotoxicity (TIAN), a Monje-defined entity distinct from classical ICANS.
+
+**Resistance / failure modes.** Documented: TIAN-driven brainstem swelling requiring aggressive steroid / anakinra and occasional EVD placement; partial / transient radiographic responses; on-treatment progression without clear antigen loss. Anticipated escape: cell-state drift away from OPC-like (toward AC-like / MES-like) reducing GD2 surface density; T-cell exhaustion in CNS TME.
+
+**Translational gaps.** Multi-site replication of Stanford manufacturing and TIAN management capacity remains the key barrier; sequencing with ONC201/dordaviprone, RT, and re-irradiation TBD.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** Monje/Mackall pediatric-CAR-T sessions echoed in the AACR Annual neuro-onc and pediatric tracks in San Diego.

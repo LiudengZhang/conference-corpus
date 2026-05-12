@@ -23,6 +23,18 @@ In the endometrial cohort, ORR 34.6% at the 2.0 mg/kg dose and 38.5% at 2.4 mg/k
 
 Puxitatug samrotecan (AZD8205) is an antibody-drug conjugate targeting B7-H4 (VTCN1) — a B7-family immune checkpoint ligand highly expressed in endometrial, breast (TNBC), and ovarian cancer with limited normal-tissue expression. Payload is a proprietary AstraZeneca topoisomerase-1 inhibitor with a cleavable linker. First-in-class B7-H4 ADC to report meaningful clinical efficacy.
 
+## Trial design deep dive
+
+**Study architecture:** Phase 1/2a multi-tumor basket (BLUESTAR), with the endometrial cohort dosed at 2.0 mg/kg and 2.4 mg/kg Q3W as parallel dose-expansion arms. Single-arm design — no comparator at this stage. Patients required prior platinum and prior IO; B7-H4 IHC selection criteria TBD per cohort protocol (some BLUESTAR cohorts are all-comer with retrospective B7-H4 stratification, others enrich prospectively).
+
+**Endpoint definitions:** ORR by RECIST 1.1 (primary, with both blinded independent central review and investigator-assessed readouts reported); safety per CTCAE v5; PK and immunogenicity as supporting endpoints. DCR at 12 weeks reported as an early activity signal. DOR and PFS as secondary; OS is exploratory at this Phase 1/2a stage.
+
+**Key subgroup analyses:** Dose comparison (2.0 vs 2.4 mg/kg) is the core analysis informing the recommended Phase 2 dose — 38.5% ORR at the higher dose vs 34.6% at lower, against a tolerability gradient. B7-H4 IHC expression-by-response correlation TBD in poster appendix. Histology (endometrioid vs serous vs carcinosarcoma) and prior-line subgroups reserved for ASCO/ESMO follow-up.
+
+**Comparator context:** No randomized comparator, but the 34–38% ORR sits favorably against current second-line endometrial benchmarks (~15–25% ORR for chemo, ~20–25% for dostarlimab in MMRp). The historical benchmark anchors the registration-enabling Phase 3 dose and comparator selection.
+
+**FDA implications:** Pre-pivotal — establishes the B7-H4 ADC class and informs a registration-enabling Phase 3 design (TBD whether vs investigator-choice chemo or in combination). Project Optimus dose-optimization framework will apply.
+
 ## Discussant takeaway
 
 Per OncLive coverage: the 34.6–38.5% ORR in heavily pretreated endometrial sits comparable to current second-line standards and marks B7-H4 as a tractable ADC target. IHC-based patient selection (B7-H4+) is feasible and was used in BLUESTAR.

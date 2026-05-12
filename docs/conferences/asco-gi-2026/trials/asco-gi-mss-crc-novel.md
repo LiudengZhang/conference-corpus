@@ -20,6 +20,23 @@
 
 Three mechanism classes synthesized here: (1) EGFRxMET bispecifics (amivantamab) — co-engage EGFR + MET to block bypass-track resistance; (2) PD-1xVEGF / PD-1xTIGIT bispecifics — combine checkpoint blockade with anti-angiogenic or T-cell co-inhibitory release; (3) ADCs against HER2-low, TROP2, CEACAM5, B7-H3 in MSS CRC.
 
+## Class deep dive
+
+**Class architecture.** Synthesis spans three mechanism families across mostly single-arm Phase 1b/2 dose-expansion cohorts (50-200 patients each). No randomized confirmatory data at this readout — class-level inference is by cross-trial framing against historical regorafenib (~1.5 mo PFS gain in CORRECT) and trifluridine/tipiracil ± bev (SUNLIGHT) benchmarks.
+
+**Endpoint definitions.** Predominantly investigator-assessed ORR per RECIST 1.1 with confirmation requirement; DoR and PFS as supportive. Some sponsor programs (J&J OrigAMI-1) prespecified central BICR for ORR. ctDNA dynamics increasingly used as pharmacodynamic readout especially in EGFR-amp / anti-EGFR rechallenge populations.
+
+**Key subgroup analyses.**
+
+- **EGFR-amp (FISH +/NGS) vs non-amp MSS-CRC:** OrigAMI-1 amivantamab activity concentrated in EGFR-amplified subset; non-amp signal weaker.
+- **Anti-EGFR rechallenge with ctDNA selection (RAS-wt confirmed):** an emerging biomarker-enrichment frame across EGFRxMET bispecifics and anti-EGFR ADCs.
+- **HER2-low (IHC 1+/2+ FISH-) MSS-CRC:** trastuzumab deruxtecan and follow-on TROP2/CEACAM5 ADCs being explored; TBD on cross-trial response rates.
+- **Inflamed / high-TLS MSS-CRC tumors:** PD-1xVEGF / PD-1xTIGIT bispecifics show signal in inflamed-microenvironment subsets; cold-tumor MSS-CRC unmoved.
+
+**Comparator context.** SOC 3L+ MSS-CRC remains regorafenib (CORRECT/CONCUR) or TAS-102 + bev (SUNLIGHT, mOS 10.8 vs 7.5 mo) — both modest. No single ASCO GI 2026 MSS-CRC asset displaces the SOC; class momentum is real but pre-pivotal.
+
+**FDA / regulatory implications.** No filings expected from ASCO GI 2026 MSS-CRC datasets alone. OrigAMI-1 amivantamab and select ADC programs may pursue accelerated approval in biomarker-enriched subsets pending randomized confirmation in 2026-2027. PD-1xVEGF / PD-1xTIGIT class needs Phase 3 confirmation before regulatory engagement in CRC.
+
 ## Discussant takeaway
 
 CRC discussants framed the MSS-CRC space as still defined by absence — no single class has yet declared itself the post-regorafenib / TAS-102 backbone. Biomarker enrichment (EGFR-amp, HER2-low, MET-amp) is the path forward; all-comer MSS CRC trials remain hard.

@@ -15,6 +15,16 @@ Carey receives the **2026 David L. Rimoin Lifetime Achievement Award** — the A
 
 Carey's contribution is **clinical-genetics phenotype-first**: detailed dysmorphology, longitudinal natural-history studies of underserved rare-disease populations (trisomy 13/18 most prominently), and the training-pipeline architecture (>40 years of fellows and residents) that built much of the current academic-medical-genetics workforce. The Rimoin Lecture is traditionally a career-arc keynote; specific 2026 lecture title TBD pending Digital Edition.
 
+## Legacy impact
+
+**Career arc.** Carey's trajectory traces the institutionalization of clinical genetics from a 1970s sub-discipline into the present sub-specialty. Trained in pediatrics with sub-specialty in dysmorphology, Carey joined the University of Utah faculty in the late 1970s and built one of the longest-running ACGME-accredited Medical Genetics Training Programs in the country. The training-pipeline contribution — >40 cohorts of fellows and residents — is the legacy his peers most consistently cite, alongside the editorial-leadership stretch at the *American Journal of Medical Genetics* (Editor-in-Chief 2001–2016) where he shepherded thousands of clinical-genetics manuscripts into print.
+
+**Scholarly footprint.** >400 peer-reviewed articles spanning dysmorphology, natural-history studies of rare-disease populations, neurofibromatosis (Carey was a longtime NF community leader), and the trisomy 13/18 work that reframed clinical management of these conditions. Co-authorship of *Medical Genetics and Genomics* (now in its 6th edition) made him a canonical textbook voice for two generations of medical-genetics trainees.
+
+**Advocacy and ethics.** As founding professional/medical advisor to SOFT (Support Organization for Trisomy 13/18), Carey reshaped the ethical framing of these conditions — moving the field from uniform comfort-care-only recommendations toward individualized assessment that recognized longer survival in select infants receiving cardiac surgery and other interventions. This was a structural ethical shift, not a clinical-technique shift, and it propagated into NICU practice, palliative-care literature, and disability-studies scholarship.
+
+**Forward connection.** The 2026 Rimoin Lecture is delivered against a backdrop where newborn-WGS, NIFS, and SF v3.3 reporting all touch the same pediatric-genetics ethical questions Carey spent four decades shaping. Whether his lecture engages those contemporary debates directly TBD pending Digital Edition recording.
+
 ## Where it fits in the corpus
 
 - **AACR 2026 / ASCO 2026:** indirect — Carey's dysmorphology / pediatric-genetics framework underpins how cancer-predisposition syndromes (Li-Fraumeni, NF1, Beckwith-Wiedemann, DICER1, Costello, Noonan) are clinically recognized

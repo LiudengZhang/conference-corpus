@@ -21,6 +21,18 @@ Pathology FMs share a three-tier stack: (1) self-supervised tile encoders (DINOv
 
 TBD — keynote-level synthesis; specific benchmark deltas not in program-notes. CHIEF and UNI baselines remain the published anchors (CHIEF: 19 cancer types, 60K+ slides; UNI: >100M tiles).
 
+## How it works
+
+**Core idea.** A pathology foundation model is a large image (and increasingly multimodal) encoder pretrained self-supervised on H&E whole-slide tiles at internet scale (tens-to-hundreds of millions of patches), producing a generic slide / tile embedding that transfers to dozens of downstream pathology tasks with minimal task-specific data.
+
+**Inputs / outputs.** Inputs: H&E whole-slide images (typically 20x or 40x magnification); for multimodal extensions, paired IHC, molecular labels, or pathology reports. Outputs: tile-level embeddings (UNI, UNI2), slide-level embeddings or task predictions (CHIEF), or report / answer generation (multimodal pathology agents in the CONCH / PathChat line).
+
+**Key innovation.** Three-tier stack with task-agnostic pretraining: (1) DINOv2-class self-supervised tile encoder pretrained on >100M unlabeled patches, (2) attention-MIL or transformer-over-tiles aggregator that lifts tile embeddings to slide-level representations, (3) light task heads or zero-shot evaluation. Generalization-by-scale rather than task-by-task model design is the field-shaping move; CHIEF added the agentic / multitask synthesis layer.
+
+**Parameters.** UNI: ViT-L/16, ~300M parameters, ~100M H&E tiles. UNI2 / CHIEF v2: scale TBD (likely ViT-H/G, hundreds-of-millions to low-billions parameters, internet-scale tile counts). Slide-aggregation models: transformer over up to ~10K tiles per slide.
+
+**Canonical example.** Zero-shot or few-shot lung-cancer subtyping from H&E: tile a WSI, encode all tiles with UNI, aggregate with attention-MIL, predict LUAD vs LUSC. CHIEF extends this to a single model covering 19 cancer types and 60K+ slides with prognostic outputs alongside diagnostic ones — the headline cross-cancer-type generalist pathology FM result that anchored the keynote.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** direct line to [CHIEF](../../aacr-2026/topics/bioinfo-tools/tools/chief.md), [UNI](../../aacr-2026/topics/bioinfo-tools/tools/uni.md), and [Prov-GigaPath](../../aacr-2026/topics/bioinfo-tools/tools/prov-gigapath.md) dossiers

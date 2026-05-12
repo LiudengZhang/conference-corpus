@@ -16,7 +16,15 @@ SC-Arena reframes the evaluation problem for single-cell foundation models (scGP
 
 ## How it works
 
-The benchmark replaces brittle string-matching with a knowledge-augmented evaluation pipeline that consults external ontologies (Cell Ontology, GO), curated marker databases, and scientific literature to score model outputs on biological faithfulness. Models tested span general-purpose LLMs (GPT-4o-class) and domain-specialised single-cell LMs; scoring is "evidence-grounded" with interpretable rationales rather than exact-match accuracy.
+**Core idea.** SC-Arena reformulates single-cell foundation-model evaluation as natural-language reasoning over a "virtual cell" abstraction that unifies intrinsic cell attributes with gene-level interaction context, replacing brittle string-match metrics with a knowledge-augmented scoring pipeline.
+
+**Inputs / outputs.** Inputs are single-cell expression profiles (or their tokenised foundation-model embeddings) plus a free-form natural-language probe; outputs are model responses for five tasks — cell-type annotation, captioning, generation, perturbation prediction, and scientific QA — each scored against ontology- and literature-grounded ground truth.
+
+**Key innovation.** Prior benchmarks (Geneformer / scGPT / UCE / CellFM evaluations) lean on exact-match cell-type F1 or embedding probing; SC-Arena instead uses evidence-grounded knowledge-augmented metrics that consult Cell Ontology, GO, curated marker databases, and the scientific literature to score biological faithfulness with interpretable rationales.
+
+**Parameters / training details.** SC-Arena is an evaluation benchmark (no new model training). Evaluated systems span general-purpose LLMs (GPT-4o-class) and domain-specialised single-cell LMs; scoring weights across the five tasks and the per-task knowledge-base lookups are released as configurable benchmark assets (TBD — exact weighting from camera-ready).
+
+**Canonical experiment.** The paper benchmarks scGPT, Geneformer, UCE, CellFM, and LLM-conditioned cousins side-by-side across the five tasks. Knowledge-augmented metrics consistently re-rank models versus string-matching baselines, and the authors report "uneven performance on biologically complex tasks, particularly those demanding mechanistic or causal understanding" — the load-bearing methodological finding.
 
 ## Headline benchmarks
 

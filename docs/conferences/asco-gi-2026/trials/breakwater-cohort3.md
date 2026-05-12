@@ -20,6 +20,23 @@ The January 2026 cohort 3 OS update showed median OS trending approximately 30.3
 
 Encorafenib is a selective BRAF kinase inhibitor; cetuximab is an anti-EGFR mAb that blocks the EGFR feedback loop characteristic of BRAF-V600E CRC. The doublet was previously approved 2L+ post-BEACON CRC; BREAKWATER moves the regimen with chemo backbone to 1L.
 
+## Trial design deep dive
+
+**Study architecture.** Phase 3 randomized open-label 1:1; EC + chemo (cohort 2 = mFOLFOX6 supporting 2024 accelerated approval; cohort 3 = FOLFIRI) vs investigator-choice chemo + bevacizumab (mFOLFOX6 + bev or FOLFIRI + bev). Stratification by ECOG (0 vs 1), region, and prior adjuvant therapy. Biomarker-selected: BRAF-V600E mutation by tissue PCR/NGS required.
+
+**Endpoint definitions.** Primary endpoints PFS by BICR and OS; ORR by BICR served as the basis for cohort 2 accelerated approval. OS analyzed ITT, no censoring for subsequent BRAF-targeted therapy (relevant because control-arm patients could cross over to EC-doublet at progression in clinical practice). Cohort 3 OS at January 2026 readout was interim with ~60% of events — TBD on final maturity.
+
+**Key subgroup analyses.**
+
+- **Right- vs left-sided primary:** consistent benefit per discussant framing; right-sided tumors (overrepresented in BRAF-V600E) still respond.
+- **MSI-H vs MSS subset:** BRAF-V600E enriches for MSI-H (~30% overlap); benefit consistent in MSS subset where IO is not a competing option.
+- **Liver-only vs extensive metastatic disease:** TBD on specific HRs.
+- **Age (<65 vs ≥65):** neuropathy-free profile of FOLFIRI backbone particularly relevant in elderly subset.
+
+**Comparator context.** FOLFOXIRI + bev (TRIBE-2) was the prior aggressive 1L choice for fit BRAF-V600E patients but carried significant neuropathy/myelotoxicity. EC + FOLFIRI now displaces both FOLFOXIRI + bev (toxicity) and FOLFIRI + bev (efficacy) for biomarker-defined BRAF-V600E.
+
+**FDA / regulatory implications.** EC + mFOLFOX6 received accelerated approval December 2024 in 1L BRAF-V600E mCRC. Cohort 3 OS data converts this toward full approval and supports a FOLFIRI-based label expansion. NCCN Category 1 expected through 2026.
+
 ## Discussant takeaway
 
 Howard Hochster (Rutgers) framed the data as the permanent exit of 1L BRAF-V600E mCRC from the all-comer chemo era — biomarker-targeted triplet now reference frame, FOLFOXIRI + bev relegated to non-BRAF-V600E.

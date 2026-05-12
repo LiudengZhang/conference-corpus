@@ -16,7 +16,15 @@ The paper attacks the Monte-Carlo bottleneck in de novo protein design: classica
 
 ## How it works
 
-A contrastive learning objective is applied to protein-LM embeddings to produce a compact 20-letter discrete alphabet ("TEA") that aligns with functional / fold-class equivalence rather than literal sequence identity. The same alphabet had previously been shown to enable highly efficient large-scale homology searches (Durairaj's earlier work). In de-novo design mode, MCMC proposals are scored in TEA-space instead of via folding, dramatically accelerating the sampler; structure prediction is reserved for final candidate verification.
+**Core idea.** Discretise protein-language-model embeddings into a learned 20-letter "TEA" alphabet — sized to match the natural amino-acid alphabet but indexing *functional / fold-class equivalence* — so MCMC de novo protein design can score proposals in TEA-space at sequence-comparison cost instead of running a structure-prediction oracle inside the inner loop.
+
+**Inputs / outputs.** Inputs are a design target (functional motif, fold class, or homology reference) and an initial sequence; the MCMC sampler outputs candidate sequences scored in TEA-space. Final candidates are verified with full structure prediction (AlphaFold / Boltz / ESMFold-class) outside the loop.
+
+**Key innovation.** Prior de novo MCMC pipelines (trDesign, ProteinMPNN-coupled hallucination, RFdiffusion-driven sampling) call a structure oracle at every step — the dominant compute cost. TEA replaces the oracle with a learned discrete projection trained contrastively from protein-LM embeddings, which Durairaj's earlier work (*Nature* 2023, "Uncovering new families and folds in the natural protein universe") had already shown to capture functional equivalence well enough for large-scale homology search.
+
+**Parameters / training details.** Alphabet size: 20 letters (matching amino-acid cardinality). Training objective: contrastive on protein-LM embeddings against functional / fold-class anchors. Base protein-LM: ESM-class (TBD-verify from bioRxiv v2). MCMC inner-loop scoring: TEA-space sequence comparison; structure prediction reserved for end-of-run verification only.
+
+**Canonical experiment.** The bioRxiv v2 preprint demonstrates Monte-Carlo de novo design over functional targets at compute cost far below structure-oracle-in-the-loop baselines, and reuses the TEA alphabet's earlier "highly efficient large-scale protein homology search" performance as the validation that TEA-space comparison is biologically meaningful (TBD — exact wall-clock and success-rate numbers from bioRxiv v2 PDF).
 
 ## Headline benchmarks
 

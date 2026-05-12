@@ -25,6 +25,22 @@ DFS HR 0.72 (95% CI 0.59–0.87, p=0.0003), reported at the protocol-specified i
 
 Belzutifan: oral HIF-2α inhibitor, first-in-class. Approved 2021 for VHL-associated tumors; expanded to 3L+ advanced ccRCC (LITESPARK-005) in 2023. Pembrolizumab adjuvant established by KEYNOTE-564 (DFS positive 2021; OS positive ESMO 2024). LITESPARK-022 combines two mechanistically complementary classes — checkpoint inhibition + hypoxia-pathway disruption.
 
+## Trial design deep dive
+
+**Study architecture.** Double-blind, placebo-controlled Ph3, 1:1 randomization, ~1,600 post-nephrectomy high-risk ccRCC patients. Experimental arm: pembrolizumab 400 mg IV q6w + belzutifan 120 mg PO daily for up to ~17 cycles (~12 months); control arm: pembro + matched placebo on the same schedule. Stratification factors (per ClinicalTrials.gov): geographic region, recurrence-risk category (intermediate-high vs high vs M1 NED post-metastasectomy), and PD-L1 status. 
+
+**Endpoint definitions.** Primary: investigator-assessed DFS (time from randomization to first documented local/regional recurrence, distant metastasis, second primary, or death). Key secondaries: OS, DFS by BICR, safety, PRO (FKSI-DRS, EORTC QLQ-C30). 
+
+**Key subgroup analyses.** 
+- Risk-category strata (intermediate-high vs high vs M1 NED) — DFS benefit reportedly consistent; M1 NED magnitude TBD given small N.
+- PD-L1 CPS — TBD in abstract; expected supportive subgroup.
+- Sarcomatoid histology — TBD; KEYNOTE-564 showed enhanced pembro benefit here.
+- Prior metastasectomy vs nephrectomy-only — TBD.
+
+**Comparator context.** Pembrolizumab monotherapy became adjuvant SOC after KEYNOTE-564 (DFS positive 2021; OS positive ESMO 2024, NEJM 2024). LITESPARK-022 is the first trial to add a second mechanism on top of an already-effective adjuvant IO, raising the bar above an active comparator rather than placebo.
+
+**FDA / regulatory implications.** Merck sNDA was under FDA priority review at time of GU readout (per pre-meeting press release); PDUFA action anticipated mid-2026. Filing leverages the LITESPARK-005 mCRPC-equivalent (3L+ ccRCC) accelerated approval and the new adjuvant Ph3. NCCN kidney guideline anticipated to add the combination as a preferred adjuvant option following FDA action; OS-mature data still needed for category-1 listing.
+
 ## Discussant takeaway
 
 Discussant (Robert J. Motzer, MSK) framed it as the "second pillar" of adjuvant ccRCC after KEYNOTE-564 — but cautioned that the absolute DFS benefit is modest in a population where pembro monotherapy is already effective. David McDermott (BIDMC) emphasized the tolerability question for an ~12-month adjuvant course.

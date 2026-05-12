@@ -16,6 +16,16 @@ Plenary synthesis of the glioma cell-state framework: AC-like (astrocyte-like), 
 
 Single-cell and single-nucleus RNA-seq of fresh tumor and matched recurrence specimens, framed by the Neftel et al. four-state model; layered on top: spatial transcriptomics (Visium HD / Xenium-class), CRISPR perturb-seq to map state-determining transcription factors, and lineage-tracing (DNA barcoding) to test whether the same clone can occupy multiple states. The framework explicitly connects to developmental neural lineages, and integrates microenvironmental context (hypoxia, TAM proximity, neural-circuit input) as state-biasing signals.
 
+## Mechanism / methodology deep dive
+
+**Underlying biology.** The Neftel/Suva four-state framework holds that malignant glioma cells occupy a continuum bounded by four developmentally-informed transcriptional states — AC-like (astrocyte-lineage, e.g., GFAP, AQP4), MES-like (mesenchymal / wound-healing, e.g., CD44, CHI3L1), OPC-like (oligodendrocyte-precursor, e.g., OLIG1/2, PDGFRA), and NPC-like (neural-progenitor, e.g., DLL3, SOX11) — biased toward specific states by recurrent genetic drivers (EGFR → AC; NF1 → MES; PDGFRA → OPC; CDK4 → NPC) and by TME inputs (hypoxia / necrosis → MES; neural-circuit input → NPC/OPC).
+
+**Therapeutic design.** Not a therapeutic per se, but a target-selection framework: dictates which surface antigens (IL-13Rα2 enriched in MES; EGFR/EGFRvIII enriched in AC/OPC; GD2 enriched in OPC/NPC; DLL3 in NPC) are tractable and where antigen-loss escape will land. Perturb-seq screens nominate state-master TFs (e.g., NFIA/B for AC; CEBPB/FOSL for MES; ASCL1/OLIG2 for OPC/NPC) as state-stabilizing or state-locking pharmacological nodes.
+
+**Resistance / failure modes.** Plasticity itself is the resistance mechanism: therapy (RT, TMZ, IDH-i, CAR-T) reproducibly shifts cell-state distribution toward MES-like / stem-like programs, mediating recurrence without classical genetic resistance.
+
+**Translational gaps.** Whether state transitions can be pharmacologically blocked (rather than just observed) is unproven; the framework was built on adult IDH-wt GBM and its fit for pediatric DMG and IDH-mut glioma is still being calibrated.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** Suva is a chair / speaker on the Annual single-cell / spatial-omics topic four weeks later; this keynote sets up that thread.

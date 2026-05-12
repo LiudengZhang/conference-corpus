@@ -21,6 +21,18 @@ The DIAG-group pattern emphasizes (a) large-scale curated datasets (LIDC-IDRI, N
 
 TBD — keynote-level synthesis. Anchor numbers from the DIAG-group published line: lung nodule detection on LIDC-IDRI (FROC sensitivity), mammography AI vs reader-panel AUC. Specific ISBI 2026 keynote deltas not in program-notes.
 
+## How it works
+
+**Core idea.** Diagnostic radiology AI succeeds clinically when it is built on large curated public datasets, benchmarked against radiologist readers via challenge platforms, and validated for the specific operating points clinical workflows demand (sensitivity at a fixed false-positive rate, not just AUC). Van Ginneken's two-decade DIAG-group line operationalizes this end-to-end.
+
+**Inputs / outputs.** Lung CT inputs: full chest CT volumes (typically 0.5–1.0mm slice thickness); outputs: nodule candidate locations with malignancy probabilities, plus lung-cancer-screening LDCT triage scores. Mammography inputs: 4-view digital mammograms (CC + MLO, bilateral) and/or DBT volumes; outputs: lesion locations, BI-RADS-aligned probability scores, and case-level malignancy probability.
+
+**Key innovation.** The Grand Challenge platform (grand-challenge.org — van Ginneken co-founded) institutionalized fair reader-study-grade comparison across teams: hidden test sets, standardized evaluation, multi-reader multi-case (MRMC) study designs, and regulatory-grade audit trails. The methodological gain isn't a single architecture — it's an infrastructure layer that made medical AI benchmarking reproducible.
+
+**Parameters.** Tool-specific; the DIAG-group line spans 3D CNNs for nodule detection (tens of millions of parameters typical), DenseNet / EfficientNet-class mammography classifiers, and increasingly transformer hybrids. Operating-point selection is parameter-equivalent in importance to architecture.
+
+**Canonical example.** Lung-nodule CAD on LIDC-IDRI: sliding-window 3D CNN over a chest CT volume produces candidate locations, false-positive reduction stage filters, FROC sensitivity reported at fixed FP-per-scan rates (1, 4, 8 FP/scan). Mammography canonical pipeline: per-view CNN feature maps fused across CC + MLO via attention, case-level malignancy score benchmarked against reader-panel AUC on MRMC datasets like OPTIMAM.
+
 ## Where it fits in the corpus
 
 - **AACR 2026:** indirect — lung cancer screening and breast cancer prevention axes overlap with AACR clinical sessions

@@ -25,6 +25,22 @@ Positive rPFS per topline (Novartis press release pre-meeting, confirmed at GU o
 
 ¹⁷⁷Lu-PSMA-617 (Pluvicto): beta-emitting (lutetium-177) PSMA-targeted small-molecule radioligand. Approved 2022 (US) for post-taxane mCRPC based on VISION (OS HR 0.62). Label expanded 2025 to pre-taxane mCRPC via PSMAfore. PSMAaddition pushes the molecule into mHSPC — three lines earlier than the original indication, in a substantially larger and earlier-disease patient population.
 
+## Trial design deep dive
+
+**Study architecture.** Open-label Ph3, 1:1 randomization, ~1,144 PSMA-PET–positive 1L mHSPC patients. Experimental arm: ¹⁷⁷Lu-PSMA-617 7.4 GBq IV q6w × up to 6 cycles + continuous ADT + investigator-choice ARPI (abi, enza, apa, or daro); control arm: ADT + ARPI alone. Crossover from control to ¹⁷⁷Lu-PSMA-617 permitted at radiographic progression. Stratification factors (per ClinicalTrials.gov): disease volume (high vs low per CHAARTED), prior local therapy, geographic region, ARPI choice. PSMA-PET eligibility required at least one PSMA-avid lesion and no PSMA-negative dominant disease. 
+
+**Endpoint definitions.** Primary: rPFS by blinded independent central review (PCWG3-modified RECIST, including bone-scan and PSMA-PET secondary read). Key secondary: OS, time to symptomatic skeletal event, time to castration resistance, ORR, safety, PRO. 
+
+**Key subgroup analyses.** 
+- Disease volume (high vs low per CHAARTED) — rPFS benefit reportedly consistent (TBD magnitude per stratum).
+- De novo vs metachronous mHSPC — TBD; de novo typically higher-volume, may show larger absolute benefit.
+- ARPI backbone (abi vs enza vs apa vs daro) — interaction analysis TBD; not pre-specified for hypothesis testing.
+- PSMA-PET SUVmean tertiles — biomarker-rich subgroup, key for adoption gating; TBD.
+
+**Comparator context.** ADT + ARPI is the post-ARASENS / TITAN / ENZAMET intensification SOC for mHSPC. PSMAaddition adds a third modality (radioligand) to the doublet, paralleling the ARASENS triplet (ADT + ARPI + docetaxel) but substituting RLT for chemo.
+
+**FDA / regulatory implications.** Novartis sNDA filing anticipated 2026; FDA action likely H2 2026 / early 2027 contingent on OS interim. Priority review plausible given mHSPC unmet need and prior Pluvicto BTD history. NCCN update expected to add ¹⁷⁷Lu-PSMA + ADT + ARPI as a 1L mHSPC option for PSMA-PET+ disease, with PET availability and reimbursement as the practical gating issue.
+
 ## Discussant takeaway
 
 Discussant (Tanya Dorff, City of Hope) framed it as the **biggest mHSPC expansion since ARASENS** — but flagged the access / PET-eligibility bottleneck (PSMA-PET availability and reimbursement) as the practical adoption gate. Karim Fizazi noted that with both PEACE-3 (Ra-223) and PSMAaddition (¹⁷⁷Lu) positive in the same meeting, the next question is sequencing.
