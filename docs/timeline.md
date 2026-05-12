@@ -219,6 +219,18 @@ We score each conference 0–2 on four criteria.
 | [CVPR 2026](conferences/cvpr-2026/) | Jun 3–7 (Denver) | methods | 1 | 2 | 0 | 1 | **4** | light | scaffold |
 | [EHA 2026](conferences/eha-2026/) | Jun 11–14 (Stockholm) | clinical | 2 | 2 | 2 | 2 | **8** | full | scaffold |
 | [ECCB 2026](conferences/eccb-2026/) | Aug 31 – Sep 4 (Geneva) | methods | 2 | 2 | 2 | 1 | **7** | full | scaffold |
+| [AGBT-PM 2026](conferences/agbt-pm-2026/) | Sep 14–16 (San Diego) | clinical | 1 | 1 | 2 | 2 | **6** | full | scaffold |
+| [AACR Pancreatic 2026](conferences/aacr-pancreatic-2026/) | Sep 25–28 (San Diego) | clinical | 2 | 2 | 2 | 2 | **8** | full | scaffold |
+| [AACR Brain Tumors 2026](conferences/aacr-brain-tumors-2026/) | Mar 23–25 (Philadelphia) | clinical | 2 | 2 | 2 | 2 | **8** | full | scaffold (post-meeting) |
+| [ASTRO 2026](conferences/astro-2026/) | Sep 26–30 (Boston) | clinical | 2 | 2 | 1 | 2 | **7** | full | scaffold |
+| [ACMG 2026](conferences/acmg-2026/) | Mar 10–14 (Baltimore) | clinical | 2 | 2 | 1 | 2 | **7** | full | scaffold (post-meeting) |
+| [SGO 2026](conferences/sgo-2026/) | Apr 10–13 (San Juan PR) | clinical | 2 | 2 | 2 | 1 | **7** | full | scaffold (post-meeting) |
+| [ESHG 2026](conferences/eshg-2026/) | Jun 13–16 (Gothenburg) | clinical | 2 | 2 | 1 | 1 | **6** | full | scaffold |
+| [ASCB 2026](conferences/ascb-2026/) | Dec 12–15 (San Diego) | adjacent | 1 | 2 | 1 | 2 | **6** | full | scaffold |
+| [ISBI 2026](conferences/isbi-2026/) | Apr 8–11 (London) | methods | 2 | 2 | 2 | 1 | **7** | full | scaffold (post-meeting) |
+| [ECCV 2026](conferences/eccv-2026/) | Sep 8–12 (Malmö) | methods | 1 | 2 | 0 | 1 | **4** | light | scaffold |
+| [KDD 2026](conferences/kdd-2026/) | Aug 9–13 (Jeju) | methods | 1 | 2 | 0 | 1 | **4** | light | scaffold |
+| [Single Cell Genomics 2026](conferences/single-cell-genomics-2026/) | May 10–15 (GRC) / Jun 10–12 (Wellcome) | methods | 2 | 1 | 2 | 2 | **7** | full | scaffold |
 
 ## What we're skipping (and why)
 

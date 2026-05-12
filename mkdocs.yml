@@ -307,6 +307,54 @@ nav:
     - Overview: conferences/eccb-2026/index.md
     - Program notes (research): conferences/eccb-2026/program-notes.md
     - Tools (template): conferences/eccb-2026/tools/index.md
+  - ASCB 2026 (scaffold):
+    - Overview: conferences/ascb-2026/index.md
+    - Program notes (research): conferences/ascb-2026/program-notes.md
+    - Talks (template): conferences/ascb-2026/talks/index.md
+  - AGBT-PM 2026 (scaffold):
+    - Overview: conferences/agbt-pm-2026/index.md
+    - Program notes (research): conferences/agbt-pm-2026/program-notes.md
+    - Trials (template): conferences/agbt-pm-2026/trials/index.md
+  - AACR Pancreatic 2026 (scaffold):
+    - Overview: conferences/aacr-pancreatic-2026/index.md
+    - Program notes (research): conferences/aacr-pancreatic-2026/program-notes.md
+    - Talks (template): conferences/aacr-pancreatic-2026/talks/index.md
+  - AACR Brain Tumors 2026 (post-meeting scaffold):
+    - Overview: conferences/aacr-brain-tumors-2026/index.md
+    - Program notes (research): conferences/aacr-brain-tumors-2026/program-notes.md
+    - Talks (template): conferences/aacr-brain-tumors-2026/talks/index.md
+  - ASTRO 2026 (scaffold):
+    - Overview: conferences/astro-2026/index.md
+    - Program notes (research): conferences/astro-2026/program-notes.md
+    - Trials (template): conferences/astro-2026/trials/index.md
+  - ACMG 2026 (post-meeting scaffold):
+    - Overview: conferences/acmg-2026/index.md
+    - Program notes (research): conferences/acmg-2026/program-notes.md
+    - Talks (template): conferences/acmg-2026/talks/index.md
+  - SGO 2026 (post-meeting scaffold):
+    - Overview: conferences/sgo-2026/index.md
+    - Program notes (research): conferences/sgo-2026/program-notes.md
+    - Trials (template): conferences/sgo-2026/trials/index.md
+  - ESHG 2026 (scaffold):
+    - Overview: conferences/eshg-2026/index.md
+    - Program notes (research): conferences/eshg-2026/program-notes.md
+    - Talks (template): conferences/eshg-2026/talks/index.md
+  - ISBI 2026 (post-meeting scaffold):
+    - Overview: conferences/isbi-2026/index.md
+    - Program notes (research): conferences/isbi-2026/program-notes.md
+    - Tools (template): conferences/isbi-2026/tools/index.md
+  - ECCV 2026 (scaffold):
+    - Overview: conferences/eccv-2026/index.md
+    - Program notes (research): conferences/eccv-2026/program-notes.md
+    - Tools (template, filtered): conferences/eccv-2026/tools/index.md
+  - KDD 2026 (scaffold):
+    - Overview: conferences/kdd-2026/index.md
+    - Program notes (research): conferences/kdd-2026/program-notes.md
+    - Tools (template, filtered): conferences/kdd-2026/tools/index.md
+  - Single Cell Genomics 2026 (scaffold):
+    - Overview: conferences/single-cell-genomics-2026/index.md
+    - Program notes (research): conferences/single-cell-genomics-2026/program-notes.md
+    - Tools (template): conferences/single-cell-genomics-2026/tools/index.md
   - Notes:
     - Extraction method: notes/extraction.md
     - Caveats: notes/caveats.md
