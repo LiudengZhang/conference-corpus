@@ -64,6 +64,7 @@ nav:
   - Home: index.md
   - 90-min Speed Read: speed-read.md
   - Foundation Models: foundation-models.md
+  - Talk Prep — FMs to Virtual Cells: talks/fm-to-virtual-cells.md
   - 2026 Timeline: timeline.md
   - AACR 2026:
     - Overview: conferences/aacr-2026/index.md
