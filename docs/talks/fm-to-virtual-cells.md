@@ -56,6 +56,21 @@ In one sentence: **foundation models in biology are not yet virtual cells — bu
 
 The talk's structure follows that gap. §2–3 map what exists. §4 explains the 2025 correction. §5 names the five field-wide gaps. §6 is the **small-lab playbook for applying FMs** — 7 lanes with real exemplars and budget tiers for groups that cannot afford to train their own FM. §7 is the **innovation tracks for FMs themselves** — 6 frontier methods-research lanes where small labs can publish original work at <$10k compute. §8 is the **commercial landscape** — three buyer archetypes, the 2024–2026 signals timeline (Lilly+NVIDIA $1B, AstraZeneca→Modella AI, Paige FDA), and the per-pitch buyer map. §9 is the **group-meeting discussion** — three concrete project pitches and the decision questions to pick one. §10 closes by using AACR 2026 as a live case study: what happens when these models meet a clinical audience that doesn't grade on novelty.
 
+### 1.4 Glossary — the eight terms this talk leans on
+
+If any of the following are fuzzy in the room, ground them before §2:
+
+| Term | What it means in this talk |
+|---|---|
+| **Foundation model (FM)** | A neural network pretrained self-supervised on a *broad* corpus (text, images, cells, genomes), then *adapted* to many downstream tasks without per-task pretraining. Same weights → many uses. "Foundation" = the pretrained body; "downstream" = the head you train. |
+| **Virtual cell** | A predictive/generative computational model that takes a cell's state + a perturbation (drug, knockout, signal) and predicts the resulting state. Aspiration (CZ Biohub): predict *any* cell × *any* perturbation. Reality: no model does this end-to-end yet — the term is currently a research program, not a deployed artifact. |
+| **Embedding** | A learned vector representation of an input (cell, tile, sequence). The FM compresses the raw data into a few hundred to a few thousand numbers that downstream models read. "Use the FM as a feature extractor" = train a classifier on top of frozen embeddings. |
+| **Pretraining vs fine-tuning** | Pretraining = the expensive self-supervised first stage (10⁴–10⁶ GPU-hours, $10k–$5M). Fine-tuning = the cheap labeled-task second stage (hours to days, often <$500). |
+| **Zero-shot / few-shot** | Zero-shot = run the pretrained model on a new task with no labeled examples or fine-tuning. Few-shot = a handful of labeled examples (in-context or in a small head). The benchmark that exposed the 2025 crisis was zero-shot perturbation prediction. |
+| **In-silico perturbation** | Predicting a cell's response to a virtual knockout/drug/signal without doing the wet-lab experiment. The headline virtual-cell capability claim. |
+| **Linear baseline** | The simplest possible predictor (linear regression / ridge / `latent-additive`) used as a sanity floor. Ahlmann-Eltze & Huber 2025 showed every published single-cell FM fails to beat this floor on perturbation prediction. |
+| **PEFT / LoRA / adapter** | Parameter-efficient fine-tuning. Train a tiny (<1% of params) module on top of frozen FM weights; inherits the FM's pretraining without paying for it. Lane 2 in the small-lab playbook. |
+
 ---
 
 ## §2. The five FM families (5 min)
@@ -74,6 +89,20 @@ One slide per family. For each: anchor model, current 2026 SOTA, the load-bearin
 
 Cross-link: [Foundation Models §Single-cell](../foundation-models.md#single-cell-fms) · [scGPT dossier](../conferences/aacr-2026/topics/bioinfo-tools/tools/scgpt.md) · [Geneformer dossier](../conferences/aacr-2026/topics/bioinfo-tools/tools/geneformer.md)
 
+**Per-task winners — what each cell FM actually wins on (and where they all still lose).** The "SOTA" row above flattens a more interesting picture:
+
+| Task | Best 2026 model | Margin over scVI / linear baseline | Source |
+|---|---|---|---|
+| Cell-type classification (Tabula Sapiens, scTab) | **Geneformer V2-104M_CLcancer** | +2–4 pts macro-F1 over scGPT; ties 316M at ⅓ compute | Theodoris-lab benchmarks; Tang 2024 *Nat Biotechnol* (scTab) |
+| Batch integration / atlas alignment | scVI **still competitive**; scGPT zero-shot ≈ scVI | small (≤1 pt) FM lift; depends on the metric | Open Problems v2 |
+| Cross-species cell-state alignment | **UCE** (the only sc-FM that handles 8 species) | positive but small in magnitude; not benchmarked against scVI cross-species | Rosen et al. 2024 |
+| Zero-shot perturbation prediction | **`latent-additive + scGPT-embeddings`** linear baseline — **no FM beats it consistently** | 0; the floor is the ceiling | Ahlmann-Eltze & Huber 2025 *Nat Methods*; Wenkel et al. 2025 |
+| Gene-network / perturb-net inference | **Geneformer** (designed for this) | matches GENIE3/PIDC on most benchmarks; better on rare TFs | Theodoris et al. 2023 *Nature* |
+| Cell-state retrieval / nearest-neighbour | **SCimilarity** (not strictly an FM) | strong; 23M-cell index, ms-scale lookups | Chen et al. 2024 *Nat Biotechnol* |
+| Spatial-transcriptomics integration | **scGPT-spatial** + Visiumformer-class models | very early; no settled benchmark | scGPT-spatial 2024; HEST-1k |
+
+The picture this collapses to: **on classification + integration the FMs are roughly tied with classical baselines; on perturbation prediction they collectively lose to a linear regression; on cross-species and spatial they have unique capability but no convincing margin**. This is what "in crisis" means in the SOTA row.
+
 ### 2.2 Pathology FMs
 
 | Field | Detail |
@@ -90,8 +119,8 @@ Cross-link: [Foundation Models §Pathology](../foundation-models.md#pathology-fm
 
 | Field | Detail |
 |---|---|
-| Anchor models | Nucleotide Transformer (Dalla-Torre et al. 2025), DNABERT-2 (Zhou et al. 2024), HyenaDNA (Nguyen et al. 2023), Evo2 (Brixi et al. 2026), AlphaGenome (Avsec et al. 2026) |
-| 2026 SOTA | **AlphaGenome** wins 25/26 regulatory variant-effect benchmarks (DeepMind 2026 *Nature*). **Evo2** retains generative + in-context-learning territory that AlphaGenome cannot match. |
+| Anchor models | Nucleotide Transformer (Dalla-Torre et al. 2025), DNABERT-2 (Zhou et al. 2024), HyenaDNA (Nguyen et al. 2023), Evo2 (Brixi et al. 2026), AlphaGenome (Avsec et al. 2025) |
+| 2026 SOTA | **AlphaGenome** wins 25/26 regulatory variant-effect benchmarks (DeepMind 2025 *Nature*). **Evo2** retains generative + in-context-learning territory that AlphaGenome cannot match. |
 | Load-bearing benchmark | gnomAD-pathogenic, ENCODE/GTEx tracks, GUE/GUE+, NT 18-task |
 | Public weights | All open-source except AlphaGenome (non-commercial license; source code only released Jan 2026, post-Nature) |
 | 2026 status | **Split.** Track-prediction (AlphaGenome) and generative (Evo2) are now distinct sub-families that don't compete head-to-head. |
@@ -134,6 +163,23 @@ For each model, four questions:
 4. **Field gap exposed** — what this model's existence reveals about what's still missing
 
 Detailed resource numbers with arithmetic and citation tags live in the companion file [`_resources-matrix.md`](_resources-matrix.md) (loaded as appendix).
+
+**At-a-glance — the 10 anchor models in one table.** Read this first; the deep dives below expand each row.
+
+| # | Model | Family | Params | Compute disclosed? | Public weights | The one thing it's the best at | Where it breaks |
+|---|---|---|---|---|---|---|---|
+| 3.1 | **scGPT** | single-cell | 51M | ❌ UNKNOWN (50× uncertainty band) | ✅ MIT | First sc-FM with gene + cell as tokens; defined the category | Zero-shot perturbation prediction fails vs linear baseline |
+| 3.2 | **Geneformer V2** | single-cell | 104M / 316M | ✅ DISCLOSED ($17k V2-104M) | ✅ Apache-2.0 (HF) | Domain-curated 104M beats general 316M at ⅓ compute — kills "scale wins" | Same perturbation-prediction gap as scGPT |
+| 3.3 | **UCE** | single-cell | 650M | ❌ UNKNOWN | ✅ MIT | Cross-species (8 species via ESM2 protein-embedding bridge) | Cross-species gain is positive but small; least transparent on cost |
+| 3.4 | **STATE** | single-cell (virtual cell) | 600M SE + ST | ❌ UNKNOWN (~$125k est.) | ✅ open weights | First production virtual cell at Tahoe-100M scale | No online-update loop; you re-train to add perturbations |
+| 3.5 | **Generative Virtual Cells** | single-cell (POC) | tiny | ✅ <$250 | ✅ MIT | The *design pattern*: joint planner + world model with validation gating | A workshop POC, not a deployed model; scaling unproven |
+| 3.6 | **Virchow2** | pathology | 632M / 1.85B | ✅ DISCLOSED (512× V100, ~$170k) | ⚠️ CC-BY-NC | Most transparent pathology FM; current SOTA on Campanella 2025 panel | Lead over UNI2-h is ≤2 pts; ViT-H/14 + 200M tiles plateauing |
+| 3.7 | **UNI2-h** | pathology | 681M | ❌ UNKNOWN (~$75k est.) | ⚠️ CC-BY-NC + HF-gated since Jan 2025 | Full vertical stack: tile encoder → slide → vision-language → retrieval | License-shift risk realized; opaque training cost |
+| 3.8 | **AlphaGenome** | genomic | ~450M | ⚠️ partial (TPU only) | ⚠️ non-commercial (source Jan 2026) | Single model wins 25/26 regulatory variant-effect benchmarks at 1-Mb context | Can't do in-context learning; non-commercial license blocks industry |
+| 3.9 | **Evo2** | genomic | 7B / 40B | ✅ DISCLOSED (2,048× H100, ~$5M) | ✅ Apache-2.0 | Only genomic FM with demonstrated ICL; 1M-token context | $5M training cost concentrates capability at ~5 institutions |
+| 3.10 | **ESM-3** | protein (multimodal) | 1.4B / 7B / 98B | ✅ DISCLOSED (1.07 × 10²⁴ FLOPs) | ⚠️ 1.4B open, 7B/98B gated | Cleanest compute disclosure in biology FMs; generated esmGFP de novo | esmGFP is one anecdote; wet-lab validation at scale is rare |
+
+**The two patterns this table makes visible**: (1) **disclosure correlates with hardware sponsorship** — every model with ✅ DISCLOSED has an NVIDIA / DGX-Cloud / TPU partnership (Geneformer V2/BioNeMo, Virchow2, Evo2/NVIDIA, AlphaGenome/TPU). The opaque models are academic labs without a hardware co-marketer. (2) **license posture is bifurcating** — sc-FMs are uniformly permissive (MIT/Apache); pathology FMs are uniformly restrictive (CC-BY-NC, often + HF gating); genomic FMs split (Evo2 open, AlphaGenome closed). Choose the family that matches your commercial constraints, not just your data type.
 
 ### 3.1 scGPT (Cui et al. *Nature Methods* 2024)
 
@@ -198,7 +244,7 @@ The Mahmood-stack flagship — and the **opaque counterpoint to Virchow2**.
 - **Unique** — **full vertical stack**: tile encoder → slide aggregator → vision-language → retrieval. The Mahmood lab ships a fleet of compatible models rather than one giant one. PathChat DX, the clinical front-end of this stack, has FDA Breakthrough Designation (Jan 2025) — the first generative-AI pathology tool to receive it.
 - **Gap exposed** — **Two compounding gaps. First**: opaque training cost means a clinical pathology group cannot argue UNI2-h's success is a function of compute rather than data curation, making "would scaling fix our task" unverifiable. **Second: license-shift risk.** The HF gating in Jan 2025 — moving from open download to institutional-email verification — signals that the path from research-open to commercial-closed is short. Open licenses for pathology FMs are not yet a settled norm. Compare to Virchow2's full hardware disclosure: same backbone class, same DINOv2 family, opposite transparency posture.
 
-### 3.8 AlphaGenome (DeepMind, Avsec et al. *Nature* 2026)
+### 3.8 AlphaGenome (DeepMind, Avsec et al. *Nature* 2025)
 
 The current genomic FM SOTA on variant effects.
 
@@ -442,7 +488,24 @@ Do you have wet-lab/clinical data the FM authors did not see?
 
 ### 6.10 The bridge to AACR 2026 (30 sec)
 
-In our AACR 2026 bioinfo-tools slice, **18 of 536 posters cite a named pathology FM by model name** — and almost every one of them uses the FM as a frozen encoder for a clinical readout, *not* training a new FM. **Lane 7 (FM-aided application) is the dominant pattern at AACR 2026 by an order of magnitude.** Lane 1 (embeddings as features) is the structural prerequisite for almost all of Lane 7. Lanes 2–6 are the methodological substrate for what AACR application papers will look like in 2027–2028.
+**Evidence from the AACR 2026 corpus** (counts derived by case-sensitive grep of poster titles + abstracts against a curated list of FM model names — see methodology note below):
+
+| Topic | n posters | Pathology FM by name | Single-cell FM by name | Genomic FM by name | "foundation model" generic (no model named) |
+|---|---|---|---|---|---|
+| Virtual Cells | 48 | 11 | 5 | 3 | 20 |
+| Bioinfo / AI methods | 536 | 17 | 5 | 6 | ~35 |
+| Single-cell & spatial | 1,015 | (not counted in this pass) | 4 | (not counted) | 16 |
+
+**Three patterns visible in those numbers:**
+
+1. **Zero posters put a single-cell FM in the title.** Across all three topics, scGPT / Geneformer / scFoundation / CellPLM / scBERT appear in 14 posters total (out of ~1,600 scanned), and never in the title. The sc-FMs are tools, not headline contributions.
+2. **Pathology FMs dominate the "named FM" category.** UNI / Virchow / CHIEF / Prov-GigaPath / PathChat / Hibou / H-Optimus / PLUTO appear in 17/536 bioinfo posters and 11/48 virtual-cells posters. Almost every instance uses the FM as a frozen encoder for a clinical readout, *not* training a new FM. **Lane 7 (FM-aided application) is the dominant pattern at AACR 2026 by an order of magnitude.**
+3. **Most "foundation model" mentions don't name the model.** 20/48 virtual-cells posters and ~35/536 bioinfo posters use generic "foundation model" / "pretrain" language without identifying which FM. This is partly abstract-length pressure, partly that many groups are training small *custom* FMs (RNA1-DA, methylFM, gastroFM, MutationProjector, Path2Prot, Visiumformer, HoneyBee) rather than using a community-named one.
+
+Lane 1 (embeddings as features) is the structural prerequisite for almost all of Lane 7. Lanes 2–6 are the methodological substrate for what AACR application papers will look like in 2027–2028.
+
+!!! note "Counting methodology"
+    Numbers above are reproducible from the poster JSON files in `docs/assets/aacr-2026/posters/` (raw data in repo; load each topic's `.json` and grep title + abstract). Match list: pathology = `UNI, UNI2, UNI2-h, Virchow, CHIEF, GigaPath, PathChat, CONCH, Phikon, Hibou, H-optimus, PLUTO, gastroFM, Path2Prot, Visiumformer, MutationProjector, HoneyBee, BARRACUDA`; single-cell = `scGPT, Geneformer, scFoundation, CellPLM, scBERT`; genomic = `Nucleotide Transformer, DNABERT, HyenaDNA, Evo, AlphaGenome, methylFM, RNA1-DA, DNAchunker`. Case-sensitive substring match against title + abstract. Each poster counted once; first-match-wins by family ordering. This undercounts in two directions: (a) posters that use an FM but don't name it; (b) custom FMs not in the match list. Treat numbers as a **floor**, not a ceiling.
 
 The honest framing for an academic comp-bio audience in 2026 is not *"can I compete with Arc Institute on training?"* (no) but *"which of these seven lanes is mine?"* — one of them, definitely, and the answer is in **your data, not your GPU budget**.
 
@@ -766,11 +829,7 @@ The bibliography is organized into 12 buckets. Bold = read first. URLs are direc
 
 - **Bunne, Roohani, Rosen, et al. 2024 *Cell* — ["How to build the virtual cell with artificial intelligence: Priorities and opportunities"](https://www.cell.com/cell/fulltext/S0092-8674(24)01332-1)** — the canonical virtual-cell thesis. Defines what would constitute a working virtual cell, and the technical milestones along the way.
 - **Rood, Hupalowska, Regev 2024 *Cell* — ["The future of rapid and automated single-cell data analysis using reference mapping"](https://doi.org/10.1016/j.cell.2024.07.030)** — Aviv Regev's framing of where single-cell FMs need to mature.
-- Theodoris et al. 2025 *Nature Methods* commentary — perspective on the next decade of single-cell pretraining.
-- Cao, Theodoris, Quake 2024 *Nat Genet* — atlas integration challenges for FMs.
 - Lähnemann et al. 2020 *Genome Biology* — "Eleven grand challenges in single-cell data science" — the pre-FM landscape; still the cleanest gap statement.
-- AlphaFold team 2024 *Nature* perspective — what worked, what's next for structural FMs.
-- Karaletsos, Belongie, Rätsch 2015 *NeurIPS* — early Bayesian-deep-learning foundations for biological representations (historical anchor).
 - Marx 2024 *Nat Methods* tech feature — "AI builds models of biology" — accessible field overview.
 
 #### The 2025 critique trio — the reckoning
@@ -780,13 +839,12 @@ The bibliography is organized into 12 buckets. Bold = read first. URLs are direc
 - Wenkel et al. 2025 — proposes the `latent-additive` baseline that should be reported alongside any sc-FM perturbation claim.
 - [Csendes, Lugo-Martinez et al. 2024 *OpenReview/bioRxiv*](https://www.biorxiv.org/content/10.1101/2024.09.30.615579) — independent scGPT replication; finds the original train/test split was leaky.
 - Boiarsky et al. 2023 *NeurIPS Workshop on Generative AI and Biology* — earliest published "linear baselines are competitive" warning; predates the 2025 trio by 18 months.
-- Theodoris 2025 *Nat Methods* News & Views companion — what the critiques mean for the field.
 
 #### Single-cell FM technical papers
 
 - **Cui et al. 2024 *Nat Methods* — ["scGPT: toward building a foundation model for single-cell multi-omics using generative AI"](https://doi.org/10.1038/s41592-024-02201-0)** — masked-gene-language modeling on 33M cells; defined the field shape.
 - **Theodoris et al. 2023 *Nature* 618:616–624 — ["Transfer learning enables predictions in network biology"](https://doi.org/10.1038/s41586-023-06139-9)** — Geneformer; the field's first atlas-pretrained transformer.
-- Theodoris et al. 2025 — Geneformer V2 release notes (Geneformer-V2-104M-CLcancer); domain-curated outperforms general at 1/3 params.
+- [Geneformer-V2 HuggingFace model card (Theodoris lab, Dec 2024)](https://huggingface.co/ctheodoris/Geneformer) — V2-104M with cancer-curated `_CLcancer` continual-pretraining variant; domain curation matches the 316M general-domain model at ⅓ the parameters.
 - Rosen, Brbić et al. 2024 *bioRxiv* — [UCE (Universal Cell Embedding)](https://www.biorxiv.org/content/10.1101/2023.11.28.568918v2) — cross-species single-cell embedding via shared protein-language tokens.
 - Hao et al. 2024 *Nat Methods* — [scFoundation](https://doi.org/10.1038/s41592-024-02305-7) — 100M-param read-depth-aware pretraining on 50M cells.
 - Yang et al. 2022 *Nat Mach Intell* — [scBERT](https://doi.org/10.1038/s42256-022-00534-z) — the BERT-for-single-cell prequel to scGPT.
@@ -825,7 +883,7 @@ The bibliography is organized into 12 buckets. Bold = read first. URLs are direc
 - Nguyen et al. 2023 *NeurIPS* — [HyenaDNA](https://proceedings.neurips.cc/paper_files/paper/2023/hash/86ab6927ee4ae9bde4247793c46797c7-Abstract-Conference.html) — Hyena state-space replaces attention; enables 1M-bp single-nucleotide context.
 - **Nguyen et al. 2024 *Science* — [Evo (v1)](https://www.science.org/doi/10.1126/science.ado9336)** — 7B-param DNA FM from Arc Institute; 131kb context, generative.
 - **Brixi et al. 2025 *bioRxiv* — [Evo 2](https://www.biorxiv.org/content/10.1101/2025.02.18.638918)** — 40B-param successor, 1M-bp context, trained on 9.3T DNA tokens; 2,048× H100 (the most expensive disclosed biology FM training run).
-- **[Avsec et al. 2026 *Nature* — AlphaGenome](https://www.nature.com/articles/s41586-026-XXXX)** — DeepMind's regulatory-track-prediction FM; wins 25/26 variant-effect benchmarks.
+- **[Avsec et al. 2025 *Nature* — AlphaGenome](https://doi.org/10.1038/s41586-025-10014-0)** — "Advancing regulatory variant effect prediction with AlphaGenome." DeepMind's regulatory-track-prediction FM; wins 25/26 variant-effect benchmarks.
 - Avsec et al. 2021 *Nat Methods* — [Enformer](https://doi.org/10.1038/s41592-021-01252-x) — attention-based DNA-to-track predictor; AlphaGenome's spiritual predecessor.
 - Benegas, Batra, Song 2023 *bioRxiv* — [GPN-MSA](https://www.biorxiv.org/content/10.1101/2023.10.10.561776) — multi-species DNA FM (cross-species transfer baseline).
 - Schiff et al. 2024 *ICML* — [Caduceus](https://openreview.net/forum?id=8c5BvLBHgD) — RC-equivariant DNA FM (treats reverse-complement symmetry as architectural).
@@ -850,12 +908,12 @@ The bibliography is organized into 12 buckets. Bold = read first. URLs are direc
 #### Multimodal / general-bio FMs
 
 - Zhang et al. 2024 *NEJM AI* — [BiomedCLIP](https://ai.nejm.org/doi/full/10.1056/AIoa2400640) — vision-language pretraining on 15M biomed image-caption pairs.
-- Singhal et al. 2023 *Nature* — [Med-PaLM 2](https://doi.org/10.1038/s41586-023-06291-2) — clinical-grade medical LLM.
+- Singhal et al. 2023 *Nature* — [Med-PaLM](https://doi.org/10.1038/s41586-023-06291-2) — "Large language models encode clinical knowledge"; expert-level MedQA.
 - Tu et al. 2024 *arXiv* — [Med-Gemini](https://arxiv.org/abs/2404.18416) — Google's multimodal medical FM.
-- Moor et al. 2023 *PMLR* — [Med-Flamingo](https://proceedings.mlr.press/v225/moor23a.html) — few-shot medical visual question answering.
-- Saab et al. 2024 *arXiv* — [Med-Gemini 2](https://arxiv.org/abs/2407.02485) — multimodal scaling.
-- Steinegger et al. 2024 *Nat Methods* — [TxFM / TxGNN](https://www.nature.com/articles/s41592-024-02491-4) — disease-drug bipartite FM for repurposing (Harvard).
-- Theodoris et al. 2024 — [tGPT](https://www.nature.com/articles/s41587-023-02016-y) — transcriptome generative pretraining.
+- Moor et al. 2023 *PMLR* — [Med-Flamingo](https://proceedings.mlr.press/v225/moor23a/moor23a.pdf) — few-shot medical visual question answering.
+- Saab et al. 2024 *arXiv* — ["Capabilities of Gemini Models in Medicine"](https://arxiv.org/abs/2407.02485) — Med-Gemini clinical-task follow-up.
+- Huang et al. (Zitnik lab) 2024 *Nat Medicine* — [TxGNN](https://www.nature.com/articles/s41591-024-03233-x) — "A foundation model for clinician-centered drug repurposing"; zero-shot drug-disease graph FM (Harvard).
+- Shen et al. 2023 *iScience* — [tGPT](https://www.cell.com/iscience/fulltext/S2589-0042(23)02403-X) — "Generative pretraining from large-scale transcriptomes for single-cell deciphering."
 
 #### Virtual cell-specific work
 
@@ -866,7 +924,6 @@ The bibliography is organized into 12 buckets. Bold = read first. URLs are direc
 - [CZ Biohub Virtual Cell Challenge 2025](https://virtualcellchallenge.org/) — first community benchmark with $50k prize purse.
 - Lotfollahi et al. 2023 *Nat Cell Biol* — CPA (Compositional Perturbation Autoencoder); pre-FM virtual-cell prototype.
 - Roohani et al. 2024 *Nat Biotechnol* — [GEARS](https://www.nature.com/articles/s41587-023-01905-6) — graph-based perturbation-response prediction; the linear-baseline-beater for pre-FM models.
-- Theodoris 2025 *Nat Methods* News & Views on virtual cells — what the term means after the 2025 critiques.
 
 #### Benchmarks & datasets
 
@@ -911,11 +968,7 @@ The bibliography is organized into 12 buckets. Bold = read first. URLs are direc
 
 - Marx 2024 *Nat Methods* tech feature — "AI builds models of biology" — accessible overview.
 - Sahu et al. 2024 *Nat Rev Genet* — "Discovering therapeutic targets from foundation models" — pharma-side FM review.
-- Theodoris 2024 *Cell* — Geneformer follow-up commentary.
 - Eraslan, Avsec et al. 2019 *Nat Rev Genet* — pre-FM deep-learning-for-genomics review (still the cleanest framing).
-- Yang et al. 2025 *Nat Methods* commentary on "AI in single-cell biology — what's next."
-- Bunne, Karaletsos et al. 2025 *Cell Systems* — FM evaluation framework proposal.
-- Theodoris 2026 *Nat Methods* (in press) — "Where single-cell FMs go after the linear-baseline reckoning."
 
 #### Industry / strategy / clinical context
 
