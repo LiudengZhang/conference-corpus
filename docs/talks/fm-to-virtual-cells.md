@@ -212,7 +212,7 @@ The cross-species single-cell FM.
 
 The Tahoe-100M-native virtual cell.
 
-- **Resources** — Two interlocking modules: **State Embedding (SE-600M)** at 600M params trained on 167M observational human cells; **State Transition (ST)** at undisclosed params trained on 100M+ perturbed cells (Tahoe-100M + Parse + Replogle); **GPU compute: UNKNOWN — preprint and Arc press do not disclose**; **cost UNKNOWN** (order-of-magnitude estimate ~$125k if similar Arc infrastructure to Evo2). Team: Arc Institute (Patrick Hsu + Hani Goodarzi labs).
+- **Resources** — Two interlocking modules: **State Embedding (SE-600M)** at 600M params trained on 167M observational human cells; **State Transition (ST)** at undisclosed params trained on 100M+ perturbed cells (Tahoe-100M + Parse + Replogle); **GPU compute: UNKNOWN — preprint and Arc press do not disclose**; **cost UNKNOWN** (order-of-magnitude estimate ~$125k if similar Arc infrastructure to Evo2). Team: Arc Institute (Patrick Hsu + Hani Goodarzi labs). Preprint: [Adduri et al. bioRxiv 2025.06.26.661135](https://www.biorxiv.org/content/10.1101/2025.06.26.661135v1).
 - **Framework** — bidirectional transformer with self-attention over **sets of cells** (not single cells). SE module learns observational embedding; ST module predicts perturbation transitions. Trained offline on frozen snapshots.
 - **Unique** — **first production-grade virtual-cell model at Tahoe-100M scale**. The 167M-cell observational corpus + 100M-cell perturbation corpus is the data moat.
 - **Gap exposed** — STATE is *trained on the snapshot*; if you want to extend the atlas with new perturbations, you re-train. **No online-update or active-learning loop** in the published version. Also: STATE's disclosure pattern (data scale foregrounded, compute buried) mirrors Evo2's — **Arc Institute treats "what we trained on" as the publishable contribution, not "what it cost to train."** The Lewis & Zueco *Generative Virtual Cells* (§3.5) paper proposes the missing online-update.
@@ -277,11 +277,12 @@ The 98B-param multimodal protein FM. **Sets the floor for "frontier biology FM c
 
 ### 4.1 The linear-baseline reckoning
 
-Three independent papers in 2025 retired the single-cell FM perturbation-prediction leaderboard:
+Three independent papers in 2025 retired the single-cell FM perturbation-prediction leaderboard, and a 2026 benchmark confirmed the verdict at scale:
 
 1. **Ahlmann-Eltze & Huber 2025** *Nature Methods* — "[Deep-learning–based perturbation modeling does not yet outperform simple baselines.](https://www.nature.com/articles/s41592-025-02772-6)" Showed scGPT, Geneformer, scFoundation, GEARS, CPA fail to beat `mean-of-training-perturbations` on held-out perturbations.
 2. **Kedzierska et al. 2025** *Genome Biology* — extended the result to UCE and the zero-shot setting.
 3. **Wenkel et al. 2025** *Nature Methods* — proposed `latent-additive + scGPT-embeddings` as the strongest single-cell baseline; current FMs still don't beat it consistently.
+4. **Wu et al. 2025 *Nature Methods*** — "[Benchmarking algorithms for generalizable single-cell perturbation response prediction](https://www.nature.com/articles/s41592-025-02980-0)" — 27 methods × 29 datasets × 6 metrics; confirms the headline at much larger scale, and provides the first multi-axis breakdown of where each FM fails (some are stronger on combinatorial perturbations, none on out-of-distribution cell types).
 
 The headline result is simple: a linear regression on average post-perturbation expression — *with no training, no fine-tuning, no FM* — is competitive or better than every published single-cell FM on the perturbation-prediction task as it was originally defined.
 
@@ -453,6 +454,8 @@ Once an FM is publicly available, using it as instrumentation inside a clinical 
 
 **AACR 2026 exemplars**: **#4163 KRONOS** (Stanford + Mahmood collabs — general-purpose spatial-proteomics FM; outperforms UNI/CA-MAE on the relevant tasks) · **#1442 Virchow2 + VIDCellTyper** (TNBC tumour-proportion from H&E without IHC, <$2k) · **#2778 DINOv2 spatial-transcriptomics joint fine-tune** (~$5–10k for the joint fine-tune; DINOv2 backbone free) · **#1444 H-optimus-0 + ABMIL** (Owkin H-optimus for Lauren-subtype gastric classification, <$2k).
 
+**Beyond AACR — the first published real-world clinical deployment**: **Janowczyk et al. 2025 *Nature Medicine*** — "[Real-world deployment of a fine-tuned pathology foundation model for lung cancer biomarker detection](https://www.nature.com/articles/s41591-025-03780-x)" — fine-tuned UNI identifies EGFR mutations from H&E in a 197-patient clinical trial, **potentially preventing further genetic testing in 43% of cases**. This is the proof-point that Lane 7 graduates into actual clinical decision support — and it lands the §8.3 buyer-map argument for clinical-AI vendors as the cleanest check-writer for Lane 7 work.
+
 **Venue picks**: *Clinical Cancer Research*, *JCO CCI*, *npj Precision Oncology*, *Cancer Discovery*. **AACR Annual** (Apr); **AACR Pancreatic / SITC 2026** for indication-specific; **ASCO 2026** if endpoint is treatment-response.
 
 ### 6.9 The decision tree — which lane is yours? (30 sec, 1 slide)
@@ -528,15 +531,21 @@ The honest framing for an academic comp-bio audience in 2026 is not *"can I comp
 
 ### 7.2 Track 1 — Mechanistic interpretability of biology FMs
 
-**The open problem.** scGPT has 33M parameters and ~12 transformer layers. *We have no idea what they encode.* Do attention heads correspond to pathways, TF programs, regulatory grammar, or just co-expression statistics? Nobody has done the work.
+**The open problem.** scGPT has 33M parameters and ~12 transformer layers. We are starting to know what they encode — but the literature is months old, the methodology is unsettled, and the cancer-domain case is wide open.
 
-**Why the field hasn't done this.** Pretraining scale dominated 2023–2024. Interpretability got skipped. The methodology that broke open language-model interpretability — **sparse autoencoders** (Cunningham et al., Anthropic 2023; Bricken et al., Anthropic 2024) — has barely been applied to biology FMs.
+**What changed in 2025–2026.** The field that didn't exist when this talk was first drafted now has its first wave of papers (see §11.6 for full citations):
 
-**A 12-month project.** Train sparse autoencoders on scGPT's residual-stream activations across a held-out CELLxGENE slice. Cluster the SAE features. Map clusters to known pathways (Reactome), TF programs (DoRothEA), and cell-state markers (CellMarker). Publish a feature atlas. **Compute: <$2k — inference-only on frozen weights plus a few hundred dollars of SAE training.**
+- **Simon & Zou 2025–2026 *arXiv*** — "Sparse autoencoders reveal organized biological knowledge but minimal regulatory logic in single-cell foundation models: a comparative atlas of Geneformer and scGPT" — the headline finding: SAEs on sc-FMs recover *cell-type and pathway* features cleanly, but *regulatory / causal* features are weak. Matches the Ahlmann-Eltze story from §4 at the mechanism level.
+- **Adams et al. 2025 *PNAS*** — Sparse autoencoders uncover biologically interpretable features in protein language model representations.
+- **bioRxiv 2025 "Sparse Autoencoders Reveal Interpretable Features in Single-Cell Foundation Models"** — independent confirmation on scGPT.
+- **Hibou-LP team 2024–2025** — Learning biologically relevant features in a pathology FM with SAEs (the first pathology-FM SAE).
+- **bioRxiv 2026 "What Do Biological Foundation Models Compute?"** — synthesis paper proposing a cross-FM SAE methodology.
 
-**Real exemplar / starting point.** Boltz et al. 2025 NeurIPS LMRL workshop — preliminary probing of scGPT attention; Conmy et al. 2024 (Anthropic interpretability scaffolding); Geva et al. 2023 (key-value memories in transformers). **No published biology-FM SAE work as of May 2026.** The first paper here writes the field's interpretability vocabulary.
+**So the "first-paper" pitch is gone — but the cancer-specific version isn't.** The published SAE work uses general-domain sc-FMs (scGPT, Geneformer on CELLxGENE). **No one has run SAEs on a *cancer-curated* sc-FM** (Geneformer V2-104M_CLcancer, CancerFoundation) to ask: do the cancer-domain features differ from the general-domain ones, and do they predict therapy response or resistance better?
 
-**Venues**: NeurIPS / ICLR main, *Nature Methods*, *Cell Systems*. NeurIPS Mechanistic Interpretability workshop is the obvious launchpad.
+**A 12-month project (revised).** Train SAEs on Geneformer V2-104M_CLcancer's residual-stream activations, compare feature atlas vs the same SAE on V2-104M_general. Specifically: do cancer-specific features (e.g., EMT, hypoxia, immune-evasion programs) emerge cleanly in the cancer-curated model but not the general one? Validate by knockout in held-out perturbation data. **Compute: <$2k — inference-only on frozen weights plus a few hundred dollars of SAE training.** Now it's a *cancer mechanism* paper, not a *first-SAE* paper — which is a better story for a comp-bio audience anyway.
+
+**Venues**: NeurIPS / ICLR Mechanistic Interpretability workshop; *Nature Methods*, *Cell Systems*; *Cancer Discovery* if the validation lands.
 
 ### 7.3 Track 2 — New pretraining objectives that target causality
 
@@ -1136,6 +1145,51 @@ If you're running *short* (say a lab meeting is constrained to 45 min): cut §3 
 
 ---
 
+### 11.6 2026 updates — papers published since the first draft of this talk
+
+The original bibliography in §11.3 leaned 2024–2025. Below are 15 papers from mid-2025 through Q2 2026 that materially affect the talk's argument. Each is annotated with **what changed because of it** and **which section it should be folded into when re-delivering**.
+
+#### New benchmarks confirming or extending the 2025 reckoning
+
+- **[Wu et al. 2025 *Nat Methods*](https://www.nature.com/articles/s41592-025-02980-0)** — "Benchmarking algorithms for generalizable single-cell perturbation response prediction." 27 methods × 29 datasets × 6 metrics. **What changed**: confirms Ahlmann-Eltze 2025 at scale; provides the first axis-by-axis breakdown of where each FM family fails. **Fold into**: §4.1.
+- **[Hossain et al. 2024 *arXiv* 2412.13478](https://arxiv.org/abs/2412.13478)** — "Efficient Fine-Tuning of Single-Cell Foundation Models Enables Zero-Shot Molecular Perturbation Prediction." PEFT/LoRA recipe specifically for sc-FMs. **What changed**: gives Lane 2 (§6.3) a concrete, costed exemplar; the adapter is the contribution, the backbone is rented. **Fold into**: §6.3.
+
+#### Position / framing papers
+
+- **[Roohani et al. 2025 *Cell*](https://www.cell.com/cell/fulltext/S0092-8674(25)00675-0)** — "Virtual Cell Challenge: Toward a Turing test for the virtual cell." **What changed**: replaces the CZ Biohub program announcement as the canonical "what does success even look like" reference. **Fold into**: §1.1 (what is a virtual cell), §10 (closing).
+- **[Adduri et al. 2025 *bioRxiv* 2025.06.26.661135](https://www.biorxiv.org/content/10.1101/2025.06.26.661135v1)** — STATE preprint (Arc Institute), now with first author and DOI. **What changed**: replaces "Arc press" placeholder for the §3.4 STATE row.
+- **[Singh et al. 2025 *Exp Mol Med*](https://www.nature.com/articles/s12276-025-01547-5)** — "Single-cell foundation models: bringing AI into cell biology." **What changed**: cleanest mid-2025 review article to hand the audience for offline reading.
+
+#### New single-cell / spatial foundation models
+
+- **[Schaar et al. 2025 *Nat Methods*](https://www.nature.com/articles/s41592-025-02814-z)** — **Nicheformer** (Helmholtz Munich + TUM, Dec 2025) — first FM jointly trained on dissociated + spatial omics (SpatialCorpus-110M: 57M dissociated + 53M spatial cells, 73 tissues). **What changed**: the §2.1 SOTA row needs a spatial line; the §3 deep dives need an 11th model if spatial is a key audience interest. **Fold into**: §2.1, optional §3.11.
+- **[Zhang et al. 2025 *Nat Commun*](https://www.nature.com/articles/s41467-025-59926-5)** — **CellFM** (May 2025) — 800M params on 100M human cells via modified RetNet on MindSpore. **What changed**: another data point for "domain matters more than scale" — CellFM is larger than most yet doesn't dominate. **Fold into**: §2.1.
+- **[CancerFoundation, bioRxiv 2024.11.01.621087](https://www.biorxiv.org/content/10.1101/2024.11.01.621087v1)** — single-cell FM trained on cancer-only scRNA-seq for drug-resistance prediction. **What changed**: relevant to §7.2 (cancer-curated SAE project) and §6.4 Lane 3 (domain-specific small FM).
+
+#### New pathology foundation models
+
+- **[Ding et al. 2025 *Nat Med*](https://www.nature.com/articles/s41591-025-03982-3)** — **TITAN** (Nov 2025) — multimodal whole-slide FM pretrained on 335,645 WSIs via visual SSL + vision-language alignment with pathology reports and synthetic captions. **What changed**: the §2.2 SOTA row should add TITAN as a slide-level (not tile-level) anchor model.
+- **[Xu et al. 2025 *Nat Commun*](https://www.nature.com/articles/s41467-025-66220-x)** — **mSTAR** (Dec 2025) — multimodal knowledge-enhanced pathology FM combining slides + reports + gene expression across 32 cancer types. **What changed**: a slot in the §2.2 anchor list and a possible §3 deep-dive replacement.
+- **[Ma et al. 2026 *Nat Biomed Eng*](https://www.nature.com/articles/s41551-025-01488-4)** — **GPFM** — generalizable pathology FM via unified knowledge distillation. **What changed**: a new entrant in the pathology-FM consolidation story.
+- **[Janowczyk et al. 2025 *Nat Med*](https://www.nature.com/articles/s41591-025-03780-x)** — first real-world clinical deployment of a fine-tuned pathology FM (UNI for EGFR detection in lung cancer, 197 patients, 43% genetic-testing avoidance). **What changed**: the §6.8 Lane 7 exemplar.
+- **[Boosting pathology FMs via few-shot prompt-tuning for rare cancer subtyping, *Nat Commun* 2026](https://www.nature.com/articles/s41467-026-71715-2)** — PathPT framework. **What changed**: relevant to §6.3 Lane 2 (adapters / prompt-tuning) for clinical pathology.
+
+#### Mechanistic interpretability — the wave that broke between drafts
+
+- **[Adams et al. 2025 *PNAS*](https://www.pnas.org/doi/10.1073/pnas.2506316122)** — Sparse autoencoders uncover biologically interpretable features in protein language model representations. **What changed**: the *Track 1* claim in §7.2 — SAEs on biology FMs **have now been published**. Cancer-specific SAEs are the next open lane.
+- **[Simon & Zou 2026 *arXiv* 2603.02952](https://arxiv.org/abs/2603.02952)** — "Sparse autoencoders reveal organized biological knowledge but minimal regulatory logic in single-cell foundation models: a comparative atlas of Geneformer and scGPT." **What changed**: the headline finding — sc-FMs encode cell-type / pathway features but not regulatory / causal features — connects §4 (the linear-baseline reckoning) to §7.2 (interpretability) at the *mechanism* level. The single most useful new paper for this talk's argument.
+- **[bioRxiv 2025 — "Sparse Autoencoders Reveal Interpretable Features in Single-Cell Foundation Models"](https://www.biorxiv.org/content/10.1101/2025.10.22.681631v2)** — independent confirmation on scGPT.
+- **[Hibou-LP team 2024–2025 *arXiv* 2407.10785](https://arxiv.org/abs/2407.10785)** — "Learning biologically relevant features in a pathology foundation model using sparse autoencoders" — the first pathology-FM SAE.
+- **[bioRxiv 2026 — "What Do Biological Foundation Models Compute? Sparse Autoencoders from Feature Recovery to Mechanistic Interpretability"](https://www.biorxiv.org/content/10.64898/2026.03.04.709491v1)** — synthesis / methodology paper across families.
+
+#### Genomic FM follow-ups
+
+- **[*Cell Research* 2026 — Predicting non-coding variant effects with AlphaGenome](https://www.nature.com/articles/s41422-026-01249-1)** — independent evaluation. **What changed**: known AlphaGenome limitations (combinatorial / personal genome effects, distal regulatory elements, under-represented cell types) are now in the published record. **Fold into**: §3.8 (gap exposed) and §5.5 (evaluation honesty).
+
+**Net effect on the talk:** §4.1 gets stronger (Wu confirms at scale). §6.8 Lane 7 gets a real clinical exemplar (Janowczyk). §7.2 Track 1 has to acknowledge the wave broke — but the *cancer-specific* SAE pitch is intact and arguably better. §10 gets the Bunne Cell "Turing test" framing as the cleanest closer. The 2026 pathology-FM proliferation (TITAN, mSTAR, GPFM, PathPT) is the strongest evidence that the field is leaning into Lane 7 (clinical deployment) over Lane 3 (more FMs).
+
+---
+
 ## Companion resource files
 
 - [`_resources-matrix.md`](_resources-matrix.md) — full compute / cost / team / data matrix with arithmetic shown and DISCLOSED/ESTIMATED/UNKNOWN tags
@@ -1145,4 +1199,4 @@ If you're running *short* (say a lab meeting is constrained to 45 min): cut §3 
 
 ---
 
-*Last updated: 2026-05-12. Resource numbers and field status reflect the May 2026 state. The 2025 linear-baseline critique trio and the Jan–Feb 2025 events (CZ Biohub announcement, Tahoe-100M release, PathChat DX FDA designation, UNI2-h gated release) are the most recent reference events.*
+*Last updated: 2026-05-13. Resource numbers and field status reflect the May 2026 state. §11.6 captures the 2025–2026 papers (Wu 2025 *Nat Methods* benchmark, Bunne 2025 *Cell* "Turing test", Janowczyk 2025 *Nat Med* clinical UNI deployment, the 5-paper SAE-on-biology-FMs wave, TITAN/mSTAR/GPFM pathology consolidation, Nicheformer for spatial, AlphaGenome critique in *Cell Research*) that should be folded into the body when re-delivering.*
