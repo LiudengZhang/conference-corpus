@@ -494,7 +494,7 @@ A: *Foundation Models Improve Perturbation Response Prediction* (bioRxiv 2026.02
 
 ### H.3 Recommended reading — ~110 references
 
-The bibliography is organized into 12 buckets. **Bold** = read first. URLs are direct.
+The bibliography is organized into 12 buckets. **Bold** = read first. URLs are direct. Several algorithm and review papers that are *adjacent* to the talk's topic — perturbation prediction, generative modelling, the architecture debate — without being FM papers have their own dossiers in [Adjacent methods](fm-to-virtual-cells/adjacent-methods/index.md).
 
 #### Position papers — start here
 
@@ -565,8 +565,8 @@ The bibliography is organized into 12 buckets. **Bold** = read first. URLs are d
 - **[Avsec et al. 2025 *Nature* — AlphaGenome](https://doi.org/10.1038/s41586-025-10014-0)**.
 - Avsec et al. 2021 *Nat Methods* — [Enformer](https://doi.org/10.1038/s41592-021-01252-x).
 - Schiff et al. 2024 *ICML* — [Caduceus](https://openreview.net/forum?id=8c5BvLBHgD).
-- Consens et al. 2025 *Nat Mach Intell* — ["Transformers and genome language models"](https://doi.org/10.1038/s42256-025-01007-9) — review of the genome-LM landscape.
-- Tiezzi et al. 2025 *Nat Mach Intell* — ["Back to recurrent processing at the crossroad of transformers and state-space models"](https://doi.org/10.1038/s42256-025-01034-6) — architecture review behind the transformer-vs-SSM choice (HyenaDNA / Caduceus / xVERSE).
+- Consens et al. 2025 *Nat Mach Intell* — ["Transformers and genome language models"](https://doi.org/10.1038/s42256-025-01007-9) — review of the genome-LM landscape. → [resource page](fm-to-virtual-cells/adjacent-methods/genome-language-models.md).
+- Tiezzi et al. 2025 *Nat Mach Intell* — ["Back to recurrent processing at the crossroad of transformers and state-space models"](https://doi.org/10.1038/s42256-025-01034-6) — architecture review behind the transformer-vs-SSM choice (HyenaDNA / Caduceus / xVERSE). → [resource page](fm-to-virtual-cells/adjacent-methods/transformers-vs-state-space.md).
 
 #### Protein FM technical papers
 
@@ -609,7 +609,7 @@ The bibliography is organized into 12 buckets. **Bold** = read first. URLs are d
 - bioRxiv 2025 — SAEs Reveal Interpretable Features in Single-Cell FMs (independent confirmation on scGPT).
 - Hibou-LP team 2024–2025 *arXiv* 2407.10785 — first pathology-FM SAE.
 - bioRxiv 2026 — "What Do Biological Foundation Models Compute?" — synthesis across families.
-- Hunklinger & Ferruz 2026 *Nat Mach Intell* — ["Towards the explainability of protein language models"](https://doi.org/10.1038/s42256-026-01232-w) — review of interpretability methods for protein FMs.
+- Hunklinger & Ferruz 2026 *Nat Mach Intell* — ["Towards the explainability of protein language models"](https://doi.org/10.1038/s42256-026-01232-w) — review of interpretability methods for protein FMs. → [resource page](fm-to-virtual-cells/adjacent-methods/protein-lm-explainability.md).
 
 #### Compute / cost methodology
 
