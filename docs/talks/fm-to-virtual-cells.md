@@ -49,6 +49,14 @@ A virtual cell, as the field has actually built it, is **a perturbation-predicti
 3. **The theoretical underpinning ([Virtual Cells Need Context, bioRxiv 2026.02](https://www.biorxiv.org/content/10.64898/2026.02.04.703804v1)).** The failure is a *causal transportability problem* (Pearl framework) — structural, not capacity-bounded.
 4. **The architectural response.** [xVERSE](https://www.biorxiv.org/content/10.64898/2026.04.12.718016v1) (transcriptomics-native, +17.9% representation, +34.3% spatial imputation over LM-derived sc-FMs); [TranscriptFormer](https://www.science.org/doi/10.1126/science.aec8514) (generative cross-species, 112M cells × 12 species × 1.53B years of evolution); [TxPert (Wenkel et al. 2026 *Nat Biotech*)](https://doi.org/10.1038/s41587-026-03113-4) — multiple-knowledge-graph perturbation prediction, and notably **the reckoning answering itself**: Wenkel co-authored the 2025 `latent-additive` critique; [Theis *Cell Systems*](https://www.cell.com/cell-systems/abstract/S2405-4712(26)00016-5) (compositional FMs — stop training bigger monolithic sc-FMs, start composing modality-specific FMs); [rBio](https://virtualcellmodels.cziscience.com/model/rbio) + [VCHarness](https://www.biorxiv.org/content/10.64898/2026.04.11.717183v1) + [CellVoyager](https://doi.org/10.1038/s41592-026-03029-6) (agentic ↔ virtual-cell convergence — reasons / builds / analyzes).
 
+<iframe src="../assets/fm-reckoning-corpus.html" width="100%" height="560" frameborder="0" loading="lazy" title="The 2025 reckoning becomes a corpus — 12 evaluation papers"></iframe>
+
+*Interactive — the cumulative step line shows the reckoning hardening into a 12-paper corpus across 2024–2026; colour marks the evaluation axis each paper opened; the green ✕ below the axis is the contrarian voice. Hover any point for venue + headline.*
+
+<iframe src="../assets/fm-lineage-tree.html" width="100%" height="580" frameborder="0" loading="lazy" title="Foundation-model lineage — NLP origin to the 2026 architectural response"></iframe>
+
+*Interactive — the four eras as a lineage: the Gen-1 sc-FMs inherited the NLP transformer, lost to a linear baseline, and the 2026 response fixes the causes (edge colour = which cause it addresses). Hover any node for detail.*
+
 ### 1.4 Glossary — eight terms this talk leans on
 
 | Term | Operational meaning in this talk |
@@ -120,6 +128,10 @@ These are the gaps that, if closed, would let "foundation model" and "virtual ce
 | **5.4 Compute asymmetry** | Evo2 + ESM-3 = >$7M of the ~$15M total identified FM training spend across 14 models; concentrated at ~5 institutions | Academic single-cell labs cannot directly compete on training scale |
 | **5.5 Evaluation honesty** | 10 critique papers by May 2026; the "scFMs beat baselines" narrative was an artifact of biased train/test splits, averaged metrics, and selective benchmark curation | Each new sc-FM claim must clear the linear floor first; reviewers know to ask |
 
+<iframe src="../assets/fm-compute-landscape.html" width="100%" height="580" frameborder="0" loading="lazy" title="The compute landscape — params vs training cost, and the linear baseline"></iframe>
+
+*Interactive — gap 5.4 made visual: training cost spans ~$250 to ~$5M across four FM families; filled markers are cost-disclosed, open markers estimated (bars show the band). The red star is the parameter-free linear baseline that beats every sc-FM on perturbation prediction. Hover for the source.*
+
 ### 2.4 The 5 gaps × 9 lanes × 9 tracks matrix
 
 The connective tissue between "what's broken" and "what we'd work on." Vertical reading: pick a gap → see how to contribute. Horizontal reading: pick a project → see which gap it closes.
@@ -167,6 +179,10 @@ The connective tissue between "what's broken" and "what we'd work on." Vertical 
 7. **Lane 7** — use a frozen FM as instrumentation in a clinical or wet-lab study. **Janowczyk 2025 *Nat Med*** is the first deployment-grade exemplar (UNI for EGFR detection, 43% genetic-testing avoidance). Pairs with Track 5 (UQ) for regulatory-grade.
 8. **Lane 8** *(new 2026)* — use a generative FM (xVERSE, TranscriptFormer) to synthesize labeled training cells for rare cohorts. **xVERSE resolves rare cell types with as few as 4 cells**. Caveat: held-out *real* test set required to prevent synthetic-bias leakage.
 9. **Lane 9** *(new 2026)* — FM-guided experimental-design loop. CRADLE-VAE, scPRINT, VCHarness, rBio. **Win**: the pattern AI-native biotechs (Recursion, Insitro, Vevo) actually pay for.
+
+<iframe src="../assets/fm-lanes-map.html" width="100%" height="560" frameborder="0" loading="lazy" title="The 9 application lanes — cost vs time-to-result"></iframe>
+
+*Interactive — the budget table above as a 2-D map: horizontal position is typical project cost (bars show the range), vertical is months to first result, colour is project risk. Hover any bubble for the one-line summary and the win.*
 
 #### Decision tree — which lane is yours?
 

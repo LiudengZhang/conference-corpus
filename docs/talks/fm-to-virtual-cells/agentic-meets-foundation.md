@@ -13,6 +13,10 @@ Agentic AI and biology FMs are **complementary, not competing**. There are four 
 
 All four exist as public 2025–2026 systems. The intersection is no longer vapor — and the [Li et al. 2026 *Nat Biotech* position paper "Agentic AI and the rise of in silico team science"](https://doi.org/10.1038/s41587-026-03035-1) is the first venue-level framing of the whole intersection as a *team-science* shift, not just a tooling shift.
 
+<iframe src="../../assets/agentic-fm-patterns.html" width="100%" height="580" frameborder="0" loading="lazy" title="Agentic AI × foundation models — the four patterns"></iframe>
+
+*Interactive — the four patterns don't form an orthogonal 2×2; the public 2024–2026 systems run along one diagonal, from FM-consumers (bottom-left) to FM-producers (top-right). Hover any bubble for the canonical exemplar.*
+
 ## Pattern 1: Agents using FMs as tools
 
 **The structure**: an LLM (Claude / GPT / open Llama / Qwen) sits at the top of the stack. It receives a user query in natural language ("Stage this tumor"; "Predict expression after CRISPRi on Gene X"). It decides which downstream tool to call, calls a biology FM (pathology / single-cell / genomic) as a remote function, then reasons over the FM's output to produce a final answer.
