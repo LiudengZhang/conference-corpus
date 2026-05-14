@@ -77,7 +77,7 @@ nav:
       - Evaluation papers catalog: talks/fm-to-virtual-cells/evaluation-papers-catalog.md
       - The paper map: talks/fm-to-virtual-cells/paper-map.md
     - Adjacent methods:
-      - Overview: talks/fm-to-virtual-cells/adjacent-methods/index.md
+      - The catalog (~55 papers): talks/fm-to-virtual-cells/adjacent-methods/index.md
       - PerturbFate: talks/fm-to-virtual-cells/adjacent-methods/perturbfate.md
       - Flow matching in comp-bio: talks/fm-to-virtual-cells/adjacent-methods/flow-matching.md
       - Learning beyond fine-tuning: talks/fm-to-virtual-cells/adjacent-methods/learning-beyond-fine-tuning.md
