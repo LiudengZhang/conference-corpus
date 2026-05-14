@@ -59,6 +59,7 @@ Three reasons:
 ## Where to go next
 
 - **[The main talk page](../fm-to-virtual-cells.md)** — full 5-act outline.
+- **[The model glossary](model-glossary.md)** — every FM named in the talk, one sentence each, grouped by family.
 - **[Supplementary §A — the 11 anchor model dossiers](../fm-to-virtual-cells-supplementary.md#a-model-dossiers-the-11-anchor-models)** — full per-model resources / framework / unique features / gaps exposed.
 - **[What does each FM cost?](what-does-each-fm-cost.md)** — the disclosure landscape.
 - **[Foundation Models cross-vault index](../../foundation-models.md)** — every FM page across all conference vaults.

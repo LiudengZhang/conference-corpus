@@ -10,7 +10,7 @@
 
 ## §A. Model dossiers — the 11 anchor models
 
-The master comparison table. Each row links to its detailed dossier below. The columns are the 5 questions every FM should answer; the rows are the 11 models the talk uses as exemplars.
+The master comparison table. Each row links to its detailed dossier below. The columns are the 5 questions every FM should answer; the rows are the 11 models the talk uses as exemplars. For a flat one-sentence-each glossary of *every* model named in the talk corpus — not just these 11 — see [the model glossary](fm-to-virtual-cells/model-glossary.md).
 
 | # | Model | Family | Params | Compute disclosed? | Public weights | The one thing it's best at | Where it breaks |
 |---|---|---|---|---|---|---|---|
