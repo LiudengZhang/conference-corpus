@@ -106,6 +106,7 @@ This is the arc the talk's Act 1 walks through.
 ## Where to go next
 
 - **[The main talk page Act 1 §1.3](../fm-to-virtual-cells.md#13-the-four-eras)** — the four eras: paradigm → ambition → reckoning → response.
+- **[The paper map](paper-map.md)** — this catalog placed in the wider literature network, with a systematic reading order.
 - **[Why do linear baselines win?](why-linear-baselines-win.md)** — the mechanism behind the catalog.
 - **[How to read an FM paper critically](reading-an-fm-paper-critically.md)** — the 8-item checklist.
 - **[Supplementary §E — the full evaluation catalog with methodology details](../fm-to-virtual-cells-supplementary.md#e-20252026-evaluation-papers-catalog)** — even more depth.

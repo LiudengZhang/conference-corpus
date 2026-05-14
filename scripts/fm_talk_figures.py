@@ -16,6 +16,7 @@ Outputs (all → docs/talks/assets/):
   fm-arc-timeline.html            — §1.3  the 2023–2026 arc as three interleaved swimlanes
   fm-eval-catalog-timeline.html   — evaluation-papers-catalog: corpus by venue tier
   fm-institutional-landscape.html — §2.2  institutes by build activity vs critique activity
+  fm-paper-network.html           — paper-map: ~50-paper relationship network, colour = category
 
 The data below is hardcoded with inline source tags — these are small,
 figure-specific tables curated from the talk's own supplementary resources
@@ -30,8 +31,10 @@ from __future__ import annotations
 
 import datetime as dt
 import math
+import random
 from pathlib import Path
 
+import networkx as nx
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -1364,9 +1367,323 @@ def build_institutional_landscape() -> None:
     write_fig(fig, "fm-institutional-landscape.html")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Figure 11 — the paper map: how the FM-to-virtual-cells literature connects
+# Source: docs/talks/fm-to-virtual-cells-supplementary.md §H.3 + §H.10,
+#         docs/talks/fm-to-virtual-cells/evaluation-papers-catalog.md
+# Nodes are curated, not a citation dump; edges are curated semantic relations.
+# ─────────────────────────────────────────────────────────────────────────────
+
+CAT_COLOR = {
+    "position": "#7b3fa0",
+    "scfm": "#1f77b4",
+    "reckoning": "#d62728",
+    "contrarian_theory": "#ff7f0e",
+    "arch_response": "#2ca02c",
+    "interp": "#17becf",
+    "agentic": "#8c564b",
+    "other_fm": "#7f7f7f",
+}
+CAT_LABEL = {
+    "position": "Position / framing",
+    "scfm": "Single-cell FM (model paper)",
+    "reckoning": "The reckoning (critique / benchmark)",
+    "contrarian_theory": "Contrarian + theoretical framing",
+    "arch_response": "Architectural response",
+    "interp": "Mechanistic interpretability",
+    "agentic": "Agentic system",
+    "other_fm": "Other-family FM (path/genomic/protein)",
+}
+REL_STYLE = {
+    "builds_on": dict(color="#c2c2c2", dash="solid", label="builds on / lineage"),
+    "evaluates": dict(color="#e8888a", dash="dash", label="evaluates / critiques"),
+    "responds": dict(color="#74c476", dash="solid", label="responds to"),
+    "frames": dict(color="#c9a3dd", dash="dot", label="frames / explains"),
+}
+
+# id, cat, label (on-graph), title (hover), meta (venue · date), why (hover), weight
+PAPERS = [
+    # — position / framing —
+    ("bunne", "position", "Bunne 2024", "How to build the virtual cell with AI",
+     "Cell · 2024", "The canonical virtual-cell thesis — the goal everything else chases.", 2),
+    ("rood", "position", "Rood/Regev 24", "The future of automated single-cell analysis",
+     "Cell · 2024", "Regev's reference-mapping framing of the same ambition.", 1),
+    ("theis", "position", "Theis 2026", "From modality-specific to compositional FMs",
+     "Cell Systems · 2026", "The post-reckoning forward path — stop scaling monoliths.", 1),
+    ("vcc", "position", "VCC 2025", "Virtual Cell Challenge — a Turing test for the virtual cell",
+     "Cell · 2025", "What success is supposed to look like, operationalized.", 1),
+    ("rao", "position", "Rao 2026", "Generalist biological AI — modeling the language of life",
+     "Nat Biotech · 2026", "The position paper that unifies the five FM families.", 1),
+    ("li_agentic", "position", "Li 2026", "Agentic AI and in silico team science",
+     "Nat Biotech · 2026", "The position paper behind the agentic-FM intersection.", 1),
+    ("singh", "position", "Singh 2025", "Single-cell foundation models — bringing AI into cell biology",
+     "Exp Mol Med · 2025", "Clean mid-2025 review — the orientation read.", 1),
+    # — single-cell FM model papers —
+    ("scbert", "scfm", "scBERT", "scBERT", "Nat Mach Intell · 2022",
+     "The BERT-style precursor that pre-dated the 2023 sc-FM wave.", 1),
+    ("scgpt", "scfm", "scGPT", "scGPT", "Nat Methods · 2024",
+     "Defined the category — genes + cells as tokens. The reckoning's main target.", 2),
+    ("geneformer", "scfm", "Geneformer", "Geneformer", "Nature · 2023",
+     "First atlas-pretrained transformer; rank-based tokenization.", 2),
+    ("uce", "scfm", "UCE", "Universal Cell Embedding", "Nat Methods · 2024",
+     "Cross-species sc-FM — bridges through ESM2 protein embeddings.", 1),
+    ("scfoundation", "scfm", "scFoundation", "scFoundation", "Nat Methods · 2024",
+     "Read-depth-aware attention; one of the four reckoning regulars.", 1),
+    ("cellplm", "scfm", "CellPLM", "CellPLM", "ICLR · 2024",
+     "Cell-as-token sc-FM; beats scGPT/Geneformer on cell-typing cheaply.", 1),
+    ("state", "scfm", "STATE", "STATE (Arc Institute)", "bioRxiv · 2025",
+     "First production virtual cell at Tahoe-100M scale.", 1),
+    ("transcriptformer", "scfm", "TranscriptFormer", "TranscriptFormer", "Science · 2025",
+     "First generative cross-species sc-FM; CZ Biohub flagship.", 2),
+    ("nicheformer", "scfm", "Nicheformer", "Nicheformer", "Nat Methods · 2025",
+     "Spatial-omics sc-FM with a niche-aware objective.", 1),
+    # — the reckoning —
+    ("boiarsky", "reckoning", "Boiarsky 2023", "Earliest 'linear baselines are competitive' warning",
+     "NeurIPS workshop · 2023", "The first warning shot — read it to see how early the signal was.", 1),
+    ("csendes", "reckoning", "Csendes 2024", "scPerturBench replication",
+     "BM2 Lab preprint · 2024", "Showed the original scGPT split was leaky.", 1),
+    ("ahlmann", "reckoning", "Ahlmann-Eltze 2025", "Deep-learning predictions of gene expression don't generalize",
+     "Nature Methods · 2025", "THE canonical reckoning paper — start here.", 3),
+    ("kedzierska", "reckoning", "Kedzierska 2025", "Limits of zero-shot foundation models in single-cell biology",
+     "Genome Biology · 2025", "Extends the result to UCE and the zero-shot setting.", 1),
+    ("wenkel", "reckoning", "Wenkel 2025", "latent-additive is the new baseline floor",
+     "Nature Methods · 2025", "Proposed the stronger baseline current FMs still don't beat.", 1),
+    ("wu_nm", "reckoning", "Wu NatMeth 26", "27 methods x 29 datasets x 6 metrics",
+     "Nature Methods · 2026", "The first axis-by-axis failure decomposition.", 1),
+    ("wu_gb", "reckoning", "Wu GenBiol 25", "No single scFM consistently outperforms",
+     "Genome Biology · 2025", "6 scFMs, cell-ontology-grounded metrics.", 1),
+    ("liu", "reckoning", "Liu scEval 2026", "scEval — challenges the necessity of sc-FMs",
+     "Advanced Science · 2026", "The strongest 'is the paradigm worth it' framing.", 1),
+    ("paramfree", "reckoning", "Param-free 26", "Parameter-free baseline beats sc-FMs",
+     "bioRxiv · 2026", "The cleanest post-reckoning headline; direct Ahlmann successor.", 1),
+    ("perteval", "reckoning", "PertEval-scFM", "PertEval-scFM standardized framework",
+     "ICML · 2025", "Formal venue stamp on the perturbation critique.", 1),
+    ("cellbench", "reckoning", "CellBench-LS 26", "Stratified low-supervision benchmark",
+     "bioRxiv · 2026", "FMs lead cell-type ID; classical wins gene-expression.", 1),
+    ("han", "reckoning", "Han 2026", "Real-world RNA-seq integration",
+     "bioRxiv · 2026", "Industry-authored — deployment-grade robustness gaps.", 1),
+    ("celldyn", "reckoning", "Cell-dynamics 26", "Zero-shot scFMs fail to recover cellular dynamics",
+     "bioRxiv · 2026", "Extends the critique to RNA-velocity / dynamics.", 1),
+    # — contrarian + theory —
+    ("contrarian", "contrarian_theory", "FMs Improve Pert. 26", "Foundation Models Improve Perturbation Response",
+     "bioRxiv · 2026", "The contrarian voice — FMs DO improve with enough data.", 2),
+    ("context", "contrarian_theory", "Need Context 2026", "Virtual Cells Need Context, Not Just Scale",
+     "bioRxiv · 2026", "Names the theory: a causal-transportability problem (Pearl).", 2),
+    ("sis", "contrarian_theory", "SIS 2026", "Beyond Alignment — Synergistic Information Score",
+     "bioRxiv (Microsoft) · 2026", "A multimodal-FM evaluation metric nobody has applied broadly yet.", 1),
+    # — architectural response —
+    ("xverse", "arch_response", "xVERSE 2026", "xVERSE — transcriptomics-native sc-FM",
+     "bioRxiv · 2026", "First evidence the architectural choice is load-bearing (+17.9%).", 2),
+    ("txpert", "arch_response", "TxPert 2026", "TxPert — multiple-knowledge-graph perturbation prediction",
+     "Nat Biotech · 2026", "The reckoning answering itself — Wenkel co-authored both.", 1),
+    ("map", "arch_response", "MAP 2026", "MAP — knowledge-driven perturbation framework",
+     "bioRxiv · 2026", "Zero-shot prediction for unprofiled drugs.", 1),
+    # — mechanistic interpretability —
+    ("adams", "interp", "Adams 2025", "SAEs uncover features in protein language models",
+     "PNAS · 2025", "The protein-FM SAE paper that started the interpretability wave.", 1),
+    ("simonzou", "interp", "Simon & Zou 2026", "SAEs reveal organized biology but minimal regulatory logic",
+     "arXiv · 2026", "The mechanistic explanation of the reckoning, on Geneformer + scGPT.", 2),
+    ("sae_scgpt", "interp", "SAE-scGPT 2025", "SAEs reveal interpretable features in single-cell FMs",
+     "bioRxiv · 2025", "Independent confirmation on scGPT.", 1),
+    ("sae_synth", "interp", "SAE synthesis 26", "What do biological foundation models compute?",
+     "bioRxiv · 2026", "Synthesis across families — the wave's summary read.", 1),
+    # — agentic systems —
+    ("rbio", "agentic", "rBio 2025", "rBio — reasoning model trained on TranscriptFormer",
+     "CZ Biohub · 2025", "Agent that REASONS OVER a virtual cell as a verifier.", 1),
+    ("vcharness", "agentic", "VCHarness 2026", "VCHarness — autonomous virtual-cell builder",
+     "bioRxiv (BioMap) · 2026", "Agent that BUILDS virtual-cell models end to end.", 1),
+    ("cellvoyager", "agentic", "CellVoyager 2026", "CellVoyager — autonomous comp-bio agent",
+     "Nat Methods · 2026", "Agent that ANALYZES single-cell data with the FM as substrate.", 1),
+    # — other-family FMs —
+    ("enformer", "other_fm", "Enformer 2021", "Enformer", "Nat Methods · 2021",
+     "The pre-FM-era gene-expression-from-sequence model.", 1),
+    ("alphagenome", "other_fm", "AlphaGenome 2025", "AlphaGenome", "Nature · 2025",
+     "Genomic variant-effect SOTA; replaces Enformer + Borzoi.", 1),
+    ("evo2", "other_fm", "Evo2 2026", "Evo 2", "Nature · 2026",
+     "The only genomic FM with demonstrated in-context learning.", 1),
+    ("esm2", "other_fm", "ESM-2 2023", "ESM-2 / ESMFold", "Science · 2023",
+     "The open protein LM — and UCE's cross-species bridge.", 1),
+    ("esm3", "other_fm", "ESM-3 2025", "ESM-3", "Science · 2025",
+     "98B-param multimodal protein FM; cleanest compute disclosure.", 1),
+    ("alphafold3", "other_fm", "AlphaFold 3 2024", "AlphaFold 3", "Nature · 2024",
+     "Structure prediction extended to complexes.", 1),
+    ("uni", "other_fm", "UNI 2024", "UNI", "Nat Medicine · 2024",
+     "The original Mahmood-lab pathology tile encoder.", 1),
+    ("virchow2", "other_fm", "Virchow2 2024", "Virchow2 / Virchow2G", "arXiv · 2024",
+     "The most hardware-transparent pathology FM; current SOTA.", 1),
+    ("pathchat", "other_fm", "PathChat 2024", "PathChat", "Nature · 2024",
+     "Vision-language pathology assistant; PathChat-DX got FDA Breakthrough.", 1),
+]
+
+# (source, target, relation) — read as "source <relation> target"
+PAPER_EDGES = [
+    # position lineage — Bunne is the root
+    ("rood", "bunne", "builds_on"), ("theis", "bunne", "builds_on"),
+    ("vcc", "bunne", "builds_on"), ("rao", "bunne", "builds_on"),
+    ("li_agentic", "bunne", "builds_on"), ("singh", "bunne", "builds_on"),
+    # single-cell FM lineage
+    ("scgpt", "scbert", "builds_on"), ("geneformer", "scbert", "builds_on"),
+    ("scfoundation", "scgpt", "builds_on"), ("cellplm", "scgpt", "builds_on"),
+    ("state", "scgpt", "builds_on"), ("nicheformer", "geneformer", "builds_on"),
+    ("uce", "esm2", "builds_on"), ("transcriptformer", "uce", "builds_on"),
+    # reckoning internal lineage — Ahlmann-Eltze is the hub
+    ("ahlmann", "boiarsky", "builds_on"), ("ahlmann", "csendes", "builds_on"),
+    ("kedzierska", "ahlmann", "builds_on"), ("wenkel", "ahlmann", "builds_on"),
+    ("wu_nm", "ahlmann", "builds_on"), ("wu_gb", "ahlmann", "builds_on"),
+    ("liu", "ahlmann", "builds_on"), ("paramfree", "ahlmann", "builds_on"),
+    ("perteval", "ahlmann", "builds_on"), ("cellbench", "ahlmann", "builds_on"),
+    ("han", "ahlmann", "builds_on"), ("celldyn", "ahlmann", "builds_on"),
+    # reckoning evaluates the models
+    ("ahlmann", "scgpt", "evaluates"), ("ahlmann", "geneformer", "evaluates"),
+    ("ahlmann", "scfoundation", "evaluates"), ("ahlmann", "uce", "evaluates"),
+    ("boiarsky", "scgpt", "evaluates"), ("csendes", "scgpt", "evaluates"),
+    ("kedzierska", "uce", "evaluates"), ("kedzierska", "geneformer", "evaluates"),
+    ("wenkel", "scgpt", "evaluates"), ("wu_nm", "scgpt", "evaluates"),
+    ("wu_gb", "geneformer", "evaluates"), ("liu", "scgpt", "evaluates"),
+    ("paramfree", "scgpt", "evaluates"), ("perteval", "geneformer", "evaluates"),
+    ("cellbench", "cellplm", "evaluates"), ("cellbench", "nicheformer", "evaluates"),
+    ("han", "scgpt", "evaluates"), ("celldyn", "scgpt", "evaluates"),
+    # responses to the reckoning
+    ("xverse", "ahlmann", "responds"), ("txpert", "wenkel", "responds"),
+    ("txpert", "ahlmann", "responds"), ("map", "ahlmann", "responds"),
+    ("theis", "ahlmann", "responds"), ("transcriptformer", "ahlmann", "responds"),
+    ("contrarian", "ahlmann", "responds"), ("contrarian", "liu", "responds"),
+    ("vcharness", "ahlmann", "responds"),
+    # theory + interpretability frame the reckoning
+    ("context", "ahlmann", "frames"), ("sis", "wu_nm", "frames"),
+    ("simonzou", "ahlmann", "frames"), ("sae_scgpt", "ahlmann", "frames"),
+    ("adams", "simonzou", "builds_on"), ("adams", "sae_scgpt", "builds_on"),
+    ("sae_synth", "simonzou", "builds_on"), ("sae_synth", "adams", "builds_on"),
+    # agentic systems
+    ("rbio", "transcriptformer", "builds_on"),
+    ("li_agentic", "rbio", "frames"), ("li_agentic", "vcharness", "frames"),
+    ("li_agentic", "cellvoyager", "frames"), ("cellvoyager", "scgpt", "builds_on"),
+    # other-family FMs — wired in via the generalist position paper + lineage
+    ("esm3", "esm2", "builds_on"), ("alphagenome", "enformer", "builds_on"),
+    ("virchow2", "uni", "builds_on"), ("pathchat", "uni", "builds_on"),
+    ("rao", "evo2", "frames"), ("rao", "esm3", "frames"),
+    ("rao", "alphagenome", "frames"), ("rao", "alphafold3", "frames"),
+    ("rao", "virchow2", "frames"), ("rao", "scgpt", "frames"),
+]
+
+
+def build_paper_network() -> None:
+    by_id = {p[0]: p for p in PAPERS}
+
+    # clustered layout: the reckoning sits at the centre (everything connects to
+    # it); the other seven categories ring it. Each category is placed on its
+    # own circle so clusters stay legible instead of collapsing into a hairball.
+    ring = ["scfm", "position", "other_fm", "agentic", "interp",
+            "arch_response", "contrarian_theory"]
+    centres = {"reckoning": (0.0, 0.0)}
+    for i, c in enumerate(ring):
+        ang = 2 * math.pi * i / len(ring) + math.pi / 2
+        centres[c] = (math.cos(ang) * 12.0, math.sin(ang) * 12.0)
+
+    _OCTANT = ["middle right", "top right", "top center", "top left",
+               "middle left", "bottom left", "bottom center", "bottom right"]
+
+    def _textpos(angle: float) -> str:
+        a = angle % (2 * math.pi)
+        return _OCTANT[int((a + math.pi / 8) / (math.pi / 4)) % 8]
+
+    pos, textpos = {}, {}
+    for cat in CAT_COLOR:
+        nodes = [p[0] for p in PAPERS if p[1] == cat]
+        cx, cy = centres[cat]
+        if cat == "reckoning":
+            # Ahlmann-Eltze is the hub — centre it, ring the rest around it.
+            hub = "ahlmann"
+            pos[hub], textpos[hub] = (cx, cy), "bottom center"
+            rest = [n for n in nodes if n != hub]
+            for j, nid in enumerate(rest):
+                ang = 2 * math.pi * j / len(rest) - math.pi / 2
+                pos[nid] = (cx + math.cos(ang) * 3.8, cy + math.sin(ang) * 3.8)
+                textpos[nid] = _textpos(ang)
+        else:
+            r = min(3.0, max(0.95, 0.34 * len(nodes)))
+            for j, nid in enumerate(nodes):
+                ang = 2 * math.pi * j / len(nodes) - math.pi / 2
+                pos[nid] = (cx + math.cos(ang) * r, cy + math.sin(ang) * r)
+                textpos[nid] = _textpos(ang)
+
+    fig = go.Figure()
+
+    # edges — one trace per relation type, drawn below the nodes
+    for rel, style in REL_STYLE.items():
+        xs, ys = [], []
+        for s, d, r in PAPER_EDGES:
+            if r != rel:
+                continue
+            xs += [pos[s][0], pos[d][0], None]
+            ys += [pos[s][1], pos[d][1], None]
+        fig.add_trace(go.Scatter(
+            x=xs, y=ys, mode="lines",
+            line=dict(color=style["color"], width=1.4, dash=style["dash"]),
+            hoverinfo="skip", name=style["label"],
+            legendgroup="rel",
+            legendgrouptitle_text="Relationship" if rel == "builds_on" else None,
+        ))
+
+    # nodes — one trace per category. Labels fan outward from each cluster
+    # (position chosen by the node's angle) so text spreads instead of stacking.
+    for cat, color in CAT_COLOR.items():
+        sub = [p for p in PAPERS if p[1] == cat]
+        if not sub:
+            continue
+        fig.add_trace(go.Scatter(
+            x=[pos[p[0]][0] for p in sub],
+            y=[pos[p[0]][1] for p in sub],
+            mode="markers+text",
+            text=[p[2] for p in sub],
+            textposition=[textpos[p[0]] for p in sub],
+            textfont=dict(size=7, color="#333"),
+            marker=dict(
+                size=[11 + 4 * p[6] for p in sub],
+                color=color, opacity=0.92,
+                line=dict(color="#ffffff", width=1.2),
+            ),
+            name=CAT_LABEL[cat],
+            legendgroup="cat",
+            legendgrouptitle_text=("Paper category"
+                                   if cat == "position" else None),
+            customdata=[[p[3], p[4], p[5]] for p in sub],
+            hovertemplate=(
+                "<b>%{customdata[0]}</b><br>%{customdata[1]}<br>"
+                "<i>%{customdata[2]}</i><extra></extra>"
+            ),
+        ))
+
+    fig.update_layout(
+        title=dict(
+            text=(
+                "The paper map — how the FM-to-virtual-cells literature connects<br>"
+                "<sub>~50 curated papers · colour = category · edge = relationship. "
+                "Hover any node for why to read it; drag to pan, scroll to zoom.</sub>"
+            ),
+            font=dict(size=15),
+        ),
+        showlegend=True,
+        legend=dict(
+            orientation="h", bgcolor="rgba(255,255,255,0.95)",
+            bordercolor="#bbb", borderwidth=1, font=dict(size=10),
+            x=0.5, xanchor="center", y=-0.02, yanchor="top",
+            grouptitlefont=dict(size=11),
+        ),
+        xaxis=dict(visible=False, range=[-18, 18]),
+        yaxis=dict(visible=False, range=[-18, 18], scaleanchor="x"),
+        plot_bgcolor="#fafafa",
+        paper_bgcolor="white",
+        margin=dict(l=30, r=30, t=80, b=110),
+        height=780,
+        hovermode="closest",
+    )
+    write_fig(fig, "fm-paper-network.html")
+
+
 def main() -> int:
     ASSETS.mkdir(parents=True, exist_ok=True)
-    print(f"Building 10 talk figures → {ASSETS.relative_to(REPO_ROOT)}/  ({dt.date.today()})")
+    print(f"Building 11 talk figures → {ASSETS.relative_to(REPO_ROOT)}/  ({dt.date.today()})")
     build_reckoning_corpus()
     build_lineage_tree()
     build_lanes_map()
@@ -1377,6 +1694,7 @@ def main() -> int:
     build_arc_timeline()
     build_eval_catalog_timeline()
     build_institutional_landscape()
+    build_paper_network()
     print("Done.")
     return 0
 

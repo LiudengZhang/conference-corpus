@@ -74,6 +74,7 @@ Models marked **★** are the talk's 11 anchor models and link to their full dos
 
 ## Where to go next
 
+- **[The paper map](paper-map.md)** — the interactive literature network + a systematic reading order for the papers behind these models.
 - **[Supplementary §A — the 11 anchor model dossiers](../fm-to-virtual-cells-supplementary.md#a-model-dossiers-the-11-anchor-models)** — full resources / framework / unique feature / gap-exposed for the starred models.
 - **[What is a foundation model?](what-is-a-foundation-model.md)** — the five-families taxonomy these models sort into.
 - **[What does each FM cost?](what-does-each-fm-cost.md)** — the compute-disclosure landscape.
