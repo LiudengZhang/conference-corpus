@@ -20,6 +20,10 @@
 | 12 | **Csendes scPerturBench** | BM2 Lab | 2024 | scGPT replication | Original split was leaky; cleaner splits expose failure |
 | **+contrarian** | **FMs Improve Perturbation** | bioRxiv 2026.02.18 | Feb 2026 | sc-FMs with sufficient data | **FMs DO improve perturbation prediction with enough data** |
 
+<iframe src="../../assets/fm-eval-catalog-timeline.html" width="100%" height="470" frameborder="0" loading="lazy" title="The reckoning corpus by venue tier"></iframe>
+
+*Interactive — the same 13 papers placed by publication date (x) and venue tier (y): six landed in peer-reviewed journals — Nature Methods ×3, Genome Biology, Advanced Science — so the corpus isn't one lab's grievance, it cleared review across venues. Colour marks the evaluation axis; the green ✕ is the contrarian voice. Hover for the headline.*
+
 ## The catalog organized by what's covered
 
 ### Axis 1: Perturbation prediction (the original reckoning)

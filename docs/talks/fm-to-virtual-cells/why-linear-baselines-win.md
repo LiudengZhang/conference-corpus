@@ -8,6 +8,10 @@ A linear regression on average post-perturbation expression — *with no trainin
 
 But the cause isn't simple. Four overlapping explanations have surfaced, plus one contrarian voice and one theoretical framing.
 
+<iframe src="../../assets/fm-four-causes.html" width="100%" height="470" frameborder="0" loading="lazy" title="Why linear baselines win — four overlapping causes"></iframe>
+
+*Interactive — the reckoning decomposed: bar length = independent lines of evidence in the May-2026 literature; colour = whether the cause is structural (scale alone won't fix it), already corrected by the reckoning, or contested by the contrarian voice. Hover any bar for the small-lab track that addresses it.*
+
 ## Cause 1: The training objective optimizes the wrong thing
 
 Next-gene-prediction (scGPT) and masked-gene-modeling (Geneformer) optimize *correlation* between adjacent gene tokens. The downstream task — perturbation prediction — asks for *causal counterfactual* prediction: what would expression be if I knocked out gene X? **These are different problems.** Correlation-based pretraining doesn't automatically transfer to causal prediction.
@@ -88,6 +92,10 @@ The honest position in May 2026: the reckoning is **not a one-sided consensus**.
 **The contrarian view** says (1–4) may improve with more data, faster than expected.
 
 **The May 2026 honest framing**: it's a paradigm question that's still open, not a settled defeat.
+
+<iframe src="../../assets/fm-cause-track-matrix.html" width="100%" height="560" frameborder="0" loading="lazy" title="Cause × small-lab-track matrix"></iframe>
+
+*Interactive — the bridge from diagnosis to project: rows are the 9 small-lab innovation tracks from [supplementary §C](../fm-to-virtual-cells-supplementary.md#c-track-dossiers-the-9-small-lab-innovation-tracks), columns are the four causes plus the theoretical framing. Every cause has at least one track aimed directly at it. Hover a cell for the track's open problem.*
 
 ## Where to go next
 

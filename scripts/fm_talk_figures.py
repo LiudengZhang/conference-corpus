@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
-"""Build the five supplementary interactive figures for the FM-to-Virtual-Cells talk.
+"""Build the interactive supplementary figures for the FM-to-Virtual-Cells talk.
 
 Companion to scripts/fm_citation_plot.py — same Plotly conventions (self-contained
-HTML, plotly.js from CDN), but these five figures carry the arguments the talk
+HTML, plotly.js from CDN), but these figures carry the arguments the talk
 otherwise asks the audience to hold in their head.
 
 Outputs (all → docs/talks/assets/):
-  fm-reckoning-corpus.html   — §1.3  the 2025 reckoning becomes a 12-paper corpus
-  fm-lineage-tree.html       — §1.3  NLP origin → reckoning → 2026 architectural response
-  fm-lanes-map.html          — §3.1  the 9 application lanes, cost vs time-to-result
-  fm-compute-landscape.html  — Act 2  params vs training cost, and the linear baseline
-  agentic-fm-patterns.html   — agentic-meets-foundation explainer: the four patterns
+  fm-reckoning-corpus.html        — §1.3  the 2025 reckoning becomes a 12-paper corpus
+  fm-lineage-tree.html            — §1.3  NLP origin → reckoning → 2026 architectural response
+  fm-lanes-map.html               — §3.1  the 9 application lanes, cost vs time-to-result
+  fm-compute-landscape.html       — Act 2  params vs training cost, and the linear baseline
+  agentic-fm-patterns.html        — agentic-meets-foundation explainer: the four patterns
+  fm-four-causes.html             — why-linear-baselines-win: four overlapping causes
+  fm-cause-track-matrix.html      — why-linear-baselines-win: cause × small-lab-track matrix
+  fm-arc-timeline.html            — §1.3  the 2023–2026 arc as three interleaved swimlanes
+  fm-eval-catalog-timeline.html   — evaluation-papers-catalog: corpus by venue tier
+  fm-institutional-landscape.html — §2.2  institutes by build activity vs critique activity
 
 The data below is hardcoded with inline source tags — these are small,
 figure-specific tables curated from the talk's own supplementary resources
@@ -787,14 +792,591 @@ def build_compute_landscape() -> None:
     write_fig(fig, "fm-compute-landscape.html")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Figure 6 — why linear baselines win: four overlapping causes
+# Source: docs/talks/fm-to-virtual-cells/why-linear-baselines-win.md
+# ─────────────────────────────────────────────────────────────────────────────
+
+# weight = independent lines of evidence cited in the explainer (May 2026).
+CAUSES = [
+    dict(short="Cause 1 — wrong training objective",
+         weight=2, kind="structural",
+         detail="Next-gene-prediction / masked-gene-modelling optimize correlation "
+                "between adjacent gene tokens; perturbation prediction wants a causal "
+                "counterfactual. Different problems — correlational pretraining doesn't "
+                "transfer.",
+         track="Track 2 — counterfactual / IRM / contrastive-perturbation pretraining"),
+    dict(short="Cause 2 — NLP architecture, not biology",
+         weight=3, kind="structural",
+         detail="Every major sc-FM is a BERT/GPT-shaped transformer built for ordered "
+                "dense language tokens. Transcriptomics is sparse, unordered, "
+                "biologically structured. xVERSE shows the architectural choice is "
+                "empirically load-bearing (+17.9% representation).",
+         track="Track 4 — graph-attention, pathway priors, lineage-aware encoders"),
+    dict(short="Cause 3 — biased evaluation methodology",
+         weight=4, kind="corrected",
+         detail="Splitting on cells not perturbations, averaging metrics that hide "
+                "big-effect failures, selective benchmark curation. Not fraud — "
+                "accreted reasonable choices that built a false leaderboard. The "
+                "reckoning itself corrected this.",
+         track="Track 6 — causal-recovery benchmarks (MR-validated + LINCS + ENCODE)"),
+    dict(short="Cause 4 — what sc-FMs actually encode",
+         weight=3, kind="structural",
+         detail="Sparse autoencoders on sc-FM activations recover cell-type and "
+                "pathway features cleanly, but fail to recover regulatory / causal "
+                "features. A mechanistic explanation of Cause 1.",
+         track="Track 1 — mechanistic interpretability (cancer-curated SAE atlases)"),
+    dict(short="Framing — causal transportability (Pearl)",
+         weight=1, kind="structural",
+         detail="Virtual Cells Need Context (2026) frames the failure as a causal "
+                "transportability problem: a model trained on P(X|do(Y),Z=z₁) does not "
+                "predict in Z=z₂. Not capacity-bounded — structural.",
+         track="Track 9 — causal transportability benchmark suite (still unwritten)"),
+    dict(short="Contrarian — scale may dissolve Causes 1–4",
+         weight=1, kind="contested",
+         detail="FMs Improve Perturbation Response Prediction (bioRxiv 2026.02.18) "
+                "argues that with sufficient data FMs DO improve genetic + chemical "
+                "perturbation prediction and approach fundamental limits. The "
+                "reckoning is contested, not closed.",
+         track="If right: the work is scaling + data curation (Lane 3, Lane 5)"),
+]
+
+KIND_COLOR = {
+    "structural": "#d62728",
+    "corrected": "#7f7f7f",
+    "contested": "#2ca02c",
+}
+KIND_LABEL = {
+    "structural": "structural — more scale alone won't fix it",
+    "corrected": "already corrected by the reckoning",
+    "contested": "contested — the contrarian says scale may fix it",
+}
+
+
+def build_four_causes() -> None:
+    # Reverse so Cause 1 sits at the top of the horizontal bar chart.
+    rows = list(reversed(CAUSES))
+    fig = go.Figure()
+
+    for kind, color in KIND_COLOR.items():
+        sub = [r for r in rows if r["kind"] == kind]
+        if not sub:
+            continue
+        fig.add_trace(go.Bar(
+            x=[r["weight"] for r in sub],
+            y=[r["short"] for r in sub],
+            orientation="h",
+            name=KIND_LABEL[kind],
+            marker=dict(color=color, line=dict(color="#333", width=1)),
+            customdata=[[r["detail"], r["track"]] for r in sub],
+            hovertemplate=(
+                "<b>%{y}</b><br>"
+                "%{customdata[0]}<br>"
+                "<i>Addressed by: %{customdata[1]}</i>"
+                "<extra></extra>"
+            ),
+        ))
+
+    fig.update_layout(
+        title=dict(
+            text=(
+                "Why linear baselines win — four overlapping causes, not one<br>"
+                "<sub>Bar = independent lines of evidence in the literature; "
+                "colour = is the cause fixable with scale?</sub>"
+            ),
+            font=dict(size=15),
+        ),
+        barmode="stack",
+        xaxis=dict(title="Independent lines of supporting evidence",
+                   gridcolor="#e6e6e6", dtick=1, range=[0, 4.6]),
+        yaxis=dict(automargin=True, categoryorder="array",
+                   categoryarray=[r["short"] for r in rows]),
+        plot_bgcolor="#fafafa",
+        paper_bgcolor="white",
+        legend=dict(title="Is the cause fixable with scale?",
+                    bgcolor="rgba(255,255,255,0.95)", bordercolor="#bbb",
+                    borderwidth=1, orientation="h",
+                    x=0.5, xanchor="center", y=-0.22, yanchor="top"),
+        margin=dict(l=40, r=40, t=85, b=95),
+        height=470,
+    )
+    write_fig(fig, "fm-four-causes.html")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Figure 7 — cause × small-lab-track matrix
+# Source: why-linear-baselines-win.md + supplementary §C / §G.1
+# ─────────────────────────────────────────────────────────────────────────────
+
+TRACKS = [
+    ("T1 — Mechanistic interpretability",
+     "What do scGPT / Geneformer / UNI actually learn?"),
+    ("T2 — Causality-targeting pretraining",
+     "Next-gene-prediction optimizes correlation — that's why FMs lose to linear baselines"),
+    ("T3 — Compositional benchmarks + theory",
+     "Does A+B generalize when the model saw only A and B separately?"),
+    ("T4 — Biology-specific architectures",
+     "BERT clones ignore pathway / network / lineage priors"),
+    ("T5 — UQ / OOD detection",
+     "Every FDA path needs calibrated uncertainty; FMs don't have it"),
+    ("T6 — Causal evaluation frameworks",
+     "What's the correct test for causality, post-Ahlmann-Eltze?"),
+    ("T7 — Cross-species / phylogenetic priors",
+     "Does cross-species pretraining help or hurt for cancer biology?"),
+    ("T8 — Synergistic-info evaluation",
+     "Which fusion strategies buy cross-modal information vs redundancy?"),
+    ("T9 — Causal transportability benchmarks",
+     "What's the right test for cross-context generalization, post-VCsNC?"),
+]
+
+CAUSE_COLS = [
+    "Cause 1<br>objective", "Cause 2<br>architecture", "Cause 3<br>eval bias",
+    "Cause 4<br>what FMs encode", "Theoretical<br>framing",
+]
+
+# Row per track, column order matches CAUSE_COLS. 2 = directly addresses,
+# 1 = partially addresses, 0 = not really.
+TRACK_CAUSE = [
+    [1, 0, 0, 2, 0],  # T1
+    [2, 0, 1, 1, 1],  # T2
+    [0, 0, 2, 0, 1],  # T3
+    [1, 2, 0, 0, 0],  # T4
+    [0, 0, 1, 1, 0],  # T5
+    [1, 0, 2, 0, 1],  # T6
+    [0, 1, 0, 0, 1],  # T7
+    [0, 0, 1, 0, 1],  # T8
+    [1, 0, 1, 0, 2],  # T9
+]
+
+_CELL_TEXT = {0: "", 1: "partial", 2: "direct"}
+
+
+def build_cause_track_matrix() -> None:
+    track_labels = [t[0] for t in TRACKS]
+    track_probs = [t[1] for t in TRACKS]
+
+    text = [[_CELL_TEXT[v] for v in row] for row in TRACK_CAUSE]
+    customdata = [
+        [[track_probs[i], CAUSE_COLS[j].replace("<br>", " ")] for j in range(5)]
+        for i in range(len(TRACKS))
+    ]
+
+    fig = go.Figure(go.Heatmap(
+        z=TRACK_CAUSE,
+        x=CAUSE_COLS,
+        y=track_labels,
+        text=text,
+        texttemplate="%{text}",
+        textfont=dict(size=10, color="#222"),
+        customdata=customdata,
+        colorscale=[[0.0, "#f4f4f4"], [0.5, "#9ecae1"], [1.0, "#2c6fb0"]],
+        zmin=0, zmax=2,
+        xgap=3, ygap=3,
+        hovertemplate=(
+            "<b>%{y}</b><br>"
+            "Open problem: %{customdata[0]}<br>"
+            "Relevance to %{customdata[1]}: <b>%{z}</b> (0 none · 1 partial · 2 direct)"
+            "<extra></extra>"
+        ),
+        colorbar=dict(title="addresses", tickvals=[0, 1, 2],
+                      ticktext=["none", "partial", "direct"], len=0.6),
+    ))
+
+    fig.update_layout(
+        title=dict(
+            text=(
+                "From diagnosis to project — which small-lab track attacks which cause<br>"
+                "<sub>Rows = the 9 innovation tracks; columns = the four causes + the "
+                "framing. Hover a cell for the open problem.</sub>"
+            ),
+            font=dict(size=15),
+        ),
+        xaxis=dict(side="top", tickfont=dict(size=10), tickangle=0),
+        yaxis=dict(autorange="reversed", tickfont=dict(size=10), automargin=True),
+        plot_bgcolor="white",
+        paper_bgcolor="white",
+        margin=dict(l=40, r=40, t=150, b=30),
+        height=560,
+    )
+    write_fig(fig, "fm-cause-track-matrix.html")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Figure 8 — the 2023–2026 arc as three interleaved swimlanes
+# Source: docs/talks/fm-to-virtual-cells.md §1.3 + evaluation-papers-catalog.md
+# ─────────────────────────────────────────────────────────────────────────────
+
+# (date YYYY-MM, short label, detail). Release dates are month-level
+# first-public-appearance (preprint or journal).
+ARC_RELEASES = [
+    ("2023-05", "scGPT", "Next-gene-prediction transformer — defined the sc-FM category."),
+    ("2023-06", "Geneformer", "Masked-gene-modelling transformer; the other canonical Gen-1 sc-FM."),
+    ("2024-02", "UCE", "Universal Cell Embedding — cross-species via ESM2-bridged tokenization."),
+    ("2024-05", "CellPLM", "Cell-as-token pretraining; included in most 2026 evaluation sweeps."),
+    ("2024-06", "scFoundation", "Read-depth-aware attention — closest Gen-1 model to architecture–biology co-design."),
+    ("2025-06", "TranscriptFormer", "Generative cross-species architecture; 112M cells × 12 species (CZ Biohub)."),
+    ("2025-09", "STATE", "600M-param embedding + transition model on 167M cells (Arc Institute)."),
+    ("2026-03", "TxPert", "Multiple-knowledge-graph perturbation prediction — the reckoning answering itself."),
+    ("2026-04", "xVERSE", "Transcriptomics-native (non-LM) architecture; +17.9% representation over LM-derived sc-FMs."),
+]
+ARC_RECKONING = [
+    ("2024-09", "Csendes", "scPerturBench — the original scGPT split was leaky."),
+    ("2025-04", "Kedzierska", "scFMs lose to PCA + kNN zero-shot (Genome Biology)."),
+    ("2025-07", "Wenkel", "latent-additive + scGPT-embeddings is the new baseline floor (Nat Methods)."),
+    ("2025-07", "PertEval-scFM", "Most scFM embeddings don't beat baselines on strong perturbations (ICML)."),
+    ("2025-08", "Ahlmann-Eltze", "THE canonical blow — no sc-FM beats a one-line linear baseline (<$2k compute)."),
+    ("2025-10", "Wu (Genome Biol)", "No single scFM consistently outperforms others across tasks."),
+    ("2026-01", "Wu (Nat Methods)", "Axis-by-axis failure decomposition — 27 methods × 29 datasets."),
+    ("2026-01", "Liu (scEval)", "Challenges the necessity of developing FMs for single-cell analysis."),
+    ("2026-02", "Parameter-free", "Parameter-free representations win on downstream benchmarks."),
+    ("2026-03", "Cellular-dynamics", "zero-shot scFMs fail to recover RNA-velocity / cellular dynamics."),
+    ("2026-04", "CellBench-LS", "Low-supervision: FMs lead cell-type, classical leads gene-expression."),
+    ("2026-04", "Han et al.", "Industry-grade robustness gaps in real-world data integration."),
+]
+ARC_RESPONSE = [
+    ("2025-11", "rBio", "First virtual-cell reasoning model — RL with an FM as plausibility verifier (CZ Biohub)."),
+    ("2026-01", "Theis — compositional FMs", "Cell Systems Perspective: stop training monolithic sc-FMs, compose modality-specific FMs."),
+    ("2026-02", "Contrarian voice", "FMs Improve Perturbation — with enough data, FMs DO improve. The reckoning is contested."),
+    ("2026-02", "Virtual Cells Need Context", "Names the theoretical framing — causal transportability (Pearl)."),
+    ("2026-02", "CellVoyager", "Autonomous comp-bio agent runs full analyses end-to-end (Nat Methods)."),
+    ("2026-04", "VCHarness", "LLM + coding agent autonomously designs and trains a virtual-cell architecture."),
+]
+
+ARC_LANES = [
+    ("sc-FM & architecture releases", 2.0, "#1f77b4", ARC_RELEASES),
+    ("the reckoning corpus", 1.0, "#d62728", ARC_RECKONING),
+    ("framing & agentic response", 0.0, "#2ca02c", ARC_RESPONSE),
+]
+
+
+def build_arc_timeline() -> None:
+    fig = go.Figure()
+
+    for lane_name, y, color, events in ARC_LANES:
+        ev = sorted(events, key=lambda e: e[0])
+        xs = [_ts(d) for d, _, _ in ev]
+        # lane guide line
+        fig.add_shape(type="line", x0=xs[0], x1=xs[-1],
+                      y0=y, y1=y, line=dict(color=color, width=1.4),
+                      layer="below")
+        # thin labels: only show one if it's ≥5 months from the last shown
+        # label, so the dense 2026 cluster stays legible. Hover covers the rest.
+        labels, textpos, last_shown = [], [], None
+        flip = 0
+        for d, lbl, _ in ev:
+            ts = _ts(d)
+            if last_shown is None or (ts - last_shown).days >= 150:
+                labels.append(lbl)
+                textpos.append("top center" if flip % 2 == 0 else "bottom center")
+                flip += 1
+                last_shown = ts
+            else:
+                labels.append("")
+                textpos.append("top center")
+        fig.add_trace(go.Scatter(
+            x=xs, y=[y] * len(ev),
+            mode="markers+text",
+            name=lane_name,
+            text=labels,
+            textposition=textpos,
+            textfont=dict(size=9, color="#444"),
+            marker=dict(size=12, color=color, line=dict(color="#fff", width=1.2)),
+            customdata=[[lbl, d, detail] for d, lbl, detail in ev],
+            hovertemplate=(
+                "<b>%{customdata[0]}</b><br>%{customdata[1]}<br>"
+                "<i>%{customdata[2]}</i><extra></extra>"
+            ),
+        ))
+
+    # Lane labels on the left margin.
+    for lane_name, y, color, _ in ARC_LANES:
+        fig.add_annotation(x=_ts("2023-02"), y=y, text=f"<b>{lane_name}</b>",
+                           showarrow=False, xanchor="right",
+                           font=dict(size=10, color=color))
+
+    fig.add_annotation(
+        x=_ts("2025-08"), y=1.0, ax=0, ay=-46, arrowhead=2, arrowcolor="#888",
+        text="Aug 2025 — the canonical blow", font=dict(size=10, color="#555"),
+    )
+
+    fig.update_layout(
+        title=dict(
+            text=(
+                "The 2023–2026 arc — reckoning and response are interleaved, not sequential<br>"
+                "<sub>Three swimlanes on one time axis: the architecture critiques land "
+                "<i>while</i> the next-generation models ship.</sub>"
+            ),
+            font=dict(size=15),
+        ),
+        xaxis=dict(title="", gridcolor="#e6e6e6", range=["2022-10-01", "2026-08-01"]),
+        yaxis=dict(visible=False, range=[-0.9, 2.9]),
+        plot_bgcolor="#fafafa",
+        paper_bgcolor="white",
+        showlegend=False,
+        margin=dict(l=160, r=40, t=80, b=40),
+        height=420,
+    )
+    write_fig(fig, "fm-arc-timeline.html")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Figure 9 — the evaluation corpus by venue tier
+# Source: docs/talks/fm-to-virtual-cells/evaluation-papers-catalog.md
+# ─────────────────────────────────────────────────────────────────────────────
+
+# venue tier: 3 = peer-reviewed journal, 2 = conference, 1 = preprint.
+VENUE_TIER = {
+    "Csendes scPerturBench": 1,
+    "Kedzierska et al.": 3,
+    "Wenkel et al.": 3,
+    "PertEval-scFM": 2,
+    "Ahlmann-Eltze & Huber": 3,
+    "Wu et al. (Genome Biology)": 3,
+    "Wu et al. (Nat Methods)": 3,
+    "Liu et al. (scEval)": 3,
+    "Parameter-free baseline": 1,
+    "Cellular-dynamics zero-shot": 1,
+    "CellBench-LS": 1,
+    "Han et al. (real-world)": 1,
+}
+TIER_LABEL = {3: "Peer-reviewed<br>journal", 2: "Conference", 1: "Preprint"}
+
+
+def build_eval_catalog_timeline() -> None:
+    rows = sorted(RECKONING, key=lambda r: r["date"])
+    fig = go.Figure()
+
+    # gentle vertical jitter so same-month / same-tier papers don't fully overlap.
+    seen: dict[tuple[str, int], int] = {}
+
+    for axis, color in AXIS_COLOR.items():
+        sub = [r for r in rows if r["axis"] == axis]
+        if not sub:
+            continue
+        xs, ys, cd = [], [], []
+        for r in sub:
+            tier = VENUE_TIER[r["name"]]
+            key = (r["date"], tier)
+            k = seen.get(key, 0)
+            seen[key] = k + 1
+            xs.append(_ts(r["date"]))
+            ys.append(tier + (k * 0.16))
+            cd.append([r["name"], r["venue"], r["date"], r["headline"], r["models"]])
+        fig.add_trace(go.Scatter(
+            x=xs, y=ys, mode="markers",
+            name=AXIS_LABEL[axis],
+            marker=dict(size=15, color=color, line=dict(color="#fff", width=1.5)),
+            customdata=cd,
+            hovertemplate=(
+                "<b>%{customdata[0]}</b><br>"
+                "%{customdata[1]} · %{customdata[2]}<br>"
+                "Models: %{customdata[4]}<br>"
+                "<i>%{customdata[3]}</i><extra></extra>"
+            ),
+        ))
+
+    # contrarian voice — preprint tier, distinct green ✕.
+    fig.add_trace(go.Scatter(
+        x=[_ts(CONTRARIAN["date"])], y=[1 + 0.16],
+        mode="markers", name="The contrarian voice",
+        marker=dict(size=16, color="#2ca02c", symbol="x",
+                    line=dict(color="#1a661a", width=1)),
+        customdata=[[CONTRARIAN["name"], CONTRARIAN["venue"], CONTRARIAN["date"],
+                     CONTRARIAN["headline"], CONTRARIAN["models"]]],
+        hovertemplate=(
+            "<b>%{customdata[0]}</b><br>"
+            "%{customdata[1]} · %{customdata[2]}<br>"
+            "Models: %{customdata[4]}<br>"
+            "<i>%{customdata[3]}</i><extra></extra>"
+        ),
+    ))
+
+    fig.update_layout(
+        title=dict(
+            text=(
+                "The reckoning corpus by venue tier — not one lab's grievance<br>"
+                "<sub>13 papers, 2024–2026 — six cleared peer review "
+                "(Nature Methods ×3, Genome Biology, Advanced Science).</sub>"
+            ),
+            font=dict(size=15),
+        ),
+        xaxis=dict(title="Publication date", gridcolor="#e6e6e6",
+                   range=["2024-06-01", "2026-06-01"]),
+        yaxis=dict(tickvals=[1, 2, 3], ticktext=[TIER_LABEL[t] for t in (1, 2, 3)],
+                   gridcolor="#e6e6e6", range=[0.5, 3.6]),
+        plot_bgcolor="#fafafa",
+        paper_bgcolor="white",
+        legend=dict(title="Evaluation axis", bgcolor="rgba(255,255,255,0.95)",
+                    bordercolor="#bbb", borderwidth=1, orientation="h",
+                    x=0.5, xanchor="center", y=-0.2, yanchor="top"),
+        margin=dict(l=110, r=40, t=85, b=95),
+        height=470,
+    )
+    write_fig(fig, "fm-eval-catalog-timeline.html")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Figure 10 — institutional landscape: who builds vs who audits
+# Source: docs/talks/fm-to-virtual-cells-supplementary.md §F
+# The build / critique scores are a qualitative reading of §F — a speaker's
+# judgement call, not a measured metric.
+# ─────────────────────────────────────────────────────────────────────────────
+
+INSTITUTES = [
+    dict(name="Arc Institute", group="builder", build=10, crit=1.5,
+         pi="Hsu + Goodarzi", ships="Evo2, STATE, Tahoe-100M",
+         why="Largest non-DeepMind compute; sets the perturbation-atlas substrate."),
+    dict(name="Mahmood Lab", group="builder", build=9, crit=1,
+         pi="Faisal Mahmood", ships="UNI/UNI2-h, CONCH, PathChat-DX, TITAN, CHIEF",
+         why="Full pathology vertical stack; first FDA Breakthrough for generative-AI pathology."),
+    dict(name="Theodoris Lab", group="builder", build=5.3, crit=2.4,
+         pi="Christina Theodoris", ships="Geneformer V1/V2/_CLcancer",
+         why="Only academic sc-FM lab with full compute disclosure; domain-curation-beats-scale finding."),
+    dict(name="Bo Wang Lab", group="builder", build=6.8, crit=3.4,
+         pi="Bo Wang", ships="scGPT, scGPT-spatial, MedSAM",
+         why="Defined the sc-FM category; explicit 2025 agentic-AI pivot."),
+    dict(name="Leskovec + Quake", group="builder", build=4.5, crit=1.4,
+         pi="Leskovec + Quake", ships="UCE",
+         why="Cross-species cell embedding (8 species via ESM2-bridge)."),
+    dict(name="Google DeepMind", group="builder", build=9.5, crit=2.8,
+         pi="Avsec et al.", ships="AlphaGenome, AlphaFold 2/3, Med-Gemini",
+         why="TPU-scale; closed weights + hosted API; Isomorphic is the commercial arm."),
+    dict(name="EvolutionaryScale", group="builder", build=7.8, crit=2.6,
+         pi="Rives, Sercu, Hayes", ships="ESM-3",
+         why="Cleanest published FLOPs disclosure in biology FM."),
+    dict(name="Paige + MSK", group="builder", build=7.6, crit=1.1,
+         pi="Fuchs + Zimmermann", ships="Virchow / Virchow2 / Virchow2G, FullFocus",
+         why="First FDA 510(k)-cleared general-purpose pathology AI."),
+    dict(name="Owkin", group="builder", build=5.8, crit=1,
+         pi="industry consortium", ships="Phikon, Phikon-v2, H-optimus-0, MOSAIC",
+         why="Only major industrial pathology player shipping open weights."),
+    dict(name="BioMap + MBZUAI", group="builder", build=6.5, crit=2,
+         pi="Le Song, Eric Xing", ships="VCHarness, xTrimo PGLM",
+         why="China / Middle-East-side competitor to the CZ Biohub stack."),
+    dict(name="Zitnik Lab", group="builder", build=4.6, crit=3.6,
+         pi="Marinka Zitnik", ships="TxGNN, TDC-2",
+         why="Graph-FM-for-clinic; bridges sc-FMs and agentic clinical AI."),
+    dict(name="NVIDIA BioNeMo", group="infrastructure", build=3.6, crit=2.9,
+         pi="framework team", ships="BioNeMo framework; Geneformer V2 recipe; Evo2 co-author",
+         why="Sets the compute-disclosure norm as a co-marketing artifact."),
+    dict(name="CZ Biohub + CZI", group="does both", build=7, crit=5,
+         pi="Karaletsos, Quake, Pisco",
+         ships="CELLxGENE Census, Tabula Sapiens, TranscriptFormer, rBio",
+         why="Now ships BOTH substrate and model — breaks the substrate-only stereotype."),
+    dict(name="Theis Lab", group="does both", build=5, crit=7,
+         pi="Fabian Theis", ships="scvi-tools, scArches, compositional-FM Perspective",
+         why="The methodological reference class for the whole field."),
+    dict(name="Ahlmann-Eltze + Huber", group="critique anchor", build=1, crit=9,
+         pi="Ahlmann-Eltze + Huber", ships="The 2025 linear-baseline paper",
+         why="Retired the sc-FM perturbation leaderboard — the canonical reckoning."),
+    dict(name="Kedzierska + Lu", group="critique anchor", build=1, crit=7,
+         pi="Kedzierska + Lu", ships="The zero-shot extension of the reckoning",
+         why="Extended the linear-baseline result to UCE and the zero-shot setting."),
+    dict(name="Aviv Regev @ Genentech", group="agenda-setter", build=2, crit=4,
+         pi="Aviv Regev", ships="Rood + Regev 2024 Cell agenda",
+         why="Agenda-setter for 'causal foundation models of cells'; largest pharma buyer."),
+]
+
+GROUP_COLOR = {
+    "builder": "#1f77b4",
+    "infrastructure": "#7f7f7f",
+    "does both": "#9467bd",
+    "critique anchor": "#d62728",
+    "agenda-setter": "#ff7f0e",
+}
+
+# hand-picked label sides — the dense builder cluster alternates top/bottom
+# within each critique-score row so adjacent labels clear each other.
+INST_LABEL_POS = {
+    "Arc Institute": "middle left",
+    "Mahmood Lab": "bottom center",
+    "Paige + MSK": "bottom center",
+    "BioMap + MBZUAI": "bottom center",
+    "Owkin": "bottom center",
+    "Leskovec + Quake": "bottom center",
+    "Google DeepMind": "bottom center",
+    "EvolutionaryScale": "top center",
+    "Bo Wang Lab": "top center",
+    "Theodoris Lab": "top center",
+    "Zitnik Lab": "top center",
+    "NVIDIA BioNeMo": "middle left",
+    "CZ Biohub + CZI": "top center",
+    "Theis Lab": "middle left",
+    "Ahlmann-Eltze + Huber": "bottom right",
+    "Kedzierska + Lu": "bottom right",
+    "Aviv Regev @ Genentech": "middle right",
+}
+
+
+def build_institutional_landscape() -> None:
+    fig = go.Figure()
+
+    # the "does both" diagonal — institutes near it both build and audit.
+    fig.add_shape(type="line", x0=0, y0=0, x1=10, y1=10,
+                  line=dict(color="#bbb", width=1.5, dash="dot"), layer="below")
+    fig.add_annotation(x=1.7, y=1.7, text="the rare \"does both\" diagonal",
+                       showarrow=False, font=dict(size=10, color="#999"),
+                       textangle=-45)
+
+    for group, color in GROUP_COLOR.items():
+        sub = [m for m in INSTITUTES if m["group"] == group]
+        if not sub:
+            continue
+        fig.add_trace(go.Scatter(
+            x=[m["build"] for m in sub],
+            y=[m["crit"] for m in sub],
+            mode="markers+text",
+            name=group,
+            text=[m["name"] for m in sub],
+            textposition=[INST_LABEL_POS.get(m["name"], "top center") for m in sub],
+            textfont=dict(size=8, color="#333"),
+            marker=dict(size=18, color=color, opacity=0.9,
+                        line=dict(color="#333", width=1)),
+            customdata=[[m["pi"], m["ships"], m["why"]] for m in sub],
+            hovertemplate=(
+                "<b>%{text}</b> · %{customdata[0]}<br>"
+                "Ships: %{customdata[1]}<br>"
+                "<i>%{customdata[2]}</i><extra></extra>"
+            ),
+        ))
+
+    fig.update_layout(
+        title=dict(
+            text=(
+                "The institutional landscape — who builds FMs vs who audits them<br>"
+                "<sub>Most build or audit — few do both. Axes are a qualitative "
+                "reading of §F, not a measured metric.</sub>"
+            ),
+            font=dict(size=15),
+        ),
+        xaxis=dict(title="FM-building activity  →", gridcolor="#e6e6e6",
+                   range=[-0.5, 10.5], zeroline=False),
+        yaxis=dict(title="Evaluation / critique activity  →", gridcolor="#e6e6e6",
+                   range=[-0.5, 10.5], zeroline=False),
+        plot_bgcolor="#fafafa",
+        paper_bgcolor="white",
+        legend=dict(title="Role in the field", bgcolor="rgba(255,255,255,0.95)",
+                    bordercolor="#bbb", borderwidth=1,
+                    x=0.98, xanchor="right", y=0.98, yanchor="top"),
+        margin=dict(l=70, r=40, t=90, b=55),
+        height=560,
+    )
+    write_fig(fig, "fm-institutional-landscape.html")
+
+
 def main() -> int:
     ASSETS.mkdir(parents=True, exist_ok=True)
-    print(f"Building 5 talk figures → {ASSETS.relative_to(REPO_ROOT)}/  ({dt.date.today()})")
+    print(f"Building 10 talk figures → {ASSETS.relative_to(REPO_ROOT)}/  ({dt.date.today()})")
     build_reckoning_corpus()
     build_lineage_tree()
     build_lanes_map()
     build_compute_landscape()
     build_agentic_patterns()
+    build_four_causes()
+    build_cause_track_matrix()
+    build_arc_timeline()
+    build_eval_catalog_timeline()
+    build_institutional_landscape()
     print("Done.")
     return 0
 

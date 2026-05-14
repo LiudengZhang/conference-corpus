@@ -36,6 +36,10 @@ A virtual cell, as the field has actually built it, is **a perturbation-predicti
 
 ### 1.3 The four eras
 
+<iframe src="../assets/fm-arc-timeline.html" width="100%" height="420" frameborder="0" loading="lazy" title="The 2023–2026 arc — three interleaved swimlanes"></iframe>
+
+*Interactive — the four eras as three swimlanes on one time axis: sc-FM releases, the reckoning corpus, and the framing-and-agentic response. The point of the layout: the architecture critiques land **while** the next-generation models ship — the arc is interleaved, not sequential. Hover any marker.*
+
 **2023 paradigm — scBERT, scGPT, Geneformer.** The field's gravity wells. scGPT (~440 cit/yr) and Geneformer (~310 cit/yr) define what an sc-FM looks like: transformer architecture imported from NLP, masked-gene-modeling or rank-based tokenization, atlas pretraining on CELLxGENE Census.
 
 **2024 ambition — the Arc Institute Virtual Cell Challenge, the Bunne *Cell* perspective, CZ Biohub announcement, Tahoe-100M.** The field commits to a goal: build virtual cells. UCE adds cross-species (8 species via ESM2). scFoundation adds read-depth-aware attention. CellPLM moves to cell-as-token. The pathology FMs (UNI, Virchow, CHIEF, Prov-GigaPath) arrive as a parallel family.
@@ -115,6 +119,10 @@ Cross-link: [Foundation Models cross-vault index](../foundation-models.md) · [s
 | **Critique anchors** | Ahlmann-Eltze + Huber (EMBL); Kedzierska + Lu (Oxford / MSR); Theis Lab (Helmholtz Munich) | (multiple) | Without these, Act 1 §1.3 reckoning doesn't exist |
 
 → See [supplementary §F](fm-to-virtual-cells-supplementary.md#f-institutional-landscape) for the extended 15-institute dossiers with disclosure norms and strategic moves.
+
+<iframe src="../assets/fm-institutional-landscape.html" width="100%" height="560" frameborder="0" loading="lazy" title="The institutional landscape — who builds FMs vs who audits them"></iframe>
+
+*Interactive — the same institutes placed by FM-building activity (x) vs evaluation/critique activity (y): most sit bottom-right (build, don't audit) or top-left (audit, don't build), and only CZ Biohub and the Theis Lab sit near the "does both" diagonal. Axes are a qualitative reading of supplementary §F — a speaker's judgement, not a measured metric. Hover for what each ships.*
 
 ### 2.3 What's still missing — the 5-gap framework
 
