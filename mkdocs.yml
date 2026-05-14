@@ -67,6 +67,13 @@ nav:
   - Talk Prep — FMs to Virtual Cells:
     - Main page: talks/fm-to-virtual-cells.md
     - Supplementary (long-form): talks/fm-to-virtual-cells-supplementary.md
+    - Explainers:
+      - What is a foundation model?: talks/fm-to-virtual-cells/what-is-a-foundation-model.md
+      - What does each FM cost?: talks/fm-to-virtual-cells/what-does-each-fm-cost.md
+      - How agentic AI meets FMs: talks/fm-to-virtual-cells/agentic-meets-foundation.md
+      - Why linear baselines win: talks/fm-to-virtual-cells/why-linear-baselines-win.md
+      - Reading an FM paper critically: talks/fm-to-virtual-cells/reading-an-fm-paper-critically.md
+      - Evaluation papers catalog: talks/fm-to-virtual-cells/evaluation-papers-catalog.md
   - 2026 Timeline: timeline.md
   - AACR 2026:
     - Overview: conferences/aacr-2026/index.md
