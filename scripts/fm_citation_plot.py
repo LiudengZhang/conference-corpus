@@ -4,7 +4,9 @@
 Reads the curated paper list from docs/talks/_data/fm-papers.yaml,
 fetches citation counts from the Semantic Scholar Graph API,
 writes the merged dataset to docs/talks/_data/fm-citations.csv,
-and renders docs/talks/assets/fm-citation-plot.png.
+and renders two outputs:
+  - docs/talks/assets/fm-citation-plot.png   (static, for print/PDF)
+  - docs/talks/assets/fm-citation-plot.html  (interactive Plotly, for the site)
 
 Usage:
     python scripts/fm_citation_plot.py            # fetch + render
@@ -16,12 +18,14 @@ from __future__ import annotations
 import argparse
 import csv
 import datetime as dt
+import math
 import sys
 import time
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
+import plotly.graph_objects as go
 import requests
 import yaml
 from adjustText import adjust_text
@@ -30,6 +34,14 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 PAPERS_YAML = REPO_ROOT / "docs/talks/_data/fm-papers.yaml"
 CITATIONS_CSV = REPO_ROOT / "docs/talks/_data/fm-citations.csv"
 PLOT_PNG = REPO_ROOT / "docs/talks/assets/fm-citation-plot.png"
+PLOT_HTML = REPO_ROOT / "docs/talks/assets/fm-citation-plot.html"
+
+ERAS = [
+    ("2023 paradigm", "2022-09", "2024-05", "#dde7f0"),
+    ("2024 ambition", "2024-05", "2025-06", "#e6f0d8"),
+    ("2025 reckoning", "2025-06", "2025-12", "#f5d9d9"),
+    ("2026 response", "2025-12", "2026-06", "#f0e1c8"),
+]
 
 S2_BASE = "https://api.semanticscholar.org/graph/v1/paper/{pid}"
 S2_FIELDS = "title,citationCount,year,publicationDate"
@@ -140,12 +152,7 @@ def render_plot(df: pd.DataFrame, out_path: Path, today: dt.date) -> None:
     df_plot["cpy_plot"] = df_plot["citations_per_year"].clip(lower=1.0)
 
     # Era bands — drawn BEFORE points so points sit on top
-    eras = [
-        ("2023 paradigm", "2022-09", "2024-05", "#dde7f0"),
-        ("2024 ambition", "2024-05", "2025-06", "#e6f0d8"),
-        ("2025 reckoning", "2025-06", "2025-12", "#f5d9d9"),
-        ("2026 response", "2025-12", "2026-06", "#f0e1c8"),
-    ]
+    eras = ERAS
     for label, start, end, color in eras:
         ax.axvspan(
             pd.Timestamp(start), pd.Timestamp(end),
@@ -252,6 +259,155 @@ def render_plot(df: pd.DataFrame, out_path: Path, today: dt.date) -> None:
     print(f"  → wrote {out_path.relative_to(REPO_ROOT)}")
 
 
+def render_plotly(df: pd.DataFrame, out_path: Path, today: dt.date) -> None:
+    """Render the interactive Plotly version (self-contained HTML).
+
+    Same encoding as the matplotlib plot — log y, era bands, sc-FM papers
+    dark-edged, marker size by raw citation count — but every point carries
+    a hover card and the reader can zoom into the dense 2026 cluster instead
+    of relying on adjustText to place labels.
+    """
+    df_plot = df.dropna(subset=["citation_count"]).copy()
+    df_plot["cpy_plot"] = df_plot["citations_per_year"].clip(lower=1.0)
+
+    fig = go.Figure()
+
+    # Era bands as vrects, drawn first so points sit on top. The era label
+    # is added as a separate annotation — add_vrect's own annotation helper
+    # can't take a datetime x range.
+    for label, start, end, color in ERAS:
+        t0, t1 = pd.Timestamp(start), pd.Timestamp(end)
+        fig.add_vrect(
+            x0=t0, x1=t1,
+            fillcolor=color, opacity=0.5, layer="below", line_width=0,
+        )
+        fig.add_annotation(
+            x=t0 + (t1 - t0) / 2, y=1.0, yref="paper",
+            text=label, showarrow=False, yanchor="bottom",
+            font=dict(size=11, color="#444"),
+        )
+
+    # One trace per category × sc-FM flag so the legend reads by category
+    # and the sc-FM papers get the dark edge.
+    for cat in CATEGORY_COLOR:
+        sub_cat = df_plot[df_plot["category"] == cat]
+        if sub_cat.empty:
+            continue
+        for is_sc in (True, False):
+            sub = sub_cat[sub_cat["is_sc_fm"] == is_sc]
+            if sub.empty:
+                continue
+            cites = sub["citation_count"].fillna(0).clip(lower=1)
+            sizes = cites ** 0.5 * 2.4 + 9
+            fig.add_trace(
+                go.Scatter(
+                    x=sub["release_dt"],
+                    y=sub["cpy_plot"],
+                    mode="markers",
+                    name=(
+                        f"{CATEGORY_LABEL[cat]} — sc-FM"
+                        if is_sc
+                        else f"{CATEGORY_LABEL[cat]} — adjacent"
+                    ),
+                    legendgroup=cat,
+                    marker=dict(
+                        size=sizes,
+                        color=CATEGORY_COLOR[cat],
+                        opacity=0.9 if is_sc else 0.5,
+                        line=dict(
+                            color="#111" if is_sc else "#bbb",
+                            width=1.8 if is_sc else 0.8,
+                        ),
+                    ),
+                    customdata=sub[
+                        ["name", "release_date", "citation_count",
+                         "citations_per_year", "category"]
+                    ].values,
+                    hovertemplate=(
+                        "<b>%{customdata[0]}</b><br>"
+                        "Released %{customdata[1]}<br>"
+                        "Total citations: %{customdata[2]:.0f}<br>"
+                        "Citations / year: %{customdata[3]:.1f}<br>"
+                        "Category: %{customdata[4]}"
+                        "<extra></extra>"
+                    ),
+                )
+            )
+
+    # Persistent labels on the annotate==True papers — but the reader can
+    # toggle them off via the legend or just zoom past overlaps.
+    annotated = df_plot[df_plot["annotate"]]
+    if not annotated.empty:
+        fig.add_trace(
+            go.Scatter(
+                x=annotated["release_dt"],
+                y=annotated["cpy_plot"],
+                mode="text",
+                text=annotated["name"],
+                textposition="top center",
+                textfont=dict(size=9, color="#222"),
+                name="Key-paper labels",
+                hoverinfo="skip",
+            )
+        )
+
+    y_hi = df_plot["cpy_plot"].max() * 4
+    fig.update_layout(
+        title=dict(
+            text=(
+                "Foundation models for cell biology — the 2023–2026 arc<br>"
+                "<sub>sc-FM papers shown with dark edges; adjacent FM families "
+                "(pathology / genomic / protein) shown muted. "
+                "Hover for detail, drag to zoom.</sub>"
+            ),
+            font=dict(size=15),
+        ),
+        xaxis=dict(
+            title="Release date",
+            range=["2022-08-01", "2026-06-01"],
+            gridcolor="#e6e6e6",
+        ),
+        yaxis=dict(
+            title="Citations per year (Semantic Scholar, log scale)",
+            type="log",
+            range=[math.log10(0.7), math.log10(y_hi)],
+            gridcolor="#e6e6e6",
+        ),
+        plot_bgcolor="#fafafa",
+        paper_bgcolor="white",
+        legend=dict(
+            title="Paper category",
+            bgcolor="rgba(255,255,255,0.95)",
+            bordercolor="#bbb",
+            borderwidth=1,
+            x=1.01, xanchor="left",
+            y=1.0, yanchor="top",
+        ),
+        margin=dict(l=70, r=210, t=80, b=110),
+        height=560,
+        annotations=[
+            dict(
+                text=(
+                    "Semantic Scholar citation counts fetched "
+                    f"{today.isoformat()}"
+                ),
+                xref="paper", yref="paper",
+                x=1.0, y=-0.18, xanchor="right", yanchor="bottom",
+                showarrow=False,
+                font=dict(size=10, color="#666"),
+            )
+        ],
+    )
+
+    fig.write_html(
+        out_path,
+        include_plotlyjs="cdn",
+        full_html=True,
+        config={"responsive": True, "displaylogo": False},
+    )
+    print(f"  → wrote {out_path.relative_to(REPO_ROOT)}")
+
+
 def main() -> int:
     args = parse_args()
     today = dt.date.today()
@@ -285,6 +441,7 @@ def main() -> int:
 
     PLOT_PNG.parent.mkdir(parents=True, exist_ok=True)
     render_plot(df, PLOT_PNG, today)
+    render_plotly(df, PLOT_HTML, today)
     return 0
 
 

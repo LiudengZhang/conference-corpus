@@ -12,7 +12,7 @@ This talk maps that arc, then asks: **what can a small lab do in this era?** 9 a
 
 The page is the **speaker's running order** for a 60-min group meeting. The five acts:
 
-- **[Act 1](#act-1-the-20232026-arc-10-min)** (10 min) — the chronological narrative, anchored by [the citation scatter plot](assets/fm-citation-plot.png)
+- **[Act 1](#act-1-the-20232026-arc-10-min)** (10 min) — the chronological narrative, anchored by [the interactive citation scatter plot](assets/fm-citation-plot.html)
 - **[Act 2](#act-2-todays-landscape-5-min)** (5 min) — the five FM families + institutional landscape today
 - **[Act 3](#act-3-what-you-can-do-15-min)** (15 min) — the 9 lanes and 9 tracks for small-lab work
 - **[Act 4](#act-4-commercial-reality-group-decision-10-min)** (10 min) — who pays, three pitches, group conversation
@@ -30,9 +30,9 @@ A virtual cell, as the field has actually built it, is **a perturbation-predicti
 
 ### 1.2 The citation arc — one slide
 
-![Foundation models for cell biology: the 2023–2026 citation arc](assets/fm-citation-plot.png)
+<iframe src="../assets/fm-citation-plot.html" width="100%" height="580" frameborder="0" loading="lazy" title="Foundation models for cell biology: the 2023–2026 citation arc"></iframe>
 
-*sc-FM-related papers shown with dark edges; adjacent FM families (pathology / genomic / protein) shown muted. Citation counts from Semantic Scholar. Log y-axis so the 2026 newborns (0–2 citations) and the 2023 anchors (300–620 citations / year) both fit on one slide.*
+*Interactive — hover any point for the paper detail, drag to zoom into the dense 2026 cluster, click a legend entry to toggle a category. sc-FM-related papers shown with dark edges; adjacent FM families (pathology / genomic / protein) shown muted. Citation counts from Semantic Scholar. Log y-axis so the 2026 newborns (0–2 citations) and the 2023 anchors (300–620 citations / year) both fit on one view. Static fallback for print/PDF: [fm-citation-plot.png](assets/fm-citation-plot.png).*
 
 ### 1.3 The four eras
 
