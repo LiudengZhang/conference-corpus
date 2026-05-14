@@ -6,7 +6,7 @@
 
 Foundation models have arrived in biology but they are **not yet virtual cells**. In 2025, three independent papers (Ahlmann-Eltze & Huber, Kedzierska, Wenkel) showed that scGPT / Geneformer / UCE / scFoundation **cannot beat linear baselines** on perturbation prediction. That reckoning is the talk's pivot — it tells computational biologists *what to work on*.
 
-The talk maps **5 FM families** (single-cell, pathology, genomic, protein, multimodal), then **5 field-wide gaps** (donor diversity, cross-species, causal vs correlational, compute asymmetry, evaluation honesty). It then offers two parallel menus: **7 lanes** for *applying* existing FMs (Lane 1 embeddings-as-features through Lane 7 FM-aided clinical applications) and **6 tracks** for *innovating on* FMs (Track 1 mechanistic interpretability through Track 6 causal evaluation). It maps each gap to a lane and a track. It names the **3 commercial-buyer archetypes** (pharma, AI-native biotech, clinical-AI vendors) funding the field and what each buys from academia. It ends with **3 concrete project pitches** the group could take on at <$25k each, and closes by using **AACR 2026** as the live case study for which lane survives clinical contact.
+The talk maps **5 FM families** (single-cell, pathology, genomic, protein, multimodal), then **5 field-wide gaps** (donor diversity, cross-species, causal vs correlational, compute asymmetry, evaluation honesty). It then offers two parallel menus: **9 lanes** for *applying* existing FMs (Lane 1 embeddings-as-features through Lane 9 FM-aided experimental design / active learning) and **9 tracks** for *innovating on* FMs (Track 1 mechanistic interpretability through Track 9 causal transportability benchmarks). It maps each gap to a lane and a track. It names the **3 commercial-buyer archetypes** (pharma, AI-native biotech, clinical-AI vendors) funding the field and what each buys from academia. It ends with **3 concrete project pitches** the group could take on at <$25k each, and closes by using **AACR 2026** as the live case study for which lane survives clinical contact.
 
 The honest one-liner: **the gap between FMs and virtual cells is the most concrete research agenda single-cell biology has had in a decade — and the answer is in your data, not your GPU budget.**
 
@@ -386,19 +386,19 @@ The §5 gaps are not abstract — each maps directly to a concrete lane (§6 *ap
 
 | Gap (§5) | Apply via §6 lane | Innovate via §7 track |
 |---|---|---|
-| 5.1 Donor diversity | Lane 7 — FM-aided application on under-represented cohort | Track 4 — architecture with donor-conditioning priors |
-| 5.2 Cross-species | Lane 3 — domain FM on non-human-cell corpus | Track 4 — cross-species equivariance priors |
-| 5.3 Causal vs correlational | Lane 4 — linear-baseline audit | Track 2 — causality-targeting pretraining; Track 6 — causal benchmarks |
-| 5.4 Compute asymmetry | Lane 6 — wrapper tool that democratizes access | Track 1 — interpretability tells us what the compute bought |
-| 5.5 Evaluation honesty | Lane 5 — benchmark curation | Track 3 — compositional benchmarks; Track 6 — causal benchmarks |
+| 5.1 Donor diversity | Lane 7 — FM-aided application on under-represented cohort; Lane 8 — synthetic augmentation for rare cohorts | Track 4 — architecture with donor-conditioning priors; Track 9 — transportability benchmark with donor-split |
+| 5.2 Cross-species | Lane 3 — domain FM on non-human-cell corpus | **Track 7 — cross-species transfer / phylogenetic priors** (post-TranscriptFormer); Track 4 — cross-species equivariance priors |
+| 5.3 Causal vs correlational | Lane 4 — linear-baseline audit; Lane 9 — active-learning loop targets causal direction | Track 2 — causality-targeting pretraining; Track 6 — causal benchmarks; **Track 9 — causal transportability** |
+| 5.4 Compute asymmetry | Lane 6 — wrapper tool that democratizes access; Lane 8 — synthetic-data engine reduces wet-lab cost | Track 1 — interpretability tells us what the compute bought |
+| 5.5 Evaluation honesty | Lane 5 — benchmark curation; Lane 4 — replication catalog (now 11 papers) | Track 3 — compositional benchmarks; Track 6 — causal benchmarks; **Track 8 — synergistic-info evaluation; Track 9 — transportability** |
 
 **Vertical reading**: pick a gap → see which way to contribute. **Horizontal reading**: pick a project → see which gap it closes. The §9 group-meeting pitches all use this mapping — each pitch is one row of this matrix made concrete.
 
 ---
 
-## §6. The small-lab playbook — 7 lanes that work without a $5M GPU budget (4 min)
+## §6. The small-lab playbook — 9 lanes that work without a $5M GPU budget (4 min)
 
-> **Framing.** §3 priced the frontier: $20k (Geneformer V2-104M_CLcancer, the cheapest fully-disclosed model in our matrix) to $5M+ (Evo2, ESM-3). The middle does not exist as a *training* tier — you are either a few wall-clock days on 8 A100s, or you are spending Arc-Institute money. So if your lab cannot pretrain, the right question is: **what kind of FM-area contribution is publishable at <$5k?** Seven lanes; each has real 2023–2026 exemplars from academic or small-industry labs.
+> **Framing.** §3 priced the frontier: $20k (Geneformer V2-104M_CLcancer, the cheapest fully-disclosed model in our matrix) to $5M+ (Evo2, ESM-3). The middle does not exist as a *training* tier — you are either a few wall-clock days on 8 A100s, or you are spending Arc-Institute money. So if your lab cannot pretrain, the right question is: **what kind of FM-area contribution is publishable at <$5k?** Nine lanes; each has real 2023–2026 exemplars from academic or small-industry labs. Lanes 8–9 are net-new in 2026, opened by the generative-FM (xVERSE, TranscriptFormer) and agentic-FM (rBio, VCHarness) waves.
 
 ### 6.1 Budget tier overview (30 sec, 1 slide)
 
@@ -411,8 +411,10 @@ The §5 gaps are not abstract — each maps directly to a concrete lane (§6 *ap
 | 5. Benchmark / dataset curation | $0–$5k + curator time | de minimis compute | 6–18 months | low — community credit is durable |
 | 6. FM-wrapper tools / pipelines | $0–$5k | dev box, inference for tests | 6–12 months | low — adoption is the risk, not training |
 | 7. FM-aided wet-lab / clinical study | $5k–$50k FM-side | mostly inference | 12–24 months | low for FM side; standard biology risk for the rest |
+| **8. FM as generative data-augmentation engine** *(new 2026)* | $0–$2k | inference + small classifier | 3–6 months | medium — synthetic-data bias must be controlled |
+| **9. FM-aided experimental design / active learning** *(new 2026)* | $1k–$10k FM-side | inference per iteration | 12–18 months | medium — requires wet-lab partner; baseline matters |
 
-Lanes 1–6 are pure dry-lab; Lane 7 is the dry-lab portion of a hybrid project where the FM is *instrumentation*, not the deliverable.
+Lanes 1–6 + Lane 8 are pure dry-lab; Lanes 7 + 9 are the dry-lab portion of a hybrid project where the FM is *instrumentation* or *experiment planner*, not the deliverable.
 
 ### 6.2 Lane 1 — FM embeddings as features ($0–$500)
 
@@ -450,13 +452,27 @@ Continual-pretrain a *smaller* general model on *your* domain corpus. 2025 evide
 
 ### 6.5 Lane 4 — Negative results / replication / critique ($0–$2k)
 
-The single most valuable thing a small comp-bio lab can publish in 2026 is a rigorous demonstration that a published FM does not beat a baseline — and *Nature Methods* will take it.
+The single most valuable thing a small comp-bio lab can publish in 2026 is a rigorous demonstration that a published FM does not beat a baseline — and *Nature Methods* will take it. **As of May 2026, Lane 4 is the most-published lane of 2025–2026** — by a large margin, and the bar keeps rising.
 
 **Anchor exemplar — Ahlmann-Eltze, Gerard, Huber** (EMBL Heidelberg) — *Nature Methods* 2025: pure inference on six published FMs + a one-line `mean-of-training-perturbations` linear baseline. **<$2k compute. Retired the entire sc-FM perturbation-prediction leaderboard.**
 
-Companion examples: **Csendes scPerturBench** (BM2 Lab, Beijing Normal — independent scGPT replication exposing train/test leakage, <$1k) · **Kedzierska *Genome Biology* 2025** (Cambridge + Broad — zero-shot sc-FMs lose to PCA + kNN, <$1k) · **Wenkel *Nature Methods* 2025** — proposes `latent-additive` as the new baseline FMs must clear.
+**The 2025–2026 evaluation-paper catalog** (each is a Lane-4-feasible recipe, all $0–$2k compute, all *Nat Methods* / *Genome Biology* / *Adv Sci* publishable):
 
-**Venue picks**: *Nature Methods*, *Genome Biology*, bioRxiv. **RECOMB 2026** (May 26–29) for methods-track replication. A dedicated negative-results venue does not yet exist — that's a §5.5 open problem.
+- **Kedzierska et al. 2025 *Genome Biology*** — zero-shot sc-FMs lose to PCA + kNN. Cambridge + Broad.
+- **Wenkel et al. 2025 *Nature Methods*** — proposes `latent-additive` as the new baseline FMs must clear.
+- **Wu et al. 2025 *Nat Methods*** — 27 methods × 29 datasets × 6 metrics; axis-by-axis failure decomposition.
+- **Wu et al. 2025 *Genome Biology*** (Oct 2025) — 6 scFMs across gene-level + cell-level with cell-ontology metrics; "no scFM consistently outperforms others."
+- **Liu et al. 2026 *Adv Sci*** — `scEval` framework on 10 scFMs across 8 tasks; broadens the critique past perturbation-only ("challenges the necessity of developing FMs for single-cell analysis").
+- **Csendes scPerturBench** (BM2 Lab) — independent scGPT replication exposing train/test leakage, <$1k.
+- **Parameter-free representations outperform single-cell foundation models on downstream benchmarks** (bioRxiv 2026.02) — direct successor to Ahlmann-Eltze.
+- **PertEval-scFM, ICML 2025** — formal venue stamp of the perturbation benchmark.
+- **CellBench-LS** (bioRxiv 2026.04) — 7 scFMs in low-supervision scenarios; stratified protocol.
+- **Han et al. — Benchmarking scFMs for real-world RNA-seq data integration** (bioRxiv 2026.04, industry-authored) — pharma-relevant integration.
+- **Benchmarking zero-shot scFM embeddings for cellular dynamics reconstruction** (bioRxiv 2026.03) — extends critique to RNA-velocity / dynamics axis.
+
+**The Lane 4 frontier — what axes are not yet covered.** With 11 published critiques in the existing canon, the differentiating Lane 4 paper of 2026 cannot just re-run Ahlmann-Eltze on a new dataset. It must target an **uncovered axis**: (1) **donor-split benchmarks** (cross-donor generalization is barely measured); (2) **cross-tissue transfer** (pretraining on tissue A, evaluating on tissue B); (3) **time-resolved perturbation** (most evals are steady-state — what about 0h vs 6h vs 24h?); (4) **cancer-cell-line vs primary-tumor transfer** (the donor-split applied to cancer); (5) **rare-cohort robustness** (xVERSE-style: how does FM performance degrade with <100 cells per class?). Each is wide open.
+
+**Venue picks**: *Nature Methods*, *Genome Biology*, *Advanced Science*, bioRxiv. **RECOMB 2026** (May 26–29) for methods-track replication. **NeurIPS Datasets & Benchmarks** (Dec 2026) for the data-side contribution. A dedicated negative-results venue does not yet exist — that's a §5.5 open problem.
 
 ### 6.6 Lane 5 — Benchmark curation / dataset contribution ($0–$5k + time)
 
@@ -478,13 +494,49 @@ Scverse and Bioconductor still want maintainers — a well-designed wrapper that
 
 Once an FM is publicly available, using it as instrumentation inside a clinical or wet-lab study is *a clinical paper that happens to use a frozen FM* — and AACR 2026 has at least 18 such posters in our pathology slice alone.
 
+**The 2026 frozen-encoder menu is now bigger than 4 options.** Pathology-FM Lane-7-eligible options as of May 2026: UNI / UNI2-h (Mahmood), Virchow / Virchow2 / Virchow2G (Paige+MSK), CONCH (Mahmood), CHIEF (Mahmood, *Nature* 2024), PathChat / PathChat-DX (Mahmood; FDA Breakthrough), Phikon / Phikon-v2 / H-optimus-0 (Owkin), Prov-GigaPath (Microsoft), Hibou (Hibou-AI), PLUTO (proprietary), **TITAN** (Mahmood, *Nat Med* Nov 2025 — slide-level whole-slide FM), **mSTAR** (multimodal knowledge-enhanced, *Nat Commun* Dec 2025), **GPFM** (knowledge distillation, *Nat Biomed Eng* 2026), **PathOrchestra** (npj Digital Medicine Nov 2025 — 287k slides × 21 tissues × 112 tasks), and the **PathPT** few-shot prompt-tuning framework (*Nat Commun* 2026). Single-cell options: scGPT, Geneformer V2, scFoundation, UCE, CellPLM, CancerFoundation, scMulan, LangCell, Nicheformer (spatial), OmniCell (spatial), TranscriptFormer (cross-species generative). The talk's old "pick from 4 encoders" framing is out of date.
+
 **AACR 2026 exemplars**: **#4163 KRONOS** (Stanford + Mahmood collabs — general-purpose spatial-proteomics FM; outperforms UNI/CA-MAE on the relevant tasks) · **#1442 Virchow2 + VIDCellTyper** (TNBC tumour-proportion from H&E without IHC, <$2k) · **#2778 DINOv2 spatial-transcriptomics joint fine-tune** (~$5–10k for the joint fine-tune; DINOv2 backbone free) · **#1444 H-optimus-0 + ABMIL** (Owkin H-optimus for Lauren-subtype gastric classification, <$2k).
 
 **Beyond AACR — the first published real-world clinical deployment**: **Janowczyk et al. 2025 *Nature Medicine*** — "[Real-world deployment of a fine-tuned pathology foundation model for lung cancer biomarker detection](https://www.nature.com/articles/s41591-025-03780-x)" — fine-tuned UNI identifies EGFR mutations from H&E in a 197-patient clinical trial, **potentially preventing further genetic testing in 43% of cases**. This is the proof-point that Lane 7 graduates into actual clinical decision support — and it lands the §8.3 buyer-map argument for clinical-AI vendors as the cleanest check-writer for Lane 7 work.
 
-**Venue picks**: *Clinical Cancer Research*, *JCO CCI*, *npj Precision Oncology*, *Cancer Discovery*. **AACR Annual** (Apr); **AACR Pancreatic / SITC 2026** for indication-specific; **ASCO 2026** if endpoint is treatment-response.
+**Lane 7 + Track 5 (UQ) is the regulatory-grade combination.** The honest Lane 7 paper in 2026 includes a post-hoc UQ wrapper (deep ensemble, MC dropout, Laplace, or conformal) on the FM's predictions. Janowczyk's deployment paper foreshadows this; the FDA-pathway story requires it. See §7.6 Track 5 for the methodology.
 
-### 6.9 The decision tree — which lane is yours? (30 sec, 1 slide)
+**Venue picks**: *Clinical Cancer Research*, *JCO CCI*, *npj Precision Oncology*, *Cancer Discovery*, *Nature Medicine* (deployment-grade). **AACR Annual** (Apr); **AACR Pancreatic / SITC 2026** for indication-specific; **ASCO 2026** if endpoint is treatment-response.
+
+### 6.9 Lane 8 — FM as generative data-augmentation engine ($0–$2k)
+
+> **Net-new lane in 2026.** Before April 2026, FMs were *encoders* (Lane 1) or *adapters' substrate* (Lane 2). xVERSE and TranscriptFormer changed the menu: a generative cell FM can synthesize labeled training data for downstream tasks, especially when real-data labels are scarce.
+
+The pitch is structural: pretraining a 1B-param cell FM costs $250k+; using its **generative head** to expand a 100-cell rare-cohort to a 10,000-cell labeled corpus costs <$2k of inference and is publishable as a methods paper *and* as the substrate for any downstream classifier.
+
+**Anchor exemplar — [xVERSE](https://www.biorxiv.org/content/10.64898/2026.04.12.718016v1)** (Jiang & Xie, bioRxiv 2026.04.12, April 2026): synthesizes virtual cells indistinguishable from real (AUROC ≈ 0.5 on real-vs-synthetic discrimination) and **resolves rare cell types with as few as 4 cells**. The xVERSE paper itself is a Lane 8 demonstration *and* a Lane 4 critique (transcriptomics-native vs language-model-derived sc-FMs).
+
+**Companion exemplars**: **[TranscriptFormer](https://github.com/czi-ai/transcriptformer)** (CZ Biohub, *Science* 2025) — generative cross-species; can synthesize cells in under-sampled species. **scDiffusion / scGen** (2023–2024) — diffusion- and VAE-based cell generation, predates the xVERSE wave. **CellPLM** (Yan/Hu lab) — masked-cell modeling with a generative head suitable for augmentation.
+
+**A 12-month project.** Pick a rare-cancer scRNA-seq cohort (rhabdomyosarcoma, ATC, NET — <500 cells published). Use xVERSE or TranscriptFormer to synthesize a 10–50× expanded labeled corpus. Train a downstream cell-type / treatment-response classifier on (real + synthetic) vs (real only). Report (1) classifier-AUC lift from augmentation, (2) calibration on a held-out *real* test set, (3) qualitative validation that synthetic cells preserve known cancer signatures (EMT, hypoxia, immune-evasion). **Compute: <$2k — inference + small classifier.**
+
+**Caveat to flag in the paper.** Synthetic cells can launder the FM's training-distribution biases into your downstream classifier. The honest write-up requires a held-out *real* test set and a calibration plot — without those, this is data-leakage in disguise.
+
+**Venue picks**: *Nature Methods* (Resource), *Genome Biology*, *Bioinformatics*. **ICLR / NeurIPS LMRL workshops** for the augmentation-methodology angle. **Single Cell Genomics 2026** for the rare-cohort framing.
+
+### 6.10 Lane 9 — FM-aided experimental design / active learning ($1k–$10k FM-side)
+
+> **The closed-loop version of Lane 7.** Lane 7 uses a frozen FM as *instrumentation* for an experiment you already designed. Lane 9 uses the FM to *prioritize which experiment to run next*. This is the pattern that JPM-2026 buyers (AI-native biotechs — Recursion, Insitro, Latent Labs, Vevo) actually pay for at scale, and it's named explicitly in Bunne 2025 *Cell* as a canonical virtual-cell use case.
+
+The contribution is a *protocol*, not a model: given a wet-lab budget for N perturbations, use the FM's predicted uncertainty + predicted effect size to rank candidates, run the top-K, refit the FM on results, iterate. The publishable result is the loop's sample-efficiency vs random or grid-design baselines.
+
+**Anchor exemplar — CRADLE-VAE** (Bunne lab / Stanford, 2023): conditional VAE for compositional perturbation prediction with explicit active-learning support. **scPRINT** (2024): pretrained for predicting perturbation outcomes; supports active selection by acquisition function on uncertainty.
+
+**Companion exemplars**: **[VCHarness](https://www.biorxiv.org/content/10.64898/2026.04.11.717183v1)** (BioMap, bioRxiv 2026.04.11) — autonomous AI system that constructs perturbation-response models *and* prioritizes next experiments; reduces dev time months → days. **rBio** (CZ Biohub, 2025) — reasoning over TranscriptFormer; the natural-language interface to active-learning queries. **PerturBench** (2024) — provides the eval substrate for any active-learning loop.
+
+**A 12-month project.** Partner with a wet-lab collaborator running CRISPRi or drug-perturb screens. Implement an FM-guided selection loop on a tractable target gene set (e.g., 200 candidate KOs in a single cancer cell line). Run two arms: (1) FM-guided 50 perturbations, (2) random or literature-prior–weighted 50 perturbations. Compare downstream phenotype enrichment + cost. **Compute: $1–5k FM-side**; wet-lab cost separate.
+
+**Caveat.** Active-learning papers need a baseline comparator that isn't strawman. Random selection isn't enough; literature-prior–weighted selection (e.g., StringDB-prioritized) is the honest baseline.
+
+**Venue picks**: *Nature Methods*, *Cell Systems*, *Molecular Systems Biology*. **NeurIPS active-learning workshops**. *Drug Discovery Today* / *Nat Rev Drug Discovery* if the partnership has a pharma sponsor.
+
+### 6.11 The decision tree — which lane is yours? (30 sec, 1 slide)
 
 ```
 Do you have wet-lab/clinical data the FM authors did not see?
@@ -492,30 +544,40 @@ Do you have wet-lab/clinical data the FM authors did not see?
 │         corpus excludes your tissue/donor type; that gap is your contribution.
 └── NO
     │
-    Do you have a curated dataset or held-out split no public benchmark uses?
-    ├── YES → Lane 5 (benchmark / dataset). Submit to Open Problems v2 / NeurIPS D&B.
+    Do you have a wet-lab partner who runs perturbation screens?
+    ├── YES → Lane 9 (FM-aided active learning). FM-guided selection loop;
+    │         compare to literature-prior baseline; <$5k FM-side.
     └── NO
         │
-        Can you write a model adapter / LoRA layer in PyTorch?
-        ├── YES → Lane 2 (PEFT). scGPT/Geneformer-V2/UNI2 + your task; <1% params;
-        │         ICLR/NeurIPS workshop track.
+        Do you have a rare-cohort scRNA-seq dataset (<500 cells)?
+        ├── YES → Lane 8 (FM as data-augmentation). xVERSE/TranscriptFormer
+        │         synthesizes labeled cells; <$2k inference.
         └── NO
             │
-            Do you have ~$10k of cloud credit + a domain corpus?
-            ├── YES → Lane 3 (domain FM). Geneformer-V2-104M_CLcancer playbook
-            │         on your disease area.
+            Do you have a curated dataset or held-out split no public benchmark uses?
+            ├── YES → Lane 5 (benchmark / dataset). Submit to Open Problems v2 / NeurIPS D&B.
             └── NO
                 │
-                Strong R/Python/Bioconductor maintainer?
-                ├── YES → Lane 6 (wrapper tool). Pick the FM your audience can't
-                │         run themselves; ship a Bioconductor/scverse package.
+                Can you write a model adapter / LoRA layer in PyTorch?
+                ├── YES → Lane 2 (PEFT). scGPT/Geneformer-V2/UNI2 + your task;
+                │         <1% params; ICLR/NeurIPS workshop track.
                 └── NO
                     │
-                    Default → Lane 1 (embeddings as features) OR Lane 4 (replication).
-                    Both <$500 with *Nature Methods* precedents.
+                    Do you have ~$10k of cloud credit + a domain corpus?
+                    ├── YES → Lane 3 (domain FM). Geneformer-V2-104M_CLcancer
+                    │         playbook on your disease area.
+                    └── NO
+                        │
+                        Strong R/Python/Bioconductor maintainer?
+                        ├── YES → Lane 6 (wrapper tool). Pick the FM your audience
+                        │         can't run themselves; ship a Bioconductor/scverse package.
+                        └── NO
+                            │
+                            Default → Lane 1 (embeddings as features) OR
+                            Lane 4 (replication). Both <$500 with *Nature Methods* precedents.
 ```
 
-### 6.10 The bridge to AACR 2026 (30 sec)
+### 6.12 The bridge to AACR 2026 (30 sec)
 
 **Evidence from the AACR 2026 corpus** (counts derived by case-sensitive grep of poster titles + abstracts against a curated list of FM model names — see methodology note below):
 
@@ -531,20 +593,37 @@ Do you have wet-lab/clinical data the FM authors did not see?
 2. **Pathology FMs dominate the "named FM" category.** UNI / Virchow / CHIEF / Prov-GigaPath / PathChat / Hibou / H-Optimus / PLUTO appear in 17/536 bioinfo posters and 11/48 virtual-cells posters. Almost every instance uses the FM as a frozen encoder for a clinical readout, *not* training a new FM. **Lane 7 (FM-aided application) is the dominant pattern at AACR 2026 by an order of magnitude.**
 3. **Most "foundation model" mentions don't name the model.** 20/48 virtual-cells posters and ~35/536 bioinfo posters use generic "foundation model" / "pretrain" language without identifying which FM. This is partly abstract-length pressure, partly that many groups are training small *custom* FMs (RNA1-DA, methylFM, gastroFM, MutationProjector, Path2Prot, Visiumformer, HoneyBee) rather than using a community-named one.
 
-Lane 1 (embeddings as features) is the structural prerequisite for almost all of Lane 7. Lanes 2–6 are the methodological substrate for what AACR application papers will look like in 2027–2028.
+Lane 1 (embeddings as features) is the structural prerequisite for almost all of Lane 7. Lanes 2–6 are the methodological substrate for what AACR application papers will look like in 2027–2028. **Lanes 8–9 are net-new in 2026** and would not yet appear in AACR corpus counts — but Lane 8 (data augmentation) is plausibly the next dominant pattern once xVERSE-style generative FMs are widely available, and Lane 9 (active learning) is already the dominant pattern *inside* AI-native biotechs (Recursion, Insitro, Latent Labs) — it just hasn't reached the academic AACR-poster surface yet.
 
 !!! note "Counting methodology"
     Numbers above are reproducible from the poster JSON files in `docs/assets/aacr-2026/posters/` (raw data in repo; load each topic's `.json` and grep title + abstract). Match list: pathology = `UNI, UNI2, UNI2-h, Virchow, CHIEF, GigaPath, PathChat, CONCH, Phikon, Hibou, H-optimus, PLUTO, gastroFM, Path2Prot, Visiumformer, MutationProjector, HoneyBee, BARRACUDA`; single-cell = `scGPT, Geneformer, scFoundation, CellPLM, scBERT`; genomic = `Nucleotide Transformer, DNABERT, HyenaDNA, Evo, AlphaGenome, methylFM, RNA1-DA, DNAchunker`. Case-sensitive substring match against title + abstract. Each poster counted once; first-match-wins by family ordering. This undercounts in two directions: (a) posters that use an FM but don't name it; (b) custom FMs not in the match list. Treat numbers as a **floor**, not a ceiling.
 
-The honest framing for an academic comp-bio audience in 2026 is not *"can I compete with Arc Institute on training?"* (no) but *"which of these seven lanes is mine?"* — one of them, definitely, and the answer is in **your data, not your GPU budget**.
+The honest framing for an academic comp-bio audience in 2026 is not *"can I compete with Arc Institute on training?"* (no) but *"which of these nine lanes is mine?"* — one of them, definitely, and the answer is in **your data, not your GPU budget**.
+
+### 6.13 Combination plays — the AACR-corpus observation (60 sec, 1 slide)
+
+The single most consistent pattern in the AACR 2026 poster corpus is that the *highest-impact* posters combine **two** lanes from the §6 menu, not one. The combinations are stable and small in number:
+
+| Combination | What it means | AACR 2026 / canonical examples | Why it wins |
+|---|---|---|---|
+| **Lane 1 + Lane 5** | Frozen embeddings on a held-out / curated dataset | #1442 Virchow2 + VIDCellTyper TNBC benchmark; HEST-1k + downstream models | The dataset is the contribution; the FM is the off-the-shelf tool |
+| **Lane 1 + Lane 7** | Frozen embeddings → clinical readout | #1444 H-optimus + Lauren-subtype gastric; #2758 UNI2 + PAX3/7::FOXO1 rhabdo | Clinical relevance + zero pretraining cost |
+| **Lane 4 + Lane 6** | Replicate then ship a Bioc/scverse package | scPerturBench → portable replication kit; PertEval-scFM GitHub release | Methods paper + adoption pathway in one project |
+| **Lane 7 + Track 5** | Clinical FM application + post-hoc UQ wrapper | Janowczyk *Nat Med* 2025 (UNI EGFR + calibration) | Regulatory-grade; clinical-AI vendors will write the check |
+| **Lane 8 + Lane 3** | Synthetic-data augmentation → domain-specific FM | xVERSE substrate → cancer-curated mini-FM | Rare-cohort feasibility unlocked at <$5k total |
+| **Lane 9 + Lane 5** | Active learning + benchmark contribution | VCHarness-style pipeline + held-out benchmark | The benchmark *is* the active-learning evaluation |
+
+Single-lane posters (e.g., "we trained a new tiny FM on our dataset") are visibly the lowest-cited tier in the corpus. The combinations above are the playbook.
+
+**Why this matters for project selection.** When the group meets to pick a pitch (§9), the right question is not "which one lane?" but "which two lanes combined?" Each §9 pitch is already a multi-lane combination — Pitch A is Lane 7 + Track 1 + Track 5; Pitch B is Lane 4 + Track 3; Pitch C is Lane 7 + Lane 3. The §6.13 row that fits closest to our data is the natural starting point.
 
 ---
 
 ## §7. Real innovation tracks — frontier methods research at <$10k compute (4 min)
 
-> **Framing.** §6 was about contributing *through* FMs. This is about contributing *to* the FM literature with original methods work — new algorithms, new theory, new evaluation, new architectures. **The bottleneck on these is not compute; it is ideas.** Six tracks where the field has a structural gap a small lab can close in 12–18 months, each with a real exemplar that proves the lane is alive.
+> **Framing.** §6 was about contributing *through* FMs. This is about contributing *to* the FM literature with original methods work — new algorithms, new theory, new evaluation, new architectures. **The bottleneck on these is not compute; it is ideas.** Nine tracks where the field has a structural gap a small lab can close in 12–18 months, each with a real exemplar that proves the lane is alive. Tracks 7–9 are net-new in 2026, opened by the cross-species generative wave (TranscriptFormer), the multimodal compositional wave (Microsoft SIS), and the causal-transportability framing (Virtual Cells Need Context).
 
-### 7.1 The six tracks at a glance (30 sec, 1 slide)
+### 7.1 The nine tracks at a glance (30 sec, 1 slide)
 
 | Track | Open problem | Compute | Why a small lab can win |
 |---|---|---|---|
@@ -554,6 +633,9 @@ The honest framing for an academic comp-bio audience in 2026 is not *"can I comp
 | 4. Architectures with biology-specific inductive biases | BERT clones ignore pathway / network / lineage priors | $5–15k | Genuine biology+architecture co-design is rare |
 | 5. Uncertainty / OOD detection for clinical-grade FMs | Every FDA path needs calibrated uncertainty; none of the FMs have it | $1–5k | Post-hoc Bayesian heads on frozen embeddings — no pretraining needed |
 | 6. Causal evaluation frameworks | What's the *correct* test for causality, post-Ahlmann-Eltze? | <$3k | Wenkel set a baseline; the next paper to set a higher bar is wide open |
+| **7. Cross-species transfer / phylogenetic priors** *(new 2026)* | Does cross-species pretraining help or hurt for cancer biology? | <$2k | TranscriptFormer weights open; cancer cross-species benchmark doesn't exist |
+| **8. Synergistic-information evaluation of multimodal FMs** *(new 2026)* | Which fusion strategies actually buy cross-modal information vs being redundant? | <$2k | Microsoft SIS metric (Feb 2026) + frozen multimodal FM zoo |
+| **9. Causal transportability benchmarks** *(new 2026)* | What's the right test for cross-context generalization, post-VCsNC? | <$3k | Pearl + Bareinboim framework + Replogle/Norman as substrate |
 
 ### 7.2 Track 1 — Mechanistic interpretability of biology FMs
 
@@ -633,19 +715,62 @@ The honest framing for an academic comp-bio audience in 2026 is not *"can I comp
 
 **Venues**: *Nature Methods*, *Genome Biology*, ICLR, NeurIPS.
 
-### 7.8 The unifying frame (30 sec)
+### 7.8 Track 7 — Cross-species transfer / phylogenetic priors (post-TranscriptFormer)
+
+**The open problem.** TranscriptFormer (CZ Biohub, *Science* 2025) pretrained on 12 species × 1.53B years of evolution and beat human-only sc-FMs on cross-species cell-type classification. But: does pretraining on multiple species *hurt* within-species performance via negative transfer, or *help* via shared regulatory grammar? And does cross-species transfer extend to **cancer biology** — where mouse models, organoids, and PDX systems are the daily substrate?
+
+**Why a small lab can win.** TranscriptFormer's weights are open. The benchmarking is inference-only. The cancer-specific angle (mouse → human tumor transfer, organoid → primary-tumor transfer, PDX → patient transfer) is wide open because TranscriptFormer's published evaluation is on developmental, immune, and neural tissues — *not cancer*.
+
+**A 12-month project.** Build a **cancer cross-species transfer benchmark**: paired mouse-tumor scRNA-seq + matched human tumor (TCGA-style or patient-matched PDX cohorts). Score TranscriptFormer vs human-only sc-FMs (scGPT, Geneformer, scFoundation) on (1) mouse-to-human cell-state mapping, (2) drug-response transfer from GEMM mouse studies, (3) immune-microenvironment cross-species alignment. **Compute: <$2k — inference + standard alignment metrics.**
+
+**Real exemplar.** UCE (Rosen et al. 2024 *Nat Methods*) handles 8 species and includes cross-species ablations but no cancer-specific evaluation. TranscriptFormer's published cross-species result is on healthy tissues. **No published cancer cross-species sc-FM benchmark as of May 2026.**
+
+**Pairs with §5.2 (cross-species gap) directly.** This is the §5.2 gap operationalized.
+
+**Venues**: *Nature Methods*, *Cell Systems*, *Nature Cancer*. **NeurIPS D&B** if benchmarked at scale.
+
+### 7.9 Track 8 — Synergistic-information evaluation of multimodal FMs (post-Microsoft SIS)
+
+**The open problem.** Microsoft's [Beyond Alignment paper (bioRxiv 2026.02.23.707420)](https://www.biorxiv.org/content/10.64898/2026.02.23.707420v3) introduced the **Synergistic Information Score (SIS)** based on partial information decomposition — a metric for whether a multimodal FM extracts *new* information from cross-modal interactions vs just repeating unimodal signal. **No one has applied SIS across the published multimodal cell FM zoo yet.**
+
+**Why a small lab can win.** SIS is post-hoc: apply it to frozen multimodal FMs (scGPT-spatial, Nicheformer, OmniCell, CLM-X, CELLama, SpatialFusion, mSTAR, TITAN). No training. The cleanest version of this paper takes one weekend of compute and three months of writing.
+
+**A 12-month project.** Implement SIS on ≥5 published multimodal sc / spatial / pathology FMs on a common task set (cell-type annotation, niche identification, batch correction, slide-level cancer subtyping). Identify which fusion strategies actually buy synergy and which are redundant-aligned-fusion in disguise. Report the SIS-per-task heatmap as the contribution. Pair with the Theis 2026 *Cell Systems* compositional-FM Perspective as the framing. **Compute: <$2k — inference + closed-form PID decomposition.**
+
+**Real exemplar.** The Microsoft paper itself is the proof the method works; the cell-FM zoo application is the wide-open follow-up.
+
+**Pairs with Track 3 (compositional generalization) and Track 9 (causal transportability).** SIS is the *metric* the compositional benchmark in Track 3 needs; and the synergy-vs-redundancy decomposition is one input into the transportability score in Track 9.
+
+**Venues**: *Nature Methods*, *Cell Systems*, ICLR / NeurIPS. **A NeurIPS D&B submission with public leaderboard is the highest-leverage path.**
+
+### 7.10 Track 9 — Causal transportability benchmarks (post-Virtual Cells Need Context)
+
+**The open problem.** [Virtual Cells Need Context, Not Just Scale (bioRxiv 2026.02.04.703804)](https://www.biorxiv.org/content/10.64898/2026.02.04.703804v1) frames the sc-FM-doesn't-generalize problem as a **causal transportability problem** in Pearl's sense: a model trained on distribution P(X∣do(Y), Z=z₁) does not automatically predict in P(X∣do(Y), Z=z₂) when context Z changes. The paper **names** the framework but does not give the field a transportability benchmark suite.
+
+**Why a small lab can win.** Pearl + Bareinboim's transportability formula is the theoretical backbone. The data already exists (Replogle, Norman, Tahoe-100M, immune perturbation panels, donor-diverse cohorts). Designing the held-out-context splits + the score function is the contribution.
+
+**A 12-month project.** Define a **transportability benchmark** with explicit cross-context splits: (a) train on cell-line X, test on cell-line Y under the same drug; (b) train on healthy donors, test on cancer patients; (c) train on bulk-screened perturbations, test on combinatorial perturbations; (d) train on one timepoint, test on a different timepoint. Score every published sc-FM using a transportability-explicit metric (effective sample size to recover causal effect; selection-diagram-aware error decomposition). **Compute: <$3k — inference + causal-inference closed-form analysis.**
+
+**Pairs with Track 6 (causal evaluation).** Track 6 asks "what is the right causal test"; Track 9 specializes that to the cross-context transportability case — which is the dominant failure mode the 2025–2026 reckoning has identified.
+
+**Real exemplar.** The Virtual Cells Need Context paper itself demonstrates the framework on a 22M-cell immunology dataset. **No one has built the multi-context benchmark that the framework asks for.** The first paper that operationalizes this owns the post-reckoning evaluation citation for the next 3–5 years.
+
+**Venues**: *Nature Methods*, *Cell Systems*, NeurIPS D&B, *Nat Mach Intell*.
+
+### 7.11 The unifying frame (30 sec)
 
 The §6 playbook said: *use FMs to contribute*. This section says: *innovate on FMs themselves with small-lab resources*. **The bottleneck on every track above is intellectual, not financial.** The big labs are spending $5M+ on bigger models; the small lab's edge is in:
 
 - **Interpretability** (Track 1) — nobody is doing the work
 - **Better objectives** (Track 2) — better objective beats more compute, repeatedly
-- **Better benchmarks** (Tracks 3, 6) — what you measure shapes what gets built
+- **Better benchmarks** (Tracks 3, 6, 8, 9) — what you measure shapes what gets built; SIS + transportability are the post-2026 frontier
 - **Better priors** (Track 4) — biology's structure isn't in transformer attention
 - **Calibration** (Track 5) — clinical deployment needs it; FMs don't have it
+- **Phylogenetic / cross-species priors** (Track 7) — TranscriptFormer made this concrete; cancer cross-species is unexplored
 
 These are the lanes where a single PhD student or postdoc can publish a *Nature Methods* paper or an ICLR main-track paper in 12–18 months **without ever training an FM from scratch**. The compute budget for each is <$20k — and several are <$2k.
 
-**The real one-liner**: the virtual-cell vision isn't going to be solved by scaling existing FMs. It's going to be solved by someone who builds the right *evaluation framework*, the right *causal objective*, and the right *interpretability tools* — and that someone could be in your lab.
+**The real one-liner**: the virtual-cell vision isn't going to be solved by scaling existing FMs. It's going to be solved by someone who builds the right *evaluation framework* (Tracks 3, 6, 8, 9), the right *causal objective* (Track 2), the right *interpretability tools* (Track 1), and the right *cross-context generalization theory* (Tracks 7, 9) — and that someone could be in your lab.
 
 ---
 
@@ -1177,8 +1302,8 @@ For the speaker prepping cold the night before. Collapses §3 deep dives into 1 
 | 6 | The 2025 reckoning — linear baseline beats sc-FMs | §4 |
 | 7 | The 5 gaps — donor / species / causal / compute / evaluation | §5 |
 | 8 | **Gap → Lane × Track mapping** — the connective slide | §5.6 |
-| 9 | The 7 lanes (apply) — Lane 1 + Lane 4 + Lane 7 are the load-bearing three | §6 |
-| 10 | The 6 tracks (innovate) — Track 1 + Track 2 + Track 6 are the load-bearing three | §7 |
+| 9 | The 9 lanes (apply) — Lane 1 + Lane 4 + Lane 7 + Lane 8 + Lane 9 are the 2026 load-bearing five | §6 |
+| 10 | The 9 tracks (innovate) — Track 1 + Track 6 + Track 7 + Track 8 + Track 9 are the post-2026 load-bearing five | §7 |
 | 11 | The commercial landscape — 3 buyer archetypes + per-pitch buyer map | §8.3 |
 | 12 | The discussion — 3 pitches table → questions → close on AACR-2026 as the live evaluation surface | §9 + §10 |
 
@@ -1191,8 +1316,8 @@ For the speaker prepping cold the night before. Collapses §3 deep dives into 1 
 | §3 Deep dives — 10 anchor models × 4-question matrix | 9 min | 10 | — |
 | §4 The 2025 discipline crisis | 3 min | 3 | "Has anyone here actually reproduced the linear-baseline result?" |
 | §5 The 5-gap framework + §5.6 mapping matrix | 4 min | 4 | "Which gap shows up in our own data?" |
-| §6 Small-lab playbook — 7 lanes that use existing FMs | 5 min | 5 | "Lane 1 + Lane 7 are the AACR posters. Which of our datasets fits?" |
-| §7 Real innovation tracks — 6 frontier methods lanes | 6 min | 6 | "Track 1 + Track 6 are publishable in 12 months at <$3k. Real?" |
+| §6 Small-lab playbook — 9 lanes that use existing FMs | 6 min | 6 | "Lane 1 + Lane 7 are the AACR posters; Lane 8 + Lane 9 are the 2026 frontier. Which of our datasets fits?" |
+| §7 Real innovation tracks — 9 frontier methods lanes | 7 min | 7 | "Track 1 + Track 6 are publishable in 12 months at <$3k; Tracks 7–9 own the post-reckoning citation surface. Real?" |
 | §8 Commercial landscape — buyer archetypes + timeline + per-pitch buyer map | 4 min | 3 | "Of the three pitches, which has the clearest non-academic check writer?" |
 | §9 Discussion — picking our lane | 10 min | 3 | The whole point — see §9.1 pitch table |
 | §10 Closing — AACR 2026 case study | 3 min | 3 | — |
