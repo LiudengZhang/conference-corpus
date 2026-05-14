@@ -4,13 +4,14 @@
 
 ## The headline
 
-Agentic AI and biology FMs are **complementary, not competing**. There are three load-bearing patterns at the intersection:
+Agentic AI and biology FMs are **complementary, not competing**. There are four load-bearing patterns at the intersection:
 
 1. **Agents that use FMs as tools** — LLM agent calls a biology FM (frozen) the way it would call a calculator. PathChat-DX, BioAgents, MedAgentGym.
 2. **Agents that build FMs** — LLM agent + AI coding agent autonomously designs and trains a virtual-cell architecture. VCHarness (BioMap, 2026).
 3. **Agents that reason over FMs** — LLM post-trained with reinforcement learning where a biology FM serves as the *verifier* of biological plausibility. rBio (CZ Biohub, 2025).
+4. **Agents that analyze data with FMs as substrate** — autonomous comp-bio agent that runs a full analysis and generates new biological insight. CellVoyager (*Nat Methods* 2026).
 
-All three exist as public 2025–2026 systems. The intersection is no longer vapor.
+All four exist as public 2025–2026 systems. The intersection is no longer vapor — and the [Li et al. 2026 *Nat Biotech* position paper "Agentic AI and the rise of in silico team science"](https://doi.org/10.1038/s41587-026-03035-1) is the first venue-level framing of the whole intersection as a *team-science* shift, not just a tooling shift.
 
 ## Pattern 1: Agents using FMs as tools
 
@@ -46,6 +47,18 @@ All three exist as public 2025–2026 systems. The intersection is no longer vap
 
 **Caveat**: rBio is post-trained on Qwen2.5-3B — a small LLM. Performance is limited by both the LLM's capacity and the verifier's accuracy. If the verifier (TranscriptFormer) is wrong on a query, rBio learns to be confidently wrong. This is the same risk profile as RLHF-with-bad-rewards, transposed to biology.
 
+## Pattern 4: Agents analyzing data with FMs as substrate
+
+**The structure**: an autonomous comp-bio agent receives a dataset and a loose goal ("find what's interesting here"). It runs a full analysis pipeline — QC, clustering, differential expression, pathway enrichment — calling FMs and classical tools as needed, and surfaces *new biological insight* rather than a single predicted value. This is the agent as a *junior computational biologist*, not as a calculator.
+
+**Canonical exemplar**:
+
+- **[CellVoyager (Alber et al., *Nat Methods* 2026)](https://doi.org/10.1038/s41592-026-03029-6)** — "AI CompBio agent generates new insights by autonomously analyzing biological data." Where VCHarness *builds* a model and rBio *reasons* over one, CellVoyager *does the analysis* — autonomously, end-to-end, on real single-cell data.
+
+**Why this pattern matters**: it's the pattern closest to a working scientist's daily loop. The other three patterns produce *models* or *answers*; CellVoyager produces *analyses* — the actual unit of comp-bio work. For a small lab, this is the pattern that most directly threatens-or-augments the bottleneck (analyst bandwidth). The [Li et al. 2026 *Nat Biotech* "in silico team science"](https://doi.org/10.1038/s41587-026-03035-1) framing is essentially "what happens to a lab when Pattern 4 is reliable."
+
+**Caveat**: an autonomous analysis agent that surfaces "insights" inherits the multiple-comparisons problem at machine speed. CellVoyager-style outputs need the same statistical hygiene a human analyst's would — and arguably more, because the agent can generate a hundred plausible-looking findings before a human would notice it's p-hacking.
+
 ## The 2026 commercial frame
 
 The intersection is where pharma + AI-native biotechs spend money:
@@ -62,11 +75,12 @@ The **AACR 2026 AT02 session "Agentic AI as the Cancer Researcher"** + the **4/2
 
 **Concrete project shape**: partner with a wet-lab running CRISPRi or drug-perturb screens. Implement an LLM-orchestrated FM-guided selection loop (Pattern 1 — FM-as-tool). Compare to literature-prior baseline. Output: methods paper in *Nat Methods* / *Cell Systems* + a clinical-relevance paper.
 
-**The next-step research questions** that the three patterns expose:
+**The next-step research questions** that the four patterns expose:
 
 - **Pattern 1 (FM-as-tool)**: how does an agent decide *which* biology FM to call for a given query? Tool-routing for biology is unsolved.
 - **Pattern 2 (FM-builder)**: VCHarness designs architectures but not pretraining objectives. Can an agent design a *better objective* than next-gene-prediction? See [Track 2 in the supplementary](../fm-to-virtual-cells-supplementary.md#c-track-dossiers-the-9-small-lab-innovation-tracks).
 - **Pattern 3 (FM-as-verifier)**: rBio uses one verifier (TranscriptFormer). Can a reasoning agent use *multiple* verifiers (TranscriptFormer + pathology FM + AlphaGenome) for cross-modality biological reasoning? This is the open follow-up — and the first paper to do it owns the citation.
+- **Pattern 4 (FM-as-analysis-substrate)**: CellVoyager produces autonomous analyses — but who audits them? A statistical-hygiene layer for agentic comp-bio outputs (multiple-comparisons control, automated sensitivity analysis) does not exist. That layer is itself a publishable small-lab project.
 
 ## Common misconceptions
 

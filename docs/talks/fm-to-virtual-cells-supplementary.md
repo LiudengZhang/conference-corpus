@@ -261,7 +261,7 @@ All current biology FMs are domain-agnostic transformer clones. But biology has 
 
 **A 12-month project**: build a **graph-attention transformer** that takes a gene-gene interaction graph (StringDB / Reactome / OmniPath) as a fixed prior on attention weights. Pretrain on a 1M-cell subset of CELLxGENE. Hypothesis: pathway-aware attention beats general attention at this scale. **Compute: $5–15k.**
 
-**Real exemplars (2026 wave)**: **xVERSE** (transcriptomics-native, beats LM-derived sc-FMs by 17.9% on representation), **MAP** (knowledge-driven, zero-shot prediction for unprofiled drugs). The "all sc-FMs are scGPT-shaped" frame is out of date.
+**Real exemplars (2026 wave)**: **xVERSE** (transcriptomics-native, beats LM-derived sc-FMs by 17.9% on representation), **MAP** (knowledge-driven, zero-shot prediction for unprofiled drugs), **[TxPert (Wenkel et al., *Nat Biotech* 2026)](https://doi.org/10.1038/s41587-026-03113-4)** — uses *multiple knowledge graphs* as the inductive bias for transcriptomic-perturbation prediction. **TxPert is the reckoning answering itself**: Wenkel co-authored the 2025 `latent-additive` critique, and TxPert is the methodological response from inside the critique camp. The "all sc-FMs are scGPT-shaped" frame is out of date.
 
 ### C.5 Track 5 — UQ / OOD detection for clinical-grade FMs
 
@@ -506,6 +506,8 @@ The bibliography is organized into 12 buckets. **Bold** = read first. URLs are d
 - Marx 2024 *Nat Methods* tech feature — "AI builds models of biology" — accessible field overview.
 - Singh et al. 2025 *Exp Mol Med* — "Single-cell foundation models: bringing AI into cell biology" — clean mid-2025 review.
 - Cao, Lu & Qiu 2026 *Nat Methods* — "Towards predictive virtual embryos" — virtual *embryo* extension.
+- **[Rao et al. 2026 *Nat Biotech* — "Generalist biological artificial intelligence in modeling the language of life"](https://doi.org/10.1038/s41587-026-03064-w)** — the generalist-biology-AI position paper; sits alongside Bunne and Theis as a "what is the field building toward" reference.
+- **[Li et al. 2026 *Nat Biotech* — "Agentic AI and the rise of in silico team science in biomedical research"](https://doi.org/10.1038/s41587-026-03035-1)** — the agentic-FM intersection framed at the *team-science* level; the position paper behind the [agentic-meets-foundation explainer](fm-to-virtual-cells/agentic-meets-foundation.md).
 
 #### The 2025 critique trio — the reckoning
 
@@ -745,6 +747,7 @@ If 75 min: expand group discussion to 25 min. If 45 min: cut Act 3 to lanes-only
 - **[Hossain et al. *arXiv* 2412.13478](https://arxiv.org/abs/2412.13478)** — PEFT/LoRA recipe for sc-FMs.
 - **[Foundation Models Improve Perturbation Response](https://www.biorxiv.org/content/10.64898/2026.02.18.706454v1)** (Feb 2026) — **the contrarian voice**.
 - **[MAP — knowledge-driven framework](https://www.biorxiv.org/content/10.64898/2026.02.25.708091v1)** (Feb 2026).
+- **[TxPert (Wenkel et al. 2026 *Nat Biotech*)](https://doi.org/10.1038/s41587-026-03113-4)** — multiple-knowledge-graph perturbation prediction. **The reckoning answering itself**: Wenkel co-authored the 2025 `latent-additive` critique; TxPert is the methodological response from inside the critique camp. **Fold into**: Act 1 §1.3 (architectural response), §C.4 Track 4.
 
 #### Position / framing papers
 
@@ -753,8 +756,19 @@ If 75 min: expand group discussion to 25 min. If 45 min: cut Act 3 to lanes-only
 - **[Virtual Cells Need Context](https://www.biorxiv.org/content/10.64898/2026.02.04.703804v1)** — causal transportability framing.
 - **[Beyond Alignment (SIS)](https://www.biorxiv.org/content/10.64898/2026.02.23.707420v3)** (Microsoft, Feb 2026).
 - **[Cao, Lu & Qiu — virtual embryos](https://www.nature.com/articles/s41592-026-03055-4)** (*Nat Methods* 2026).
+- **[Rao et al. 2026 *Nat Biotech* — Generalist biological AI](https://doi.org/10.1038/s41587-026-03064-w)** — the generalist-biology-AI position paper.
+- **[Li et al. 2026 *Nat Biotech* — Agentic AI + in silico team science](https://doi.org/10.1038/s41587-026-03035-1)** — the agentic-FM intersection at the team-science level.
 - [Adduri et al. 2025 STATE preprint](https://www.biorxiv.org/content/10.1101/2025.06.26.661135v1).
 - [Singh et al. 2025 *Exp Mol Med*](https://www.nature.com/articles/s12276-025-01547-5) — review.
+
+#### The virtual-X wave — beyond the single cell
+
+- **[Zhou et al. 2026 *Nat Biotech* — Digital twins of ex vivo human lungs](https://doi.org/10.1038/s41587-026-03121-4)** — personalized therapeutic-efficacy evaluation on virtual *organs*. The "virtual X" agenda forks: virtual cell (this talk) → virtual embryo (Cao/Lu/Qiu 2026) → virtual organ (Zhou 2026).
+- **[Computational generation of high-content digital organs at single-cell resolution, *Nat Methods* 2025](https://www.nature.com/articles/s41592-025-02996-6)** — 38M-cell mouse-brain virtual atlas reconstructed from sparse spatial transcriptomics. Confirms the digital-organ pattern is a real 2025–2026 wave, not a one-off.
+
+#### New agentic-AI-for-biology systems
+
+- **[Alber et al. 2026 *Nat Methods* — CellVoyager](https://doi.org/10.1038/s41592-026-03029-6)** — autonomous AI comp-bio agent that analyzes single-cell data and generates new insights. The third agentic pattern: rBio *reasons over* a virtual cell, VCHarness *builds* virtual cells, **CellVoyager *analyzes* with the FM as substrate**. **Fold into**: [agentic-meets-foundation explainer](fm-to-virtual-cells/agentic-meets-foundation.md).
 
 #### New single-cell / spatial foundation models
 
@@ -801,6 +815,9 @@ If 75 min: expand group discussion to 25 min. If 45 min: cut Act 3 to lanes-only
 - **Act 1 gains theoretical underpinning**: Virtual Cells Need Context — causal transportability problem, structural not capacity-bounded.
 - **Act 3 Tracks 7, 8, 9** are net-new in 2026: cross-species, SIS, causal transportability.
 - **Act 4 commercial framing** notes: CZ Biohub (TranscriptFormer + rBio) and BioMap (VCHarness) as the two fully-open / open-research stacks.
+- **Act 3 Track 4** gains TxPert — the reckoning's own authors (Wenkel) now publishing knowledge-graph-driven methodological responses. The reckoning → response loop is closing.
+- **Act 5 closing** now has a *virtual-X-is-forking* point: virtual cell (this talk) → virtual embryo (Cao/Lu/Qiu 2026) → virtual organ (Zhou 2026 lungs + digital-organ *Nat Methods* 2025).
+- **Agentic ↔ FM convergence is now three-way**: rBio reasons, VCHarness builds, CellVoyager analyzes. Plus the Li et al. 2026 *Nat Biotech* "in silico team science" position paper frames the whole intersection.
 
 ---
 

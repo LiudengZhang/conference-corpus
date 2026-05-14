@@ -24,6 +24,7 @@ All major sc-FMs (scGPT, Geneformer, UCE, scFoundation, CellPLM) are transformer
 
 **Evidence**:
 - **xVERSE (Jiang & Xie, bioRxiv 2026.04)**: transcriptomics-native FM (non-LM architecture) beats leading sc-FMs by **17.9% on representation, 11.4% on batch correction, 34.3% on spatial imputation**. The architectural choice is empirically load-bearing.
+- **[TxPert (Wenkel et al. 2026 *Nat Biotech*)](https://doi.org/10.1038/s41587-026-03113-4)**: uses *multiple knowledge graphs* as the inductive bias for transcriptomic-perturbation prediction. Notable for *who* wrote it — Wenkel co-authored the 2025 `latent-additive` critique (Cause 3 below). **TxPert is the reckoning answering itself**: the critics' own next move was not "abandon FMs" but "give the FM a knowledge-graph prior the transformer lacks."
 - **scFoundation**'s read-depth-aware attention is the closest existing sc-FM to architecture–biology co-design — but most of that design space is unexplored.
 
 **The track that addresses this**: [Track 4 in the supplementary](../fm-to-virtual-cells-supplementary.md#c4-track-4-architectures-with-biology-specific-inductive-biases) — graph-attention, pathway priors, lineage-aware encoders.

@@ -47,7 +47,7 @@ A virtual cell, as the field has actually built it, is **a perturbation-predicti
 1. **The reckoning canon (10 papers).** Linear baselines beat sc-FMs on perturbation prediction and most cell-level tasks.
 2. **The contrarian voice ([FMs Improve Perturbation, bioRxiv 2026.02](https://www.biorxiv.org/content/10.64898/2026.02.18.706454v1)).** With sufficient data, FMs *do* improve perturbation prediction and approach fundamental performance limits.
 3. **The theoretical underpinning ([Virtual Cells Need Context, bioRxiv 2026.02](https://www.biorxiv.org/content/10.64898/2026.02.04.703804v1)).** The failure is a *causal transportability problem* (Pearl framework) — structural, not capacity-bounded.
-4. **The architectural response.** [xVERSE](https://www.biorxiv.org/content/10.64898/2026.04.12.718016v1) (transcriptomics-native, +17.9% representation, +34.3% spatial imputation over LM-derived sc-FMs); [TranscriptFormer](https://www.science.org/doi/10.1126/science.aec8514) (generative cross-species, 112M cells × 12 species × 1.53B years of evolution); [Theis *Cell Systems*](https://www.cell.com/cell-systems/abstract/S2405-4712(26)00016-5) (compositional FMs — stop training bigger monolithic sc-FMs, start composing modality-specific FMs); [rBio](https://virtualcellmodels.cziscience.com/model/rbio) + [VCHarness](https://www.biorxiv.org/content/10.64898/2026.04.11.717183v1) (agentic ↔ virtual-cell bidirectional convergence).
+4. **The architectural response.** [xVERSE](https://www.biorxiv.org/content/10.64898/2026.04.12.718016v1) (transcriptomics-native, +17.9% representation, +34.3% spatial imputation over LM-derived sc-FMs); [TranscriptFormer](https://www.science.org/doi/10.1126/science.aec8514) (generative cross-species, 112M cells × 12 species × 1.53B years of evolution); [TxPert (Wenkel et al. 2026 *Nat Biotech*)](https://doi.org/10.1038/s41587-026-03113-4) — multiple-knowledge-graph perturbation prediction, and notably **the reckoning answering itself**: Wenkel co-authored the 2025 `latent-additive` critique; [Theis *Cell Systems*](https://www.cell.com/cell-systems/abstract/S2405-4712(26)00016-5) (compositional FMs — stop training bigger monolithic sc-FMs, start composing modality-specific FMs); [rBio](https://virtualcellmodels.cziscience.com/model/rbio) + [VCHarness](https://www.biorxiv.org/content/10.64898/2026.04.11.717183v1) + [CellVoyager](https://doi.org/10.1038/s41592-026-03029-6) (agentic ↔ virtual-cell convergence — reasons / builds / analyzes).
 
 ### 1.4 Glossary — eight terms this talk leans on
 
@@ -355,7 +355,17 @@ The talk's Act 1 thesis: *the gap between FMs and virtual cells is the most conc
 
 **The visual punchline**: *the clinical track is one year behind the methods track on awareness, and one year ahead on accountability. The reckoning didn't come from ICLR — it came from *Nature Methods*. The deployment bar isn't being set by NeurIPS — it's being set by the FDA.*
 
-### 5.2 AACR 2026 as the case study
+### 5.2 "Virtual X" is forking — cell → embryo → organ
+
+The "virtual cell" agenda is no longer the only scale. As of mid-2026 it has visibly forked into three:
+
+- **Virtual cell** — this talk. Perturbation prediction on zero-shot FMs.
+- **Virtual embryo** — [Cao, Lu & Qiu 2026 *Nat Methods*](https://www.nature.com/articles/s41592-026-03055-4): integrate single-cell + spatial data to model mammalian embryogenesis across scales.
+- **Virtual organ** — [Zhou et al. 2026 *Nat Biotech*](https://doi.org/10.1038/s41587-026-03121-4): digital twins of ex vivo human lungs for personalized therapeutic-efficacy evaluation; and [computational generation of high-content digital organs at single-cell resolution (*Nat Methods* 2025)](https://www.nature.com/articles/s41592-025-02996-6) — a 38M-cell mouse-brain virtual atlas from sparse spatial transcriptomics.
+
+Each scale has different evaluation constraints — a virtual organ can be validated against ex vivo therapeutic response in a way a virtual cell cannot. The takeaway for project selection: **the "virtual cell" reckoning is cell-scale-specific; the embryo- and organ-scale tracks have not had their reckoning yet, which makes them either an opportunity or a warning depending on whether you think the cell-scale lessons transfer.**
+
+### 5.3 AACR 2026 as the case study
 
 The corpus from this site ([aacr-2026.pages.dev](https://aacr-2026.pages.dev/conferences/aacr-2026/)): **25 unique sessions, ~464,000 words of transcripts, 2,241 poster abstracts (~871,000 words)** — organized into five axes: agentic AI, single-cell/spatial, virtual cells, bioinfo/AI methods, clinical trials.
 
@@ -365,7 +375,7 @@ Three things AACR 2026 gives us that ICLR/NeurIPS structurally cannot:
 2. **The donor-diversity stress test — [single-cell & spatial track](../conferences/aacr-2026/topics/single-cell-spatial-omics/index.md)** (20 sessions, 1,015 posters). ML conferences evaluate FMs on synthetic perturb-seq splits; AACR is where the actual heterogeneity surface lives. **§5.1 donor-diversity gap either shows up here loudly, or it doesn't.**
 3. **The agentic-AI-for-discovery proof — [AT02 "Agentic AI as the Cancer Researcher" (Tue Apr 21)](../conferences/aacr-2026/sessions/2026-04-21-at02-agentic-ai-cancer-researcher.md) + ["Agentic AI as the Oncologist" (Wed Apr 22)](../conferences/aacr-2026/sessions/2026-04-22-agentic-ai-as-the-oncologist.md)**. ICLR 2026 gave us MedAgentGym (72k task sandbox); AACR gives us *the actual research and clinical workflows*. Two sessions in one week is a deliberate field statement.
 
-### 5.3 What we knew before → what AACR 2026 changes
+### 5.4 What we knew before → what AACR 2026 changes
 
 | The five gaps | What we knew before AACR 2026 | What AACR 2026 lets us answer |
 |---|---|---|
