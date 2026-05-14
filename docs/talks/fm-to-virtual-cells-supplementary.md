@@ -532,6 +532,8 @@ The bibliography is organized into 12 buckets. **Bold** = read first. URLs are d
 - Schaar et al. 2025 *Nat Methods* — [Nicheformer](https://www.nature.com/articles/s41592-025-02814-z) — spatial-omics sc-FM.
 - Zhang et al. 2025 *Nat Commun* — [CellFM](https://www.nature.com/articles/s41467-025-59926-5).
 - Jiang & Xie 2026 — [xVERSE (bioRxiv 2026.04)](https://www.biorxiv.org/content/10.64898/2026.04.12.718016v1) — transcriptomics-native.
+- Kalfon et al. 2025 *Nat Commun* — [scPRINT](https://doi.org/10.1038/s41467-025-58699-1) — pretrained on 50M cells for robust zero-shot gene-network inference.
+- Kalfon, Peyré & Cantini 2025 — [scPRINT-2 (bioRxiv 2025.12)](https://doi.org/10.64898/2025.12.11.693702) — next-generation cell FM *and* a benchmark suite.
 
 #### Pathology FM technical papers
 
@@ -563,6 +565,8 @@ The bibliography is organized into 12 buckets. **Bold** = read first. URLs are d
 - **[Avsec et al. 2025 *Nature* — AlphaGenome](https://doi.org/10.1038/s41586-025-10014-0)**.
 - Avsec et al. 2021 *Nat Methods* — [Enformer](https://doi.org/10.1038/s41592-021-01252-x).
 - Schiff et al. 2024 *ICML* — [Caduceus](https://openreview.net/forum?id=8c5BvLBHgD).
+- Consens et al. 2025 *Nat Mach Intell* — ["Transformers and genome language models"](https://doi.org/10.1038/s42256-025-01007-9) — review of the genome-LM landscape.
+- Tiezzi et al. 2025 *Nat Mach Intell* — ["Back to recurrent processing at the crossroad of transformers and state-space models"](https://doi.org/10.1038/s42256-025-01034-6) — architecture review behind the transformer-vs-SSM choice (HyenaDNA / Caduceus / xVERSE).
 
 #### Protein FM technical papers
 
@@ -605,6 +609,7 @@ The bibliography is organized into 12 buckets. **Bold** = read first. URLs are d
 - bioRxiv 2025 — SAEs Reveal Interpretable Features in Single-Cell FMs (independent confirmation on scGPT).
 - Hibou-LP team 2024–2025 *arXiv* 2407.10785 — first pathology-FM SAE.
 - bioRxiv 2026 — "What Do Biological Foundation Models Compute?" — synthesis across families.
+- Hunklinger & Ferruz 2026 *Nat Mach Intell* — ["Towards the explainability of protein language models"](https://doi.org/10.1038/s42256-026-01232-w) — review of interpretability methods for protein FMs.
 
 #### Compute / cost methodology
 
@@ -784,6 +789,8 @@ If 75 min: expand group discussion to 25 min. If 45 min: cut Act 3 to lanes-only
 - [CytoVerse](https://www.biorxiv.org/content/10.64898/2026.01.29.702554v1) (Jan 2026) — browser-native.
 - [CELLama](https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.202513210) (*Adv Sci* 2026).
 - [CancerFoundation](https://www.biorxiv.org/content/10.1101/2024.11.01.621087v1).
+- [scPRINT](https://doi.org/10.1038/s41467-025-58699-1) (Kalfon et al., *Nat Commun* 2025) — 50M-cell pretraining for gene-network inference.
+- **[scPRINT-2](https://doi.org/10.64898/2025.12.11.693702)** (bioRxiv Dec 2025) — next-generation cell FM + benchmark suite; pairs a model release with its own evaluation harness.
 
 #### New pathology foundation models
 

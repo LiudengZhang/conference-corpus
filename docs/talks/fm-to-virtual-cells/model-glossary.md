@@ -22,6 +22,8 @@ Models marked **★** are the talk's 11 anchor models and link to their full dos
 - **MAP** — a knowledge-driven sc-FM offering zero-shot prediction for unprofiled drugs; a 2026 exemplar of biology-specific inductive bias.
 - **Nicheformer** — Theis lab's spatial-omics sc-FM (~80M params, ~110M dissociated + spatial cells, ~$25k) trained with a niche-aware objective.
 - **CellFM** — a single-cell foundation model from Zhang et al. (*Nature Communications* 2025).
+- **scPRINT** — Kalfon et al.'s sc-FM (*Nat Commun* 2025) pretrained on 50M cells, aimed specifically at robust zero-shot gene-network inference rather than perturbation prediction.
+- **scPRINT-2** — the bioRxiv 2025.12 successor (Kalfon, Peyré & Cantini), pitched as a next-generation cell FM *and* a benchmark suite for evaluating them.
 
 ## Pathology foundation models
 

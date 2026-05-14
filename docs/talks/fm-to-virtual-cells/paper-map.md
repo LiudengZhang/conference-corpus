@@ -42,6 +42,7 @@ The models the reckoning will later test. Read these for *architecture*, not res
 4. [scFoundation](https://doi.org/10.1038/s41592-024-02305-7), [CellPLM](https://openreview.net/forum?id=BKXvPDekud), scBERT — the rest of the lineage; skim for how each varies the tokenization.
 5. **[TranscriptFormer (Pearce et al. 2025 *Science*)](https://www.science.org/doi/10.1126/science.aec8514)** — the generative cross-species model; note it has a green edge — it is *also* a response (Pass 5).
 6. STATE (Arc), Nicheformer (spatial) — read if perturbation/spatial is your angle.
+7. [scPRINT (Kalfon et al. 2025 *Nat Commun*)](https://doi.org/10.1038/s41467-025-58699-1) and its successor [scPRINT-2 (bioRxiv 2025.12)](https://doi.org/10.64898/2025.12.11.693702) — a sc-FM line aimed at gene-network inference; scPRINT-2 ships its own benchmark suite, so it carries a green edge into the reckoning (Pass 3).
 
 ### Pass 3 — The reckoning (critique / benchmark, red — the centre)
 

@@ -1437,6 +1437,10 @@ PAPERS = [
      "First generative cross-species sc-FM; CZ Biohub flagship.", 2),
     ("nicheformer", "scfm", "Nicheformer", "Nicheformer", "Nat Methods · 2025",
      "Spatial-omics sc-FM with a niche-aware objective.", 1),
+    ("scprint", "scfm", "scPRINT", "scPRINT — 50M-cell pretraining", "Nat Commun · 2025",
+     "Robust zero-shot gene-network inference, not perturbation prediction.", 1),
+    ("scprint2", "scfm", "scPRINT-2 2026", "scPRINT-2 — next-gen cell FM + benchmark",
+     "bioRxiv · 2025", "Pairs a model release with its own evaluation harness.", 1),
     # — the reckoning —
     ("boiarsky", "reckoning", "Boiarsky 2023", "Earliest 'linear baselines are competitive' warning",
      "NeurIPS workshop · 2023", "The first warning shot — read it to see how early the signal was.", 1),
@@ -1526,6 +1530,7 @@ PAPER_EDGES = [
     ("scfoundation", "scgpt", "builds_on"), ("cellplm", "scgpt", "builds_on"),
     ("state", "scgpt", "builds_on"), ("nicheformer", "geneformer", "builds_on"),
     ("uce", "esm2", "builds_on"), ("transcriptformer", "uce", "builds_on"),
+    ("scprint", "scgpt", "builds_on"), ("scprint2", "scprint", "builds_on"),
     # reckoning internal lineage — Ahlmann-Eltze is the hub
     ("ahlmann", "boiarsky", "builds_on"), ("ahlmann", "csendes", "builds_on"),
     ("kedzierska", "ahlmann", "builds_on"), ("wenkel", "ahlmann", "builds_on"),
@@ -1548,7 +1553,7 @@ PAPER_EDGES = [
     ("txpert", "ahlmann", "responds"), ("map", "ahlmann", "responds"),
     ("theis", "ahlmann", "responds"), ("transcriptformer", "ahlmann", "responds"),
     ("contrarian", "ahlmann", "responds"), ("contrarian", "liu", "responds"),
-    ("vcharness", "ahlmann", "responds"),
+    ("vcharness", "ahlmann", "responds"), ("scprint2", "ahlmann", "responds"),
     # theory + interpretability frame the reckoning
     ("context", "ahlmann", "frames"), ("sis", "wu_nm", "frames"),
     ("simonzou", "ahlmann", "frames"), ("sae_scgpt", "ahlmann", "frames"),
