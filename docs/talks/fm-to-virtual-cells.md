@@ -61,6 +61,8 @@ A virtual cell, as the field has actually built it, is **a perturbation-predicti
 
 *Interactive — the four eras as a lineage: the Gen-1 sc-FMs inherited the NLP transformer, lost to a linear baseline, and the 2026 response fixes the causes (edge colour = which cause it addresses). Hover any node for detail.*
 
+→ Going deeper on the reckoning: [why do linear baselines win?](fm-to-virtual-cells/why-linear-baselines-win.md) (the four causes) · [the evaluation papers catalog](fm-to-virtual-cells/evaluation-papers-catalog.md) (the full corpus) · [the paper map](fm-to-virtual-cells/paper-map.md) (the literature as an interactive network + reading order).
+
 ### 1.4 Glossary — eight terms this talk leans on
 
 | Term | Operational meaning in this talk |
@@ -88,7 +90,7 @@ A virtual cell, as the field has actually built it, is **a perturbation-predicti
 | **Protein** | ESM-2 / ESM-3, AlphaFold3, Proteina Complexa, RFdiffusion | ESM-3 for generative (98B params, esmGFP de novo); AlphaFold3 for structure (multimodal: proteins + DNA + RNA + ligands) | **Maturing fast** — Proteina Complexa hits 63.5% wet-lab hit rate on PDGFR binders |
 | **Multimodal / vision-language** | BioMedCLIP, PathChat / PathChat-2, MedAgentGym, MMedAgent-RL | PathChat-2 (>1M instruction pairs); PathChat DX FDA Breakthrough Jan 2025 | **Closest to clinical deployment** |
 
-Cross-link: [Foundation Models cross-vault index](../foundation-models.md) · [supplementary §A — full model dossiers](fm-to-virtual-cells-supplementary.md#a-model-dossiers-the-11-anchor-models).
+Cross-link: [What is a foundation model?](fm-to-virtual-cells/what-is-a-foundation-model.md) · [the model glossary](fm-to-virtual-cells/model-glossary.md) · [Foundation Models cross-vault index](../foundation-models.md) · [supplementary §A — full model dossiers](fm-to-virtual-cells-supplementary.md#a-model-dossiers-the-11-anchor-models).
 
 **Per-task winners for sc-FMs** — what each model actually wins on, and where they all still lose. The "SOTA" row above flattens a more interesting picture:
 
@@ -414,6 +416,22 @@ Three things AACR 2026 gives us that ICLR/NeurIPS structurally cannot:
 ---
 
 ## Companion resources
+
+### Explainer pages
+
+Each explainer answers one question someone asks during the talk. They are reachable from the top nav, or jump straight in:
+
+- **[What is a foundation model?](fm-to-virtual-cells/what-is-a-foundation-model.md)** — the definition and the five-families taxonomy (Act 2).
+- **[The model glossary](fm-to-virtual-cells/model-glossary.md)** — every FM and virtual cell named in the talk, one sentence each.
+- **[What does each FM cost?](fm-to-virtual-cells/what-does-each-fm-cost.md)** — the compute-disclosure landscape (Act 2, gap 5.4).
+- **[How agentic AI meets foundation models](fm-to-virtual-cells/agentic-meets-foundation.md)** — the four agentic ↔ FM patterns (Act 1 §1.3, Act 5).
+- **[Why do linear baselines win?](fm-to-virtual-cells/why-linear-baselines-win.md)** — the four causes behind the 2025 reckoning (Act 1 §1.3).
+- **[Reading an FM paper critically](fm-to-virtual-cells/reading-an-fm-paper-critically.md)** — the 8-item checklist (Act 3).
+- **[The evaluation papers catalog](fm-to-virtual-cells/evaluation-papers-catalog.md)** — the full reckoning corpus (Act 1 §1.3).
+- **[The paper map](fm-to-virtual-cells/paper-map.md)** — the literature as an interactive network + a systematic reading order.
+- **[Adjacent Methods — the catalog](fm-to-virtual-cells/adjacent-methods/index.md)** — ~55 non-FM algorithm, benchmark, and methodology papers next to the talk's topic.
+
+### Deep references
 
 - **[Supplementary — long-form companion](fm-to-virtual-cells-supplementary.md)** — table-first deep dives: 11 model dossiers, 9 lane-by-lane projects, 9 track-by-track projects, compute matrix, 12-paper evaluation catalog, 15-institute landscape, ~110-reference reading list, 37-paper 2026 updates, Q&A scripts, timing cheat sheet.
 - **[`_resources-matrix.md`](_resources-matrix.md)** — full compute / cost / team / data matrix with arithmetic and DISCLOSED / ESTIMATED / UNKNOWN tags.

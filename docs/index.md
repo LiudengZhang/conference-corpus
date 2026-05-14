@@ -6,6 +6,7 @@ A curated knowledge base of biomedical, bioinformatics, and AI/ML conferences fo
 
 - **37 conferences** scaffolded across 2025–2026
 - **~109 deep dossiers** built (tools / trials / launches / talks / keynotes)
+- **[Talk Prep — FMs to Virtual Cells](talks/fm-to-virtual-cells.md)** — a flagship deep-dive: a 5-act talk page, long-form supplementary, 8 explainers, a ~55-paper [Adjacent Methods catalog](talks/fm-to-virtual-cells/adjacent-methods/index.md), and 12 interactive figures
 - **36-row Gantt timeline** with a 4-criterion scoring rubric — see [2026 Timeline](timeline.md)
 - 13 vaults content-complete · 24 scaffolded for live coverage at each meeting window
 
@@ -14,6 +15,10 @@ A curated knowledge base of biomedical, bioinformatics, and AI/ML conferences fo
 **Anchor — cancer research umbrella:**
 
 - [**AACR 2026**](conferences/aacr-2026/){ .md-button } — ~26 sessions, ~2,300 posters across 5 topics (agentic AI, single-cell & spatial omics, virtual cells, bioinfo / comp bio / AI methods, clinical trials). 6 tool dossiers (CHIEF, Prov-GigaPath, UNI, scGPT, Geneformer, Cell2Location).
+
+**Flagship deep-dive — talk prep:**
+
+- [**Talk Prep — FMs to Virtual Cells**](talks/fm-to-virtual-cells.md){ .md-button } — a full conference-talk build: 5-act talk page + long-form supplementary (11 model dossiers, 9 lanes, 9 tracks, compute matrix, ~110-reference reading list) + 8 explainers (incl. [the model glossary](talks/fm-to-virtual-cells/model-glossary.md) and [the paper map](talks/fm-to-virtual-cells/paper-map.md)) + a [~55-paper Adjacent Methods catalog](talks/fm-to-virtual-cells/adjacent-methods/index.md) + 12 interactive Plotly figures. Cross-vault [Foundation Models index](foundation-models.md) sits alongside.
 
 **Industry — financial / strategic:**
 

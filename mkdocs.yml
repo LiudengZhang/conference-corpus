@@ -76,14 +76,14 @@ nav:
       - Reading an FM paper critically: talks/fm-to-virtual-cells/reading-an-fm-paper-critically.md
       - Evaluation papers catalog: talks/fm-to-virtual-cells/evaluation-papers-catalog.md
       - The paper map: talks/fm-to-virtual-cells/paper-map.md
-    - Adjacent methods:
-      - The catalog (~55 papers): talks/fm-to-virtual-cells/adjacent-methods/index.md
-      - PerturbFate: talks/fm-to-virtual-cells/adjacent-methods/perturbfate.md
-      - Flow matching in comp-bio: talks/fm-to-virtual-cells/adjacent-methods/flow-matching.md
-      - Learning beyond fine-tuning: talks/fm-to-virtual-cells/adjacent-methods/learning-beyond-fine-tuning.md
-      - Genome language models: talks/fm-to-virtual-cells/adjacent-methods/genome-language-models.md
-      - Protein-LM explainability: talks/fm-to-virtual-cells/adjacent-methods/protein-lm-explainability.md
-      - Transformers vs state-space models: talks/fm-to-virtual-cells/adjacent-methods/transformers-vs-state-space.md
+  - Adjacent Methods:
+    - The catalog (~55 papers): talks/fm-to-virtual-cells/adjacent-methods/index.md
+    - PerturbFate: talks/fm-to-virtual-cells/adjacent-methods/perturbfate.md
+    - Flow matching in comp-bio: talks/fm-to-virtual-cells/adjacent-methods/flow-matching.md
+    - Learning beyond fine-tuning: talks/fm-to-virtual-cells/adjacent-methods/learning-beyond-fine-tuning.md
+    - Genome language models: talks/fm-to-virtual-cells/adjacent-methods/genome-language-models.md
+    - Protein-LM explainability: talks/fm-to-virtual-cells/adjacent-methods/protein-lm-explainability.md
+    - Transformers vs state-space models: talks/fm-to-virtual-cells/adjacent-methods/transformers-vs-state-space.md
   - 2026 Timeline: timeline.md
   - AACR 2026:
     - Overview: conferences/aacr-2026/index.md

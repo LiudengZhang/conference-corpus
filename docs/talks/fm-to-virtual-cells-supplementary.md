@@ -628,6 +628,7 @@ The bibliography is organized into 12 buckets. **Bold** = read first. URLs are d
 - [Insitro pipeline](https://insitro.com) — Daphne Koller's applied virtual-cell case study.
 - [Latent Labs](https://latentlabs.com) — Simon Kohl + DeepMind alumni virtual-cell startup.
 - Sukumaran et al. 2025 *JCO Precision Oncology* — clinical-decision-support evaluation framework.
+- [Schönhuth 2025 *Nat Mach Intell* — "From data chaos to precision medicine"](https://doi.org/10.1038/s42256-025-01015-9) — short framing commentary on the data-to-clinic gap.
 - AstraZeneca acquires Modella AI (JPM 2026 announcement).
 
 #### Cross-vault index
