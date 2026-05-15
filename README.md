@@ -1,4 +1,13 @@
-# Conference Corpus — Multi-Conference Transcripts & Abstracts
+# Conference Corpus — ARCHIVED
+
+> **🗄️ Archived 2026-05-15.** Split into two successor repos:
+>
+> - **[conference-vaults](https://github.com/LiudengZhang/conference-vaults)** — per-conference vaults (AACR 2026, Nextflow Summit, JPM, EuroBioC, GBCC, AGBT, ASCO GI/GU, ICLR, ISBI, etc.). Live site: <https://liudengzhang.github.io/conference-vaults/>
+> - **[fm-to-virtual-cells](https://github.com/LiudengZhang/fm-to-virtual-cells)** — FM → Virtual Cells talk prep + knowledge base (extension of [awesome-virtual-cell](https://github.com/LiudengZhang/awesome-virtual-cell)). Live site (password-gated): <https://liudengzhang.github.io/fm-to-virtual-cells/>
+>
+> This repo and the live snapshot at <https://liudengzhang.github.io/conference-corpus/> remain as a frozen archive of the combined state as of 2026-05-15.
+
+---
 
 Curated content from biomedical and computational biology meetings, served as one searchable MkDocs Material site (private, Cloudflare Pages + Basic Auth) with one nav tab per conference.
 
