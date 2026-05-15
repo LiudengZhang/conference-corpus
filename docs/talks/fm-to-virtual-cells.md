@@ -430,6 +430,7 @@ Each explainer answers one question someone asks during the talk. They are reach
 - **[The evaluation papers catalog](fm-to-virtual-cells/evaluation-papers-catalog.md)** — the full reckoning corpus (Act 1 §1.3).
 - **[The paper map](fm-to-virtual-cells/paper-map.md)** — the literature as an interactive network + a systematic reading order.
 - **[Adjacent Methods — the catalog](fm-to-virtual-cells/adjacent-methods/index.md)** — ~55 non-FM algorithm, benchmark, and methodology papers next to the talk's topic.
+- **[The resource library](fm-to-virtual-cells/resource-library.md)** — the landscape monitor: ~250 items (papers, tools, labs, datasets, events, money moves, blogs) with faceted filters across kind / status / org / region / topic.
 
 ### Deep references
 

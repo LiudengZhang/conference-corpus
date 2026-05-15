@@ -84,6 +84,7 @@ nav:
     - Genome language models: talks/fm-to-virtual-cells/adjacent-methods/genome-language-models.md
     - Protein-LM explainability: talks/fm-to-virtual-cells/adjacent-methods/protein-lm-explainability.md
     - Transformers vs state-space models: talks/fm-to-virtual-cells/adjacent-methods/transformers-vs-state-space.md
+  - Resource Library: talks/fm-to-virtual-cells/resource-library.md
   - 2026 Timeline: timeline.md
   - AACR 2026:
     - Overview: conferences/aacr-2026/index.md
