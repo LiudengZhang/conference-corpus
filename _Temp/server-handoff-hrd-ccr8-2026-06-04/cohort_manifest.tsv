@@ -1,0 +1,74 @@
+cohort_id	bucket	consortium	cancer	n_patients	genomic	tme	repository	accession_primary	accession_secondary	access_tier	hrd_signal	priority	vault_id	notes
+luo-2024-nant-ovarian	A	standalone	HGSOC	30	WGS+HRD	scRNA+scTCR	GEO	GSE222556		open	wgs-sbs3	1	yes	project anchor; Luo Cell 2024
+vazquez-garcia-2022-mskspectrum	A	MSK-SPECTRUM	HGSOC	42	WGS+scWGS-DLP	scRNA	Synapse	syn25569736		synapse-mixed	wgs-sbs3	1	yes	dovetails with D row of same name
+olbrecht-2021-hgsoc	A	standalone	HGSOC	7	germline-BRCA	scRNA	ArrayExpress	E-MTAB-8107		open	germline-brca	2	yes	germline-only; small N
+pal-2021-brca1-breast	A	standalone	BRCA1-carrier breast	21	germline-BRCA1+WGS	scRNA	GEO	GSE161529		open	germline-brca+wgs-sbs3	1	yes	rare BRCA1-carrier sc cohort
+bassez-2021-biokey	A	BIOKEY	breast anti-PD-1 pre/post	40	WES+panel	scRNA+scTCR	EGA	EGAS00001004809		controlled	wes-chord	2	yes	IO + breast; start DAC now
+yost-2019-bcc	A	standalone	BCC anti-PD-1	14	WES	scRNA+scTCR	GEO	GSE123813		open	wes-chord	3	yes	BCC not HRD-direct
+caushi-2021-nsclc	A	standalone	NSCLC anti-PD-1	16	WES+panel	scRNA+scTCR	GEO	GSE176021		open	wes-chord	3	yes	IO context
+luoma-2022-hnscc	A	standalone	HNSCC anti-PD-1	29	clinical-panel	scRNA	GEO	GSE200996		open	panel-only	3	yes	panel-only genomics
+sade-feldman-2018-mel	A	standalone	melanoma anti-PD-1	48	WES	scRNA	GEO	GSE120575		open	wes-chord	3	yes	canonical IO cohort
+bi-2021-ccrcc	A	standalone	ccRCC anti-PD-1	8	WES	scRNA	Broad-SCP	SCP1288	dbGaP phs002252	mixed	wes-chord	3	yes	SCP open / dbGaP for raw
+liu-2022-nsclc	A	standalone	NSCLC IO	35	WES	scRNA	EGA	EGAS00001005003		controlled	wes-chord	3	yes	IO
+magen-2023-hcc	A	standalone	HCC anti-PD-1	33	WES	scRNA+scTCR	unknown	NOT-LOCATED		deferred	wes-chord	4	yes	verify accession before download
+wang-2025-sclc-parpi	A	standalone	SCLC PARPi context	verify	panel	scRNA	unknown	UNVERIFIED		deferred	panel-only	4	yes	2025 paper — track accession
+pelka-2021-crc	A	standalone	CRC MMRd/MMRp	62	WES	scRNA(+MERFISH subset->D)	GEO	GSE178341	dbGaP phs002407	mixed	mmr-context	2	no	MMR is HRD sibling — analogue template
+lee-2020-crc-korea	A	standalone	CRC	29	WES+bulkRNA	scRNA	GEO	GSE132465		open	wes-chord	3	no	CRC HRD rare
+maynard-2020-nsclc-longitudinal	A	standalone	NSCLC TKI pre/residual/progression	30	WES+NGS	scRNA	EGA	EGAS00001004422		controlled	wes-chord	3	no	TKI not HRD-direct
+neftel-2019-gbm	A	standalone	GBM IDH-wt	28	WES	scRNA	Broad-SCP	SCP393	GEO GSE131928	open	wes-chord	3	no	GBM HRD rare
+karaayvaz-2018-tnbc	A	standalone	TNBC	6	WES	scRNA-SmartSeq2	GEO	GSE118390		open	wes-chord	1	no	TNBC; HRD-relevant despite N=6
+puram-2017-hnscc	A	standalone	HNSCC	18	WES	scRNA-SmartSeq2	GEO	GSE103322		open	wes-chord	3	no	HNSCC HRD rare
+kim-2020-nsclc-mets	A	standalone	NSCLC primary+LN+brain	44	WES	scRNA	EGA	EGAS00001004001		controlled	wes-chord	3	no	met biology
+tirosh-2016-melanoma	A	standalone	metastatic mel	19	WES	scRNA-SmartSeq2	GEO	GSE72056		open	wes-chord	3	no	classic mel sc
+jerby-arnon-2018-mel	A	standalone	mel anti-PD-1 mixed	33	WES	scRNA	GEO	GSE115978		open	wes-chord	3	no	IO mel
+stewart-2020-sclc-cdx	A	standalone	SCLC chemo-evolved	12	WGS-CDX+WES-CTC	scRNA	EGA	EGAS00001004025		controlled	wgs-sbs3	2	no	SCLC + PARPi-relevant chemo
+wang-2021-gastric-peritoneal	A	standalone	gastric+peritoneal-met	20	WES	scRNA	GEO	GSE163558		open	wes-chord	3	no	gastric
+zhang-2022-gastric-tcell	A	standalone	gastric	10	WES	scRNA+scTCR	GEO	GSE183904		open	wes-chord	3	no	gastric
+couturier-2020-gbm	A	standalone	GBM	14	WES	scRNA	EGA	EGAS00001004422		controlled	wes-chord	3	no	GBM; fixed 2026-06-04 (manifest had GSE163108 which is Mathewson 2021)
+lambrechts-2018-nsclc	A	standalone	NSCLC	5	WES-bulk	scRNA	ArrayExpress	E-MTAB-6149		open	wes-chord	3	no	NSCLC EC-focused
+goveia-2020-nsclc-ec	A	standalone	NSCLC endothelial	8	WES-Lambrechts	scRNA	ArrayExpress	E-MTAB-8221		open	wes-chord	3	no	EC subset
+sun-2021-hcc-early-relapse	A	standalone	HCC primary+early-relapse	18	WES	scRNA+scTCR	unknown	UNVERIFIED		deferred	wes-chord	4	no	HCC; fixed 2026-06-04 (manifest had GSE149614 which is Lu Y 2021; Sun 2021 Cell accession unresolved)
+kim-2018-tnbc-chemoresist	A	standalone	TNBC neoadj-chemo	20	deep-WES+scDNA	scRNA	SRA	SRP114962		open	wes-chord+cna	1	no	TNBC + chemo longitudinal — HRD-relevant
+hwang-lin-2022-pdac-chemo	A	HTAPP-orbital	PDAC FOLFIRINOX pre/post	43	bulk-WES	snRNA+GeoMx-DSP	GEO	GSE199102	dbGaP phs002371	mixed	wes-chord	2	no	PDAC BRCA-subset accessible; fixed 2026-06-04 (manifest had GSE205013 which is Simeone; Hwang 2022 Nat Genet is GSE199102)
+htan-hta3-bu-lung-precancer	A	HTAN-HTA3	lung-adeno+LUSC pre-malig	484	WES+scDNA	scRNA+mIF	Synapse	syn20446927	Atlas=HTA3	synapse-mixed	wes-chord	2	no	largest single sub-atlas cohort
+su-2025-hcc-snrna	A	standalone	HCC	12	TCGA-LIHC-WES-integration	snRNA	GEO	GSE282701		open	wes-chord-via-integration	3	no	WES indirect
+stur-2022-hgsoc-visium	B	standalone	HGSOC NACT-response	12	WGS	Visium	GEO	GSE211956		open	wgs-sbs3	1	yes	HGSOC + WGS + Visium
+erickson-2022-prostate-visium	B	standalone	prostate adeno	11	WGS+lpWGS	Visium-multi-section	EGA	EGAS00001006124		controlled	wgs-sbs3	2	no	cleanest WGS+Visium pair
+khaliq-sun-2024-pdac	B	standalone	PDAC primary+mets	21	WES+bulkRNA	Visium	GEO	GSE272362		open	wes-chord	2	no	PDAC BRCA-subset relevant
+pei-min-2025-pdac-autopsy	B	standalone	PDAC autopsy multi-organ	13	WGS/WES-autopsy	Visium-55-sections	unknown	UNVERIFIED	Nature 642:212	deferred	wgs-sbs3	4	no	verify accession; Nature 2025
+wu-2025-hgsoc-visium-hd	B	standalone	HGSOC	30	WES+HRD	Visium-HD	unknown	UNVERIFIED	preprint 10.1101/2025.11.24.690313	deferred	wes-chord	4	no	preprint
+ji-2020-cscc-st	B	standalone	cutaneous-SCC	10	WES-subset(4)	ST-Visium-predecessor	GEO	GSE144236		open	wes-chord	3	no	cSCC
+xenium-5k-demo-10x	B	10x-public	breast/OV/NSCLC/mel/cervix	demo	bulk-WGS-per-block	Xenium-5K+VisiumHD	10x-portal	10x-public-datasets		open	wgs-sbs3	3	yes	single-block per type
+launonen-2022-farkkila-mif-hgsoc	C	standalone	HGSOC HRD-vs-HRP	44	WGS+BRCA12-status	t-CyCIF	Synapse	syn26230540		synapse-open	wgs-sbs3	1	yes	direct HRD-stratified
+farkkila-2020-topacio	C	TOPACIO	HGSOC+TNBC+endometrial	62	WGS+HRDsum+LOH	t-CyCIF	Synapse	syn22177117		synapse-open	wgs-sbs3	1	yes	niraparib+pembro trial
+mitri-2024-amtec-parpi-mtnbc	C	HTAPP-umbrella	mTNBC PARPi pre/post	12	WES	t-CyCIF	dbGaP	phs002371.v1.p1		controlled	wes-chord	1	yes	PARPi mTNBC — direct project relevance
+risom-2022-dcis-mibi	C	HTAN-HTA6-orbital	breast DCIS->IBC	122	panel+bulkRNA	MIBI-TOF-37plex	Synapse	syn17773547	candidate-verify	synapse-verify	brca-context	2	no	verify Synapse ID
+jackson-2020-breast-imc	C	METABRIC-linked	breast all-subtypes	281	METABRIC-WES+CNA	IMC-37plex	Zenodo	4607374		open	wes-via-metabric	2	no	IMC open / METABRIC genomic via cBioPortal
+tietscher-2023-breast-imc	C	METABRIC-linked	breast HER2+TNBC	281	METABRIC-WES+bulkRNA	IMC-40plex	Zenodo	7647079		open	wes-via-metabric	2	no	IMC open
+ali-danenberg-2020-metabric-imc	C	METABRIC	breast all-subtypes	693	METABRIC-bulkWES+targeted+SNP-CNA	IMC-37plex	Zenodo	6036188	cBioPortal METABRIC EGAS00000000083	mixed	wes-chord+cna	1	no	largest breast IMC + HRD-relevant
+magness-enfield-2024-tracerx-imc	C	TRACERx	NSCLC early	81	multi-region-WES+bulkRNA	IMC-2-panels	Zenodo	12587543		open	wes-multi-region	3	no	NSCLC HRD-rare
+makhmut-coscia-2025-stic-dvp	C	standalone	HGSOC+STIC-precursors	25	targeted-HRD-panel	DVP-LMD-MS	PRIDE	per bioRxiv 2025.03.19.643504		open	panel-loh	1	no	HGSOC precursor + HRD panel
+htan-hta1-htapp	D	HTAN-HTA1	mBC+NBL+LUAD+GBM+Ewing	205	bulk-WES+panel	scRNA+Visium+SlideSeq+MERFISH+ExSeq+CODEX+MIBI+snRNA	Synapse	syn20446927	Atlas=HTA1	synapse-mixed	wes-chord	1	yes	mBC HRD subset valuable
+htan-hta4-chop-pediatric	D	HTAN-HTA4	NBL+AML+B-ALL+pHGG+Ewing	69	bulk-WGS/WES	scRNA+scATAC+CODEX	Synapse	syn20446927	Atlas=HTA4	synapse-mixed	wgs-sbs3	3	no	pediatric
+htan-hta5-dfci-resistance	D	HTAN-HTA5	NSCLC-TKIr+HR+HER2+breast+IO-r-mel	156	bulk-WES	t-CyCIF+scRNA	Synapse	syn20446927	Atlas=HTA5	synapse-mixed	wes-chord	2	no	16k CyCIF files
+htan-hta6-duke-stanford-dcis	D	HTAN-HTA6	breast DCIS->IDC	828	bulk-WGS-largest-HTAN	MIBI+scRNA+bulkRNA	Synapse	syn20446927	Atlas=HTA6	synapse-mixed	wgs-sbs3	1	no	2630 WGS files; BRCA-carrier subset
+htan-hta7-hms-patch-sorger	D	HTAN-HTA7	mel+nevus+CTCL+FL+CLL/SLL	245	clinical-panel+bulkRNA	t-CyCIF+CyCIF+HnE	Synapse	syn20446927	Atlas=HTA7	synapse-mixed	panel-only	3	no	imaging powerhouse
+htan-hta8-msk-metastasis	D	HTAN-HTA8	SCLC+PDAC+brain-mets+CRC-mets	202	panel+WGS-subset-BRCA-PDAC	scRNA+MIBI+GeoMx-DSP	Synapse	syn20446927	Atlas=HTA8	synapse-mixed	wgs-sbs3	1	no	BRCA-mut PDAC subset
+htan-hta9-ohsu-smmart-mbc	D	HTAN-HTA9	mBC CDK4/6i+IO-evolved	33	bulk-WGS+scDNA+RPPA	mIHC/CyCIF+scATAC+scRNA+EM+GeoMx	Synapse	syn20446927	Atlas=HTA9	synapse-mixed	wgs-sbs3+scDNA	1	no	deep longitudinal; HRD-relevant
+htan-hta10-stanford-fap	D	HTAN-HTA10	FAP-CRC	40	WGS+HiC+meth	scRNA+scATAC+Xenium+CODEX+MS	Synapse	syn20446927	Atlas=HTA10	synapse-mixed	wgs-sbs3	3	no	FAP not HRD
+htan-hta11-vanderbilt-crc	D	HTAN-HTA11	CRC+adenoma+SSL	195	bulk-WES/WGS	scRNA+Visium+MxIF	Synapse	syn20446927	Atlas=HTA11	synapse-mixed	wes-chord	3	no	CRC
+htan-hta12-wustl-pancancer	D	HTAN-HTA12	11-tumor pan-cancer	295	bulk-WGS/WES-CPTAC/TCGA	scRNA+snRNA+scATAC+Visium+CODEX+IMC+Xenium-pilot	Synapse	syn20446927	Atlas=HTA12	synapse-mixed	wgs-sbs3+wes-chord	1	no	includes TNBC PDAC ccRCC TNBC-HRD-relevant
+mskspectrum-cfdna-parpi-2025	D	MSK-SPECTRUM	HGSOC platinum+PARPi-maint	24	scWGS-DLP+bulkWGS+longit-cfDNA	scRNA-subset	dbGaP	phs002857		controlled	wgs-sbs3+scWGS+cfDNA	1	no	PARPi maintenance — direct project relevance
+hms-sorger-ovarian-renamed	D	HMS-Sorger-Ludwig	HGSOC	25	WGS+HRD	t-CyCIF-40plex	Synapse	Sorger-lab-page		synapse-mixed	wgs-sbs3	1	yes	previously htan-hms-ovarian (rename)
+owkin-mosaic-window-bladder	D	MOSAIC	bladder MIBC	15	WES+bulkRNA	Visium+ChromiumFlex-snRNA+HnE	EGA	EGAD50000001251	parent EGAS50000000689	controlled	wes-chord	3	no	15 public not 60; MIBC subset
+htapp-klughammer-2024-mbc	D	HTAN-HTA1-orbital	metastatic-breast	30	WES+lpWGS	snRNA+CITE	dbGaP	phs002371	Broad SCP SCP2702	mixed	wes-chord+lpwgs	1	no	mBC HTAPP extension
+htan-hta8-sclc-chan-2021	D	HTAN-HTA8-orbital	SCLC	21	IMPACT-panel+WGS-subset	scRNA+MIBI+Vectra-IHC	dbGaP	phs002371		controlled	wgs-sbs3	3	no	54 specimens
+hwang-2022-pdac-neoadj	D	standalone	PDAC treatment-naive+neoadj	43	WES+GeoMx-DSP-genomic	snRNA+GeoMx-DSP	GEO	GSE202051	dbGaP phs002789	mixed	wes-chord	2	yes	PDAC + BRCA subset
+hwang-2025-pdac-neural	D	standalone	PDAC	25	bulk-panel-verify	Visium+snRNA	unknown	UNVERIFIED		deferred	wes-chord	4	no	verify; 62 samples
+sun-2024-hcc-primary-met	D	standalone-Fudan	HCC primary+met	182	multi-region-WES+bulkRNA	Visium+scRNA+IHC	unknown	NOT-LOCATED		deferred	wes-chord	4	no	verify accession
+liu-2024-pediatric-hgg-filbin	D	standalone-DFCI/BCH	pHGG/DMG/DHG primary+recurrent	16	matched-WGS	snRNA+snATAC+CODEX	GEO	GSE231860		open	wgs-sbs3	3	no	pediatric
+ravi-2022-gbm-multiomics	D	standalone	GBM primary+recurrent	28	bulk-WES+inferred-CNA	Visium+IMC+MALDI+scRNA	GEO	GSE194329		open	wes-chord	3	no	multi-spatial GBM
+greenwald-2024-gbm-suva-tirosh	D	standalone	GBM+IDH-mut-glioma	100	bulk-WES-subset+TCGA-anchored	Visium+MIBI+scRNA+scATAC+Patch-seq	GEO	GSE237183	Zenodo 10.5281/zenodo.8105466	open	wes-chord	3	no	>1M cells
+denisenko-2024-hgsoc-visium-cosmx	D	standalone	HGSOC	10	WES-subset-verify-EGA	Visium+CosMx-SMI	EGA	EGAS00001006816	Zenodo 10048057	mixed	wes-chord	1	no	HGSOC
+krishna-2021-adapter-ccrcc-io	D	ADAPTeR	ccRCC nivo pre/on/post	6	WES	scRNA+scTCR+mIF	EGA	EGAS00001005188		controlled	wes-chord	3	yes	ccRCC IO
+wu-2021-breast-visium	D	standalone	breast ER+/HER2+/TNBC	26	WES	scRNA+Visium-subset	GEO	GSE176078		open	wes-chord	2	yes	TNBC subset valuable
