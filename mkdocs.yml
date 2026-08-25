@@ -484,6 +484,29 @@ nav:
     - Overview: conferences/single-cell-genomics-2026/index.md
     - Program notes (research): conferences/single-cell-genomics-2026/program-notes.md
     - Tools (template): conferences/single-cell-genomics-2026/tools/index.md
+  - AACR IO 2026 (abstracts harvested):
+    - Overview: conferences/aacr-io-2026/index.md
+    - Program (day by day): conferences/aacr-io-2026/program.md
+    - Keynotes: conferences/aacr-io-2026/keynotes.md
+    - Themes: conferences/aacr-io-2026/themes.md
+    - Notable readouts: conferences/aacr-io-2026/readouts.md
+  - PSB 2026 (open proceedings):
+    - Overview: conferences/psb-2026/index.md
+    - Sessions (index): conferences/psb-2026/sessions/index.md
+    - S1 · Precision Medicine: conferences/psb-2026/sessions/precision-medicine.md
+    - S2 · Biological Molecular Function: conferences/psb-2026/sessions/biological-molecular-function.md
+    - S3 · Systems Biology & Networks: conferences/psb-2026/sessions/systems-biology-network-analysis.md
+    - S4 · AI/ML in Clinical Medicine: conferences/psb-2026/sessions/ai-ml-clinical-medicine.md
+    - S5 · Fairness & Bias in Biomedical AI: conferences/psb-2026/sessions/fairness-bias-biomedical-ai.md
+    - Keynotes & invited talks: conferences/psb-2026/keynotes.md
+    - Workshops: conferences/psb-2026/workshops.md
+    - Themes: conferences/psb-2026/themes.md
+  - GCC 2026 (Galaxy, program-derived):
+    - Overview: conferences/gcc-2026/index.md
+    - Talks (all 35): conferences/gcc-2026/talks/index.md
+    - Keynote — Rayan Chikhi: conferences/gcc-2026/keynote-chikhi.md
+    - Themes: conferences/gcc-2026/themes.md
+    - Community (BoFs, SIGs, CoFest): conferences/gcc-2026/community.md
   - Single Cell Genomics Day 2026 (transcript):
     - Overview: conferences/single-cell-genomics-day-2026/index.md
     - Talks (index): conferences/single-cell-genomics-day-2026/talks/index.md
