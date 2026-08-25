@@ -309,6 +309,19 @@ nav:
     - Program notes (research): conferences/sitc-2026/program-notes.md
     - Trials (template): conferences/sitc-2026/trials/index.md
     - Tools (template): conferences/sitc-2026/tools/index.md
+  - SITC Computational IO Series 2026 (webinars):
+    - Overview: conferences/sitc-computational-io-2026/index.md
+    - Sessions (index): conferences/sitc-computational-io-2026/sessions/index.md
+    - 1 · Virome & engineered probiotics: conferences/sitc-computational-io-2026/sessions/01-virome-probiotics.md
+    - 2 · Epigenetic early detection: conferences/sitc-computational-io-2026/sessions/02-epigenetic-early-detection.md
+    - 3 · Immune-based early detection: conferences/sitc-computational-io-2026/sessions/03-immune-early-detection.md
+    - 4 · AI, FMs & medical imaging: conferences/sitc-computational-io-2026/sessions/04-ai-foundation-models-imaging.md
+    - 5 · Structure-based immunogen design: conferences/sitc-computational-io-2026/sessions/05-structure-based-immunogen-design.md
+    - 6 · Modeling immune escape: conferences/sitc-computational-io-2026/sessions/06-immune-escape-trajectories.md
+    - 7 · Precision immune oncology: conferences/sitc-computational-io-2026/sessions/07-precision-immune-oncology.md
+    - 8 · Systems immunology & T-cell memory: conferences/sitc-computational-io-2026/sessions/08-systems-immunology-t-cell-memory.md
+    - 9 · AI prediction of TCR–antigen binding: conferences/sitc-computational-io-2026/sessions/09-ai-tcr-antigen-binding.md
+    - 10 · Pre-Cancer Atlas: conferences/sitc-computational-io-2026/sessions/10-pre-cancer-atlas.md
   - RSNA 2026 (scaffold):
     - Overview: conferences/rsna-2026/index.md
     - Program notes (research): conferences/rsna-2026/program-notes.md

@@ -4,6 +4,8 @@
 
 > **Status:** Scaffold — meeting is **6 months out** as of today (May 11, 2026). Vault structure is being seeded now so we can move quickly on the abstract embargo (regular abstracts open Apr 22 → close Jun 25; presentation embargoes lift on the morning of the talk in early November). Anything in this vault dated before SITC 2026 is built from SITC 2025 program shape, company toplines, and partner / sponsor press from JPM 2026, AACR 2026, and ASCO 2026 — flagged inline.
 
+> **Not to be confused with the [SITC Computational IO Series 2026](../sitc-computational-io-2026/index.md)** — a separate ten-part webinar series run year-round (May–November 2026) by SITC's Big Data and Data Sharing Committee, covering computational biomarker methods for immunoprevention and immune interception. Same society, different event; that vault is a sibling of this one.
+
 ## Why this is in the vault
 
 SITC is the **immunotherapy half-life** of the oncology calendar — the venue where checkpoint, cell therapy (CAR-T, TIL, TCR-T), bispecifics, neoantigen vaccines, and tumor-microenvironment biology converge in one program. It sits at a deliberate intersection with two AACR axes:
