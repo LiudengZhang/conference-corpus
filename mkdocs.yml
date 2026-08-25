@@ -62,6 +62,12 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Registry:
+    - Overview: registry/index.md
+    - Radar (what's next): registry/radar.md
+    - Harvest queue: registry/harvest-queue.md
+    - By topic: registry/by-topic.md
+    - Watchlist (journals & news): registry/watchlist.md
   - 90-min Speed Read: speed-read.md
   - Foundation Models: foundation-models.md
   - Talk Prep — FMs to Virtual Cells:

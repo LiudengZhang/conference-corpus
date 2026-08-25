@@ -1,0 +1,1172 @@
+# Source registry — the dispatch layer for the info corpus.
+#
+# One entry per source. Vaults hold judgment; this file holds dispatch.
+# `scripts/build_registry.py` reads this and generates docs/registry/*.md.
+#
+# FIELDS
+#   id        stable slug, also the vault directory name where one exists
+#   name      human-readable
+#   type      conference | webinar | journal | news
+#   cadence   annual | biennial | monthly | weekly | continuous | one-time
+#   start/end ISO dates. null when unscheduled. For continuous sources, omit.
+#   topics    from the taxonomy below; drives the by-topic view
+#   access    open | mixed | gated | dead   (how hard is the material to get)
+#   harvest   method + endpoint. This is the operational payload of the file.
+#   vault     docs-relative path, or null if no vault exists yet
+#   status    built | partial | scaffold | none
+#   verify    true when a field here is unconfirmed and needs checking
+#
+# TAXONOMY (keep small on purpose)
+#   oncology-clinical, immuno-oncology, single-cell-spatial, ai-ml,
+#   foundation-models, imaging, genomics, bioinfo-tools, industry-finance
+#
+# Dates below were read from each vault's own index.md on 2026-08-25.
+
+meta:
+  updated: 2026-08-25
+  taxonomy:
+    oncology-clinical: Clinical oncology and trial readouts
+    immuno-oncology: Immunotherapy, checkpoint, cell therapy
+    single-cell-spatial: Single-cell and spatial omics
+    ai-ml: Machine learning methods and venues
+    foundation-models: Foundation models and virtual cells
+    imaging: Medical imaging and computational pathology
+    genomics: Human and clinical genetics, sequencing
+    bioinfo-tools: Workflow platforms, packages, infrastructure
+    industry-finance: Company strategy, financing, launches
+
+sources:
+
+# ─────────────────────────── Conferences: concluded, built ───────────────────
+
+- id: aacr-2026
+  name: AACR Annual Meeting 2026
+  type: conference
+  cadence: annual
+  start: 2026-04-17
+  end: 2026-04-22
+  location: San Diego, CA
+  topics: [oncology-clinical, single-cell-spatial, ai-ml, foundation-models]
+  access: open
+  harvest:
+    method: swapcard-transcripts
+    endpoint: connect.aacr26.org
+    notes: Vimeo auto-captions; the aacr-video-transcripts skill targets this
+  vault: conferences/aacr-2026/index.md
+  status: built
+
+- id: aacr-io-2026
+  name: AACR Immuno-Oncology Conference 2026
+  type: conference
+  cadence: annual
+  start: 2026-02-18
+  end: 2026-02-21
+  location: Los Angeles, CA
+  topics: [immuno-oncology, oncology-clinical, single-cell-spatial]
+  access: mixed
+  harvest:
+    method: crossref
+    endpoint: "https://api.crossref.org/journals/2326-6074/works?filter=from-pub-date:2026-01-01,until-pub-date:2026-12-31&rows=200&cursor=*"
+    notes: Filter DOIs containing io2026. 245 abstracts, full text. Program pages are 404 — Wayback only. NOT Swapcard.
+  vault: conferences/aacr-io-2026/index.md
+  status: built
+
+- id: psb-2026
+  name: Pacific Symposium on Biocomputing 2026
+  type: conference
+  cadence: annual
+  start: 2026-01-03
+  end: 2026-01-07
+  location: Big Island, HI
+  topics: [ai-ml, foundation-models, bioinfo-tools, imaging]
+  access: open
+  harvest:
+    method: static-pdf
+    endpoint: https://psb.stanford.edu/psb-online/proceedings/psb26/
+    notes: 55 papers free, CC BY-NC. Poster book (117 records) at /previous/psb26/ is the unharvested half.
+  vault: conferences/psb-2026/index.md
+  status: built
+
+- id: gcc-2026
+  name: Galaxy Community Conference 2026
+  type: conference
+  cadence: annual
+  start: 2026-06-22
+  end: 2026-06-26
+  location: Clermont-Ferrand, France
+  topics: [bioinfo-tools, ai-ml, single-cell-spatial]
+  access: open
+  harvest:
+    method: youtube
+    endpoint: https://www.youtube.com/playlist?list=PLB4YWcG-HSbw
+    notes: 3 day-long videos, session-level chapters only. Abstract book PDF has all 35 talks + 74 posters.
+  vault: conferences/gcc-2026/index.md
+  status: built
+
+- id: single-cell-genomics-day-2026
+  name: Single Cell Genomics Day 2026 (SCGD26)
+  type: conference
+  cadence: annual
+  start: 2026-06-12
+  end: 2026-06-12
+  location: Virtual (NYGC / Satija Lab)
+  topics: [single-cell-spatial, foundation-models]
+  access: open
+  harvest:
+    method: youtube
+    endpoint: https://satijalab.org/scgd26/
+    notes: Built from full livestream transcript — the quality bar for this corpus
+  vault: conferences/single-cell-genomics-day-2026/index.md
+  status: built
+
+- id: nextflow-2026
+  name: Nextflow Summit 2026
+  type: conference
+  cadence: annual
+  start: 2026-04-30
+  end: 2026-05-01
+  location: Boston, MA + Goldcast stream
+  topics: [bioinfo-tools]
+  access: open
+  harvest:
+    method: transcript
+    endpoint: https://summit.nextflow.io/
+    notes: Auto-generated English captions
+  vault: conferences/nextflow-2026/index.md
+  status: built
+
+- id: jpm-2026
+  name: 44th J.P. Morgan Healthcare Conference
+  type: conference
+  cadence: annual
+  start: 2026-01-12
+  end: 2026-01-15
+  location: San Francisco, CA
+  topics: [industry-finance, oncology-clinical]
+  access: gated
+  harvest:
+    method: press-secondary
+    endpoint: null
+    notes: No transcripts; built from company press and trade coverage
+  vault: conferences/jpm-2026/index.md
+  status: built
+
+- id: eurobioc-2025
+  name: European Bioconductor Conference 2025
+  type: conference
+  cadence: annual
+  start: 2025-09-17
+  end: 2025-09-19
+  location: Barcelona, Spain
+  topics: [bioinfo-tools, single-cell-spatial]
+  access: open
+  harvest:
+    method: youtube
+    endpoint: https://eurobioc2025.bioconductor.org/pages/schedule.html
+  vault: conferences/eurobioc-2025/index.md
+  status: built
+
+- id: gbcc-2025
+  name: Galaxy and Bioconductor Community Conference 2025
+  type: conference
+  cadence: one-time
+  start: 2025-06-23
+  end: 2025-06-26
+  location: Cold Spring Harbor, NY
+  topics: [bioinfo-tools]
+  access: open
+  harvest:
+    method: static-html
+    endpoint: https://gbcc2025.galaxyproject.org/
+  vault: conferences/gbcc-2025/index.md
+  status: partial
+
+# ─────────────────── Conferences: concluded, scaffold or thin ────────────────
+
+- id: asco-gi-2026
+  name: ASCO Gastrointestinal Cancers Symposium 2026
+  type: conference
+  cadence: annual
+  start: 2026-01-08
+  end: 2026-01-10
+  location: San Francisco, CA
+  topics: [oncology-clinical]
+  access: mixed
+  harvest:
+    method: abstract-supplement
+    endpoint: https://ascopubs.org/journal/jco
+  vault: conferences/asco-gi-2026/index.md
+  status: scaffold
+
+- id: agbt-2026
+  name: AGBT General Meeting 2026
+  type: conference
+  cadence: annual
+  start: 2026-02-22
+  end: 2026-02-25
+  location: Marco Island, FL
+  topics: [genomics, single-cell-spatial, industry-finance]
+  access: gated
+  harvest:
+    method: press-secondary
+    endpoint: null
+    notes: Chatham House-ish; platform launches covered by trade press
+  vault: conferences/agbt-2026/index.md
+  status: scaffold
+
+- id: asco-gu-2026
+  name: ASCO Genitourinary Cancers Symposium 2026
+  type: conference
+  cadence: annual
+  start: 2026-02-26
+  end: 2026-02-28
+  location: San Francisco, CA
+  topics: [oncology-clinical]
+  access: mixed
+  harvest:
+    method: abstract-supplement
+    endpoint: https://ascopubs.org/journal/jco
+  vault: conferences/asco-gu-2026/index.md
+  status: scaffold
+
+- id: acmg-2026
+  name: ACMG Annual Clinical Genetics Meeting 2026
+  type: conference
+  cadence: annual
+  start: 2026-03-10
+  end: 2026-03-14
+  location: Baltimore, MD
+  topics: [genomics]
+  access: mixed
+  harvest:
+    method: abstract-supplement
+    endpoint: https://www.gimjournal.org/
+  vault: conferences/acmg-2026/index.md
+  status: scaffold
+
+- id: aacr-brain-tumors-2026
+  name: "AACR Special Conference: Brain Cancer 2026"
+  type: conference
+  cadence: annual
+  start: 2026-03-23
+  end: 2026-03-25
+  location: Philadelphia, PA
+  topics: [oncology-clinical, single-cell-spatial]
+  access: mixed
+  harvest:
+    method: crossref
+    endpoint: null
+    notes: AACR special conferences publish abstract supplements; confirm journal
+  vault: conferences/aacr-brain-tumors-2026/index.md
+  status: scaffold
+  verify: true
+
+- id: isbi-2026
+  name: IEEE International Symposium on Biomedical Imaging 2026
+  type: conference
+  cadence: annual
+  start: 2026-04-08
+  end: 2026-04-11
+  location: London, UK
+  topics: [imaging, ai-ml]
+  access: gated
+  harvest:
+    method: ieee-xplore
+    endpoint: https://biomedicalimaging.org/2026/
+    notes: IEEE Xplore is subscription; arXiv preprints often available
+  vault: conferences/isbi-2026/index.md
+  status: scaffold
+
+- id: sgo-2026
+  name: SGO Annual Meeting on Women's Cancer 2026
+  type: conference
+  cadence: annual
+  start: 2026-04-10
+  end: 2026-04-13
+  location: San Juan, Puerto Rico
+  topics: [oncology-clinical]
+  access: mixed
+  harvest:
+    method: abstract-supplement
+    endpoint: https://www.gynecologiconcology-online.net/
+  vault: conferences/sgo-2026/index.md
+  status: scaffold
+
+- id: iclr-2026
+  name: International Conference on Learning Representations 2026
+  type: conference
+  cadence: annual
+  start: 2026-04-23
+  end: 2026-04-27
+  location: Rio de Janeiro, Brazil
+  topics: [ai-ml, foundation-models]
+  access: open
+  harvest:
+    method: openreview
+    endpoint: https://openreview.net/group?id=ICLR.cc/2026/Conference
+    notes: Papers plus reviews, fully open
+  vault: conferences/iclr-2026/index.md
+  status: scaffold
+
+- id: recomb-2026
+  name: RECOMB 2026
+  type: conference
+  cadence: annual
+  start: 2026-05-26
+  end: 2026-05-29
+  location: Thessaloniki, Greece
+  topics: [bioinfo-tools, genomics, ai-ml]
+  access: mixed
+  harvest:
+    method: springer-lncs
+    endpoint: https://recomb.org/recomb2026/
+  vault: conferences/recomb-2026/index.md
+  status: scaffold
+
+- id: asco-2026
+  name: 62nd ASCO Annual Meeting
+  type: conference
+  cadence: annual
+  start: 2026-05-29
+  end: 2026-06-02
+  location: Chicago, IL
+  topics: [oncology-clinical, immuno-oncology]
+  access: mixed
+  harvest:
+    method: abstract-supplement
+    endpoint: https://ascopubs.org/journal/jco
+    notes: Abstracts free; the largest single clinical-readout harvest of the year
+  vault: conferences/asco-2026/index.md
+  status: scaffold
+
+- id: cvpr-2026
+  name: CVPR 2026
+  type: conference
+  cadence: annual
+  start: 2026-06-03
+  end: 2026-06-07
+  location: Denver, CO
+  topics: [ai-ml, imaging]
+  access: open
+  harvest:
+    method: cvf-open-access
+    endpoint: https://openaccess.thecvf.com/
+  vault: conferences/cvpr-2026/index.md
+  status: scaffold
+
+- id: single-cell-genomics-2026
+  name: Single-Cell Genomics 2026 (GRC + Wellcome)
+  type: conference
+  cadence: annual
+  start: 2026-05-10
+  end: 2026-06-12
+  location: Les Diablerets, CH + Hinxton, UK
+  topics: [single-cell-spatial]
+  access: gated
+  harvest:
+    method: none
+    endpoint: null
+    notes: GRC is off-the-record by rule. Compound vault covering two meetings.
+  vault: conferences/single-cell-genomics-2026/index.md
+  status: scaffold
+
+- id: eha-2026
+  name: 31st EHA Hybrid Congress
+  type: conference
+  cadence: annual
+  start: 2026-06-11
+  end: 2026-06-14
+  location: Stockholm, Sweden
+  topics: [oncology-clinical]
+  access: mixed
+  harvest:
+    method: abstract-supplement
+    endpoint: https://library.ehaweb.org/
+  vault: conferences/eha-2026/index.md
+  status: scaffold
+
+- id: eshg-2026
+  name: 59th European Human Genetics Conference
+  type: conference
+  cadence: annual
+  start: 2026-06-13
+  end: 2026-06-16
+  location: Gothenburg, Sweden
+  topics: [genomics]
+  access: mixed
+  harvest:
+    method: abstract-supplement
+    endpoint: https://www.eshg.org/
+  vault: conferences/eshg-2026/index.md
+  status: scaffold
+
+- id: icml-2026
+  name: International Conference on Machine Learning 2026
+  type: conference
+  cadence: annual
+  start: 2026-07-06
+  end: 2026-07-11
+  location: Seoul, South Korea
+  topics: [ai-ml, foundation-models]
+  access: open
+  harvest:
+    method: pmlr
+    endpoint: https://proceedings.mlr.press/
+  vault: conferences/icml-2026/index.md
+  status: scaffold
+
+- id: ismb-2026
+  name: ISMB 2026
+  type: conference
+  cadence: annual
+  start: 2026-07-12
+  end: 2026-07-16
+  location: Washington, DC
+  topics: [bioinfo-tools, ai-ml, genomics]
+  access: mixed
+  harvest:
+    method: oup-bioinformatics
+    endpoint: https://www.iscb.org/ismb2026
+    notes: Proceedings track publishes in Bioinformatics; ISCB Nucleus hosts video
+  vault: conferences/ismb-2026/index.md
+  status: scaffold
+
+- id: kdd-2026
+  name: ACM SIGKDD 2026
+  type: conference
+  cadence: annual
+  start: 2026-08-09
+  end: 2026-08-13
+  location: Jeju, South Korea
+  topics: [ai-ml]
+  access: mixed
+  harvest:
+    method: acm-dl
+    endpoint: https://dl.acm.org/
+  vault: conferences/kdd-2026/index.md
+  status: scaffold
+
+# ─────────────────────────── Conferences: upcoming ───────────────────────────
+
+- id: eccb-2026
+  name: 25th European Conference on Computational Biology
+  type: conference
+  cadence: biennial
+  start: 2026-08-31
+  end: 2026-09-04
+  location: Geneva, Switzerland
+  topics: [bioinfo-tools, ai-ml, genomics]
+  access: mixed
+  harvest:
+    method: oup-bioinformatics
+    endpoint: https://eccb2026.org/
+  vault: conferences/eccb-2026/index.md
+  status: scaffold
+
+- id: eccv-2026
+  name: European Conference on Computer Vision 2026
+  type: conference
+  cadence: biennial
+  start: 2026-09-08
+  end: 2026-09-12
+  location: Malmö, Sweden
+  topics: [ai-ml, imaging]
+  access: open
+  harvest:
+    method: springer-lncs
+    endpoint: https://eccv.ecva.net/
+  vault: conferences/eccv-2026/index.md
+  status: scaffold
+
+- id: agbt-pm-2026
+  name: AGBT Precision Health 2026
+  type: conference
+  cadence: annual
+  start: 2026-09-14
+  end: 2026-09-16
+  location: San Diego, CA
+  topics: [genomics, oncology-clinical]
+  access: gated
+  harvest:
+    method: press-secondary
+    endpoint: null
+  vault: conferences/agbt-pm-2026/index.md
+  status: scaffold
+
+- id: aacr-pancreatic-2026
+  name: "AACR Special Conference: Pancreatic Cancer 2026"
+  type: conference
+  cadence: annual
+  start: 2026-09-25
+  end: 2026-09-28
+  location: San Diego, CA
+  topics: [oncology-clinical]
+  access: mixed
+  harvest:
+    method: crossref
+    endpoint: null
+  vault: conferences/aacr-pancreatic-2026/index.md
+  status: scaffold
+  verify: true
+
+- id: astro-2026
+  name: 68th ASTRO Annual Meeting
+  type: conference
+  cadence: annual
+  start: 2026-09-26
+  end: 2026-09-30
+  location: Boston, MA
+  topics: [oncology-clinical, imaging]
+  access: mixed
+  harvest:
+    method: abstract-supplement
+    endpoint: https://www.redjournal.org/
+  vault: conferences/astro-2026/index.md
+  status: scaffold
+
+- id: miccai-2026
+  name: MICCAI 2026
+  type: conference
+  cadence: annual
+  start: 2026-09-27
+  end: 2026-10-01
+  location: Strasbourg, France
+  topics: [imaging, ai-ml]
+  access: mixed
+  harvest:
+    method: springer-lncs
+    endpoint: https://conferences.miccai.org/2026/
+    notes: LNCS proceedings; most papers also on arXiv
+  vault: conferences/miccai-2026/index.md
+  status: scaffold
+
+- id: ashg-2026
+  name: 76th ASHG Annual Meeting
+  type: conference
+  cadence: annual
+  start: 2026-10-20
+  end: 2026-10-24
+  location: Montréal, Canada
+  topics: [genomics]
+  access: mixed
+  harvest:
+    method: abstract-search
+    endpoint: https://www.ashg.org/meetings/
+  vault: conferences/ashg-2026/index.md
+  status: scaffold
+
+- id: esmo-2026
+  name: ESMO Congress 2026
+  type: conference
+  cadence: annual
+  start: 2026-10-23
+  end: 2026-10-27
+  location: Madrid, Spain
+  topics: [oncology-clinical, immuno-oncology]
+  access: open
+  harvest:
+    method: abstract-supplement
+    endpoint: https://www.annalsofoncology.org/
+    notes: Annals of Oncology supplement, open access
+  vault: conferences/esmo-2026/index.md
+  status: scaffold
+
+- id: cshl-bds-2026
+  name: CSHL Biological Data Science 2026
+  type: conference
+  cadence: biennial
+  start: 2026-11-04
+  end: 2026-11-07
+  location: Cold Spring Harbor, NY
+  topics: [bioinfo-tools, genomics, ai-ml]
+  access: gated
+  harvest:
+    method: none
+    endpoint: null
+    notes: Genome Informatics runs odd years; 2026 slot is BDS
+  vault: conferences/cshl-bds-2026/index.md
+  status: scaffold
+
+- id: sitc-2026
+  name: SITC 41st Annual Meeting
+  type: conference
+  cadence: annual
+  start: 2026-11-04
+  end: 2026-11-08
+  location: Phoenix, AZ
+  topics: [immuno-oncology, oncology-clinical, single-cell-spatial]
+  access: open
+  harvest:
+    method: abstract-supplement
+    endpoint: https://jitc.bmj.com/
+    notes: JITC supplement, open access, citable DOI per abstract
+  vault: conferences/sitc-2026/index.md
+  status: scaffold
+
+- id: rsna-2026
+  name: RSNA 2026
+  type: conference
+  cadence: annual
+  start: 2026-11-29
+  end: 2026-12-03
+  location: Chicago, IL
+  topics: [imaging, ai-ml]
+  access: mixed
+  harvest:
+    method: abstract-search
+    endpoint: https://www.rsna.org/annual-meeting
+  vault: conferences/rsna-2026/index.md
+  status: scaffold
+
+- id: neurips-2026
+  name: NeurIPS 2026
+  type: conference
+  cadence: annual
+  start: 2026-12-06
+  end: 2026-12-13
+  location: Sydney + Atlanta (satellite model)
+  topics: [ai-ml, foundation-models]
+  access: open
+  harvest:
+    method: openreview
+    endpoint: https://openreview.net/
+  vault: conferences/neurips-2026/index.md
+  status: scaffold
+
+- id: sabcs-2026
+  name: 49th San Antonio Breast Cancer Symposium
+  type: conference
+  cadence: annual
+  start: 2026-12-08
+  end: 2026-12-11
+  location: San Antonio, TX
+  topics: [oncology-clinical]
+  access: mixed
+  harvest:
+    method: abstract-supplement
+    endpoint: https://www.sabcs.org/
+  vault: conferences/sabcs-2026/index.md
+  status: scaffold
+
+- id: ascb-2026
+  name: Cell Bio 2026 (ASCB | EMBO)
+  type: conference
+  cadence: annual
+  start: 2026-12-12
+  end: 2026-12-15
+  location: San Diego, CA
+  topics: [single-cell-spatial]
+  access: mixed
+  harvest:
+    method: abstract-search
+    endpoint: https://www.ascb.org/cellbio2026/
+  vault: conferences/ascb-2026/index.md
+  status: scaffold
+
+- id: ash-2026
+  name: 68th ASH Annual Meeting
+  type: conference
+  cadence: annual
+  start: 2026-12-12
+  end: 2026-12-15
+  location: New Orleans, LA
+  topics: [oncology-clinical]
+  access: mixed
+  harvest:
+    method: abstract-supplement
+    endpoint: https://ashpublications.org/blood
+  vault: conferences/ash-2026/index.md
+  status: scaffold
+
+# ─────────────────────────────── Webinar series ──────────────────────────────
+
+- id: sitc-computational-io-2026
+  name: SITC Computational IO Series 2026
+  type: webinar
+  cadence: monthly
+  start: 2026-05-19
+  end: 2026-11-09
+  location: Virtual
+  topics: [immuno-oncology, ai-ml, single-cell-spatial]
+  access: gated
+  harvest:
+    method: sitc-ondemand
+    endpoint: https://www.sitcancer.org/edu/webinars/computational
+    notes: Recordings behind member/registrant wall. Session 10 unscheduled.
+  vault: conferences/sitc-computational-io-2026/index.md
+  status: scaffold
+
+# ──────────────────── Candidates: concluded, no vault yet ────────────────────
+# These came out of the 2026-08-25 sweep for missing concluded meetings.
+
+- id: chil-2026
+  name: AHLI Conference on Health, Inference, and Learning 2026
+  type: conference
+  cadence: annual
+  start: 2026-06-28
+  end: 2026-06-30
+  location: Seattle, WA
+  topics: [ai-ml, foundation-models]
+  access: open
+  harvest:
+    method: pmlr
+    endpoint: https://proceedings.mlr.press/v333/
+    notes: Proceedings published open access; OpenReview holds papers plus reviews
+  vault: null
+  status: none
+
+- id: midl-2026
+  name: Medical Imaging with Deep Learning 2026
+  type: conference
+  cadence: annual
+  start: 2026-07-08
+  end: 2026-07-10
+  location: Taipei, Taiwan
+  topics: [imaging, ai-ml]
+  access: open
+  harvest:
+    method: openreview
+    endpoint: https://2026.midl.io/
+    notes: Three tracks incl. a new Validation Studies track; free global livestream
+  vault: null
+  status: none
+
+- id: bioc-2026
+  name: Bioconductor Conference 2026 (North America)
+  type: conference
+  cadence: annual
+  start: 2026-08-10
+  end: 2026-08-14
+  location: Seattle, WA
+  topics: [bioinfo-tools, single-cell-spatial]
+  access: open
+  harvest:
+    method: youtube
+    endpoint: https://bioc2026.bioconductor.org/
+    notes: Recordings normally land on the Bioconductor YouTube channel
+  vault: null
+  status: none
+
+- id: eurobioc-2026
+  name: European Bioconductor Conference 2026
+  type: conference
+  cadence: annual
+  start: 2026-06-03
+  end: 2026-06-05
+  location: Turku, Finland
+  topics: [bioinfo-tools]
+  access: open
+  harvest:
+    method: youtube
+    endpoint: https://blog.bioconductor.org/posts/2026-06-19-EuroBioc2026-recap/
+  vault: null
+  status: none
+
+- id: mlhc-2026
+  name: Machine Learning for Healthcare 2026
+  type: conference
+  cadence: annual
+  start: 2026-08-12
+  end: 2026-08-14
+  location: Baltimore, MD
+  topics: [ai-ml, foundation-models]
+  access: open
+  harvest:
+    method: pmlr
+    endpoint: https://mlhc.org/
+    notes: PMLR volume posts with a lag; accepted papers visible on OpenReview now
+  vault: null
+  status: none
+
+- id: asgct-2026
+  name: ASGCT 29th Annual Meeting
+  type: conference
+  cadence: annual
+  start: 2026-05-11
+  end: 2026-05-15
+  location: Boston, MA
+  topics: [immuno-oncology, oncology-clinical]
+  access: open
+  harvest:
+    method: abstract-supplement
+    endpoint: https://annualmeeting.asgct.org/abstracts
+    notes: 800+ abstracts free as PDF plus a Molecular Therapy supplement
+  vault: null
+  status: none
+
+- id: uscap-2026
+  name: USCAP 115th Annual Meeting
+  type: conference
+  cadence: annual
+  start: 2026-03-21
+  end: 2026-03-26
+  location: San Antonio, TX
+  topics: [imaging, oncology-clinical]
+  access: open
+  harvest:
+    method: abstract-supplement
+    endpoint: https://2026am.uscap.org/
+    notes: Laboratory Investigation abstract supplement, free. Heavy computational pathology.
+  vault: null
+  status: none
+
+- id: cimt-2026
+  name: CIMT 23rd Annual Meeting
+  type: conference
+  cadence: annual
+  start: 2026-05-11
+  end: 2026-05-13
+  location: Mainz, Germany
+  topics: [immuno-oncology]
+  access: open
+  harvest:
+    method: static-pdf
+    endpoint: https://www.meeting.cimt.eu/
+    notes: Free abstract book PDF; dedicated AI and TME plenaries
+  vault: null
+  status: none
+
+- id: esmo-breast-2026
+  name: ESMO Breast Cancer 2026
+  type: conference
+  cadence: annual
+  start: 2026-05-06
+  end: 2026-05-08
+  location: Berlin, Germany
+  topics: [oncology-clinical]
+  access: open
+  harvest:
+    method: abstract-supplement
+    endpoint: https://www.sciencedirect.com/journal/esmo-open/vol/11/suppl/S4
+  vault: null
+  status: none
+
+- id: elcc-2026
+  name: European Lung Cancer Congress 2026
+  type: conference
+  cadence: annual
+  start: 2026-03-25
+  end: 2026-03-28
+  location: Copenhagen, Denmark
+  topics: [oncology-clinical]
+  access: open
+  harvest:
+    method: abstract-supplement
+    endpoint: https://www.esmo.org/meeting-calendar/european-lung-cancer-congress-2026
+    notes: ESMO Open vol 11 Suppl S3
+  vault: null
+  status: none
+
+- id: esmo-gi-2026
+  name: ESMO Gastrointestinal Cancers Congress 2026
+  type: conference
+  cadence: annual
+  start: 2026-07-01
+  end: 2026-07-04
+  location: Munich, Germany
+  topics: [oncology-clinical]
+  access: open
+  harvest:
+    method: abstract-supplement
+    endpoint: https://www.esmo.org/meeting-calendar/esmo-gastrointestinal-cancers-congress-2026
+  vault: null
+  status: none
+
+- id: aaai-2026
+  name: AAAI-26
+  type: conference
+  cadence: annual
+  start: 2026-01-20
+  end: 2026-01-27
+  location: Singapore
+  topics: [ai-ml, foundation-models]
+  access: open
+  harvest:
+    method: static-html
+    endpoint: https://aaai.org/proceeding/aaai-40-2026/
+    notes: Broad AI; only the AI-for-Science tracks are in scope
+  vault: null
+  status: none
+
+- id: eacr-2026
+  name: "EACR 2026 Congress: Innovative Cancer Science"
+  type: conference
+  cadence: annual
+  start: 2026-06-08
+  end: 2026-06-11
+  location: Budapest, Hungary
+  topics: [oncology-clinical, single-cell-spatial]
+  access: mixed
+  harvest:
+    method: abstract-supplement
+    endpoint: https://www.eacr.org/
+    notes: 2025 precedent was a Molecular Oncology supplement; 2026 not confirmed
+  vault: null
+  status: none
+  verify: true
+
+- id: scverse-2026
+  name: scverse Conference 2026
+  type: conference
+  cadence: annual
+  start: 2026-10-12
+  end: 2026-10-14
+  location: Copenhagen, Denmark
+  topics: [single-cell-spatial, bioinfo-tools]
+  access: open
+  harvest:
+    method: youtube
+    endpoint: https://scverse.org/
+    notes: Has not happened yet — queued
+  vault: null
+  status: none
+
+# ──────────────────────────── Journals (watchlist) ───────────────────────────
+# Firehose. Indexed and searchable, deliberately NOT merged into vaults.
+
+- id: j-nature
+  name: Nature
+  type: journal
+  cadence: weekly
+  topics: [genomics, single-cell-spatial, ai-ml]
+  access: mixed
+  harvest: {method: rss, endpoint: "https://www.nature.com/nature.rss"}
+  vault: null
+  status: none
+
+- id: j-science
+  name: Science
+  type: journal
+  cadence: weekly
+  topics: [genomics, single-cell-spatial]
+  access: mixed
+  harvest: {method: rss, endpoint: "https://www.science.org/rss/news_current.xml"}
+  vault: null
+  status: none
+
+- id: j-cell
+  name: Cell
+  type: journal
+  cadence: biweekly
+  topics: [single-cell-spatial, immuno-oncology]
+  access: mixed
+  harvest: {method: rss, endpoint: "https://www.cell.com/cell/current.rss"}
+  vault: null
+  status: none
+
+- id: j-nature-methods
+  name: Nature Methods
+  type: journal
+  cadence: monthly
+  topics: [single-cell-spatial, bioinfo-tools]
+  access: mixed
+  harvest: {method: rss, endpoint: "https://www.nature.com/nmeth.rss"}
+  vault: null
+  status: none
+
+- id: j-nature-biotech
+  name: Nature Biotechnology
+  type: journal
+  cadence: monthly
+  topics: [bioinfo-tools, foundation-models, industry-finance]
+  access: mixed
+  harvest: {method: rss, endpoint: "https://www.nature.com/nbt.rss"}
+  vault: null
+  status: none
+
+- id: j-nature-cancer
+  name: Nature Cancer
+  type: journal
+  cadence: monthly
+  topics: [oncology-clinical, immuno-oncology]
+  access: mixed
+  harvest: {method: rss, endpoint: "https://www.nature.com/natcancer.rss"}
+  vault: null
+  status: none
+
+- id: j-nature-medicine
+  name: Nature Medicine
+  type: journal
+  cadence: monthly
+  topics: [oncology-clinical, ai-ml]
+  access: mixed
+  harvest: {method: rss, endpoint: "https://www.nature.com/nm.rss"}
+  vault: null
+  status: none
+
+- id: j-cancer-cell
+  name: Cancer Cell
+  type: journal
+  cadence: monthly
+  topics: [oncology-clinical, immuno-oncology, single-cell-spatial]
+  access: mixed
+  harvest: {method: rss, endpoint: "https://www.cell.com/cancer-cell/current.rss"}
+  vault: null
+  status: none
+
+- id: j-cancer-discovery
+  name: Cancer Discovery
+  type: journal
+  cadence: monthly
+  topics: [oncology-clinical, immuno-oncology]
+  access: mixed
+  harvest: {method: crossref, endpoint: "https://aacrjournals.org/cancerdiscovery"}
+  vault: null
+  status: none
+
+- id: j-immunity
+  name: Immunity
+  type: journal
+  cadence: monthly
+  topics: [immuno-oncology]
+  access: mixed
+  harvest: {method: rss, endpoint: "https://www.cell.com/immunity/current.rss"}
+  vault: null
+  status: none
+
+- id: j-jitc
+  name: Journal for ImmunoTherapy of Cancer
+  type: journal
+  cadence: monthly
+  topics: [immuno-oncology]
+  access: open
+  harvest: {method: rss, endpoint: "https://jitc.bmj.com/rss/current.xml"}
+  vault: null
+  status: none
+
+- id: j-genome-biology
+  name: Genome Biology
+  type: journal
+  cadence: continuous
+  topics: [bioinfo-tools, genomics, single-cell-spatial]
+  access: open
+  harvest: {method: rss, endpoint: "https://genomebiology.biomedcentral.com/articles/most-recent/rss.xml"}
+  vault: null
+  status: none
+
+- id: j-bioinformatics
+  name: Bioinformatics (OUP)
+  type: journal
+  cadence: continuous
+  topics: [bioinfo-tools]
+  access: mixed
+  harvest: {method: rss, endpoint: "https://academic.oup.com/rss/site_5139/3025.xml"}
+  vault: null
+  status: none
+
+- id: j-nature-machine-intelligence
+  name: Nature Machine Intelligence
+  type: journal
+  cadence: monthly
+  topics: [ai-ml, foundation-models]
+  access: mixed
+  harvest: {method: rss, endpoint: "https://www.nature.com/natmachintell.rss"}
+  vault: null
+  status: none
+
+- id: j-biorxiv-genomics
+  name: bioRxiv (genomics + bioinformatics feeds)
+  type: journal
+  cadence: continuous
+  topics: [genomics, bioinfo-tools, single-cell-spatial, foundation-models]
+  access: open
+  harvest:
+    method: rss
+    endpoint: "https://connect.biorxiv.org/biorxiv_xml.php?subject=bioinformatics"
+    notes: Highest volume and highest noise in the registry. Filter hard.
+  vault: null
+  status: none
+
+# ───────────────────────────── News (watchlist) ──────────────────────────────
+
+- id: n-stat
+  name: STAT News
+  type: news
+  cadence: continuous
+  topics: [oncology-clinical, industry-finance]
+  access: mixed
+  harvest: {method: rss, endpoint: "https://www.statnews.com/feed/"}
+  vault: null
+  status: none
+
+- id: n-endpoints
+  name: Endpoints News
+  type: news
+  cadence: continuous
+  topics: [industry-finance, oncology-clinical]
+  access: gated
+  harvest: {method: rss, endpoint: "https://endpts.com/feed/"}
+  vault: null
+  status: none
+
+- id: n-fierce-biotech
+  name: Fierce Biotech
+  type: news
+  cadence: continuous
+  topics: [industry-finance]
+  access: open
+  harvest: {method: rss, endpoint: "https://www.fiercebiotech.com/rss/xml"}
+  vault: null
+  status: none
+
+- id: n-aacr-blog
+  name: AACR Blog
+  type: news
+  cadence: continuous
+  topics: [oncology-clinical, immuno-oncology]
+  access: open
+  harvest:
+    method: static-html
+    endpoint: "https://www.aacr.org/blog/"
+    notes: The only narrative record of AACR IO 2026 — meeting recaps land here
+  vault: null
+  status: none
+
+- id: n-onclive
+  name: OncLive
+  type: news
+  cadence: continuous
+  topics: [oncology-clinical]
+  access: gated
+  harvest:
+    method: rss
+    endpoint: "https://www.onclive.com/rss"
+    notes: Cloudflare-protected to automated fetchers
+  vault: null
+  status: none
+
+- id: n-acir
+  name: ACIR Weekly Digest (Cancer Research Institute)
+  type: news
+  cadence: weekly
+  topics: [immuno-oncology]
+  access: open
+  harvest:
+    method: static-html
+    endpoint: "https://acir.org/"
+    notes: Curated expert recap — high signal, low volume. Best news source here.
+  vault: null
+  status: none
+
+- id: n-nature-briefing
+  name: Nature Briefing
+  type: news
+  cadence: weekly
+  topics: [genomics, ai-ml]
+  access: open
+  harvest: {method: newsletter, endpoint: "https://www.nature.com/briefing/signup/"}
+  vault: null
+  status: none
+
+- id: n-bioworld
+  name: BioWorld
+  type: news
+  cadence: continuous
+  topics: [industry-finance, oncology-clinical]
+  access: gated
+  harvest:
+    method: static-html
+    endpoint: "https://www.bioworld.com/"
+    notes: Maintains per-conference keyword feeds; paywalled
+  vault: null
+  status: none
