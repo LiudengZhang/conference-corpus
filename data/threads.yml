@@ -1,0 +1,158 @@
+# Threads — falsifiable claims about where a field is going.
+#
+#   id        stable slug; never reuse or delete (see aliases)
+#   claim     one sentence, falsifiable. Not a topic label.
+#   status    forming | warming | splitting | contested | crisis | closed
+#   opened    when the corpus first recorded this as a thread
+#   updated   last state change
+#   aliases   ids merged into this one; kept so old references never break
+#   evidence  ids from data/evidence.yml. Stance lives on the card, not here.
+#
+# Status is derived from the evidence, not asserted. A thread with refuting
+# evidence outweighing supporting evidence is `contested` or `crisis`, never
+# `forming`, no matter how much attention it is getting.
+
+threads:
+
+  - id: neuro-immune-microbiome-axis
+    claim: >-
+      Neural, microbial, and lymphoid-structure control of the tumor microenvironment
+      are one mechanism network, not three adjacent fields, and neurotransmitters are
+      a shared currency between them.
+    status: forming
+    opened: 2026-02-18        # AACR IO 2026 MS8 programmed it before a literature existed
+    updated: 2026-07-31
+    aliases: [neuro-immuno-oncology, tls-as-target, microbiome-io]
+    merged_on: 2026-08-25
+    merge_reason: >-
+      July 2026 produced direct mechanistic bridges between all three: sensory nerves
+      suppress TLS formation, commensal bacteria synthesize a neurotransmitter that
+      instructs mucosal immunity, and chronic stress drives an intratumoral phage
+      circuit. Keeping them separate cuts a single mechanism into pieces.
+    evidence:
+      - ev-2026-07-fridman-gaba
+      - ev-2026-07-nociceptive-tls
+      - ev-2026-07-gaba-gbm-cluster
+      - ev-2026-07-commensal-acetylcholine
+      - ev-2026-07-stress-phage-circuit
+      - ev-2026-07-dc-tls-merad
+      - ev-2026-07-bile-acid-zitvogel
+      - ev-2026-07-vip-vipr-cart
+
+  - id: foundation-models
+    claim: >-
+      Scaling data and parameters produces general-purpose models of biology that
+      transfer across tasks and individuals.
+    status: crisis
+    opened: 2025-01-01
+    updated: 2026-07-31
+    note: >-
+      Status moved from `forming` to `crisis` on 2026-08-25. This is the corpus's most
+      heavily invested thread and July 2026 refuted its central premise. Clinical
+      deployment continued in the same month, which is itself the finding: application
+      is running ahead of its methodological foundation.
+    evidence:
+      - ev-2026-07-scfm-scaling-null
+      - ev-2026-07-cellular-memory-ceiling
+      - ev-2026-07-clinical-fm-shipped
+      - ev-2026-07-general-llm-beats-specialist
+      - ev-2026-07-method-blind-spot
+
+  - id: agentic-ai
+    claim: >-
+      LLM agents become working biomedical research infrastructure, not demonstrations.
+    status: forming
+    opened: 2026-01-03        # PSB 2026 — four peer-reviewed papers across three sessions
+    updated: 2026-07-31
+    note: >-
+      Three-point timeline now established: PSB Jan 2026 (papers) -> GCC Jun 2026
+      (shipped MCP server + MCPeval) -> Jul 2026 (Science, Nature, and dedicated
+      benchmarks). The arrival of benchmarks is the maturity signal, not the flagship
+      publications.
+    evidence:
+      - ev-2026-07-biomni
+      - ev-2026-07-nature-multiagent
+      - ev-2026-07-agent-benchmarks
+
+  - id: neoantigen-vaccines
+    claim: >-
+      Neoantigens are a large enough and predictable enough target space to support
+      personalized cancer vaccines at scale.
+    status: splitting
+    opened: 2026-02-18        # Jaffee keynote, "The Cancer Vaccine Era Has Arrived"
+    updated: 2026-07-31
+    note: >-
+      The clinical and computational arms diverged in July. First-in-human interception
+      trials advanced while two independent papers attacked the premise underneath them
+      — one on prediction method, one on target-space size. Both arms are real; the
+      thread cannot be summarized in one direction.
+    evidence:
+      - ev-2026-07-mkras-vax
+      - ev-2026-07-neoantigen-shortcut-bias
+      - ev-2026-07-immunoediting-clonal-neoantigens
+      - ev-2026-07-gbm-dna-vaccine
+
+  - id: next-gen-checkpoints
+    claim: >-
+      Targets beyond PD-1/CTLA-4 — TIGIT, CD47, LAG-3 — deliver a second generation of
+      checkpoint blockade.
+    status: closed
+    opened: 2024-01-01
+    updated: 2026-07-31
+    note: >-
+      Closed as stated on 2026-08-25. Two definitive phase 3 failures in one month, on
+      the two largest bets in the class. The claim may survive under different trial
+      design or patient selection; as stated, it does not.
+    evidence:
+      - ev-2026-07-skyscraper01
+      - ev-2026-07-enhance-cd47
+
+  - id: interception
+    claim: >-
+      Cancer can be treated before it is cancer, in measurable precursor states.
+    status: forming
+    opened: 2026-02-18
+    updated: 2026-07-31
+    note: >-
+      July was the month this stopped being a slogan. Four measurable entry points
+      across both solid and hematologic disease, including CAR-T deployed against a
+      precursor state.
+    evidence:
+      - ev-2026-07-car-prism
+      - ev-2026-07-mkras-vax
+      - ev-2026-07-mgus-screening
+
+  - id: car-t-solid
+    claim: >-
+      Engineered cell therapy works in solid tumors.
+    status: forming
+    opened: 2026-02-18        # AACR IO 2026 MS1/MS7
+    updated: 2026-07-31
+    evidence:
+      - ev-2026-07-first-solid-tumor-carT-approval
+      - ev-2026-07-solid-tumor-car-wave
+
+  - id: clinical-practice
+    claim: >-
+      Tracked meetings predict practice-changing readouts months before they publish.
+    status: forming
+    opened: 2026-08-25
+    updated: 2026-07-31
+    note: >-
+      This is the corpus's self-test, not a claim about biology. Current estimate of
+      podium-to-paper lag is 4-6 months on n=5. Not yet trustworthy.
+    evidence:
+      - ev-2026-07-gu-triple
+      - ev-2026-07-podium-lag-n5
+      - ev-2026-07-method-blind-spot
+
+  - id: single-cell-3d-genome
+    claim: >-
+      Per-cell-type chromatin conformation becomes a routine assay modality that
+      downstream pipelines and models must ingest.
+    status: forming
+    opened: 2026-07-31
+    updated: 2026-07-31
+    note: New thread, opened by the July 2026 scan. No prior conference signal — worth noting.
+    evidence:
+      - ev-2026-07-3d-genome-atlases

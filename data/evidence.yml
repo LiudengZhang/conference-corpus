@@ -1,0 +1,474 @@
+# Evidence cards — one addressable finding each.
+#
+#   id          stable slug. Referenced by threads.yml and by briefings. Never reuse.
+#   date        publication date, or the month when a card covers a cluster
+#   pmid/doi    at least one. pmid is the join key to the L1 index.
+#   source      journal slug
+#   thread      one or more thread ids from data/threads.yml
+#   stance      supports | refutes | neutral   <- REQUIRED. Without it a thread page
+#               only ever accumulates confirmation.
+#   type        mechanism | clinical-readout | benchmark | refutation | approval |
+#               podium-to-paper | programming-signal | new-modality | meta
+#   claim       one sentence. Not a title.
+#   companions  other PMIDs making the same claim in the same window. A cluster is a
+#               first-class object, not n separate cards.
+#   prior_podium  only when a tracked speaker presented this before publishing it
+#   anchor      docs-relative path + anchor, when the corpus already says something
+#   confidence  high | medium | low
+#
+# Built 2026-08-25 from the July 2026 full scan (1,795 research articles, 33 journals)
+# plus the author-tracking run over data/speakers.yml.
+
+evidence:
+
+# ---------------------------------------------------------------- neuro / immune / microbiome
+
+- id: ev-2026-07-fridman-gaba
+  date: 2026-07-09
+  doi: 10.1016/j.ccell.2026.06.006
+  source: cancer-cell
+  thread: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: podium-to-paper
+  claim: GABA promotes resistance to immunotherapy in TLS-positive tumors.
+  people: [wolf-h-fridman]
+  prior_podium: {meeting: aacr-io-2026, date: 2026-02-18, role: invited, lag_months: 5}
+  anchor: conferences/aacr-io-2026/themes.md#neuro-psych-immunology-ms8
+  confidence: high
+  note: Last author. Same person, same claim, same mechanism as the February talk.
+
+- id: ev-2026-07-nociceptive-tls
+  date: 2026-07
+  pmid: "42161272"
+  source: cell
+  thread: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Nociceptive innervation actively suppresses tertiary lymphoid structure formation to
+    promote lung cancer, making nerve blockade a TLS-enabling strategy.
+  confidence: high
+  note: >-
+    This is the paper that merged three threads. Before it, neural control and TLS were
+    tracked separately.
+
+- id: ev-2026-07-gaba-gbm-cluster
+  date: 2026-07
+  pmid: "42337051"
+  companions: ["42337052"]
+  source: nature-cancer
+  thread: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    GABAergic signaling shapes glioblastoma immune responses in a sex-dependent manner,
+    acting through MDSCs in females.
+  confidence: high
+
+- id: ev-2026-07-commensal-acetylcholine
+  date: 2026-07
+  pmid: "42236946"
+  source: nature
+  thread: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: Commensal bacteria synthesize acetylcholine and use it to instruct mucosal immunity.
+  confidence: high
+  note: Sits on the neural and microbial arms simultaneously — a direct bridge, not an analogy.
+
+- id: ev-2026-07-stress-phage-circuit
+  date: 2026-07
+  pmid: "42349430"
+  source: cancer-cell
+  thread: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Chronic psychological stress unleashes an intratumoral bacteriophage-fibroblast-B cell
+    circuit that rewires tumor immunity.
+  confidence: high
+
+- id: ev-2026-07-dc-tls-merad
+  date: 2026-07-16
+  doi: 10.1126/science.ady1678
+  source: science
+  thread: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    CCR7+ mature dendritic cells build and maintain TLS; early TLS development requires
+    IFN-gamma-driven cDC1 maturation and migration to tumor-draining nodes.
+  people: [miriam-merad]
+  confidence: high
+  note: Moves TLS from prognostic marker to a mechanism with a control point.
+
+- id: ev-2026-07-bile-acid-zitvogel
+  date: 2026-07-29
+  doi: 10.1016/j.ccell.2026.06.022
+  source: cancer-cell
+  thread: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Antibiotic-associated Enterocloster species deplete secondary bile acids and accumulate
+    tauro-conjugated primary bile acids; subclinical cholestasis is the readable hallmark of
+    dysbiosis-driven immunotherapy resistance.
+  people: [laurence-zitvogel]
+  confidence: high
+  note: >-
+    Vindicates a programming signal. AACR IO 2026 gave microbiome a full educational session
+    and received 2 abstracts. The organizers were early, not wrong.
+  anchor: conferences/aacr-io-2026/themes.md#the-programmed-versus-submitted-mismatch
+
+- id: ev-2026-07-vip-vipr-cart
+  date: 2026-07
+  pmid: "42485431"
+  source: sci-transl-med
+  thread: [neuro-immune-microbiome-axis, car-t-solid]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Blocking the VIP-VIPR neuropeptide axis reprograms CAR T cells for superior efficacy.
+  confidence: high
+  note: >-
+    The crossover point. Cancer neuroscience stops being descriptive biology and becomes a
+    cell-therapy engineering parameter.
+
+# ---------------------------------------------------------------- foundation models
+
+- id: ev-2026-07-scfm-scaling-null
+  date: 2026-07
+  pmid: "42265212"
+  companions: ["42265208", "42443524", "42475685", "42412799", "42260311", "42521815"]
+  source: nature-methods
+  thread: [foundation-models]
+  stance: refutes
+  type: benchmark
+  claim: >-
+    Scaling training data does not buy single-cell foundation model performance; the same
+    month, protein language model size stopped predicting fitness accuracy, nucleotide
+    transformers were shown to carry systematic context bias, standard train/test splits
+    were shown to leak sequence composition and inflate reported accuracy, and two groups
+    showed sequence-to-function models fail on inter-individual variation.
+  confidence: high
+  note: >-
+    Seven independent papers across Nature Methods, Nature Computational Science, NAR,
+    Bioinformatics and Molecular Systems Biology in one month. This is a coordinated
+    refutation wave, not a scattering of negative results. THE AUTHOR-TRACKING ROUTE FOUND
+    NONE OF IT — see ev-2026-07-method-blind-spot.
+
+- id: ev-2026-07-cellular-memory-ceiling
+  date: 2026-07
+  pmid: "42242211"
+  companions: ["42462718", "42320478", "42335896", "42320477"]
+  source: cell-systems
+  thread: [foundation-models]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    Single-cell response is determined by heritable non-genetic state and prior exposure
+    history rather than by genotype or noise, so expression state alone is an insufficient
+    input for perturbation prediction.
+  confidence: medium
+  note: >-
+    A biological argument against the virtual-cell program rather than an empirical one, and
+    therefore harder to fix by better data. Reinforces ev-2026-07-scfm-scaling-null.
+
+- id: ev-2026-07-clinical-fm-shipped
+  date: 2026-07
+  pmid: "42538427"
+  companions: ["42486902", "42443444"]
+  doi: 10.1038/s41591-026-04502-7
+  source: nature-medicine
+  thread: [foundation-models]
+  stance: supports
+  type: clinical-readout
+  claim: >-
+    Clinical foundation models shipped at scale in July — Compass (pan-cancer immunotherapy
+    response from bulk transcriptomes via a 44-concept bottleneck transformer), PRISM2
+    (2.3M whole-slide images, 14M QA pairs), and CLEAR (concept-grounded radiology FM built
+    for regulatory auditability).
+  people: [marinka-zitnik]
+  confidence: high
+  note: >-
+    Compass is the interesting one: a concept bottleneck trades capacity for 44 inspectable
+    immune concepts — the opposite direction from the scale-first program being refuted
+    alongside it. Application is running ahead of its methodological foundation.
+
+- id: ev-2026-07-general-llm-beats-specialist
+  date: 2026-07
+  pmid: "42286322"
+  source: nature-medicine
+  thread: [foundation-models]
+  stance: refutes
+  type: benchmark
+  claim: General-purpose LLMs outperform specialized clinical AI tools.
+  confidence: high
+  note: Undermines the economic case for building bespoke clinical models at all.
+
+# ---------------------------------------------------------------- agentic AI
+
+- id: ev-2026-07-biomni
+  date: 2026-07-09
+  doi: 10.1126/science.adz4351
+  source: science
+  thread: [agentic-ai]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Biomni autonomously executes biomedical research tasks; its action-discovery agent mines
+    tools, databases and protocols from thousands of publications across 25 domains.
+  people: [jure-leskovec]
+  confidence: high
+
+- id: ev-2026-07-nature-multiagent
+  date: 2026-07
+  pmid: "42156546"
+  companions: ["42310457", "42310463"]
+  source: nature
+  thread: [agentic-ai]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Nature ran three agentic-AI papers in July — a multi-agent system for automating
+    scientific discovery, a framing paper defining autonomy levels for clinical agents, and
+    a longitudinal disease-management conversational agent.
+  confidence: high
+
+- id: ev-2026-07-agent-benchmarks
+  date: 2026-07
+  pmid: "42412809"
+  companions: ["42412783", "42498734"]
+  source: bioinformatics
+  thread: [agentic-ai]
+  stance: supports
+  type: benchmark
+  claim: >-
+    Dedicated benchmarks for autonomous discovery agents on omics tasks appeared, alongside
+    an agentic system claiming to beat human-designed ML pipelines and a pathology agent
+    trained on expert slide-navigation traces.
+  confidence: high
+  note: >-
+    Benchmarks are the maturity signal, not the flagship papers. A field gets evaluated when
+    people start believing the claims.
+
+# ---------------------------------------------------------------- neoantigens
+
+- id: ev-2026-07-neoantigen-shortcut-bias
+  date: 2026-07
+  pmid: "41985452"
+  source: cell-genomics
+  thread: [neoantigen-vaccines, foundation-models]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Cross-task interpretability shows neoantigen and immunogenicity prediction models exploit
+    a shared shortcut feature rather than learning biology.
+  confidence: high
+
+- id: ev-2026-07-immunoediting-clonal-neoantigens
+  date: 2026-07
+  pmid: "42276071"
+  source: immunity
+  thread: [neoantigen-vaccines]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    Immunoediting already restricts clonal neoantigens in primary treatment-naive human
+    tumors, so the target space available to vaccines and TCR therapy is smaller than assumed.
+  confidence: high
+  note: >-
+    Independent of and complementary to the shortcut-bias result. One attacks the prediction
+    method, the other attacks the target space itself.
+
+- id: ev-2026-07-mkras-vax
+  date: 2026-07-16
+  doi: 10.1158/2159-8290.cd-25-2245
+  source: cancer-discovery
+  thread: [neoantigen-vaccines, interception]
+  stance: supports
+  type: podium-to-paper
+  claim: >-
+    Phase I first-in-human peptide vaccine against six common KRAS mutations, given to 20
+    individuals with hereditary pancreatic cancer predisposition — not to patients with cancer.
+  people: [elizabeth-m-jaffee]
+  prior_podium: {meeting: aacr-io-2026, date: 2026-02-18, role: keynote, lag_months: 5}
+  anchor: conferences/aacr-io-2026/keynotes.md
+  confidence: high
+
+- id: ev-2026-07-gbm-dna-vaccine
+  date: 2026-07
+  pmid: "42120910"
+  source: nature-cancer
+  thread: [neoantigen-vaccines]
+  stance: supports
+  type: clinical-readout
+  claim: >-
+    Adjuvant personalized multivalent neoantigen DNA vaccine in MGMT-unmethylated glioblastoma.
+  confidence: medium
+
+# ---------------------------------------------------------------- checkpoints
+
+- id: ev-2026-07-skyscraper01
+  date: 2026-07
+  pmid: "42507968"
+  companions: ["42441929"]
+  source: jco
+  thread: [next-gen-checkpoints]
+  stance: refutes
+  type: clinical-readout
+  claim: >-
+    SKYSCRAPER-01 (tiragolumab + atezolizumab in PD-L1-high NSCLC) is a definitive negative
+    phase 3 that closes the anti-TIGIT chapter as currently designed.
+  confidence: high
+
+- id: ev-2026-07-enhance-cd47
+  date: 2026-07
+  pmid: "42441929"
+  source: jco
+  thread: [next-gen-checkpoints]
+  stance: refutes
+  type: clinical-readout
+  claim: ENHANCE (magrolimab + azacitidine in higher-risk MDS) is a phase 3 failure of CD47 blockade.
+  confidence: high
+  note: >-
+    Two largest next-checkpoint bets failed in the same month. Neither appeared in the
+    author-tracking run.
+
+# ---------------------------------------------------------------- interception
+
+- id: ev-2026-07-car-prism
+  date: 2026-07
+  pmid: "42010117"
+  source: nature-medicine
+  thread: [interception, car-t-solid]
+  stance: supports
+  type: clinical-readout
+  claim: >-
+    CAR-PRISM deploys ciltacabtagene autoleucel in high-risk smoldering myeloma — CAR-T used
+    against a precursor state rather than established malignancy.
+  confidence: high
+  note: Stronger evidence for interception than the KRAS vaccine, and it was missed in v1.
+
+- id: ev-2026-07-mgus-screening
+  date: 2026-07
+  pmid: "42447419"
+  companions: ["42498680", "42526047"]
+  source: blood
+  thread: [interception]
+  stance: supports
+  type: clinical-readout
+  claim: >-
+    Population-based monoclonal gammopathy screening reported clinical and psychological
+    outcomes; myeloma MRD dynamics identified a specific window for immunotherapeutic
+    interception; high-risk CCUS converges clinically and genomically with lower-risk MDS.
+  confidence: medium
+  note: >-
+    Hematology has measurable precursor states in blood, which is why interception matures
+    there first. From Blood, newly added to the corpus this month.
+
+# ---------------------------------------------------------------- cell therapy
+
+- id: ev-2026-07-first-solid-tumor-carT-approval
+  date: 2026-07-21
+  pmid: "42478469"
+  source: cancer-discovery
+  thread: [car-t-solid]
+  stance: supports
+  type: approval
+  claim: The first CAR T-cell therapy was approved for a solid tumor indication.
+  confidence: low
+  verify: true
+  note: >-
+    UNRESOLVED. This is a Cancer Discovery news item, corroborated by a Nature Biotechnology
+    news piece. The product name and FDA application number are still not pinned down, and
+    the approval does not appear in the July 2026 openFDA original-approval list. Do not
+    cite as fact until the FDA record is located.
+
+- id: ev-2026-07-solid-tumor-car-wave
+  date: 2026-07
+  pmid: "42457964"
+  companions: ["42386964", "42387022", "42241671", "42447427", "42526444"]
+  source: nature
+  thread: [car-t-solid]
+  stance: supports
+  type: clinical-readout
+  claim: >-
+    Six independent solid-tumor cell-therapy advances in one month — TGFbeta-armoured GPC3
+    CAR-T in hepatocellular carcinoma, GPNMB CARs hitting tumor and myeloid compartments in
+    glioblastoma and in MiT/TFE fusion tumors, GCC CAR-T with a first credible signal in
+    colorectal cancer, allogeneic CD70 CAR-T in renal cell carcinoma, and a manufacturing fix
+    for trogocytosis-driven CAR-NK dysfunction.
+  confidence: high
+
+# ---------------------------------------------------------------- practice / self-test
+
+- id: ev-2026-07-gu-triple
+  date: 2026-07
+  doi: 10.1056/nejmoa2601486
+  source: nejm
+  thread: [clinical-practice]
+  stance: supports
+  type: podium-to-paper
+  claim: >-
+    Perioperative enfortumab vedotin + pembrolizumab beat cisplatin-based chemotherapy in
+    cisplatin-ELIGIBLE muscle-invasive bladder cancer; adjuvant pembrolizumab + belzutifan
+    read out in renal cell carcinoma; cretostimogene advanced in BCG-unresponsive NMIBC.
+  people: [matthew-galsky, thomas-powles]
+  prior_podium: {meeting: asco-gu-2026, date: 2026-02-26, role: invited, lag_months: 5}
+  anchor: conferences/asco-gu-2026/index.md
+  confidence: high
+  note: >-
+    Neither link was visible from the journal side. Both were found by tracking people.
+
+- id: ev-2026-07-podium-lag-n5
+  date: 2026-07
+  source: internal
+  thread: [clinical-practice]
+  stance: neutral
+  type: meta
+  claim: >-
+    Measured lag from invited conference talk to the corresponding paper is 4-6 months across
+    five forward links (Fridman 5, Jaffee 5, Galsky 5, Powles 4, Chen 6), plus one inverse
+    case where the paper preceded the keynote by 9 days.
+  confidence: low
+  verify: true
+  note: >-
+    n=5, all from a single month, all found after the fact. Must be re-measured against
+    August and September before being treated as a planning number.
+
+- id: ev-2026-07-method-blind-spot
+  date: 2026-07
+  source: internal
+  thread: [clinical-practice, foundation-models]
+  stance: neutral
+  type: meta
+  claim: >-
+    Author-tracking found five podium-to-paper links and zero refutations. Full-journal
+    scanning found more than a dozen refutations and zero podium links. The two routes have
+    complementary structural blind spots.
+  confidence: high
+  note: >-
+    The mechanism is not accidental. People who publish benchmarks and negative results are
+    not the people invited to give keynotes — partly because they are refuting the keynote
+    speakers. An author-tracked corpus will therefore confirm its own priors indefinitely.
+    This is the single most important finding of the July pilot.
+
+# ---------------------------------------------------------------- new modality
+
+- id: ev-2026-07-3d-genome-atlases
+  date: 2026-07
+  pmid: "42490476"
+  companions: ["42490474", "42490473", "42490500", "42490494", "42490484", "42463888"]
+  source: science
+  thread: [single-cell-3d-genome]
+  stance: supports
+  type: new-modality
+  claim: >-
+    A coordinated Science package plus Nature Genetics work moves 3D genome mapping from cell
+    lines to body-wide, single-cell, disease-resolved atlases, including loop extrusion driving
+    B cell somatic hypermutation in tonsil, hippocampal aging, Alzheimer's and heart failure.
+  confidence: high
+  note: >-
+    No prior conference signal in this corpus. Per-cell-type chromatin conformation is a data
+    modality that current single-cell pipelines and foundation models do not ingest.
