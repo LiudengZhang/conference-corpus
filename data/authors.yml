@@ -1,0 +1,683 @@
+meta:
+  generated_by: scripts/track_authors.py
+  route: europepmc
+  since: '2024-01-01'
+  watchlist: data/speakers.yml
+  blind_spot: Speakers are selected by program committees, which select for results that worked.
+    Nobody is invited to give a plenary on the compound that did nothing. This route cannot
+    surface refutations, and 225 of the corpus's 483 cards are refutations, so it must never
+    be the only input to a briefing.
+  count_caveat: '`works` is an upper bound: Europe PMC is queried on author name without an
+    affiliation filter, because filtering on affiliation drops most of a person''s output
+    when their institution is usually written as an acronym. `in_corpus` does not have this
+    problem — a same-named stranger rarely publishes in these 33 journals.'
+authors:
+- name: Eric Green
+  affiliation: NHGRI
+  meetings:
+  - agbt-pm-2026
+  - ismb-2026
+  - psb-2026
+  route: europepmc
+  status: ok
+  works: 29
+  pmids: 27
+  in_corpus: 7
+  preprints: 2
+- name: Marylyn Ritchie
+  affiliation: MUSC
+  meetings:
+  - agbt-2026
+  - agbt-pm-2026
+  - psb-2026
+  route: europepmc
+  status: ok
+  works: 112
+  pmids: 87
+  in_corpus: 15
+  preprints: 21
+- name: Faisal Mahmood
+  affiliation: Harvard Medical School/Brigham
+  meetings:
+  - aacr-2026
+  - isbi-2026
+  route: europepmc
+  status: ok
+  works: 64
+  pmids: 52
+  in_corpus: 11
+  preprints: 10
+- name: Marinka Zitnik
+  affiliation: Harvard Medical School
+  meetings:
+  - aacr-2026
+  - ismb-2026
+  route: europepmc
+  status: ok
+  works: 52
+  pmids: 30
+  in_corpus: 9
+  preprints: 22
+- name: Rayan Chikhi
+  affiliation: Institut Pasteur
+  meetings:
+  - gcc-2026
+  - recomb-2026
+  route: europepmc
+  status: ok
+  works: 26
+  pmids: 14
+  in_corpus: 8
+  preprints: 12
+- name: Sara Mostafavi
+  affiliation: University of Washington
+  meetings:
+  - agbt-pm-2026
+  - recomb-2026
+  route: europepmc
+  status: ok
+  works: 41
+  pmids: 33
+  in_corpus: 4
+  preprints: 8
+- name: Vincent Carey
+  affiliation: Harvard Medical School/Brigham
+  meetings:
+  - eurobioc-2025
+  - gbcc-2025
+  route: europepmc
+  status: ok
+  works: 30
+  pmids: 20
+  in_corpus: 3
+  preprints: 8
+- name: A. Hunter Shain
+  affiliation: UCSF
+  meetings:
+  - aacr-2026
+  - sitc-computational-io-2026
+  route: europepmc
+  status: ok
+  works: 6
+  pmids: 6
+  in_corpus: 0
+  preprints: 0
+- name: Anshul Kundaje
+  affiliation: Stanford
+  meetings:
+  - ismb-2026
+  - single-cell-genomics-day-2026
+  route: europepmc
+  status: ok
+  works: 102
+  pmids: 60
+  in_corpus: 30
+  preprints: 42
+- name: Charlotte Bunne
+  affiliation: EPFL
+  meetings:
+  - aacr-2026
+  - single-cell-genomics-2026
+  route: europepmc
+  status: ok
+  works: 4
+  pmids: 4
+  in_corpus: 3
+  preprints: 0
+- name: Eileen O'Reilly
+  affiliation: MSKCC
+  meetings:
+  - aacr-pancreatic-2026
+  - asco-gi-2026
+  route: europepmc
+  status: ok
+  works: 112
+  pmids: 110
+  in_corpus: 25
+  preprints: 2
+- name: Elinor Karlsson
+  affiliation: UMass Chan Medical School / Broad Institute
+  meetings:
+  - agbt-2026
+  - cshl-bds-2026
+  route: europepmc
+  status: ok
+  works: 43
+  pmids: 31
+  in_corpus: 2
+  preprints: 12
+- name: Gurkan Bebek
+  affiliation: Case Western
+  meetings:
+  - psb-2026
+  - recomb-2026
+  route: europepmc
+  status: ok
+  works: 9
+  pmids: 6
+  in_corpus: 0
+  preprints: 1
+- name: Ellis Patrick
+  affiliation: ''
+  meetings:
+  - eurobioc-2025
+  - gbcc-2025
+  route: europepmc
+  status: ok
+  works: 27
+  pmids: 15
+  in_corpus: 5
+  preprints: 12
+- name: Tuomas Borman
+  affiliation: University of Turku
+  meetings:
+  - eurobioc-2025
+  - gbcc-2025
+  route: europepmc
+  status: ok
+  works: 9
+  pmids: 7
+  in_corpus: 2
+  preprints: 2
+- name: Yelena Y. Janjigian
+  affiliation: MSKCC
+  meetings:
+  - aacr-2026
+  - asco-gi-2026
+  route: europepmc
+  status: ok
+  works: 13
+  pmids: 13
+  in_corpus: 4
+  preprints: 0
+- name: Aleksandra Walczak
+  affiliation: CNRS / ENS France
+  meetings:
+  - eccb-2026
+  route: europepmc
+  status: ok
+  works: 33
+  pmids: 21
+  in_corpus: 2
+  preprints: 12
+- name: Alexander Marson
+  affiliation: UCSF
+  meetings:
+  - aacr-io-2026
+  route: europepmc
+  status: ok
+  works: 44
+  pmids: 25
+  in_corpus: 14
+  preprints: 18
+- name: Alexandros Stamatakis
+  affiliation: HITS/KIT
+  meetings:
+  - recomb-2026
+  route: europepmc
+  status: ok
+  works: 34
+  pmids: 17
+  in_corpus: 5
+  preprints: 17
+- name: Anna-Sapfo Malaspinas
+  affiliation: University of Lausanne / SIB
+  meetings:
+  - eccb-2026
+  route: europepmc
+  status: ok
+  works: 9
+  pmids: 8
+  in_corpus: 5
+  preprints: 1
+- name: Aviv Regev
+  affiliation: Genentech
+  meetings:
+  - single-cell-genomics-day-2026
+  route: europepmc
+  status: ok
+  works: 87
+  pmids: 56
+  in_corpus: 32
+  preprints: 31
+- name: Barbara Engelhardt
+  affiliation: Gladstone/Stanford
+  meetings:
+  - agbt-2026
+  route: europepmc
+  status: ok
+  works: 24
+  pmids: 10
+  in_corpus: 1
+  preprints: 14
+- name: Bram van Ginneken
+  affiliation: Radboud UMC
+  meetings:
+  - isbi-2026
+  route: europepmc
+  status: ok
+  works: 55
+  pmids: 51
+  in_corpus: 1
+  preprints: 4
+- name: Carlos Bustamante
+  affiliation: Galatea Bio
+  meetings:
+  - ismb-2026
+  route: europepmc
+  status: ok
+  works: 57
+  pmids: 42
+  in_corpus: 3
+  preprints: 14
+- name: Catherine Wu
+  affiliation: Dana-Farber
+  meetings:
+  - sitc-2026
+  route: europepmc
+  status: ok
+  works: 110
+  pmids: 95
+  in_corpus: 21
+  preprints: 14
+- name: Charlotte Soneson
+  affiliation: FMI Basel
+  meetings:
+  - gbcc-2025
+  route: europepmc
+  status: ok
+  works: 17
+  pmids: 12
+  in_corpus: 3
+  preprints: 5
+- name: Dario A. Vignali
+  affiliation: Pittsburgh
+  meetings:
+  - aacr-io-2026
+  route: europepmc
+  status: ok
+  works: 7
+  pmids: 7
+  in_corpus: 2
+  preprints: 0
+- name: Elaine Fuchs
+  affiliation: HHMI/Rockefeller
+  meetings:
+  - ascb-2026
+  route: europepmc
+  status: ok
+  works: 14
+  pmids: 12
+  in_corpus: 7
+  preprints: 2
+- name: Elaine Mardis
+  affiliation: Rasmussen Institute
+  meetings:
+  - agbt-2026
+  route: europepmc
+  status: ok
+  works: 48
+  pmids: 41
+  in_corpus: 5
+  preprints: 7
+- name: Elizabeth M. Jaffee
+  affiliation: Johns Hopkins
+  meetings:
+  - aacr-io-2026
+  route: europepmc
+  status: ok
+  works: 40
+  pmids: 40
+  in_corpus: 6
+  preprints: 0
+- name: Elly Tanaka
+  affiliation: IMBA
+  meetings:
+  - ascb-2026
+  route: europepmc
+  status: ok
+  works: 31
+  pmids: 15
+  in_corpus: 2
+  preprints: 15
+- name: Evan Floden
+  affiliation: Seqera
+  meetings:
+  - nextflow-2026
+  route: europepmc
+  status: ok
+  works: 4
+  pmids: 2
+  in_corpus: 0
+  preprints: 2
+- name: Fred Ramsdell
+  affiliation: Sonoma Biotherapeutics
+  meetings:
+  - aacr-io-2026
+  route: europepmc
+  status: ok
+  works: 0
+  pmids: 0
+  in_corpus: 0
+  preprints: 0
+- name: Gene Myers
+  affiliation: MPI-CBG Dresden
+  meetings:
+  - recomb-2026
+  route: europepmc
+  status: ok
+  works: 11
+  pmids: 7
+  in_corpus: 0
+  preprints: 4
+- name: Greg Slabaugh
+  affiliation: Queen Mary University of London
+  meetings:
+  - isbi-2026
+  route: europepmc
+  status: ok
+  works: 7
+  pmids: 6
+  in_corpus: 0
+  preprints: 1
+- name: Helena Crowell
+  affiliation: Charite Berlin
+  meetings:
+  - eurobioc-2025
+  route: europepmc
+  status: ok
+  works: 19
+  pmids: 8
+  in_corpus: 3
+  preprints: 11
+- name: Hilary Finucane
+  affiliation: Harvard/Broad
+  meetings:
+  - agbt-2026
+  route: europepmc
+  status: ok
+  works: 12
+  pmids: 5
+  in_corpus: 3
+  preprints: 7
+- name: Ido Amit
+  affiliation: Weizmann
+  meetings:
+  - single-cell-genomics-2026
+  route: europepmc
+  status: ok
+  works: 34
+  pmids: 23
+  in_corpus: 12
+  preprints: 11
+- name: Jacques Serizay
+  affiliation: Institut Pasteur
+  meetings:
+  - eurobioc-2025
+  route: europepmc
+  status: ok
+  works: 19
+  pmids: 12
+  in_corpus: 3
+  preprints: 7
+- name: James Sharpe
+  affiliation: EMBL Barcelona
+  meetings:
+  - eurobioc-2025
+  route: europepmc
+  status: ok
+  works: 53
+  pmids: 43
+  in_corpus: 1
+  preprints: 10
+- name: Jason Williams
+  affiliation: CSHL DNA Learning Center
+  meetings:
+  - gbcc-2025
+  route: europepmc
+  status: ok
+  works: 113
+  pmids: 99
+  in_corpus: 3
+  preprints: 13
+- name: Jeremy Farrar
+  affiliation: World Health Organization
+  meetings:
+  - eccb-2026
+  route: europepmc
+  status: ok
+  works: 14
+  pmids: 14
+  in_corpus: 4
+  preprints: 0
+- name: Junyue Cao
+  affiliation: Rockefeller
+  meetings:
+  - single-cell-genomics-day-2026
+  route: europepmc
+  status: ok
+  works: 29
+  pmids: 20
+  in_corpus: 6
+  preprints: 9
+- name: Lieping Chen
+  affiliation: Yale
+  meetings:
+  - aacr-io-2026
+  route: europepmc
+  status: ok
+  works: 18
+  pmids: 18
+  in_corpus: 5
+  preprints: 0
+- name: Liqun Luo
+  affiliation: Stanford/HHMI
+  meetings:
+  - ascb-2026
+  route: europepmc
+  status: ok
+  works: 58
+  pmids: 33
+  in_corpus: 9
+  preprints: 25
+- name: Luis Campos
+  affiliation: Rice University
+  meetings:
+  - psb-2026
+  route: europepmc
+  status: ok
+  works: 43
+  pmids: 36
+  in_corpus: 3
+  preprints: 6
+- name: Mario L. Suva
+  affiliation: Harvard/Broad/MGH
+  meetings:
+  - aacr-brain-tumors-2026
+  route: europepmc
+  status: ok
+  works: 19
+  pmids: 18
+  in_corpus: 13
+  preprints: 1
+- name: Maryam Zaringhalam
+  affiliation: ''
+  meetings:
+  - ismb-2026
+  route: europepmc
+  status: ok
+  works: 2
+  pmids: 0
+  in_corpus: 0
+  preprints: 2
+- name: Mauricio Reyes
+  affiliation: University of Bern
+  meetings:
+  - isbi-2026
+  route: europepmc
+  status: ok
+  works: 27
+  pmids: 27
+  in_corpus: 0
+  preprints: 0
+- name: Noelia Ferruz
+  affiliation: IRB Barcelona
+  meetings:
+  - eurobioc-2025
+  route: europepmc
+  status: ok
+  works: 19
+  pmids: 11
+  in_corpus: 2
+  preprints: 8
+- name: Olga Troyanskaya
+  affiliation: Princeton
+  meetings:
+  - ismb-2026
+  route: europepmc
+  status: ok
+  works: 35
+  pmids: 22
+  in_corpus: 10
+  preprints: 13
+- name: Partha Majumder
+  affiliation: John C. Martin Centre
+  meetings:
+  - ismb-2026
+  route: europepmc
+  status: ok
+  works: 27
+  pmids: 21
+  in_corpus: 4
+  preprints: 6
+- name: Paul Medvedev
+  affiliation: Penn State
+  meetings:
+  - recomb-2026
+  route: europepmc
+  status: ok
+  works: 21
+  pmids: 15
+  in_corpus: 3
+  preprints: 6
+- name: Philip D. Greenberg
+  affiliation: Fred Hutch
+  meetings:
+  - aacr-io-2026
+  route: europepmc
+  status: ok
+  works: 8
+  pmids: 8
+  in_corpus: 4
+  preprints: 0
+- name: Polina Golland
+  affiliation: MIT CSAIL
+  meetings:
+  - isbi-2026
+  route: europepmc
+  status: ok
+  works: 18
+  pmids: 18
+  in_corpus: 0
+  preprints: 0
+- name: Rafi Ahmed
+  affiliation: Emory
+  meetings:
+  - aacr-io-2026
+  route: europepmc
+  status: ok
+  works: 40
+  pmids: 34
+  in_corpus: 6
+  preprints: 6
+- name: Ramanujan Hegde
+  affiliation: MRC LMB
+  meetings:
+  - ascb-2026
+  route: europepmc
+  status: ok
+  works: 20
+  pmids: 14
+  in_corpus: 2
+  preprints: 6
+- name: Richard Durbin
+  affiliation: University of Cambridge
+  meetings:
+  - ismb-2026
+  route: europepmc
+  status: ok
+  works: 63
+  pmids: 34
+  in_corpus: 15
+  preprints: 29
+- name: Sergei Kosakovsky Pond
+  affiliation: Temple University
+  meetings:
+  - gbcc-2025
+  route: europepmc
+  status: ok
+  works: 30
+  pmids: 15
+  in_corpus: 1
+  preprints: 15
+- name: Simona Parrinello
+  affiliation: UCL
+  meetings:
+  - aacr-brain-tumors-2026
+  route: europepmc
+  status: ok
+  works: 11
+  pmids: 8
+  in_corpus: 3
+  preprints: 2
+- name: Stephen Quake
+  affiliation: Stanford University
+  meetings:
+  - eccb-2026
+  route: europepmc
+  status: ok
+  works: 57
+  pmids: 34
+  in_corpus: 12
+  preprints: 23
+- name: Susan Holmes
+  affiliation: Stanford
+  meetings:
+  - eurobioc-2025
+  route: europepmc
+  status: ok
+  works: 27
+  pmids: 22
+  in_corpus: 3
+  preprints: 5
+- name: Tommy Tang
+  affiliation: AstraZeneca
+  meetings:
+  - nextflow-2026
+  route: europepmc
+  status: ok
+  works: 2
+  pmids: 2
+  in_corpus: 0
+  preprints: 0
+- name: Ton Schumacher
+  affiliation: Netherlands Cancer Institute
+  meetings:
+  - sitc-2026
+  route: europepmc
+  status: ok
+  works: 34
+  pmids: 31
+  in_corpus: 13
+  preprints: 3
+- name: Xin Jin
+  affiliation: Scripps Research
+  meetings:
+  - single-cell-genomics-day-2026
+  route: europepmc
+  status: ok
+  works: 1000
+  pmids: 891
+  in_corpus: 27
+  preprints: 85
+  name_not_unique: true

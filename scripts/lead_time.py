@@ -133,8 +133,109 @@ def spearman(pairs) -> float:
     return num / den if den else 0.0
 
 
+def papers_test(ccon: sqlite3.Connection, jcon: sqlite3.Connection,
+                threshold: float) -> int:
+    """Match abstracts to later papers, one document at a time.
+
+    The vocabulary tests answer a question nobody actually asked. The
+    premise is not "words are said earlier at meetings" — it is "this
+    result was shown at the meeting before it was published", and a term
+    that was already common in 2024 is invisible to any frequency method
+    however early the work appeared. So: match the abstract to the paper.
+
+    Conference abstracts that become papers usually keep most of their
+    title. Jaccard overlap on content words, candidates generated from an
+    inverted index on the rarer tokens so this does not become 14,895 x
+    35,542 comparisons.
+
+    The false-match rate is estimated by running the identical matcher
+    against journal titles published BEFORE the meetings opened, where a
+    match cannot be a prediction and can only be coincidence.
+    """
+    conf = list(ccon.execute(
+        "SELECT venue, month, title FROM abstracts WHERE LENGTH(title) > 30"))
+    after = list(jcon.execute(
+        "SELECT month, pmid, title FROM papers WHERE month >= '2024-07'"))
+    before = list(jcon.execute(
+        "SELECT month, pmid, title FROM papers WHERE month < '2024-04'"))
+
+    def content(title):
+        return {w for w in WORD.findall(title.lower())
+                if w not in STOP and len(w) > 3}
+
+    def build(docs):
+        sets = [content(t) for _, _, t in docs]
+        df: collections.Counter[str] = collections.Counter()
+        for s in sets:
+            df.update(s)
+        inv: dict[str, list[int]] = {}
+        for i, s in enumerate(sets):
+            for w in s:
+                if df[w] <= 400:      # skip words too common to narrow anything
+                    inv.setdefault(w, []).append(i)
+        return sets, inv
+
+    def match(docs, sets, inv):
+        hits = []
+        for venue, cmonth, ctitle in conf:
+            cs = content(ctitle)
+            if len(cs) < 5:
+                continue
+            counts: collections.Counter[int] = collections.Counter()
+            for w in cs:
+                for i in inv.get(w, ()):
+                    counts[i] += 1
+            best, best_score = None, 0.0
+            for i, shared in counts.most_common(60):
+                if shared < 4:
+                    break
+                score = shared / len(cs | sets[i])
+                if score > best_score:
+                    best, best_score = i, score
+            if best is not None and best_score >= threshold:
+                hits.append((venue, cmonth, docs[best][0], docs[best][1],
+                             best_score, ctitle))
+        return hits
+
+    sets_a, inv_a = build(after)
+    real = match(after, sets_a, inv_a)
+    sets_b, inv_b = build(before)
+    fake = match(before, sets_b, inv_b)
+
+    n = len(conf)
+    print("TEST C — abstracts matched to the papers they became")
+    print(f"  conference abstracts with a usable title: {n:,}")
+    print(f"  matched to a journal paper published later (Jaccard >= {threshold}): "
+          f"{len(real):,}  ({len(real) / n:.1%})")
+    print(f"  same matcher against papers published BEFORE the meetings: "
+          f"{len(fake):,}  ({len(fake) / n:.1%})")
+    print("    The second line is the coincidence rate. A match there cannot be")
+    print("    a prediction, so it is what this method scores on pure chance.")
+    print()
+    if not real:
+        return 0
+    lags = sorted((int(jm[:4]) - int(cm[:4])) * 12 + int(jm[5:7]) - int(cm[5:7])
+                  for _, cm, jm, _, _, _ in real)
+    print(f"  median lag abstract -> paper: {statistics.median(lags):.0f} months")
+    print(f"  quartiles: {lags[len(lags)//4]}, {statistics.median(lags):.0f}, "
+          f"{lags[3*len(lags)//4]} months")
+    by_venue = collections.Counter(v for v, *_ in real)
+    print(f"  by venue: " + ", ".join(f"{v} {c:,}" for v, c in by_venue.most_common()))
+    print()
+    print("  Longest-lead matches:")
+    for venue, cm, jm, pmid, score, title in sorted(real, key=lambda r: (
+            -((int(r[2][:4]) - int(r[1][:4])) * 12 + int(r[2][5:7]) - int(r[1][5:7]))))[:15]:
+        lag = (int(jm[:4]) - int(cm[:4])) * 12 + int(jm[5:7]) - int(cm[5:7])
+        print(f"    {lag:+3d}mo  {venue} {cm} -> {jm}  {pmid}  {title[:78]}")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
+    ap.add_argument("--papers", action="store_true",
+                    help="match abstracts to the papers they became (TEST C)")
+    ap.add_argument("--threshold", type=float, default=0.5,
+                    help="Jaccard cutoff for a paper-level match")
     ap.add_argument("--abstracts", action="store_true",
                     help="let the conference use abstract bodies, not just titles")
     ap.add_argument("--min-total", type=int, default=20,
@@ -145,6 +246,10 @@ def main() -> int:
 
     if not CONF.exists():
         sys.exit("no data/conference.sqlite — run scripts/harvest_conference.py")
+
+    if args.papers:
+        return papers_test(sqlite3.connect(CONF), sqlite3.connect(INDEX),
+                           args.threshold)
 
     jcon = sqlite3.connect(INDEX)
     base_docs = list(jcon.execute(
@@ -195,6 +300,20 @@ def main() -> int:
         delays = sorted(
             (int(m[:4]) - 2024) * 12 + int(m[5:7]) - 6 for m in arrived.values())
         print(f"  median delay from the meetings closing: {statistics.median(delays):.0f} months")
+    # The two buckets have to be shown, not just counted. A large part of
+    # the "never arrived" side is not a failed prediction at all — it is
+    # abstract register (`pts with`, `mcrpc`, `real world`) that journal
+    # titles would never use whatever the science did. Reading the lists
+    # is the only way to tell a wrong call from a vocabulary mismatch.
+    loud_arrived = sorted(((conf[t], t, arrived[t]) for t in arrived), reverse=True)
+    loud_never = sorted(((conf[t], t) for t in novel if t not in arrived), reverse=True)
+    print()
+    print("  Loudest that later reached a journal title:")
+    for n, t, when in loud_arrived[:14]:
+        print(f"    {n:4} abstracts  ->  {when}   {t}")
+    print("  Loudest that never did:")
+    for n, t in loud_never[:14]:
+        print(f"    {n:4} abstracts  ->  never    {t}")
     print()
 
     # ---- TEST B -------------------------------------------------------
@@ -217,8 +336,18 @@ def main() -> int:
 
     rho = spearman([(r[0], r[1]) for r in rows])
     rho_null = spearman([(r[3], r[1]) for r in rows])
+    # Terms absent from journal titles in 2024 are mostly register, not
+    # content: `pts with metastatic`, `real world`, `mcrpc`. Abstracts are
+    # written in a compressed clinical shorthand that journal titles never
+    # use, so those terms score maximum conference excess while saying
+    # nothing about where the field went. Requiring one journal title
+    # anywhere in 2024 removes the register layer and leaves the topical one.
+    grounded = [r for r in rows if jbase.get(r[2], 0) >= 1]
+    rho_grounded = spearman([(r[0], r[1]) for r in grounded])
     print(f"  rho(conference excess, 2024->2026 growth)  = {rho:+.3f}")
     print(f"  rho(null: half of 2024 itself, same growth) = {rho_null:+.3f}")
+    print(f"  rho, register-controlled (term in >= 1 journal title in 2024,"
+          f" n={len(grounded):,}) = {rho_grounded:+.3f}")
     print("    Both predictors carry the 2024 rate in their denominator, so a term")
     print("    that was low in 2024 by chance scores high on excess AND on growth.")
     print("    That artefact alone produces the null figure. Only the gap between")
@@ -230,7 +359,14 @@ def main() -> int:
     print("  Held-fixed check — within bands of equal 2024 journal frequency,")
     print("  does the conference rate still rank the 2026 journal rate?")
     print(f"    {'2024 journal titles':>22}  {'terms':>6}  {'rho':>7}")
-    bands = [(1, 2), (3, 5), (6, 12), (13, 30), (31, 10 ** 9)]
+    # Bands must be narrow at the top or they defeat their own purpose: an
+    # unbounded 31+ band spans 31 to several thousand, so the prevalence
+    # the band was meant to hold fixed is still varying inside it, and the
+    # correlation it reports is that leftover prevalence rather than any
+    # predictive content. The first run of this check read +0.402 there
+    # for exactly that reason.
+    bands = [(1, 2), (3, 5), (6, 12), (13, 30), (31, 60), (61, 120),
+             (121, 250), (251, 10 ** 9)]
     for lo, hi in bands:
         band = [t for t in terms if lo <= jbase.get(t, 0) <= hi]
         if len(band) < 40:

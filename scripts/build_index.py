@@ -120,11 +120,15 @@ def main() -> int:
         print(f"{m}  {tot:6,}   " + "  ".join(
             f"{by.get(d,0):6,}" for d in ["general", "cancer", "immune", "bioinfo", "sysbio"]))
 
-    # A journal that contributes nothing to a month is a harvest defect,
-    # not a quiet month — all 33 of these publish at least monthly. This
-    # check exists because December 2025 shipped with Nucleic Acids
-    # Research missing entirely, and the briefing for that month was
-    # written, published and read before anyone noticed the hole.
+    # A journal contributing nothing to a month is worth surfacing, but it
+    # is NOT automatically a harvest defect, and the first version of this
+    # check said it was. Every gap it found on its first run — Nucleic
+    # Acids Research in 2025-12, Bioinformatics in four months, Genome
+    # Research in 2024-01 — returns zero from PubMed itself when queried
+    # directly. Those are the journals' own date assignments, not a broken
+    # pull. Nature Machine Intelligence is absent from fifteen months
+    # because PubMed indexes only the deposited fraction of it.
+    # So: check the gap against PubMed before calling it a defect.
     all_months = [m for m, in con.execute(
         "SELECT DISTINCT month FROM papers ORDER BY month")]
     gaps = collections.defaultdict(list)
@@ -137,7 +141,8 @@ def main() -> int:
                 gaps[m].append(journal)
     print()
     if gaps:
-        print("MISSING — journal contributed zero rows to a month (check the harvest):")
+        print("ZERO ROWS — journal absent from a month. Query PubMed for that")
+        print("journal and month before treating it as a harvest defect:")
         for m in sorted(gaps):
             print(f"  {m}  {', '.join(sorted(gaps[m]))}")
     else:

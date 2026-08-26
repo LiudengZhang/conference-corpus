@@ -119,12 +119,19 @@ def section_volume(con: sqlite3.Connection, month: str) -> str:
         if median:
             drift[d] = (cur - median) / median * 100
 
+    # Say how many journals actually contributed, not how many are on the
+    # list. Every briefing said "33 journals" for a year. Nature Machine
+    # Intelligence contributes 64 papers across the whole 32-month corpus
+    # and is absent from fifteen months of it, because PubMed indexes only
+    # the deposited fraction of it — so the roster and the reading are not
+    # the same number, and it was the roster that got printed.
+    n_journals = len(by_j)
     lines = [
         "## 1. What was read",
         "",
-        f"**{total:,} research articles** across 33 journals, "
-        f"filtered to `journal article` and excluding reviews, editorials, news, "
-        f"comment and case reports.",
+        f"**{total:,} research articles** from {n_journals} of the 33 journals on "
+        f"the roster, filtered to `journal article` and excluding reviews, "
+        f"editorials, news, comment and case reports.",
         "",
         "| " + " | ".join(d.capitalize() for d in DOMAINS) + " |",
         "|" + "---|" * len(DOMAINS),
@@ -136,10 +143,15 @@ def section_volume(con: sqlite3.Connection, month: str) -> str:
         detail = ", ".join(f"{d} {v:+.0f}%" for d, v in sorted(swung.items()))
         lines += [
             f"!!! warning \"Volume swing against the median month: {detail}\"",
-            "    Check the harvest before reading anything into this. A swing this size is "
-            "usually indexing lag or a broken query, not the field going quiet. The known "
-            "benign case is `bioinfo` every January, which carries the Nucleic Acids "
-            "Research database issue.",
+            "    Check the source before reading anything into this. Two benign causes "
+            "account for most of these. `bioinfo` every January carries the Nucleic "
+            "Acids Research database issue and runs high. And several journals simply "
+            "deposit nothing in some months — queried directly, PubMed returns zero "
+            "*Nucleic Acids Research* research articles dated 2025-12, and zero "
+            "*Bioinformatics* in 2024-04, 2025-01, 2025-04 and 2026-03. Those holes are "
+            "in the source and are reproduced exactly by re-running the harvest, so a "
+            "swing here is not evidence that a field went quiet and is not usually "
+            "evidence that the pipeline broke either.",
             "",
         ]
     top = ", ".join(f"{j} {c}" for j, c in by_j[:6])

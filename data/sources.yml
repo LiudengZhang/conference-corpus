@@ -1525,6 +1525,14 @@ sources:
       Resolve people via /authors?search= first. Do not trust the returned
       `authorships` institution blindly — wrong on 3 of 22 spot-checked records.
       Watchlist is data/speakers.yml.
+      Two further traps, both hit on 2026-08-26 when this was first run.
+      `last_known_institutions[].name` is always null — the key is
+      `display_name` — so reading the documented-looking key makes the
+      affiliation matcher return zero matches for everyone while appearing to
+      work. And OpenAlex now meters by DAILY SPEND rather than request rate: a
+      single pass over 65 people with works pagination exhausts the free budget
+      until midnight UTC, and backoff does nothing against a quota. Europe PMC
+      is the route that runs.
   vault: null
   status: partial
 
@@ -1552,6 +1560,19 @@ sources:
   harvest:
     method: api
     endpoint: "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
-    notes: Fallback when an OpenAlex author id is ambiguous or missing.
+    notes: >-
+      Promoted from fallback to primary author route on 2026-08-26, when
+      OpenAlex's daily spend quota made it unusable. Query
+      AUTH:"Full Name" AND FIRST_PDATE:[from TO to], paginate on cursorMark.
+      Affiliation is deliberately NOT in the query: Europe PMC matches AFF
+      against the raw affiliation string, and acronyms behave erratically —
+      `UCSF` returns 81 records for one speaker where `MSKCC` returns 4 against
+      183 for "Memorial Sloan". Filtering on it drops most of a person's output.
+      Consequence: `works` counts are upper bounds and include homonyms, but
+      `in_corpus` counts are sound, because a same-named stranger rarely
+      publishes in these 33 journals. Run: scripts/track_authors.py.
+      First full run: 65 speakers, 2,518 works since 2024-01-01, 407 of them
+      (16%) in the index — 1.1% of the corpus from 65 queries against the 1,056
+      journal-months the full scan costs.
   vault: null
-  status: none
+  status: harvested

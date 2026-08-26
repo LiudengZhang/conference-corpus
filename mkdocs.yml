@@ -472,7 +472,9 @@ nav:
       - Extraction method: notes/extraction.md
       - Caveats: notes/caveats.md
   - Briefings:
+    - Does the podium lead?: briefings/does-the-podium-lead.md
     - Monthly:
+      - 2026-08: briefings/2026-08.md
       - 2026-07: briefings/2026-07.md
       - 2026-06: briefings/2026-06.md
       - 2026-05: briefings/2026-05.md
@@ -492,6 +494,18 @@ nav:
       - 2025-03: briefings/2025-03.md
       - 2025-02: briefings/2025-02.md
       - 2025-01: briefings/2025-01.md
+      - 2024-12: briefings/2024-12.md
+      - 2024-11: briefings/2024-11.md
+      - 2024-10: briefings/2024-10.md
+      - 2024-09: briefings/2024-09.md
+      - 2024-08: briefings/2024-08.md
+      - 2024-07: briefings/2024-07.md
+      - 2024-06: briefings/2024-06.md
+      - 2024-05: briefings/2024-05.md
+      - 2024-04: briefings/2024-04.md
+      - 2024-03: briefings/2024-03.md
+      - 2024-02: briefings/2024-02.md
+      - 2024-01: briefings/2024-01.md
     - 90-min Speed Read: speed-read.md
     - Foundation Models: foundation-models.md
     - Talk Prep — FMs to Virtual Cells:
