@@ -40,4 +40,10 @@ docs/assets/*/bioinfo-tools/
 # Baseline snapshot for refactor validation
 _baseline/
 .codex-output/
-data/index.sqlite  # L1 reading index: regenerable from PubMed, 2 MB and growing
+# L1 layer: regenerable from PubMed and Crossref, so it is not stored.
+# These patterns previously carried trailing `#` comments on the same line.
+# .gitignore has no inline comments — the pattern was read as the whole
+# line, matched nothing, and data/index.sqlite was committed as a binary
+# blob on every rebuild for four months before anyone checked.
+data/index.sqlite
+data/conference.sqlite

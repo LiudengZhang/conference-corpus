@@ -26,7 +26,7 @@
 # Dates below were read from each vault's own index.md on 2026-08-25.
 
 meta:
-  updated: 2026-08-25
+  updated: 2026-08-26
   taxonomy:
     oncology-clinical: Clinical oncology and trial readouts
     immuno-oncology: Immunotherapy, checkpoint, cell therapy
@@ -39,6 +39,52 @@ meta:
     industry-finance: Company strategy, financing, launches
 
 sources:
+
+# ─────────────────── Conferences: 2024, harvested as the control ─────────────
+# These two are not here to be read. They are here because every other
+# conference in this file is 2026, the journal index only reaches 2026-08,
+# and a meeting cannot be shown to lead the literature by three months.
+# AACR and ASCO 2024 are far enough back that the literature has had two
+# years to answer them, which is what makes scripts/lead_time.py possible.
+
+- id: aacr-2024
+  name: AACR Annual Meeting 2024
+  type: conference
+  cadence: annual
+  start: 2024-04-05
+  end: 2024-04-10
+  location: San Diego, CA
+  topics: [oncology-clinical, immuno-oncology, single-cell-spatial, ai-ml]
+  access: open
+  harvest:
+    method: crossref
+    endpoint: "https://api.crossref.org/journals/1538-7445/works?filter=from-pub-date:2024-01-01,until-pub-date:2024-12-31"
+    notes: >-
+      Abstracts deposit into the Cancer Research supplement. That ISSN also
+      carries the AACR special conferences, so the Annual Meeting is isolated
+      on DOIs containing `am2024` — 7,326 of the 11,114 records for the year.
+      Full abstract text present on every one. scripts/harvest_conference.py.
+  vault: null
+  status: harvested
+
+- id: asco-2024
+  name: ASCO Annual Meeting and symposia 2024
+  type: conference
+  cadence: annual
+  start: 2024-05-31
+  end: 2024-06-04
+  location: Chicago, IL
+  topics: [oncology-clinical, immuno-oncology]
+  access: open
+  harvest:
+    method: crossref
+    endpoint: "https://api.crossref.org/journals/1527-7755/works?filter=from-pub-date:2024-01-01,until-pub-date:2024-12-31"
+    notes: >-
+      JCO supplement. 7,569 abstracts: the June block is the Annual Meeting,
+      January and February are the GI and GU symposia, which are kept because
+      they are the earliest oncology readouts of any year.
+  vault: null
+  status: harvested
 
 # ─────────────────────────── Conferences: concluded, built ───────────────────
 

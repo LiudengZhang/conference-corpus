@@ -39,7 +39,11 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 INDEX = ROOT / "data" / "index.sqlite"
 
-WINDOW = ("2025-01", "2026-07")
+# 2024 was added in August 2026, after three separate "first appearance"
+# claims turned out to be artefacts of where reading started rather than
+# facts about the field. A floor is not a beginning: anything this window
+# reports as first is still only first *within the window*.
+WINDOW = ("2024-01", "2026-08")
 DOMAINS = {"general", "cancer", "immune", "bioinfo", "sysbio"}
 
 SCHEMA = """
@@ -115,6 +119,29 @@ def main() -> int:
         tot = sum(by.values())
         print(f"{m}  {tot:6,}   " + "  ".join(
             f"{by.get(d,0):6,}" for d in ["general", "cancer", "immune", "bioinfo", "sysbio"]))
+
+    # A journal that contributes nothing to a month is a harvest defect,
+    # not a quiet month — all 33 of these publish at least monthly. This
+    # check exists because December 2025 shipped with Nucleic Acids
+    # Research missing entirely, and the briefing for that month was
+    # written, published and read before anyone noticed the hole.
+    all_months = [m for m, in con.execute(
+        "SELECT DISTINCT month FROM papers ORDER BY month")]
+    gaps = collections.defaultdict(list)
+    for journal, in con.execute("SELECT DISTINCT journal FROM papers ORDER BY journal"):
+        present = dict(con.execute(
+            "SELECT month, COUNT(*) FROM papers WHERE journal=? GROUP BY month",
+            (journal,)))
+        for m in all_months:
+            if not present.get(m):
+                gaps[m].append(journal)
+    print()
+    if gaps:
+        print("MISSING — journal contributed zero rows to a month (check the harvest):")
+        for m in sorted(gaps):
+            print(f"  {m}  {', '.join(sorted(gaps[m]))}")
+    else:
+        print("every journal contributed to every month")
     return 0
 
 
