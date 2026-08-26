@@ -49,11 +49,22 @@ threads:
     opened: 2025-08
     aliases: [virtual-cell, scfm]
     note: >-
-      The vocabulary, the models and the skepticism arrived in these journals
-      together in 2025-11/12 — twelve months after the Cell Virtual Cell Challenge,
-      and roughly three months after the skepticism alone had already arrived. The
-      thread's own negative control was published as a title in 2025-12: foundation
-      models in oncology win benchmarks and miss the clinic.
+      The thread's own negative control was published as a title in 2025-12:
+      foundation models in oncology win benchmarks and miss the clinic. On dating
+      the vocabulary, see the caution below — an earlier version of this file put
+      the arrival of "virtual cell" in these journals at 2025-11, twelve months
+      after the Cell challenge. Both halves were wrong. The phrase is in a Nature
+      Biotechnology title in 2025-04, two months BEFORE the challenge launched in
+      2025-06, and again in Cell in 2025-08; single-cell foundation models were
+      evaluated as a class in 2025-04 and 2025-06. Vocabulary and critique have
+      been co-present since spring 2025.
+    dating_caution: >-
+      Every "first appearance" claim in this corpus is bounded by which months
+      were read, and each month was read by a different reader searching only its
+      own file. Three separate first-appearance claims — the virtual-cell
+      vocabulary, wet-lab-facing agents, and simple-baselines-beat-deep-models —
+      each moved earlier once the 2025-01..07 backfill ran. Assume any such claim
+      is an upper bound on the date, never the date.
 
   - id: method-credibility
     claim: >-
@@ -64,11 +75,18 @@ threads:
     denominator: >-
       Structurally one-sided by construction: this is a ledger of things found
       unreliable, so every card refutes and the derived status is uninformative.
-      Read the volume instead. The self-audit genre grew monotonically through 2025
-      as a share of the methods journals — 1 in 27 (2025-06), 1 in 19 (07),
-      1 in 14 (08), 1 in 15 (10), 1 in 14 (11), 1 in 10 (12) — and the object of
-      audit escalated from the model, to the pipeline, to the instrument, the
-      wet-lab assay and the generative model's own output.
+      Read the volume instead — with the denominator attached, because the two
+      series in this corpus do not join.
+      Over general+bioinfo together, 2025-01..07 runs 1 in 70, 1 in 73, 1 in 44,
+      1 in 36, 1 in 33, 1 in 40, 1 in 36: roughly a doubling across the half-year.
+      Over bioinfo alone, 2025-06..12 runs 1 in 24, 1 in 21, 1 in 14, 1 in 15,
+      1 in 14, 1 in 10. An earlier version of this file quoted the second series
+      as if it were the first and reported a monotone 7x rise; the correct
+      statement is a doubling on the wide denominator and a further roughly
+      doubling on the narrow one, which is still growth but not that growth.
+      What survives re-reading unchanged is the escalation of the audit's object:
+      from the model, to the pipeline, to the instrument, the wet-lab assay, the
+      generative model's own output, and by 2026 the software version number.
 
   - id: suppressive-population-inversion
     claim: >-
@@ -85,11 +103,22 @@ threads:
     denominator: >-
       The supporting side is not carded and cannot be, because it is a genre rather
       than a set of citable findings: the templated preclinical block that nominates
-      a suppressive target, deletes it, and reverses immune suppression in mice.
-      Measured strictly from the index at roughly 21 papers per month across
-      2025-03..2025-12 (55, 35, 23, 30, 19, 11, 14, 18, 14, 23). Treat the ratio as
-      "nineteen documented inversions against a steady stream of nominations",
-      not as 19-0.
+      a suppressive target, deletes it, and reverses immune suppression in mice. It
+      runs at roughly 12-33 papers a month across the eight oncology journals.
+      Treat the ratio as "documented inversions against a steady stream of
+      nominations", never as a bare count against zero.
+    counting_caution: >-
+      An earlier version of this file gave the block as 55, 35, 23, 30, 19, 11, 14,
+      18, 14, 23 for 2025-03..12 and read a decline into it. That series is void.
+      Re-counting 2025-01..07 under one consistent written rule gave 12, 17, 33, 13,
+      25, 31, 22 — January is 12, not 55. The between-reader spread on a single
+      month is as large as the spread across months, so nothing in that series
+      supports a trend in either direction. One reader reconstructed how the
+      earlier figure was probably built: including therapeutic-payload papers
+      alongside target-nomination papers moves a month from 9/22 to 15/28. The
+      general lesson for this corpus: a count is only comparable across months if
+      the counting rule was written down before the counting, and quoted with the
+      number afterwards.
 
   - id: next-gen-checkpoints
     claim: >-
@@ -129,11 +158,16 @@ threads:
       LLM agents become working biomedical research infrastructure, not demonstrations.
     opened: 2025-09
     note: >-
-      The diffusion lag is the reusable measurement. Agentic work is present in the
-      general and methods journals from 2025-02 and reaches wet-lab-facing form in
-      2025-07, but does not appear in any of the nine immunology and systems-biology
-      journals until 2025-12 — and then as an assessment commentary, not a result.
-      Eleven months, methods bench to immunology bench.
+      The diffusion lag is the reusable measurement, and the chain is now dated
+      from the backfill rather than asserted. First LLM-agent paper: ESCARGOT,
+      2025-02-04. First title using the word "agentic": four days later. First
+      agent in an oncology journal: an autonomous clinical-decision agent in
+      Nature Cancer, 2025-06. First wet-lab-adjacent agent: GeneAgent, 2025-08.
+      First appearance in any of the nine immunology and systems-biology
+      journals: 2025-12, and as an assessment commentary rather than a result.
+      Ten months, general and methods bench to immunology bench.
+      CRISPR-GPT, which an earlier version of this file dated to 2025-07 as the
+      moment agents became wet-lab-facing, is dated 2026-02 in the index.
 
   - id: neoantigen-vaccines
     claim: >-

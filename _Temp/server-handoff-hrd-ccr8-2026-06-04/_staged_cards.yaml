@@ -1,0 +1,831 @@
+# Staging file for new HRD-CCR8 vault dataset cards.
+# Append blocks here as agents return, then merge into:
+#   /Users/lzhang34/Desktop/Exploratory_Playground/Github_Contributor/papermap_fresh/examples/hrd-ccr8-pancancer.yaml
+
+# ===== Batch 1 — Bucket A sc/sn (rows 1-10) =====
+- id: pelka-2021-crc
+  kind: dataset
+  label: Pelka et al. — CRC MMRd/MMRp atlas WES + scRNA + MERFISH (n=62, Cell 2021)
+  modality: multi-omics
+  year: 2021
+  status: published
+  access: mixed
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1016/j.cell.2021.08.003
+  topics:
+  - pan-cancer
+  - tumor-microenvironment
+  - single-cell
+  - signatures
+  why: 62 colorectal tumors (28 MMRd, 34 MMRp) with paired WES + scRNA-seq (~371k cells) and a MERFISH spatial subset; data at GEO GSE178341 and dbGaP phs002407. MMRd is the genomic-instability sibling of HRD, so this cohort serves as an analogue template for projecting the 4-scorer concordance logic onto a non-HR repair deficiency and as a pan-cancer TME comparator with an explicit hypermutated/IO-responsive arm.
+
+- id: lee-2020-crc-korea
+  kind: dataset
+  label: Lee et al. — Korean CRC scRNA + bulk RNA + WES (n=29, Nat Genet 2020)
+  modality: multi-omics
+  year: 2020
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1038/s41588-020-0636-z
+  topics:
+  - pan-cancer
+  - tumor-microenvironment
+  - single-cell
+  - multi-omics
+  why: 29 Korean CRC patients with matched scRNA-seq, bulk RNA-seq and WES at GEO GSE132465 (~91k cells across tumor/normal/border). Fully open access makes it the most frictionless pan-cancer TME comparator for benchmarking the CCR8-eTreg signature and Bagaev MFP archetype calls against a non-HRD-direct cohort.
+
+- id: maynard-2020-nsclc-longitudinal
+  kind: dataset
+  label: Maynard et al. — NSCLC TKI pre/residual/progression scRNA + WES (n=30, Cell 2020)
+  modality: multi-omics
+  year: 2020
+  status: published
+  access: controlled
+  papermap_category: parpi-immune
+  url: https://doi.org/10.1016/j.cell.2020.07.017
+  topics:
+  - tumor-microenvironment
+  - single-cell
+  - multi-omics
+  - signatures
+  why: 30 advanced NSCLC patients sampled longitudinally across TKI-naive, residual-disease and progression states with scRNA-seq plus matched WES/targeted NGS at EGA EGAS00001004422. Provides a treatment-causal arm for the CATE head — even though the exposure is TKI rather than PARPi, the residual-disease vs progression contrast is the cleanest public sc template for modeling on-treatment TME remodeling.
+
+- id: neftel-2019-gbm
+  kind: dataset
+  label: Neftel et al. — GBM IDH-wt scRNA + WES cellular states (n=28, Cell 2019)
+  modality: multi-omics
+  year: 2019
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1016/j.cell.2019.06.024
+  topics:
+  - tumor-microenvironment
+  - single-cell
+  - signatures
+  why: 28 IDH-wildtype glioblastoma patients with SmartSeq2 + 10x scRNA-seq plus WES at Broad Single Cell Portal SCP393 and GEO GSE131928. GBM is HRD-rare but has a cold/immune-excluded TME, so this cohort anchors the D (depleted) end of the IE/IE-F/F/D archetype axis and stress-tests the eTreg signature in a tumor type where CCR8+ Tregs are not expected to dominate.
+
+- id: karaayvaz-2018-tnbc
+  kind: dataset
+  label: Karaayvaz et al. — TNBC scRNA-SmartSeq2 + WES (n=6, Nat Commun 2018)
+  modality: multi-omics
+  year: 2018
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1038/s41467-018-06052-0
+  topics:
+  - breast-cancer
+  - hrd
+  - tumor-microenvironment
+  - single-cell
+  why: 6 treatment-naive primary TNBC tumors with full-length SmartSeq2 scRNA-seq (1,534 cells) and matched WES at GEO GSE118390. Small N but high HRD prior probability (TNBC enriches for BRCAness), so this is one of the few public cohorts where the 4-scorer HRD concordance can be computed on the same patient that the eTreg/MFP projection runs on — a Bucket A priority-1 anchor despite the cell count.
+
+- id: puram-2017-hnscc
+  kind: dataset
+  label: Puram et al. — HNSCC scRNA-SmartSeq2 + WES p-EMT atlas (n=18, Cell 2017)
+  modality: multi-omics
+  year: 2017
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1016/j.cell.2017.10.044
+  topics:
+  - tumor-microenvironment
+  - single-cell
+  - signatures
+  why: 18 HNSCC patients (primary + matched LN metastasis subset) profiled with SmartSeq2 scRNA-seq (~6k cells) plus WES at GEO GSE103322. HNSCC is HRD-rare but stroma-rich, so it serves as an F/IE-F (fibrotic/immune-excluded-fibrotic) archetype comparator for the Bagaev MFP projection and a methodological control for the p-EMT vs eTreg axis.
+
+- id: kim-2020-nsclc-mets
+  kind: dataset
+  label: Kim et al. — NSCLC primary + LN + brain met scRNA + WES (n=44, Nat Commun 2020)
+  modality: multi-omics
+  year: 2020
+  status: published
+  access: controlled
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1038/s41467-020-16164-1
+  topics:
+  - tumor-microenvironment
+  - single-cell
+  - multi-omics
+  why: 44 lung adenocarcinoma patients sampled across normal, primary tumor, lymph node and brain metastases with scRNA-seq (~208k cells) and matched WES at EGA EGAS00001004001. The paired primary-vs-metastasis structure makes it a within-patient TME comparator for testing whether CCR8-eTreg-high archetype calls are stable across anatomical sites — a methodological control rather than an HRD-direct cohort.
+
+- id: tirosh-2016-melanoma
+  kind: dataset
+  label: Tirosh et al. — metastatic melanoma scRNA-SmartSeq2 + WES (n=19, Science 2016)
+  modality: multi-omics
+  year: 2016
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1126/science.aad0501
+  topics:
+  - tumor-microenvironment
+  - single-cell
+  - signatures
+  why: 19 metastatic melanoma patients with SmartSeq2 scRNA-seq (4,645 cells across malignant, T, B, macrophage, endothelial, CAF) and matched WES at GEO GSE72056. The canonical sc melanoma reference — used here as a pan-cancer TME comparator and a baseline for the exhausted-CD8 / Treg axis against which the CCR8-eTreg-high archetype must be distinguishable.
+
+- id: jerby-arnon-2018-mel
+  kind: dataset
+  label: Jerby-Arnon et al. — melanoma anti-PD-1 ICB-resistance scRNA + WES (n=33, Cell 2018)
+  modality: multi-omics
+  year: 2018
+  status: published
+  access: open
+  papermap_category: parpi-immune
+  url: https://doi.org/10.1016/j.cell.2018.09.006
+  topics:
+  - immunotherapy
+  - tumor-microenvironment
+  - single-cell
+  - exhausted-cd8
+  why: 33 melanoma patients (treatment-naive and post anti-PD-1) profiled with SmartSeq2 scRNA-seq (~7k cells) and matched WES at GEO GSE115978, with a derived T-cell-exclusion program that predicts ICB resistance. Provides the treatment-causal IO arm for the CATE head and a published exclusion signature to benchmark against the CCR8-eTreg-high vs cold archetype contrast.
+
+- id: stewart-2020-sclc-cdx
+  kind: dataset
+  label: Stewart et al. — SCLC CDX WGS + CTC WES + scRNA chemo-evolved (n=12, Nat Cancer 2020)
+  modality: multi-omics
+  year: 2020
+  status: published
+  access: controlled
+  papermap_category: parpi-immune
+  url: https://doi.org/10.1038/s43018-020-0046-2
+  topics:
+  - dna-repair
+  - synthetic-lethality
+  - single-cell
+  - multi-omics
+  why: 12 SCLC patients with paired CDX models profiled by WGS, single-CTC WES and scRNA-seq across sensitive/resistant chemo-evolved states at EGA EGAS00001004025. SCLC is platinum/PARPi-relevant (high replication stress, frequent SLFN11/DNA-repair vulnerability), so this is the priority-2 anchor for testing whether the 4-scorer HRD signal and the PARPi CATE head transfer to a non-BRCA chemo-evolved DNA-damage context.
+
+# ===== Batch 3 — Bucket B + C spatial (11 cards) =====
+- id: erickson-2022-prostate-visium
+  kind: dataset
+  label: Erickson et al. — prostate adeno spatial clonal CNA, WGS + lpWGS + Visium (n=11)
+  modality: single-cell-rna
+  year: 2022
+  status: published
+  access: controlled
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1038/s41586-022-05023-2
+  topics:
+  - prostate-cancer
+  - tumor-microenvironment
+  - signatures
+  why: Prostate adenocarcinoma cohort (n=11) pairing organ-wide Visium spatial transcriptomics with WGS and low-pass WGS to spatially resolve clonal CNAs across >120,000 tissue regions (EGA EGAS00001006124, controlled). The cleanest WGS-plus-Visium pairing in the literature — a methodological reference for mapping DNA-repair / HRD-relevant CNA segments onto spatial gene-expression niches, then projecting the Luo CCR8+ eTreg signature on the same coordinates.
+
+- id: khaliq-sun-2024-pdac
+  kind: dataset
+  label: Khaliq, Sun et al. — PDAC primary and metastases, WES + bulk RNA + Visium (n=21)
+  modality: single-cell-rna
+  year: 2024
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1038/s41588-024-01914-4
+  topics:
+  - pancreatic-cancer
+  - tumor-microenvironment
+  - signatures
+  - pan-cancer
+  why: Matched primary and metastatic PDAC cohort (n=21) with WES, bulk RNA-seq and Visium spatial transcriptomics (GEO GSE272362, open). The study defined conserved fibrotic, metabolic and immunosuppressive spatial ecotypes — directly testable substrate for the BRCA1/2-mutant PDAC subset where HRD biology and the CCR8+ eTreg niche must be spatially resolved as a pan-cancer comparator to HGSOC.
+
+# TODO: verify GEO/dbGaP accession for Pei, Min et al. 2025 Nature
+- id: pei-min-2025-pdac-autopsy
+  kind: dataset
+  label: Pei, Min et al. — PDAC rapid-autopsy multi-organ Visium + WGS/WES (n=13, 55 sections)
+  modality: single-cell-rna
+  year: 2025
+  status: published
+  access: controlled
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1038/s41586-025-08927-x
+  topics:
+  - pancreatic-cancer
+  - tumor-microenvironment
+  - signatures
+  - pan-cancer
+  why: Rapid-autopsy PDAC cohort (n=13 patients, 55 sections across primary, liver, lung, peritoneal metastases) with paired WGS/WES and Visium, inferring phylogenetic trees from spatial CNVs alongside lineage-state plasticity (Nature 642:212, 2025). Deferred priority-4 cohort — when accession resolves, this is the multi-organ benchmark for whether HRD-relevant CNA architecture and CCR8+ Treg niches travel together as PDAC disseminates.
+
+- id: wu-2025-hgsoc-visium-hd
+  kind: dataset
+  label: Wu et al. — HGSOC integrative spatial multi-omics, WES + HRD + Visium HD (n=30)
+  modality: single-cell-rna
+  year: 2025
+  status: preprint
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1101/2025.11.24.690313
+  topics:
+  - ovarian-cancer
+  - hrd
+  - tumor-microenvironment
+  - signatures
+  why: HGSOC cohort (n=30) with WES-derived HRD calls paired to Visium HD spatial transcriptomics, mapping programmed-cell-death niches as candidate prognostic biomarkers (bioRxiv 2025.11.24.690313). Deferred priority-4 cohort — the rare HGSOC dataset where HRD status and high-definition spatial TME architecture are co-measured in the same patients, directly anchoring the Luo CCR8+ eTreg projection on the HRD axis.
+
+- id: ji-2020-cscc-st
+  kind: dataset
+  label: Ji et al. — cutaneous SCC scRNA + ST + MIBI (n=10; WES n=4)
+  modality: single-cell-rna
+  year: 2020
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1016/j.cell.2020.05.039
+  topics:
+  - tumor-microenvironment
+  - signatures
+  - single-cell
+  - pan-cancer
+  why: Cutaneous SCC cohort (n=10, WES on a 4-patient subset) combining scRNA-seq, spatial transcriptomics (Visium-predecessor platform) and multiplexed ion beam imaging (GEO GSE144236, open). Methodological reference for ligand-receptor mapping onto tissue architecture and a non-gynecologic pan-cancer comparator for how Treg-enriched niches localize relative to tumor-specific keratinocyte hubs.
+
+# TODO: verify Synapse syn17773547 accession for Risom 2022
+- id: risom-2022-dcis-mibi
+  kind: dataset
+  label: Risom et al. — breast DCIS to IBC progression, MIBI-TOF 37-plex + bulk RNA (n=122)
+  modality: proteomics
+  year: 2022
+  status: published
+  access: controlled
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1016/j.cell.2021.12.023
+  topics:
+  - breast-cancer
+  - tumor-microenvironment
+  - proteomics
+  - signatures
+  why: DCIS-to-IBC progression cohort (n=122, ~80 with full annotation) profiled by 37-plex MIBI-TOF with paired bulk RNA-seq and outcomes, defining four coordinated TME states delineated by myoepithelium, fibroblast and immune-cell organization. The architectural reference for how spatial-proteomic niches predict invasive transition in breast — testbed for whether CCR8+ eTreg localization tracks the same myoepithelial-disruption axis in BRCA-relevant DCIS.
+
+- id: jackson-2020-breast-imc
+  kind: dataset
+  label: Jackson et al. — breast all-subtypes IMC 37-plex on METABRIC tumors (n=281)
+  modality: proteomics
+  year: 2020
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1038/s41586-019-1876-x
+  topics:
+  - breast-cancer
+  - tumor-microenvironment
+  - proteomics
+  - signatures
+  why: Breast cancer all-subtypes cohort (n=281) profiled with 37-plex IMC and linked to METABRIC WES and CNA calls (Zenodo 4607374, open). The single-cell pathology landscape paper anchors spatial-proteomic phenotyping in breast — letting the model train TME archetypes on METABRIC's HRD-relevant genomic backbone (BRCA1/2, HRD-LST scores) with single-cell spatial resolution.
+
+- id: tietscher-2023-breast-imc
+  kind: dataset
+  label: Tietscher et al. — breast HER2+/TNBC T-cell exhaustion map, scRNA + IMC 40-plex (n=281)
+  modality: proteomics
+  year: 2023
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1038/s41467-022-35238-w
+  topics:
+  - breast-cancer
+  - exhausted-cd8
+  - treg
+  - tumor-microenvironment
+  - proteomics
+  why: HER2+/TNBC-focused breast cohort (n=281) combining scRNA-seq with 40-plex IMC to map T-cell-exhaustion-associated immune environments (Zenodo 7647079, open). Directly relevant to the CCR8 stratifier — exhausted-CD8 niches and Treg-enriched zones are co-measured at single-cell spatial resolution, providing a breast-cancer projection target for the Luo eTreg signature.
+
+- id: ali-danenberg-2020-metabric-imc
+  kind: dataset
+  label: Ali, Danenberg et al. — METABRIC breast IMC 37-plex, WES + targeted + SNP-CNA (n=693)
+  modality: proteomics
+  year: 2020
+  status: published
+  access: mixed
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1038/s43018-020-0026-6
+  topics:
+  - breast-cancer
+  - hrd
+  - tumor-microenvironment
+  - proteomics
+  - signatures
+  why: Largest breast IMC cohort to date (n=693 METABRIC tumors) with 37-plex single-cell spatial proteomics matched to METABRIC bulk WES, targeted panels and SNP-array CNA (Zenodo 6036188 open; cBioPortal METABRIC EGAS00000000083 controlled). Priority-1 cohort because METABRIC genomics enables HRD scoring (HRD-LST, BRCA1/2, signature 3) at scale — the largest substrate for testing whether HRD genomic status predicts CCR8+ eTreg spatial architecture in breast.
+
+- id: magness-enfield-2024-tracerx-imc
+  kind: dataset
+  label: Magness, Enfield et al. — TRACERx NSCLC early-stage, multi-region WES + bulk RNA + IMC (n=81)
+  modality: proteomics
+  year: 2024
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1158/2159-8290.CD-23-1145
+  topics:
+  - tumor-microenvironment
+  - proteomics
+  - signatures
+  - pan-cancer
+  why: TRACERx 100 early-stage NSCLC cohort (n=81 patients, 198 samples, 2.3M cells) profiling 38-marker IMC across two panels paired to multi-region WES and bulk RNA (Zenodo 12587543, open). Defines four histology-independent TME archetypes — the canonical NSCLC reference for pan-cancer comparability of the IE / IE-F / F / D archetype scheme that the HRD x CCR8 stratifier ports across tumor types.
+
+- id: makhmut-coscia-2025-stic-dvp
+  kind: dataset
+  label: Makhmut, Coscia et al. — HGSOC + STIC precursor spatial proteomics, targeted HRD panel + DVP-LMD-MS (n=25)
+  modality: proteomics
+  year: 2025
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1038/s44320-025-00168-4
+  topics:
+  - ovarian-cancer
+  - hrd
+  - dna-repair
+  - tumor-microenvironment
+  - proteomics
+  why: HGSOC plus matched STIC precursor lesions (n=25) profiled by deep visual proteomics on laser-microdissected epithelial and stromal regions (>10,000 proteins) with a targeted HRD gene panel (PRIDE per bioRxiv 2025.03.19.643504, open). Priority-1 cohort for earliest-lesion HRD biology — STICs already cluster into two immune-microenvironment subtypes, anchoring when in tubal carcinogenesis the HRD-vs-eTreg axis first emerges before invasive HGSOC.
+
+# ===== Batch 4 — HTAN sub-atlases (10 cards) =====
+- id: htan-hta4-chop-pediatric
+  kind: dataset
+  label: HTAN HTA4 CHOP Pediatric Cancer Atlas — pan-pediatric solid + heme (Resnick/Maris)
+  modality: multi-omics
+  year: 2024
+  status: published
+  access: mixed
+  papermap_category: datasets
+  url: https://humantumoratlas.org/
+  topics:
+  - pan-cancer
+  - tumor-microenvironment
+  - multi-omics
+  - single-cell
+  why: CHOP-led HTAN sub-atlas (HTA4) covering neuroblastoma, AML, B-ALL, pediatric high-grade glioma, and Ewing sarcoma — n=69 patients with bulk-WGS/WES + scRNA + scATAC + CODEX. Project use is as a pediatric negative-control arm — HRD is rare outside germline BRCA2/PALB2-driven pediatric cancers, so this sub-atlas anchors the lower bound of the HRD-score distribution and provides a non-PARPi-target TME counter-example for the pan-adult model.
+
+- id: htan-hta5-dfci-resistance
+  kind: dataset
+  label: HTAN HTA5 DFCI Resistance Atlas — NSCLC-TKIr + HR/HER2 breast + IO-resistant melanoma (Wu/Janne/Long/Romee)
+  modality: multi-omics
+  year: 2024
+  status: published
+  access: mixed
+  papermap_category: datasets
+  url: https://humantumoratlas.org/
+  topics:
+  - tumor-microenvironment
+  - immunotherapy
+  - breast-cancer
+  - multi-omics
+  - single-cell
+  why: DFCI-led HTAN sub-atlas (HTA5) profiling acquired-resistance trajectories across EGFR/ALK-TKI NSCLC, HR+ and HER2+ breast, and ICI-resistant melanoma — n=156 patients with bulk-WES + scRNA + ~16k t-CyCIF imaging files. Project use is the HR+ breast subset for HRD scoring under endocrine-resistance pressure, and the IO-resistant melanoma arm as a transfer-learning prior for the PARPi+anti-CCR8 response CATE on immune-evolved tumors.
+
+- id: htan-hta6-duke-stanford-dcis
+  kind: dataset
+  label: HTAN HTA6 Duke + Stanford DCIS Pre-Cancer Atlas — breast DCIS to IDC (Hwang/Newman/West)
+  modality: multi-omics
+  year: 2024
+  status: published
+  access: mixed
+  papermap_category: datasets
+  url: https://humantumoratlas.org/
+  topics:
+  - breast-cancer
+  - tumor-microenvironment
+  - dna-repair
+  - hrd
+  - multi-omics
+  - single-cell
+  why: Duke/Stanford-led HTAN sub-atlas (HTA6) tracking DCIS-to-IDC progression — n=828 patients with 2,630 WGS files (the largest WGS-on-breast sub-atlas in HTAN) plus MIBI, scRNA, and bulk RNA. Project use is direct HRD genomics — the germline BRCA1/2-carrier subset provides paired WGS-derived HRD scores, spatial proteomics, and single-cell TME in the same patients — the cleanest training substrate for the full-tuple breast HRD x archetype model.
+
+- id: htan-hta7-hms-patch-sorger
+  kind: dataset
+  label: HTAN HTA7 HMS PATCH — melanoma + nevus + CTCL + FL + CLL/SLL (Sorger/Santagata)
+  modality: multi-omics
+  year: 2024
+  status: published
+  access: mixed
+  papermap_category: datasets
+  url: https://humantumoratlas.org/
+  topics:
+  - tumor-microenvironment
+  - immunotherapy
+  - multi-omics
+  why: HMS PATCH HTAN sub-atlas (HTA7) led by Sorger/Santagata covering melanoma, benign nevi, CTCL, follicular lymphoma, and CLL/SLL — n=245 patients with clinical-panel sequencing, bulk RNA, t-CyCIF, CyCIF, and registered H&E. Project use is methodological — this is the HTAN imaging-pipeline reference (MCMICRO + t-CyCIF) for the CCR8-eTreg spatial-neighborhood module rather than HRD-direct, since the cancer mix is not PARPi-relevant.
+
+- id: htan-hta8-msk-metastasis
+  kind: dataset
+  label: HTAN HTA8 MSKCC Metastasis Atlas — SCLC + PDAC + brain/CRC metastases (Massague/Iacobuzio-Donahue/Schultz)
+  modality: multi-omics
+  year: 2024
+  status: published
+  access: mixed
+  papermap_category: datasets
+  url: https://humantumoratlas.org/
+  topics:
+  - pancreatic-cancer
+  - tumor-microenvironment
+  - dna-repair
+  - hrd
+  - multi-omics
+  - single-cell
+  why: MSKCC-led HTAN sub-atlas (HTA8) covering SCLC, PDAC, brain metastases, and CRC metastases — n=202 patients with MSK-IMPACT panel, a WGS subset enriched for BRCA-mutant PDAC, scRNA, MIBI, and GeoMx DSP. Project use is the BRCA1/2-mutant metastatic PDAC arm — to our knowledge the only metastatic-PDAC HRD cohort with paired single-cell + spatial readouts, anchoring the PARPi+anti-CCR8 rationale outside the breast/ovarian core.
+
+- id: htan-hta9-ohsu-smmart-mbc
+  kind: dataset
+  label: HTAN HTA9 OHSU SMMART — metastatic breast cancer, CDK4/6i + IO-evolved (Gray/Heiser/Mills)
+  modality: multi-omics
+  year: 2024
+  status: published
+  access: mixed
+  papermap_category: datasets
+  url: https://humantumoratlas.org/
+  topics:
+  - breast-cancer
+  - tumor-microenvironment
+  - dna-repair
+  - hrd
+  - multi-omics
+  - single-cell
+  - proteomics
+  why: OHSU SMMART HTAN sub-atlas (HTA9) is the deepest longitudinal metastatic-breast cohort in HTAN — n=33 patients but with bulk-WGS, scDNA, RPPA, mIHC/CyCIF, scATAC, scRNA, EM, and GeoMx on serial biopsies across CDK4/6i and IO treatment. Project use is the BRCA-mutant + treatment-evolved subset to model HRD-state drift under therapy pressure, providing the longitudinal counterfactual needed for the PARPi response CATE.
+
+- id: htan-hta10-stanford-fap
+  kind: dataset
+  label: HTAN HTA10 Stanford FAP — familial adenomatous polyposis CRC (Curtis/Snyder)
+  modality: multi-omics
+  year: 2024
+  status: published
+  access: mixed
+  papermap_category: datasets
+  url: https://humantumoratlas.org/
+  topics:
+  - tumor-microenvironment
+  - multi-omics
+  - single-cell
+  why: Stanford-led HTAN sub-atlas (HTA10) of familial adenomatous polyposis CRC progression — n=40 patients with WGS, Hi-C, methylation, scRNA, scATAC, Xenium, CODEX, and mass spectrometry. Project use is purely methodological — FAP is APC-driven not HRD, but the hereditary-cancer multi-omics stack provides a reference pipeline for integrating Xenium + CODEX + scRNA on the same patient that the breast/PDAC HRD arms reuse.
+
+- id: htan-hta11-vanderbilt-crc
+  kind: dataset
+  label: HTAN HTA11 Vanderbilt CRC — CRC + adenoma + sessile-serrated lesion (Coffey/Lau)
+  modality: multi-omics
+  year: 2024
+  status: published
+  access: mixed
+  papermap_category: datasets
+  url: https://humantumoratlas.org/
+  topics:
+  - tumor-microenvironment
+  - dna-repair
+  - multi-omics
+  - single-cell
+  why: Vanderbilt-led HTAN sub-atlas (HTA11) of CRC, adenoma, and sessile-serrated lesion progression — n=195 patients with bulk-WES/WGS + scRNA + Visium + multiplex IF, partially overlapping the Pelka 2021 CRC lineage data. Project use is MMR-deficient CRC as the HRD-sibling pathway — provides a DDR-loss + immune-hot reference TME for distinguishing CCR8-eTreg-high archetypes driven by genomic-instability load versus tissue-of-origin.
+
+- id: htan-hta12-wustl-pancancer
+  kind: dataset
+  label: HTAN HTA12 WUSTL Pan-Cancer — 11-tumor incl. TNBC, PDAC, ccRCC (Ding/Chen)
+  modality: multi-omics
+  year: 2024
+  status: published
+  access: mixed
+  papermap_category: datasets
+  url: https://humantumoratlas.org/
+  topics:
+  - pan-cancer
+  - breast-cancer
+  - pancreatic-cancer
+  - tumor-microenvironment
+  - dna-repair
+  - hrd
+  - multi-omics
+  - single-cell
+  why: WUSTL-led HTAN sub-atlas (HTA12) spanning 11 tumor types including TNBC, PDAC, and ccRCC — n=295 patients with bulk-WGS/WES via CPTAC/TCGA backbones plus scRNA, snRNA, scATAC, Visium, CODEX, IMC, and a Xenium pilot. Project use is the primary pan-cancer training corpus — the TNBC and PDAC arms supply HRD-relevant genomics paired with single-cell + spatial in the same patients, the closest public approximation of the full-tuple cohort the stratifier requires.
+
+- id: htan-hta8-sclc-chan-2021
+  kind: dataset
+  label: HTAN HTA8 MSK SCLC sub-cohort — small-cell lung cancer (Chan/Rudin)
+  modality: multi-omics
+  year: 2021
+  status: published
+  access: mixed
+  papermap_category: datasets
+  url: https://humantumoratlas.org/
+  topics:
+  - tumor-microenvironment
+  - dna-repair
+  - parpi
+  - single-cell
+  - multi-omics
+  why: MSK SCLC sub-cohort within HTAN HTA8 (Chan et al. 2021) — n=21 patients across 54 specimens with MSK-IMPACT panel, a WGS subset, scRNA, MIBI, and Vectra IHC; raw data controlled via dbGaP phs002371. Project use is the SCLC PARPi-relevant arm — DDR loss (RB1/TP53 + SLFN11) and chemo-evolved samples extend the PARPi response model beyond BRCA-driven HRD, though the small N limits it to a sensitivity-analysis cohort.
+
+# ===== Batch 5 — Non-HTAN Bucket D full-tuple (9 cards) =====
+- id: mskspectrum-cfdna-parpi-2025
+  kind: dataset
+  label: MSK-SPECTRUM HGSOC PARPi-maintenance extension — scDLP+ WGS + bulkWGS + longitudinal cfDNA + scRNA (dbGaP 2025)
+  modality: multi-omics
+  year: 2025
+  status: published
+  access: controlled
+  papermap_category: datasets
+  url: https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs002857
+  topics:
+  - ovarian-cancer
+  - hrd
+  - parpi
+  - dna-repair
+  - tumor-microenvironment
+  - multi-omics
+  why: MSK-SPECTRUM PARPi-maintenance extension — n=24 HGSOC patients with platinum + olaparib trajectories, paired scWGS-DLP+, bulk WGS, longitudinal cfDNA and a scRNA subset across multi-region timepoints (dbGaP phs002857). Direct project relevance — the only public cohort with longitudinal cfDNA spanning PARPi exposure on top of single-cell genomic clones, the exact substrate the PARPi-response CATE head needs.
+
+- id: owkin-mosaic-window-bladder
+  kind: dataset
+  label: Owkin MOSAIC-Window — muscle-invasive bladder (Visium + Chromium-Flex snRNA + bulkRNA + WES + H&E)
+  modality: multi-omics
+  year: 2025
+  status: published
+  access: controlled
+  papermap_category: datasets
+  url: https://ega-archive.org/datasets/EGAD50000001251
+  topics:
+  - tumor-microenvironment
+  - multi-omics
+  - single-cell
+  - deconvolution
+  why: MOSAIC-Window public release — 15 MIBC patients (the bladder slice of the broader MOSAIC pan-cancer initiative; NOT 60 pan-cancer) with same-sample Visium, Chromium-Flex snRNA, bulk RNA, WES and H&E under EGAS50000000689 / EGAD50000001251. Not HRD-direct, but the cohort shape is the project's target full-tuple — used as a methodological reference for paired Visium + snRNA + WES integration before applying the recipe to HGSOC slides.
+
+- id: htapp-klughammer-2024-mbc
+  kind: dataset
+  label: Klughammer et al. — HTAPP metastatic breast cancer multi-modal atlas (Nat Med 2024)
+  modality: multi-omics
+  year: 2024
+  status: published
+  access: mixed
+  papermap_category: datasets
+  url: https://doi.org/10.1038/s41591-024-03215-z
+  topics:
+  - breast-cancer
+  - tumor-microenvironment
+  - multi-omics
+  - single-cell
+  - hrd
+  why: HTAPP metastatic breast cancer extension — ~30 patients / multiple biopsies across nine anatomic sites with sc/snRNA, CITE-seq, WES and lpWGS, plus paired Slide-seq / MERFISH / ExSeq / CODEX on a subset (dbGaP phs002371 + Broad SCP2702). The BRCA-mutant subset is the project's mBC arena — same-patient genomics-plus-spatial gives the HRD axis and CCR8 eTreg signature a metastatic-site readout outside HGSOC.
+
+# TODO: verify author + venue for hwang-2025-pdac-neural — likely Chen 2025 Cancer Cell, not Hwang; cohort_id retained to match manifest
+- id: hwang-2025-pdac-neural
+  kind: dataset
+  label: PDAC neural-invasion atlas — sc/snRNA + spatial transcriptomics (2025)
+  modality: multi-omics
+  year: 2025
+  status: preprint
+  access: mixed
+  papermap_category: datasets
+  url: https://www.cell.com/cancer-cell/fulltext/S1535-6108(25)00270-3
+  topics:
+  - pancreatic-cancer
+  - tumor-microenvironment
+  - single-cell
+  - multi-omics
+  why: PDAC neural-invasion cohort — 62 samples from 25 patients with sc/snRNA and spatial transcriptomics across varying neural-invasion status, identifying NRP2+ endoneurial fibroblasts and TGFBI+ Schwann cells. Not HRD-direct (PDAC, low HRD prevalence) — used as a multi-spatial training reference for the spatial branch and to test whether the TME archetype taxonomy generalises beyond gynae/breast tissue.
+
+# TODO: verify accession (likely EGA / GSA mainland-China repo)
+- id: sun-2024-hcc-primary-met
+  kind: dataset
+  label: Sun et al. — HCC primary + metastasis multi-omic atlas (Cancer Cell 2024, Fudan/Zhongshan)
+  modality: multi-omics
+  year: 2024
+  status: published
+  access: controlled
+  papermap_category: datasets
+  url: https://www.sciencedirect.com/science/article/pii/S1535610823004014
+  topics:
+  - tumor-microenvironment
+  - multi-omics
+  - single-cell
+  - signatures
+  why: Yunfan Sun et al. Zhongshan-Fudan HCC cohort — 257 primary and 176 metastatic regions from 182 patients with multi-region WES, bulk RNA, Visium, scRNA and IHC, mapping polyclonal dissemination under hypoxia. Not HRD-direct, but the multi-region paired bulk-plus-spatial-plus-single-cell design is one of the largest non-HTAN full-tuples published and is used as a methodological benchmark for primary-versus-metastatic TME inference.
+
+- id: liu-2024-pediatric-hgg-filbin
+  kind: dataset
+  label: Liu / Filbin 2024 — longitudinal pediatric HGG single-cell + spatial multiomic atlas
+  modality: multi-omics
+  year: 2024
+  status: preprint
+  access: open
+  papermap_category: datasets
+  url: https://doi.org/10.1101/2024.03.06.583588
+  topics:
+  - tumor-microenvironment
+  - multi-omics
+  - single-cell
+  - dna-repair
+  why: DFCI / BCH Filbin-lab pediatric HGG cohort — 16 patients with matched primary–recurrent specimens profiled by snRNA, snATAC, WGS and CODEX spatial proteomics across DMG, DHG and H3-WT pHGG (GEO GSE231860, CBTN). HRD is rare in pHGG so this is not an HRD-direct cohort — included as a reference architecture for longitudinal pre/post-therapy paired single-cell + spatial proteomic integration.
+
+- id: ravi-2022-gbm-multiomics
+  kind: dataset
+  label: Ravi et al. — spatially resolved multi-omics in glioblastoma (Cancer Cell 2022)
+  modality: multi-omics
+  year: 2022
+  status: published
+  access: open
+  papermap_category: datasets
+  url: https://doi.org/10.5061/dryad.h70rxwdmj
+  topics:
+  - tumor-microenvironment
+  - multi-omics
+  - single-cell
+  - proteomics
+  why: Freiburg / Ravi GBM cohort — 28 primary + recurrent GBMs with bulk WES, inferred CNA, Visium, IMC, MALDI-FTICR metabolic imaging and scRNA on the same specimens, with 850k methylation. Not HRD-direct, but one of the very few cohorts pairing spatial transcriptomics AND spatial proteomics AND spatial metabolomics on the same patients — the methodological anchor for the project's multi-spatial integration prototype.
+
+- id: greenwald-2024-gbm-suva-tirosh
+  kind: dataset
+  label: Greenwald / Suva / Tirosh 2024 — integrative spatial atlas of glioblastoma + IDH-mut glioma (Cell 2024)
+  modality: multi-omics
+  year: 2024
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1016/j.cell.2024.03.029
+  topics:
+  - tumor-microenvironment
+  - multi-omics
+  - single-cell
+  - proteomics
+  why: Suva / Tirosh integrative glioma atlas — ~100 patients (>1M cells) with Visium, MIBI / CODEX spatial proteomics, scRNA, scATAC and Patch-seq plus TCGA-anchored bulk WES on a subset (GEO GSE237183, Zenodo 10.5281/zenodo.8105466 + 12624860). Largest open glioma full-tuple — used as a TME architecture reference (structured vs disorganised niches, hypoxia gradients) for cross-tumour generalisation of the archetype taxonomy, not as an HRD cohort.
+
+- id: denisenko-2024-hgsoc-visium-cosmx
+  kind: dataset
+  label: Denisenko et al. — HGSOC paired Visium + CosMx-SMI spatial atlas (Nat Commun 2024)
+  modality: multi-omics
+  year: 2024
+  status: published
+  access: mixed
+  papermap_category: datasets
+  url: https://doi.org/10.1038/s41467-024-47271-y
+  topics:
+  - ovarian-cancer
+  - tumor-microenvironment
+  - multi-omics
+  - hrd
+  - signatures
+  why: HGSOC spatial multi-modal cohort — 10 patients with Visium and NanoString CosMx-SMI on consecutive sections (plus a WES subset on EGA EGAS00001006816, code/data at Zenodo 10048057) resolving subclone-specific ligand/receptor coupling to fibroblasts, endothelium and immune cells. Direct HRD-axis cohort — dense paired spatial transcriptomics is an ideal training substrate for the spatial branch of the CCR8 eTreg signature on HRD-positive subclones.
+
+# ===== Batch 2 — Bucket A sc/sn (rows 11-20) =====
+# NOTE: Batch-2 agent surfaced 5 accession mismatches in cohort_manifest.tsv —
+# see the # TODO: verify lines below. Manifest should be corrected before download.
+
+- id: wang-2021-gastric-peritoneal
+  kind: dataset
+  label: Wang/Jiang et al. — gastric primary + peritoneal/liver metastasis scRNA atlas (n=6, GSE163558)
+  modality: single-cell-rna
+  year: 2021
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE163558
+  topics:
+  - pan-cancer
+  - tumor-microenvironment
+  - single-cell
+  why: 10 samples from 6 patients (~43k cells) covering primary gastric tumor, peritoneal metastasis, lymph-node and liver metastasis at GEO GSE163558 — scRNA only in this record (WES not deposited despite the manifest claim). Serves the project as a pan-cancer TME comparator for CCR8-eTreg-high vs IE/IE-F/F/D archetype projection in a non-HRD-canonical solid tumor with peritoneal-met biology relevant to HGSOC.
+
+# TODO: verify — GSE183904 GEO record lists scRNA only; WES (mentioned in paper) may be deposited elsewhere
+- id: zhang-2022-gastric-tcell
+  kind: dataset
+  label: Zhang et al. — gastric tumor scRNA + scTCR + WES, alternative T-cell exhaustion (Nat Commun 2022)
+  modality: multi-omics
+  year: 2022
+  status: published
+  access: mixed
+  papermap_category: atlas-singlecell
+  url: https://www.nature.com/articles/s41467-022-32627-z
+  topics:
+  - exhausted-cd8
+  - tumor-microenvironment
+  - single-cell
+  - pan-cancer
+  why: Paired blood + tumor scRNA-seq, scTCR-seq and bulk WES on gastric cancer patients (paper reports tumor-vs-paratumor mutation calls; 10X 5' Immune Profiling for TCR). Useful as a Bucket-A non-HRD pan-cancer comparator for the eTreg and exhausted-CD8 axes when projecting the CCR8-eTreg signature, and as a methodological example of same-patient sc + germline-matched WES the TME archetype head needs.
+
+# TODO: MAJOR mismatch — manifest says GSE163108 but that record is Mathewson/Ashenberg 2021 Cell (CD161+ glioma T cells, scRNA only).
+# Actual Couturier 2020 Nat Commun GBM atlas is at EGA EGAS00001004422 (controlled). Card uses EGA URL.
+- id: couturier-2020-gbm
+  kind: dataset
+  label: Couturier et al. — GBM scRNA recapitulates neurodevelopmental hierarchy (Nat Commun 2020)
+  modality: single-cell-rna
+  year: 2020
+  status: published
+  access: controlled
+  papermap_category: atlas-singlecell
+  url: https://ega-archive.org/studies/EGAS00001004422
+  topics:
+  - tumor-microenvironment
+  - single-cell
+  - pan-cancer
+  why: Adult GBM scRNA atlas (~53k tumor cells across ~14 surgically-resected GBMs + ~22k fetal brain reference cells) at EGA EGAS00001004422. GBM is HRD-rare but the cohort serves as a pan-cancer cold/D-archetype anchor — sets a floor for CCR8-eTreg density in lymphocyte-poor immune contexts.
+
+- id: lambrechts-2018-nsclc
+  kind: dataset
+  label: Lambrechts et al. — NSCLC stromal TME scRNA + matched bulk-WES (Nat Med 2018)
+  modality: multi-omics
+  year: 2018
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://www.ebi.ac.uk/biostudies/arrayexpress/studies/E-MTAB-6149
+  topics:
+  - tumor-microenvironment
+  - single-cell
+  - pan-cancer
+  why: 52,698 single cells from NSCLC tumor + matched adjacent non-involved lung across 5 deep-profiled patients (extended to ~24 patients in validation) with paired bulk WES at ArrayExpress E-MTAB-6149. Foundational NSCLC stromal reference — pan-cancer TME comparator for the CCR8-eTreg and IE/IE-F archetypes onto a non-HRD-canonical solid tumor, and substrate for the Goveia endothelial sub-atlas.
+
+- id: goveia-2020-nsclc-ec
+  kind: dataset
+  label: Goveia et al. — NSCLC tumor endothelial cell scRNA atlas (Cancer Cell 2020)
+  modality: single-cell-rna
+  year: 2020
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://www.ebi.ac.uk/biostudies/arrayexpress/studies/E-MTAB-8221
+  topics:
+  - tumor-microenvironment
+  - single-cell
+  - pan-cancer
+  why: 56,771 endothelial cells from human (n=8 NSCLC, leveraging Lambrechts WES) and mouse peri-/intra-tumoral lung at ArrayExpress E-MTAB-8221, defining 17 known + 16 novel TEC phenotypes. The endothelial-compartment reference for the IE-F vs F TME archetype boundary — angiogenic/immunomodulatory EC phenotypes co-vary with eTreg recruitment.
+
+# TODO: MAJOR mismatch — manifest says GSE149614 but that's Lu Y 10-patient HCC atlas, not Sun 2021 Cell.
+# Sun 2021 Cell early-relapse paper (n=18) deposited elsewhere; flagged for verification.
+- id: sun-2021-hcc-early-relapse
+  kind: dataset
+  label: Sun et al. — primary vs early-relapse HCC scRNA ecosystem (Cell 2021)
+  modality: single-cell-rna
+  year: 2021
+  status: published
+  access: controlled
+  papermap_category: atlas-singlecell
+  url: https://doi.org/10.1016/j.cell.2020.11.041
+  topics:
+  - tumor-microenvironment
+  - exhausted-cd8
+  - single-cell
+  - pan-cancer
+  why: ~17,000 SMART-seq2 transcriptomes from 18 primary or early-relapse HCC cases, characterising an innate-like KLRB1/CD161+ low-cytotoxic CD8 state and reduced Treg fractions in early relapse. HCC is HRD-rare but the cohort is one of the few human longitudinal sc atlases pairing primary-vs-relapse same-patient design — kinetic comparator for TME archetype stability under (chemo)therapy-driven relapse pressure.
+
+- id: kim-2018-tnbc-chemoresist
+  kind: dataset
+  label: Kim et al. — TNBC neoadjuvant-chemo scDNA + scRNA + bulk WES longitudinal (Cell 2018)
+  modality: multi-omics
+  year: 2018
+  status: published
+  access: open
+  papermap_category: parpi-immune
+  url: https://www.ncbi.nlm.nih.gov/sra/?term=SRP114962
+  topics:
+  - breast-cancer
+  - dna-repair
+  - single-cell
+  - tumor-microenvironment
+  why: 20 TNBC patients profiled longitudinally (pre/mid/post neoadjuvant chemo) with deep bulk exome plus scDNA (~900 cells / 8 patients) and scRNA (~6,862 cells) at SRA SRP114962. The only public longitudinal TNBC cohort with same-patient sc + WES under DNA-damaging chemotherapy — serves the HRD-axis head (BRCA-mut/HRD-positive TNBC subset), the PARPi-adjacent treatment-causal arm, and ground-truths the SBS3/HRDetect concordance scorers on cells that demonstrably respond or resist platinum/anthracycline.
+
+# TODO: MAJOR mismatch — manifest says GSE205013 (that's Simeone UCSD PDAC chemo, not Hwang).
+# Hwang 2022 Nat Genet PDAC neoadj deposits at GSE199102. Card uses GSE199102.
+- id: hwang-lin-2023-pdac-chemo
+  kind: dataset
+  label: Hwang/Lin et al. — PDAC neoadjuvant FOLFIRINOX/CRT snRNA + GeoMx spatial (Nat Genet 2022)
+  modality: multi-omics
+  year: 2022
+  status: published
+  access: mixed
+  papermap_category: parpi-immune
+  url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE199102
+  topics:
+  - pancreatic-cancer
+  - dna-repair
+  - single-cell
+  - tumor-microenvironment
+  why: 43 primary PDAC tumours (treatment-naive vs neoadjuvant FOLFIRINOX +/- chemoradiation) profiled by snRNA-seq + GeoMx whole-transcriptome DSP at GEO GSE199102 (raw genomics under dbGaP). The BRCA1/2-mutant and HRD-positive PDAC sub-population is the only public snRNA atlas with treatment-causal labels in a HRD-relevant tumor — anchors the PARPi-adjacent platinum-response arm of the DragonNet CATE head.
+
+- id: htan-hta3-bu-lung-precancer
+  kind: dataset
+  label: HTAN HTA3 — Boston University Lung Pre-Cancer Atlas (WES + scDNA + scRNA + mIF)
+  modality: multi-omics
+  year: 2024
+  status: published
+  access: mixed
+  papermap_category: atlas-singlecell
+  url: https://humantumoratlas.org/center/hta3
+  topics:
+  - tumor-microenvironment
+  - single-cell
+  - multi-omics
+  - pan-cancer
+  why: HTAN HTA3 Lung Pre-Cancer Atlas (Spira/Dubinett/Mazzilli + 10 institutions) — the largest HTAN sub-atlas (~484 biospecimens) of bronchial premalignant lesions + matched lung-adeno / LUSC with paired bulk WES, scDNA, scRNA and multiplexed IF via Synapse syn20446927 (L3/L4 open; L1/L2 controlled). TME-archetype reference for the F/D-cold end of the spectrum and methodological template for same-patient WES + sc + spatial that the Bucket-A pipeline targets.
+
+# TODO: GSE282701 record is by Ximing S et al., described as scRNA (not snRNA per manifest); TCGA-LIHC integration is downstream-only.
+- id: su-2025-hcc-snrna
+  kind: dataset
+  label: Su et al. — HCC scRNA stratified by HBV status, integrated with TCGA-LIHC WES (2025)
+  modality: single-cell-rna
+  year: 2025
+  status: published
+  access: open
+  papermap_category: atlas-singlecell
+  url: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE282701
+  topics:
+  - tumor-microenvironment
+  - single-cell
+  - pan-cancer
+  why: 12 samples (6 HCC patients, paired tumor + adjacent, HBV+/HBV-) profiled by scRNA-seq (~121,848 cells) at GEO GSE282701; genomic context via integration against TCGA-LIHC WES rather than same-patient sequencing. Indirect HRD signal only — recent pan-cancer TME comparator in a HRD-rare hepatobiliary context and a worked example of public-TCGA-integration pipelines for the scorer-concordance head to stress-test.

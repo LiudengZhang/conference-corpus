@@ -6,14 +6,17 @@
 # FIELDS
 #   id        stable slug, also the vault directory name where one exists
 #   name      human-readable
-#   type      conference | webinar | journal | news
+#   type      conference | webinar | journal | news | regulatory | author-tracking
 #   cadence   annual | biennial | monthly | weekly | continuous | one-time
 #   start/end ISO dates. null when unscheduled. For continuous sources, omit.
 #   topics    from the taxonomy below; drives the by-topic view
 #   access    open | mixed | gated | dead   (how hard is the material to get)
 #   harvest   method + endpoint. This is the operational payload of the file.
 #   vault     docs-relative path, or null if no vault exists yet
-#   status    built | partial | scaffold | none
+#   status    built | partial | scaffold | harvested | none
+#             `harvested` means the source is in data/index.sqlite. It is the
+#             only status that is checkable rather than asserted, and the only
+#             one a generator should trust.
 #   verify    true when a field here is unconfirmed and needs checking
 #
 # TAXONOMY (keep small on purpose)
@@ -1168,5 +1171,341 @@ sources:
     method: static-html
     endpoint: "https://www.bioworld.com/"
     notes: Maintains per-conference keyword feeds; paywalled
+  vault: null
+  status: none
+
+# ---------------------------------------------------------------------------
+# Journals added 2026-08-26 to close the gap between this registry and what the
+# corpus actually reads. The index at data/index.sqlite is built from 33
+# journals; fifteen of them were listed here and eighteen were not, which meant
+# the registry described a smaller system than the one running.
+#
+# Harvest method is `pubmed-pt`, not RSS. RSS is a rolling window — it cannot
+# reach a month that has already scrolled off, so it can maintain a corpus but
+# never backfill one. PubMed E-utilities with an explicit publication-type
+# filter is also the only cross-publisher-consistent way to isolate research
+# articles: OpenAlex's `type:review` returns approximately zero for these
+# journals, and reference-count heuristics collapse whole journals because
+# publishers do not uniformly deposit reference lists.
+#
+# The shared query shape is:
+#   esearch.fcgi?db=pubmed&term="<nlm-abbrev>"[ta]+AND+<YYYY/MM/DD>:<YYYY/MM/DD>[dp]
+#                              +AND+"journal article"[pt]
+#                              +NOT+(review[pt] OR editorial[pt] OR news[pt]
+#                                    OR comment[pt] OR "case reports"[pt])
+# then esummary.fcgi and bin on `sortpubdate`. Binning on anything else
+# double-counts: [dp] matches every date attached to a record, so an
+# ahead-of-print and its later issue date both hit, and about a fifth of raw
+# rows land outside the month that returned them.
+
+- id: j-nar
+  name: Nucleic Acids Research
+  type: journal
+  cadence: continuous
+  topics: [bioinfo-tools, genomics]
+  access: open
+  harvest: {method: pubmed-pt, endpoint: "Nucleic Acids Res[ta]"}
+  vault: null
+  status: harvested
+  notes: >-
+    Highest-volume source in the corpus and mostly denominator: a large wet-lab
+    molecular-biology block plus a ~200-paper database issue every January that
+    by itself moves the corpus total 25-30%. Needs subject filtering before its
+    counts mean anything.
+
+- id: j-jama
+  name: JAMA
+  type: journal
+  cadence: weekly
+  topics: [oncology-clinical]
+  access: mixed
+  harvest: {method: pubmed-pt, endpoint: "JAMA[ta]"}
+  vault: null
+  status: harvested
+
+- id: j-lancet
+  name: The Lancet
+  type: journal
+  cadence: weekly
+  topics: [oncology-clinical]
+  access: mixed
+  harvest: {method: pubmed-pt, endpoint: "Lancet[ta]"}
+  vault: null
+  status: harvested
+
+- id: j-nejm
+  name: New England Journal of Medicine
+  type: journal
+  cadence: weekly
+  topics: [oncology-clinical]
+  access: mixed
+  harvest: {method: pubmed-pt, endpoint: "N Engl J Med[ta]"}
+  vault: null
+  status: harvested
+
+- id: j-blood
+  name: Blood
+  type: journal
+  cadence: weekly
+  topics: [oncology-clinical, immuno-oncology]
+  access: mixed
+  harvest: {method: pubmed-pt, endpoint: "Blood[ta]"}
+  vault: null
+  status: harvested
+  notes: >-
+    Kept when the tier rule removed Cancer Research, Clinical Cancer Research
+    and JNCI. Uses a bare-citation title format for correction and retraction
+    notices, which is not distinguishable from an article row without fetching
+    the record — several such rows are flagged `verify` in evidence.yml.
+
+- id: j-jco
+  name: Journal of Clinical Oncology
+  type: journal
+  cadence: continuous
+  topics: [oncology-clinical]
+  access: mixed
+  harvest: {method: pubmed-pt, endpoint: "J Clin Oncol[ta]"}
+  vault: null
+  status: harvested
+
+- id: j-lancet-oncology
+  name: The Lancet Oncology
+  type: journal
+  cadence: monthly
+  topics: [oncology-clinical]
+  access: mixed
+  harvest: {method: pubmed-pt, endpoint: "Lancet Oncol[ta]"}
+  vault: null
+  status: harvested
+
+- id: j-annals-oncology
+  name: Annals of Oncology
+  type: journal
+  cadence: monthly
+  topics: [oncology-clinical]
+  access: mixed
+  harvest: {method: pubmed-pt, endpoint: "Ann Oncol[ta]"}
+  vault: null
+  status: harvested
+  notes: Assigns issue dates in advance; rows arrive dated up to six months out.
+
+- id: j-nature-genetics
+  name: Nature Genetics
+  type: journal
+  cadence: monthly
+  topics: [genomics]
+  access: mixed
+  harvest: {method: pubmed-pt, endpoint: "Nat Genet[ta]"}
+  vault: null
+  status: harvested
+
+- id: j-nature-immunology
+  name: Nature Immunology
+  type: journal
+  cadence: monthly
+  topics: [immuno-oncology]
+  access: mixed
+  harvest: {method: pubmed-pt, endpoint: "Nat Immunol[ta]"}
+  vault: null
+  status: harvested
+
+- id: j-science-immunology
+  name: Science Immunology
+  type: journal
+  cadence: monthly
+  topics: [immuno-oncology]
+  access: mixed
+  harvest: {method: pubmed-pt, endpoint: "Sci Immunol[ta]"}
+  vault: null
+  status: harvested
+
+- id: j-science-translational-medicine
+  name: Science Translational Medicine
+  type: journal
+  cadence: weekly
+  topics: [oncology-clinical, immuno-oncology]
+  access: mixed
+  harvest: {method: pubmed-pt, endpoint: "Sci Transl Med[ta]"}
+  vault: null
+  status: harvested
+
+- id: j-jem
+  name: Journal of Experimental Medicine
+  type: journal
+  cadence: monthly
+  topics: [immuno-oncology]
+  access: open
+  harvest: {method: pubmed-pt, endpoint: "J Exp Med[ta]"}
+  vault: null
+  status: harvested
+
+- id: j-nature-biomedical-engineering
+  name: Nature Biomedical Engineering
+  type: journal
+  cadence: monthly
+  topics: [ai-ml, imaging, bioinfo-tools]
+  access: mixed
+  harvest: {method: pubmed-pt, endpoint: "Nat Biomed Eng[ta]"}
+  vault: null
+  status: harvested
+
+- id: j-genome-research
+  name: Genome Research
+  type: journal
+  cadence: monthly
+  topics: [genomics, bioinfo-tools]
+  access: open
+  harvest: {method: pubmed-pt, endpoint: "Genome Res[ta]"}
+  vault: null
+  status: harvested
+
+- id: j-nature-computational-science
+  name: Nature Computational Science
+  type: journal
+  cadence: monthly
+  topics: [ai-ml, foundation-models]
+  access: mixed
+  harvest: {method: pubmed-pt, endpoint: "Nat Comput Sci[ta]"}
+  vault: null
+  status: harvested
+  notes: Roughly half physics and quantum ML; denominator for the AI counts.
+
+- id: j-cell-genomics
+  name: Cell Genomics
+  type: journal
+  cadence: monthly
+  topics: [genomics, single-cell-spatial]
+  access: open
+  harvest: {method: pubmed-pt, endpoint: "Cell Genom[ta]"}
+  vault: null
+  status: harvested
+
+- id: j-cell-systems
+  name: Cell Systems
+  type: journal
+  cadence: monthly
+  topics: [ai-ml, bioinfo-tools]
+  access: mixed
+  harvest: {method: pubmed-pt, endpoint: "Cell Syst[ta]"}
+  vault: null
+  status: harvested
+
+- id: j-molecular-systems-biology
+  name: Molecular Systems Biology
+  type: journal
+  cadence: monthly
+  topics: [ai-ml, bioinfo-tools]
+  access: open
+  harvest: {method: pubmed-pt, endpoint: "Mol Syst Biol[ta]"}
+  vault: null
+  status: harvested
+
+# ---------------------------------------------------------------------------
+# Regulatory. Not read monthly; queried when an evidence card claims an
+# approval, a label change, or a programme discontinuation. The corpus has one
+# open `verify` flag of exactly this kind, which is the reason these exist.
+
+- id: r-fda-oncology-approvals
+  name: FDA Oncology (OCE) approval notifications
+  type: regulatory
+  cadence: continuous
+  topics: [oncology-clinical]
+  access: open
+  harvest:
+    method: static-html
+    endpoint: "https://www.fda.gov/drugs/resources-information-approved-drugs/oncology-cancer-hematologic-malignancies-approval-notifications"
+    notes: Authoritative for first-approval claims; check before carding one.
+  vault: null
+  status: none
+
+- id: r-fda-cellular-gene-therapy
+  name: FDA approved cellular and gene therapy products
+  type: regulatory
+  cadence: continuous
+  topics: [immuno-oncology]
+  access: open
+  harvest:
+    method: static-html
+    endpoint: "https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/approved-cellular-and-gene-therapy-products"
+    notes: The list that settles any "first CAR-T approved for X" question.
+  vault: null
+  status: none
+
+- id: r-ema-medicines
+  name: EMA medicines register
+  type: regulatory
+  cadence: continuous
+  topics: [oncology-clinical]
+  access: open
+  harvest: {method: static-html, endpoint: "https://www.ema.europa.eu/en/medicines"}
+  vault: null
+  status: none
+
+- id: r-clinicaltrials-gov
+  name: ClinicalTrials.gov
+  type: regulatory
+  cadence: continuous
+  topics: [oncology-clinical, immuno-oncology]
+  access: open
+  harvest:
+    method: api
+    endpoint: "https://clinicaltrials.gov/api/v2/studies"
+    notes: >-
+      Used to check whether a nominated target has any registered trial. The
+      finding that no newly nominated checkpoint entered a phase 1 anywhere in
+      2025 was read off the literature only and should be confirmed here.
+  vault: null
+  status: none
+
+# ---------------------------------------------------------------------------
+# Author tracking. The measured alternative to journal scanning: 84 works for
+# 35 tracked people in one month, against ~2,900 records for journal-and-subject
+# subscription — a ~29x reduction that also surfaced five podium-to-paper links
+# the journal route could not. It covers preprints in the same call. Its blind
+# spot is structural and permanent: people who publish refutations are not the
+# people invited to keynote, so this route finds convergence and never finds
+# the contradiction. Run both.
+
+- id: a-openalex-authors
+  name: OpenAlex author works
+  type: author-tracking
+  cadence: monthly
+  topics: [oncology-clinical, immuno-oncology, ai-ml, foundation-models]
+  access: open
+  harvest:
+    method: api
+    endpoint: "https://api.openalex.org/works?filter=author.id:<id>,from_publication_date:<date>"
+    notes: >-
+      Resolve people via /authors?search= first. Do not trust the returned
+      `authorships` institution blindly — wrong on 3 of 22 spot-checked records.
+      Watchlist is data/speakers.yml.
+  vault: null
+  status: partial
+
+- id: a-biorxiv
+  name: bioRxiv / medRxiv
+  type: author-tracking
+  cadence: continuous
+  topics: [genomics, single-cell-spatial, ai-ml]
+  access: open
+  harvest:
+    method: api
+    endpoint: "https://api.biorxiv.org/details/biorxiv/<from>/<to>"
+    notes: >-
+      Reached incidentally through the OpenAlex author route. Direct polling is
+      only worth it for a named watchlist; unfiltered volume is unreadable.
+  vault: null
+  status: none
+
+- id: a-europepmc
+  name: Europe PMC
+  type: author-tracking
+  cadence: monthly
+  topics: [oncology-clinical, genomics]
+  access: open
+  harvest:
+    method: api
+    endpoint: "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
+    notes: Fallback when an OpenAlex author id is ambiguous or missing.
   vault: null
   status: none
