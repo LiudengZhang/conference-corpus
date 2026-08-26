@@ -472,6 +472,8 @@ nav:
       - Extraction method: notes/extraction.md
       - Caveats: notes/caveats.md
   - Briefings:
+    - Monthly:
+      - 2026-07: briefings/2026-07.md
     - 90-min Speed Read: speed-read.md
     - Foundation Models: foundation-models.md
     - Talk Prep — FMs to Virtual Cells:
