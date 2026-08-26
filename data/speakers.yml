@@ -1,0 +1,499 @@
+# Speaker roster derived from the 42 conference vaults in docs/conferences/.
+# Rule: a person is on the watchlist if they appeared at >=2 distinct meetings,
+#       OR held a keynote/plenary slot at any one meeting.
+# Roles are invited/programmed only -- abstract and poster presenters are excluded.
+# Regenerate by re-running the vault extraction; resolve to OpenAlex author IDs before use.
+# Built 2026-08-25. Coverage: 42/42 vaults, 305 distinct invited people, 323 person-role rows.
+
+speakers:
+- name: Eric Green
+  affiliation: NHGRI
+  top_role: keynote
+  n_meetings: 3
+  appearances:
+  - meeting: agbt-pm-2026
+    role: chair
+  - meeting: ismb-2026
+    role: keynote
+  - meeting: psb-2026
+    role: keynote
+- name: Marylyn Ritchie
+  affiliation: MUSC
+  top_role: plenary
+  n_meetings: 3
+  appearances:
+  - meeting: agbt-2026
+    role: plenary
+  - meeting: agbt-pm-2026
+    role: invited
+  - meeting: psb-2026
+    role: chair
+- name: Faisal Mahmood
+  affiliation: Harvard Medical School/Brigham
+  top_role: keynote
+  n_meetings: 2
+  appearances:
+  - meeting: aacr-2026
+    role: invited
+  - meeting: isbi-2026
+    role: keynote
+- name: Marinka Zitnik
+  affiliation: Harvard Medical School
+  top_role: keynote
+  n_meetings: 2
+  appearances:
+  - meeting: aacr-2026
+    role: chair
+  - meeting: ismb-2026
+    role: keynote
+- name: Rayan Chikhi
+  affiliation: Institut Pasteur
+  top_role: keynote
+  n_meetings: 2
+  appearances:
+  - meeting: gcc-2026
+    role: keynote
+  - meeting: recomb-2026
+    role: chair
+- name: Sara Mostafavi
+  affiliation: University of Washington
+  top_role: keynote
+  n_meetings: 2
+  appearances:
+  - meeting: agbt-pm-2026
+    role: invited
+  - meeting: recomb-2026
+    role: keynote
+- name: Vincent Carey
+  affiliation: Harvard Medical School/Brigham
+  top_role: keynote
+  n_meetings: 2
+  appearances:
+  - meeting: eurobioc-2025
+    role: keynote
+  - meeting: gbcc-2025
+    role: chair
+- name: A. Hunter Shain
+  affiliation: UCSF
+  top_role: chair
+  n_meetings: 2
+  appearances:
+  - meeting: aacr-2026
+    role: chair
+  - meeting: sitc-computational-io-2026
+    role: invited
+- name: Anshul Kundaje
+  affiliation: Stanford
+  top_role: chair
+  n_meetings: 2
+  appearances:
+  - meeting: ismb-2026
+    role: chair
+  - meeting: single-cell-genomics-day-2026
+    role: invited
+- name: Charlotte Bunne
+  affiliation: EPFL
+  top_role: chair
+  n_meetings: 2
+  appearances:
+  - meeting: aacr-2026
+    role: chair
+  - meeting: single-cell-genomics-2026
+    role: invited
+- name: Eileen O'Reilly
+  affiliation: MSKCC
+  top_role: chair
+  n_meetings: 2
+  appearances:
+  - meeting: aacr-pancreatic-2026
+    role: chair
+  - meeting: asco-gi-2026
+    role: invited
+- name: Elinor Karlsson
+  affiliation: UMass Chan Medical School / Broad Institute
+  top_role: chair
+  n_meetings: 2
+  appearances:
+  - meeting: agbt-2026
+    role: invited
+  - meeting: cshl-bds-2026
+    role: chair
+- name: Gurkan Bebek
+  affiliation: Case Western
+  top_role: chair
+  n_meetings: 2
+  appearances:
+  - meeting: psb-2026
+    role: chair
+  - meeting: recomb-2026
+    role: chair
+- name: Ellis Patrick
+  affiliation: null
+  top_role: invited
+  n_meetings: 2
+  appearances:
+  - meeting: eurobioc-2025
+    role: invited
+  - meeting: gbcc-2025
+    role: invited
+- name: Tuomas Borman
+  affiliation: University of Turku
+  top_role: invited
+  n_meetings: 2
+  appearances:
+  - meeting: eurobioc-2025
+    role: invited
+  - meeting: gbcc-2025
+    role: invited
+- name: Yelena Y. Janjigian
+  affiliation: MSKCC
+  top_role: invited
+  n_meetings: 2
+  appearances:
+  - meeting: aacr-2026
+    role: invited
+  - meeting: asco-gi-2026
+    role: invited
+- name: Aleksandra Walczak
+  affiliation: CNRS / ENS France
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: eccb-2026
+    role: keynote
+- name: Alexander Marson
+  affiliation: UCSF
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: aacr-io-2026
+    role: keynote
+- name: Alexandros Stamatakis
+  affiliation: HITS/KIT
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: recomb-2026
+    role: keynote
+- name: Anna-Sapfo Malaspinas
+  affiliation: University of Lausanne / SIB
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: eccb-2026
+    role: keynote
+- name: Aviv Regev
+  affiliation: Genentech
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: single-cell-genomics-day-2026
+    role: keynote
+- name: Barbara Engelhardt
+  affiliation: Gladstone/Stanford
+  top_role: plenary
+  n_meetings: 1
+  appearances:
+  - meeting: agbt-2026
+    role: plenary
+- name: Bram van Ginneken
+  affiliation: Radboud UMC
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: isbi-2026
+    role: keynote
+- name: Carlos Bustamante
+  affiliation: Galatea Bio
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: ismb-2026
+    role: keynote
+- name: Catherine Wu
+  affiliation: Dana-Farber
+  top_role: plenary
+  n_meetings: 1
+  appearances:
+  - meeting: sitc-2026
+    role: plenary
+- name: Charlotte Soneson
+  affiliation: FMI Basel
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: gbcc-2025
+    role: keynote
+- name: Dario A. Vignali
+  affiliation: Pittsburgh
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: aacr-io-2026
+    role: keynote
+- name: Elaine Fuchs
+  affiliation: HHMI/Rockefeller
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: ascb-2026
+    role: keynote
+- name: Elaine Mardis
+  affiliation: Rasmussen Institute
+  top_role: plenary
+  n_meetings: 1
+  appearances:
+  - meeting: agbt-2026
+    role: plenary
+- name: Elizabeth M. Jaffee
+  affiliation: Johns Hopkins
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: aacr-io-2026
+    role: keynote
+- name: Elly Tanaka
+  affiliation: IMBA
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: ascb-2026
+    role: keynote
+- name: Evan Floden
+  affiliation: Seqera
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: nextflow-2026
+    role: keynote
+- name: Fred Ramsdell
+  affiliation: Sonoma Biotherapeutics
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: aacr-io-2026
+    role: keynote
+- name: Gene Myers
+  affiliation: MPI-CBG Dresden
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: recomb-2026
+    role: keynote
+- name: Greg Slabaugh
+  affiliation: Queen Mary University of London
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: isbi-2026
+    role: keynote
+- name: Helena Crowell
+  affiliation: Charite Berlin
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: eurobioc-2025
+    role: keynote
+- name: Hilary Finucane
+  affiliation: Harvard/Broad
+  top_role: plenary
+  n_meetings: 1
+  appearances:
+  - meeting: agbt-2026
+    role: plenary
+- name: Ido Amit
+  affiliation: Weizmann
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: single-cell-genomics-2026
+    role: keynote
+- name: Jacques Serizay
+  affiliation: Institut Pasteur
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: eurobioc-2025
+    role: keynote
+- name: James Sharpe
+  affiliation: EMBL Barcelona
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: eurobioc-2025
+    role: keynote
+- name: Jason Williams
+  affiliation: CSHL DNA Learning Center
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: gbcc-2025
+    role: keynote
+- name: Jeremy Farrar
+  affiliation: World Health Organization
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: eccb-2026
+    role: keynote
+- name: Junyue Cao
+  affiliation: Rockefeller
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: single-cell-genomics-day-2026
+    role: keynote
+- name: Lieping Chen
+  affiliation: Yale
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: aacr-io-2026
+    role: keynote
+- name: Liqun Luo
+  affiliation: Stanford/HHMI
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: ascb-2026
+    role: keynote
+- name: Luis Campos
+  affiliation: Rice University
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: psb-2026
+    role: keynote
+- name: Mario L. Suva
+  affiliation: Harvard/Broad/MGH
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: aacr-brain-tumors-2026
+    role: keynote
+- name: Maryam Zaringhalam
+  affiliation: null
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: ismb-2026
+    role: keynote
+- name: Mauricio Reyes
+  affiliation: University of Bern
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: isbi-2026
+    role: keynote
+- name: Noelia Ferruz
+  affiliation: IRB Barcelona
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: eurobioc-2025
+    role: keynote
+- name: Olga Troyanskaya
+  affiliation: Princeton
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: ismb-2026
+    role: keynote
+- name: Partha Majumder
+  affiliation: John C. Martin Centre
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: ismb-2026
+    role: keynote
+- name: Paul Medvedev
+  affiliation: Penn State
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: recomb-2026
+    role: keynote
+- name: Philip D. Greenberg
+  affiliation: Fred Hutch
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: aacr-io-2026
+    role: keynote
+- name: Polina Golland
+  affiliation: MIT CSAIL
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: isbi-2026
+    role: keynote
+- name: Rafi Ahmed
+  affiliation: Emory
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: aacr-io-2026
+    role: keynote
+- name: Ramanujan Hegde
+  affiliation: MRC LMB
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: ascb-2026
+    role: keynote
+- name: Richard Durbin
+  affiliation: University of Cambridge
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: ismb-2026
+    role: keynote
+- name: Sergei Kosakovsky Pond
+  affiliation: Temple University
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: gbcc-2025
+    role: keynote
+- name: Simona Parrinello
+  affiliation: UCL
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: aacr-brain-tumors-2026
+    role: keynote
+- name: Stephen Quake
+  affiliation: Stanford University
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: eccb-2026
+    role: keynote
+- name: Susan Holmes
+  affiliation: Stanford
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: eurobioc-2025
+    role: keynote
+- name: Tommy Tang
+  affiliation: AstraZeneca
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: nextflow-2026
+    role: keynote
+- name: Ton Schumacher
+  affiliation: Netherlands Cancer Institute
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: sitc-2026
+    role: keynote
+- name: Xin Jin
+  affiliation: Scripps Research
+  top_role: keynote
+  n_meetings: 1
+  appearances:
+  - meeting: single-cell-genomics-day-2026
+    role: keynote
