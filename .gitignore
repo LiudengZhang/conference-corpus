@@ -40,3 +40,4 @@ docs/assets/*/bioinfo-tools/
 # Baseline snapshot for refactor validation
 _baseline/
 .codex-output/
+data/index.sqlite  # L1 reading index: regenerable from PubMed, 2 MB and growing
