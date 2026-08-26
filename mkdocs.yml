@@ -474,6 +474,17 @@ nav:
   - Briefings:
     - Monthly:
       - 2026-07: briefings/2026-07.md
+      - 2026-06: briefings/2026-06.md
+      - 2026-05: briefings/2026-05.md
+      - 2026-04: briefings/2026-04.md
+      - 2026-03: briefings/2026-03.md
+      - 2026-02: briefings/2026-02.md
+      - 2026-01: briefings/2026-01.md
+      - 2025-12: briefings/2025-12.md
+      - 2025-11: briefings/2025-11.md
+      - 2025-10: briefings/2025-10.md
+      - 2025-09: briefings/2025-09.md
+      - 2025-08: briefings/2025-08.md
     - 90-min Speed Read: speed-read.md
     - Foundation Models: foundation-models.md
     - Talk Prep — FMs to Virtual Cells:
