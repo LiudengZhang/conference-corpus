@@ -149,6 +149,12 @@ def main() -> int:
     jcon = sqlite3.connect(INDEX)
     base_docs = list(jcon.execute(
         "SELECT month, title FROM papers WHERE month BETWEEN ? AND ?", BASE))
+    # Deterministic half of the same year, used as the null predictor.
+    # Splitting on the PMID's last digit is stable across rebuilds; the
+    # script must not use randomness it cannot reproduce.
+    half_docs = list(jcon.execute(
+        "SELECT month, title FROM papers WHERE month BETWEEN ? AND ? "
+        "AND CAST(SUBSTR(pmid,-1) AS INTEGER) < 5", BASE))
     later_docs = list(jcon.execute(
         "SELECT month, title FROM papers WHERE month BETWEEN ? AND ?", LATER))
     all_docs = list(jcon.execute("SELECT month, title FROM papers"))
@@ -167,11 +173,13 @@ def main() -> int:
     print()
 
     jbase, _ = tally(base_docs)
+    jhalf, _ = tally(half_docs)
     jlater, _ = tally(later_docs)
     jall, jfirst = tally(all_docs)
     conf, _ = tally(conf_docs)
 
     n_base, n_later, n_conf = len(base_docs), len(later_docs), len(conf_docs)
+    n_half = len(half_docs)
 
     # ---- TEST A -------------------------------------------------------
     novel = {t for t, c in conf.items()
@@ -198,7 +206,8 @@ def main() -> int:
         rb = (jbase.get(t, 0) + 0.5) / n_base
         rl = (jlater.get(t, 0) + 0.5) / n_later
         rc = (conf.get(t, 0) + 0.5) / n_conf
-        rows.append((math.log(rc / rb), math.log(rl / rb), t))
+        rh = (jhalf.get(t, 0) + 0.5) / n_half
+        rows.append((math.log(rc / rb), math.log(rl / rb), t, math.log(rh / rb)))
 
     print("TEST B — does over-representation at the meetings predict journal growth?")
     print(f"  terms scored (>= {args.min_total} occurrences across both): {len(rows):,}")
@@ -207,7 +216,29 @@ def main() -> int:
         return 0
 
     rho = spearman([(r[0], r[1]) for r in rows])
-    print(f"  Spearman rho(conference excess, 2024->2026 journal growth) = {rho:+.3f}")
+    rho_null = spearman([(r[3], r[1]) for r in rows])
+    print(f"  rho(conference excess, 2024->2026 growth)  = {rho:+.3f}")
+    print(f"  rho(null: half of 2024 itself, same growth) = {rho_null:+.3f}")
+    print("    Both predictors carry the 2024 rate in their denominator, so a term")
+    print("    that was low in 2024 by chance scores high on excess AND on growth.")
+    print("    That artefact alone produces the null figure. Only the gap between")
+    print("    the two lines is evidence that the meeting knows anything.")
+    print()
+
+    # Stratified estimate: within a band of identical 2024 journal counts,
+    # the shared denominator is held fixed and cannot manufacture anything.
+    print("  Held-fixed check — within bands of equal 2024 journal frequency,")
+    print("  does the conference rate still rank the 2026 journal rate?")
+    print(f"    {'2024 journal titles':>22}  {'terms':>6}  {'rho':>7}")
+    bands = [(1, 2), (3, 5), (6, 12), (13, 30), (31, 10 ** 9)]
+    for lo, hi in bands:
+        band = [t for t in terms if lo <= jbase.get(t, 0) <= hi]
+        if len(band) < 40:
+            continue
+        pairs = [((conf.get(t, 0) + 0.5) / n_conf,
+                  (jlater.get(t, 0) + 0.5) / n_later) for t in band]
+        label = f"{lo}-{hi}" if hi < 10 ** 9 else f"{lo}+"
+        print(f"    {label:>22}  {len(band):6,}  {spearman(pairs):+7.3f}")
     print()
 
     rows.sort()
@@ -221,13 +252,15 @@ def main() -> int:
 
     print("  Most over-represented at the meetings, and what the journals did by 2026:")
     print(f"    {'term':38} {'conf':>5} {'j2024':>6} {'j2026':>6}  growth")
-    for excess, growth, t in sorted(top, key=lambda r: -r[0])[:25]:
+    for row in sorted(top, key=lambda r: -r[0])[:25]:
+        t, growth = row[2], row[1]
         print(f"    {t:38} {conf.get(t,0):5} {jbase.get(t,0):6} "
               f"{jlater.get(t,0):6}  x{math.exp(growth):5.2f}")
 
     print()
     print("  Biggest journal growth 2024->2026, and whether the meetings saw it:")
-    for excess, growth, t in sorted(rows, key=lambda r: -r[1])[:25]:
+    for row in sorted(rows, key=lambda r: -r[1])[:25]:
+        t, growth = row[2], row[1]
         seen = f"{conf.get(t,0):5}" if conf.get(t, 0) else "    -"
         print(f"    {t:38} {seen} {jbase.get(t,0):6} "
               f"{jlater.get(t,0):6}  x{math.exp(growth):5.2f}")
