@@ -99,14 +99,25 @@ def section_volume(con: sqlite3.Connection, month: str) -> str:
 
     # A month that swings hard against its neighbours usually means the
     # pipeline broke, not that the field went quiet. Surface it here.
-    others = [
-        r[0]
-        for r in con.execute(
-            "SELECT COUNT(*) FROM papers WHERE month!=? GROUP BY month", (month,)
-        )
-    ]
-    median = sorted(others)[len(others) // 2] if others else total
-    drift = (total - median) / median * 100 if median else 0
+    #
+    # Measured per domain, not on the total. Nucleic Acids Research publishes a
+    # ~200-paper database issue every January, which by itself pushes the corpus
+    # total 25-30% above the median and fires a warning that says "check the
+    # harvest" about the one month whose volume is completely explained. A
+    # warning that cries wolf every January is a warning nobody reads in July.
+    drift = {}
+    for d in DOMAINS:
+        cur = by_dom.get(d, 0)
+        others = [
+            r[0] for r in con.execute(
+                "SELECT COUNT(*) FROM papers WHERE month!=? AND domain=? GROUP BY month",
+                (month, d))
+        ]
+        if not others:
+            continue
+        median = sorted(others)[len(others) // 2]
+        if median:
+            drift[d] = (cur - median) / median * 100
 
     lines = [
         "## 1. What was read",
@@ -120,11 +131,15 @@ def section_volume(con: sqlite3.Connection, month: str) -> str:
         "| " + " | ".join(f"{by_dom.get(d, 0):,}" for d in DOMAINS) + " |",
         "",
     ]
-    if abs(drift) >= 25:
+    swung = {d: v for d, v in drift.items() if abs(v) >= 25}
+    if swung:
+        detail = ", ".join(f"{d} {v:+.0f}%" for d, v in sorted(swung.items()))
         lines += [
-            f"!!! warning \"Volume is {drift:+.0f}% against the median month\"",
+            f"!!! warning \"Volume swing against the median month: {detail}\"",
             "    Check the harvest before reading anything into this. A swing this size is "
-            "usually indexing lag or a broken query, not the field going quiet.",
+            "usually indexing lag or a broken query, not the field going quiet. The known "
+            "benign case is `bioinfo` every January, which carries the Nucleic Acids "
+            "Research database issue.",
             "",
         ]
     top = ", ".join(f"{j} {c}" for j, c in by_j[:6])

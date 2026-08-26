@@ -1830,3 +1830,1559 @@ evidence:
     pairs.
   title: >-
     End-to-end multimodal pathology foundation model with clinical dialogue
+
+- id: ev-2025-09-40530504
+  pmid: "40530504"
+  date: 2025-09-04
+  source: cancer-discovery
+  threads: [suppressive-population-inversion, next-gen-checkpoints]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    The cytotoxic NK compartment, engineered elsewhere as an effector chassis,
+    impedes checkpoint response in immune-excluded melanoma.
+  title: >-
+    Cytotoxic NK Cells Impede Response to Checkpoint Immunotherapy in Melanoma
+    with an Immune-Excluded Phenotype
+  companions: ["40904100"]
+
+- id: ev-2025-09-40530506
+  pmid: "40530506"
+  date: 2025-09-04
+  source: cancer-discovery
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    Tumour-associated NK cells drive a distinct CD8 differentiation programme
+    that contributes to checkpoint resistance — a second, independent claim in
+    the same issue.
+  title: >-
+    Tumor-associated NK Cells Regulate Distinct CD8+ T-cell Differentiation
+    Program in Cancer and Contribute to Resistance against Immune Checkpoint
+    Blockers
+
+- id: ev-2025-09-40929245
+  pmid: "40929245"
+  date: 2025-09-10
+  source: science-translational-medicine
+  threads: [immunotherapy-resistance, suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    A senescent CD8 state induced by interferon reduces anti-PD-1 efficacy, so
+    CD8 infiltration and interferon signature both fail as benefit predictors.
+  title: >-
+    Interferon-induced senescent CD8(+) T cells reduce anti-PD1 immunotherapy
+    efficacy in early triple-negative breast cancer
+
+- id: ev-2025-09-40954074
+  pmid: "40954074"
+  date: 2025-09-15
+  source: jitc
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    MAIT cells, proposed as innate-like antitumour effectors, promote
+    progression and Treg accumulation in bladder tumours.
+  title: >-
+    MAIT cells promote cancer progression and regulatory T cell accumulation
+    in bladder tumor microenvironment
+
+- id: ev-2025-10-40935830
+  pmid: "40935830"
+  date: 2025-10-01
+  source: nature-immunology
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    An activating cytokine signal recruits thymic NK cells that limit tissue
+    regeneration — activation of the effector produces the harm.
+  title: >-
+    Damage-induced IL-18 stimulates thymic NK cells limiting endogenous tissue
+    regeneration
+
+- id: ev-2025-10-41092896
+  pmid: "41092896"
+  date: 2025-10-14
+  source: immunity
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    Injury fibroblasts are not purely scar-forming; the title retracts the
+    premise that would justify targeting them.
+  title: >-
+    Fibroblasts are not so scar-y in brain injury
+
+- id: ev-2025-10-40700578
+  pmid: "40700578"
+  date: 2025-10-23
+  source: blood
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    MDSCs are administered as a therapy for GVHD rather than depleted as a
+    target — the suppressive population is the drug.
+  title: >-
+    Inflammasome-resistant IPSC-derived myeloid-derived suppressor cells
+    ameliorate xenogeneic graft-versus-host disease
+
+- id: ev-2025-11-41023479
+  pmid: "41023479"
+  date: 2025-11-01
+  source: nature-immunology
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    Plasmacytoid dendritic cells are dispensable, and in some settings
+    detrimental, in viral infection — the protective-type-I-IFN-source
+    assumption is retired in the title.
+  title: >-
+    Plasmacytoid dendritic cells are dispensable or detrimental in murine
+    systemic or respiratory viral infections
+  companions: ["41115933"]
+
+- id: ev-2025-11-41191775
+  pmid: "41191775"
+  date: 2025-11-05
+  source: science-translational-medicine
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    Depleting pDCs rescues HIV-reactive stem-like CD8 T cells: the therapeutic
+    direction on a supposedly protective population is removal.
+  title: >-
+    Depletion of plasmacytoid dendritic cells rescues HIV-reactive stem-like
+    CD8(+) T cells during chronic HIV-1 infection
+
+- id: ev-2025-11-41094201
+  pmid: "41094201"
+  date: 2025-11-01
+  source: nature-immunology
+  threads: [next-gen-checkpoints, suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    TIGIT, classified as co-inhibitory and pursued as a blockade target,
+    carries a tissue-protective function.
+  title: >-
+    The co-inhibitory receptor TIGIT promotes tissue-protective functions in T
+    cells
+
+- id: ev-2025-11-41136761
+  pmid: "41136761"
+  date: 2025-11-01
+  source: nature-immunology
+  threads: [next-gen-checkpoints, suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    A co-stimulatory signal runs through the receptor named coinhibitory —
+    TIGIT's assigned sign is wrong for at least one signalling mode.
+  title: >-
+    A co-stimulatory signal via the coinhibitory TIGIT
+
+- id: ev-2025-12-41272165
+  pmid: "41272165"
+  date: 2025-12-01
+  source: nature-immunology
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    Interferon-driven NK activation raises cytolysis of Tfh cells and lowers
+    the neutralising antibody response: the surrogate improves while the
+    protective endpoint worsens.
+  title: >-
+    Interferon-mediated NK cell activation increases cytolytic activity
+    against T follicular helper cells and limits antibody response to SARS-
+    CoV-2
+
+- id: ev-2025-11-40924026
+  pmid: "40924026"
+  date: 2025-11-03
+  source: jem
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    Gut regulatory T cells are required for host disease tolerance in
+    Salmonella superspreaders, so depleting the canonical suppressive
+    population worsens the host.
+  title: >-
+    Salmonella-superspreader hosts require gut regulatory T cells to maintain
+    a disease-tolerant state
+
+- id: ev-2025-12-41417925
+  pmid: "41417925"
+  date: 2025-12-19
+  source: science-immunology
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    Siglec-F+ neutrophils promote resolution of lung injury, so neutrophil
+    depletion removes a repair-promoting population.
+  title: >-
+    Siglec-F(+) neutrophils promote the resolution of acute lung injury
+    through ALOX15 induction
+
+- id: ev-2025-12-41371211
+  pmid: "41371211"
+  date: 2025-12-09
+  source: immunity
+  threads: [suppressive-population-inversion, immunotherapy-resistance]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    TET2 clonal haematopoiesis, treated as an adverse host factor, boosts
+    checkpoint therapy.
+  title: >-
+    A surprising link: TET2 clonal hematopoiesis boosts immune checkpoint
+    therapy
+
+- id: ev-2026-01-41106379
+  pmid: "41106379"
+  date: 2026-01-12
+  source: cancer-cell
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    TET2-mutant clonal haematopoiesis enhances macrophage antigen presentation
+    and improves checkpoint therapy — a state assumed deleterious is
+    protective.
+  title: >-
+    TET2-mutant clonal hematopoiesis enhances macrophage antigen presentation
+    and improves immune checkpoint therapy in solid tumors
+  companions: ["41349544"]
+
+- id: ev-2026-01-41401810
+  pmid: "41401810"
+  date: 2026-01-13
+  source: immunity
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    Distinct regulatory T cell subsets have opposing functions in colorectal
+    cancer, so depleting the Treg pool removes an antitumour subset with it.
+  title: >-
+    Opposing functions of distinct regulatory T cell subsets in colorectal
+    cancer
+
+- id: ev-2025-12-41423265
+  pmid: "41423265"
+  date: 2025-12-21
+  source: jitc
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    A CCR4-directed Treg-depleting bispecific advertises 'without inducing
+    systemic toxicity' in its own title — the carve-out concedes that systemic
+    Treg depletion causes harm.
+  title: >-
+    Anti-HER2×CCR4 bispecific antibody enhances antitumor immunity in advanced
+    HER2-positive tumors by chemotaxis blockade and depletion of tumor-
+    associated Tregs, without inducing systemic toxicity
+
+- id: ev-2025-12-41258436
+  pmid: "41258436"
+  date: 2025-12-01
+  source: nature-immunology
+  threads: [next-gen-checkpoints, suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    CD47 induces T cell exhaustion via thrombospondin-1, relocating its
+    relevant function off the macrophage don't-eat-me axis the failed phase 3
+    programme was built on.
+  title: >-
+    CD47 induces T cell exhaustion through interaction with thrombospondin-1
+  companions: ["41249483"]
+
+- id: ev-2025-12-41372473
+  pmid: "41372473"
+  date: 2025-12-01
+  source: nature-cancer
+  threads: [foundation-models]
+  stance: refutes
+  type: meta
+  claim: >-
+    Oncology foundation models win benchmarks and miss the clinic — the
+    divergence criterion stated in a title rather than inferred from one.
+  title: >-
+    Foundation models in oncology win benchmarks but miss the clinic
+
+- id: ev-2025-12-41102561
+  pmid: "41102561"
+  date: 2025-12-01
+  source: nature-medicine
+  threads: [foundation-models]
+  stance: refutes
+  type: benchmark
+  claim: >-
+    A frontier model is named and called brittle on medical tasks: benchmark
+    performance does not transfer.
+  title: >-
+    The fragile intelligence of GPT-5 in medicine
+
+- id: ev-2025-10-40931098
+  pmid: "40931098"
+  date: 2025-10-01
+  source: nature-computational-science
+  threads: [foundation-models]
+  stance: refutes
+  type: benchmark
+  claim: >-
+    Vision-language models excel at perception and fail at scientific
+    reasoning — a capability boundary on the step agentic systems depend on.
+  title: >-
+    Vision language models excel at perception but struggles with scientific
+    reasoning
+
+- id: ev-2025-10-40789967
+  pmid: "40789967"
+  date: 2025-10-01
+  source: nature-computational-science
+  threads: [foundation-models]
+  stance: refutes
+  type: benchmark
+  claim: >-
+    Multimodal language models are probed for limitations in chemistry and
+    materials research, with the limitation claim in the title.
+  title: >-
+    Probing the limitations of multimodal language models for chemistry and
+    materials research
+
+- id: ev-2025-10-41023433
+  pmid: "41023433"
+  date: 2025-10-01
+  source: nature-methods
+  threads: [foundation-models]
+  stance: refutes
+  type: benchmark
+  claim: >-
+    Nature Methods asks what a protein language model actually knows — the
+    question is the finding.
+  title: >-
+    What does a language model know about proteins?
+
+- id: ev-2025-11-41131148
+  pmid: "41131148"
+  date: 2025-11-01
+  source: nature-biotechnology
+  threads: [foundation-models]
+  stance: refutes
+  type: meta
+  claim: >-
+    Single-cell LLMs face substantive barriers to adoption, published in the
+    same month the vocabulary reached these journals.
+  title: >-
+    Overcoming barriers to the wide adoption of single-cell large language
+    models in biomedical research
+
+- id: ev-2025-08-40460825
+  pmid: "40460825"
+  date: 2025-08-07
+  source: cell
+  threads: [foundation-models, method-credibility]
+  stance: refutes
+  type: benchmark
+  claim: >-
+    Structure-to-function prediction from connectomes fails where rare strong
+    synapses dominate.
+  title: >-
+    Infrequent strong connections constrain connectomic predictions of
+    neuronal function
+
+- id: ev-2025-10-40877476
+  pmid: "40877476"
+  date: 2025-10-01
+  source: nature-medicine
+  threads: [foundation-models]
+  stance: supports
+  type: clinical-readout
+  claim: >-
+    A domain foundation model is taken to a randomized controlled trial — the
+    first in this corpus to clear a randomized bar.
+  title: >-
+    An eyecare foundation model for clinical assistance: a randomized
+    controlled trial
+
+- id: ev-2025-11-41193692
+  pmid: "41193692"
+  date: 2025-11-01
+  source: nature-medicine
+  threads: [foundation-models]
+  stance: supports
+  type: new-modality
+  claim: >-
+    A multimodal whole-slide pathology foundation model reaches clinical
+    grade.
+  title: >-
+    A multimodal whole-slide foundation model for pathology
+
+- id: ev-2025-09-40739342
+  pmid: "40739342"
+  date: 2025-09-01
+  source: nature
+  threads: [foundation-models]
+  stance: supports
+  type: new-modality
+  claim: >-
+    A sequence foundation model designs functional genome editors — generative
+    biology validated by function, not benchmark.
+  title: >-
+    Design of highly functional genome editors by modelling CRISPR-Cas
+    sequences
+
+- id: ev-2025-11-40963019
+  pmid: "40963019"
+  date: 2025-11-01
+  source: nature
+  threads: [foundation-models]
+  stance: supports
+  type: new-modality
+  claim: >-
+    Generative transformers model whole-life disease trajectories: the
+    virtual-patient analogue of the virtual cell.
+  title: >-
+    Learning the natural history of human disease with generative transformers
+
+- id: ev-2025-12-41168487
+  pmid: "41168487"
+  date: 2025-12-01
+  source: nature-methods
+  threads: [foundation-models]
+  stance: supports
+  type: new-modality
+  claim: >-
+    Nicheformer pretrains jointly on single-cell and spatial omics, the
+    substrate a virtual-cell claim requires.
+  title: >-
+    Nicheformer: a foundation model for single-cell and spatial omics
+
+- id: ev-2025-12-41360943
+  pmid: "41360943"
+  date: 2025-12-01
+  source: nature-methods
+  threads: [foundation-models]
+  stance: neutral
+  type: meta
+  claim: >-
+    Nature Methods runs a research highlight titled 'The virtual cell' —
+    twelve months after the Cell challenge, the vocabulary lands in-journal
+    alongside the models and the skepticism.
+  title: >-
+    The virtual cell
+  companions: ["41360947"]
+
+- id: ev-2025-12-41372623
+  pmid: "41372623"
+  date: 2025-12-01
+  source: nature-methods
+  threads: [foundation-models]
+  stance: supports
+  type: new-modality
+  claim: >-
+    A foundation model built for spatial transcriptomics rather than
+    retrofitted from single-cell RNA.
+  title: >-
+    Novae: a graph-based foundation model for spatial transcriptomics data
+
+- id: ev-2025-11-40999099
+  pmid: "40999099"
+  date: 2025-11-01
+  source: nature-methods
+  threads: [foundation-models]
+  stance: supports
+  type: new-modality
+  claim: >-
+    The first single-cell foundation model in this corpus to move off RNA onto
+    chromatin accessibility.
+  title: >-
+    EpiAgent: foundation model for single-cell epigenomics
+
+- id: ev-2025-12-39747647
+  pmid: "39747647"
+  date: 2025-12-01
+  source: nature-biotechnology
+  threads: [foundation-models]
+  stance: supports
+  type: new-modality
+  claim: >-
+    A DNA language model conditioned on multispecies alignment predicts
+    genome-wide variant effects.
+  title: >-
+    A DNA language model based on multispecies alignment predicts the effects
+    of genome-wide variants
+
+- id: ev-2025-10-41099710
+  pmid: "41099710"
+  date: 2025-10-14
+  source: nar
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Functional microRNA targeting occurs without seed pairing — the rule
+    underneath essentially every miRNA target-prediction algorithm.
+  title: >-
+    Functional microRNA targeting without seed pairing
+
+- id: ev-2025-10-41039119
+  pmid: "41039119"
+  date: 2025-10-01
+  source: nature-methods
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Reference-genome choice is a first-order confound, stated as an
+    instruction rather than a caveat.
+  title: >-
+    Choose your human genome reference wisely
+  companions: ["41094588"]
+
+- id: ev-2025-11-40987293
+  pmid: "40987293"
+  date: 2025-11-26
+  source: cell
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Population-genetic conclusions are an artifact of which reference genome
+    was used.
+  title: >-
+    Reference genome choice compromises population genetic analyses
+
+- id: ev-2025-12-41331675
+  pmid: "41331675"
+  date: 2025-12-03
+  source: genome-biology
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    CRISPR-Cas9 double-strand breaks disrupt maintenance of epigenetic
+    information, confounding every CRISPR-based epigenetic experiment.
+  title: >-
+    CRISPR-Cas9-induced double-strand breaks disrupt maintenance of epigenetic
+    information
+
+- id: ev-2025-11-41196998
+  pmid: "41196998"
+  date: 2025-11-06
+  source: science
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Successful double-strand-break repair still leaves heritable impairment to
+    genome function — a safety assumption under every DSB-based platform.
+  title: >-
+    Repair of DNA double-strand breaks leaves heritable impairment to genome
+    function
+
+- id: ev-2025-11-39604565
+  pmid: "39604565"
+  date: 2025-11-01
+  source: nature-biotechnology
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    A widely adopted HDR-enhancing editing protocol causes large-scale genomic
+    alterations.
+  title: >-
+    Genome editing with the HDR-enhancing DNA-PKcs inhibitor AZD7648 causes
+    large-scale genomic alterations
+
+- id: ev-2025-09-41020501
+  pmid: "41020501"
+  date: 2025-09-23
+  source: nar
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Stable Cas9 expression alters cell growth independently of editing — a
+    confound in a ubiquitous reagent.
+  title: >-
+    Stable Cas9 expression regulates cell growth by facilitating mTORC2
+    activation
+
+- id: ev-2025-09-40966510
+  pmid: "40966510"
+  date: 2025-09-05
+  source: nar
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    AsCas12a tolerates insertions in target DNA, narrowing an assumed
+    specificity.
+  title: >-
+    AsCas12a tolerates insertions in target DNA
+
+- id: ev-2025-10-41053835
+  pmid: "41053835"
+  date: 2025-10-06
+  source: genome-biology
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Epistasis can manufacture synthetic associations, so mapped GWAS signals
+    need not mark causal variants.
+  title: >-
+    Potential synthetic associations created by epistasis
+
+- id: ev-2025-10-41028524
+  pmid: "41028524"
+  date: 2025-10-01
+  source: nature-genetics
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Genetic effects on disease susceptibility barely overlap effects on
+    survival — susceptibility scores do not transfer to prognosis.
+  title: >-
+    Limited overlap between genetic effects on disease susceptibility and
+    disease survival
+
+- id: ev-2025-12-41061703
+  pmid: "41061703"
+  date: 2025-12-11
+  source: cell
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Ascertainment, not biology alone, produces the variable expressivity
+    reported for complex disorders.
+  title: >-
+    Genetic modifiers and ascertainment drive variable expressivity of complex
+    disorders
+
+- id: ev-2025-11-39592777
+  pmid: "39592777"
+  date: 2025-11-01
+  source: nature-biotechnology
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Standard single-cell batch integration destroys real biological signal;
+    the whole correction class over-corrects.
+  title: >-
+    Recovery of biological signals lost in single-cell batch integration with
+    CellANOVA
+
+- id: ev-2025-11-40973498
+  pmid: "40973498"
+  date: 2025-11-03
+  source: genome-research
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Systematic biases sit in RNA-seq data itself, upstream of any analysis
+    method.
+  title: >-
+    Deep structural clustering reveals hidden systematic biases in RNA
+    sequencing data
+
+- id: ev-2025-10-41137035
+  pmid: "41137035"
+  date: 2025-10-24
+  source: genome-biology
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Whole-genome sequencing analyses carry major uncorrected multicopy-region
+    biases.
+  title: >-
+    ParaMask: a new method to identify multicopy genomic regions, corrects
+    major biases in whole-genome sequencing data
+
+- id: ev-2025-09-40923760
+  pmid: "40923760"
+  date: 2025-09-05
+  source: nar
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Better tandem-repeat detection exposes ubiquitous sequence reuse that
+    standard pipelines miss.
+  title: >-
+    Accurate detection of tandem repeats exposes ubiquitous reuse of
+    biological sequences
+
+- id: ev-2025-09-40963104
+  pmid: "40963104"
+  date: 2025-09-17
+  source: genome-biology
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    scATAC-seq analysis discards finer-resolution information and has
+    unresolved challenges, in a modality most methods treat as solved.
+  title: >-
+    A hierarchical, count-based model highlights challenges in scATAC-seq data
+    analysis and points to opportunities to extract finer-resolution
+    information
+
+- id: ev-2025-11-41459750
+  pmid: "41459750"
+  date: 2025-11-26
+  source: nar
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    BRD4 reads histone acetylation modestly and non-selectively, against
+    selective acetyl-mark recognition.
+  title: >-
+    The BRD4-nucleosome interaction is enhanced modestly and non-selectively
+    by histone acetylation
+
+- id: ev-2025-11-41232507
+  pmid: "41232507"
+  date: 2025-11-12
+  source: cell-genomics
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    DNA methylation encodes gene activity as a dimmer, not a binary switch.
+  title: >-
+    The dimmer switch in epigenetics: How DNA methylation encodes gene
+    activity over time
+  companions: ["40930103"]
+
+- id: ev-2025-11-40864493
+  pmid: "40864493"
+  date: 2025-11-03
+  source: jem
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Dominant-negative ADA2 mutations cause disease in heterozygous carriers,
+    overturning the recessive-inheritance assumption.
+  title: >-
+    Dominant negative ADA2 mutations cause ADA2 deficiency in heterozygous
+    carriers
+
+- id: ev-2025-10-40866696
+  pmid: "40866696"
+  date: 2025-10-01
+  source: nature
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Haematopoietic stem cell number is not solely defined by niche
+    availability.
+  title: >-
+    Haematopoietic stem cell number is not solely defined by niche
+    availability
+
+- id: ev-2025-10-40818455
+  pmid: "40818455"
+  date: 2025-10-30
+  source: cell
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    RNA Pol II inhibition kills cells independently of transcriptional loss,
+    reinterpreting the mechanism of a drug class.
+  title: >-
+    RNA Pol II inhibition activates cell death independently from the loss of
+    transcription
+
+- id: ev-2025-09-40715786
+  pmid: "40715786"
+  date: 2025-09-01
+  source: nature-computational-science
+  threads: [method-credibility, agentic-ai]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Over-reliance on AI code assistants is named as a threat to scientific
+    software.
+  title: >-
+    Threats to scientific software from over-reliance on AI code assistants
+
+- id: ev-2025-12-41411417
+  pmid: "41411417"
+  date: 2025-12-18
+  source: science
+  threads: [method-credibility, agentic-ai]
+  stance: refutes
+  type: meta
+  claim: >-
+    Large language models are documented as distorting scientific production
+    itself.
+  title: >-
+    Scientific production in the era of large language models
+
+- id: ev-2025-10-40963011
+  pmid: "40963011"
+  date: 2025-10-01
+  source: nature
+  threads: [agentic-ai, method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Delegating to AI increases dishonest behaviour — an experimental negative
+    against the neutral-tool assumption.
+  title: >-
+    Delegation to artificial intelligence can increase dishonest behaviour
+
+- id: ev-2025-12-41205600
+  pmid: "41205600"
+  date: 2025-12-24
+  source: cell
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Transgene immunogenicity confounded CRISPR screens in immunocompetent
+    mice, concealing metastasis regulators.
+  title: >-
+    StealTHY: An immunogen-free CRISPR platform to expose concealed metastasis
+    regulators in immunocompetent models
+
+- id: ev-2025-08-40739362
+  pmid: "40739362"
+  date: 2025-08-01
+  source: nature
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Retraction of the Parkin/PINK1 restraint on STING-induced inflammation.
+  title: >-
+    Retraction Note: Parkin and PINK1 mitigate STING-induced inflammation
+
+- id: ev-2025-08-40634621
+  pmid: "40634621"
+  date: 2025-08-01
+  source: nature
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Retraction of the fetal cerebellar atlas that assigned medulloblastoma its
+    cell of origin.
+  title: >-
+    Retraction Note: Human fetal cerebellar cell atlas informs medulloblastoma
+    origin and oncogenesis
+
+- id: ev-2025-09-40866714
+  pmid: "40866714"
+  date: 2025-09-01
+  source: nature
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Retraction of the agonist-bound CB1 crystal structures.
+  title: >-
+    Retraction Note: Crystal structures of agonist-bound human cannabinoid
+    receptor CB(1)
+
+- id: ev-2025-09-40966347
+  pmid: "40966347"
+  date: 2025-09-18
+  source: science
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Retraction of live-imaging claims about kinetic genome organization.
+  title: >-
+    RETRACTED: Kinetic organization of the genome revealed by ultraresolution
+    multiscale live imaging
+
+- id: ev-2025-11-41162716
+  pmid: "41162716"
+  date: 2025-11-01
+  source: nature
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Retraction of sFRP2 in the aged microenvironment as a driver of melanoma
+    metastasis and therapy resistance.
+  title: >-
+    Retraction Note: sFRP2 in the aged microenvironment drives melanoma
+    metastasis and therapy resistance
+
+- id: ev-2025-11-41232001
+  pmid: "41232001"
+  date: 2025-11-13
+  source: science
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Retraction of the phylogenomic placement of sponges at the root of the
+    animal tree.
+  title: >-
+    RETRACTED: Integrative phylogenomics positions sponges at the root of the
+    animal tree
+
+- id: ev-2025-12-41344327
+  pmid: "41344327"
+  date: 2025-12-24
+  source: cell
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Retraction of the transcriptome-scale Cas13 screen catalogue of essential
+    lncRNAs.
+  title: >-
+    Retraction notice to: Transcriptome-scale RNA-targeting CRISPR screens
+    reveal essential lncRNAs in human cells
+
+- id: ev-2025-12-41327972
+  pmid: "41327972"
+  date: 2025-12-02
+  source: cancer-discovery
+  threads: [method-credibility, immunotherapy-resistance]
+  stance: refutes
+  type: refutation
+  claim: >-
+    An Editor's Note attaches to a foundational longitudinal ICB immune-
+    signature and resistance paper.
+  title: >-
+    Editor's Note: Analysis of Immune Signatures in Longitudinal Tumor Samples
+    Yields Insight into Biomarkers of Response and Mechanisms of Resistance to
+    Immune Checkpoint Blockade
+
+- id: ev-2025-08-40659786
+  pmid: "40659786"
+  date: 2025-08-01
+  source: nature
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Microbiota-driven antitumour immunity is given a cellular mechanism —
+    dendritic cell migration — instead of a taxonomic correlation.
+  title: >-
+    Microbiota-driven antitumour immunity mediated by dendritic cell migration
+
+- id: ev-2025-09-40702192
+  pmid: "40702192"
+  date: 2025-09-01
+  source: nature
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Gut sensory epithelium detects a conserved microbial pattern and changes
+    feeding behaviour.
+  title: >-
+    A gut sense for a microbial pattern regulates feeding
+
+- id: ev-2025-09-40670786
+  pmid: "40670786"
+  date: 2025-09-01
+  source: nature
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    A microbial metabolite is promoted from correlate to driver and
+    therapeutic target outside metabolic disease.
+  title: >-
+    Imidazole propionate is a driver and therapeutic target in atherosclerosis
+
+- id: ev-2025-09-40627379
+  pmid: "40627379"
+  date: 2025-09-01
+  source: jem
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    A named gut-microbial metabolite modulates CNS graft-versus-host disease.
+  title: >-
+    Gut microbiota-derived TMAVA is a modulator of acute CNS-GVHD
+
+- id: ev-2025-09-40828134
+  pmid: "40828134"
+  date: 2025-09-01
+  source: jem
+  threads: [neuro-immune-microbiome-axis]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    Antibiotic-driven microbiome depletion is not an inert manipulation — it
+    unleashes neuroinflammation.
+  title: >-
+    Antibiotics unleash neuroinflammation
+
+- id: ev-2025-10-40903586
+  pmid: "40903586"
+  date: 2025-10-01
+  source: nature
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    An amygdala-to-liver circuit orchestrates the glycaemic response to
+    stress.
+  title: >-
+    Amygdala-liver signalling orchestrates glycaemic responses to stress
+
+- id: ev-2025-10-40866704
+  pmid: "40866704"
+  date: 2025-10-01
+  source: nature
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Maternal stress writes a durable barrier-immune phenotype into fetal mast
+    cells: the axis operating across generations.
+  title: >-
+    Maternal stress triggers early-life eczema through fetal mast cell
+    programming
+
+- id: ev-2025-10-40914152
+  pmid: "40914152"
+  date: 2025-10-14
+  source: immunity
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Sensory neurons set local macrophage identity via TGF-beta — neuronal
+    control of a tissue immune cell's identity programme.
+  title: >-
+    Sensory neurons shape local macrophage identity via TGF-β signaling
+
+- id: ev-2025-10-41166460
+  pmid: "41166460"
+  date: 2025-10-30
+  source: science
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Enteric nervous system responses to microbiota and type 2 inflammation are
+    mapped with regional resolution — all three arms in one title.
+  title: >-
+    Regional encoding of enteric nervous system responses to microbiota and
+    type 2 inflammation
+
+- id: ev-2025-10-40639377
+  pmid: "40639377"
+  date: 2025-10-02
+  source: cell
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    An exercise-induced microbiota metabolite enhances CD8 antitumour immunity
+    and immunotherapy efficacy.
+  title: >-
+    Exercise-induced microbiota metabolite enhances CD8 T cell antitumor
+    immunity promoting immunotherapy efficacy
+
+- id: ev-2025-10-40780194
+  pmid: "40780194"
+  date: 2025-10-16
+  source: cell
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Vagal blockade of the brain-liver axis deters cancer cachexia — neural
+    interruption as therapy.
+  title: >-
+    Vagal blockade of the brain-liver axis deters cancer-associated cachexia
+
+- id: ev-2025-11-41138728
+  pmid: "41138728"
+  date: 2025-11-26
+  source: cell
+  threads: [neuro-immune-microbiome-axis, immunotherapy-resistance]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Tumours co-opt an inter-organ neuroimmune circuit to escape immune
+    surveillance, moving the axis from homeostasis into evasion.
+  title: >-
+    Cancer cells co-opt an inter-organ neuroimmune circuit to escape immune
+    surveillance
+
+- id: ev-2025-11-41005305
+  pmid: "41005305"
+  date: 2025-11-10
+  source: cancer-cell
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Diet to microbiome to metabolite to CNS tumour in a single causal chain.
+  title: >-
+    Ketogenic diet inhibits glioma progression by promoting gut microbiota-
+    derived butyrate production
+
+- id: ev-2025-11-40841473
+  pmid: "40841473"
+  date: 2025-11-01
+  source: nature-cancer
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Colorectal cancer hijacks a named brain-to-gut polysynaptic circuit, with
+    a second independent statement of the same result in the same issue.
+  title: >-
+    Colorectal cancer cells hijack a brain-gut polysynaptic circuit from the
+    lateral septum to enteric neurons to sustain tumor growth
+  companions: ["41057693"]
+
+- id: ev-2025-11-40829591
+  pmid: "40829591"
+  date: 2025-11-10
+  source: cancer-cell
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Long-range cholinergic input promotes glioblastoma, adding a third named
+    neurotransmitter axis in glioma.
+  title: >-
+    Long-range cholinergic input promotes glioblastoma progression
+
+- id: ev-2025-11-41187761
+  pmid: "41187761"
+  date: 2025-11-11
+  source: immunity
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Microbiota butyrate drives a FOXO1 stemness programme in CD8 T cells and
+    preserves antitumour immunity.
+  title: >-
+    Microbiota-derived butyrate promotes a FOXO1-induced stemness program and
+    preserves CD8(+) T cell immunity against melanoma
+
+- id: ev-2025-12-41286456
+  pmid: "41286456"
+  date: 2025-12-01
+  source: nature-immunology
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Neuroepithelial VIP-VIPR1 wiring differentially controls enteric type 1
+    and type 2 immunity, with a companion placing the same node upstream in
+    the epithelial stem compartment.
+  title: >-
+    Neuroepithelial VIP-VIPR1 interactions differentially control enteric type
+    1 and type 2 immunity
+  companions: ["41286457"]
+
+- id: ev-2025-12-41005304
+  pmid: "41005304"
+  date: 2025-12-08
+  source: cancer-cell
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Sensory neurons form glutamatergic pseudo-synapses with pancreatic cancer
+    cells — a physical neuron-tumour synapse outside the CNS.
+  title: >-
+    Sensory neurons drive pancreatic cancer progression through glutamatergic
+    neuron-cancer pseudo-synapses
+
+- id: ev-2025-11-40742298
+  pmid: "40742298"
+  date: 2025-11-03
+  source: cancer-discovery
+  threads: [neuro-immune-microbiome-axis]
+  stance: refutes
+  type: mechanism
+  claim: >-
+    A common dietary sweetener ablates immunotherapy response through
+    microbiome disruption, making diet a confounder in every checkpoint trial
+    rather than a neutral background.
+  title: >-
+    Sucralose Consumption Ablates Cancer Immunotherapy Response through
+    Microbiome Disruption
+
+- id: ev-2025-12-41372481
+  pmid: "41372481"
+  date: 2025-12-01
+  source: nature-cancer
+  threads: [neuro-immune-microbiome-axis]
+  stance: neutral
+  type: meta
+  claim: >-
+    Cancer neuroscience is surveyed as a field, which is what consolidation
+    looks like.
+  title: >-
+    Key developments in the cancer neuroscience field
+  companions: ["40712566"]
+
+- id: ev-2025-10-40902135
+  pmid: "40902135"
+  date: 2025-10-10
+  source: jco
+  threads: [next-gen-checkpoints]
+  stance: refutes
+  type: clinical-readout
+  claim: >-
+    SMAC mimetics accelerate progression in locally advanced head and neck
+    cancer — the class made outcomes worse, not merely failed.
+  title: >-
+    Second Mitochondrial Activator of Caspases Mimetics Accelerate Progression
+    of Locally Advanced Head and Neck Cancer
+  companions: ["40902136"]
+
+- id: ev-2025-11-41167211
+  pmid: "41167211"
+  date: 2025-11-01
+  source: lancet-oncology
+  threads: [clinical-practice]
+  stance: refutes
+  type: clinical-readout
+  claim: >-
+    The editorial title states the null outright for abemaciclib plus
+    abiraterone in mCRPC.
+  title: >-
+    CYCLONE 2: no impact on prostate cancer forecast
+  companions: ["41167216"]
+
+- id: ev-2025-10-41045939
+  pmid: "41045939"
+  date: 2025-10-11
+  source: lancet
+  threads: [clinical-practice]
+  stance: refutes
+  type: clinical-readout
+  claim: >-
+    A Lancet editorial titles MS-STAT2 a negative trial, removing the
+    inference step.
+  title: >-
+    MS-STAT2: lessons from negative trials in multiple sclerosis
+
+- id: ev-2025-09-40760354
+  pmid: "40760354"
+  date: 2025-09-01
+  source: nature-medicine
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  claim: >-
+    Education does not affect memory decline or brain ageing, against the
+    cognitive-reserve claim.
+  title: >-
+    Education does not affect memory decline or brain aging
+  companions: ["40721513"]
+
+- id: ev-2025-10-40730228
+  pmid: "40730228"
+  date: 2025-10-01
+  source: nature
+  threads: [agentic-ai]
+  stance: supports
+  type: new-modality
+  claim: >-
+    A multi-agent LLM team designs nanobodies that are validated at the bench.
+  title: >-
+    The Virtual Lab of AI agents designs new SARS-CoV-2 nanobodies
+
+- id: ev-2025-11-40930092
+  pmid: "40930092"
+  date: 2025-11-13
+  source: cell
+  threads: [agentic-ai]
+  stance: supports
+  type: new-modality
+  claim: >-
+    An AI system reproduces an experimental mechanism, published alongside the
+    wet-lab paper that confirms it.
+  title: >-
+    AI mirrors experimental science to uncover a mechanism of gene transfer
+    crucial to bacterial evolution
+
+- id: ev-2025-11-41129612
+  pmid: "41129612"
+  date: 2025-11-27
+  source: science
+  threads: [agentic-ai]
+  stance: supports
+  type: new-modality
+  claim: >-
+    A closed-loop active-learning framework proposes and tests modulators of
+    disease phenotypes.
+  title: >-
+    Active learning framework leveraging transcriptomics identifies modulators
+    of disease phenotypes
+
+- id: ev-2025-10-40835791
+  pmid: "40835791"
+  date: 2025-10-01
+  source: nature-computational-science
+  threads: [agentic-ai]
+  stance: supports
+  type: new-modality
+  claim: >-
+    A knowledge-graph-driven agent orchestrates multiple scientific tools.
+  title: >-
+    SciToolAgent: a knowledge-graph-driven scientific agent for multitool
+    integration
+
+- id: ev-2025-12-41360947
+  pmid: "41360947"
+  date: 2025-12-01
+  source: nature-methods
+  threads: [agentic-ai]
+  stance: neutral
+  type: meta
+  claim: >-
+    Nature Methods recognises AI agents as a method category in biology.
+  title: >-
+    Artificial intelligence agents for biology
+
+- id: ev-2025-12-41348860
+  pmid: "41348860"
+  date: 2025-12-05
+  source: science-immunology
+  threads: [agentic-ai]
+  stance: neutral
+  type: meta
+  claim: >-
+    The first appearance of AI-as-discovery-agent framing in the immunology
+    journals, eleven months after it entered the general and methods journals
+    — and it arrives as an assessment, not a result.
+  title: >-
+    Assessing AI's cognitive abilities for scientific discovery in the field
+    of systems vaccinology
+
+- id: ev-2025-12-41476115
+  pmid: "41476115"
+  date: 2025-12-31
+  source: nature-methods
+  threads: [agentic-ai]
+  stance: refutes
+  type: meta
+  claim: >-
+    The limiting factor for autonomous instruments is named as missing data
+    and metadata rather than model capability.
+  title: >-
+    The missing data for intelligent scientific instruments
+
+- id: ev-2025-09-40402478
+  pmid: "40402478"
+  date: 2025-09-04
+  source: cancer-discovery
+  threads: [interception]
+  stance: supports
+  type: new-modality
+  claim: >-
+    Cancers are detected in plasma cell-free DNA three years before diagnosis.
+  title: >-
+    Detection of Cancers Three Years prior to Diagnosis Using Plasma Cell-Free
+    DNA
+
+- id: ev-2025-09-40961426
+  pmid: "40961426"
+  date: 2025-09-18
+  source: nejm
+  threads: [interception]
+  stance: supports
+  type: clinical-readout
+  claim: >-
+    Biomarker-selected chemoprevention with a generic drug in PI3K-altered
+    localized colorectal cancer.
+  title: >-
+    Low-Dose Aspirin for PI3K-Altered Localized Colorectal Cancer
+
+- id: ev-2025-10-40897974
+  pmid: "40897974"
+  date: 2025-10-01
+  source: nature-medicine
+  threads: [interception]
+  stance: supports
+  type: clinical-readout
+  claim: >-
+    Dormant tumour cells are targeted to prevent recurrence in a randomized
+    phase 2 — dormancy itself as the interception target.
+  title: >-
+    Targeting dormant tumor cells to prevent recurrent breast cancer: a
+    randomized phase 2 trial
+
+- id: ev-2025-12-41193807
+  pmid: "41193807"
+  date: 2025-12-01
+  source: nature
+  threads: [interception]
+  stance: supports
+  type: clinical-readout
+  claim: >-
+    Anti-progestin therapy targets hallmarks of breast cancer risk in the
+    normal-risk breast rather than a lesion.
+  title: >-
+    Anti-progestin therapy targets hallmarks of breast cancer risk
+
+- id: ev-2025-11-41125896
+  pmid: "41125896"
+  date: 2025-11-01
+  source: nature
+  threads: [neoantigen-vaccines, interception]
+  stance: supports
+  type: mechanism
+  claim: >-
+    SARS-CoV-2 mRNA vaccines sensitize tumours to checkpoint blockade,
+    sidestepping personalization entirely.
+  title: >-
+    SARS-CoV-2 mRNA vaccines sensitize tumours to immune checkpoint blockade
+
+- id: ev-2025-09-40521799
+  pmid: "40521799"
+  date: 2025-09-25
+  source: nejm
+  threads: [ctdna-mrd]
+  stance: supports
+  type: clinical-readout
+  claim: >-
+    Measurable residual disease is the randomization and stopping rule, not a
+    prognostic annotation.
+  title: >-
+    Measurable Residual Disease-Guided Therapy for Chronic Lymphocytic
+    Leukemia
+
+- id: ev-2025-12-41337735
+  pmid: "41337735"
+  date: 2025-12-18
+  source: nejm
+  threads: [clinical-practice]
+  stance: refutes
+  type: clinical-readout
+  claim: >-
+    One HPV vaccine dose is non-inferior to two — population-scale de-
+    escalation with immediate policy consequence.
+  title: >-
+    Noninferiority of One HPV Vaccine Dose to Two Doses
+
+- id: ev-2025-10-40993398
+  pmid: "40993398"
+  date: 2025-10-01
+  source: nature
+  threads: [cell-therapy]
+  stance: supports
+  type: mechanism
+  claim: >-
+    CAR-T enhancements are discovered by systematic CRISPR screen rather than
+    one gene at a time.
+  title: >-
+    Systematic discovery of CRISPR-boosted CAR T cell immunotherapies
+
+- id: ev-2025-09-40804519
+  pmid: "40804519"
+  date: 2025-09-01
+  source: nature
+  threads: [cell-therapy, next-gen-checkpoints]
+  stance: supports
+  type: mechanism
+  claim: >-
+    Synthetic cytokine receptors reprogram T cells into diverse states — a
+    programmable successor axis to antibody checkpoints.
+  title: >-
+    Expanding the cytokine receptor alphabet reprograms T cells into diverse
+    states
+
+- id: ev-2025-11-41101309
+  pmid: "41101309"
+  date: 2025-11-13
+  source: cell
+  threads: [cell-therapy]
+  stance: supports
+  type: clinical-readout
+  claim: >-
+    CAR-T is pushed into progressive multiple sclerosis, well beyond the lupus
+    and myositis wave.
+  title: >-
+    Anti-BCMA CAR-T therapy in patients with progressive multiple sclerosis
+
+- id: ev-2025-11-40993243
+  pmid: "40993243"
+  date: 2025-11-01
+  source: nature-medicine
+  threads: [cell-therapy]
+  stance: supports
+  type: clinical-readout
+  claim: >-
+    Dual CD19 and BCMA CAR-T co-infusion in treatment-refractory lupus.
+  title: >-
+    Co-infusion of CD19-targeting and BCMA-targeting CAR-T cells for
+    treatment-refractory systemic lupus erythematosus: a phase 1 trial
+
+- id: ev-2025-10-40903587
+  pmid: "40903587"
+  date: 2025-10-01
+  source: nature
+  threads: [single-cell-3d-genome]
+  stance: supports
+  type: new-modality
+  claim: >-
+    DNA methylome and transcriptome are profiled spatially in the same tissue
+    section.
+  title: >-
+    Spatial joint profiling of DNA methylome and transcriptome in tissues
+
+- id: ev-2025-11-41038164
+  pmid: "41038164"
+  date: 2025-11-26
+  source: cell
+  threads: [single-cell-3d-genome]
+  stance: supports
+  type: new-modality
+  claim: >-
+    Whole-genome spatial transcriptomics at single-molecule resolution without
+    sequencing.
+  title: >-
+    Sequencing-free whole-genome spatial transcriptomics at single-molecule
+    resolution
+
+- id: ev-2025-10-40705858
+  pmid: "40705858"
+  date: 2025-10-16
+  source: science
+  threads: [single-cell-3d-genome]
+  stance: supports
+  type: new-modality
+  claim: >-
+    Prime-editing lineage recording read out spatially — state and ancestry in
+    one assay.
+  title: >-
+    High-resolution spatial mapping of cell state and lineage dynamics in vivo
+    with PEtracer

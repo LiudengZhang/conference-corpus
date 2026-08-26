@@ -1,158 +1,169 @@
 # Threads — falsifiable claims about where a field is going.
 #
-#   id        stable slug; never reuse or delete (see aliases)
-#   claim     one sentence, falsifiable. Not a topic label.
-#   status    forming | warming | splitting | contested | crisis | closed
-#   opened    when the corpus first recorded this as a thread
-#   updated   last state change
-#   aliases   ids merged into this one; kept so old references never break
-#   evidence  ids from data/evidence.yml. Stance lives on the card, not here.
+#   id          stable slug; never reuse or delete (see aliases)
+#   claim       one sentence, falsifiable. Not a topic label.
+#   opened      month of the FIRST evidence card on this thread, computed from
+#               data/evidence.yml — not asserted, and not the month somebody
+#               first noticed the topic.
+#   aliases     ids merged into this one; kept so old references never break
+#   denominator when the card set is structurally one-sided, what the other
+#               side is and how big it is. A thread whose supporting evidence
+#               is a genre rather than a set of citable findings cannot be
+#               read from its ratio alone, and saying so here is the only
+#               thing that stops the ratio from lying.
 #
-# Status is derived from the evidence, not asserted. A thread with refuting
-# evidence outweighing supporting evidence is `contested` or `crisis`, never
-# `forming`, no matter how much attention it is getting.
+# Status is NOT stored. It is derived from the cards by scripts/build_briefing.py
+# every time a briefing is generated, using a rule written down in that file.
+# Storing it here would let it drift away from the evidence, which is what
+# happened to the first version of this file: every `status` in it was asserted
+# from a single month's reading and none of them recomputed.
+#
+# Rebuilt 2026-08-26 from 12 months of cards (2025-08 .. 2026-07, 243 cards).
+# The corpus reaches back to 2025-01 in data/index.sqlite, but the triage
+# output for 2025-01..2025-07 was lost before cards were written, so no thread
+# opens earlier than 2025-08 and none of these `opened` dates should be read as
+# the true birth of a direction — only as the earliest point this corpus can
+# document one.
 
 threads:
 
   - id: neuro-immune-microbiome-axis
     claim: >-
-      Neural, microbial, and lymphoid-structure control of the tumor microenvironment
+      Neural, microbial, and lymphoid-structure control of the tumour microenvironment
       are one mechanism network, not three adjacent fields, and neurotransmitters are
       a shared currency between them.
-    status: forming
-    opened: 2026-02-18        # AACR IO 2026 MS8 programmed it before a literature existed
-    updated: 2026-07-31
-    aliases: [neuro-immuno-oncology, tls-as-target, microbiome-io]
-    merged_on: 2026-08-25
-    merge_reason: >-
-      July 2026 produced direct mechanistic bridges between all three: sensory nerves
-      suppress TLS formation, commensal bacteria synthesize a neurotransmitter that
-      instructs mucosal immunity, and chronic stress drives an intratumoral phage
-      circuit. Keeping them separate cuts a single mechanism into pieces.
-    evidence:
-      - ev-2026-07-fridman-gaba
-      - ev-2026-07-nociceptive-tls
-      - ev-2026-07-gaba-gbm-cluster
-      - ev-2026-07-commensal-acetylcholine
-      - ev-2026-07-stress-phage-circuit
-      - ev-2026-07-dc-tls-merad
-      - ev-2026-07-bile-acid-zitvogel
-      - ev-2026-07-vip-vipr-cart
+    opened: 2025-08
+    aliases: [neuro-immuno-oncology, tls-as-target, microbiome-io, cancer-neuroscience]
+    note: >-
+      The healthiest thread in the corpus and the one most resistant to being called
+      early. Three separate agents flagged it as crowded or peaking (2025-02, 2025-08,
+      2025-11) on the grounds of dense publication with no clinical readout. All three
+      were wrong so far. The distinction that matters: a direction with negative
+      clinical readouts is failing; a direction with no clinical readouts is merely
+      untested, and the two look identical from the literature alone.
 
   - id: foundation-models
     claim: >-
       Scaling data and parameters produces general-purpose models of biology that
-      transfer across tasks and individuals.
-    status: crisis
-    opened: 2025-01-01
-    updated: 2026-07-31
+      transfer across tasks, individuals and into clinical use.
+    opened: 2025-08
+    aliases: [virtual-cell, scfm]
     note: >-
-      Status moved from `forming` to `crisis` on 2026-08-25. This is the corpus's most
-      heavily invested thread and July 2026 refuted its central premise. Clinical
-      deployment continued in the same month, which is itself the finding: application
-      is running ahead of its methodological foundation.
-    evidence:
-      - ev-2026-07-scfm-scaling-null
-      - ev-2026-07-cellular-memory-ceiling
-      - ev-2026-07-clinical-fm-shipped
-      - ev-2026-07-general-llm-beats-specialist
-      - ev-2026-07-method-blind-spot
+      The vocabulary, the models and the skepticism arrived in these journals
+      together in 2025-11/12 — twelve months after the Cell Virtual Cell Challenge,
+      and roughly three months after the skepticism alone had already arrived. The
+      thread's own negative control was published as a title in 2025-12: foundation
+      models in oncology win benchmarks and miss the clinic.
+
+  - id: method-credibility
+    claim: >-
+      Published methods, reference resources and reagents are reliable enough to
+      build on without re-checking them.
+    opened: 2025-08
+    aliases: [reproducibility, self-audit]
+    denominator: >-
+      Structurally one-sided by construction: this is a ledger of things found
+      unreliable, so every card refutes and the derived status is uninformative.
+      Read the volume instead. The self-audit genre grew monotonically through 2025
+      as a share of the methods journals — 1 in 27 (2025-06), 1 in 19 (07),
+      1 in 14 (08), 1 in 15 (10), 1 in 14 (11), 1 in 10 (12) — and the object of
+      audit escalated from the model, to the pipeline, to the instrument, the
+      wet-lab assay and the generative model's own output.
+
+  - id: suppressive-population-inversion
+    claim: >-
+      Depleting or blocking a cell population identified as immunosuppressive
+      improves antitumour outcomes.
+    opened: 2025-09
+    note: >-
+      Opened 2026-08-26 by the 2025 backfill. This thread did not exist in the
+      version of this file derived from a single month of 2026 reading, and finding
+      it is the clearest thing the backfill bought. Nineteen title-stated inversions
+      in twelve months, spread across NK cells, pDCs, Tregs, MAIT cells, fibroblasts,
+      neutrophils, MDSCs, TIGIT and CD47 — several of them published in the same
+      journal and the same month as papers proposing to target the same population.
+    denominator: >-
+      The supporting side is not carded and cannot be, because it is a genre rather
+      than a set of citable findings: the templated preclinical block that nominates
+      a suppressive target, deletes it, and reverses immune suppression in mice.
+      Measured strictly from the index at roughly 21 papers per month across
+      2025-03..2025-12 (55, 35, 23, 30, 19, 11, 14, 18, 14, 23). Treat the ratio as
+      "nineteen documented inversions against a steady stream of nominations",
+      not as 19-0.
+
+  - id: next-gen-checkpoints
+    claim: >-
+      Targets beyond PD-1/CTLA-4 deliver a second generation of checkpoint blockade.
+    opened: 2025-09
+    note: >-
+      The measured failure mode is not that individual targets fail — it is that the
+      category is dissolving. A novel surface co-inhibitory receptor name has a
+      half-life of two to four months in this corpus; ligand-side and intracellular
+      nominations last longer. By 2025-12 the new nominations (CLEVER-1, CD300e,
+      TIPE2, NEAT1) are macrophage and lncRNA targets rather than T-cell surface
+      receptors, and the only clinical-stage non-PD-1 content is B7-H3 and an
+      Fc-enhanced CTLA-4 — both from waves preceding the current preclinical set.
+      Across all of 2025 not one newly nominated checkpoint entered a phase 1.
+      2025-10 returned zero hits for the entire target list.
+
+  - id: immunotherapy-resistance
+    claim: >-
+      Checkpoint resistance is being explained by mechanisms outside the tumour cell
+      and outside T-cell exhaustion — host haematopoiesis, myeloid programmes,
+      innervation and the stroma.
+    opened: 2025-09
+
+  - id: ctdna-mrd
+    claim: >-
+      Circulating tumour DNA is a treatment-guiding biomarker, not only a prognostic
+      one.
+    opened: 2025-09
+
+  - id: interception
+    claim: >-
+      Cancer can be treated before it is cancer, in measurable precursor states.
+    opened: 2025-09
 
   - id: agentic-ai
     claim: >-
       LLM agents become working biomedical research infrastructure, not demonstrations.
-    status: forming
-    opened: 2026-01-03        # PSB 2026 — four peer-reviewed papers across three sessions
-    updated: 2026-07-31
+    opened: 2025-09
     note: >-
-      Three-point timeline now established: PSB Jan 2026 (papers) -> GCC Jun 2026
-      (shipped MCP server + MCPeval) -> Jul 2026 (Science, Nature, and dedicated
-      benchmarks). The arrival of benchmarks is the maturity signal, not the flagship
-      publications.
-    evidence:
-      - ev-2026-07-biomni
-      - ev-2026-07-nature-multiagent
-      - ev-2026-07-agent-benchmarks
+      The diffusion lag is the reusable measurement. Agentic work is present in the
+      general and methods journals from 2025-02 and reaches wet-lab-facing form in
+      2025-07, but does not appear in any of the nine immunology and systems-biology
+      journals until 2025-12 — and then as an assessment commentary, not a result.
+      Eleven months, methods bench to immunology bench.
 
   - id: neoantigen-vaccines
     claim: >-
       Neoantigens are a large enough and predictable enough target space to support
       personalized cancer vaccines at scale.
-    status: splitting
-    opened: 2026-02-18        # Jaffee keynote, "The Cancer Vaccine Era Has Arrived"
-    updated: 2026-07-31
-    note: >-
-      The clinical and computational arms diverged in July. First-in-human interception
-      trials advanced while two independent papers attacked the premise underneath them
-      — one on prediction method, one on target-space size. Both arms are real; the
-      thread cannot be summarized in one direction.
-    evidence:
-      - ev-2026-07-mkras-vax
-      - ev-2026-07-neoantigen-shortcut-bias
-      - ev-2026-07-immunoediting-clonal-neoantigens
-      - ev-2026-07-gbm-dna-vaccine
+    opened: 2025-11
 
-  - id: next-gen-checkpoints
+  - id: cell-therapy
     claim: >-
-      Targets beyond PD-1/CTLA-4 — TIGIT, CD47, LAG-3 — deliver a second generation of
-      checkpoint blockade.
-    status: closed
-    opened: 2024-01-01
-    updated: 2026-07-31
-    note: >-
-      Closed as stated on 2026-08-25. Two definitive phase 3 failures in one month, on
-      the two largest bets in the class. The claim may survive under different trial
-      design or patient selection; as stated, it does not.
-    evidence:
-      - ev-2026-07-skyscraper01
-      - ev-2026-07-enhance-cd47
+      Engineered cell therapy generalizes beyond CD19-positive B-cell malignancy —
+      into solid tumours, and into autoimmune disease.
+    opened: 2025-09
+    aliases: [car-t-solid, car-t, engineered-cells]
+    merged_on: 2026-08-26
+    merge_reason: >-
+      `car-t-solid` and `cell-therapy` were the same thread under two ids, and the
+      2025 evidence made the split untenable: the fastest-growing indication for the
+      platform in 2025 was not solid tumours but autoimmunity (lupus, myositis,
+      progressive MS), which the solid-tumour claim could not hold.
 
-  - id: interception
+  - id: single-cell-3d-genome
     claim: >-
-      Cancer can be treated before it is cancer, in measurable precursor states.
-    status: forming
-    opened: 2026-02-18
-    updated: 2026-07-31
-    note: >-
-      July was the month this stopped being a slogan. Four measurable entry points
-      across both solid and hematologic disease, including CAR-T deployed against a
-      precursor state.
-    evidence:
-      - ev-2026-07-car-prism
-      - ev-2026-07-mkras-vax
-      - ev-2026-07-mgus-screening
-
-  - id: car-t-solid
-    claim: >-
-      Engineered cell therapy works in solid tumors.
-    status: forming
-    opened: 2026-02-18        # AACR IO 2026 MS1/MS7
-    updated: 2026-07-31
-    evidence:
-      - ev-2026-07-first-solid-tumor-carT-approval
-      - ev-2026-07-solid-tumor-car-wave
+      Per-cell-type chromatin conformation and spatial multi-omics become routine
+      assay modalities that downstream pipelines and models must ingest.
+    opened: 2025-10
 
   - id: clinical-practice
     claim: >-
       Tracked meetings predict practice-changing readouts months before they publish.
-    status: forming
-    opened: 2026-08-25
-    updated: 2026-07-31
+    opened: 2025-10
     note: >-
-      This is the corpus's self-test, not a claim about biology. Current estimate of
-      podium-to-paper lag is 4-6 months on n=5. Not yet trustworthy.
-    evidence:
-      - ev-2026-07-gu-triple
-      - ev-2026-07-podium-lag-n5
-      - ev-2026-07-method-blind-spot
-
-  - id: single-cell-3d-genome
-    claim: >-
-      Per-cell-type chromatin conformation becomes a routine assay modality that
-      downstream pipelines and models must ingest.
-    status: forming
-    opened: 2026-07-31
-    updated: 2026-07-31
-    note: New thread, opened by the July 2026 scan. No prior conference signal — worth noting.
-    evidence:
-      - ev-2026-07-3d-genome-atlases
+      The corpus's self-test, not a claim about biology. Podium-to-paper lag is
+      estimated at 4-6 months on n=5. Not yet trustworthy.
