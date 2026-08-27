@@ -3,30 +3,20 @@
 
 # Harvest queue
 
-Generated for **2026-08-25**.
+Generated for **2026-08-27**.
 
 **Meetings that have already happened, whose material is reachable, and which have no built
 vault.** This is the working list — pick from it rather than asking what is missing.
 
-28 entries, of which **16** are fully open access.
+18 not yet harvested, of which **6** are fully open access. A further 13 are harvested into a store but have no vault written.
 
-## Ready to build
+## Not yet harvested
 
 | Event | Ended | Topics | Access | Harvest | Endpoint | Vault |
 |---|---|---|---|---|---|---|
-| **Bioconductor Conference 2026 (North America)** | Aug 10–14, 2026 | bioinfo-tools, single-cell-spatial | open | `youtube` | [link](https://bioc2026.bioconductor.org/) | — |
-| **Machine Learning for Healthcare 2026** | Aug 12–14, 2026 | ai-ml, foundation-models | open | `pmlr` | [link](https://mlhc.org/) | — |
 | **Medical Imaging with Deep Learning 2026** | Jul 8–10, 2026 | imaging, ai-ml | open | `openreview` | [link](https://2026.midl.io/) | — |
-| **ESMO Gastrointestinal Cancers Congress 2026** | Jul 1–4, 2026 | oncology-clinical | open | `abstract-supplement` | [link](https://www.esmo.org/meeting-calendar/esmo-gastrointestinal-cancers-congress-2026) | — |
-| **AHLI Conference on Health, Inference, and Learning 2026** | Jun 28–30, 2026 | ai-ml, foundation-models | open | `pmlr` | [link](https://proceedings.mlr.press/v333/) | — |
 | **EACR 2026 Congress: Innovative Cancer Science** | Jun 8–11, 2026 | oncology-clinical, single-cell-spatial | partly open | `abstract-supplement` | [link](https://www.eacr.org/) | — |
-| **European Bioconductor Conference 2026** | Jun 3–5, 2026 | bioinfo-tools | open | `youtube` | [link](https://blog.bioconductor.org/posts/2026-06-19-EuroBioc2026-recap/) | — |
 | **ASGCT 29th Annual Meeting** | May 11–15, 2026 | immuno-oncology, oncology-clinical | open | `abstract-supplement` | [link](https://annualmeeting.asgct.org/abstracts) | — |
-| **CIMT 23rd Annual Meeting** | May 11–13, 2026 | immuno-oncology | open | `static-pdf` | [link](https://www.meeting.cimt.eu/) | — |
-| **ESMO Breast Cancer 2026** | May 6–8, 2026 | oncology-clinical | open | `abstract-supplement` | [link](https://www.sciencedirect.com/journal/esmo-open/vol/11/suppl/S4) | — |
-| **European Lung Cancer Congress 2026** | Mar 25–28, 2026 | oncology-clinical | open | `abstract-supplement` | [link](https://www.esmo.org/meeting-calendar/european-lung-cancer-congress-2026) | — |
-| **USCAP 115th Annual Meeting** | Mar 21–26, 2026 | imaging, oncology-clinical | open | `abstract-supplement` | [link](https://2026am.uscap.org/) | — |
-| **AAAI-26** | Jan 20–27, 2026 | ai-ml, foundation-models | open | `static-html` | [link](https://aaai.org/proceeding/aaai-40-2026/) | — |
 | **ACM SIGKDD 2026** | Aug 9–13, 2026 | ai-ml | partly open | `acm-dl` | [link](https://dl.acm.org/) | [scaffold](../conferences/kdd-2026/index.md) |
 | **ISMB 2026** | Jul 12–16, 2026 | bioinfo-tools, ai-ml, genomics | partly open | `oup-bioinformatics` | [link](https://www.iscb.org/ismb2026) | [scaffold](../conferences/ismb-2026/index.md) |
 | **International Conference on Machine Learning 2026** | Jul 6–11, 2026 | ai-ml, foundation-models | open | `pmlr` | [link](https://proceedings.mlr.press/) | [scaffold](../conferences/icml-2026/index.md) |
@@ -43,22 +33,50 @@ vault.** This is the working list — pick from it rather than asking what is mi
 | **ASCO Gastrointestinal Cancers Symposium 2026** | Jan 8–10, 2026 | oncology-clinical | partly open | `abstract-supplement` | [link](https://ascopubs.org/journal/jco) | [scaffold](../conferences/asco-gi-2026/index.md) |
 | **Galaxy and Bioconductor Community Conference 2025** | Jun 23–26, 2025 | bioinfo-tools | open | `static-html` | [link](https://gbcc2025.galaxyproject.org/) | [partial](../conferences/gbcc-2025/index.md) |
 
+## Harvested, no vault written
+
+The abstracts are in `data/conference.sqlite` and reach the monthly
+briefings through section 6. What is missing is a vault page, which is
+judgement work, not harvesting work.
+
+| Event | Ended | Topics | Harvest | Endpoint |
+|---|---|---|---|---|
+| **Bioconductor Conference 2026 (North America)** | Aug 10–14, 2026 | bioinfo-tools, single-cell-spatial | `schedule-html` | [link](https://bioc2026.bioconductor.org/schedule/) |
+| **Machine Learning for Healthcare 2026** | Aug 12–14, 2026 | ai-ml, foundation-models | `conference-site` | [link](https://mlhc.org/) |
+| **ESMO Gastrointestinal Cancers Congress 2026** | Jul 1–4, 2026 | oncology-clinical | `crossref-supplement` | [link](https://api.crossref.org/journals/0923-7534/works) |
+| **AHLI Conference on Health, Inference, and Learning 2026** | Jun 28–30, 2026 | ai-ml, foundation-models | `pmlr` | [link](https://proceedings.mlr.press/v333/) |
+| **ESMO Gynaecological Cancers Congress 2026** | Jun 24–26, 2026 | oncology-clinical | `crossref-supplement` | [link](https://api.crossref.org/journals/2059-7029/works) |
+| **European Bioconductor Conference 2026** | Jun 3–5, 2026 | bioinfo-tools | `schedule-html` | [link](https://eurobioc2026.bioconductor.org/) |
+| **CIMT 23rd Annual Meeting** | May 11–13, 2026 | immuno-oncology | `static-pdf` | [link](https://www.meeting.cimt.eu/call-for-abstracts/) |
+| **ESMO Breast Cancer 2026** | May 6–8, 2026 | oncology-clinical | `crossref-supplement` | [link](https://api.crossref.org/journals/2059-7029/works) |
+| **European Lung Cancer Congress 2026** | Mar 25–28, 2026 | oncology-clinical | `crossref-supplement` | [link](https://api.crossref.org/journals/2059-7029/works) |
+| **USCAP 115th Annual Meeting** | Mar 21–26, 2026 | imaging, oncology-clinical | `crossref-issue` | [link](https://api.crossref.org/journals/0023-6837/works) |
+| **AAAI-26** | Jan 20–27, 2026 | ai-ml, foundation-models | `ojs-tracks` | [link](https://aaai.org/proceeding/aaai-40-2026/) |
+| **ASCO Annual Meeting and symposia 2024** | May 31 – Jun 4, 2024 | oncology-clinical, immuno-oncology | `crossref` | [link](https://api.crossref.org/journals/1527-7755/works?filter=from-pub-date:2024-01-01,until-pub-date:2024-12-31) |
+| **AACR Annual Meeting 2024** | Apr 5–10, 2024 | oncology-clinical, immuno-oncology, single-cell-spatial, ai-ml | `crossref` | [link](https://api.crossref.org/journals/1538-7445/works?filter=from-pub-date:2024-01-01,until-pub-date:2024-12-31) |
+
 ### Notes on individual entries
 
-- **Bioconductor Conference 2026 (North America)** — Recordings normally land on the Bioconductor YouTube channel
-- **Machine Learning for Healthcare 2026** — PMLR volume posts with a lag; accepted papers visible on OpenReview now
-- **Medical Imaging with Deep Learning 2026** — Three tracks incl. a new Validation Studies track; free global livestream
-- **AHLI Conference on Health, Inference, and Learning 2026** — Proceedings published open access; OpenReview holds papers plus reviews
-- **EACR 2026 Congress: Innovative Cancer Science** — 2025 precedent was a Molecular Oncology supplement; 2026 not confirmed
+- **Medical Imaging with Deep Learning 2026** — UNREACHABLE, and not for a MIDL-specific reason: OpenReview's /notes endpoint now returns 403 ChallengeRequiredError to any unauthenticated client for every venue, on both api2 and v1, regardless of User-Agent. /groups and /notes/search still answer, which confirms the venue exists and has public_submissions: false. The 2026.midl.io site publishes only livestream links. This blocks every openreview-method source, not just this one.
+- **EACR 2026 Congress: Innovative Cancer Science** — NOT DEPOSITED. The 2026 supplement exists but only as one lump record — 10.1002/1878-0261.70318 "Abstracts", Molecular Oncology vol 20 issue S1, pages 1-692, plus the issue record 10.1002/mol2.v20.s1. Individual abstracts have no DOIs, so there is nothing to harvest from Crossref.
 - **ASGCT 29th Annual Meeting** — 800+ abstracts free as PDF plus a Molecular Therapy supplement
-- **CIMT 23rd Annual Meeting** — Free abstract book PDF; dedicated AI and TME plenaries
-- **European Lung Cancer Congress 2026** — ESMO Open vol 11 Suppl S3
-- **USCAP 115th Annual Meeting** — Laboratory Investigation abstract supplement, free. Heavy computational pathology.
-- **AAAI-26** — Broad AI; only the AI-for-Science tracks are in scope
+- **Bioconductor Conference 2026 (North America)** — The schedule table, not YouTube. 44 talks and workshops with real per-day dates from the day-header rows; 36 carry abstracts and 8 are title-only because keynotes and workshops genuinely have none.
+- **Machine Learning for Healthcare 2026** — Not PMLR after all — the index stops at v298 (MLHC 2025) and no 2026 volume exists. The conference's own site is the better route anyway: it publishes both accepted tracks with full abstracts and real per-session dates, and PMLR never carries the clinical-abstract track. 116 papers, 113 with abstract text.
 - **ISMB 2026** — Proceedings track publishes in Bioinformatics; ISCB Nucleus hosts video
+- **ESMO Gastrointestinal Cancers Congress 2026** — Annals of Oncology vol 37 Suppl S1 — not ESMO Open, which this entry previously assumed. 76% GI vocabulary. The ESMO family splits its abstract books across two journals and the registry cannot assume which one a congress used.
+- **AHLI Conference on Health, Inference, and Learning 2026** — PMLR volume 333, 40 papers with full abstracts. Dates are volume-level: PMLR stamps one citation_publication_date across the whole volume, so every paper carries 2026-06-29 rather than its own presentation day.
+- **ESMO Gynaecological Cancers Congress 2026** — ESMO Open vol 11 special_numbering S6. Identified from content alone: 99% gynaecological vocabulary, overwhelmingly cervical and ovarian. Meeting dates are not confirmed against a programme.
+- **European Bioconductor Conference 2026** — The blog recap named here previously is prose only. The conference site's own schedule is the route: 103 items with real per-day dates, 98 with abstracts.
 - **62nd ASCO Annual Meeting** — Abstracts free; the largest single clinical-readout harvest of the year
+- **CIMT 23rd Annual Meeting** — The Book of Abstracts PDF is linked from /call-for-abstracts, not from the programme page — which is why scanning the homepage found no PDF. 195 abstracts parsed from PDF font runs, 194 with text, dated to the meeting start because the book gives poster session but no day. Two known defects: about 24 of 195 retain a leading fragment of the author affiliation in the abstract field, because the PDF text layer marks no boundary between affiliation and body; and 51 posters that run in both sessions under one number are deduplicated on (number, title).
+- **ESMO Breast Cancer 2026** — ESMO Open vol 11, Crossref special_numbering S4. Confirmed two ways before harvesting: the publisher's own supplement title, and the abstracts' disease-site vocabulary, which is 99% breast.
 - **International Conference on Learning Representations 2026** — Papers plus reviews, fully open
+- **European Lung Cancer Congress 2026** — ESMO Open vol 11, Crossref special_numbering S3. The abstracts are 99% lung vocabulary, which is what confirms the mapping — a web search claimed S3 was a targeted-therapy congress and was wrong.
+- **USCAP 115th Annual Meeting** — Not a supplement at all — the abstract book is Laboratory Investigation's ordinary issue 3, so the discriminator is the issue number rather than special_numbering. 1,760 of that issue's 1,770 records are numbered abstracts. Heavy computational pathology.
 - **AACR Special Conference: Brain Cancer 2026** — AACR special conferences publish abstract supplements; confirm journal
+- **AAAI-26** — A deliberate subset, not the conference. Two filters applied uniformly: (1) only the four OJS issues whose section is defined by application rather than method — Application Domains I/II, AI for Social Impact I/II — with the other 44 method tracks excluded wholesale; (2) of those 369 papers, keep those matching a fixed ~90-term biomedical word list. 100 kept. Dated to the meeting start, not OJS's 2026-03-17 proceedings posting, because a lead-time corpus wants when work was presented. Caveat: `health`, `molecular` and `hospitals` are deliberately left in the word list despite over-matching, so roughly 4-5 of the 100 are false positives.
+- **ASCO Annual Meeting and symposia 2024** — JCO supplement. 7,569 abstracts: the June block is the Annual Meeting, January and February are the GI and GU symposia, which are kept because they are the earliest oncology readouts of any year.
+- **AACR Annual Meeting 2024** — Abstracts deposit into the Cancer Research supplement. That ISSN also carries the AACR special conferences, so the Annual Meeting is isolated on DOIs containing `am2024` — 7,326 of the 11,114 records for the year. Full abstract text present on every one. scripts/harvest_conference.py.
 
 ## Concluded but not reachable
 

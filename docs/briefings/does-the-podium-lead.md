@@ -113,3 +113,27 @@ bounded window cannot date a beginning. It can only report its own floor.
   readout that can be checked against the literature in a year. It is not worth
   mining for emerging vocabulary.
 - Ten to thirteen months is the planning horizon the corpus can actually claim.
+
+## The conference layer has since grown, and it does not change this
+
+On 2026-08-27 the store went from two venues to nine — 18,749 abstracts, adding
+ELCC, ESMO Breast, ESMO GI, ESMO Gynaecological, USCAP 2026 and two ESMO Open
+supplements whose congress could not be identified. **None of them can extend
+this measurement**, and it is worth being explicit about why, because a bigger
+number invites the assumption that the finding got stronger.
+
+Everything new is from 2026. The lag being measured is ten to thirteen months,
+and the journal index ends at 2026-08 — so a March 2026 abstract book has about
+five months of follow-up against a median lag of twelve. Testing it now would
+return a low hit rate that means "not enough time has passed", and would be
+indistinguishable from "these meetings do not lead". The 2024 cohort is the only
+one with a follow-up window longer than the effect it is measuring, so the
+numbers above are still computed on AACR 2024 and ASCO 2024 alone.
+
+The 2026 venues also arrive as titles only — the ESMO family and *Laboratory
+Investigation* deposit abstract metadata without abstract text. The 2024 test
+used full text. Re-running it in 2027, when the follow-up window is long enough,
+will therefore be a weaker test on those venues, not merely a later one.
+
+What the new venues are good for now is coverage of what was actually said in
+2026, which is what sections 6 of the monthly briefings report.

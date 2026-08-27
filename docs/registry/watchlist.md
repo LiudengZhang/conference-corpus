@@ -33,26 +33,48 @@ each entry. It is not a reading list and it is not summarized content.
 | **Bioinformatics (OUP)** | continuous | bioinfo-tools | partly open | [rss](https://academic.oup.com/rss/site_5139/3025.xml) |
 | **Nature Machine Intelligence** | monthly | ai-ml, foundation-models | partly open | [rss](https://www.nature.com/natmachintell.rss) |
 | **bioRxiv (genomics + bioinformatics feeds)** | continuous | genomics, bioinfo-tools, single-cell-spatial, foundation-models | open | [rss](https://connect.biorxiv.org/biorxiv_xml.php?subject=bioinformatics) |
+| **Nucleic Acids Research** | continuous | bioinfo-tools, genomics | open | [pubmed-pt](Nucleic Acids Res[ta]) |
+| **JAMA** | weekly | oncology-clinical | partly open | [pubmed-pt](JAMA[ta]) |
+| **The Lancet** | weekly | oncology-clinical | partly open | [pubmed-pt](Lancet[ta]) |
+| **New England Journal of Medicine** | weekly | oncology-clinical | partly open | [pubmed-pt](N Engl J Med[ta]) |
+| **Blood** | weekly | oncology-clinical, immuno-oncology | partly open | [pubmed-pt](Blood[ta]) |
+| **Journal of Clinical Oncology** | continuous | oncology-clinical | partly open | [pubmed-pt](J Clin Oncol[ta]) |
+| **The Lancet Oncology** | monthly | oncology-clinical | partly open | [pubmed-pt](Lancet Oncol[ta]) |
+| **Annals of Oncology** | monthly | oncology-clinical | partly open | [pubmed-pt](Ann Oncol[ta]) |
+| **Nature Genetics** | monthly | genomics | partly open | [pubmed-pt](Nat Genet[ta]) |
+| **Nature Immunology** | monthly | immuno-oncology | partly open | [pubmed-pt](Nat Immunol[ta]) |
+| **Science Immunology** | monthly | immuno-oncology | partly open | [pubmed-pt](Sci Immunol[ta]) |
+| **Science Translational Medicine** | weekly | oncology-clinical, immuno-oncology | partly open | [pubmed-pt](Sci Transl Med[ta]) |
+| **Journal of Experimental Medicine** | monthly | immuno-oncology | open | [pubmed-pt](J Exp Med[ta]) |
+| **Nature Biomedical Engineering** | monthly | ai-ml, imaging, bioinfo-tools | partly open | [pubmed-pt](Nat Biomed Eng[ta]) |
+| **Genome Research** | monthly | genomics, bioinfo-tools | open | [pubmed-pt](Genome Res[ta]) |
+| **Nature Computational Science** | monthly | ai-ml, foundation-models | partly open | [pubmed-pt](Nat Comput Sci[ta]) |
+| **Cell Genomics** | monthly | genomics, single-cell-spatial | open | [pubmed-pt](Cell Genom[ta]) |
+| **Cell Systems** | monthly | ai-ml, bioinfo-tools | partly open | [pubmed-pt](Cell Syst[ta]) |
+| **Molecular Systems Biology** | monthly | ai-ml, bioinfo-tools | open | [pubmed-pt](Mol Syst Biol[ta]) |
 
 ## News and commentary
 
 | Source | Cadence | Topics | Access | Feed |
 |---|---|---|---|---|
-| **STAT News** | continuous | oncology-clinical, industry-finance | partly open | [rss](https://www.statnews.com/feed/) |
+| **STAT News** | continuous | oncology-clinical, industry-finance | partly open | [rss-paginated](https://www.statnews.com/feed/) |
 | **Endpoints News** | continuous | industry-finance, oncology-clinical | gated | [rss](https://endpts.com/feed/) |
 | **Fierce Biotech** | continuous | industry-finance | open | [rss](https://www.fiercebiotech.com/rss/xml) |
-| **AACR Blog** | continuous | oncology-clinical, immuno-oncology | open | [static-html](https://www.aacr.org/blog/) |
+| **AACR Blog** | continuous | oncology-clinical, immuno-oncology | open | [rss-paginated](https://www.aacr.org/blog/feed/) |
 | **OncLive** | continuous | oncology-clinical | gated | [rss](https://www.onclive.com/rss) |
-| **ACIR Weekly Digest (Cancer Research Institute)** | weekly | immuno-oncology | open | [static-html](https://acir.org/) |
+| **ACIR Weekly Digest (Cancer Research Institute)** | weekly | immuno-oncology | open | [archive-walk](https://acir.org/weekly-digests/) |
 | **Nature Briefing** | weekly | genomics, ai-ml | open | [newsletter](https://www.nature.com/briefing/signup/) |
 | **BioWorld** | continuous | industry-finance, oncology-clinical | gated | [static-html](https://www.bioworld.com/) |
 
 ## Notes
 
 - **bioRxiv (genomics + bioinformatics feeds)** — Highest volume and highest noise in the registry. Filter hard.
-- **AACR Blog** — The only narrative record of AACR IO 2026 — meeting recaps land here
+- **STAT News** — The feed serves 20 items, but it is WordPress and honours `?paged=N`, so the same public feed walks backwards to the start of the window: 9,497 items across all 32 months, evenly distributed. Headlines and summaries only — the articles themselves are metered, which is why access is `mixed` and why nothing here should be cited as evidence. Broad health news; roughly one item in seven is on this corpus's subject matter.
+- **Fierce Biotech** — Forward-only, permanently. `?page=N`, `?paged=N` and `?offset=N` all return a byte-identical 25-item document, and the sitemap is Cloudflare-gated and carries only lastmod. So this source contributes nothing before its first harvest on 2026-08-27 and its 2024–2026-07 months stay empty. Trap: it nests markup inside <title> and <dc:creator>, so ElementTree's .text is empty and a naive parser yields 25 blank titles — use itertext().
+- **AACR Blog** — The only narrative record of AACR IO 2026 — meeting recaps land here. WordPress, so `?paged=N` backfills: 324 items across all 32 months. Low volume and high hit rate, the inverse of STAT.
 - **OncLive** — Cloudflare-protected to automated fetchers
-- **ACIR Weekly Digest (Cancer Research Institute)** — Curated expert recap — high signal, low volume. Best news source here.
+- **ACIR Weekly Digest (Cancer Research Institute)** — Curated expert recap — high signal, low volume. Best news source here. 118 digests, all 32 months, ~3.7/month. No feed exists at any path: /feed/, /rss, /atom.xml and /feed/rss2/ are 404, /weekly-digests/feed/ is 500, ?feed=rss2 silently serves the homepage, and the /wp-json/ routes 404 because the site is not the WordPress install those paths assume. The archive is the route instead — /weekly-digests/YYYY/<month>/ enumerates each week with its date, back to 2017. One digest is one row; the papers a digest cites are deliberately not expanded, because they belong to the journal index and expanding them would double-count.
+- **Nature Briefing** — Unharvestable, not merely unharvested. It is an email newsletter: the signup page exposes no RSS/Atom link and no Briefing feed URL resolves. Substituting nature.com journal feeds would be a different artefact wearing this source's name, so nothing is collected.
 - **BioWorld** — Maintains per-conference keyword feeds; paywalled
 
 ## A caution about volume

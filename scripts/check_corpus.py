@@ -18,6 +18,17 @@ This is that reading, written down.
   5  Every PMID linked from a briefing is in the index — a briefing that
      cites a paper the corpus never read is citing a memory.
   6  No briefing still contains the generator's HAND-WRITTEN placeholder.
+  7  Every source claiming status `harvested` has rows in the store it
+     claims. sources.yml describes `harvested` as "the only status that is
+     checkable rather than asserted, and the only one a generator should
+     trust" — which was true of its definition and false of its practice,
+     because nothing checked it. This is that check.
+  8  Every venue in the conference store is a source id the registry
+     defines, so the two can actually be joined.
+
+Checks 7 and 8 skip, rather than fail, when a regenerable side store is
+absent — a fresh clone has the journal index and nothing else, and a
+missing store is a thing you have not built, not a broken invariant.
 
 Exit code is non-zero if anything fails, so it can gate a commit.
 
@@ -41,9 +52,34 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 INDEX = ROOT / "data" / "index.sqlite"
 CARDS = ROOT / "data" / "evidence.yml"
 THREADS = ROOT / "data" / "threads.yml"
+SOURCES = ROOT / "data" / "sources.yml"
 BRIEFINGS = ROOT / "docs" / "briefings"
 
 PMID_LINK = re.compile(r"pubmed\.ncbi\.nlm\.nih\.gov/(\d+)")
+
+# Which store backs each source type, and the column holding the source id.
+# Journals are absent on purpose: the registry names them in full ("Nucleic
+# Acids Research") and the index stores PubMed abbreviations ("Nucleic Acids
+# Res"), so there is no join key between them yet. Adding one means putting
+# the abbreviation on each journal source — worth doing, not done here.
+STORES = {
+    "conference": ("conference.sqlite", "abstracts", "venue"),
+    "news": ("news.sqlite", "news", "source"),
+    "regulatory": ("regulatory.sqlite", "sources", "id"),
+}
+
+
+def store_ids(filename: str, table: str, column: str) -> set[str] | None:
+    """Distinct source ids present in a side store, or None if unbuilt."""
+    path = ROOT / "data" / filename
+    if not path.exists():
+        return None
+    con = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+    if not con.execute(
+            "SELECT 1 FROM sqlite_master WHERE type IN ('table','view') AND name=?",
+            (table,)).fetchone():
+        return None
+    return {r[0] for r in con.execute(f"SELECT DISTINCT {column} FROM {table}")}
 
 
 def main() -> int:
@@ -128,6 +164,34 @@ def main() -> int:
                 problems.append(f"{path.name}: links PMID {pmid}, not in index")
                 unlinked += 1
 
+    # 7 + 8 --------------------------------------------------------------
+    sources = yaml.safe_load(SOURCES.read_text())["sources"]
+    source_ids = {s["id"] for s in sources}
+    store_lines: list[str] = []
+    for stype, (filename, table, column) in sorted(STORES.items()):
+        claimed = {s["id"] for s in sources
+                   if s.get("type") == stype and s.get("status") == "harvested"}
+        present = store_ids(filename, table, column)
+        if present is None:
+            store_lines.append(
+                f"{stype:11} store not built — {len(claimed)} claimed, unchecked")
+            continue
+        for sid in sorted(claimed - present):
+            problems.append(
+                f"source `{sid}` claims status harvested but has no rows "
+                f"in data/{filename}")
+        for sid in sorted(present - source_ids):
+            problems.append(
+                f"data/{filename} holds `{sid}`, which the registry does not define")
+        unclaimed = present & source_ids - claimed
+        note = f", {len(unclaimed)} harvested but not marked" if unclaimed else ""
+        store_lines.append(
+            f"{stype:11} {len(present):,} in store, {len(claimed)} claimed{note}")
+        for sid in sorted(unclaimed):
+            problems.append(
+                f"source `{sid}` has rows in data/{filename} but status is not "
+                f"`harvested`")
+
     # --------------------------------------------------------------------
     print(f"cards      {len(cards):,}   missing PMID {missing}, date drift {drifted}")
     print(f"threads    {len(threads):,}   undefined names {len(unknown)}, "
@@ -135,6 +199,8 @@ def main() -> int:
     print(f"briefings  {len(list(BRIEFINGS.glob('20*.md'))):,}   "
           f"unlinked PMIDs {unlinked}, stubs {stubs}")
     print(f"index      {len(index):,} papers")
+    for line in store_lines:
+        print(f"{line}")
     print()
 
     if not problems:

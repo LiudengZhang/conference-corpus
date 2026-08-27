@@ -47,3 +47,9 @@ _baseline/
 # blob on every rebuild for four months before anyone checked.
 data/index.sqlite
 data/conference.sqlite
+# Regulatory layer: regenerable by scripts/harvest_regulatory.py from FDA,
+# EMA and ClinicalTrials.gov, so it is not stored.
+data/regulatory.sqlite
+# Regenerable from public RSS/Atom feeds by scripts/harvest_news.py.
+# Comment stays on its own line: .gitignore has no inline comments.
+data/news.sqlite

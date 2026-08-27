@@ -10,10 +10,12 @@ Sources appear under each topic they carry, so entries repeat.
 
 ## Clinical oncology and trial readouts
 
-`oncology-clinical` · 31 sources
+`oncology-clinical` · 49 sources
 
 | Event | When | Access | Vault |
 |---|---|---|---|
+| AACR Annual Meeting 2024 | Apr 5–10, 2024 | open | — |
+| ASCO Annual Meeting and symposia 2024 | May 31 – Jun 4, 2024 | open | — |
 | ASCO Gastrointestinal Cancers Symposium 2026 | Jan 8–10, 2026 | partly open | [scaffold](../conferences/asco-gi-2026/index.md) |
 | 44th J.P. Morgan Healthcare Conference | Jan 12–15, 2026 | gated | [built](../conferences/jpm-2026/index.md) |
 | AACR Immuno-Oncology Conference 2026 | Feb 18–21, 2026 | partly open | [built](../conferences/aacr-io-2026/index.md) |
@@ -28,6 +30,7 @@ Sources appear under each topic they carry, so entries repeat.
 | 62nd ASCO Annual Meeting | May 29 – Jun 2, 2026 | partly open | [scaffold](../conferences/asco-2026/index.md) |
 | EACR 2026 Congress: Innovative Cancer Science | Jun 8–11, 2026 | partly open | — |
 | 31st EHA Hybrid Congress | Jun 11–14, 2026 | partly open | [scaffold](../conferences/eha-2026/index.md) |
+| ESMO Gynaecological Cancers Congress 2026 | Jun 24–26, 2026 | open | — |
 | ESMO Gastrointestinal Cancers Congress 2026 | Jul 1–4, 2026 | open | — |
 | AGBT Precision Health 2026 | Sep 14–16, 2026 | gated | [scaffold](../conferences/agbt-pm-2026/index.md) |
 | AACR Special Conference: Pancreatic Cancer 2026 | Sep 25–28, 2026 | partly open | [scaffold](../conferences/aacr-pancreatic-2026/index.md) |
@@ -36,15 +39,19 @@ Sources appear under each topic they carry, so entries repeat.
 | SITC 41st Annual Meeting | Nov 4–8, 2026 | open | [scaffold](../conferences/sitc-2026/index.md) |
 | 49th San Antonio Breast Cancer Symposium | Dec 8–11, 2026 | partly open | [scaffold](../conferences/sabcs-2026/index.md) |
 | 68th ASH Annual Meeting | Dec 12–15, 2026 | partly open | [scaffold](../conferences/ash-2026/index.md) |
+| ESMO Open 2026 Suppl S2 (meeting unidentified) | unscheduled | open | — |
+| ESMO Open 2026 Suppl S5 (meeting unidentified) | unscheduled | open | — |
 
-**Watchlist:** AACR Blog, BioWorld, Cancer Cell, Cancer Discovery, Endpoints News, Nature Cancer, Nature Medicine, OncLive, STAT News
+**Watchlist:** AACR Blog, Annals of Oncology, BioWorld, Blood, Cancer Cell, Cancer Discovery, Endpoints News, JAMA, Journal of Clinical Oncology, Nature Cancer, Nature Medicine, New England Journal of Medicine, OncLive, STAT News, Science Translational Medicine, The Lancet, The Lancet Oncology
 
 ## Immunotherapy, checkpoint, cell therapy
 
-`immuno-oncology` · 15 sources
+`immuno-oncology` · 25 sources
 
 | Event | When | Access | Vault |
 |---|---|---|---|
+| AACR Annual Meeting 2024 | Apr 5–10, 2024 | open | — |
+| ASCO Annual Meeting and symposia 2024 | May 31 – Jun 4, 2024 | open | — |
 | AACR Immuno-Oncology Conference 2026 | Feb 18–21, 2026 | partly open | [built](../conferences/aacr-io-2026/index.md) |
 | ASGCT 29th Annual Meeting | May 11–15, 2026 | open | — |
 | CIMT 23rd Annual Meeting | May 11–13, 2026 | open | — |
@@ -53,14 +60,15 @@ Sources appear under each topic they carry, so entries repeat.
 | ESMO Congress 2026 | Oct 23–27, 2026 | open | [scaffold](../conferences/esmo-2026/index.md) |
 | SITC 41st Annual Meeting | Nov 4–8, 2026 | open | [scaffold](../conferences/sitc-2026/index.md) |
 
-**Watchlist:** AACR Blog, ACIR Weekly Digest (Cancer Research Institute), Cancer Cell, Cancer Discovery, Cell, Immunity, Journal for ImmunoTherapy of Cancer, Nature Cancer
+**Watchlist:** AACR Blog, ACIR Weekly Digest (Cancer Research Institute), Blood, Cancer Cell, Cancer Discovery, Cell, Immunity, Journal for ImmunoTherapy of Cancer, Journal of Experimental Medicine, Nature Cancer, Nature Immunology, Science Immunology, Science Translational Medicine
 
 ## Single-cell and spatial omics
 
-`single-cell-spatial` · 21 sources
+`single-cell-spatial` · 24 sources
 
 | Event | When | Access | Vault |
 |---|---|---|---|
+| AACR Annual Meeting 2024 | Apr 5–10, 2024 | open | — |
 | European Bioconductor Conference 2025 | Sep 17–19, 2025 | open | [built](../conferences/eurobioc-2025/index.md) |
 | AACR Immuno-Oncology Conference 2026 | Feb 18–21, 2026 | partly open | [built](../conferences/aacr-io-2026/index.md) |
 | AGBT General Meeting 2026 | Feb 22–25, 2026 | gated | [scaffold](../conferences/agbt-2026/index.md) |
@@ -76,14 +84,15 @@ Sources appear under each topic they carry, so entries repeat.
 | SITC 41st Annual Meeting | Nov 4–8, 2026 | open | [scaffold](../conferences/sitc-2026/index.md) |
 | Cell Bio 2026 (ASCB | EMBO) | Dec 12–15, 2026 | partly open | [scaffold](../conferences/ascb-2026/index.md) |
 
-**Watchlist:** Cancer Cell, Cell, Genome Biology, Nature, Nature Methods, Science, bioRxiv (genomics + bioinformatics feeds)
+**Watchlist:** Cancer Cell, Cell, Cell Genomics, Genome Biology, Nature, Nature Methods, Science, bioRxiv (genomics + bioinformatics feeds)
 
 ## Machine learning methods and venues
 
-`ai-ml` · 25 sources
+`ai-ml` · 32 sources
 
 | Event | When | Access | Vault |
 |---|---|---|---|
+| AACR Annual Meeting 2024 | Apr 5–10, 2024 | open | — |
 | Pacific Symposium on Biocomputing 2026 | Jan 3–7, 2026 | open | [built](../conferences/psb-2026/index.md) |
 | AAAI-26 | Jan 20–27, 2026 | open | — |
 | IEEE International Symposium on Biomedical Imaging 2026 | Apr 8–11, 2026 | gated | [scaffold](../conferences/isbi-2026/index.md) |
@@ -106,11 +115,11 @@ Sources appear under each topic they carry, so entries repeat.
 | RSNA 2026 | Nov 29 – Dec 3, 2026 | partly open | [scaffold](../conferences/rsna-2026/index.md) |
 | NeurIPS 2026 | Dec 6–13, 2026 | open | [scaffold](../conferences/neurips-2026/index.md) |
 
-**Watchlist:** Nature, Nature Briefing, Nature Machine Intelligence, Nature Medicine
+**Watchlist:** Cell Systems, Molecular Systems Biology, Nature, Nature Biomedical Engineering, Nature Briefing, Nature Computational Science, Nature Machine Intelligence, Nature Medicine
 
 ## Foundation models and virtual cells
 
-`foundation-models` · 12 sources
+`foundation-models` · 14 sources
 
 | Event | When | Access | Vault |
 |---|---|---|---|
@@ -124,11 +133,11 @@ Sources appear under each topic they carry, so entries repeat.
 | Machine Learning for Healthcare 2026 | Aug 12–14, 2026 | open | — |
 | NeurIPS 2026 | Dec 6–13, 2026 | open | [scaffold](../conferences/neurips-2026/index.md) |
 
-**Watchlist:** Nature Biotechnology, Nature Machine Intelligence, bioRxiv (genomics + bioinformatics feeds)
+**Watchlist:** Nature Biotechnology, Nature Computational Science, Nature Machine Intelligence, bioRxiv (genomics + bioinformatics feeds)
 
 ## Medical imaging and computational pathology
 
-`imaging` · 9 sources
+`imaging` · 10 sources
 
 | Event | When | Access | Vault |
 |---|---|---|---|
@@ -142,9 +151,11 @@ Sources appear under each topic they carry, so entries repeat.
 | MICCAI 2026 | Sep 27 – Oct 1, 2026 | partly open | [scaffold](../conferences/miccai-2026/index.md) |
 | RSNA 2026 | Nov 29 – Dec 3, 2026 | partly open | [scaffold](../conferences/rsna-2026/index.md) |
 
+**Watchlist:** Nature Biomedical Engineering
+
 ## Human and clinical genetics, sequencing
 
-`genomics` · 14 sources
+`genomics` · 20 sources
 
 | Event | When | Access | Vault |
 |---|---|---|---|
@@ -158,11 +169,11 @@ Sources appear under each topic they carry, so entries repeat.
 | 76th ASHG Annual Meeting | Oct 20–24, 2026 | partly open | [scaffold](../conferences/ashg-2026/index.md) |
 | CSHL Biological Data Science 2026 | Nov 4–7, 2026 | gated | [scaffold](../conferences/cshl-bds-2026/index.md) |
 
-**Watchlist:** Genome Biology, Nature, Nature Briefing, Science, bioRxiv (genomics + bioinformatics feeds)
+**Watchlist:** Cell Genomics, Genome Biology, Genome Research, Nature, Nature Briefing, Nature Genetics, Nucleic Acids Research, Science, bioRxiv (genomics + bioinformatics feeds)
 
 ## Workflow platforms, packages, infrastructure
 
-`bioinfo-tools` · 17 sources
+`bioinfo-tools` · 22 sources
 
 | Event | When | Access | Vault |
 |---|---|---|---|
@@ -179,7 +190,7 @@ Sources appear under each topic they carry, so entries repeat.
 | scverse Conference 2026 | Oct 12–14, 2026 | open | — |
 | CSHL Biological Data Science 2026 | Nov 4–7, 2026 | gated | [scaffold](../conferences/cshl-bds-2026/index.md) |
 
-**Watchlist:** Bioinformatics (OUP), Genome Biology, Nature Biotechnology, Nature Methods, bioRxiv (genomics + bioinformatics feeds)
+**Watchlist:** Bioinformatics (OUP), Cell Systems, Genome Biology, Genome Research, Molecular Systems Biology, Nature Biomedical Engineering, Nature Biotechnology, Nature Methods, Nucleic Acids Research, bioRxiv (genomics + bioinformatics feeds)
 
 ## Company strategy, financing, launches
 

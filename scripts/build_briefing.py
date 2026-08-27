@@ -30,6 +30,41 @@ INDEX = ROOT / "data" / "index.sqlite"
 CARDS = ROOT / "data" / "evidence.yml"
 OUT = ROOT / "docs" / "briefings"
 
+# The signal stores are regenerable and gitignored, so a fresh clone has the
+# journal index and nothing else. Every section built on them has to degrade
+# to a stated absence rather than a traceback — a briefing that cannot be
+# regenerated on a clean checkout is not reproducible.
+CONF = ROOT / "data" / "conference.sqlite"
+REGULATORY = ROOT / "data" / "regulatory.sqlite"
+NEWS = ROOT / "data" / "news.sqlite"
+SOURCES = ROOT / "data" / "sources.yml"
+
+
+def vaults_meeting_in(month: str) -> list[tuple[str, str]]:
+    """Built conference vaults whose meeting falls in this month.
+
+    Nine meetings — AACR 2026 and AACR IO 2026 among them — exist only as
+    hand-written vaults and are absent from the abstract store, so a
+    section built purely on the store reported ESMO and USCAP while
+    silently omitting the corpus's flagship vault. They are linked rather
+    than ingested: the vault *is* the judgement layer, and copying its
+    prose into a store of raw abstracts would double-count it.
+    """
+    if not SOURCES.exists():
+        return []
+    import yaml
+
+    out = []
+    for s in yaml.safe_load(SOURCES.read_text())["sources"]:
+        if s.get("type") != "conference" or not s.get("vault"):
+            continue
+        if s.get("status") not in ("built", "partial"):
+            continue
+        months = {str(s[k])[:7] for k in ("start", "end") if s.get(k)}
+        if month in months:
+            out.append((s["name"], s["vault"]))
+    return sorted(out)
+
 DOMAINS = ["general", "cancer", "immune", "bioinfo", "sysbio"]
 
 # Status is derived, never asserted. Change the rule here and every month
@@ -216,6 +251,240 @@ def section_open(cards: list[dict], month: str) -> str:
     return "\n".join(lines)
 
 
+def optional_store(path: pathlib.Path, table: str) -> sqlite3.Connection | None:
+    """Open a regenerable side store, or None if it is not built here."""
+    if not path.exists():
+        return None
+    con = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+    have = con.execute(
+        "SELECT 1 FROM sqlite_master WHERE type IN ('table','view') AND name=?",
+        (table,)).fetchone()
+    return con if have else None
+
+
+def section_meetings(month: str) -> str:
+    """Which meetings put abstracts into the record this month.
+
+    Conferences do not have a monthly cadence and pretending otherwise
+    would be the wrong shape for the data. Abstract books land in a few
+    weeks of the year, so most months here are empty by construction, and
+    an empty section means the calendar was quiet — not that anything
+    failed. Saying so once, in the section itself, is cheaper than
+    re-deriving it every time a reader hits a blank month.
+    """
+    lines = ["## 6. Meetings", ""]
+
+    vaults = vaults_meeting_in(month)
+    if vaults:
+        lines += [
+            f"**{len(vaults)} meeting{'' if len(vaults) == 1 else 's'} with a "
+            f"written vault this month.** These are read and summarised rather "
+            f"than harvested as abstracts, so they do not appear in the counts "
+            f"below.",
+            "",
+        ]
+        for name, vault in vaults:
+            lines.append(f"- [{name}](../{vault.removesuffix('.md')}.md)")
+        lines.append("")
+
+    con = optional_store(CONF, "abstracts")
+    if con is None:
+        lines += ["Conference store not built in this checkout — run "
+                  "`scripts/harvest_conference.py`.", ""]
+        return "\n".join(lines)
+
+    rows = con.execute(
+        "SELECT a.venue, COALESCE(v.name, a.venue), COUNT(*), "
+        "       SUM(LENGTH(a.abstract) > 200), MIN(a.confirmed) "
+        "FROM abstracts a LEFT JOIN venues v ON v.id = a.venue "
+        "WHERE a.month = ? GROUP BY a.venue ORDER BY COUNT(*) DESC",
+        (month,)).fetchall()
+
+    if not rows:
+        span = con.execute(
+            "SELECT MIN(month), MAX(month) FROM abstracts").fetchone()
+        lines += [
+            ("No abstract book was deposited this month either — the vault "
+             "above is built from transcripts and programmes rather than from "
+             "a published abstract set."
+             if vaults else
+             "No abstract book published this month.")
+            + f" The abstract layer runs {span[0]} to {span[1]} and is seasonal "
+            f"by nature — meetings are annual, so most months are empty here "
+            f"and that is the expected shape, not a gap in the harvest.",
+            "",
+        ]
+        return "\n".join(lines)
+
+    total = sum(r[2] for r in rows)
+    lines += [
+        f"**{total:,} abstracts** from {len(rows)} "
+        f"{'meeting' if len(rows) == 1 else 'meetings'}.",
+        "",
+        "| Meeting | Abstracts | With full text |",
+        "|---|---|---|",
+    ]
+    for _, name, n, full, confirmed in rows:
+        mark = "" if confirmed else " †"
+        lines.append(f"| {name}{mark} | {n:,} | {full or 0:,} |")
+    lines.append("")
+    if any(not r[4] for r in rows):
+        lines += [
+            "† The congress behind this abstract book could not be identified. "
+            "It is a real, numbered abstract book, but Crossref deposits no "
+            "record naming the meeting and the publisher's table of contents "
+            "is not reachable. It is carried unattributed rather than assigned "
+            "to a plausible congress.",
+            "",
+        ]
+    if not any(r[3] for r in rows):
+        lines += [
+            "Titles only — these publishers deposit abstract metadata without "
+            "abstract text, so anything read off this month's meetings is read "
+            "off titles. The 2024 AACR and ASCO books do carry full text.",
+            "",
+        ]
+    return "\n".join(lines)
+
+
+def section_regulatory(month: str) -> str:
+    """Approvals and trial registrations dated to this month.
+
+    This is the one source type in the corpus with a genuinely monthly
+    rhythm. Journals publish continuously, meetings once a year, trade
+    press in a rolling two-week window — but a regulator's decisions
+    arrive dated, in order, and are authoritative for exactly the kind of
+    claim the corpus keeps wanting to make ("first approval for X").
+    """
+    lines = ["## 7. Regulatory", ""]
+    con = optional_store(REGULATORY, "events")
+    if con is None:
+        lines += ["Regulatory store not built in this checkout — run "
+                  "`scripts/harvest_regulatory.py`.", ""]
+        return "\n".join(lines)
+
+    rows = con.execute(
+        "SELECT kind, COUNT(*) FROM events WHERE month=? GROUP BY kind "
+        "ORDER BY COUNT(*) DESC", (month,)).fetchall()
+    if not rows:
+        lines += ["Nothing dated to this month in the regulatory store.", ""]
+        return "\n".join(lines)
+
+    # Trial registrations are counted, approvals are listed. There are two
+    # orders of magnitude between them — roughly 570 trials a month against
+    # about five approvals — and printing both the same way would bury the
+    # approvals under the trials.
+    onc = con.execute(
+        "SELECT COUNT(*) FROM ct_trials WHERE month=? AND onc_conditions=1",
+        (month,)).fetchone()[0]
+    lines += ["| Event | Count |", "|---|---|"]
+    for kind, n in rows:
+        extra = (f" (of which {onc:,} genuinely oncology)"
+                 if kind == "trial-first-posted" else "")
+        lines.append(f"| {kind} | {n:,}{extra} |")
+    lines.append("")
+
+    approvals = con.execute(
+        "SELECT date, title FROM fda_approvals WHERE month=? ORDER BY date",
+        (month,)).fetchall()
+    if approvals:
+        lines += [f"**{len(approvals)} FDA "
+                  f"{'action' if len(approvals) == 1 else 'actions'}** — dated "
+                  f"from each notice's own prose, not the table's posting date, "
+                  f"which disagrees on 7 of 190 rows and once by enough to move "
+                  f"an approval into the wrong month:",
+                  ""]
+        for date, title in approvals:
+            lines.append(f"- {date} — {title}")
+        lines.append("")
+
+    ema = con.execute(
+        "SELECT date, name FROM ema_medicines WHERE month=? AND oncology=1 "
+        "ORDER BY date", (month,)).fetchall()
+    if ema:
+        lines += [f"**{len(ema)} EMA oncology "
+                  f"{'authorisation' if len(ema) == 1 else 'authorisations'}:**",
+                  ""]
+        for date, name in ema:
+            lines.append(f"- {date} — {name}")
+        lines.append("")
+    return "\n".join(lines)
+
+
+# STAT files roughly 300 items a month across all of health — drug pricing,
+# insurance, hospital politics, public health. Most of it is outside what this
+# corpus reads. Listing recent headlines regardless would fill the section with
+# material no thread could ever cite, so headlines are selected on the corpus's
+# own subject matter and the unfiltered count is reported alongside.
+ON_TOPIC = (
+    "cancer", "tumor", "tumour", "oncolog", "carcinoma", "leukemia", "leukaemia",
+    "lymphoma", "myeloma", "melanoma", "metasta", "chemotherap", "car-t", "car t",
+    "checkpoint", "immunotherap", "pd-1", "pd-l1", "antibody", "antibodies",
+    "bispecific", "crispr", "gene therapy", "gene-editing", "genome", "genomic",
+    "sequencing", "single-cell", "biomarker", "clinical trial", "phase 1",
+    "phase 2", "phase 3", "fda approv", "oncogene", "kras", "her2", "egfr",
+)
+
+
+def section_press(month: str) -> str:
+    """Trade press, with its coverage limit stated rather than implied.
+
+    The expectation going in was that RSS gives a rolling two-week window
+    and cannot be backfilled, which would have made this section empty for
+    all but the last month of the corpus. That turned out to be true of
+    only one of the three open feeds. STAT and the AACR blog both run
+    WordPress and honour `?paged=N`, so walking the same public feed
+    backwards recovers the full window — 9,497 and 324 items across all 32
+    months. Fierce Biotech returns a byte-identical document for every
+    pagination parameter and genuinely accumulates forward only.
+
+    Four registered outlets contribute nothing and never will: Endpoints,
+    OncLive and BioWorld are paywalled and are not collected, and Nature
+    Briefing is an email newsletter with no feed.
+    """
+    lines = ["## 8. Trade press", ""]
+    con = optional_store(NEWS, "news")
+    if con is None:
+        lines += ["News store not built in this checkout — run "
+                  "`scripts/harvest_news.py`.", ""]
+        return "\n".join(lines)
+
+    span = con.execute("SELECT MIN(month), MAX(month) FROM news").fetchone()
+    rows = con.execute(
+        "SELECT source, COUNT(*) FROM news WHERE month=? GROUP BY source "
+        "ORDER BY COUNT(*) DESC", (month,)).fetchall()
+    if not rows:
+        lines += [
+            f"No items. The press archive covers {span[0]} to {span[1]}; feeds "
+            f"that cannot be paginated backwards contribute only from the first "
+            f"harvest forward.",
+            "",
+        ]
+        return "\n".join(lines)
+
+    where = " OR ".join(["LOWER(title) LIKE ?"] * len(ON_TOPIC))
+    args = [month] + [f"%{k}%" for k in ON_TOPIC]
+    picked = con.execute(
+        f"SELECT source, date, title FROM news WHERE month=? AND ({where}) "
+        f"ORDER BY date DESC", args).fetchall()
+
+    total = sum(r[1] for r in rows)
+    lines += [
+        f"**{len(picked):,} on-topic of {total:,} items** across "
+        f"{len(rows)} {'feed' if len(rows) == 1 else 'feeds'} "
+        f"({', '.join(f'`{s}` {n:,}' for s, n in rows)}). Headlines are "
+        f"selected by subject keyword, not recency — most of what these feeds "
+        f"carry is health policy and industry finance the corpus does not read.",
+        "",
+    ]
+    for source, date, title in picked[:12]:
+        lines.append(f"- {date} — {title} — `{source}`")
+    if len(picked) > 12:
+        lines.append(f"- … and {len(picked) - 12:,} more on-topic items.")
+    lines.append("")
+    return "\n".join(lines)
+
+
 def build(month: str, con: sqlite3.Connection, cards: list[dict], prev: str | None) -> str:
     label = dt.date(int(month[:4]), int(month[5:]), 1).strftime("%B %Y")
     head = [
@@ -245,7 +514,8 @@ def build(month: str, con: sqlite3.Connection, cards: list[dict], prev: str | No
         head
         + [section_volume(con, month), section_curve(cards, month, prev)]
         + hand
-        + [section_open(cards, month)]
+        + [section_open(cards, month), section_meetings(month),
+           section_regulatory(month), section_press(month)]
     )
 
 

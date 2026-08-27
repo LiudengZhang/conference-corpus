@@ -14,9 +14,21 @@
 #   harvest   method + endpoint. This is the operational payload of the file.
 #   vault     docs-relative path, or null if no vault exists yet
 #   status    built | partial | scaffold | harvested | none
-#             `harvested` means the source is in data/index.sqlite. It is the
+#             `harvested` means the source has rows in the store for its type:
+#             journals in data/index.sqlite, conferences in conference.sqlite,
+#             news in news.sqlite, regulatory in regulatory.sqlite. It is the
 #             only status that is checkable rather than asserted, and the only
-#             one a generator should trust.
+#             one a generator should trust — and as of 2026-08-27
+#             scripts/check_corpus.py actually checks it, in both directions,
+#             for every type whose store keys on these ids. Journals are the
+#             exception and are still unchecked: this file names them in full
+#             ("Nucleic Acids Research") and the index stores PubMed
+#             abbreviations ("Nucleic Acids Res"), so there is no join key.
+#
+#             `harvested` and `built` are different axes, not stages of one.
+#             Harvested means the material is in a store; built means a vault
+#             page has been written about it. A source can be either without
+#             the other, and nine built vaults hold no harvested abstracts.
 #   verify    true when a field here is unconfirmed and needs checking
 #
 # TAXONOMY (keep small on purpose)
@@ -760,9 +772,12 @@ sources:
   harvest:
     method: pmlr
     endpoint: https://proceedings.mlr.press/v333/
-    notes: Proceedings published open access; OpenReview holds papers plus reviews
+    notes: >-
+      PMLR volume 333, 40 papers with full abstracts. Dates are volume-level:
+      PMLR stamps one citation_publication_date across the whole volume, so
+      every paper carries 2026-06-29 rather than its own presentation day.
   vault: null
-  status: none
+  status: harvested
 
 - id: midl-2026
   name: Medical Imaging with Deep Learning 2026
@@ -776,7 +791,14 @@ sources:
   harvest:
     method: openreview
     endpoint: https://2026.midl.io/
-    notes: Three tracks incl. a new Validation Studies track; free global livestream
+    notes: >-
+      UNREACHABLE, and not for a MIDL-specific reason: OpenReview's /notes
+      endpoint now returns 403 ChallengeRequiredError to any unauthenticated
+      client for every venue, on both api2 and v1, regardless of User-Agent.
+      /groups and /notes/search still answer, which confirms the venue exists
+      and has public_submissions: false. The 2026.midl.io site publishes only
+      livestream links. This blocks every openreview-method source, not just
+      this one.
   vault: null
   status: none
 
@@ -790,11 +812,14 @@ sources:
   topics: [bioinfo-tools, single-cell-spatial]
   access: open
   harvest:
-    method: youtube
-    endpoint: https://bioc2026.bioconductor.org/
-    notes: Recordings normally land on the Bioconductor YouTube channel
+    method: schedule-html
+    endpoint: https://bioc2026.bioconductor.org/schedule/
+    notes: >-
+      The schedule table, not YouTube. 44 talks and workshops with real
+      per-day dates from the day-header rows; 36 carry abstracts and 8 are
+      title-only because keynotes and workshops genuinely have none.
   vault: null
-  status: none
+  status: harvested
 
 - id: eurobioc-2026
   name: European Bioconductor Conference 2026
@@ -806,10 +831,14 @@ sources:
   topics: [bioinfo-tools]
   access: open
   harvest:
-    method: youtube
-    endpoint: https://blog.bioconductor.org/posts/2026-06-19-EuroBioc2026-recap/
+    method: schedule-html
+    endpoint: https://eurobioc2026.bioconductor.org/
+    notes: >-
+      The blog recap named here previously is prose only. The conference
+      site's own schedule is the route: 103 items with real per-day dates,
+      98 with abstracts.
   vault: null
-  status: none
+  status: harvested
 
 - id: mlhc-2026
   name: Machine Learning for Healthcare 2026
@@ -821,11 +850,16 @@ sources:
   topics: [ai-ml, foundation-models]
   access: open
   harvest:
-    method: pmlr
+    method: conference-site
     endpoint: https://mlhc.org/
-    notes: PMLR volume posts with a lag; accepted papers visible on OpenReview now
+    notes: >-
+      Not PMLR after all — the index stops at v298 (MLHC 2025) and no 2026
+      volume exists. The conference's own site is the better route anyway:
+      it publishes both accepted tracks with full abstracts and real
+      per-session dates, and PMLR never carries the clinical-abstract track.
+      116 papers, 113 with abstract text.
   vault: null
-  status: none
+  status: harvested
 
 - id: asgct-2026
   name: ASGCT 29th Annual Meeting
@@ -853,11 +887,15 @@ sources:
   topics: [imaging, oncology-clinical]
   access: open
   harvest:
-    method: abstract-supplement
-    endpoint: https://2026am.uscap.org/
-    notes: Laboratory Investigation abstract supplement, free. Heavy computational pathology.
+    method: crossref-issue
+    endpoint: https://api.crossref.org/journals/0023-6837/works
+    notes: >-
+      Not a supplement at all — the abstract book is Laboratory
+      Investigation's ordinary issue 3, so the discriminator is the issue
+      number rather than special_numbering. 1,760 of that issue's 1,770
+      records are numbered abstracts. Heavy computational pathology.
   vault: null
-  status: none
+  status: harvested
 
 - id: cimt-2026
   name: CIMT 23rd Annual Meeting
@@ -870,10 +908,18 @@ sources:
   access: open
   harvest:
     method: static-pdf
-    endpoint: https://www.meeting.cimt.eu/
-    notes: Free abstract book PDF; dedicated AI and TME plenaries
+    endpoint: https://www.meeting.cimt.eu/call-for-abstracts/
+    notes: >-
+      The Book of Abstracts PDF is linked from /call-for-abstracts, not from
+      the programme page — which is why scanning the homepage found no PDF.
+      195 abstracts parsed from PDF font runs, 194 with text, dated to the
+      meeting start because the book gives poster session but no day. Two
+      known defects: about 24 of 195 retain a leading fragment of the author
+      affiliation in the abstract field, because the PDF text layer marks no
+      boundary between affiliation and body; and 51 posters that run in both
+      sessions under one number are deduplicated on (number, title).
   vault: null
-  status: none
+  status: harvested
 
 - id: esmo-breast-2026
   name: ESMO Breast Cancer 2026
@@ -885,10 +931,14 @@ sources:
   topics: [oncology-clinical]
   access: open
   harvest:
-    method: abstract-supplement
-    endpoint: https://www.sciencedirect.com/journal/esmo-open/vol/11/suppl/S4
+    method: crossref-supplement
+    endpoint: https://api.crossref.org/journals/2059-7029/works
+    notes: >-
+      ESMO Open vol 11, Crossref special_numbering S4. Confirmed two ways
+      before harvesting: the publisher's own supplement title, and the
+      abstracts' disease-site vocabulary, which is 99% breast.
   vault: null
-  status: none
+  status: harvested
 
 - id: elcc-2026
   name: European Lung Cancer Congress 2026
@@ -900,11 +950,74 @@ sources:
   topics: [oncology-clinical]
   access: open
   harvest:
-    method: abstract-supplement
-    endpoint: https://www.esmo.org/meeting-calendar/european-lung-cancer-congress-2026
-    notes: ESMO Open vol 11 Suppl S3
+    method: crossref-supplement
+    endpoint: https://api.crossref.org/journals/2059-7029/works
+    notes: >-
+      ESMO Open vol 11, Crossref special_numbering S3. The abstracts are
+      99% lung vocabulary, which is what confirms the mapping — a web
+      search claimed S3 was a targeted-therapy congress and was wrong.
   vault: null
-  status: none
+  status: harvested
+
+# The three entries below were not in this registry. They were found by
+# enumerating the 2026 supplements of a journal already being harvested for
+# another congress — the registry was listing meetings it had heard of, not
+# meetings whose abstracts were sitting in a feed it already read.
+- id: esmo-gyn-2026
+  name: ESMO Gynaecological Cancers Congress 2026
+  type: conference
+  cadence: annual
+  start: 2026-06-24
+  end: 2026-06-26
+  location: Unconfirmed
+  topics: [oncology-clinical]
+  access: open
+  harvest:
+    method: crossref-supplement
+    endpoint: https://api.crossref.org/journals/2059-7029/works
+    notes: >-
+      ESMO Open vol 11 special_numbering S6. Identified from content alone:
+      99% gynaecological vocabulary, overwhelmingly cervical and ovarian.
+      Meeting dates are not confirmed against a programme.
+  vault: null
+  status: harvested
+  verify: true
+
+- id: esmo-open-2026-s2
+  name: ESMO Open 2026 Suppl S2 (meeting unidentified)
+  type: conference
+  cadence: annual
+  topics: [oncology-clinical]
+  access: open
+  harvest:
+    method: crossref-supplement
+    endpoint: https://api.crossref.org/journals/2059-7029/works
+    notes: >-
+      A real abstract book — numbered abstracts, published April 2026 — whose
+      congress cannot be named. The disease mix is broad (breast, lung, GU,
+      gynaecological) so content does not identify it, Crossref deposits no
+      front-matter record naming the meeting, and Elsevier returns 403 to the
+      supplement's own table of contents. Harvested with confirmed=0 rather
+      than assigned to a plausible congress.
+  vault: null
+  status: harvested
+  verify: true
+
+- id: esmo-open-2026-s5
+  name: ESMO Open 2026 Suppl S5 (meeting unidentified)
+  type: conference
+  cadence: annual
+  topics: [oncology-clinical]
+  access: open
+  harvest:
+    method: crossref-supplement
+    endpoint: https://api.crossref.org/journals/2059-7029/works
+    notes: >-
+      Same problem as S2, published July 2026. Mix spans renal, sarcoma,
+      lymphoma, breast and GI. Harvested with confirmed=0.
+  vault: null
+  status: harvested
+  verify: true
 
 - id: esmo-gi-2026
   name: ESMO Gastrointestinal Cancers Congress 2026
@@ -916,10 +1029,15 @@ sources:
   topics: [oncology-clinical]
   access: open
   harvest:
-    method: abstract-supplement
-    endpoint: https://www.esmo.org/meeting-calendar/esmo-gastrointestinal-cancers-congress-2026
+    method: crossref-supplement
+    endpoint: https://api.crossref.org/journals/0923-7534/works
+    notes: >-
+      Annals of Oncology vol 37 Suppl S1 — not ESMO Open, which this entry
+      previously assumed. 76% GI vocabulary. The ESMO family splits its
+      abstract books across two journals and the registry cannot assume
+      which one a congress used.
   vault: null
-  status: none
+  status: harvested
 
 - id: aaai-2026
   name: AAAI-26
@@ -931,11 +1049,21 @@ sources:
   topics: [ai-ml, foundation-models]
   access: open
   harvest:
-    method: static-html
+    method: ojs-tracks
     endpoint: https://aaai.org/proceeding/aaai-40-2026/
-    notes: Broad AI; only the AI-for-Science tracks are in scope
+    notes: >-
+      A deliberate subset, not the conference. Two filters applied uniformly:
+      (1) only the four OJS issues whose section is defined by application
+      rather than method — Application Domains I/II, AI for Social Impact
+      I/II — with the other 44 method tracks excluded wholesale; (2) of those
+      369 papers, keep those matching a fixed ~90-term biomedical word list.
+      100 kept. Dated to the meeting start, not OJS's 2026-03-17 proceedings
+      posting, because a lead-time corpus wants when work was presented.
+      Caveat: `health`, `molecular` and `hospitals` are deliberately left in
+      the word list despite over-matching, so roughly 4-5 of the 100 are
+      false positives.
   vault: null
-  status: none
+  status: harvested
 
 - id: eacr-2026
   name: "EACR 2026 Congress: Innovative Cancer Science"
@@ -949,7 +1077,11 @@ sources:
   harvest:
     method: abstract-supplement
     endpoint: https://www.eacr.org/
-    notes: 2025 precedent was a Molecular Oncology supplement; 2026 not confirmed
+    notes: >-
+      NOT DEPOSITED. The 2026 supplement exists but only as one lump record —
+      10.1002/1878-0261.70318 "Abstracts", Molecular Oncology vol 20 issue S1,
+      pages 1-692, plus the issue record 10.1002/mol2.v20.s1. Individual
+      abstracts have no DOIs, so there is nothing to harvest from Crossref.
   vault: null
   status: none
   verify: true
@@ -966,7 +1098,9 @@ sources:
   harvest:
     method: youtube
     endpoint: https://scverse.org/
-    notes: Has not happened yet — queued
+    notes: >-
+      Has not happened yet — confirmed 2026-10-12..14 at DTU Copenhagen,
+      registration still open as of 2026-08-27. Queued, not failed.
   vault: null
   status: none
 
@@ -1134,9 +1268,19 @@ sources:
   cadence: continuous
   topics: [oncology-clinical, industry-finance]
   access: mixed
-  harvest: {method: rss, endpoint: "https://www.statnews.com/feed/"}
+  harvest:
+    method: rss-paginated
+    endpoint: "https://www.statnews.com/feed/"
+    notes: >-
+      The feed serves 20 items, but it is WordPress and honours `?paged=N`,
+      so the same public feed walks backwards to the start of the window:
+      9,497 items across all 32 months, evenly distributed. Headlines and
+      summaries only — the articles themselves are metered, which is why
+      access is `mixed` and why nothing here should be cited as evidence.
+      Broad health news; roughly one item in seven is on this corpus's
+      subject matter.
   vault: null
-  status: none
+  status: harvested
 
 - id: n-endpoints
   name: Endpoints News
@@ -1154,9 +1298,19 @@ sources:
   cadence: continuous
   topics: [industry-finance]
   access: open
-  harvest: {method: rss, endpoint: "https://www.fiercebiotech.com/rss/xml"}
+  harvest:
+    method: rss
+    endpoint: "https://www.fiercebiotech.com/rss/xml"
+    notes: >-
+      Forward-only, permanently. `?page=N`, `?paged=N` and `?offset=N` all
+      return a byte-identical 25-item document, and the sitemap is
+      Cloudflare-gated and carries only lastmod. So this source contributes
+      nothing before its first harvest on 2026-08-27 and its 2024–2026-07
+      months stay empty. Trap: it nests markup inside <title> and
+      <dc:creator>, so ElementTree's .text is empty and a naive parser
+      yields 25 blank titles — use itertext().
   vault: null
-  status: none
+  status: harvested
 
 - id: n-aacr-blog
   name: AACR Blog
@@ -1165,11 +1319,14 @@ sources:
   topics: [oncology-clinical, immuno-oncology]
   access: open
   harvest:
-    method: static-html
-    endpoint: "https://www.aacr.org/blog/"
-    notes: The only narrative record of AACR IO 2026 — meeting recaps land here
+    method: rss-paginated
+    endpoint: "https://www.aacr.org/blog/feed/"
+    notes: >-
+      The only narrative record of AACR IO 2026 — meeting recaps land here.
+      WordPress, so `?paged=N` backfills: 324 items across all 32 months.
+      Low volume and high hit rate, the inverse of STAT.
   vault: null
-  status: none
+  status: harvested
 
 - id: n-onclive
   name: OncLive
@@ -1191,11 +1348,21 @@ sources:
   topics: [immuno-oncology]
   access: open
   harvest:
-    method: static-html
-    endpoint: "https://acir.org/"
-    notes: Curated expert recap — high signal, low volume. Best news source here.
+    method: archive-walk
+    endpoint: "https://acir.org/weekly-digests/"
+    notes: >-
+      Curated expert recap — high signal, low volume. Best news source here.
+      118 digests, all 32 months, ~3.7/month. No feed exists at any path:
+      /feed/, /rss, /atom.xml and /feed/rss2/ are 404,
+      /weekly-digests/feed/ is 500, ?feed=rss2 silently serves the
+      homepage, and the /wp-json/ routes 404 because the site is not the
+      WordPress install those paths assume. The archive is the route
+      instead — /weekly-digests/YYYY/<month>/ enumerates each week with its
+      date, back to 2017. One digest is one row; the papers a digest cites
+      are deliberately not expanded, because they belong to the journal
+      index and expanding them would double-count.
   vault: null
-  status: none
+  status: harvested
 
 - id: n-nature-briefing
   name: Nature Briefing
@@ -1203,7 +1370,14 @@ sources:
   cadence: weekly
   topics: [genomics, ai-ml]
   access: open
-  harvest: {method: newsletter, endpoint: "https://www.nature.com/briefing/signup/"}
+  harvest:
+    method: newsletter
+    endpoint: "https://www.nature.com/briefing/signup/"
+    notes: >-
+      Unharvestable, not merely unharvested. It is an email newsletter: the
+      signup page exposes no RSS/Atom link and no Briefing feed URL
+      resolves. Substituting nature.com journal feeds would be a different
+      artefact wearing this source's name, so nothing is collected.
   vault: null
   status: none
 
@@ -1460,9 +1634,15 @@ sources:
   harvest:
     method: static-html
     endpoint: "https://www.fda.gov/drugs/resources-information-approved-drugs/oncology-cancer-hematologic-malignancies-approval-notifications"
-    notes: Authoritative for first-approval claims; check before carding one.
+    notes: >-
+      Authoritative for first-approval claims; check before carding one.
+      Trap: the table's Date column is the *posting* date, not the approval
+      date. Each notice restates the real date in its prose and the two
+      disagree on 7 of 190 rows — treosulfan was approved 2025-01-21 and
+      posted 2025-02-06, which files it under the wrong month. The harvester
+      dates from the prose and keeps the column as posted_date.
   vault: null
-  status: none
+  status: harvested
 
 - id: r-fda-cellular-gene-therapy
   name: FDA approved cellular and gene therapy products
@@ -1473,9 +1653,13 @@ sources:
   harvest:
     method: static-html
     endpoint: "https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/approved-cellular-and-gene-therapy-products"
-    notes: The list that settles any "first CAR-T approved for X" question.
+    notes: >-
+      The list that settles any "first CAR-T approved for X" question.
+      Carries no dates — it is a state roster of 53 products, not an event
+      stream, and is stored with a `captured` date and deliberately no
+      month column so it cannot be joined into a monthly query by accident.
   vault: null
-  status: none
+  status: harvested
 
 - id: r-ema-medicines
   name: EMA medicines register
@@ -1483,9 +1667,18 @@ sources:
   cadence: continuous
   topics: [oncology-clinical]
   access: open
-  harvest: {method: static-html, endpoint: "https://www.ema.europa.eu/en/medicines"}
+  harvest:
+    method: xlsx-export
+    endpoint: "https://www.ema.europa.eu/system/files/documents/report/medicines-output-medicines-report_en.xlsx"
+    notes: >-
+      The /en/medicines page previously named here is a JavaScript shell and
+      yields nothing. The nightly xlsx export is the real route: 2,339 human
+      medicines, marketing-authorisation dated, 553 flagged oncology by MeSH
+      area or ATC L01/L02. Trap: a second EPAR spreadsheet under
+      /system/files/ also returns 200 but was last generated December 2023
+      and carries no date columns.
   vault: null
-  status: none
+  status: harvested
 
 - id: r-clinicaltrials-gov
   name: ClinicalTrials.gov
@@ -1500,8 +1693,12 @@ sources:
       Used to check whether a nominated target has any registered trial. The
       finding that no newly nominated checkpoint entered a phase 1 anywhere in
       2025 was read off the literature only and should be confirmed here.
+      Dated on studyFirstPostDate. Trap: query.cond matches free text across a
+      record's entire condition list, so a COPD rehabilitation study that
+      lists "Lung Neoplasms" fourth comes back as oncology. Every row carries
+      an onc_conditions flag instead; 16,145 of 18,139 clear it.
   vault: null
-  status: none
+  status: harvested
 
 # ---------------------------------------------------------------------------
 # Author tracking. The measured alternative to journal scanning: 84 works for

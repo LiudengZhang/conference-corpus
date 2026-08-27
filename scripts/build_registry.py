@@ -278,7 +278,14 @@ def page_harvest_queue(sources, today) -> str:
     ]
     queue.sort(key=lambda s: (s["status"] != "none", -as_date(s["end"]).toordinal()))
 
-    open_only = [s for s in queue if s.get("access") == "open"]
+    # `harvested` and `built` are different axes: the first says the abstracts
+    # are in a store, the second says a vault page has been written about
+    # them. Collapsing them listed nine meetings whose abstracts were already
+    # harvested under "ready to build", which reads as work not started.
+    done = [s for s in queue if s["status"] == "harvested"]
+    todo = [s for s in queue if s["status"] != "harvested"]
+
+    open_only = [s for s in todo if s.get("access") == "open"]
     gated = [
         s for s in events
         if concluded(s, today) and s["status"] != "built" and not harvestable(s)
@@ -292,14 +299,16 @@ def page_harvest_queue(sources, today) -> str:
         "**Meetings that have already happened, whose material is reachable, and which have no built",
         "vault.** This is the working list — pick from it rather than asking what is missing.",
         "",
-        f"{len(queue)} entries, of which **{len(open_only)}** are fully open access.",
+        f"{len(todo)} not yet harvested, of which **{len(open_only)}** are fully "
+        f"open access. A further {len(done)} are harvested into a store but have "
+        f"no vault written.",
         "",
-        "## Ready to build",
+        "## Not yet harvested",
         "",
         "| Event | Ended | Topics | Access | Harvest | Endpoint | Vault |",
         "|---|---|---|---|---|---|---|",
     ]
-    for s in queue:
+    for s in todo:
         h = s.get("harvest") or {}
         ep = h.get("endpoint")
         ep_cell = f"[link]({ep})" if ep and str(ep).startswith("http") else "—"
@@ -309,6 +318,27 @@ def page_harvest_queue(sources, today) -> str:
             f"| {ACCESS_NOTE.get(s.get('access'),'—')} | {harvest_cell(s)} | {ep_cell} "
             f"| {vault_link(s)} |"
         )
+
+    if done:
+        L += [
+            "",
+            "## Harvested, no vault written",
+            "",
+            "The abstracts are in `data/conference.sqlite` and reach the monthly",
+            "briefings through section 6. What is missing is a vault page, which is",
+            "judgement work, not harvesting work.",
+            "",
+            "| Event | Ended | Topics | Harvest | Endpoint |",
+            "|---|---|---|---|---|",
+        ]
+        for s in done:
+            h = s.get("harvest") or {}
+            ep = h.get("endpoint")
+            ep_cell = f"[link]({ep})" if ep and str(ep).startswith("http") else "—"
+            L.append(
+                f"| **{s['name']}** | {date_range(s)} "
+                f"| {', '.join(s.get('topics', []))} | {harvest_cell(s)} | {ep_cell} |"
+            )
 
     L += [
         "",

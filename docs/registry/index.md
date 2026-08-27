@@ -7,18 +7,18 @@
 The registry is a dispatch layer — what exists, when it happens, whether the material is
 reachable, and how to get it. The vaults themselves hold the judgment about what any of it means.
 
-Registry last updated **2026-08-25** · views generated for **2026-08-25**.
+Registry last updated **2026-08-26** · views generated for **2026-08-27**.
 
 ## Coverage
 
 | | Count |
 |---|---|
-| Events tracked (conferences + webinar series) | **56** |
+| Events tracked (conferences + webinar series) | **61** |
 | — with a built vault | 8 |
 | — scaffolded, awaiting material | 33 |
-| — no vault yet | 14 |
-| Journals and news feeds on the watchlist | **23** |
-| **Concluded, reachable, not yet built** | **28** |
+| — no vault yet | 4 |
+| Journals and news feeds on the watchlist | **42** |
+| **Concluded, reachable, not yet built** | **31** |
 
 That last row is the one that matters. See **[Harvest queue](harvest-queue.md)**.
 

@@ -3,7 +3,7 @@
 
 # Radar
 
-Generated for **2026-08-25**.
+Generated for **2026-08-27**.
 
 The point of this page is to scaffold a vault *before* a meeting, not after. Program pages get
 retired, virtual platforms close, and speaker lists vanish — AACR IO 2026's entire program is
@@ -14,21 +14,21 @@ now 404 on the live site and survives only in Wayback snapshots.
 | In | Event | Dates | Location | Access | Vault |
 |---|---|---|---|---|---|
 | this week | **25th European Conference on Computational Biology** | Aug 31 – Sep 4, 2026 | Geneva, Switzerland | partly open | [scaffold](../conferences/eccb-2026/index.md) |
-| 14 d | **European Conference on Computer Vision 2026** | Sep 8–12, 2026 | Malmö, Sweden | open | [scaffold](../conferences/eccv-2026/index.md) |
-| 20 d | **AGBT Precision Health 2026** | Sep 14–16, 2026 | San Diego, CA | gated | [scaffold](../conferences/agbt-pm-2026/index.md) |
-| 31 d | **AACR Special Conference: Pancreatic Cancer 2026** | Sep 25–28, 2026 | San Diego, CA | partly open | [scaffold](../conferences/aacr-pancreatic-2026/index.md) |
-| 32 d | **68th ASTRO Annual Meeting** | Sep 26–30, 2026 | Boston, MA | partly open | [scaffold](../conferences/astro-2026/index.md) |
-| 33 d | **MICCAI 2026** | Sep 27 – Oct 1, 2026 | Strasbourg, France | partly open | [scaffold](../conferences/miccai-2026/index.md) |
-| 48 d | **scverse Conference 2026** | Oct 12–14, 2026 | Copenhagen, Denmark | open | — |
-| 56 d | **76th ASHG Annual Meeting** | Oct 20–24, 2026 | Montréal, Canada | partly open | [scaffold](../conferences/ashg-2026/index.md) |
-| 59 d | **ESMO Congress 2026** | Oct 23–27, 2026 | Madrid, Spain | open | [scaffold](../conferences/esmo-2026/index.md) |
-| 71 d | **CSHL Biological Data Science 2026** | Nov 4–7, 2026 | Cold Spring Harbor, NY | gated | [scaffold](../conferences/cshl-bds-2026/index.md) |
-| 71 d | **SITC 41st Annual Meeting** | Nov 4–8, 2026 | Phoenix, AZ | open | [scaffold](../conferences/sitc-2026/index.md) |
-| 96 d | **RSNA 2026** | Nov 29 – Dec 3, 2026 | Chicago, IL | partly open | [scaffold](../conferences/rsna-2026/index.md) |
-| 103 d | **NeurIPS 2026** | Dec 6–13, 2026 | Sydney + Atlanta (satellite model) | open | [scaffold](../conferences/neurips-2026/index.md) |
-| 105 d | **49th San Antonio Breast Cancer Symposium** | Dec 8–11, 2026 | San Antonio, TX | partly open | [scaffold](../conferences/sabcs-2026/index.md) |
-| 109 d | **Cell Bio 2026 (ASCB | EMBO)** | Dec 12–15, 2026 | San Diego, CA | partly open | [scaffold](../conferences/ascb-2026/index.md) |
-| 109 d | **68th ASH Annual Meeting** | Dec 12–15, 2026 | New Orleans, LA | partly open | [scaffold](../conferences/ash-2026/index.md) |
+| 12 d | **European Conference on Computer Vision 2026** | Sep 8–12, 2026 | Malmö, Sweden | open | [scaffold](../conferences/eccv-2026/index.md) |
+| 18 d | **AGBT Precision Health 2026** | Sep 14–16, 2026 | San Diego, CA | gated | [scaffold](../conferences/agbt-pm-2026/index.md) |
+| 29 d | **AACR Special Conference: Pancreatic Cancer 2026** | Sep 25–28, 2026 | San Diego, CA | partly open | [scaffold](../conferences/aacr-pancreatic-2026/index.md) |
+| 30 d | **68th ASTRO Annual Meeting** | Sep 26–30, 2026 | Boston, MA | partly open | [scaffold](../conferences/astro-2026/index.md) |
+| 31 d | **MICCAI 2026** | Sep 27 – Oct 1, 2026 | Strasbourg, France | partly open | [scaffold](../conferences/miccai-2026/index.md) |
+| 46 d | **scverse Conference 2026** | Oct 12–14, 2026 | Copenhagen, Denmark | open | — |
+| 54 d | **76th ASHG Annual Meeting** | Oct 20–24, 2026 | Montréal, Canada | partly open | [scaffold](../conferences/ashg-2026/index.md) |
+| 57 d | **ESMO Congress 2026** | Oct 23–27, 2026 | Madrid, Spain | open | [scaffold](../conferences/esmo-2026/index.md) |
+| 69 d | **CSHL Biological Data Science 2026** | Nov 4–7, 2026 | Cold Spring Harbor, NY | gated | [scaffold](../conferences/cshl-bds-2026/index.md) |
+| 69 d | **SITC 41st Annual Meeting** | Nov 4–8, 2026 | Phoenix, AZ | open | [scaffold](../conferences/sitc-2026/index.md) |
+| 94 d | **RSNA 2026** | Nov 29 – Dec 3, 2026 | Chicago, IL | partly open | [scaffold](../conferences/rsna-2026/index.md) |
+| 101 d | **NeurIPS 2026** | Dec 6–13, 2026 | Sydney + Atlanta (satellite model) | open | [scaffold](../conferences/neurips-2026/index.md) |
+| 103 d | **49th San Antonio Breast Cancer Symposium** | Dec 8–11, 2026 | San Antonio, TX | partly open | [scaffold](../conferences/sabcs-2026/index.md) |
+| 107 d | **Cell Bio 2026 (ASCB | EMBO)** | Dec 12–15, 2026 | San Diego, CA | partly open | [scaffold](../conferences/ascb-2026/index.md) |
+| 107 d | **68th ASH Annual Meeting** | Dec 12–15, 2026 | New Orleans, LA | partly open | [scaffold](../conferences/ash-2026/index.md) |
 
 ## Recently concluded (last 120 days)
 
@@ -36,30 +36,37 @@ Material from these is freshest and least likely to have been taken down yet.
 
 | Event | Ended | Access | Harvest | Vault |
 |---|---|---|---|---|
-| **Bioconductor Conference 2026 (North America)** | Aug 10–14, 2026 | open | `youtube` | — |
-| **Machine Learning for Healthcare 2026** | Aug 12–14, 2026 | open | `pmlr` | — |
+| **Bioconductor Conference 2026 (North America)** | Aug 10–14, 2026 | open | `schedule-html` | — |
+| **Machine Learning for Healthcare 2026** | Aug 12–14, 2026 | open | `conference-site` | — |
 | **ACM SIGKDD 2026** | Aug 9–13, 2026 | partly open | `acm-dl` | [scaffold](../conferences/kdd-2026/index.md) |
 | **ISMB 2026** | Jul 12–16, 2026 | partly open | `oup-bioinformatics` | [scaffold](../conferences/ismb-2026/index.md) |
 | **International Conference on Machine Learning 2026** | Jul 6–11, 2026 | open | `pmlr` | [scaffold](../conferences/icml-2026/index.md) |
 | **Medical Imaging with Deep Learning 2026** | Jul 8–10, 2026 | open | `openreview` | — |
-| **ESMO Gastrointestinal Cancers Congress 2026** | Jul 1–4, 2026 | open | `abstract-supplement` | — |
+| **ESMO Gastrointestinal Cancers Congress 2026** | Jul 1–4, 2026 | open | `crossref-supplement` | — |
 | **AHLI Conference on Health, Inference, and Learning 2026** | Jun 28–30, 2026 | open | `pmlr` | — |
 | **Galaxy Community Conference 2026** | Jun 22–26, 2026 | open | `youtube` | [built](../conferences/gcc-2026/index.md) |
+| **ESMO Gynaecological Cancers Congress 2026** | Jun 24–26, 2026 | open | `crossref-supplement` | — |
 | **59th European Human Genetics Conference** | Jun 13–16, 2026 | partly open | `abstract-supplement` | [scaffold](../conferences/eshg-2026/index.md) |
 | **31st EHA Hybrid Congress** | Jun 11–14, 2026 | partly open | `abstract-supplement` | [scaffold](../conferences/eha-2026/index.md) |
 | **Single Cell Genomics Day 2026 (SCGD26)** | Jun 12, 2026 | open | `youtube` | [built](../conferences/single-cell-genomics-day-2026/index.md) |
 | **Single-Cell Genomics 2026 (GRC + Wellcome)** | May 10 – Jun 12, 2026 | gated | `none` | [scaffold](../conferences/single-cell-genomics-2026/index.md) |
 | **EACR 2026 Congress: Innovative Cancer Science** | Jun 8–11, 2026 | partly open | `abstract-supplement` | — |
 | **CVPR 2026** | Jun 3–7, 2026 | open | `cvf-open-access` | [scaffold](../conferences/cvpr-2026/index.md) |
-| **European Bioconductor Conference 2026** | Jun 3–5, 2026 | open | `youtube` | — |
+| **European Bioconductor Conference 2026** | Jun 3–5, 2026 | open | `schedule-html` | — |
 | **62nd ASCO Annual Meeting** | May 29 – Jun 2, 2026 | partly open | `abstract-supplement` | [scaffold](../conferences/asco-2026/index.md) |
 | **RECOMB 2026** | May 26–29, 2026 | partly open | `springer-lncs` | [scaffold](../conferences/recomb-2026/index.md) |
 | **ASGCT 29th Annual Meeting** | May 11–15, 2026 | open | `abstract-supplement` | — |
 | **CIMT 23rd Annual Meeting** | May 11–13, 2026 | open | `static-pdf` | — |
-| **ESMO Breast Cancer 2026** | May 6–8, 2026 | open | `abstract-supplement` | — |
+| **ESMO Breast Cancer 2026** | May 6–8, 2026 | open | `crossref-supplement` | — |
 | **Nextflow Summit 2026** | Apr 30 – May 1, 2026 | open | `transcript` | [built](../conferences/nextflow-2026/index.md) |
-| **International Conference on Learning Representations 2026** | Apr 23–27, 2026 | open | `openreview` | [scaffold](../conferences/iclr-2026/index.md) |
 
 ## Further out
 
 *Nothing further out on the registry.*
+
+## Unscheduled
+
+Dates not yet announced:
+
+- **ESMO Open 2026 Suppl S2 (meeting unidentified)** — —
+- **ESMO Open 2026 Suppl S5 (meeting unidentified)** — —
