@@ -166,8 +166,55 @@ threads:
       TIPE2, NEAT1) are macrophage and lncRNA targets rather than T-cell surface
       receptors, and the only clinical-stage non-PD-1 content is B7-H3 and an
       Fc-enhanced CTLA-4 — both from waves preceding the current preclinical set.
-      Across all of 2025 not one newly nominated checkpoint entered a phase 1.
-      2025-10 returned zero hits for the entire target list.
+      An earlier version of this note asserted that across all of 2025 not one
+      newly nominated checkpoint entered a phase 1, and followed it with
+      "2025-10 returned zero hits for the entire target list". The second
+      sentence is a fact about one month's reading and was never evidence for
+      the first. Both are superseded by `registry_check` below, which tested
+      the first sentence against the trial registry rather than the literature.
+    registry_check: >-
+      Checked 2026-08-27 against data/regulatory.sqlite (ct_trials, 16,145
+      oncology trials first posted 2024-01..2026-08), which did not exist when
+      the claim was written. Rule, fixed before counting: phases in PHASE1 /
+      PHASE1;PHASE2 / EARLY_PHASE1, onc_conditions=1, binned on
+      studyFirstPostDate; target implicated in `title` or `interventions` by
+      name or by agent INN; every non-PD-1 hit read individually and classified
+      as target-directed or backbone-only. Target list derived from the corpus,
+      not from recall: 398 checkpoint-context journal titles and 3,005
+      checkpoint-context sentences in the AACR/ASCO 2024 abstracts, plus a sweep
+      of every "anti-X / targeting X" string in the registry's own phase-1 rows.
+      THE CLAIM SURVIVES, NARROWLY AND ONLY AS STATED ABOUT NEW TARGETS. Of the
+      seventeen checkpoint targets this corpus first named in 2024-01..2026-08 —
+      IGSF8, ITPRIPL1, BTN1A1, SLC6A6, LRIG1, Siglec-10, PSGL-1, CISH, CLEVER-1,
+      CD300e, TIPE2, NEAT1, CD161/LLT1, GARP, VSIG4, TIM-4, Siglec-E — zero
+      entered a phase 1 in 2025. The tier produced four phase-1 registrations in
+      32 months: LLT1 (NCT06451497, Zumutor, 2024-06) and CD200AR-L
+      (NCT06305910, 2024-03); GARP (NCT06964737, Ohio State, 2025-05); and
+      bexmarilimab twice in 2026. Unchanged when binned on start_date.
+      ONE TRIAL SITS ON THE LINE. NCT06964737 is an anti-GARP CAR-T posted
+      2025-05-09, and GARP/TGFβ is called a checkpoint axis in this corpus's own
+      journals (2026-02, twice). It survives the claim only because a CAR using
+      GARP as a surface antigen is not checkpoint blockade — a distinction the
+      old wording did not make. Read loosely, 2025 also holds COM701 (anti-PVRIG,
+      NCT06888921) and GI-108 (anti-CD73, NCT07172802); both targets are older
+      than the window, so that reading fails on "newly", not on the data.
+    denominator: >-
+      Quote this instead of the binary, because it survives the definitional
+      argument the binary does not. Excluding B7-H3, which is an ADC/CAR antigen
+      rather than a blockade target, the phase-1 pipeline for EVERY non-PD-1
+      co-inhibitory checkpoint — prior wave and new together — is 6 trials in
+      2024, 6 in 2025 and 4 in 2026-to-August, against 175 PD-1 phase 1s in 2025
+      alone. VISTA, NKG2A, IDO1, CD39, HPK1, Siglec-15, TREM2, CD96, B7-H4 and
+      MERTK each returned zero phase-1 rows across all 32 months. The emptiness
+      is a property of the whole window, not of 2025.
+    blind_spot: >-
+      Confirmed only up to a 42% target-opaque residue. Of 1,473 phase-1
+      oncology trials first posted in 2025, 614 name only a bare code in title
+      and interventions, 69 of them immune-therapeutic (IPN01203, DT-7012,
+      BNT329, CER-1236, KK2845 and others). A first-in-human antibody against a
+      2025-nominated checkpoint registered as XYZ-101 is invisible to this
+      method — the same failure mode that hides MK-7684 behind a code name.
+      Storing armGroups and briefSummary in the harvest would close it.
 
   - id: immunotherapy-resistance
     claim: >-

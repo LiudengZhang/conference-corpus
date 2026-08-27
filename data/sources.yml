@@ -1735,7 +1735,11 @@ sources:
     notes: >-
       Used to check whether a nominated target has any registered trial. The
       finding that no newly nominated checkpoint entered a phase 1 anywhere in
-      2025 was read off the literature only and should be confirmed here.
+      2025 was read off the literature only; it was confirmed against this
+      source on 2026-08-27 and survives, but only as a claim about targets the
+      corpus first named inside its own window. See `registry_check` on the
+      next-gen-checkpoints thread, which records the rule, the one borderline
+      trial, and the 42% of phase-1 rows whose target is only a code name.
       Dated on studyFirstPostDate. Trap: query.cond matches free text across a
       record's entire condition list, so a COPD rehabilitation study that
       lists "Lung Neoplasms" fourth comes back as oncology. Every row carries
