@@ -73,7 +73,7 @@ This page tracks **why each conference is in the corpus**, **when it lands**, an
   <div class="gantt-row">
     <div class="gantt-label"><a href="conferences/asco-2026/">ASCO 2026</a></div>
     <div class="gantt-track">
-      <a class="gantt-bar upcoming tier-clinical" style="left: 40.8%;" title="ASCO Annual Meeting · May 29 – Jun 2 · upcoming" href="conferences/asco-2026/">May 29</a>
+      <a class="gantt-bar built tier-clinical" style="left: 40.8%;" title="ASCO Annual Meeting · May 29 – Jun 2 · ✅ built (46 trials)" href="conferences/asco-2026/">May 29</a>
     </div>
   </div>
   <div class="gantt-row">
@@ -201,7 +201,7 @@ We score each conference 0–2 on four criteria.
 | [AACR 2026](conferences/aacr-2026/) | Apr 17–22 | anchor | 2 | 2 | 2 | 2 | **8** | full (anchor) | ✅ built |
 | [RECOMB 2026](conferences/recomb-2026/) | May 26–29 | methods | 1 | 2 | 2 | 2 | **7** | full | scaffold |
 | [Nextflow Summit](conferences/nextflow-2026/) | Apr 30 – May 1 | methods | 1 | 2 | 2 | 2 | **7** | full | ✅ built |
-| [ASCO 2026](conferences/asco-2026/) | May 29 – Jun 2 | clinical | 2 | 2 | 1 | 2 | **7** | full | upcoming |
+| [ASCO 2026](conferences/asco-2026/) | May 29 – Jun 2 | clinical | 2 | 2 | 1 | 2 | **7** | full | ✅ built |
 | [ISMB 2026](conferences/ismb-2026/) | Jul 12–16 | methods | 2 | 2 | 2 | 2 | **8** | full | scaffold |
 | [ESMO 2026](conferences/esmo-2026/) | Oct 23–27 | clinical | 1 | 2 | 1 | 1 | **5** | light | scaffold |
 | [SITC 2026](conferences/sitc-2026/) | Nov 4–8 | clinical | 2 | 2 | 2 | 2 | **8** | full | scaffold |
@@ -247,3 +247,10 @@ Conferences **considered but not added** (would score below 4 against this rubri
 - **AAAI / CVPR / ICML** — methods-relevant but signal-density problem similar to NeurIPS; would duplicate that filter
 
 If the rubric weights ever change (e.g., we start caring about cardio-onc, or open a "platform/biz" axis), this list flips fast.
+
+### 2025 pilots (past, retained as reference)
+
+| Conference | Date | Tier | Axis | Source | Signal | Vantage | **Total** | Decision | Status |
+|---|---|---|:---:|:---:|:---:|:---:|:---:|---|---|
+| [EuroBioC 2025](conferences/eurobioc-2025/) | Sep 17–19 (Barcelona) | methods | 1 | 2 | 2 | 2 | **7** | full | ✅ built |
+| [GBCC 2025](conferences/gbcc-2025/) | Jun 23–26 (Cold Spring Harbor) | methods | 1 | 2 | 2 | 2 | **7** | full | ✅ built |
