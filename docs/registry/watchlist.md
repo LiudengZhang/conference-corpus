@@ -68,7 +68,7 @@ each entry. It is not a reading list and it is not summarized content.
 
 ## Notes
 
-- **bioRxiv (genomics + bioinformatics feeds)** — Highest volume and highest noise in the registry. Filter hard.
+- **bioRxiv (genomics + bioinformatics feeds)** — Highest volume and highest noise in the registry. Filter hard. A preprint server has no PubMed abbreviation, so `pubmed` is null and this is the one journal source whose `harvested` status nothing can check.
 - **STAT News** — The feed serves 20 items, but it is WordPress and honours `?paged=N`, so the same public feed walks backwards to the start of the window: 9,497 items across all 32 months, evenly distributed. Headlines and summaries only — the articles themselves are metered, which is why access is `mixed` and why nothing here should be cited as evidence. Broad health news; roughly one item in seven is on this corpus's subject matter.
 - **Fierce Biotech** — Forward-only, permanently. `?page=N`, `?paged=N` and `?offset=N` all return a byte-identical 25-item document, and the sitemap is Cloudflare-gated and carries only lastmod. So this source contributes nothing before its first harvest on 2026-08-27 and its 2024–2026-07 months stay empty. Trap: it nests markup inside <title> and <dc:creator>, so ElementTree's .text is empty and a naive parser yields 25 blank titles — use itertext().
 - **AACR Blog** — The only narrative record of AACR IO 2026 — meeting recaps land here. WordPress, so `?paged=N` backfills: 324 items across all 32 months. Low volume and high hit rate, the inverse of STAT.

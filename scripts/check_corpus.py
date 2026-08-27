@@ -23,8 +23,9 @@ This is that reading, written down.
      checkable rather than asserted, and the only one a generator should
      trust" — which was true of its definition and false of its practice,
      because nothing checked it. This is that check.
-  8  Every venue in the conference store is a source id the registry
-     defines, so the two can actually be joined.
+  8  Every source named by a store — a venue in the conference store, a
+     journal name in the index — is one the registry defines, and every
+     source with rows says so, so the two can actually be joined.
 
 Checks 7 and 8 skip, rather than fail, when a regenerable side store is
 absent — a fresh clone has the journal index and nothing else, and a
@@ -57,15 +58,16 @@ BRIEFINGS = ROOT / "docs" / "briefings"
 
 PMID_LINK = re.compile(r"pubmed\.ncbi\.nlm\.nih\.gov/(\d+)")
 
-# Which store backs each source type, and the column holding the source id.
-# Journals are absent on purpose: the registry names them in full ("Nucleic
-# Acids Research") and the index stores PubMed abbreviations ("Nucleic Acids
-# Res"), so there is no join key between them yet. Adding one means putting
-# the abbreviation on each journal source — worth doing, not done here.
+# Which store backs each source type, the column holding the key, and the
+# registry field that key joins to. Journals join on `pubmed` rather than `id`
+# because the index stores PubMed abbreviations ("Nucleic Acids Res") and the
+# registry stores names ("Nucleic Acids Research"); the abbreviation lives on
+# the source so the join is looked up, never derived.
 STORES = {
-    "conference": ("conference.sqlite", "abstracts", "venue"),
-    "news": ("news.sqlite", "news", "source"),
-    "regulatory": ("regulatory.sqlite", "sources", "id"),
+    "conference": ("conference.sqlite", "abstracts", "venue", "id"),
+    "journal": ("index.sqlite", "papers", "journal", "pubmed"),
+    "news": ("news.sqlite", "news", "source", "id"),
+    "regulatory": ("regulatory.sqlite", "sources", "id", "id"),
 }
 
 
@@ -166,31 +168,52 @@ def main() -> int:
 
     # 7 + 8 --------------------------------------------------------------
     sources = yaml.safe_load(SOURCES.read_text())["sources"]
-    source_ids = {s["id"] for s in sources}
     store_lines: list[str] = []
-    for stype, (filename, table, column) in sorted(STORES.items()):
-        claimed = {s["id"] for s in sources
-                   if s.get("type") == stype and s.get("status") == "harvested"}
+    for stype, (filename, table, column, field) in sorted(STORES.items()):
+        # Key the registry the way its store keys it, but report by id: an id
+        # is what a reader can grep for, and "Nat Med" on its own is not.
+        owner: dict[str, str] = {}
+        for s in sources:
+            key = s.get(field)
+            if not key:
+                continue
+            if key in owner and owner[key] != s["id"]:
+                problems.append(
+                    f"sources `{owner[key]}` and `{s['id']}` both claim "
+                    f"`{field}` {key!r} — the join is ambiguous")
+            owner.setdefault(key, s["id"])
+
+        claimed = set()
+        for s in sources:
+            if s.get("type") != stype or s.get("status") != "harvested":
+                continue
+            if not s.get(field):
+                problems.append(
+                    f"source `{s['id']}` claims status harvested but has no "
+                    f"`{field}` to join it to data/{filename}")
+                continue
+            claimed.add(s[field])
+
         present = store_ids(filename, table, column)
         if present is None:
             store_lines.append(
                 f"{stype:11} store not built — {len(claimed)} claimed, unchecked")
             continue
-        for sid in sorted(claimed - present):
+        for key in sorted(claimed - present):
             problems.append(
-                f"source `{sid}` claims status harvested but has no rows "
+                f"source `{owner[key]}` claims status harvested but has no rows "
                 f"in data/{filename}")
-        for sid in sorted(present - source_ids):
+        for key in sorted(present - set(owner)):
             problems.append(
-                f"data/{filename} holds `{sid}`, which the registry does not define")
-        unclaimed = present & source_ids - claimed
+                f"data/{filename} holds `{key}`, which the registry does not define")
+        unclaimed = present & set(owner) - claimed
         note = f", {len(unclaimed)} harvested but not marked" if unclaimed else ""
         store_lines.append(
             f"{stype:11} {len(present):,} in store, {len(claimed)} claimed{note}")
-        for sid in sorted(unclaimed):
+        for key in sorted(unclaimed):
             problems.append(
-                f"source `{sid}` has rows in data/{filename} but status is not "
-                f"`harvested`")
+                f"source `{owner[key]}` has rows in data/{filename} but status is "
+                f"not `harvested`")
 
     # --------------------------------------------------------------------
     print(f"cards      {len(cards):,}   missing PMID {missing}, date drift {drifted}")

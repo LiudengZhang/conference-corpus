@@ -6,6 +6,12 @@
 # FIELDS
 #   id        stable slug, also the vault directory name where one exists
 #   name      human-readable
+#   pubmed    journals only: the PubMed abbreviation the index stores in
+#             `papers.journal`, which is what makes a journal source joinable
+#             to the store that backs it. Copied from the index, not derived
+#             from the name by rule — "Bioinformatics (OUP)" is "Bioinformatics"
+#             and no rule gets you there. null where the source has no PubMed
+#             identity at all, which today means bioRxiv alone.
 #   type      conference | webinar | journal | news | regulatory | author-tracking
 #   cadence   annual | biennial | monthly | weekly | continuous | one-time
 #   start/end ISO dates. null when unscheduled. For continuous sources, omit.
@@ -20,10 +26,10 @@
 #             only status that is checkable rather than asserted, and the only
 #             one a generator should trust — and as of 2026-08-27
 #             scripts/check_corpus.py actually checks it, in both directions,
-#             for every type whose store keys on these ids. Journals are the
-#             exception and are still unchecked: this file names them in full
-#             ("Nucleic Acids Research") and the index stores PubMed
-#             abbreviations ("Nucleic Acids Res"), so there is no join key.
+#             for all four store-backed types. Journals joined last, once
+#             `pubmed` gave them a key: this file names them in full ("Nucleic
+#             Acids Research") and the index stores abbreviations ("Nucleic
+#             Acids Res"), so until that field existed nothing could be joined.
 #
 #             `harvested` and `built` are different axes, not stages of one.
 #             Harvested means the material is in a store; built means a vault
@@ -1109,146 +1115,161 @@ sources:
 
 - id: j-nature
   name: Nature
+  pubmed: "Nature"
   type: journal
   cadence: weekly
   topics: [genomics, single-cell-spatial, ai-ml]
   access: mixed
   harvest: {method: rss, endpoint: "https://www.nature.com/nature.rss"}
   vault: null
-  status: none
+  status: harvested
 
 - id: j-science
   name: Science
+  pubmed: "Science"
   type: journal
   cadence: weekly
   topics: [genomics, single-cell-spatial]
   access: mixed
   harvest: {method: rss, endpoint: "https://www.science.org/rss/news_current.xml"}
   vault: null
-  status: none
+  status: harvested
 
 - id: j-cell
   name: Cell
+  pubmed: "Cell"
   type: journal
   cadence: biweekly
   topics: [single-cell-spatial, immuno-oncology]
   access: mixed
   harvest: {method: rss, endpoint: "https://www.cell.com/cell/current.rss"}
   vault: null
-  status: none
+  status: harvested
 
 - id: j-nature-methods
   name: Nature Methods
+  pubmed: "Nat Methods"
   type: journal
   cadence: monthly
   topics: [single-cell-spatial, bioinfo-tools]
   access: mixed
   harvest: {method: rss, endpoint: "https://www.nature.com/nmeth.rss"}
   vault: null
-  status: none
+  status: harvested
 
 - id: j-nature-biotech
   name: Nature Biotechnology
+  pubmed: "Nat Biotechnol"
   type: journal
   cadence: monthly
   topics: [bioinfo-tools, foundation-models, industry-finance]
   access: mixed
   harvest: {method: rss, endpoint: "https://www.nature.com/nbt.rss"}
   vault: null
-  status: none
+  status: harvested
 
 - id: j-nature-cancer
   name: Nature Cancer
+  pubmed: "Nat Cancer"
   type: journal
   cadence: monthly
   topics: [oncology-clinical, immuno-oncology]
   access: mixed
   harvest: {method: rss, endpoint: "https://www.nature.com/natcancer.rss"}
   vault: null
-  status: none
+  status: harvested
 
 - id: j-nature-medicine
   name: Nature Medicine
+  pubmed: "Nat Med"
   type: journal
   cadence: monthly
   topics: [oncology-clinical, ai-ml]
   access: mixed
   harvest: {method: rss, endpoint: "https://www.nature.com/nm.rss"}
   vault: null
-  status: none
+  status: harvested
 
 - id: j-cancer-cell
   name: Cancer Cell
+  pubmed: "Cancer Cell"
   type: journal
   cadence: monthly
   topics: [oncology-clinical, immuno-oncology, single-cell-spatial]
   access: mixed
   harvest: {method: rss, endpoint: "https://www.cell.com/cancer-cell/current.rss"}
   vault: null
-  status: none
+  status: harvested
 
 - id: j-cancer-discovery
   name: Cancer Discovery
+  pubmed: "Cancer Discov"
   type: journal
   cadence: monthly
   topics: [oncology-clinical, immuno-oncology]
   access: mixed
   harvest: {method: crossref, endpoint: "https://aacrjournals.org/cancerdiscovery"}
   vault: null
-  status: none
+  status: harvested
 
 - id: j-immunity
   name: Immunity
+  pubmed: "Immunity"
   type: journal
   cadence: monthly
   topics: [immuno-oncology]
   access: mixed
   harvest: {method: rss, endpoint: "https://www.cell.com/immunity/current.rss"}
   vault: null
-  status: none
+  status: harvested
 
 - id: j-jitc
   name: Journal for ImmunoTherapy of Cancer
+  pubmed: "J Immunother Cancer"
   type: journal
   cadence: monthly
   topics: [immuno-oncology]
   access: open
   harvest: {method: rss, endpoint: "https://jitc.bmj.com/rss/current.xml"}
   vault: null
-  status: none
+  status: harvested
 
 - id: j-genome-biology
   name: Genome Biology
+  pubmed: "Genome Biol"
   type: journal
   cadence: continuous
   topics: [bioinfo-tools, genomics, single-cell-spatial]
   access: open
   harvest: {method: rss, endpoint: "https://genomebiology.biomedcentral.com/articles/most-recent/rss.xml"}
   vault: null
-  status: none
+  status: harvested
 
 - id: j-bioinformatics
   name: Bioinformatics (OUP)
+  pubmed: "Bioinformatics"
   type: journal
   cadence: continuous
   topics: [bioinfo-tools]
   access: mixed
   harvest: {method: rss, endpoint: "https://academic.oup.com/rss/site_5139/3025.xml"}
   vault: null
-  status: none
+  status: harvested
 
 - id: j-nature-machine-intelligence
   name: Nature Machine Intelligence
+  pubmed: "Nat Mach Intell"
   type: journal
   cadence: monthly
   topics: [ai-ml, foundation-models]
   access: mixed
   harvest: {method: rss, endpoint: "https://www.nature.com/natmachintell.rss"}
   vault: null
-  status: none
+  status: harvested
 
 - id: j-biorxiv-genomics
   name: bioRxiv (genomics + bioinformatics feeds)
+  pubmed: null
   type: journal
   cadence: continuous
   topics: [genomics, bioinfo-tools, single-cell-spatial, foundation-models]
@@ -1256,7 +1277,10 @@ sources:
   harvest:
     method: rss
     endpoint: "https://connect.biorxiv.org/biorxiv_xml.php?subject=bioinformatics"
-    notes: Highest volume and highest noise in the registry. Filter hard.
+    notes: >-
+      Highest volume and highest noise in the registry. Filter hard. A preprint
+      server has no PubMed abbreviation, so `pubmed` is null and this is the one
+      journal source whose `harvested` status nothing can check.
   vault: null
   status: none
 
@@ -1420,6 +1444,7 @@ sources:
 
 - id: j-nar
   name: Nucleic Acids Research
+  pubmed: "Nucleic Acids Res"
   type: journal
   cadence: continuous
   topics: [bioinfo-tools, genomics]
@@ -1435,6 +1460,7 @@ sources:
 
 - id: j-jama
   name: JAMA
+  pubmed: "JAMA"
   type: journal
   cadence: weekly
   topics: [oncology-clinical]
@@ -1445,6 +1471,7 @@ sources:
 
 - id: j-lancet
   name: The Lancet
+  pubmed: "Lancet"
   type: journal
   cadence: weekly
   topics: [oncology-clinical]
@@ -1455,6 +1482,7 @@ sources:
 
 - id: j-nejm
   name: New England Journal of Medicine
+  pubmed: "N Engl J Med"
   type: journal
   cadence: weekly
   topics: [oncology-clinical]
@@ -1465,6 +1493,7 @@ sources:
 
 - id: j-blood
   name: Blood
+  pubmed: "Blood"
   type: journal
   cadence: weekly
   topics: [oncology-clinical, immuno-oncology]
@@ -1480,6 +1509,7 @@ sources:
 
 - id: j-jco
   name: Journal of Clinical Oncology
+  pubmed: "J Clin Oncol"
   type: journal
   cadence: continuous
   topics: [oncology-clinical]
@@ -1490,6 +1520,7 @@ sources:
 
 - id: j-lancet-oncology
   name: The Lancet Oncology
+  pubmed: "Lancet Oncol"
   type: journal
   cadence: monthly
   topics: [oncology-clinical]
@@ -1500,6 +1531,7 @@ sources:
 
 - id: j-annals-oncology
   name: Annals of Oncology
+  pubmed: "Ann Oncol"
   type: journal
   cadence: monthly
   topics: [oncology-clinical]
@@ -1511,6 +1543,7 @@ sources:
 
 - id: j-nature-genetics
   name: Nature Genetics
+  pubmed: "Nat Genet"
   type: journal
   cadence: monthly
   topics: [genomics]
@@ -1521,6 +1554,7 @@ sources:
 
 - id: j-nature-immunology
   name: Nature Immunology
+  pubmed: "Nat Immunol"
   type: journal
   cadence: monthly
   topics: [immuno-oncology]
@@ -1531,6 +1565,7 @@ sources:
 
 - id: j-science-immunology
   name: Science Immunology
+  pubmed: "Sci Immunol"
   type: journal
   cadence: monthly
   topics: [immuno-oncology]
@@ -1541,6 +1576,7 @@ sources:
 
 - id: j-science-translational-medicine
   name: Science Translational Medicine
+  pubmed: "Sci Transl Med"
   type: journal
   cadence: weekly
   topics: [oncology-clinical, immuno-oncology]
@@ -1551,6 +1587,7 @@ sources:
 
 - id: j-jem
   name: Journal of Experimental Medicine
+  pubmed: "J Exp Med"
   type: journal
   cadence: monthly
   topics: [immuno-oncology]
@@ -1561,6 +1598,7 @@ sources:
 
 - id: j-nature-biomedical-engineering
   name: Nature Biomedical Engineering
+  pubmed: "Nat Biomed Eng"
   type: journal
   cadence: monthly
   topics: [ai-ml, imaging, bioinfo-tools]
@@ -1571,6 +1609,7 @@ sources:
 
 - id: j-genome-research
   name: Genome Research
+  pubmed: "Genome Res"
   type: journal
   cadence: monthly
   topics: [genomics, bioinfo-tools]
@@ -1581,6 +1620,7 @@ sources:
 
 - id: j-nature-computational-science
   name: Nature Computational Science
+  pubmed: "Nat Comput Sci"
   type: journal
   cadence: monthly
   topics: [ai-ml, foundation-models]
@@ -1592,6 +1632,7 @@ sources:
 
 - id: j-cell-genomics
   name: Cell Genomics
+  pubmed: "Cell Genom"
   type: journal
   cadence: monthly
   topics: [genomics, single-cell-spatial]
@@ -1602,6 +1643,7 @@ sources:
 
 - id: j-cell-systems
   name: Cell Systems
+  pubmed: "Cell Syst"
   type: journal
   cadence: monthly
   topics: [ai-ml, bioinfo-tools]
@@ -1612,6 +1654,7 @@ sources:
 
 - id: j-molecular-systems-biology
   name: Molecular Systems Biology
+  pubmed: "Mol Syst Biol"
   type: journal
   cadence: monthly
   topics: [ai-ml, bioinfo-tools]
