@@ -35,41 +35,42 @@ believed the answer.
 The hit rate is the part that should change behaviour. At a Jaccard cutoff of
 0.5, 98 of 14,890 abstracts (0.7%) match a paper published later.
 
-!!! danger "Retracted 2026-08-27 — the chance rate below was not a chance rate"
-    **Every "chance" and "excess" number in this section is withdrawn.** The
-    conclusions above it — the 10–13 month lag, the ~1% conversion — do not
-    depend on it and stand.
+!!! note "Corrected 2026-08-27 — the first honest baseline this test has had"
+    The table below was published with a chance rate that was not a chance
+    rate, and the corrected numbers are **much weaker than the ones they
+    replace**. The lag above is unaffected.
 
-    The baseline was built by running the same matcher against journal papers
-    published *before* the meetings, where a match cannot be a prediction. The
-    query selecting them was `month < '2024-04'`, against a journal index whose
-    first month is 2024-01. So the "before" arm was three months —
-    **2024-01, 2024-02 and 2024-03** — and those are exactly the months this
-    cohort deposits into: ASCO's GI and GU symposia in January and February
-    (752 and 708 abstracts) and AACR in March (6,642).
+    The old baseline ran the matcher against journal papers published *before*
+    the meetings, selected with `month < '2024-04'` against an index whose first
+    month was 2024-01. So the "before" arm was three months — 2024-01 to
+    2024-03 — and those are the months this cohort deposits into: ASCO's GI and
+    GU symposia in January and February, AACR in March. A journal paper from
+    March 2024 matching an AACR March 2024 abstract is not coincidence; it is
+    the same work in both places at once. The arm built to measure luck was
+    measuring simultaneity. It was also a tenth the size of the arm it was
+    compared against.
 
-    A journal paper from March 2024 matching an AACR March 2024 abstract is not
-    a coincidence. It is the same work appearing in both places at once. The
-    arm built to measure luck was measuring simultaneity, which is the one thing
-    it had to exclude.
+    Extending the index to 2023-01 gives twelve journal months that genuinely
+    predate the meetings. Both arms are now thinned to the same 11,724 titles,
+    so the comparison is fair by construction rather than by assumption.
 
-    It was also a tenth the size of the arm it was compared against, so the two
-    rates were never comparable even in principle.
-
-    `scripts/lead_time.py` now derives both arms from the cohort's own meeting
-    months and refuses to report an excess when the pre-meeting pool is empty,
-    rather than printing a number. Extending the journal index to 2023-01 —
-    running as this was written — gives twelve journal months that genuinely
-    predate the 2024 meetings, and will produce the first uncontaminated
-    baseline this measurement has ever had. The table is left blank until then
-    rather than filled with the old figures.
-
-| Match threshold | Matched later | Matched *earlier* (chance) | Excess |
+| Match threshold | Matched later | Matched *earlier* (chance) | Ratio |
 |---|---|---|---|
-| 0.35 | 3.0% | *withdrawn* | *withdrawn* |
-| 0.45 | 1.0% | *withdrawn* | *withdrawn* |
-| 0.50 | 0.7% | *withdrawn* | *withdrawn* |
-| 0.60 | 0.3% | *withdrawn* | *withdrawn* |
+| 0.35 | 181 (1.22%) | 182 (1.22%) | **×1.0** |
+| 0.45 | 51 (0.34%) | 23 (0.15%) | ×2.2 |
+| 0.50 | 36 (0.24%) | 17 (0.11%) | ×2.1 |
+| 0.60 | 15 (0.10%) | 5 (0.03%) | ×3.0 |
+
+**The effect is real, small, and only exists at strict matching.** At a Jaccard
+cutoff of 0.35 the meeting arm scores 181 and chance scores 182 — the podium
+has no measurable advantage at all. The signal appears only as the threshold
+tightens, reaching about three times chance at 0.60, which is the behaviour of
+a real but narrow effect: loose matching catches shared boilerplate, which is
+equally common on both sides of a meeting.
+
+The previously published version of this table claimed a 1.2-percentage-point
+excess at 0.35, where the truth is none, and read as though the effect were
+strongest at loose matching. It was exactly backwards.
 
 So of the order of one abstract in a hundred becomes a paper in the tracked
 journals within two years. Reading an abstract book to find them means reading

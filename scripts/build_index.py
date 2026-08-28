@@ -43,7 +43,7 @@ INDEX = ROOT / "data" / "index.sqlite"
 # claims turned out to be artefacts of where reading started rather than
 # facts about the field. A floor is not a beginning: anything this window
 # reports as first is still only first *within the window*.
-WINDOW = ("2024-01", "2026-08")
+WINDOW = ("2023-01", "2026-08")
 DOMAINS = {"general", "cancer", "immune", "bioinfo", "sysbio"}
 
 SCHEMA = """

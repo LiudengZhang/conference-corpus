@@ -87,6 +87,28 @@ def get(url: str, tries: int = 5):
     return None
 
 
+def idlist(found) -> list[str] | None:
+    """PMIDs from an esearch reply, or None if NCBI answered with an error.
+
+    NCBI does not signal throttling with an HTTP status. It returns 200 and a
+    body whose `esearchresult` carries an ERROR key and no `idlist` at all, so
+    `found["esearchresult"]["idlist"]` raises KeyError partway through a run —
+    which is how a 44-month harvest died on 2025-05 after four hours, having
+    already written 29 months.
+
+    None means "NCBI refused", which is not the same as "this journal-month is
+    empty" and must not be recorded as an empty TSV. Distinguishing them is the
+    whole point: an empty TSV is indistinguishable from a real gap, and the
+    skip logic would then treat the month as done forever.
+    """
+    if not found:
+        return None
+    result = found.get("esearchresult") or {}
+    if "idlist" not in result:
+        return None
+    return result["idlist"]
+
+
 def months(start: str, end: str):
     y, m = int(start[:4]), int(start[5:7])
     ey, em = int(end[:4]), int(end[5:7])
@@ -104,7 +126,18 @@ def harvest_month(year: int, month: int, out: pathlib.Path) -> int:
     for domain, journal in JOURNALS:
         found = get(ESEARCH + urllib.parse.quote(
             f'"{journal}"[ta] AND {span} AND {RESEARCH}'))
-        ids = found["esearchresult"]["idlist"] if found else []
+        ids = idlist(found)
+        if ids is None:
+            # Back off hard and retry once. If NCBI still refuses, abandon the
+            # whole month rather than write a TSV missing this journal — a
+            # partial month looks complete to the skip logic on the next run.
+            time.sleep(20)
+            ids = idlist(get(ESEARCH + urllib.parse.quote(
+                f'"{journal}"[ta] AND {span} AND {RESEARCH}')))
+        if ids is None:
+            print(f"  {year}-{month:02d}: NCBI refused for {journal}; "
+                  f"month abandoned, nothing written", flush=True)
+            return -1
         time.sleep(PAUSE)
 
         rows = []
@@ -147,15 +180,26 @@ def main() -> int:
     root = pathlib.Path(args.harvest)
 
     grand = 0
+    refused: list[str] = []
     for year, month in months(args.start, args.end):
         out = root / f"{year}-{month:02d}"
         if out.is_dir() and any(out.glob("*.tsv")) and not args.force:
             print(f"{year}-{month:02d}: already harvested, skipping", flush=True)
             continue
         n = harvest_month(year, month, out)
+        if n < 0:
+            # Abandoned, not empty. Leave the (empty) directory so the skip
+            # test — which looks for TSVs, not for the directory — re-tries it
+            # on the next run, and keep going: one refused month should not
+            # cost the 15 that come after it.
+            refused.append(f"{year}-{month:02d}")
+            continue
         grand += n
         print(f"{year}-{month:02d}: {n:,} articles -> {out}", flush=True)
     print(f"GRAND TOTAL {grand:,}")
+    if refused:
+        print(f"REFUSED, re-run to pick up: {', '.join(refused)}")
+        return 1
     return 0
 
 

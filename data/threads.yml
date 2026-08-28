@@ -18,33 +18,45 @@
 # happened to the first version of this file: every `status` in it was asserted
 # from a single month's reading and none of them recomputed.
 #
-# Rebuilt 2026-08-26 from 483 cards spanning 2024-01 .. 2026-08.
+# Rebuilt 2026-08-27 from 712 cards spanning 2023-01 .. 2026-08.
 #
 # READ `opened` AS A PROPERTY OF THE WINDOW, NOT OF THE FIELD. It has now been
-# recomputed twice. Under a 2025-08 floor, every thread opened in 2025-08 or
-# just after. Under a 2025-01 floor, twelve of thirteen moved earlier. Under a
-# 2024-01 floor, all thirteen moved earlier again — six landed on 2024-01
-# itself, the first month that exists, and eleven of thirteen sit within three
-# months of it. A value that relocates to the floor every time the floor is
-# lowered is measuring the floor. Only `interception` at 2025-01 sits far
-# enough from the edge to carry information, and it is the control case.
+# recomputed three times, and the reading gets less ambiguous each time:
 #
-# (That count read "eight of them landed on 2024-01" until 2026-08-27. It was
-# six. A file whose subject is unverified assertions carried an unverified
-# assertion about itself for a day; the number is now computed, not recalled.)
+#   floor 2025-08  every thread opened in 2025-08 or just after
+#   floor 2025-01  twelve of thirteen moved earlier
+#   floor 2024-01  all thirteen moved earlier again; six landed on the floor
+#   floor 2023-01  twelve moved earlier again; ELEVEN landed on 2023-01 itself
+#
+# Eleven of thirteen now sit on the first month that exists. A value that
+# relocates to the floor every time the floor is lowered is measuring the
+# floor, and three extensions have never once produced an exception that
+# survived the next one.
+#
+# `interception` was described here as the control case — "the only value far
+# enough from the edge to carry information", at 2025-01. It is now 2023-01.
+# The control did not survive, which means the corpus never had one.
+#
+# The two threads not on the floor are informative precisely because of how
+# they got there. `agentic-ai` (2023-03) is the only thread whose floor is set
+# by evidence rather than by the window: three independent readers found zero
+# LLM-agent papers across 8,844 titles in 2023-01..2023-09, so its absence
+# early in the year is measured rather than assumed. `clinical-practice`
+# (2024-03) has no 2023 cards at all, because its claim — that meetings lead
+# journals — cannot be evidenced by a journal title in either direction.
 #
 # The same applies to every "first appearance" claim these notes contain, and
-# the record is unambiguous: six such claims have now been made in this corpus
-# and six have moved earlier on extension, none has ever survived. Treat any
+# the record is unambiguous: ten such claims have now been made in this corpus
+# and ten have moved earlier on extension, none has ever survived. Treat any
 # statement of the form "X appeared first in month M" as shorthand for "no
 # earlier instance exists in the months read", which is a fact about reading.
 # scripts/check_corpus.py enforces that `opened` matches the cards; nothing can
 # enforce that the window is wide enough.
 #
-# The floor moves again on 2026-08-27, to 2023-01. `opened` depends on cards
-# alone and not on the index, so nothing here changes until 2023 cards are
-# written — which means check_corpus.py will keep passing on a floor it cannot
-# see is understated. That silence is the failure mode, not a reassurance.
+# (Two counts in this header were wrong when written and are now computed
+# rather than recalled: "eight landed on 2024-01" was six, and the tally of
+# retracted first-appearance claims was five, then six, and is now ten. A file
+# whose subject is unverified assertion is not exempt from its own subject.)
 
 threads:
 
@@ -53,7 +65,7 @@ threads:
       Neural, microbial, and lymphoid-structure control of the tumour microenvironment
       are one mechanism network, not three adjacent fields, and neurotransmitters are
       a shared currency between them.
-    opened: 2024-01
+    opened: 2023-01
     aliases: [neuro-immuno-oncology, tls-as-target, microbiome-io, cancer-neuroscience]
     note: >-
       The healthiest thread in the corpus and the one most resistant to being called
@@ -67,7 +79,7 @@ threads:
     claim: >-
       Scaling data and parameters produces general-purpose models of biology that
       transfer across tasks, individuals and into clinical use.
-    opened: 2024-01
+    opened: 2023-01
     aliases: [virtual-cell, scfm]
     note: >-
       The thread's own negative control was published as a title in 2025-12:
@@ -81,26 +93,37 @@ threads:
       been co-present since spring 2025.
     dating_caution: >-
       Every "first appearance" claim in this corpus is bounded by which months
-      were read. Three moved earlier when 2025-01..07 was backfilled; all of
-      them moved AGAIN when 2024 was added on 2026-08-26, and two more joined
-      them. The current record, none of which should be trusted either:
-      "virtual cell" is in a Cell title in 2024-12 (39672099), not 2025-11 and
-      not 2025-04. AI agents reach an oncology journal in 2024-12 (39690222,
-      Nature Cancer), not 2025-06. The first LLM-agent-with-tools paper in a
-      tracked journal is 2024-01 (38799228, chemistry tools), not ESCARGOT in
-      2025-02 — thirteen months out. Simple-beats-complex for sequence models
-      is 2024-03 (38428432, convolutions competitive with transformers), not
-      2025-06. Clinical-AI limitations are stated in a Nature Medicine title in
-      2024-09 (38965432). Single-cell foundation models and their audits arrive
-      in the same journal in the same month, 2024-08 (38409223, 38844628 and
-      38528186) — the critique was never lagging the vocabulary at all.
+      were read. Three moved when 2025-01..07 was backfilled; all moved AGAIN
+      when 2024 was added on 2026-08-26, and two more joined them. On
+      2026-08-27 the floor moved to 2023-01 and FOUR OF THE SIX DATES THIS
+      FIELD RECORDED MOVED A THIRD TIME.
+      Superseded here: the LLM-agent-with-tools paper is not 2024-01
+      (38799228). It is 2023-12, in Nature — 38123806, autonomous chemical
+      research with large language models — with 38127734 in Science three
+      weeks later. Clinical-AI limitations are not first stated in 2024-09
+      (38965432): Nature Medicine titles say it in 2023-10 (37391665, chatbots
+      require approval as medical devices) and 2023-12 (37821686, clinical AI
+      must convey per-patient uncertainty), eleven and nine months earlier.
+      Two more are not date corrections but attribution corrections, and they
+      are worse. The 2024-01 card credited with opening the neuro-immune
+      thread (37947393, Cancer Discovery, glioma synaptic plasticity) is a
+      research-watch restatement of 37914930, Nature, 2023-11. The 2024-01
+      card credited to cell-therapy (38071995, Lancet Oncology, FDA
+      investigating secondary lymphomas after CAR-T) restates 38071978, an
+      adjacent PMID in the Lancet one month earlier. In both cases the corpus
+      opened a thread on the echo rather than the paper.
+      What survives unchanged: single-cell foundation models and their audits
+      arrive in the same journal in the same month, 2024-08 (38409223,
+      38844628, 38528186), and three independent 2023 readers found the same
+      co-presence throughout 2023 — the critique was never lagging.
       Assume any such claim is an upper bound on the date, never the date.
+      Ten have been made; ten have moved.
 
   - id: method-credibility
     claim: >-
       Published methods, reference resources and reagents are reliable enough to
       build on without re-checking them.
-    opened: 2024-01
+    opened: 2023-01
     aliases: [reproducibility, self-audit]
     denominator: >-
       Structurally one-sided by construction: this is a ledger of things found
@@ -137,7 +160,7 @@ threads:
     claim: >-
       Depleting or blocking a cell population identified as immunosuppressive
       improves antitumour outcomes.
-    opened: 2024-03
+    opened: 2023-01
     note: >-
       Opened 2026-08-26 by the 2025 backfill. This thread did not exist in the
       version of this file derived from a single month of 2026 reading, and finding
@@ -168,7 +191,7 @@ threads:
   - id: next-gen-checkpoints
     claim: >-
       Targets beyond PD-1/CTLA-4 deliver a second generation of checkpoint blockade.
-    opened: 2024-03
+    opened: 2023-01
     note: >-
       The measured failure mode is not that individual targets fail — it is that the
       category is dissolving. A novel surface co-inhibitory receptor name has a
@@ -267,23 +290,23 @@ threads:
       Checkpoint resistance is being explained by mechanisms outside the tumour cell
       and outside T-cell exhaustion — host haematopoiesis, myeloid programmes,
       innervation and the stroma.
-    opened: 2024-01
+    opened: 2023-01
 
   - id: ctdna-mrd
     claim: >-
       Circulating tumour DNA is a treatment-guiding biomarker, not only a prognostic
       one.
-    opened: 2024-02
+    opened: 2023-01
 
   - id: interception
     claim: >-
       Cancer can be treated before it is cancer, in measurable precursor states.
-    opened: 2025-01
+    opened: 2023-01
 
   - id: agentic-ai
     claim: >-
       LLM agents become working biomedical research infrastructure, not demonstrations.
-    opened: 2024-01
+    opened: 2023-03
     note: >-
       THE DIFFUSION CHAIN THAT USED TO BE HERE WAS VOID WHEN IT WAS WRITTEN.
       It read: first LLM-agent paper ESCARGOT 2025-02-04; the word "agentic"
@@ -306,13 +329,13 @@ threads:
     claim: >-
       Neoantigens are a large enough and predictable enough target space to support
       personalized cancer vaccines at scale.
-    opened: 2024-02
+    opened: 2023-01
 
   - id: cell-therapy
     claim: >-
       Engineered cell therapy generalizes beyond CD19-positive B-cell malignancy —
       into solid tumours, and into autoimmune disease.
-    opened: 2024-01
+    opened: 2023-01
     aliases: [car-t-solid, car-t, engineered-cells]
     merged_on: 2026-08-26
     merge_reason: >-
@@ -325,7 +348,7 @@ threads:
     claim: >-
       Per-cell-type chromatin conformation and spatial multi-omics become routine
       assay modalities that downstream pipelines and models must ingest.
-    opened: 2024-04
+    opened: 2023-01
 
   - id: clinical-practice
     claim: >-
@@ -351,17 +374,20 @@ threads:
       to useless, and any claim that a direction was "seen first at a meeting"
       has to survive the fact that roughly 99% of what is said there never
       arrives.
-      RETRACTED 2026-08-27, and this field said it twice so it had to be fixed
-      twice. The clause removed here read "against a 0.2% coincidence rate
-      measured by running the same matcher against papers published BEFORE the
-      meetings. Excess over chance across thresholds runs 0.2 to 1.2 percentage
-      points." That baseline was selected with `month < 2024-04` from an index
-      whose first month is 2024-01, so the "before the meetings" arm was
+      The old baseline was selected with `month < 2024-04` from an index whose
+      first month was 2024-01, so the "before the meetings" arm was
       2024-01..2024-03 — the exact months this cohort deposits into: ASCO's GI
       and GU symposia in January and February, AACR in March. It measured
       simultaneity, which is the one thing a coincidence arm has to exclude, and
-      it was a tenth the size of the arm it was compared with. The lag and the
-      hit rate do not depend on it and stand. See does-the-podium-lead.md.
+      it was a tenth the size of the arm it was compared with. It claimed an
+      excess of 0.2 to 1.2 percentage points.
+      Extending the index to 2023-01 gave twelve genuinely pre-meeting months.
+      With both arms thinned to the same 11,724 titles the effect is real but
+      much smaller, and it inverts across the threshold: x1.0 at Jaccard 0.35
+      (181 matches against 182 by chance — no advantage whatever), x2.2 at 0.45,
+      x2.1 at 0.50, x3.0 at 0.60. The meeting leads only where matching is
+      strict. The published version read as though the effect were strongest at
+      loose matching, which was exactly backwards.
     negative_result: >-
       The vocabulary version of this claim is refuted outright. Ranking terms by
       how over-represented they are at the meetings relative to the 2024 journals
