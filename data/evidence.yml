@@ -1236,7 +1236,7 @@ evidence:
   date: 2026-04-13
   source: cancer-cell
   threads: [neuro-immune-microbiome-axis]
-  stance: supports
+  stance: refutes
   type: benchmark
   claim: >-
     PRISM decontaminates low-biomass sequencing, benchmarks on 230 datasets with
@@ -1250,12 +1250,22 @@ evidence:
     Reliable detection of Host-Microbe Signatures in cancer using PRISM
   revised: 2026-08-27
   revised_note: >-
-    Stance reversed refutes->supports, type refutation->benchmark. The card
-    asserted that most published tumour-microbiome signatures are contamination
-    artifacts and do not reproduce. The paper never tests published signatures;
-    its one sentence about "recent controversy" is framing, and its result is
-    that real signal survives decontamination in three tumour groups. The card
-    turned a method paper's motivation into its finding.
+    Revised twice on 2026-08-27, and the second revision reconciles a
+    contradiction the first one created. It was originally carded `refutes` on
+    the claim that published tumour-microbiome signatures are contamination
+    artifacts that do not reproduce — which the paper never assesses — and was
+    corrected to `supports` because PRISM recovers consistent signatures. That
+    read only the positive half of a two-part result. The abstract says
+    consistent signatures in gastrointestinal, head-and-neck and urogenital
+    tumours "and sparse signal elsewhere", which is the same finding as
+    42092351 in the same corpus ("indistinguishable from the background in most
+    cancer types ... however, in orodigestive tumors"). Those two cards were
+    revised in opposite directions on the same day, each note calling the other
+    reading the error. They report one result and now carry one stance.
+    It is `refutes` because this thread claims a general mechanism network, and
+    a microbial arm confined to sites with mucosal contact constrains that
+    generality rather than evidencing it. The mechanism is not in doubt where
+    it exists; its reach is.
 
 - id: ev-2026-04-41775267
   pmid: "41775267"
