@@ -54,6 +54,15 @@ about them is that they are NOT the same kind of object:
     forecast. First-posted is the one date that cannot be revised
     backwards, so it is the only one safe to bin by month.
 
+    The row also stores `brief_summary` and the arm-group text, which look
+    like padding and are not. `interventions` gives an agent's INN or its
+    sponsor code and never its target, so a search over title+interventions
+    cannot see a first-in-human antibody registered as "IPN01203" -- 42% of
+    2025's phase-1 oncology rows named only a bare code, and any question
+    about which targets reached the clinic was answerable only up to that
+    residue. The prose fields state mechanism ("a bispecific antibody
+    targeting PD-1 and VEGF") where the structured fields do not.
+
 Two consequences for the schema. First, every dated row carries `date`,
 `month` (YYYY-MM, derived from that row's own date) and `source_id`, and
 the three event tables are UNIONed by a view `events` so that one month
@@ -65,10 +74,16 @@ installed but is not imported: the FDA tables are two hand-checked shapes,
 and the EMA workbook is read with zipfile + ElementTree because xlsx is a
 zip of XML and openpyxl would be a dependency for forty lines of code.
 
-Volume note: the corpus window 2024-01..2026-08 yields ~18k interventional
-oncology trials, comfortably under the point where narrowing to Phase 1-3
-would be needed, so no phase filter is applied and early-phase and
-device/behavioural oncology trials are all retained. ClinicalTrials.gov
+Volume note: the window 2023-01..2026-08 yields ~25k interventional
+oncology trials, still under --max-trials (40,000) and so under the point
+where narrowing to Phase 1-3 would kick in; no phase filter is applied and
+early-phase and device/behavioural oncology trials are all retained. That
+threshold matters for comparability, not just for volume: if it ever trips,
+the whole table silently becomes Phase-1/2/3-only, including the years
+already published from it, so a run that reports "narrowed to Phase 1/2/3"
+in the sources note is not an incremental widening but a different table.
+Note also that a re-run is a full re-download per source (DELETE then
+INSERT), never a merge -- shrinking the window discards rows. ClinicalTrials.gov
 matches `query.cond` as free text over a record's whole condition list, so
 a multi-condition trial gets pulled in on one oncology term among five
 (a COPD rehabilitation study lists "Lung Neoplasms" fourth). Rather than
@@ -125,10 +140,28 @@ ONC_COND = ("cancer OR neoplasm OR tumor OR tumour OR carcinoma OR lymphoma "
             "OR leukemia OR leukaemia OR myeloma OR sarcoma OR melanoma "
             "OR glioma OR oncology")
 
+# `fields` takes v2 "piece names", not JSON paths. The arm-group pieces are
+# leaves *inside* protocolSection.armsInterventionsModule.armGroups, and
+# naming them is what makes the API emit that array at all -- the previous
+# field list asked only for InterventionName, so armGroups came back absent
+# and the extractor had nothing to read. Requesting the three leaves returns
+# armGroups[] carrying exactly label/description/interventionNames (asking
+# for the `ArmGroup` container instead would also return `type`, which is
+# EXPERIMENTAL/PLACEBO_COMPARATOR boilerplate and names no target).
+# BriefSummary comes back whole, not clipped: checked against the same
+# study fetched with no `fields` at all.
 CT_FIELDS = ("NCTId,BriefTitle,OverallStatus,StudyFirstPostDate,Condition,"
              "Phase,StudyType,LeadSponsorName,LeadSponsorClass,"
              "CollaboratorName,InterventionName,InterventionType,"
-             "EnrollmentCount,StartDate")
+             "EnrollmentCount,StartDate,BriefSummary,"
+             "ArmGroupLabel,ArmGroupDescription,ArmGroupInterventionName")
+
+# `interventions` names an INN or a bare code ("IPN01203", "BNT329") and
+# almost never a target, so a first-in-human antibody against a newly
+# nominated checkpoint is invisible to a title+interventions search. The
+# prose fields do name mechanism, and this is the cap that keeps them from
+# unbounded growth -- same 4000 the EMA `indication` column uses.
+TEXT_CAP = 4000
 
 # Flags rows rather than dropping them: both the EMA workbook and the
 # ClinicalTrials.gov set are stored whole, because they are small enough
@@ -145,11 +178,24 @@ SCHEMA = """
 -- Event stream: dated acts by the FDA Oncology Center of Excellence.
 -- `date` is the approval date stated in the notice's own prose; the
 -- table's own Date column is the later posting date, kept as posted_date.
+--
+-- Two columns record how much that is worth, and they must not be conflated
+-- (an earlier version stored only date_confirmed=int(prose==posted), which
+-- put "the two dates disagree" and "there was no prose date to compare"
+-- both in the 0 bucket -- one is a finding, the other is a parse failure):
+--   date_source     'prose'  -- date came from the notice's own sentence
+--                   'posted' -- no prose date parsed; date IS posted_date
+--   date_confirmed  1    prose and posted agree
+--                   0    prose and posted DISAGREE (date is the prose one)
+--                   NULL no prose date was found, so nothing was compared
+-- So `date_confirmed IS NULL` is the data-quality signal (how many notices
+-- the DESC_DATE regex failed on) and `date_confirmed = 0` is the substantive
+-- one (how often FDA posts a notice later than it acted).
 CREATE TABLE IF NOT EXISTS fda_approvals(
     url TEXT PRIMARY KEY, source_id TEXT,
     date TEXT, month TEXT, posted_date TEXT,
     action TEXT, drug TEXT, title TEXT, description TEXT,
-    date_confirmed INTEGER);
+    date_confirmed INTEGER, date_source TEXT);
 CREATE INDEX IF NOT EXISTS r_fda_month ON fda_approvals(month);
 
 -- STATE ROSTER, not an event stream. The source page has no dates; this
@@ -175,13 +221,27 @@ CREATE INDEX IF NOT EXISTS r_ema_month ON ema_medicines(month);
 CREATE INDEX IF NOT EXISTS r_ema_onc ON ema_medicines(oncology);
 
 -- Event stream: date is studyFirstPostDate, the day the record went public.
+--
+-- The last four columns are the prose layer. `interventions` gives an agent
+-- name and no mechanism, so searching title+interventions cannot see a
+-- first-in-human antibody registered as a bare code; brief_summary and the
+-- arm-group text usually say what the agent is against. Both prose columns
+-- are capped at TEXT_CAP characters.
+--
+-- They are APPENDED, not slotted next to `interventions`, and must stay
+-- appended: an existing database gains them via ALTER TABLE ADD COLUMN,
+-- which can only append, so putting them mid-table here would give a fresh
+-- database a different column order from a migrated one and silently
+-- scramble the positional INSERT below.
 CREATE TABLE IF NOT EXISTS ct_trials(
     nct_id TEXT PRIMARY KEY, source_id TEXT,
     date TEXT, month TEXT,
     status TEXT, title TEXT, conditions TEXT, phases TEXT,
     study_type TEXT, lead_sponsor TEXT, sponsor_class TEXT,
     collaborators TEXT, interventions TEXT,
-    enrollment INTEGER, start_date TEXT, onc_conditions INTEGER, url TEXT);
+    enrollment INTEGER, start_date TEXT, onc_conditions INTEGER, url TEXT,
+    brief_summary TEXT, arm_labels TEXT, arm_descriptions TEXT,
+    arm_interventions TEXT);
 CREATE INDEX IF NOT EXISTS r_ct_month ON ct_trials(month);
 CREATE INDEX IF NOT EXISTS r_ct_sponsor ON ct_trials(sponsor_class);
 CREATE INDEX IF NOT EXISTS r_ct_onc ON ct_trials(onc_conditions);
@@ -192,6 +252,56 @@ CREATE TABLE IF NOT EXISTS sources(
     n INTEGER, captured TEXT, first_month TEXT, last_month TEXT,
     ok INTEGER, note TEXT);
 """
+
+# CREATE TABLE IF NOT EXISTS is a no-op on a database that already exists,
+# so columns added to SCHEMA after the first run have to be walked in by
+# hand. Order here must match the tail of the CREATE TABLE above, because
+# ADD COLUMN appends and the INSERTs are positional.
+MIGRATIONS = {
+    "fda_approvals": [("date_source", "TEXT")],
+    "ct_trials": [("brief_summary", "TEXT"), ("arm_labels", "TEXT"),
+                  ("arm_descriptions", "TEXT"),
+                  ("arm_interventions", "TEXT")],
+}
+
+
+def migrate(con) -> None:
+    """Add any SCHEMA column the on-disk table predates. Idempotent."""
+    for table, cols in MIGRATIONS.items():
+        have = {r[1] for r in con.execute(f"PRAGMA table_info({table})")}
+        if not have:
+            continue  # table does not exist yet; SCHEMA just created it right
+        for name, decl in cols:
+            if name not in have:
+                con.execute(f"ALTER TABLE {table} ADD COLUMN {name} {decl}")
+    con.commit()
+    backfill_date_source(con)
+
+
+def backfill_date_source(con) -> int:
+    """Re-derive date_source / date_confirmed for pre-split fda_approvals rows.
+
+    Rows written before the split carry date_confirmed=0 for two different
+    situations, and leaving them that way would make the new NULL bucket
+    mean "written recently" rather than "no prose date". The notice text is
+    stored in `description`, so the same DESC_DATE regex the harvester uses
+    can be replayed offline -- no refetch, and the 192 existing rows keep
+    their identity. Idempotent: only touches rows with date_source unset.
+    """
+    todo = con.execute("SELECT url, description, posted_date FROM fda_approvals "
+                       "WHERE date_source IS NULL").fetchall()
+    if not todo:
+        return 0
+    upd = []
+    for url, desc, posted in todo:
+        m = DESC_DATE.search(desc or "")
+        acted = prose_date(m.group(1)) if m else ""
+        upd.append(("prose" if acted else "posted",
+                    int(acted == posted) if acted else None, url))
+    con.executemany("UPDATE fda_approvals SET date_source=?, date_confirmed=? "
+                    "WHERE url=?", upd)
+    con.commit()
+    return len(upd)
 
 # The roster is deliberately absent from this view.
 EVENTS_VIEW = """
@@ -392,7 +502,10 @@ def harvest_fda_approvals(con, sid: str, captured: str) -> tuple[int, str]:
         # column date is when FDA published the page, up to weeks later.
         dm = DESC_DATE.search(desc)
         acted = prose_date(dm.group(1)) if dm else ""
-        confirmed = 0
+        # NULL, not 0, when there was no prose date: "the dates disagree" and
+        # "there was no second date to compare" are different facts and only
+        # the first says anything about FDA's posting lag. See the schema.
+        confirmed = None
         if acted:
             checked += 1
             confirmed = int(acted == posted)
@@ -402,17 +515,20 @@ def harvest_fda_approvals(con, sid: str, captured: str) -> tuple[int, str]:
 
         gm = DESC_DRUG.search(desc)
         out.append((url, sid, date, date[:7], posted, classify(title),
-                    (gm.group(1).strip() if gm else ""), title, desc, confirmed))
+                    (gm.group(1).strip() if gm else ""), title, desc,
+                    confirmed, "prose" if acted else "posted"))
 
     con.execute("DELETE FROM fda_approvals WHERE source_id=?", (sid,))
     con.executemany(
-        "INSERT OR REPLACE INTO fda_approvals VALUES (?,?,?,?,?,?,?,?,?,?)", out)
+        "INSERT OR REPLACE INTO fda_approvals VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+        out)
     con.commit()
     named = sum(1 for r in out if r[6])
     note = (f"binned on the approval date stated in each notice, not the "
             f"page's posting date; {agree}/{checked} agree, {moved} landed in "
             f"a different month; {len(out) - checked} rows had no prose date "
-            f"and fall back to the posting date; drug name parsed for "
+            f"and fall back to the posting date (date_source='posted', "
+            f"date_confirmed NULL); drug name parsed for "
             f"{named}/{len(out)}; {undated - 1} non-header rows undated")
     return len(out), note
 
@@ -664,6 +780,13 @@ def harvest_ctgov(con, sid: str, captured: str,
                 continue
             conds = "; ".join(
                 (p.get("conditionsModule") or {}).get("conditions") or [])
+            # armGroups and interventions are siblings in the same module.
+            # An arm may carry no description at all (single-arm CAR-T
+            # studies routinely do), so join only the ones that exist --
+            # otherwise every trial gets a string of blank separators that
+            # a LIKE '%...%' search cannot tell from real text.
+            arms = ((p.get("armsInterventionsModule") or {})
+                    .get("armGroups") or [])
             out.append((
                 nct, sid, date, date[:7],
                 st.get("overallStatus", ""), ident.get("briefTitle", ""),
@@ -679,7 +802,14 @@ def harvest_ctgov(con, sid: str, captured: str,
                 (design.get("enrollmentInfo") or {}).get("count"),
                 (st.get("startDateStruct") or {}).get("date", ""),
                 int(bool(ONC_RE.search(conds))),
-                f"https://clinicaltrials.gov/study/{nct}"))
+                f"https://clinicaltrials.gov/study/{nct}",
+                ((p.get("descriptionModule") or {})
+                 .get("briefSummary", "") or "")[:TEXT_CAP],
+                " | ".join(a.get("label", "") for a in arms if a.get("label")),
+                " | ".join(a.get("description", "")
+                           for a in arms if a.get("description"))[:TEXT_CAP],
+                " | ".join("; ".join(a.get("interventionNames") or [])
+                           for a in arms if a.get("interventionNames"))))
         pages += 1
         token = page.get("nextPageToken")
         print(f"  page {pages}: {len(out):,}/{total:,}", flush=True)
@@ -688,14 +818,19 @@ def harvest_ctgov(con, sid: str, captured: str,
         time.sleep(0.2)
 
     con.execute("DELETE FROM ct_trials WHERE source_id=?", (sid,))
+    # 21 columns; the tuple built above is positional, so this count and the
+    # CREATE TABLE have to be recounted together whenever either moves.
     con.executemany(
-        "INSERT OR REPLACE INTO ct_trials VALUES (" + ",".join("?" * 17) + ")",
+        "INSERT OR REPLACE INTO ct_trials VALUES (" + ",".join("?" * 21) + ")",
         out)
     con.commit()
     onc = sum(r[15] for r in out)
+    prose = sum(1 for r in out if r[17] or r[19])
     note = (f"interventional, studyFirstPostDate in {start}..{end}, "
             f"condition query widened beyond 'cancer'; {onc:,}/{len(out):,} "
-            f"name an oncology condition outright (onc_conditions=1)")
+            f"name an oncology condition outright (onc_conditions=1); "
+            f"{prose:,} carry brief_summary or arm-group prose, the fields "
+            f"that name a mechanism where `interventions` gives only a code")
     if phases:
         note += (f"; result set exceeded {cap:,} so narrowed to Phase 1/2/3")
     return len(out), note
@@ -727,7 +862,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--only", default="",
                     help="sources.yml source id to restrict to")
-    ap.add_argument("--from", dest="start", default="2024-01",
+    ap.add_argument("--from", dest="start", default="2023-01",
                     help="ClinicalTrials.gov window start, YYYY-MM")
     ap.add_argument("--to", dest="end", default="2026-08",
                     help="ClinicalTrials.gov window end, YYYY-MM")
@@ -749,6 +884,7 @@ def main() -> int:
             + "".join(f"DROP TABLE IF EXISTS {t};" for t in TABLES.values())
             + "DROP TABLE IF EXISTS sources;")
     con.executescript(SCHEMA)
+    migrate(con)
 
     captured = dt.date.today().isoformat()
     todo = [s for s in SOURCES if not args.only or s == args.only]
