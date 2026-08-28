@@ -19685,43 +19685,83 @@
 <p><strong>Cell therapy stopped needing a factory.</strong> Two papers in one month generate CAR
 T cells inside the patient: <a href="https://pubmed.ncbi.nlm.nih.gov/41851456/">41851456</a> (<em>Nature</em>) reprograms T
 cells in vivo by site-specific engineering, and <a href="https://pubmed.ncbi.nlm.nih.gov/41882404/">41882404</a>
-(<em>Nat Med</em>) reports first-in-human in vivo generation of anti-BCMA CAR-T in
-relapsed/refractory myeloma. Ex vivo manufacturing is the cost, delay and
-access constraint on the entire platform; removing it changes who can be
-treated more than any receptor redesign in this corpus.</p>
-<p><strong>The tumour microbiome was told to start over.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/41650974/">41650974</a>
-(<em>Cancer Cell</em>) states that most published tumour-microbiome signatures are
-contamination artifacts that do not reproduce without stringent controls. Two
-months later <a href="https://pubmed.ncbi.nlm.nih.gov/42092351/">42092351</a> (<em>Cell</em>) supplies the replacement — a
-contamination-aware pan-cancer map of intratumoral bacteria and fungi. Treat
-every tumour-microbiome claim in this corpus dated before April 2026 as
-provisional; the field re-grounded itself in public and the correction is
-usable.</p>
-<p><strong>ctDNA got its first clean prospective win.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/41813900/">41813900</a>
+(<em>Nat Med</em>) infuses ESO-T01, a nanobody-directed immune-shielded lentiviral
+vector encoding an anti-BCMA CAR, into five heavily pretreated myeloma patients
+with no leukapheresis, no ex vivo manufacture and no lymphodepletion. Four of
+five responded, three with stringent complete remission, and all four evaluable
+responders were MRD-negative by day 60. Read the size and the stopping rule
+before the response rate: it is five patients, the trial was stopped early in
+2025 with no further enrolment, and every patient had a grade 3 or higher
+adverse event. The abstract's own opening sentence places it after existing
+clinical experience with in vivo CAR-T generation rather than ahead of it. Ex
+vivo manufacturing is the cost, delay and access constraint on the entire
+platform, and removing it would change who can be treated more than any receptor
+redesign in this corpus — which is why the size of the evidence here matters.</p>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-08-27</p>
+<p>This section carried a paragraph headed "The tumour microbiome was told to
+start over", built on
+<a href="https://pubmed.ncbi.nlm.nih.gov/41650974/">41650974</a> stating that most
+published tumour-microbiome signatures are contamination artifacts that do
+not reproduce. The paper never assesses published signatures. It also used a
+<em>Cell</em> paper from two months later as the "replacement", which is an
+argument this briefing cannot make from inside April. Both halves are
+withdrawn and the paragraph below states what the abstract reports.</p>
+</div>
+<p><strong>The tumour microbiome got a decontamination method, and the map it produced is
+narrower than the thread's claim.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/41650974/">41650974</a> (<em>Cancer Cell</em>)
+introduces PRISM, a framework for identifying microorganisms in low-biomass
+sequencing and stripping contaminants, benchmarked on 230 independent datasets
+with known true-positive and contaminant taxa. Applied to 25 cancer types across
+TCGA and CPTAC it recovers consistent microbial signatures in gastrointestinal,
+head-and-neck and urogenital tumours, and sparse signal elsewhere; in pancreatic
+cancer, microbial detection tracks altered host protein glycosylation and greater
+smoking exposure. That is a real signal and a usable method. It is carded as a
+refutation on <code>neuro-immune-microbiome-axis</code> because of the second half: the
+thread claims one mechanism network, and a microbial arm confined to sites with
+mucosal contact constrains that claim's reach rather than evidencing it. The
+mechanism is not in doubt where it exists.</p>
+<p><strong>ctDNA got a clean prospective win.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/41813900/">41813900</a>
 (<em>Nature</em>) validates risk-adaptive therapy guided by dynamic ctDNA prospectively
-in nasopharyngeal carcinoma. Against a thread that is otherwise dominated by
-refutations — SERENA-6 quality of life, TOMBOLA, tumour-naive MRD
-underperformance — this is the design that works: a disease with a clean viral
-marker, and a randomized structure where ctDNA sets the therapy rather than
-annotating it.</p>
+in nasopharyngeal carcinoma. Against a thread whose recorded negatives are about
+what happens <em>after</em> detection rather than about detection itself, this is the
+design that works: a disease with a clean viral marker, and a randomized
+structure where ctDNA sets the therapy rather than annotating it.</p>
 <p><strong>Foundation models split cleanly by task type again.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/41781614/">Evo 2</a>
 models and designs genomes across all domains of life, and
 <a href="https://pubmed.ncbi.nlm.nih.gov/41845065/">CellVoyager</a> autonomously analyses single-cell data with a
-benchmark across 76 studies. Meanwhile an ensemble's worth of ESM capability
-<a href="https://pubmed.ncbi.nlm.nih.gov/41912799/">distils into one small model</a>, undercutting the scale-first
-assumption from the inside.</p>
+benchmark across 76 studies. And <a href="https://pubmed.ncbi.nlm.nih.gov/41912799/">41912799</a> (<em>Nat Methods</em>)
+co-distils ESM models against each other — each learning from the most confident
+predictions of the others — to reach state-of-the-art variant-effect prediction
+from raw unaligned sequence alone, without structure, homology or
+population-genetics inputs, and then quantifies variant severity against
+continuous clinical phenotypes in biobank data. It was carded here as an
+ensemble squeezed into a small model, undercutting scale from the inside. The
+paper argues something else and says so: it challenges the prevailing view that
+sequence-only protein language models are intrinsically limited. Nothing in it
+concerns model size, and it is another win on a sequence-to-function task with
+hard ground truth.</p>
 <h2 id="4-refutations">4. Refutations<a class="headerlink" href="#4-refutations" title="Permanent link">&para;</a></h2>
 <h3 id="a-landing-on-a-tracked-thread">(a) Landing on a tracked thread<a class="headerlink" href="#a-landing-on-a-tracked-thread" title="Permanent link">&para;</a></h3>
-<p>The microbiome-contamination card above is filed as a refutation on
+<p>The PRISM card above is filed as a refutation on
 <code>neuro-immune-microbiome-axis</code>, and it is the largest single hit that thread has
-taken. Note what it does <em>not</em> touch: the neural arm. Four supports this month —
-<a href="https://pubmed.ncbi.nlm.nih.gov/41416996/">serotonin and lineage plasticity</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/41677804/">sensory neurons driving a
-fibrotic immune microenvironment</a>,
-<a href="https://pubmed.ncbi.nlm.nih.gov/41735533/">lymphocyte-intrinsic cholinergic circuits</a>, and
-<a href="https://pubmed.ncbi.nlm.nih.gov/41785384/">sympathetic nerves setting baseline immunosurveillance</a> — are all
-neural, none microbial. The thread is one mechanism network by claim, but its
-two arms are not in the same evidentiary state, and the microbial arm is the
-weaker one.</p>
+taken. Note what it does <em>not</em> touch: the neural arm. Two supports this month —
+<a href="https://pubmed.ncbi.nlm.nih.gov/41416996/">serotonin and lineage plasticity</a> and
+<a href="https://pubmed.ncbi.nlm.nih.gov/41735533/">lymphocyte-intrinsic cholinergic circuits</a> — are both neural,
+neither microbial. The thread is one mechanism network by claim, but its two
+arms are not in the same evidentiary state, and the microbial arm is the weaker
+one: PRISM finds it at sites with mucosal contact and little of it elsewhere.</p>
+<p>Two further supports were counted here and should not have been.
+<a href="https://pubmed.ncbi.nlm.nih.gov/41677804/">41677804</a> and <a href="https://pubmed.ncbi.nlm.nih.gov/41785384/">41785384</a>
+are <em>Cancer Discovery</em> research-watch items with no abstract and no named
+authors. They restate, respectively, <a href="https://pubmed.ncbi.nlm.nih.gov/41650969/">41650969</a> (<em>Cell</em>,
+February) on sensory neurons driving immune exclusion through a dense
+extracellular matrix in breast cancer, and <a href="https://pubmed.ncbi.nlm.nih.gov/41616781/">41616781</a> (<em>Cell</em>,
+March) on sympathetic-epithelial crosstalk positioning tissue-resident memory T
+cells in skin. Both primaries are carded on this thread in their own months, so
+counting the echoes put those two studies on the thread's supports side twice —
+on the thread with the largest supports side in the corpus. Both echoes are now
+neutral, and April's neural evidence is the two cards named above.</p>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/41606121/">41606121</a> (<em>Nat Med</em>) is the exception worth reading: faecal
 transplant plus checkpoint blockade where benefit tracks <strong>loss of deleterious
 taxa, not donor engraftment</strong>. That inverts the standard model of what FMT does

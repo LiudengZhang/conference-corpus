@@ -19682,33 +19682,59 @@
 </table>
 <p>Status is derived by rule, not asserted. Fewer than 5 cards → too-early; then <code>refutes ≥ 2×supports</code> → crisis; <code>refutes &gt; supports</code> → contested; <code>supports ≥ 2×refutes</code> → forming; else splitting.</p>
 <h2 id="3-the-evidence-that-moved-it">3. The evidence that moved it<a class="headerlink" href="#3-the-evidence-that-moved-it" title="Permanent link">&para;</a></h2>
-<p><strong>Checkpoint blockade was attacked at its own premise, not at a target.</strong>
+<p><strong>Checkpoint blockade was questioned at its own premise, not at a target.</strong>
 <a href="https://pubmed.ncbi.nlm.nih.gov/41299179/">41299179</a> (<em>Nature</em>) reports that the inhibitory PD-1 axis
-<em>maintains</em> high-avidity stem-like CD8 T cells. Every next-generation checkpoint
-programme in this corpus is built on the assumption that removing inhibition is
-additive; if sustained PD-1 signalling is what preserves the precursor pool that
-responses depend on, then more blockade is not more benefit and the design
-question changes from which receptor to how much and for how long.</p>
-<p><strong>Anti-TIGIT split rather than died.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/41449142/">SKYSCRAPER-08</a> is the one
-anti-TIGIT phase 3 in this corpus that reads out positive, in oesophageal
-squamous carcinoma; <a href="https://pubmed.ncbi.nlm.nih.gov/41449151/">MORPHEUS-EC</a> adds no meaningful benefit over
-PD-L1 blockade plus chemotherapy in the same month. A class that fails in some
-tumours and works in one is a class with an unsolved selection problem, not a
-dead one — and <a href="https://pubmed.ncbi.nlm.nih.gov/41564381/">41564381</a>, four months later, argues the first
-generation failed on Fc isotype design and so was never properly tested.</p>
-<p><strong>Foundation models were audited from five directions at once, and one of them
+<em>maintains</em> high-avidity stem-like CD8 T cells: prolonged antigen engagement in
+tumour-draining lymph node niches sustains TCF-1+PD-1+SLAMF6-high precursors,
+PD-1 fine-tunes the T-cell receptor input that lets the highest-affinity clones
+expand, and blockade disrupts that tuning, pushing the most avid precursors to
+terminal differentiation or death. The authors' own closing question is whether
+anti-PD-1 buys a short-term effect at the cost of the pool responses draw on —
+which makes this an argument about how much PD-1 blockade and for how long, not
+about which receptor to block instead. It is carded neutral on
+<code>next-gen-checkpoints</code> for exactly that reason: a result about the PD-1 axis
+cannot count against a claim about targets beyond PD-1 and CTLA-4, and if it
+leans either way it is a motive for looking beyond them.</p>
+<p><strong>Anti-TIGIT's two readouts this month both point the same way, and both are in
+the oesophagus.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/41449142/">SKYSCRAPER-08</a> is the anti-TIGIT phase 3 that
+reads out positive in this corpus, in oesophageal squamous carcinoma; in the
+same month <a href="https://pubmed.ncbi.nlm.nih.gov/41449151/">MORPHEUS-EC</a> raised confirmed objective response to
+67.7% with tiragolumab added to atezolizumab and chemotherapy, against 53.8% for
+atezolizumab and chemotherapy and 47.8% for chemotherapy alone in first-line
+oesophageal cancer, and the investigators read the 14-point margin as additional
+benefit from the anti-TIGIT antibody. MORPHEUS-EC is phase 1b/2 with an
+objective-response endpoint and no power for survival, so it is a signal and not
+a verdict. A class that fails in several tumours and produces two concordant
+positive readouts in one is a class with an unsolved selection problem rather
+than a dead target.</p>
+<p><strong>Foundation models were audited from four directions at once, and one of them
 won.</strong> Fifty TCR-epitope predictors across twenty-one datasets
 <a href="https://pubmed.ncbi.nlm.nih.gov/41315816/">all fail on unseen epitopes</a>; a
 <a href="https://pubmed.ncbi.nlm.nih.gov/41491253/">single-hidden-layer contrastive model</a> beats deep integration
 architectures; deep expression models
 <a href="https://pubmed.ncbi.nlm.nih.gov/41495833/">only match linear baselines even after personal-genome fine-tuning</a>
-and fail entirely on unseen genes; AlphaFold-class predictors
-<a href="https://pubmed.ncbi.nlm.nih.gov/41570803/">fail on flexible and disordered interfaces</a>; leading LLMs score
-<a href="https://pubmed.ncbi.nlm.nih.gov/41386265/">near chance on curated TF-target interactions</a>. Against that,
+and fail entirely on unseen genes; and four leading LLMs queried on 8,432
+curated TF-target interactions reach
+<a href="https://pubmed.ncbi.nlm.nih.gov/41386265/">48-50% balanced accuracy under single-turn prompting</a> — near
+chance, although multi-turn prompting and the exclusion of pairs with unknown
+regulation type carry some conditions towards 70%, which the authors read as
+usable support for regulatory biology. Against that,
 <a href="https://pubmed.ncbi.nlm.nih.gov/41606153/">AlphaGenome</a> beats the best external models in 25 of 26
 variant-effect evaluations. The pattern to hold onto is that the wins are on
 sequence-to-function tasks with hard ground truth, and the failures are on tasks
 where the evaluation set was constructed by the field being evaluated.</p>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-08-27</p>
+<p>The paragraph above counted a fifth audit — AlphaFold-class predictors
+failing on flexible and disordered interfaces — and cited it to
+<a href="https://pubmed.ncbi.nlm.nih.gov/41570803/">41570803</a>. That record is a
+<em>Cell Systems</em> preview of two other papers, and it reports the opposite:
+modelling protein dynamics <strong>improves</strong> binding-site prediction for flexible
+systems. The failure was read out of the subtitle, "why dynamics and
+disorder remain a challenge"; the piece itself presents no failure of
+AlphaFold-class predictors and no data of its own. The card is now neutral
+and the count in this paragraph is four.</p>
+</div>
 <p><strong>Cell therapy moved off the manufacturing line.</strong>
 <a href="https://pubmed.ncbi.nlm.nih.gov/41363805/">Universal base-edited CAR7 T cells</a> give off-the-shelf allogeneic
 clinical data in T-ALL, and <a href="https://pubmed.ncbi.nlm.nih.gov/41338193/">pTalpha</a> potentiates solid-tumour

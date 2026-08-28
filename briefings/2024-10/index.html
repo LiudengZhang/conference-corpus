@@ -19698,15 +19698,36 @@ survives a model getting better. Filed as a refutation on <code>foundation-model
 because the thread's claim is about transfer into clinical use, and this says the
 transfer damages the substrate.</p>
 <h3 id="b-method-credibility">(b) Method credibility<a class="headerlink" href="#b-method-credibility" title="Permanent link">&para;</a></h3>
-<p><a href="https://pubmed.ncbi.nlm.nih.gov/39333790/">39333790</a> (<em>Nat Comput Sci</em>): subtask-decomposition-based learning and
-benchmarking for predicting genetic perturbation outcomes. Perturbation
-prediction is the task that in June 2025 produces "simple controls exceed the
-best deep learning algorithms". Here, eight months earlier, the task is already
-being rebuilt around its own weaknesses — the benchmark's authors had the
-objection before the null result was published.</p>
-<p><a href="https://pubmed.ncbi.nlm.nih.gov/39443777/">39443777</a> (<em>Nature</em>): scalable watermarking for identifying LLM outputs.
-Provenance infrastructure, which is what a field builds when it expects not to
-be able to tell machine output from human output by inspection.</p>
+<p>Neither of this month's two AI-methods papers is a credibility result, and both
+are here as notes rather than as ledger entries.</p>
+<p><a href="https://pubmed.ncbi.nlm.nih.gov/39333790/">39333790</a> (<em>Nat Comput Sci</em>) is STAMP, which splits genetic-perturbation
+prediction into three ordered subtasks — which genes change, in which direction,
+by how much — and reports substantial improvement over existing approaches on
+single perturbations, multiple perturbations and transfer across cell lines,
+along with the ability to recover regulatory genes and interaction types from
+small samples. An improvement with no adverse finding attached.</p>
+<p><a href="https://pubmed.ncbi.nlm.nih.gov/39443777/">39443777</a> (<em>Nature</em>) is SynthID-Text, a production text watermarking
+scheme that modifies only the sampling procedure, detects without running the
+model, and was assessed over nearly 20 million live Gemini responses with no
+measured loss of quality. Provenance infrastructure, which is what a field builds
+when it expects not to be able to tell machine output from human output by
+inspection — but a tool for establishing where text came from says nothing about
+whether published methods are reliable.</p>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-08-27</p>
+<p>Both entries overreached, in opposite directions. STAMP was carded <code>refutes</code>
+as an audit and read as evidence that "the task is already being rebuilt
+around its own weaknesses — the benchmark's authors had the objection before
+the null result was published", tied to a June 2025 result about simple
+controls. The word "benchmarking" in the title is the only thing in the paper
+that attaches to; the narrative was supplied by a reader who knew what 2025
+would say. And the watermarking paper was the single <code>supports</code> card among
+151 on <code>method-credibility</code>, carrying that thread's claim that published
+methods and reagents are reliable enough to build on without re-checking —
+which it neither states nor contradicts. Its stance alone moved the thread's
+supports count off zero. Both cards are now <code>neutral</code>, and STAMP has lost
+<code>method-credibility</code>.</p>
+</div>
 <h2 id="5-open-items">5. Open items<a class="headerlink" href="#5-open-items" title="Permanent link">&para;</a></h2>
 <p>Nothing carried forward.</p>
 <h2 id="6-meetings">6. Meetings<a class="headerlink" href="#6-meetings" title="Permanent link">&para;</a></h2>

@@ -19678,30 +19678,43 @@
 </table>
 <p>Status is derived by rule, not asserted. Fewer than 5 cards → too-early; then <code>refutes ≥ 2×supports</code> → crisis; <code>refutes &gt; supports</code> → contested; <code>supports ≥ 2×refutes</code> → forming; else splitting.</p>
 <h2 id="3-the-evidence-that-moved-it">3. The evidence that moved it<a class="headerlink" href="#3-the-evidence-that-moved-it" title="Permanent link">&para;</a></h2>
-<p><strong>Three negative checkpoint phase 3s in one month.</strong>
-<a href="https://pubmed.ncbi.nlm.nih.gov/41529222/">BR.31</a> finds no disease-free survival benefit for adjuvant
-durvalumab in resected NSCLC at any PD-L1 level;
+<p><strong>Three negative checkpoint phase 3s in one month, and only one of them is about
+a new target.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/41529222/">BR.31</a> finds no disease-free survival benefit for
+adjuvant durvalumab in resected NSCLC at any PD-L1 level (stratified hazard ratio
+0.93, P = .64, at 60 months' median follow-up);
 <a href="https://pubmed.ncbi.nlm.nih.gov/41698381/">KEYVIBE-010</a> finds no recurrence-free survival benefit from adding
 anti-TIGIT to pembrolizumab as adjuvant melanoma therapy; and
 <a href="https://pubmed.ncbi.nlm.nih.gov/41529214/">LU005</a> finds no survival benefit from adding atezolizumab to
-chemoradiation in limited-stage small-cell lung cancer. All three are the same
-design move — take an agent that works in advanced disease and push it earlier or
-add it to a backbone — and all three fail. The adjuvant setting is where this
-corpus should now expect checkpoint combinations to fail by default.</p>
+chemoradiation in limited-stage small-cell lung cancer (median overall survival
+36.1 versus 31.1 months, hazard ratio 1.03). All three are the same design move —
+take an agent that works in advanced disease and push it earlier or add it to a
+backbone — and all three fail. The adjuvant setting is where this corpus should
+now expect checkpoint combinations to fail by default.</p>
+<p>The distinction that had been collapsed here is worth keeping. Durvalumab and
+atezolizumab are PD-L1 blockade: BR.31 and LU005 test the existing generation in
+new settings, and however clean their nulls are they cannot bear in either
+direction on a claim about targets <em>beyond</em> PD-1 and CTLA-4. Both cards are now
+neutral on <code>next-gen-checkpoints</code>, and KEYVIBE-010 is the one of the three that
+actually reads out on a second-generation target.</p>
 <p><strong>A target was killed by a reagent artifact.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/41871876/">41871876</a> (<em>JITC</em>)
 reports that the high BCMA expression reported in AML is an artifact of
 nonspecific Fc binding, and that anti-BCMA CAR-T barely lyses AML cells. This is
 the most economical refutation in the corpus: one antibody-validation control
 removes an entire proposed indication for a platform that already works
 elsewhere.</p>
-<p><strong>Agentic AI produced three genuine supports in a single month</strong>, the first time
-that has happened: <a href="https://pubmed.ncbi.nlm.nih.gov/41554982/">collective intelligence for AI-assisted chemical
-synthesis</a>, an <a href="https://pubmed.ncbi.nlm.nih.gov/41708847/">agentic system for rare-disease diagnosis with
-traceable, auditable reasoning</a>, and
-<a href="https://pubmed.ncbi.nlm.nih.gov/41742414/">LUMI-lab</a>, a foundation-model-driven autonomous platform that
-discovers ionizable lipid chemistry. The auditability of the second is the
-notable feature — it is the first agentic paper in the corpus whose selling point
-is that its reasoning can be checked rather than that it works.</p>
+<p><strong>Agentic AI produced three genuine supports in a single month.</strong>
+<a href="https://pubmed.ncbi.nlm.nih.gov/41554982/">MOSAIC</a> trains 2,498 specialised chemical experts on millions of
+reaction protocols and returns executable synthesis protocols at a 71% success
+rate, with experimental realisation of more than 35 new compounds and reaction
+methodology that was absent from the experts' training; an
+<a href="https://pubmed.ncbi.nlm.nih.gov/41708847/">agentic system for rare-disease diagnosis</a> carries traceable,
+auditable reasoning; and <a href="https://pubmed.ncbi.nlm.nih.gov/41742414/">LUMI-lab</a>, a foundation-model-driven
+autonomous platform, discovers ionizable lipid chemistry. Two features are worth
+separating. MOSAIC's number is wet-lab validated rather than benchmark-scored,
+which is rare on this thread. And the rare-disease system's selling point is that
+its reasoning can be checked rather than that it works — a different kind of
+claim from the rest of the thread, and the one that would survive a sceptical
+reader.</p>
 <p><strong>Vaccines reached unaffected people.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/41545594/">41545594</a> tests the
 Nous-209 shared-frameshift-neoantigen vaccine in <em>unaffected</em> Lynch syndrome
 carriers, and <a href="https://pubmed.ncbi.nlm.nih.gov/41818359/">41818359</a> (<em>Science</em>) reframes KRAS inhibition as
@@ -19711,12 +19724,28 @@ the intervention point earlier than any trial this corpus has previously
 recorded.</p>
 <h2 id="4-refutations">4. Refutations<a class="headerlink" href="#4-refutations" title="Permanent link">&para;</a></h2>
 <h3 id="a-landing-on-a-tracked-thread">(a) Landing on a tracked thread<a class="headerlink" href="#a-landing-on-a-tracked-thread" title="Permanent link">&para;</a></h3>
-<p><a href="https://pubmed.ncbi.nlm.nih.gov/41512868/">41512868</a> (<em>Cancer Cell</em>): IGLL5-positive B cells <em>disassemble</em>
-tertiary lymphoid structures. TLS have been treated across this corpus as a
-favourable feature to induce, and the B cell compartment as what builds them.
-Together with the September 2025 finding that Treg- and MDSC-rich TLS mark fatal
-cervical cancer, the position now is that TLS presence is not a biomarker and TLS
-induction is not obviously a goal — what matters is which cells are in them.</p>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-08-27</p>
+<p>This subsection carried <a href="https://pubmed.ncbi.nlm.nih.gov/41512868/">41512868</a>
+as a refutation. The finding is unchanged and the reading below still holds,
+but what the paper contradicts is a background assumption about B cells, not
+a claim this corpus tracks. What it demonstrates — lymphoid-structure
+integrity governing immunotherapy response, and made druggable — is the
+<code>neuro-immune-microbiome-axis</code> claim itself, and the card now reads
+<code>supports</code>. It was recorded against the thread it evidences.</p>
+</div>
+<p><a href="https://pubmed.ncbi.nlm.nih.gov/41512868/">41512868</a> (<em>Cancer Cell</em>): an IGLL5-positive B cell subset in
+bladder cancer binds high endothelial venules through IGLL5-LTβR, inhibiting
+non-canonical NF-κB signalling and <em>disassembling</em> tertiary lymphoid structures,
+which impairs immunotherapy response in genetically engineered and humanised
+mice; blocking IGLL5 preserves the structures and improves immunotherapy in
+patient-derived xenograft and pan-cancer models. TLS have been treated across
+this corpus as a favourable feature to induce, and the B cell compartment as
+what builds them. Together with the September 2025 finding that Treg- and
+MDSC-rich TLS mark fatal cervical cancer, the position now is that TLS presence
+is not a biomarker and TLS induction is not obviously a goal — what matters is
+which cells are in them, and here that is a specific subset with a ligand that
+can be blocked.</p>
 <h3 id="b-method-credibility">(b) Method credibility<a class="headerlink" href="#b-method-credibility" title="Permanent link">&para;</a></h3>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/40790276/">40790276</a> (<em>Nat Biomed Eng</em>): latent diffusion models memorize
 patient imaging data, so synthetic medical images are not privacy-preserving.
@@ -19731,9 +19760,22 @@ benchmarks and miss the clinic — this supplies the mechanism for the miss.</p>
 by shared cellular resources rather than by guide or target biology. Every
 CRISPRa screen that reads activation strength as a biological quantity inherits
 this.</p>
-<p><a href="https://pubmed.ncbi.nlm.nih.gov/41653917/">41653917</a>: prior cfDNA end-motif and fragmentomic analyses used
-partial end representations, biasing published classifiers. Second consecutive
-month with a cfDNA-classifier artifact, after February's demographic-bias card.</p>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-08-27</p>
+<p>This subsection carried
+<a href="https://pubmed.ncbi.nlm.nih.gov/41653917/">41653917</a> as evidence that prior
+cfDNA end-motif and fragmentomic analyses used partial end representations
+and so biased published classifiers, and read it as the "second consecutive
+month with a cfDNA-classifier artifact, after February's demographic-bias
+card". Neither half survives the abstracts. This paper is a method advance,
+not an audit: 3' ends were overlooked because standard protocols modify
+them, and single-stranded "2-end" and "4-end" sequencing recovers the native
+motifs and detects hepatocellular carcinoma at AUC 0.95, rising to 0.97 with
+3' fragmentomic methylation. It makes no claim about published classifiers.
+February's card was also misread — see that month — so there was no
+two-month run to name. The card is now neutral, filed on <code>ctdna-mrd</code> as a
+new modality rather than here.</p>
+</div>
 <h2 id="5-open-items">5. Open items<a class="headerlink" href="#5-open-items" title="Permanent link">&para;</a></h2>
 <p>Nothing carried forward.</p>
 <h2 id="6-meetings">6. Meetings<a class="headerlink" href="#6-meetings" title="Permanent link">&para;</a></h2>

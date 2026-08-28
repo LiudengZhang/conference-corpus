@@ -19696,13 +19696,28 @@ knows these programmes ended, but it does not know it <em>from these rows</em>, 
 card that recorded the outcome would be recording something the reader inferred.
 The direction is settled in the 2026-07 briefing, from a <em>JCO</em> phase 3 report
 that states it.</p>
-<p><strong>Two simple-baseline results in one month.</strong>
-<a href="https://pubmed.ncbi.nlm.nih.gov/40662806/">40662806</a>: deep-learning sequence-based
-protein-interaction predictors plateau at 0.65 accuracy under unbiased
-evaluation. <a href="https://pubmed.ncbi.nlm.nih.gov/40605002/">40605002</a>: plain Z-scores
-outperform purpose-built methods for CRISPR paralog synthetic-lethality screens.
-With June's two, that is four such results in eight weeks, a full year before the
-corpus recorded the pattern as emerging.</p>
+<p><strong>A ceiling, stated as a number.</strong>
+<a href="https://pubmed.ncbi.nlm.nih.gov/40662806/">40662806</a>: deep-learning
+sequence-based protein-interaction predictors plateau at 0.65 accuracy under
+unbiased evaluation. With June's two — simple controls exceeding the best deep
+learning algorithms for perturbation prediction, and conservation plus solvent
+accessibility carrying almost all of variant effect — that is three such results
+in eight weeks, a full year before the corpus recorded the pattern as emerging.</p>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-08-27</p>
+<p>A fourth was counted here:
+<a href="https://pubmed.ncbi.nlm.nih.gov/40605002/">40605002</a>, read as "plain
+Z-scores outperform purpose-built methods for CRISPR paralog
+synthetic-lethality screens". That is the title, not the result. Across four
+in4mer Cas12a screens, Z-transformed and rescaled dLFC identify synthetic
+lethal pairs comparably — both more consistently than the unscaled dLFC in
+use — and the Z-score's only stated edge is that it needs no training set of
+known interactors. Convenience, not superiority.</p>
+<p>The card stays on <code>method-credibility</code>, because the finding that analysis
+pipelines for these screens vary considerably is intact. It is not a
+baseline-beats-purpose-built result, and it should not have been counted
+toward a run of them.</p>
+</div>
 <h2 id="4-refutations">4. Refutations<a class="headerlink" href="#4-refutations" title="Permanent link">&para;</a></h2>
 <h3 id="a-landing-on-a-tracked-thread">(a) Landing on a tracked thread<a class="headerlink" href="#a-landing-on-a-tracked-thread" title="Permanent link">&para;</a></h3>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/40707132/">40707132</a> (<em>JITC</em>) is the cleanest
@@ -19730,12 +19745,16 @@ lineage rather than losing the antigen, which no antigen-escape model predicts.<
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/40794862/">40794862</a> (<em>NAR</em>): <strong>errors are
 prevalent in lab-made plasmids worldwide.</strong> The most widely shared physical
 reagent in molecular biology, audited at scale.</p>
-<p><a href="https://pubmed.ncbi.nlm.nih.gov/40682824/">40682824</a>: untargeted reads in
-G4-targeted CUT&amp;Tag enrich at accessible chromatin and restrict identification of
-G4-forming sequences — i.e. a body of published G-quadruplex maps may be
-accessibility maps. The dispute continues into November with a commentary and a
-rebuttal, which is what a live disagreement looks like and is worth more than a
-quiet correction.</p>
+<p><a href="https://pubmed.ncbi.nlm.nih.gov/40682824/">40682824</a>: untargeted CUT&amp;Tag reads
+enrich at accessible chromatin and correlate genome-wide with the G4-targeted
+signal, so calling peaks against a matched untargeted library slightly improves
+precision — at the cost of excluding real G4-forming sequences. The
+recommendation is that published G4 maps be read with that control in mind and
+their interpretation handled with care. An earlier version of this entry said the
+maps "may be accessibility maps"; the paper reports a colocalisation and a modest
+precision-for-recall trade-off, and does not call them artefacts. The dispute
+continues into November with a commentary and a rebuttal, which is what a live
+disagreement looks like and is worth more than a quiet correction.</p>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/40560601/">40560601</a>: structural gene annotation
 choice materially changes orthology inference. Filed with the reference-genome
 cards from October and November: the substrate, not the algorithm, is what

@@ -19686,10 +19686,23 @@
 single month's reading with no baseline behind it, and several of its statements
 could not have been supported at the time. What follows is the same month read
 against the eleven months that now precede it.</em></p>
-<p><strong>Two independent scaling nulls, in the same journal, in the same month.</strong>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-08-27</p>
+<p>This section opened on "two independent scaling nulls, in the same journal,
+in the same month". There is one.
+<a href="https://pubmed.ncbi.nlm.nih.gov/42265212/">42265212</a> has no abstract: it is
+the journal's own research highlight of
+<a href="https://pubmed.ncbi.nlm.nih.gov/42265208/">42265208</a> in the same issue, and
+"much pain with little gain" is the highlight's headline for that paper's
+result, not a second group's finding. The card is now neutral. The argument
+below does not depend on there being two — it depends on the nineteen months
+behind it — but "independent" was the wrong word and the count was wrong.</p>
+</div>
+<p><strong>A scaling null, and it is the endpoint of a line rather than a break in it.</strong>
 <a href="https://pubmed.ncbi.nlm.nih.gov/42265208/">42265208</a> reports that neither size nor diversity of the
-pretraining set buys single-cell foundation model performance, and
-<a href="https://pubmed.ncbi.nlm.nih.gov/42265212/">42265212</a> puts it in the title as "much pain with little gain".
+pretraining set buys single-cell foundation model performance;
+<a href="https://pubmed.ncbi.nlm.nih.gov/42265212/">42265212</a>, the research highlight alongside it, puts that in a
+headline as "much pain with little gain".
 Read alone, in July, this looked like the month foundation models broke. Read
 against the nineteen-month curve it is the endpoint of a trend that had been
 visible for over a year. Simple or linear baselines matching or beating deep
@@ -19705,18 +19718,40 @@ scaling null is not a surprise; it is the last piece of an argument the methods
 journals had been assembling since the first half of 2025 — which the corpus
 only saw once it read those months.</p>
 <p><strong>And in the same month, the specialized model lost to the general one.</strong>
-<a href="https://pubmed.ncbi.nlm.nih.gov/42286322/">42286322</a> (<em>Nat Med</em>): general-purpose LLMs outperform specialized
-clinical AI tools. The two findings point in opposite directions for anyone
-building — scaling the pretraining corpus does not help, but the broadly trained
-general model beats the narrowly trained specialist. What that combination
-argues against is the middle: domain-specific pretraining at moderate scale,
-which is what most biomedical foundation models in this corpus are.</p>
-<p><strong>Agentic AI reached its benchmark phase.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/42156546/">42156546</a> (<em>Nature</em>)
-automates scientific discovery end to end, <a href="https://pubmed.ncbi.nlm.nih.gov/42310457/">42310457</a> defines
-autonomy levels for clinical AI agents, and <a href="https://pubmed.ncbi.nlm.nih.gov/42412809/">42412809</a> is the first
-dedicated benchmark for AI scientists on omics-driven discovery. The maturity
-signal for this thread has consistently been the arrival of benchmarks rather
-than of flagship demonstrations, and all three arrived together.</p>
+<a href="https://pubmed.ncbi.nlm.nih.gov/42286322/">42286322</a> (<em>Nat Med</em>) evaluated OpenEvidence and UpToDate Expert
+AI against three frontier general-purpose models on 500 MedQA questions, 500
+HealthBench items and 100 real physician queries put to a general-purpose model
+in a live clinical environment, the last blind-reviewed by 12 US clinicians
+across 1,800 annotations. The frontier models won all three, and the clinical
+products scored comparably to Google's auto-enabled Search AI Overview. Note
+which way that counts. The negative verdict falls on the specialized products;
+the finding itself — a broadly trained general model transferring into clinical
+use and beating tools built for it — is the foundation-model claim, and this card
+supports the thread rather than refuting it. Set against the scaling null the two
+point in opposite directions for anyone building: scaling the pretraining corpus
+does not help, but the broadly trained general model beats the narrowly trained
+specialist. What that combination argues against is the middle — domain-specific
+pretraining at moderate scale, which is what most biomedical foundation models in
+this corpus are.</p>
+<p><strong>Agentic AI produced a working clinical agent and a benchmark to judge it by.</strong>
+<a href="https://pubmed.ncbi.nlm.nih.gov/42156546/">42156546</a> (<em>Nature</em>) automates scientific discovery end to end.
+<a href="https://pubmed.ncbi.nlm.nih.gov/42310457/">42310457</a> (<em>Nature</em>) is not the position piece its title
+suggests: MIRA is an autonomous agent operating inside a sandboxed electronic
+health record, obtaining patient histories, ordering and interpreting laboratory,
+imaging and microbiology tests, generating differential diagnoses and formulating
+treatment plans down to prescriptions, admissions and scheduled procedures, and
+in simulations on real patient cases it outperformed physicians on diagnostic
+accuracy while making guideline-concordant, medication-safe admission decisions.
+The distinction from the rest of this thread is that it takes structured EHR
+actions rather than producing free text. <a href="https://pubmed.ncbi.nlm.nih.gov/42412809/">42412809</a> is the
+benchmark: BAISBench scores AI scientists on cell-type annotation across 15
+expert-labelled datasets and on 193 multiple-choice questions drawn from the
+conclusions of 41 published single-cell studies, with five graduate-level
+bioinformaticians as the human baseline. Its result is two-sided and both sides
+matter — the systems fall short of autonomous discovery, and they already show
+substantial value in support of it. The maturity signal for this thread has
+consistently been the arrival of benchmarks rather than of flagship
+demonstrations, and this month has one of each.</p>
 <p><strong>The neuro-immune axis had its best month, and its most mechanistically
 specific.</strong> Commensal bacteria <a href="https://pubmed.ncbi.nlm.nih.gov/42236946/">synthesize acetylcholine and use it to instruct
 mucosal immunity</a>; nociceptive innervation
@@ -19756,9 +19791,15 @@ MGMT-unmethylated glioblastoma. Both arms are real; the thread is genuinely
 splitting rather than turning.</p>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/42260101/">42260101</a> (<em>Nat Med</em>): escalating chemotherapy on ctDNA positivity
 does not improve disease-free survival in resected colorectal cancer. This is the
-escalation arm of the ctDNA-guided paradigm failing, three months after
-<a href="https://pubmed.ncbi.nlm.nih.gov/41544704/">the de-escalation-adjacent TOMBOLA</a> failed. Detection is not the
-problem; the intervention triggered by detection is.</p>
+escalation arm of the ctDNA-guided paradigm failing. It was previously read
+alongside <a href="https://pubmed.ncbi.nlm.nih.gov/41544704/">TOMBOLA</a> as the second of two failures three months
+apart; TOMBOLA met its primary endpoint, so it is not a companion failure and
+that pairing is withdrawn. What the two show together is narrower and more
+useful: a single-arm trial that starts immunotherapy on ctDNA positivity reports
+60% complete response, and a randomised trial that escalates chemotherapy on
+ctDNA positivity shows no disease-free survival gain. Detection is not the
+problem in either. Which intervention the detection triggers is the whole
+question.</p>
 <h3 id="b-method-credibility">(b) Method credibility<a class="headerlink" href="#b-method-credibility" title="Permanent link">&para;</a></h3>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/41985452/">41985452</a> is the month's methodological result as well as its
 clinical one: two model families that are usually validated separately turn out
@@ -19766,7 +19807,12 @@ to share a shortcut, which means their apparent agreement was never independent
 confirmation.</p>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/42260311/">42260311</a> (<em>Nat Methods</em>) tests sequence-to-function models
 against real inter-individual variation — the evaluation these models had been
-avoiding, and the one that matters for any clinical use.</p>
+avoiding, and the one that matters for any clinical use — and reports the result
+the card had left out. Training on personal genomes with SAGE-net does improve
+expression prediction for held-out individuals, but the gain comes from
+identifying predictive variants rather than from learning a cis-regulatory
+grammar that generalises across loci. The improvement is real and it is not the
+capability the models are sold on.</p>
 <p><strong>Comparability warning.</strong> Several running counts quoted in earlier briefings —
 the templated preclinical block, and the foundation-model / frozen-encoder /
 generative / agentic tallies — were produced by different readers applying the

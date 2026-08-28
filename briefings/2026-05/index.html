@@ -19683,65 +19683,136 @@
 <p>Status is derived by rule, not asserted. Fewer than 5 cards → too-early; then <code>refutes ≥ 2×supports</code> → crisis; <code>refutes &gt; supports</code> → contested; <code>supports ≥ 2×refutes</code> → forming; else splitting.</p>
 <h2 id="3-the-evidence-that-moved-it">3. The evidence that moved it<a class="headerlink" href="#3-the-evidence-that-moved-it" title="Permanent link">&para;</a></h2>
 <p><strong>The strongest month for foundation-model refutations in the corpus, and the
-form has changed.</strong> Five cards, and four of them replace the model with a
+form has changed.</strong> Five cards, and three of them replace the model with a
 trivial baseline and watch the number stay put: classical molecular fingerprints
 with shallow classifiers <a href="https://pubmed.ncbi.nlm.nih.gov/41981726/">match or beat protein language models</a> on
 peptide function; ML and deep survival models
-<a href="https://pubmed.ncbi.nlm.nih.gov/41992491/">fail to beat Cox baselines</a> on low-dimensional clinical data;
+<a href="https://pubmed.ncbi.nlm.nih.gov/41992491/">fail to beat Cox baselines</a> on low-dimensional clinical data; and
 structure-aware substitution models built on predicted structures
-<a href="https://pubmed.ncbi.nlm.nih.gov/42036821/">do not improve on plain sequence models</a>; and
-<a href="https://pubmed.ncbi.nlm.nih.gov/42121287/">scArchon</a> shows deep perturbation-response predictors fail to
-beat trivial baselines on held-out perturbations. The fifth,
+<a href="https://pubmed.ncbi.nlm.nih.gov/42036821/">do not improve on plain sequence models</a>.
+<a href="https://pubmed.ncbi.nlm.nih.gov/42121287/">scArchon</a> is the fourth and is more mixed than it was carded:
+across nine perturbation-response predictors on six single-cell datasets,
+performance is heterogeneous — trVAE, scGen, scPRAM and scVIDR are robust across
+multiple datasets, while others <em>occasionally</em> fall below linear or control
+baselines, and models with favourable aggregate scores can still lose the
+biological perturbation signature, which is the finding that matters. The fifth,
 <a href="https://pubmed.ncbi.nlm.nih.gov/42020757/">42020757</a> (<em>Nature</em>), is about the scoring rather than the model:
 accuracy-scored LLM benchmarks reward confident fabrication rather than
 measuring truthfulness.</p>
-<p><strong>ctDNA took two more hits, one of them a landmark.</strong>
-<a href="https://pubmed.ncbi.nlm.nih.gov/41817436/">41817436</a> (<em>Cancer Discov</em>) reports that the GRAIL Galleri
-multi-cancer early detection trial did not deliver the expected mortality or
-stage-shift evidence, and <a href="https://pubmed.ncbi.nlm.nih.gov/41544704/">TOMBOLA</a> finds ctDNA-triggered
-atezolizumab after cystectomy does not deliver the anticipated relapse control.
-With <a href="https://pubmed.ncbi.nlm.nih.gov/41616224/">41616224</a> on tumour-naive MRD underperformance, the thread
-now reads: ctDNA detects reliably, and acting on the detection has yet to
-demonstrate benefit in a randomized setting outside nasopharyngeal carcinoma.</p>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-08-27</p>
+<p>This section carried a paragraph headed "ctDNA took two more hits, one of
+them a landmark". One of the two was not a hit.
+<a href="https://pubmed.ncbi.nlm.nih.gov/41544704/">TOMBOLA</a> was carded from a title
+that gives the trial, the intervention and the population and no endpoint,
+and a failure was supplied for it. The trial met its primary endpoint. The
+Galleri item is a news report rather than a trial paper, and it was credited
+with mortality evidence the trial never collected. Both are restated below.</p>
+</div>
+<p><strong>TOMBOLA is the strongest single result the ctDNA-as-guide claim has.</strong>
+<a href="https://pubmed.ncbi.nlm.nih.gov/41544704/">41544704</a> (<em>Ann Oncol</em>) monitored 178 assessable patients after
+neoadjuvant chemotherapy and radical cystectomy for muscle-invasive bladder
+cancer with tumour-informed ctDNA, and started atezolizumab on ctDNA positivity
+irrespective of imaging. It met its primary endpoint: 60% (50 of 84) of treated
+ctDNA-positive patients reached molecular and radiographic complete response.
+Median lead time from ctDNA detection to imaging-confirmed recurrence was 90
+days, and one-year recurrence-free survival was 97% in ctDNA-negative against
+76% in ctDNA-positive patients. It is single-arm phase II, so it cannot say what
+would have happened without the atezolizumab — but ctDNA is the treatment
+trigger here, not a prognostic label, and that is the thread's claim.</p>
+<p><strong>The Galleri item is trade reporting, and its point is about endpoints.</strong>
+<a href="https://pubmed.ncbi.nlm.nih.gov/41817436/">41817436</a> is a <em>Cancer Discovery</em> news report, not a trial
+readout: NHS-Galleri, the randomised trial of the multi-cancer early detection
+test, missed its primary endpoint of a reduction in late-stage cancers, and
+researchers quoted in the piece attribute that partly to the trial's use of a
+surrogate endpoint rather than cancer-specific mortality. Mortality was never
+measured, so no mortality evidence was withheld or delivered; the criticism is
+of the design, and it is the same surrogate-endpoint problem this corpus tracks
+on the treatment side.</p>
+<p><strong>And the month's real negative for the thread is the one that worked.</strong>
+<a href="https://pubmed.ncbi.nlm.nih.gov/41616224/">41616224</a> (<em>JCO</em>) applied a tissue-free ctDNA assay to 2,260
+patients from Alliance N0147 and found strong independent prognostication —
+disease-free survival hazard ratio 5.03, five-year DFS 27.7% against 77.1%, with
+tumour fraction stratifying further inside the positive group. The assay
+performs. It counts against this thread because the thread's claim is that ctDNA
+is more than prognostic, and here a large, well-executed application stops at
+risk stratification. Taken together the month reads: ctDNA detects reliably and
+early, a prospective trial has now acted on the detection and met its endpoint,
+and the month's largest cohort by an order of magnitude still uses it only to
+sort patients.</p>
 <p><strong>Anti-TIGIT got a defence rather than a result.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/41564381/">41564381</a>
-(<em>JCO</em>) argues the first generation of anti-TIGIT antibodies failed on Fc isotype
-design, meaning the target was never properly tested. This is a specific,
-falsifiable claim rather than special pleading, and it is the kind of argument
-that decides whether <code>next-gen-checkpoints</code> gets reopened or stays closed. Note
-its structure: the same manoeuvre — the target survives by relocating the blame
-to the format — has now been applied to CD47, TIGIT and CTLA-4 in this corpus.</p>
-<p><strong>Interception found its causal variable.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/41781610/">41781610</a> (<em>Nature</em>)
-reports that precancerous <strong>niche remodelling, not the mutant clone</strong>, gates
-whether nascent tumours persist. Read with February's three papers dissolving
-the single-clone precursor model, the field has spent 2026 moving the unit of
-interception from the cell to the tissue.</p>
+(<em>JCO</em>) argues that the original anti-TIGIT antibodies failed on Fc isotype
+design — unmutated IgG1 — and that the target was therefore never properly
+tested. The record in this index is a commentary title with no abstract, so the
+argument is all there is to read, and it is an argument that withholds judgement
+on the target rather than delivering one: the card is neutral. Note its
+structure. The same manoeuvre — the target survives by relocating the blame to
+the format — has now been applied to CD47, TIGIT and CTLA-4 in this corpus, and
+it is the kind of claim that decides whether <code>next-gen-checkpoints</code> gets
+reopened rather than the kind that settles it.</p>
+<p><strong>Interception found a second causal variable, alongside the mutation.</strong>
+<a href="https://pubmed.ncbi.nlm.nih.gov/41781610/">41781610</a> (<em>Nature</em>) shows that the stress response of nascent
+squamous tumours in the mouse upper gastrointestinal tract instructs the
+underlying mesenchyme to build a precancerous niche: stimulated fibroblasts
+mount a wound-healing response that remodels the extracellular matrix into a
+fibronectin-rich scaffold, and heterotypic 3D culture and grafting show that
+the niche <em>alone</em> is sufficient to confer tumour properties on carcinogen-free
+healthy epithelium. The paper's own model is that mutations and the stromal
+response to them <strong>together</strong> define whether an early lesion persists — not the
+niche instead of the clone. Read with February's finding that premalignant
+colorectal lesions are polyclonal in origin, the direction of 2026 is that the
+unit of interception is larger than a single mutant cell.</p>
 <h2 id="4-refutations">4. Refutations<a class="headerlink" href="#4-refutations" title="Permanent link">&para;</a></h2>
 <h3 id="a-landing-on-a-tracked-thread">(a) Landing on a tracked thread<a class="headerlink" href="#a-landing-on-a-tracked-thread" title="Permanent link">&para;</a></h3>
-<p><a href="https://pubmed.ncbi.nlm.nih.gov/41701973/">41701973</a> (<em>Blood</em>): time of infusion does not affect CAR-T
-outcomes in large B-cell lymphoma. This is a clean null on a chrono-immunology
-hypothesis that a 2025 card had supported for allogeneic transplant, and it is
-recorded here precisely because the corpus should not accumulate only the
-positive half of a fashionable idea.</p>
+<p><a href="https://pubmed.ncbi.nlm.nih.gov/41701973/">41701973</a> (<em>Blood</em>): across 584 patients given CD19 CAR-T for
+large B-cell lymphoma at six Australian centres, time of infusion is not
+associated with outcome once confounders are accounted for. It is a clean null
+on a chrono-immunology hypothesis that a 2025 card had supported for allogeneic
+transplant, and it is recorded because the corpus should not accumulate only the
+positive half of a fashionable idea. It is not, though, a card against cell
+therapy: infusion timing is incidental to this thread's claim about
+generalisation beyond CD19-positive B-cell disease, and counting a null on an
+incidental variable as a refutation of the platform is how a thread acquires a
+negative it never earned. The card is now neutral.</p>
 <h3 id="b-method-credibility">(b) Method credibility<a class="headerlink" href="#b-method-credibility" title="Permanent link">&para;</a></h3>
-<p>Four cards, and two of them are about the physical instrument or the animal
-rather than the software. <a href="https://pubmed.ncbi.nlm.nih.gov/42133765/">42133765</a> (<em>Science</em>): mouse-line
-genetic quality control is inadequate, and unmonitored drift is a hidden
-artifact behind irreproducible phenotypes. <a href="https://pubmed.ncbi.nlm.nih.gov/41882360/">41882360</a> (<em>Nature</em>):
-DNA supercoiling drives Cas9 off-target cleavage that standard specificity
-assays cannot see — the third editing-safety card in seven months, after
-November's <a href="https://pubmed.ncbi.nlm.nih.gov/41196998/">heritable impairment after repair</a> and December's
-<a href="https://pubmed.ncbi.nlm.nih.gov/41331675/">epigenetic disruption by double-strand breaks</a>.</p>
-<p><a href="https://pubmed.ncbi.nlm.nih.gov/42141119/">42141119</a> (<em>Nat Biotechnol</em>): DNA off-targeting confounds
+<p>Four cards, and only two of them are measurements. <a href="https://pubmed.ncbi.nlm.nih.gov/41882360/">41882360</a>
+(<em>Nature</em>) uses negatively supercoiled DNA minicircles and cryo-EM to show why
+supercoiling drives Cas9 off-target cleavage: the HNH domain is held in a more
+catalytically competent conformation, new DNA-RNA mismatch geometries are
+accommodated across the protospacer, and plasticity in the PAM-distal region is
+topology dependent. What the card previously added — that standard specificity
+assays cannot see this — is a methodological verdict the paper does not state,
+and it has been removed. It is the third editing-safety card in seven months,
+after November's <a href="https://pubmed.ncbi.nlm.nih.gov/41196998/">heritable impairment after repair</a> and
+December's <a href="https://pubmed.ncbi.nlm.nih.gov/41331675/">epigenetic disruption by double-strand breaks</a>.
+<a href="https://pubmed.ncbi.nlm.nih.gov/42141119/">42141119</a> (<em>Nat Biotechnol</em>): DNA off-targeting confounds
 RNA-chromatin occupancy assays, making a body of published RNA-chromatin maps
-artifactual. <a href="https://pubmed.ncbi.nlm.nih.gov/42129548/">42129548</a> (<em>Nat Methods</em>): analysis results shift
-with software package choice and version — the second month in a row with that
-finding, after April's <a href="https://pubmed.ncbi.nlm.nih.gov/41903535/">41903535</a>, now from a different journal
-and a different data modality.</p>
-<p>The pattern across April and May is worth naming. The audit genre spent 2025
-moving from the model to the pipeline to the instrument. In 2026 it has arrived
-at <strong>the version number</strong> — the claim is no longer that a method is wrong, but
-that the same method on the same data gives a different answer depending on when
-you ran it.</p>
+artifactual.</p>
+<p>The other two are not. <a href="https://pubmed.ncbi.nlm.nih.gov/42133765/">42133765</a> (<em>Science</em>) is a policy piece
+arguing that genetic quality control for mouse lines should be modernised; its
+abstract is a single sentence and it reports no measurement. The claim carded
+from it — that unmonitored drift is a hidden artifact behind irreproducible
+phenotypes — is plausible and was supplied by the reader, not by the paper, and
+it is now neutral.</p>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-08-27</p>
+<p>This subsection also read
+<a href="https://pubmed.ncbi.nlm.nih.gov/42129548/">42129548</a> as an independent
+finding that analysis results shift with software package choice and
+version, and called it "the second month in a row with that finding, after
+April's <a href="https://pubmed.ncbi.nlm.nih.gov/41903535/">41903535</a>, now from a
+different journal and a different data modality". It is a <em>Nature Methods</em>
+research highlight, single author and no abstract, and what it summarises is
+41903535 itself. There is one study here, not two in successive months, and
+no second journal or modality. The card is now neutral.</p>
+</div>
+<p>What survives that correction is still worth naming. The audit genre spent 2025
+moving from the model to the pipeline to the instrument, and April's 41903535
+moved it to <strong>the version number</strong> — the claim is no longer that a method is
+wrong, but that the same method on the same data gives a different answer
+depending on when you ran it. That is one paper, given a second airing as a
+research highlight in another journal, and it should be carried at the weight of
+one paper until something independent lands on it.</p>
 <h2 id="5-open-items">5. Open items<a class="headerlink" href="#5-open-items" title="Permanent link">&para;</a></h2>
 <p>Nothing carried forward.</p>
 <h2 id="6-meetings">6. Meetings<a class="headerlink" href="#6-meetings" title="Permanent link">&para;</a></h2>

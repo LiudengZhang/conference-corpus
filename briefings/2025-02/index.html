@@ -19678,24 +19678,32 @@
 </table>
 <p>Status is derived by rule, not asserted. Fewer than 5 cards → too-early; then <code>refutes ≥ 2×supports</code> → crisis; <code>refutes &gt; supports</code> → contested; <code>supports ≥ 2×refutes</code> → forming; else splitting.</p>
 <h2 id="3-the-evidence-that-moved-it">3. The evidence that moved it<a class="headerlink" href="#3-the-evidence-that-moved-it" title="Permanent link">&para;</a></h2>
-<p><strong>Two agent papers four days apart.</strong>
-<a href="https://pubmed.ncbi.nlm.nih.gov/39842860/">ESCARGOT</a> is published on 4 February
-2025 — an LLM agent reasoning over biomedical knowledge graphs — and the first
-title in <em>this month</em> using the word <em>agentic</em> follows
-<a href="https://pubmed.ncbi.nlm.nih.gov/39922663/">four days later</a>.</p>
+<p><strong>Two agent papers in one month, and neither of them is a result.</strong>
+<a href="https://pubmed.ncbi.nlm.nih.gov/39842860/">ESCARGOT</a> is an LLM agent reasoning
+over biomedical knowledge graphs, and a
+<a href="https://pubmed.ncbi.nlm.nih.gov/39922663/"><em>Lancet</em> comment</a> argues for LLM
+agents as clinical teammates rather than tools. The comment is advocacy: it
+carries the vocabulary and nothing else, and the vocabulary is what it is carded
+for.</p>
 <div class="admonition note">
 <p class="admonition-title">Corrected 2026-08-27</p>
 <p>This paragraph said "the agentic thread opens, and the corpus can date it
-to the day", and the whole diffusion argument in the 2025-06 and 2025-12
-briefings was measured from it.</p>
+to the day", and quoted a four-day interval between the two papers above.
+The whole diffusion argument in the 2025-06 and 2025-12 briefings was
+measured from that interval.</p>
 <p>It was voided on 2026-08-26 by the 2024 backfill, which found an LLM agent
 with tools in a tracked journal in
-<a href="https://pubmed.ncbi.nlm.nih.gov/38799228/">January 2024</a> — thirteen months
-earlier — and the correction was written into the 2024-01 briefing but
-never propagated back here. ESCARGOT is not the first agent paper and this
-month is not where the thread opens; it is where the corpus started
-looking. "Dated to the day" was the most confident phrasing in the file and
-it was the least supported.</p>
+<a href="https://pubmed.ncbi.nlm.nih.gov/38799228/">2024-01</a>, and the correction was
+written into the 2024-01 briefing but never propagated back here. That date
+has since moved again: with the reading floor at 2023-01, <code>data/threads.yml</code>
+records <a href="https://pubmed.ncbi.nlm.nih.gov/38123806/">autonomous chemical research with large language models</a>
+in <em>Nature</em> in 2023-12, with a <a href="https://pubmed.ncbi.nlm.nih.gov/38127734/"><em>Science</em> paper</a>
+three weeks after it.</p>
+<p>So no interval is quoted here now. ESCARGOT is not where the thread opens;
+it is where the corpus started looking, and any span measured forward from
+it was measuring the reading window rather than the field. "Dated to the
+day" was the most confident phrasing in the file and it was the least
+supported.</p>
 </div>
 <p><strong>Two randomized trials of AI interventions, in the same journal, in the same
 month</strong>: <a href="https://pubmed.ncbi.nlm.nih.gov/39910272/">GPT-4 assistance for physician performance</a>
@@ -19734,11 +19742,16 @@ cells.</p>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/39820264/">39820264</a> (<em>JAMA</em>): limited evidence
 supports more than forty predictive machine learning algorithms <em>already in use</em>
 in primary care. The gap between deployment and evidence is stated as a count.</p>
-<p><a href="https://pubmed.ncbi.nlm.nih.gov/39660643/">39660643</a>: chromatin deep learning
-models' expression predictions depend on histone mark function, regulatory
-distance and cellular state rather than on anything general — an early instance
-of the pattern that dominates 2026, where the model's apparent capability turns
-out to be a property of the evaluation.</p>
+<p><a href="https://pubmed.ncbi.nlm.nih.gov/39660643/">39660643</a>: across seven histone
+marks, eleven cell types and a range of cell states, no single mark is the
+strongest predictor of expression, and the published in silico models had omitted
+mark function, regulatory distance and cell state. The audited models are
+convolutional and attention networks the authors trained for the task, and the
+paper ends by endorsing their use to uncover new biology — so this is a critique
+of what earlier work left out of the design, not of the method class. An earlier
+version of this entry filed it against <code>foundation-models</code> as well and read it as
+capability turning out to be a property of the evaluation; that thread is off the
+card and the gloss with it.</p>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/39809900/">39809900</a>: a failed reproduction, in
 <em>Nature Genetics</em>, of a published disease-resistance gene in wheat.</p>
 <h2 id="5-open-items">5. Open items<a class="headerlink" href="#5-open-items" title="Permanent link">&para;</a></h2>

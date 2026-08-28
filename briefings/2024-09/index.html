@@ -19682,20 +19682,37 @@
 </table>
 <p>Status is derived by rule, not asserted. Fewer than 5 cards → too-early; then <code>refutes ≥ 2×supports</code> → crisis; <code>refutes &gt; supports</code> → contested; <code>supports ≥ 2×refutes</code> → forming; else splitting.</p>
 <h2 id="3-the-evidence-that-moved-it">3. The evidence that moved it<a class="headerlink" href="#3-the-evidence-that-moved-it" title="Permanent link">&para;</a></h2>
-<p><strong>Clinical-AI limitations, in a <em>Nature Medicine</em> title, in September 2024.</strong>
-<a href="https://pubmed.ncbi.nlm.nih.gov/38965432/">38965432</a>: evaluation and mitigation of the <strong>limitations</strong> of large
-language models in clinical decision-making. The corpus's 2025-08 briefing was
-built on a claimed "inversion" in which clinical AI turned negative that summer;
-that briefing has already been withdrawn, on the grounds that no title in all of
-2025 stated a null for any AI intervention. This paper shows the counterweight
-was in the flagship clinical venue a year before the inversion was supposed to
-have happened.</p>
+<p><strong>A clinical-AI null with the detail to be acted on.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/38965432/">38965432</a> (<em>Nat Med</em>)
+builds a dataset of 2,400 real patient cases from MIMIC across four common
+abdominal pathologies, and a framework that makes a model work the way a
+clinician does — gather the information, order the tests, reach a diagnosis
+inside a workflow — rather than answer exam questions. State-of-the-art large
+language models diagnose significantly worse than physicians across all four
+pathologies, follow neither diagnostic nor treatment guidelines, and cannot
+interpret laboratory results. They also fail to follow instructions and are
+sensitive to both the quantity and the order of the information they are given,
+which is why the authors say they cannot simply be dropped into existing
+workflows. The paper's own conclusion is that these models are "not ready for
+autonomous clinical decision-making". This is a refutation on <code>foundation-models</code>
+of a kind the thread rarely gets: not a benchmark score but a named failure on
+each of the things a deployment would need.</p>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-08-27</p>
+<p>The claim and this paragraph both carried a date argument — that the
+clinical-AI counterweight this corpus had placed in mid-2025 was in the
+flagship venue in September 2024. <code>threads.yml</code> already supersedes it:
+<em>Nature Medicine</em> states clinical-AI limitations in titles in 2023-10 and
+again in 2023-12. The right fix is not a new date but no date. The finding
+above needs none to carry it, and the stance is unchanged.</p>
+</div>
 <h2 id="4-refutations">4. Refutations<a class="headerlink" href="#4-refutations" title="Permanent link">&para;</a></h2>
 <h3 id="a-landing-on-a-tracked-thread">(a) Landing on a tracked thread<a class="headerlink" href="#a-landing-on-a-tracked-thread" title="Permanent link">&para;</a></h3>
-<p>Nothing lands on a tracked thread this month. September 2024 is the quietest
-month in the 2024 half of the corpus for thread-relevant refutations, and since
-2024 was read thread-first rather than exhaustively, that should be read as a
-limit on the reading rather than a fact about the month.</p>
+<p>The month's one thread-level refutation is the clinical decision-making paper
+described in section 3, filed on <code>foundation-models</code> and left there rather than
+repeated here. Nothing else lands. September 2024 is the quietest month in the
+2024 half of the corpus for thread-relevant refutations, and since 2024 was read
+thread-first rather than exhaustively, that should be read as a limit on the
+reading rather than a fact about the month.</p>
 <h3 id="b-method-credibility">(b) Method credibility<a class="headerlink" href="#b-method-credibility" title="Permanent link">&para;</a></h3>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/39322959/">39322959</a> (<em>Genome Biol</em>): a realistic benchmark for differential-abundance
 testing <strong>and confounder adjustment</strong> in human microbiome studies — the direct
@@ -19704,12 +19721,26 @@ months later, and evidence that the objection was taken up rather than absorbed.
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/39227979/">39227979</a>: a multiple-imputation procedure <strong>outperforms</strong> complete-case
 and single imputation in differential expression. The default handling of missing
 data in the standard pipeline is wrong.</p>
-<p><a href="https://pubmed.ncbi.nlm.nih.gov/39152037/">39152037</a> (<em>Genome Res</em>): a <strong>simple</strong> method for finding related sequences
-by adding probabilities of alternative alignments. Simple-beats-complex again,
-and this is the third instance in 2024 alone — January's linear brain dynamics,
-March's convolutions, September's alignment probabilities. A genre this corpus
-first recorded as a 2026 phenomenon is running at roughly one paper a quarter in
-2024.</p>
+<p><a href="https://pubmed.ncbi.nlm.nih.gov/39152037/">39152037</a> (<em>Genome Res</em>) proposes the smallest change to standard
+sequence alignment that would let a search sum the probabilities of alternative
+alignments instead of scoring one: it makes chance similarity easier to judge,
+finds distant relationships that single-alignment scoring misses, and costs
+almost nothing in run time. A single-author methods paper, carried here as a note
+rather than as a ledger entry.</p>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-08-27</p>
+<p>This entry read: "Simple-beats-complex again, and this is the third instance
+in 2024 alone — January's linear brain dynamics, March's convolutions,
+September's alignment probabilities. A genre this corpus first recorded as a
+2026 phenomenon is running at roughly one paper a quarter in 2024." The word
+"simple" in a title was matched to a motif the corpus likes. The paper
+examines no published tool and reports no adverse finding, so it is not an
+audit and its stance is now <code>neutral</code>. The chain it anchored has also lost
+its January link: the linear-brain-dynamics paper was removed from
+<code>foundation-models</code> on the same grounds, that a shared slogan is not a shared
+result. Counting a genre by matching adjectives across titles produced a
+trend out of three unrelated papers.</p>
+</div>
 <h2 id="5-open-items">5. Open items<a class="headerlink" href="#5-open-items" title="Permanent link">&para;</a></h2>
 <p>Nothing carried forward.</p>
 <h2 id="6-meetings">6. Meetings<a class="headerlink" href="#6-meetings" title="Permanent link">&para;</a></h2>

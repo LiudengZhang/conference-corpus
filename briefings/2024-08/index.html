@@ -19682,17 +19682,32 @@
 </table>
 <p>Status is derived by rule, not asserted. Fewer than 5 cards → too-early; then <code>refutes ≥ 2×supports</code> → crisis; <code>refutes &gt; supports</code> → contested; <code>supports ≥ 2×refutes</code> → forming; else splitting.</p>
 <h2 id="3-the-evidence-that-moved-it">3. The evidence that moved it<a class="headerlink" href="#3-the-evidence-that-moved-it" title="Permanent link">&para;</a></h2>
-<p><strong>scGPT and scFoundation arrive in the same journal in the same month — and so
-does their audit.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/38409223/">38409223</a> (scGPT) and <a href="https://pubmed.ncbi.nlm.nih.gov/38844628/">38844628</a> (a large-scale
-single-cell transcriptomics foundation model) are published in <em>Nature Methods</em>
-in August 2024, alongside <a href="https://pubmed.ncbi.nlm.nih.gov/38528186/">38528186</a>, which assesses GPT-4 for cell-type
-annotation. This is the finding that most changes how the rest of the corpus
-should be read. Its November 2025 briefing claimed the virtual-cell vocabulary
-had just arrived and that scepticism led it by about three months; the 2025
-backfill corrected that to "co-present since spring 2025". The correct statement
-is stronger and simpler: <strong>the models and their critics have been in the same
-journal in the same month since the models existed.</strong> There was never a lag to
-measure.</p>
+<p><strong>Three single-cell foundation-model results in one journal in one month.</strong>
+<a href="https://pubmed.ncbi.nlm.nih.gov/38409223/">38409223</a> (scGPT) and <a href="https://pubmed.ncbi.nlm.nih.gov/38844628/">38844628</a> (a large-scale single-cell
+transcriptomics foundation model) are published in <em>Nature Methods</em> in August
+2024, and <a href="https://pubmed.ncbi.nlm.nih.gov/38528186/">38528186</a> is beside them: GPT-4, given marker genes, annotates
+cell types across hundreds of tissue and cell types with strong concordance with
+manual annotation, shipped as the R package GPTCelltype. Two models built for
+single-cell data and one general-purpose model transferring onto a single-cell
+task, in one issue. The corpus's November 2025 briefing claimed the virtual-cell
+vocabulary had just arrived; the 2025 backfill moved that to spring 2025; the
+models are here, in the field's methods journal, in August 2024. The dating is
+what fails, repeatedly, not the models.</p>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-08-27</p>
+<p>This paragraph was headed "— and so does their audit", and closed: "<strong>the
+models and their critics have been in the same journal in the same month
+since the models existed.</strong> There was never a lag to measure." The third
+paper is not an audit. "Assessing" in its title was read as a critique; the
+abstract is an endorsement — "can accurately annotate cell types", "strong
+concordance" — with no adverse finding anywhere in it, and its stance is now
+<code>supports</code> with <code>method-credibility</code> removed. So this issue of <em>Nature
+Methods</em> contains three results and no criticism of any of them, and the
+co-presence claim cannot be made from it. The month's benchmarks are
+elsewhere: the two <em>Genome Biology</em> ones in section 4(b), both carded
+<code>neutral</code> because neither reports an adverse finding, and the AlphaFold2
+self-estimate benchmark immediately below, which does.</p>
+</div>
 <p><strong>The audit reaches the model's own confidence.</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/39115813/">39115813</a>: benchmarking
 AlphaFold2's accuracy self-estimates against independent model-quality measures.
 Not the prediction — the prediction's stated confidence.</p>
