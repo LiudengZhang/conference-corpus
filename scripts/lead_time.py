@@ -209,7 +209,7 @@ def spearman(pairs) -> float:
 
 
 def papers_test(ccon: sqlite3.Connection, jcon: sqlite3.Connection,
-                threshold: float, year: int) -> int:
+                threshold: float, year: int, match: str = "title") -> int:
     """Match abstracts to later papers, one document at a time.
 
     The vocabulary tests answer a question nobody actually asked. The
@@ -234,16 +234,48 @@ def papers_test(ccon: sqlite3.Connection, jcon: sqlite3.Connection,
     then be measuring the shape of the index rather than the meeting.
     Both arms are therefore thinned to whichever is smaller before the
     comparison is made, and both pool sizes are printed.
+
+    `match` selects what is compared. Until 2026-08-28 the only option was
+    `title`, because the journal index held no abstracts, and the ~1%
+    conversion rate this test reports has always been a statement about
+    title similarity rather than about work. `abstract` uses the abstract
+    text on both sides where it exists.
+
+    Expect the threshold to mean something different under `abstract`.
+    Two ~200-word oncology abstracts share far more content words than two
+    titles do, so the baseline overlap rises for real and spurious pairs
+    alike — which is exactly why the pre-meeting arm matters more here,
+    not less. Read the ratio, never the raw rate.
     """
     jlo, jhi = index_span(jcon)
     meet_first, meet_last, kept, tail = cohort_window(ccon, year)
-    conf = list(ccon.execute(
-        "SELECT venue, month, title FROM abstracts "
-        "WHERE year=? AND month<=? AND LENGTH(title) > 30", (year, meet_last)))
-    after = list(jcon.execute(
-        "SELECT month, pmid, title FROM papers WHERE month > ?", (meet_last,)))
-    before = list(jcon.execute(
-        "SELECT month, pmid, title FROM papers WHERE month < ?", (meet_first,)))
+    if match == "abstract":
+        # Conference side already carries full text for AACR/ASCO. Journal
+        # side needs abstracts.sqlite attached; papers with no abstract are
+        # the news and front matter measured at 22.7% of the index, and are
+        # dropped rather than matched on their titles, which would silently
+        # mix two instruments in one arm.
+        store = pathlib.Path(__file__).resolve().parent.parent / "data" / "abstracts.sqlite"
+        if not store.exists():
+            sys.exit("--match abstract needs data/abstracts.sqlite "
+                     "(scripts/harvest_abstracts.py)")
+        jcon.execute("ATTACH ? AS ab", (str(store),))
+        conf = list(ccon.execute(
+            "SELECT venue, month, title || ' ' || COALESCE(abstract,'') FROM abstracts "
+            "WHERE year=? AND month<=? AND LENGTH(abstract) > 200", (year, meet_last)))
+        jsql = ("SELECT p.month, p.pmid, p.title || ' ' || a.abstract "
+                "FROM papers p JOIN ab.abstracts a ON a.pmid = p.pmid "
+                "WHERE LENGTH(COALESCE(a.abstract,'')) > 200 AND p.month ")
+        after = list(jcon.execute(jsql + "> ?", (meet_last,)))
+        before = list(jcon.execute(jsql + "< ?", (meet_first,)))
+    else:
+        conf = list(ccon.execute(
+            "SELECT venue, month, title FROM abstracts "
+            "WHERE year=? AND month<=? AND LENGTH(title) > 30", (year, meet_last)))
+        after = list(jcon.execute(
+            "SELECT month, pmid, title FROM papers WHERE month > ?", (meet_last,)))
+        before = list(jcon.execute(
+            "SELECT month, pmid, title FROM papers WHERE month < ?", (meet_first,)))
 
     def content(title):
         return {w for w in WORD.findall(title.lower())
@@ -366,6 +398,8 @@ def main() -> int:
                     help="term must occur this often across both corpora (TEST B)")
     ap.add_argument("--min-conf", type=int, default=5,
                     help="term must occur in this many conference records (TEST A)")
+    ap.add_argument("--match", choices=["title", "abstract"], default="title",
+                    help="what to compare; abstract needs data/abstracts.sqlite")
     ap.add_argument("--cohort", type=int, default=DEFAULT_COHORT,
                     help="conference year under test (data/conference.sqlite "
                          "holds AACR/ASCO 2023 and 2024)")
@@ -376,7 +410,7 @@ def main() -> int:
 
     if args.papers:
         return papers_test(sqlite3.connect(CONF), sqlite3.connect(INDEX),
-                           args.threshold, args.cohort)
+                           args.threshold, args.cohort, args.match)
 
     jcon = sqlite3.connect(INDEX)
     jlo, jhi = index_span(jcon)

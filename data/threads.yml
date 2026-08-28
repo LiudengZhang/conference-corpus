@@ -475,6 +475,14 @@ threads:
       x2.1 at 0.50, x3.0 at 0.60. The meeting leads only where matching is
       strict. The published version read as though the effect were strongest at
       loose matching, which was exactly backwards.
+      RE-MEASURED 2026-08-28 ON ABSTRACTS RATHER THAN TITLES, and it holds. The
+      whole test had matched conference abstracts against journal titles,
+      because the index carried no abstracts; that was the obvious suspect for
+      the ~1% conversion. With abstracts on both sides the answer does not move:
+      x2.5 over chance at the abstract operating point, median lag still 12
+      months. The rate was not a title artefact. This is the first measurement
+      in this corpus that a wider window or a better instrument has failed to
+      overturn, and that is now the strongest thing that can be said for it.
     negative_result: >-
       The vocabulary version of this claim is refuted outright. Ranking terms by
       how over-represented they are at the meetings relative to the 2024 journals

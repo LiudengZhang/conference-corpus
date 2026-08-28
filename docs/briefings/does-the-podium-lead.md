@@ -1,7 +1,8 @@
 # Does the podium lead the page?
 
-*Measured 26 August 2026. Reproduce with `python3 scripts/lead_time.py` and
-`python3 scripts/lead_time.py --papers`.*
+*First measured 26 August 2026; baseline corrected and re-measured on
+abstracts 28 August 2026. Reproduce with `python3 scripts/lead_time.py --papers
+--cohort 2024` and `--match abstract`.*
 
 Every monthly briefing in this corpus rests on one assumption: that a meeting
 programme shows you where a field is going before the journals do, and that the
@@ -11,8 +12,10 @@ layers barely overlapped and no lead was measurable in either direction.
 
 Testing it needed a meeting old enough for the literature to have answered it.
 **AACR 2024 and ASCO 2024 — 14,895 abstracts with full text, from Crossref —
-against a journal index of 35,542 research articles running 2024-01 to
-2026-08.**
+against a journal index of 47,362 papers running 2023-01 to 2026-08.** The
+index reached only 2024-01 when this was first written, which is why the
+baseline below had to be corrected: there were no journal months predating the
+meetings to measure chance against.
 
 ## The answer
 
@@ -21,9 +24,9 @@ arrives.**
 
 | | |
 |---|---|
-| Median abstract-to-paper lag | **10–13 months** (IQR ≈ 7–20) |
-| Stability of that lag | unchanged across every match threshold tried |
-| Abstracts becoming papers in these 33 journals | **≈1%** |
+| Median abstract-to-paper lag | **12 months** (IQR ≈ 9–20) |
+| Stability of that lag | unchanged across every threshold, and unchanged when matching abstracts instead of titles |
+| Abstracts becoming papers in these 33 journals | **≈0.2–0.4%**, against a chance rate of half that |
 | Previous estimate in `threads.yml` | 4–6 months, from five hand-picked cases |
 
 The lag is the robust part. Tightening or loosening the matching threshold moves
@@ -67,6 +70,33 @@ has no measurable advantage at all. The signal appears only as the threshold
 tightens, reaching about three times chance at 0.60, which is the behaviour of
 a real but narrow effect: loose matching catches shared boilerplate, which is
 equally common on both sides of a meeting.
+
+### Measured again with a better instrument, and it holds
+
+Everything above matches conference abstracts against journal **titles**, because
+the journal index held no abstracts. That was the obvious suspect for the ~1%
+conversion rate, and on 2026-08-28, with abstracts harvested for all 47,362
+papers, it was tested directly.
+
+| | matched later | chance | ratio | median lag |
+|---|---|---|---|---|
+| title vs title, Jaccard 0.50 | 36 (0.24%) | 17 (0.11%) | ×2.1 | 12 months |
+| abstract vs abstract, Jaccard 0.10 | 55 (0.37%) | 22 (0.15%) | **×2.5** | **12 months** |
+
+**The answer does not move.** Same lag, same order of magnitude, same ratio
+against chance. The conversion rate was not a title artefact, which is what a
+year of caveats in this corpus had assumed it might be.
+
+The thresholds differ because Jaccard divides by the union: two 200-word
+abstracts share more words than two titles but have a far larger union, so they
+score *lower*, not higher. At 0.20 both arms collapse to three matches each and
+the ratio stops meaning anything. 0.10 is the operating point for abstracts, and
+comparing the two rows across different cutoffs is only legitimate because both
+carry their own pre-meeting null.
+
+That a finding survives a change of instrument is the strongest thing that has
+been said about it here. It is also the first measurement in this corpus that a
+wider window or a better instrument did not overturn.
 
 The previously published version of this table claimed a 1.2-percentage-point
 excess at 0.35, where the truth is none, and read as though the effect were
