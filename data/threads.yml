@@ -18,18 +18,18 @@
 # happened to the first version of this file: every `status` in it was asserted
 # from a single month's reading and none of them recomputed.
 #
-# Rebuilt 2026-08-28 from 1,152 cards spanning 2023-01 .. 2026-08.
+# Rebuilt 2026-08-28 from 1,241 cards spanning 2023-01 .. 2026-08.
 #
 # CARD DENSITY IS NOT COMPARABLE ACROSS YEARS AND THE RATIOS BELOW INHERIT
 # THAT. Per thousand research papers read:
 #
-#     2023  25.1     2024  10.0     2025  24.0     2026  73.6
+#     2023  25.1     2024  10.0     2025  24.0     2026  84.8
 #
 # 2026 is three times denser than any other year because it is the only year
 # scanned from abstracts. Every earlier card was written from a title, and a
-# census of 2026 measured what that costs: 63% of findings are invisible to a
-# title, rising to 73% for refutations, because audits name their object and
-# trials name their cohort. So the earlier years are not quieter — they were
+# census of 2026 measured what that costs: 65% of findings are invisible to a
+# title, rising to 74% for refutations against 54% for supports, because audits
+# name their object and trials name their cohort. So the earlier years are not quieter — they were
 # read with an instrument that cannot see most of what it is measuring.
 #
 # `status_of` sums supports and refutes over the whole window, so a thread's

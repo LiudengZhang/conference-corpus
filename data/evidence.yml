@@ -11445,8 +11445,8 @@ evidence:
 # `title_sufficient` records, per card, whether the stance could have been
 # reached from the title and journal alone. The split is the finding:
 #
-#     refutations   73% invisible to a title
-#     supports      51%
+#     refutations   74% invisible to a title
+#     supports      54%
 #
 # Titles hide refutations at about 1.4x the rate they hide supporting results,
 # because of genre. An audit names its object and not its verdict — "a
@@ -20252,3 +20252,1840 @@ evidence:
     3D structure prediction.
   title: >-
     De novo design of RNA pseudoknots with deep learning
+
+# Q2 2026 completion, 2026-08-28. The 2026 scan was merged while its Q2 reader
+# was still working: a file-mtime check confirmed one quarter had stopped
+# growing and all three were merged on the strength of it. 89 of Q2's cards had
+# not been written yet and 37 more were superseded by the reader's own final
+# revision. Both are repaired here. The lesson is that a file that has stopped
+# changing for a minute is not a file that is finished.
+
+- id: ev-2026-03-41807818
+  pmid: "41807818"
+  date: 2026-03-01
+  source: nature-cancer
+  threads: [foundation-models, method-credibility]
+  stance: refutes
+  type: benchmark
+  title_sufficient: false
+  claim: >-
+    A mammography AI model was retrospectively superior (sensitivity 0.541
+    versus 0.437 for the first reader, P<0.001; cancer detection rate 7.54
+    to 9.33 per 1,000; 25.0% of interval cancers) across 115,973
+    mammograms, but prospective deployment at 12 sites (9,266 cases)
+    revealed a distribution shift requiring threshold recalibration. A
+    retrospectively validated clinical model did not hold its calibration
+    on live data.
+  title: >-
+    Diagnostic accuracy, fairness and clinical implementation of AI for
+    breast cancer screening: results of multicenter retrospective and
+    prospective technical feasibility studies
+
+- id: ev-2026-03-41814002
+  pmid: "41814002"
+  date: 2026-03-01
+  source: nature-genetics
+  threads: [interception]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: true
+  claim: >-
+    Across four randomized clinical trials, trilaciclib given with diverse
+    chemotherapy regimens blunted chemotherapy-driven expansion of DNA-
+    damage-response and TP53-mutant clonal haematopoiesis clones,
+    reproduced mechanistically in a syngeneic TP53-mutant mouse model
+    where CDK4/6 inhibition enforces stem-progenitor quiescence and
+    removes the TP53-mutant stemness advantage. A precursor state
+    previously manageable only by avoiding therapy now has a pharmacologic
+    interception option.
+  title: >-
+    CDK4/6 inhibition mitigates chemotherapy-induced expansion of
+    TP53-mutant clonal hematopoiesis
+
+- id: ev-2026-03-41882133
+  pmid: "41882133"
+  date: 2026-03-01
+  source: nature
+  threads: [agentic-ai]
+  stance: neutral
+  type: meta
+  title_sufficient: false
+  claim: >-
+    The AI Scientist runs the full research loop (ideation, code,
+    experiments, manuscript, self-review) and its output passed a round of
+    peer review, but the abstract discloses the bar was a workshop with a
+    70% acceptance rate, and the evaluation is a template-scaffolded plus
+    open-ended demonstration rather than deployed infrastructure. The
+    headline claim and the qualifier live in the same paragraph; the title
+    carries only the ambition.
+  title: >-
+    Towards end-to-end automation of AI research
+
+- id: ev-2026-03-41436277
+  pmid: "41436277"
+  date: 2026-03-02
+  source: genome-research
+  threads: [method-credibility]
+  stance: refutes
+  type: benchmark
+  title_sufficient: false
+  claim: >-
+    Principal components, the default population-structure correction in
+    essentially every GWAS, captured under 5% of fine-scale recent
+    structure in simulation where IBD-graph spectral components captured
+    over 90%; in UK Biobank (N about 420,000) PCs left P-value inflation
+    12% higher for an environment-driven phenotype and rare-variant
+    genomic inflation of 7.6 versus 1.2. The standard adjustment is
+    quantitatively inadequate for recent structure.
+  title: >-
+    A spectral component approach leveraging identity-by-descent graphs to
+    address recent population structure in genomic analysis
+
+- id: ev-2026-03-41532847
+  pmid: "41532847"
+  date: 2026-03-02
+  source: cancer-discovery
+  threads: [interception]
+  stance: supports
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    Deep sequencing of more than 1,500 intestinal metaplasia samples from
+    six countries defined 47 significantly mutated genes and an IM-
+    specific SBS17 signature, but the load-bearing finding is non-
+    epithelial: elevated clonal haematopoiesis in IM patients was
+    associated with age, smoking and progression risk to gastric cancer,
+    co-occurring with PIGR truncating mutations and greater orally derived
+    bacterial colonization of the IM microenvironment. Precursor-state
+    risk is partly written outside the precursor tissue.
+  title: >-
+    Mutational Signatures and Clonal Hematopoiesis in Intestinal
+    Metaplasia across Countries with Varying Stomach Cancer Incidence
+
+- id: ev-2026-03-41672886
+  pmid: "41672886"
+  date: 2026-03-02
+  source: genome-research
+  threads: [method-credibility]
+  stance: refutes
+  type: benchmark
+  title_sufficient: false
+  claim: >-
+    Nanopore clinical-genomics assessment across 17 reference samples: SNV
+    F-score 0.978-0.983 and structural variant 0.75, but indels only
+    0.659-0.758. Multiplatform analysis plus Sanger validation uncovered a
+    1 bp error in the Coriell reference annotation for the cystic fibrosis
+    indel in GM07829, so a widely used reference material was itself
+    wrong, and short reads also misclassify an FMR1 pathogenic expansion
+    as a premutation.
+  title: >-
+    Assessing the readiness of Oxford Nanopore sequencing for clinical
+    genomics applications
+
+- id: ev-2026-03-41708334
+  pmid: "41708334"
+  date: 2026-03-02
+  source: genome-research
+  threads: [method-credibility, single-cell-3d-genome]
+  stance: refutes
+  type: benchmark
+  title_sufficient: false
+  claim: >-
+    Systematic evaluation across nine healthy and cancer scRNA-seq
+    datasets found the four standard gene-signature scoring methods
+    (Seurat, SCANPY, UCell, JASMINE) insufficient for stable, cross-
+    signature-comparable score distributions, and therefore unfit for the
+    unsupervised max-score cell-state annotation they are routinely used
+    for. The title names only the replacement, not the failure of the
+    incumbents.
+  title: >-
+    Robust and efficient annotation of cell states through gene signature
+    scoring
+
+- id: ev-2026-03-41775432
+  pmid: "41775432"
+  date: 2026-03-03
+  source: jitc
+  threads: [immunotherapy-resistance]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    In 309 metastatic clear-cell RCC patients on first-line nivolumab plus
+    ipilimumab, greater skeletal muscle mass index (HR 1.50, 95% CI
+    1.05-2.15 per 3 units) and greater subcutaneous adiposity (HR 1.39,
+    95% CI 1.01-1.90 per 10 units) were independently associated with
+    shorter PFS, the opposite direction to the widely cited obesity-
+    paradox benefit, which was itself inconclusive here. Host body
+    composition, not tumour genotype, tracks checkpoint benefit.
+  title: >-
+    Influence of body composition on the efficacy of nivolumab plus
+    ipilimumab for metastatic clear cell renal cell carcinoma
+
+- id: ev-2026-03-41775435
+  pmid: "41775435"
+  date: 2026-03-03
+  source: jitc
+  threads: [neoantigen-vaccines]
+  stance: refutes
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Phase I/II melanoma vaccine (six helper peptides plus shared mutant
+    BRAF-V600E neoantigen, poly-ICLC and escalating CD40 agonist CDX-1140,
+    n=22): only 6 of 22 (27%, 95% CI 11-50) had ex vivo CD4 responses to
+    the helper peptides, and responses to the mutant BRAF neoantigen did
+    not meet positivity criteria ex vivo at all, with one participant
+    responding only after in vitro stimulation. A shared, recurrently
+    mutated driver neoantigen with a maximal adjuvant stack failed to be
+    reliably immunogenic.
+  title: >-
+    Phase I/II clinical trial of a melanoma vaccine targeting shared non-
+    mutated antigens and a shared mutated BRAF neoantigen with an
+    agonistic CD40 antibody (CDX-1140) plus TLR3 agonist (poly-ICLC)
+
+- id: ev-2026-03-41779869
+  pmid: "41779869"
+  date: 2026-03-04
+  source: science-translational-medicine
+  threads: [ctdna-mrd]
+  stance: neutral
+  type: new-modality
+  title_sufficient: false
+  claim: >-
+    cfDNA fragmentomes in 1,576 individuals detected early liver disease,
+    advanced fibrosis and cirrhosis (discovery n=423, validation n=221)
+    and predicted overall survival in separate morbidity cohorts, but
+    fragmentomic changes were also observed across vascular, autoimmune
+    and neurodegenerative disease. Fragmentome signal is a general
+    physiologic-state readout, which qualifies rather than strengthens
+    tumour-specific cfDNA interpretation.
+  title: >-
+    Cell-free DNA fragmentomes for noninvasive detection of liver
+    cirrhosis and other diseases
+
+- id: ev-2026-03-41781018
+  pmid: "41781018"
+  date: 2026-03-04
+  source: jitc
+  threads: [immunotherapy-resistance]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Randomized three-arm neoadjuvant prostate trial (n=24): 1-year PSA
+    progression-free survival was 33% (2 of 6) with degarelix alone, 89%
+    (8 of 9) with pTVG-AR vaccine plus degarelix, and fell back to 33% (3
+    of 9) when nivolumab was added (p=0.039), with almost all adverse
+    events confined to the nivolumab arm. Adding PD-1 blockade abolished
+    the vaccine benefit, attributed to activation of regulatory CD4 T
+    cells. Small n and hypothesis-generating.
+  title: >-
+    Androgen deprivation, androgen receptor-targeted vaccination, and
+    nivolumab in patients with high-risk localized prostate cancer
+
+- id: ev-2026-03-41359791
+  pmid: "41359791"
+  date: 2026-03-05
+  source: blood
+  threads: [ctdna-mrd]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    RELAZA2 long-term results: of 357 MDS/AML patients screened, 119
+    (33.3%) converted to MRD-positive and 95 received preemptive
+    azacitidine; the primary endpoint was met with 60 of 95 (63%, 95% CI
+    54-71, P<0.0001) relapse-free at 6 months, 52% of responders holding
+    response beyond 2 years, and median treatment-free interval 20.8
+    months. A molecular residual-disease readout changed management ahead
+    of haematological relapse with a durable outcome attached.
+  title: >-
+    Azacitidine to treat measurable residual disease in patients with
+    MDS/AML: final long-term results of the RELAZA2 trial
+
+- id: ev-2026-03-41785364
+  pmid: "41785364"
+  date: 2026-03-05
+  source: science
+  threads: [cell-therapy]
+  stance: supports
+  type: new-modality
+  title_sufficient: false
+  claim: >-
+    Chimeric antigen receptors expressed in astrocytes reduced amyloid and
+    associated pathology after plaque formation and prevented early plaque
+    deposition in vivo, with single-nucleus RNA-seq showing a coordinated
+    astrocyte-microglia glial response plus construct-specific effects.
+    Extends engineered cell therapy past solid tumours and autoimmunity
+    into neurodegeneration, and past lymphocytes into a resident glial
+    chassis.
+  title: >-
+    Targeting amyloid-β pathology by chimeric antigen receptor astrocyte
+    (CAR-A) therapy
+
+- id: ev-2026-03-41790934
+  pmid: "41790934"
+  date: 2026-03-06
+  source: science-immunology
+  threads: [cell-therapy, immunotherapy-resistance]
+  stance: supports
+  type: mechanism
+  title_sufficient: true
+  claim: >-
+    Explains why CAR T and checkpoint blockade have failed to synergize:
+    in murine lung cancer CAR T cells down-regulate TCF1, exhaust, and are
+    not rescued by PD-L1 blockade, because MHC-independent CARs cannot
+    maintain the PD-1-positive TCF1-positive stem-like reservoir. c-Jun
+    overexpression restores that reservoir but PD-1 signalling post-
+    transcriptionally degrades c-Jun; PD-L1 blockade restores c-Jun levels
+    and the combination gives near-complete clearance.
+  title: >-
+    Modulating AP-1 enables CAR T cells to establish an intratumoral
+    stemlike reservoir and overcomes resistance to PD-1 blockade
+
+- id: ev-2026-03-41791791
+  pmid: "41791791"
+  date: 2026-03-06
+  source: jitc
+  threads: [neuro-immune-microbiome-axis, immunotherapy-resistance]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Across six centres and 237 myeloma patients, broad-spectrum
+    antibiotics within 30 days before CD3-engaging bispecific antibody
+    therapy predicted worse 1-year OS (60% versus 77%, p=0.004), PFS (26%
+    versus 53%, p<0.001) and relapse (68% versus 43%, p=0.004),
+    independent in multivariable models; 16S sequencing showed depletion
+    of short-chain-fatty-acid-producing Roseburia and Eubacterium with
+    lower serum SCFAs and reduced CD4 counts. Gut microbial state gates a
+    T-cell engager, not only a checkpoint inhibitor.
+  title: >-
+    Antibiotic-associated dysbiosis and bispecific antibody outcomes in
+    multiple myeloma
+
+- id: ev-2026-03-41349540
+  pmid: "41349540"
+  date: 2026-03-09
+  source: cancer-cell
+  threads: [cell-therapy]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Head-to-head in 61 relapsed/refractory myeloma patients: cilta-cel
+    achieved 78% complete response versus 38% for ide-cel with longer PFS;
+    a 135-sample longitudinal single-cell atlas attributes cilta-cel's
+    advantage to expansion of CD4 cytotoxic T cells that also tracks
+    immune toxicity, while non-complete-response CD8 cells show impaired
+    effector programmes. The 78%-versus-38% gap is invisible from the
+    title.
+  title: >-
+    A longitudinal single-cell atlas to predict outcome and toxicity after
+    BCMA-directed CAR T cell therapy in multiple myeloma
+
+- id: ev-2026-03-41576929
+  pmid: "41576929"
+  date: 2026-03-09
+  source: cancer-cell
+  threads: [cell-therapy, suppressive-population-inversion]
+  stance: supports
+  type: new-modality
+  title_sufficient: true
+  claim: >-
+    IL-12-armored CAR-T directed at FOLR2-positive or TREM2-positive
+    tumour-associated macrophages, not at a tumour antigen, improved
+    survival in metastatic ovarian and lung models at low cell dose
+    without lymphodepletion, with microenvironment remodelling persisting
+    after CAR-T contraction and clearance depending partly on tumour FAS.
+    Converges with a same-issue anti-TREM2 armored CAR-T report, making
+    antigen-independent, myeloid-directed cell therapy a genuine solid-
+    tumour route rather than one group's result.
+  title: >-
+    Armored macrophage-targeted CAR-T cells reset and reprogram the tumor
+    microenvironment and control metastatic cancer growth
+
+- id: ev-2026-03-41687606
+  pmid: "41687606"
+  date: 2026-03-09
+  source: cancer-cell
+  threads: [immunotherapy-resistance, suppressive-population-inversion]
+  stance: supports
+  type: mechanism
+  title_sufficient: true
+  claim: >-
+    Cross-species single-cell and spatial profiling shows chemotherapy,
+    long credited with re-arming immune surveillance, instead drives
+    cGAMP-paracrine, STING-ID1-dependent differentiation of LEPR-positive
+    Kupffer cells from resident Kupffer cells in liver metastases; unlike
+    peritumoural Kupffer cells these infiltrate the tumour and erase
+    chemotherapy-induced immunogenic cell-death signals via MerTK
+    efferocytosis. Depleting them restores immunogenicity. The resistance
+    mechanism is a tissue-resident myeloid programme induced by the
+    treatment itself.
+  title: >-
+    Chemotherapy triggers immune evasion by fostering LEPR(+) Kupffer cell
+    differentiation in liver metastases
+
+- id: ev-2026-03-41802810
+  pmid: "41802810"
+  date: 2026-03-09
+  source: jitc
+  threads: [next-gen-checkpoints]
+  stance: refutes
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Phase 1 of the oral TLR7 agonist prodrug RO7119929 (n=54 treated):
+    treatment-related adverse events in 50 (91%), cytokine release
+    syndrome in 48 (81%) and dose-limiting, with grade 3 CRS in 6 (13%) on
+    flat dosing; among 17 HCC patients only one durable complete response
+    and 10 (59%) stable disease. The authors conclude single-agent
+    clinical activity was limited and a checkpoint partner is needed.
+  title: >-
+    First-in-human phase 1 study of RO7119929, an oral TLR7 agonist
+    prodrug, in patients with advanced primary or metastatic liver cancers
+
+- id: ev-2026-03-41722568
+  pmid: "41722568"
+  date: 2026-03-10
+  source: immunity
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  title_sufficient: true
+  claim: >-
+    In murine atopic dermatitis, skin inflammation induced anxiety-like
+    behaviour and hyperactivation of sympathetic nerves innervating the
+    lesion; both denervation and anxiety-relief interventions markedly
+    attenuated inflammation, acting through norepinephrine at basophil
+    beta-2 adrenergic receptors to raise motility and the CCL6-CCR1 axis.
+    Human lesions show sympathetic remodelling with CCL23/CCR1 tracking
+    severity. Direct evidence that a neurotransmitter is the shared
+    currency between neural state and tissue immune infiltration.
+  title: >-
+    Hyperactivation of sympathetic nerves fuels basophil infiltration in
+    atopic dermatitis
+
+- id: ev-2026-03-41803952
+  pmid: "41803952"
+  date: 2026-03-10
+  source: genome-biology
+  threads: [method-credibility]
+  stance: refutes
+  type: benchmark
+  title_sufficient: false
+  claim: >-
+    Head-to-head comparison of the five most used Hi-C scaffolders
+    (Lachesis, HiRise, 3d-dna, SALSA, AllHiC) across four genomes: above
+    80% accuracy only under ideal conditions, with performance
+    deteriorating rapidly otherwise and, unexpectedly, poor performance on
+    the best assemblies where contigs approach chromosome length.
+    Chromosome-scale assemblies built with these tools cannot be assumed
+    correct.
+  title: >-
+    Benchmarking Hi-C scaffolders using reference genomes and de novo
+    assemblies
+
+- id: ev-2026-03-41819545
+  pmid: "41819545"
+  date: 2026-03-11
+  source: jitc
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  title_sufficient: false
+  claim: >-
+    RECIST v1.1, the reference response criterion underneath essentially
+    every oncology trial, conceals prognostically decisive lesion-level
+    heterogeneity. In 438 DART SWOG S1609 patients on ipilimumab plus
+    nivolumab, mixed per-lesion response predicted worse OS (HR 1.80) and
+    PFS (HR 1.58); among patients RECIST-classified as stable disease,
+    those with mixed per-lesion response had median OS 9.9 months
+    (8.8-12.4) versus 22.7 months (19.2-32.0), a roughly 13-month gap
+    inside one RECIST category.
+  title: >-
+    Evaluation of mixed response in tumor size and survival in patients
+    with rare cancers treated with dual checkpoint inhibitor therapy (DART
+    SWOG S1609)
+
+- id: ev-2026-03-41385341
+  pmid: "41385341"
+  date: 2026-03-12
+  source: blood
+  threads: [cell-therapy]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Precision-T randomised 187 adults with acute leukemia or MDS to
+    Orca-T, a purified donor Treg-based allogeneic T-cell product, plus
+    tacrolimus versus conventional allograft with tacrolimus and
+    methotrexate. Primary endpoint met: chronic-GVHD-free survival HR 0.26
+    (95% CI 0.14-0.47, P<0.001); 1-year rate 78.0% versus 38.4%, moderate-
+    to-severe chronic GVHD 12.6% versus 44.0%, non-relapse mortality 3.4%
+    versus 13.2% (P=.03). Overall survival 93.9% versus 83.1% did not
+    reach significance (P=.12).
+  title: >-
+    Orca-T vs allogeneic hematopoietic stem cell transplantation
+    (Precision-T): a multicenter, randomized phase 3 trial
+
+- id: ev-2026-03-41505504
+  pmid: "41505504"
+  date: 2026-03-12
+  source: science
+  threads: [foundation-models]
+  stance: supports
+  type: new-modality
+  title_sufficient: false
+  claim: >-
+    Pretrained inverse-folding models transfer to a task they were never
+    trained for, predicting which mutations bias a protein toward a chosen
+    conformational state, via contrastive scoring alone. Validated across
+    seven datasets with wet-lab confirmation in K-Ras, SARS-CoV-2 spike,
+    beta-2 adrenergic receptor and Src kinase, and applied to lipoic acid
+    ligase it uncovered the control of promiscuity. Zero-shot transfer to
+    protein dynamics is a stronger generality claim than another benchmark
+    score.
+  title: >-
+    Computational design of conformation-biasing mutations to alter
+    protein functions
+
+- id: ev-2026-03-41818362
+  pmid: "41818362"
+  date: 2026-03-12
+  source: science
+  threads: [single-cell-3d-genome]
+  stance: supports
+  type: new-modality
+  title_sufficient: true
+  claim: >-
+    Spatial multi-omics scales to a whole organism at subcellular
+    resolution: weMERFISH quantified 495 genes across whole zebrafish
+    embryos from gastrulation to organogenesis, with a companion atlas of
+    25,872 genes and 294,954 accessible chromatin regions. Expression
+    patterns resolved as composites of tissue-specific accessible
+    elements, and integration with live imaging showed sharp boundaries
+    form by expression change rather than cell sorting, a result only
+    obtainable with spatial and accessibility data jointly.
+  title: >-
+    Whole-embryo spatial transcriptomics at subcellular resolution from
+    gastrulation to organogenesis
+
+- id: ev-2026-03-41821037
+  pmid: "41821037"
+  date: 2026-03-13
+  source: genome-biology
+  threads: [single-cell-3d-genome, method-credibility]
+  stance: supports
+  type: benchmark
+  title_sufficient: true
+  claim: >-
+    Systematic benchmark (119,744 nuclei and cells, 19 donors, renal
+    cortex, validated in heart) quantifying what multimodal integration
+    buys: horizontal 3-prime/5-prime scRNA plus snRNA integration improves
+    cell-type calling, and vertical snRNA plus snATAC integration is
+    additive on top of it, resolving states invisible to either alone. It
+    doubles as a mild negative on existing references, since
+    WFDC2-positive thick-ascending-limb and Norn cells were recovered here
+    but absent from published kidney atlases.
+  title: >-
+    Systematic evaluation of single-cell multimodal data integration
+    enhances cell type resolution and discovery of clinically relevant
+    states in complex tissues
+
+- id: ev-2026-03-41825935
+  pmid: "41825935"
+  date: 2026-03-13
+  source: jitc
+  threads: [next-gen-checkpoints]
+  stance: refutes
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Anti-TIM-3 (S095018) plus anti-PD-1 (Sym021) in 35 PD-(L)1-naive stage
+    IV biliary tract cancer patients gave only 2 partial responses (5.7%),
+    11 stable disease, disease control 37%, and median PFS of 1.9 months
+    (OS 13.4 months). Paired biopsies showed the drug did what it was
+    supposed to, with higher intratumoral CD8 density and upregulated
+    interferon-gamma and antigen-presentation signatures, and none of it
+    was associated with efficacy: the pharmacodynamic hit decoupled from
+    clinical benefit.
+  title: >-
+    Phase Ib multicenter study of anti-TIM-3 (S095018/Sym023) in
+    combination with anti-PD-1 (Sym021) in patients with
+    advanced/metastatic recurrent biliary tract cancer
+
+- id: ev-2026-03-41796601
+  pmid: "41796601"
+  date: 2026-03-14
+  source: lancet
+  threads: [suppressive-population-inversion]
+  stance: neutral
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Randomised phase 3 MANEUVER (n=94; pimicotinib 63 versus placebo 31)
+    hit hard on a myeloid target: objective response at week 25 of 54%
+    versus 3% (absolute difference 51%, 95% CI 33-63, p<0.0001), with mild
+    toxicity and no hepatotoxicity. This qualifies rather than confirms
+    the thread, because tenosynovial giant cell tumour is a CSF1-driven
+    neoplasm in which the CSF1R-positive macrophage compartment is the
+    tumour bulk, so the benefit comes from removing neoplastic drive
+    rather than reversing immunosuppression.
+  title: >-
+    Pimicotinib versus placebo for tenosynovial giant cell tumour
+    (MANEUVER): an international, randomised, placebo-controlled, phase 3
+    trial
+
+- id: ev-2026-03-41844990
+  pmid: "41844990"
+  date: 2026-03-17
+  source: nature-biotechnology
+  threads: [foundation-models]
+  stance: supports
+  type: new-modality
+  title_sufficient: true
+  claim: >-
+    Moves generative sequence models out of silico at a scale that changes
+    what transfer into use means: generative sampling is implemented
+    physically through controlled stochastic chemistry in DNA
+    oligosynthesis, producing about 10^16 designs from a generative model
+    of human antibodies with realism and diversity comparable to state-of-
+    the-art protein language models, verified by sequencing. Expressed
+    scFvs screened against multiplexed HLA-presented intracellular
+    proteins yielded candidate therapeutic CARs, and the method
+    generalized to models of Taq polymerase and the HLA peptidome.
+  title: >-
+    Manufacturing-aware generative models enable petascale synthesis of
+    designed DNA
+
+- id: ev-2026-03-41850738
+  pmid: "41850738"
+  date: 2026-03-18
+  source: jitc
+  threads: [cell-therapy]
+  stance: refutes
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Phase I HAITILS delivered autologous tumour-infiltrating lymphocytes
+    by hepatic arterial infusion to 6 patients with liver-dominant
+    metastatic uveal melanoma. Best overall response was stable disease in
+    6 of 6, zero objective responses, with median PFS 4 months and median
+    OS 14 months; the authors state the regimen is insufficient for
+    durable efficacy. Locoregional delivery was safe but did not buy
+    activity.
+  title: >-
+    Phase I trial of locoregional administration of autologous tumor-
+    infiltrating lymphocytes in patients with uveal melanoma and liver
+    metastases (the HAITILS trial)
+
+- id: ev-2026-03-41489404
+  pmid: "41489404"
+  date: 2026-03-19
+  source: blood
+  threads: [immunotherapy-resistance]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    A determinant of immunotherapy outcome sitting entirely outside the
+    tumour cell and outside T-cell exhaustion: across 1,052 adults with
+    relapsed/refractory large B-cell lymphoma given CD19 CAR-T at 7
+    centres, each hour later in the infusion day carried HR 1.11 (95% CI
+    1.03-1.20, P=.004) for progression, relapse or death after adjustment
+    for centre, product and clinical variables; 1-year PFS was 51.4% for
+    pre-noon versus 35.2% for post-noon infusion. Late infusion showed
+    higher peak inflammatory markers and reduced day-7 CAR-T expansion;
+    overall survival did not differ.
+  title: >-
+    Time of day of CAR T-cell infusion and outcomes in large B-cell
+    lymphoma
+
+- id: ev-2026-03-41643675
+  pmid: "41643675"
+  date: 2026-03-19
+  source: cell
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    A documented inversion: the same bacterial strain in PyMT breast
+    tumours drives neutrophils protumour when intracellular (cytosolic
+    dsDNA, tumour-intrinsic cGAS-STING-IL-17B, neutrophils that block
+    cytotoxic T cells) and antitumour when extracellular, with no STING
+    engagement. The suppressive-neutrophil label is set by bacterial
+    compartment rather than by the population itself, and the therapeutic
+    move is to remove intracellular bacteria or add extracellular
+    components, not to deplete the neutrophils.
+  title: >-
+    Divergent tumor immunity determined by bacteria-cancer cell engagement
+
+- id: ev-2026-03-41742411
+  pmid: "41742411"
+  date: 2026-03-19
+  source: cell
+  threads: [cell-therapy]
+  stance: supports
+  type: new-modality
+  title_sufficient: true
+  claim: >-
+    Attacks the glucose-competition barrier to solid-tumour cell therapy
+    by giving T cells a fuel the tumour cannot use: mouse T cells and
+    human CAR-T equipped with two fungal proteins for cellobiose import
+    and hydrolysis of its beta-1,4 bond recovered viability,
+    proliferation, cytokine production and cytotoxicity under glucose
+    withdrawal, and suppressed tumour growth with prolonged survival.
+    Exclusive-substrate engineering is a different lever from the usual
+    costimulation and exhaustion approaches.
+  title: >-
+    Fungal-derived cellobiose metabolic pathway fuels T cells to bypass
+    intratumoral glucose competition
+
+- id: ev-2026-03-41855322
+  pmid: "41855322"
+  date: 2026-03-19
+  source: science
+  threads: [cell-therapy]
+  stance: supports
+  type: new-modality
+  title_sufficient: true
+  claim: >-
+    Provides a route around central tolerance to non-mutated tumour-
+    associated antigens without the affinity maturation that has caused
+    fatal off-target toxicity: mutating a single residue at a catch-bond
+    hotspot in a weakly reactive anti-PAP TCR lengthened TCR-pMHC bond
+    lifetime while holding affinity and fine specificity constant,
+    yielding far greater intratumoral expansion and tumour elimination.
+    Crystal structures plus molecular dynamics attribute the effect to
+    water reorganization at the interface.
+  title: >-
+    Overcoming T cell tolerance to tumor self-antigens through catch-bond
+    engineering
+
+- id: ev-2026-03-41855345
+  pmid: "41855345"
+  date: 2026-03-19
+  source: science
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  title_sufficient: true
+  claim: >-
+    A complete microbe to neurotransmitter to immune-cell chain with a
+    therapeutic readout, which is precisely the shared-currency the thread
+    asserts: gut commensals stimulate intestinal epithelial cells to
+    produce serotonin, which remotely activates hepatic Kupffer cells and
+    drives clearance of in vivo delivery systems. Transiently blocking
+    serotonin signalling gave more than 3-fold enhancement of chemotherapy
+    and oncolytic virotherapy and 5- to 15-fold improvements in somatic
+    genome editing and mRNA therapeutics.
+  title: >-
+    Commensal-driven serotonin production modulates in vivo delivery of
+    synthetic and viral vectors
+
+- id: ev-2026-03-41873765
+  pmid: "41873765"
+  date: 2026-03-19
+  source: nar
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  title_sufficient: false
+  claim: >-
+    A community reference resource audits itself and comes up short: the
+    non-canonical ORF catalog distributed through Ensembl-GENCODE had no
+    standardized framework for judging translation evidence per entry, and
+    applying translation-signature scores to the expanded 28,359-entry set
+    leaves only 10,127 (about 36%) with translation evidence on par with
+    canonical protein-coding genes. Anything built on the un-triaged
+    catalog was building on roughly 64% weakly supported entries.
+  title: >-
+    An expanded reference catalog of translated open reading frames for
+    biomedical research
+
+- id: ev-2026-04-41759038
+  pmid: "41759038"
+  date: 2026-04-10
+  source: jco
+  threads: [cell-therapy]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    CAREMM-001 moved BCMA CAR-T to frontline in transplant-ineligible
+    newly diagnosed myeloma: 36 of 36 infused patients (100%, 95% CI
+    90.3-100) were MRD-negative at 10^-5 by month 3 with no MRD recurrence
+    at 15.8 months median follow-up, complete response rising from 33.3%
+    pre-infusion to 94.4% at last follow-up, CRS 52.8% all grade 1-2 and
+    ICANS 5.6% all grade 1, with no deaths or progressions at cutoff.
+  title: >-
+    Phase II Study of BCMA Chimeric Antigen Receptor T-Cell Therapy in
+    Patients With Newly Diagnosed Multiple Myeloma Ineligible for or Not
+    Proceeding to Autologous Stem-Cell Transplantation (CAREMM-001)
+
+- id: ev-2026-04-41957676
+  pmid: "41957676"
+  date: 2026-04-10
+  source: genome-biology
+  threads: [method-credibility, ctdna-mrd]
+  stance: refutes
+  type: refutation
+  title_sufficient: false
+  claim: >-
+    Nanopore whole-genome sequencing of pan-cancer and neuroendocrine
+    plasma cohorts shows that the extreme fragmentation patterns
+    attributed to cancer in high-cfDNA samples are largely pre-analytical:
+    hypofragmentation (1-4 kb) tracks DNASE1L3-mediated release during
+    delayed blood processing and ultra-long fragments above 7.5 kb track
+    cell lysis during plasma preparation, while the non-artifactual short
+    fraction below 145 bp carries both cancer- and blood-derived DNA and
+    reflects systemic inflammation. Fragmentomic biomarkers are measuring
+    handling and host inflammation as much as tumour biology.
+  title: >-
+    Long-read sequencing identifies aberrant fragmentation patterns linked
+    to elevated cell-free DNA levels in cancer
+
+- id: ev-2026-04-41963080
+  pmid: "41963080"
+  date: 2026-04-10
+  source: jitc
+  threads: [next-gen-checkpoints]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Phase Ib of the anti-TIM-3 antibody TQB2618 (600 mg every 3 weeks)
+    plus penpulimab in 21 patients with relapsed/refractory classical
+    Hodgkin lymphoma who had already failed PD-1/PD-L1 blockade gave an
+    objective response rate of 52% (1 complete, 10 partial), grade 3 or
+    higher treatment-related adverse events in 24%, and median duration of
+    response and overall survival not reached at 14.1 months. A clinical-
+    stage readout for a beyond-PD-1 target in an explicitly
+    PD-1-refractory population.
+  title: >-
+    Anti-TIM-3 antibody TQB2618 in combination with penpulimab in relapsed
+    or refractory classic Hodgkin lymphoma previously treated with
+    PD-1/PD-L1 therapy: a multicenter, open-label, single-arm, phase Ib
+    clinical trial
+
+- id: ev-2026-04-41576931
+  pmid: "41576931"
+  date: 2026-04-13
+  source: cancer-cell
+  threads: [immunotherapy-resistance]
+  stance: supports
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    Lymphatic-intrinsic interferon-gamma signalling, not the tumour cell,
+    sets checkpoint responsiveness in melanoma: lymphatic Ifngr1 deletion
+    expanded the intratumoral network and drove a tip-like state that
+    promoted lymph node metastasis while leaving dendritic cell migration
+    and checkpoint response intact, and lymphatic-specific mitochondrial
+    complex III inhibition blocked metastasis and enhanced checkpoint
+    blockade. Places a stromal metabolic switch in the resistance
+    mechanism set.
+  title: >-
+    IFNγ-dependent metabolic reprogramming restrains an immature, pro-
+    metastatic lymphatic state in melanoma
+
+- id: ev-2026-04-41650973
+  pmid: "41650973"
+  date: 2026-04-13
+  source: cancer-cell
+  threads: [next-gen-checkpoints]
+  stance: refutes
+  type: mechanism
+  title_sufficient: true
+  claim: >-
+    Yap1 deletion and CD276/B7-H3 inhibition extend survival in male but
+    not female SHH medulloblastoma, with YAP1 required for CD276-mediated
+    CD8 suppression only in males, and YAP1 target signatures stratifying
+    survival in male-only patient cohorts across medulloblastoma,
+    glioblastoma, mesothelioma and lung cancer. A leading second-
+    generation checkpoint target delivers benefit in half the population,
+    a constraint on the category's claimed generality.
+  title: >-
+    Male-biased Yap1-Cd276/B7-H3 axis for immune evasion in
+    medulloblastoma
+
+- id: ev-2026-04-41687608
+  pmid: "41687608"
+  date: 2026-04-13
+  source: cancer-cell
+  threads: [suppressive-population-inversion, immunotherapy-resistance]
+  stance: refutes
+  type: mechanism
+  title_sufficient: true
+  claim: >-
+    A chemotherapy-conditioned PTGER3-positive cancer-associated
+    fibroblast subset with elevated lipid oxidation enhances CD8 T-cell
+    activation and cytotoxicity via suppression of PTEN-related
+    signalling, and a higher proportion of these therapy-induced
+    fibroblasts correlates with better treatment response and prognosis in
+    patients. A stromal compartment treated as broadly immunosuppressive
+    contains a protective subset whose depletion would be
+    counterproductive.
+  title: >-
+    Lipid oxidation reprogramming in cancer-associated fibroblasts
+    enhances CD8(+) T cell cytotoxicity and therapeutic response
+
+- id: ev-2026-04-41720085
+  pmid: "41720085"
+  date: 2026-04-13
+  source: cancer-cell
+  threads: [foundation-models]
+  stance: supports
+  type: benchmark
+  title_sufficient: false
+  claim: >-
+    KEEP restructures millions of pathology image-text pairs into 143,000
+    ontology-aligned groups using a disease knowledge graph of 11,454
+    diseases and 139,143 attributes, and consistently outperforms existing
+    pathology foundation models across 18 public benchmarks (more than
+    14,000 whole-slide images) and 4 institutional rare-cancer datasets
+    (926 cases), with the largest gains on rare subtypes, the regime where
+    purely data-driven scaling has been weakest.
+  title: >-
+    Knowledge-enhanced pretraining for vision-language pathology
+    foundation model on cancer diagnosis
+
+- id: ev-2026-04-41720086
+  pmid: "41720086"
+  date: 2026-04-13
+  source: cancer-cell
+  threads: [immunotherapy-resistance]
+  stance: supports
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    Multi-omic profiling of 110 gastric cancer patients from NEOSUMMIT-01
+    before and after neoadjuvant chemo-immunotherapy resolves five
+    microenvironment ecotypes; response occurs in three of them but not in
+    the ECM-organisation ecotype or the fifth, where resistance is
+    mediated by an APOA1-positive tumour cell to TREM2-positive macrophage
+    interaction. A myeloid and stromal programme, validated in trial
+    tissue, explains checkpoint failure rather than a tumour-cell-
+    intrinsic lesion.
+  title: >-
+    Dissecting genetic and immune drivers of heterogeneous responses to
+    neoadjuvant immunochemotherapy in gastric cancer
+
+- id: ev-2026-04-41791380
+  pmid: "41791380"
+  date: 2026-04-13
+  source: cancer-cell
+  threads: [immunotherapy-resistance]
+  stance: supports
+  type: mechanism
+  title_sufficient: true
+  claim: >-
+    Quantitative spatial profiling of small-cell lung cancer patient
+    tissue plus a microphysiological single-cell system identifies the
+    microvasculature, not tumour-cell MHC-I loss or T-cell exhaustion, as
+    the checkpoint excluding NK and other effector cells from MHC-I-low
+    regions; vascular STING activation restored NK infiltration and
+    killing and primed response to DLL3 CAR-NK. Resistance located in the
+    stromal compartment outside the tumour cell.
+  title: >-
+    Vascular STING activation facilitates NK cell anti-tumor immunity in
+    small cell lung cancer
+
+- id: ev-2026-04-42003552
+  pmid: "42003552"
+  date: 2026-04-13
+  source: nar
+  threads: [method-credibility, cell-therapy]
+  stance: refutes
+  type: refutation
+  title_sufficient: true
+  claim: >-
+    A high-resolution CAST-Seq variant detecting a median roughly 12-fold
+    more chromosomal aberrations than standard CAST-Seq uncovered
+    unintended, target-specific sgRNA contaminants in GMP-like guide
+    batches used for haematopoietic stem-progenitor editing, a direct
+    genotoxicity risk in clinical-grade reagents, and showed that
+    published reports of extensive large deletions under DNA-PKcs
+    inhibition are substantially assay- and design-dependent artefacts
+    rather than intrinsic instability.
+  title: >-
+    DNA-PKcs inhibitor AZD7648 reveals sgRNA cross-contaminants and
+    enhanced sensitivity of genome engineering off-target activity in
+    HSPCs
+
+- id: ev-2026-04-41932343
+  pmid: "41932343"
+  date: 2026-04-14
+  source: immunity
+  threads: [suppressive-population-inversion]
+  stance: refutes
+  type: mechanism
+  title_sufficient: true
+  claim: >-
+    In mouse pancreatic cancer, the intratumoral Foxp3-positive Treg
+    collapse produced by agonistic anti-CD40 is not depletion but
+    conversion: lineage tracing shows Tregs lose Foxp3 and acquire Tbet-
+    positive interferon-gamma-producing Th1-like phenotypes (dependent on
+    CD40-activated dendritic cells, IL-12 and interferon-gamma), and these
+    ex-Tregs show the highest antigen-driven TCR signalling of any tumour-
+    infiltrating T cell. The apparent benefit of removing Tregs is here
+    the antitumour capacity of the Tregs themselves.
+  title: >-
+    Agonistic anti-CD40 antibody treatment converts resident regulatory T
+    cells into activated type 1 effectors within the tumor
+    microenvironment
+
+- id: ev-2026-04-41987205
+  pmid: "41987205"
+  date: 2026-04-15
+  source: genome-biology
+  threads: [interception, single-cell-3d-genome]
+  stance: supports
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    Single-cell multi-omics (ATAC, RNA, protein and mitochondrial DNA)
+    across normal B cells, low- and high-count monoclonal B lymphocytosis
+    and CLL shows subclonal, epigenetic and transcriptomic stability from
+    high-count monoclonal B lymphocytosis to CLL, with CLL-like molecular
+    states already present in the low-count state and a shared progenitor
+    for physiologic and monoclonal B cells. The malignant program is fully
+    assembled in the precursor state.
+  title: >-
+    Single-cell epigenetic and transcriptomic states across the continuum
+    of monoclonal B cell lymphocytosis to chronic lymphocytic leukemia
+
+- id: ev-2026-04-41987329
+  pmid: "41987329"
+  date: 2026-04-15
+  source: genome-biology
+  threads: [method-credibility, single-cell-3d-genome]
+  stance: refutes
+  type: benchmark
+  title_sufficient: false
+  claim: >-
+    Using paired scRNA plus scATAC/ChIP data as ground truth to grade
+    unpaired-integration pipelines, this benchmark finds gene activity
+    scores, the standard bridge feature between chromatin and expression,
+    show only limited correlation with actual gene expression, and that
+    pipeline performance is dominated by the dimension-reduction choice
+    rather than the integration method that papers advertise. A load-
+    bearing assumption of routine multi-omic integration does not hold.
+  title: >-
+    Benchmarking component choices for unpaired single cell RNA and
+    epigenomic integration
+
+- id: ev-2026-04-41525451
+  pmid: "41525451"
+  date: 2026-04-16
+  source: blood
+  threads: [suppressive-population-inversion, interception]
+  stance: refutes
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    Intravital imaging of a Tet2-heterozygous clonal-haematopoiesis model
+    shows CD206-positive macrophages in non-resorptive marrow cavities are
+    intrinsically anti-inflammatory and selectively suppress the disease-
+    initiating mutant clone while sparing healthy stem cells, inverting
+    the usual reading of CD206-positive M2-like macrophages as pro-tumour;
+    suppressing bone remodelling with zoledronate or targeting macrophage
+    niche factors mitigated clonal expansion, making a marketed drug an
+    interception handle on a pre-malignant clone.
+  title: >-
+    A compartmentalized inflammatory landscape and macrophage plasticity
+    regulate Tet2+/--mediated clonal hematopoiesis
+
+- id: ev-2026-04-41999663
+  pmid: "41999663"
+  date: 2026-04-18
+  source: cancer-discovery
+  threads: [interception, single-cell-3d-genome]
+  stance: supports
+  type: new-modality
+  title_sufficient: true
+  claim: >-
+    ORION-FISH couples high-plex protein imaging with morphology-
+    preserving DNA-FISH and single-cell registration, and finds MYC and
+    CCNE1 copy-number-gained epithelial cells intermixed within serous
+    tubal intraepithelial carcinomas and in morphologically normal
+    fallopian tube epithelium, each associated with distinct immune
+    neighbourhoods, plus subclonal structure missed by targeted
+    sequencing. Puts a measurable genomic precursor state before
+    histological precancer.
+  title: >-
+    Spatial integration of protein and chromosomal states reveals early
+    copy number changes and genotype-associated immune neighborhoods in
+    serous ovarian cancer evolution
+
+- id: ev-2026-04-42008361
+  pmid: "42008361"
+  date: 2026-04-20
+  source: cancer-discovery
+  threads: [interception]
+  stance: supports
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    Longitudinal whole-genome and targeted sequencing of 30
+    myeloproliferative neoplasm patients with 7,986 blood counts and 203
+    whole-genome haematopoietic colonies shows progression to AML is
+    genomically encoded years in advance (TP53 loss, stepwise driver
+    acquisition, or independent leukaemic clones) while stable disease
+    shows long-term clonal equilibrium; it also reclassifies triple-
+    negative essential thrombocythaemia as age-appropriate polyclonal
+    haematopoiesis with germline predisposition, and documents therapy-
+    induced mutagenesis.
+  title: >-
+    Genomic evolution and natural history of myeloproliferative neoplasms
+    on therapy
+
+- id: ev-2026-04-42013310
+  pmid: "42013310"
+  date: 2026-04-21
+  source: cancer-discovery
+  threads: [next-gen-checkpoints]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: true
+  claim: >-
+    Phase I/II intratumoral sotigalimab (CD40 agonist) plus pembrolizumab
+    in 32 checkpoint-naive metastatic melanoma patients gave objective
+    response 50% and disease control 92% at the recommended phase 2 dose,
+    with 67% response in injected and 50% in non-injected lesions, DC-
+    LAMP-positive dendritic cell and macrophage activation, and expanded
+    T-cell clones shared across lesions; responses did not correlate with
+    the baseline features that predict anti-PD-1 monotherapy benefit.
+  title: >-
+    Intratumoral sotigalimab with pembrolizumab induces rapid activation
+    of antigen presenting cells and drives anti-tumor responses in non-
+    injected tumors in metastatic melanoma: A phase I/II study
+
+- id: ev-2026-04-42014205
+  pmid: "42014205"
+  date: 2026-04-21
+  source: jitc
+  threads: [immunotherapy-resistance]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    In 84 advanced HCC patients, receiving only the initial checkpoint
+    infusion before noon was associated with better PFS (multivariable HR
+    0.50, 95% CI 0.30-0.84) and higher odds of response (OR 3.26, 95% CI
+    1.08-10.90), with no excess immune adverse events; timing of all
+    subsequent doses had no effect, and morning-treated patients showed
+    lower IL-6 and greater cytotoxic central-memory CD8 expansion. Host
+    circadian state at priming, entirely outside the tumour, appears to
+    imprint checkpoint outcome.
+  title: >-
+    Time-of-day of first checkpoint inhibitor dose influences clinical
+    outcomes and immune responses in hepatocellular carcinoma
+
+- id: ev-2026-04-42020848
+  pmid: "42020848"
+  date: 2026-04-22
+  source: nature-biotechnology
+  threads: [foundation-models]
+  stance: supports
+  type: benchmark
+  title_sufficient: false
+  claim: >-
+    FM-HCT, self-supervised on 361,663 unannotated non-contrast 3D head CT
+    volumes, substantially improves downstream disease detection over both
+    models trained from scratch and prior 3D CT foundation models trained
+    on scarce annotated data, including for less common conditions.
+    Convergent evidence that unlabelled-scale pretraining transfers into a
+    first-line clinical imaging modality.
+  title: >-
+    Reference-free discovery with barcoded single-cell sequencing
+
+- id: ev-2026-04-42021407
+  pmid: "42021407"
+  date: 2026-04-22
+  source: genome-biology
+  threads: [method-credibility, foundation-models]
+  stance: refutes
+  type: benchmark
+  title_sufficient: false
+  claim: >-
+    Head-to-head evaluation of 9 machine-learning surface-protein
+    imputation methods confirms that single-cell mRNA abundance is not a
+    reliable proxy for its cognate protein and, the part the title hides,
+    that imputation accuracy is governed by overlap in cell-type
+    composition between training and test data, so the models do not
+    generalise across datasets or tissues.
+  title: >-
+    Machine learning predictions surpass individual mRNAs as a proxy of
+    single-cell protein expression
+
+- id: ev-2026-04-41636724
+  pmid: "41636724"
+  date: 2026-04-23
+  source: blood
+  threads: [cell-therapy]
+  stance: refutes
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Donor-derived anti-CD33 CAR-T (VCAR33) in 15 patients with relapsed or
+    MRD-positive AML/MDS after allogeneic transplant produced an overall
+    response rate of only 20% (2 complete remissions with incomplete count
+    recovery, 1 MRD clearance) despite transient expansion in 14 of 15
+    patients; the study closed before dose level 3 and no maximum
+    tolerated dose was established. A clinical readout where the move off
+    CD19 into a myeloid target largely fails.
+  title: >-
+    A phase 1/2 study of donor-derived anti-CD33 CAR T-cell therapy
+    (VCAR33) for relapsed/refractory AML after allogeneic HCT
+
+- id: ev-2026-05-41673461
+  pmid: "41673461"
+  date: 2026-05-01
+  source: molecular-systems-biology
+  threads: [ctdna-mrd]
+  stance: refutes
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    Genetic barcoding across six breast cancer models (two cell lines,
+    four patient-derived xenografts) showed cfDNA shedding into the
+    vasculature varied widely between models and with necrosis and burden,
+    and that neither needle biopsy nor cfDNA alone recovered the tumour's
+    clonal composition; clonal diversity was also higher in tumour centre
+    than periphery. The liquid biopsy's claim to represent the tumour is
+    model-dependent, constraining ctDNA-guided management built on clonal
+    readouts.
+  title: >-
+    Genetic barcoding uncovers the clonal makeup of solid and liquid
+    biopsies and their ability to capture intra-tumoral heterogeneity
+
+- id: ev-2026-05-41731097
+  pmid: "41731097"
+  date: 2026-05-01
+  source: nature-medicine
+  threads: [agentic-ai]
+  stance: refutes
+  type: benchmark
+  title_sufficient: false
+  claim: >-
+    A structured stress test of a deployed consumer LLM health tool (60
+    clinician-authored vignettes across 16 factorial conditions, 960
+    responses) found it undertriaged 52% of gold-standard emergencies,
+    with dangerous failures at 35% of nonurgent and 48% of emergency
+    presentations, and triage shifting with third-party symptom
+    minimisation (OR 11.7, 95% CI 3.7-36.6). An LLM system already serving
+    millions, audited and found unsafe: infrastructure-scale deployment
+    without infrastructure-grade reliability.
+  title: >-
+    ChatGPT Health performance in a structured test of triage
+    recommendations
+
+- id: ev-2026-05-41820675
+  pmid: "41820675"
+  date: 2026-05-01
+  source: nature-medicine
+  threads: [agentic-ai]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    A cognitive-layer architecture over general LLMs was rated by 22
+    expert clinicians as outperforming both standalone frontier LLMs and
+    human clinicians across CBT competencies in a randomised double-blind
+    evaluation (227 participants), and in 19,674 transcripts from real
+    healthcare delivery to 8,920 users higher cognitive-layer activation
+    tracked greater symptom improvement and long-term recovery over about
+    10 weeks. Deployed at service scale with outcomes attached.
+  title: >-
+    A cognitive layer architecture to support large-language model
+    performance in psychotherapy interactions
+
+- id: ev-2026-05-41857199
+  pmid: "41857199"
+  date: 2026-05-01
+  source: nature-medicine
+  threads: [ctdna-mrd]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Blood-based ctDNA markers (MYC mutations, MYC-Ig translocations, EBV
+    fragmentomics) diagnosed EBV-positive Burkitt lymphoma in 377 children
+    and young adults in Tanzania and Uganda: AUC 0.95 (external validation
+    0.98), sensitivity 0.86, specificity 0.95, and cut median diagnostic
+    turnaround from 46.8 to 6.5 days (P = 4.4e-10) while being the only
+    diagnostic result available at multidisciplinary review in 42% of
+    cases. ctDNA determining what treatment starts and when.
+  title: >-
+    Liquid biopsy for the diagnosis of EBV-positive Burkitt's lymphoma in
+    endemic areas
+
+- id: ev-2026-05-41876649
+  pmid: "41876649"
+  date: 2026-05-01
+  source: nature-medicine
+  threads: [foundation-models]
+  stance: refutes
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    LungIMPACT randomised 93,326 primary-care chest X-rays to AI worklist
+    prioritisation on or off: median time to CT 53 versus 53 days
+    (geometric-mean ratio 0.97, 95% CI 0.93-1.02), time to lung-cancer
+    diagnosis 44 versus 46 days (0.98, 0.83-1.16), and no difference in
+    referral, treatment or stage. A fully null pragmatic randomized trial
+    of an AI model in real clinical use; the authors conclude chest X-ray
+    AI deployments should not include prioritisation.
+  title: >-
+    AI-based chest X-ray prioritization in the lung cancer diagnostic
+    pathway: the LungIMPACT randomized controlled trial
+
+- id: ev-2026-05-41876718
+  pmid: "41876718"
+  date: 2026-05-01
+  source: nature-immunology
+  threads: [immunotherapy-resistance]
+  stance: supports
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    Loss of MHC class I on target cells, the canonical tumour-intrinsic
+    escape route from CD8 killing, instead increases susceptibility to CD4
+    T cell cytotoxicity via heightened ferroptosis sensitivity, in graft-
+    versus-host and tumour models; human datasets link CD4 T cells to
+    improved checkpoint-blockade responses in melanoma and mismatch-
+    repair- deficient colon cancers that have downregulated MHC-I.
+    Relocates a resistance mechanism out of the CD8 and exhaustion frame.
+  title: >-
+    MHC class I on target cells regulates CD4(+) T cell-mediated immunity
+
+- id: ev-2026-05-41882353
+  pmid: "41882353"
+  date: 2026-05-01
+  source: nature
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  title_sufficient: true
+  claim: >-
+    Ectopic GluN1-GluN2B NMDA receptor expression in orthotopic triple-
+    negative breast tumours is sufficient to recruit B cells and drive
+    intratumoral affinity maturation from germline anti-NMDAR antibodies;
+    transfer of a matured potentiating antibody caused autonomic
+    dysregulation and lowered seizure threshold in healthy mice, and
+    intratumoral NMDAR expression correlated with anti-NMDAR titres in
+    patients. A neurotransmitter receptor is the shared antigen linking
+    antitumour immunity and neurological autoimmunity.
+  title: >-
+    Ectopic NMDAR expression in cancer unmasks germline-encoded
+    autoimmunity
+
+- id: ev-2026-05-41882357
+  pmid: "41882357"
+  date: 2026-05-01
+  source: nature
+  threads: [neuro-immune-microbiome-axis]
+  stance: supports
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    Parasite-derived metabolites drive tuft cells to release acetylcholine
+    in two modes; only the sustained leak-like release evokes enough
+    enterochromaffin-cell serotonin to activate vagal afferents that
+    suppress food intake. Two classical neurotransmitters act as the
+    literal currency linking microbial and parasite sensing, type 2
+    immunity and neural signalling in one paracrine circuit.
+  title: >-
+    Parasites trigger epithelial cell crosstalk to drive gut-brain
+    signalling
+
+- id: ev-2026-05-41882405
+  pmid: "41882405"
+  date: 2026-05-01
+  source: nature-medicine
+  threads: [immunotherapy-resistance]
+  stance: neutral
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    POLAR phase 2 maintenance pembrolizumab plus olaparib in homologous-
+    recombination- deficient metastatic pancreatic cancer missed both co-
+    primary endpoints in cohort A: objective response 35% (95% CI 15-59;
+    needed at least 43%) and 6-month PFS 64% (49-82; needed at least 77%),
+    n=33; non-core HRD and HRD-wild-type cohorts had objective response 8%
+    and 14%. ctDNA response and frameshift-indel neoantigen enrichment
+    tracked the long-term survivors (2-year OS 56%).
+  title: >-
+    Pembrolizumab and olaparib in homologous-recombination-deficient
+    metastatic pancreatic cancer: the phase 2 POLAR trial
+
+- id: ev-2026-05-41922764
+  pmid: "41922764"
+  date: 2026-05-01
+  source: nature
+  threads: [single-cell-3d-genome]
+  stance: supports
+  type: new-modality
+  title_sufficient: false
+  claim: >-
+    CHARM profiles genome conformation, histone modifications, chromatin
+    accessibility and gene expression in the same single cell, applied to
+    mouse embryonic stem cells and cortex to recover cell-cycle dynamics
+    of accessibility, 3D spatial clustering of regulatory elements and
+    thousands of enhancer-promoter linkages. Per-cell 3D conformation
+    arrives bundled with three other modalities as one routine assay
+    output.
+  title: >-
+    Gene regulatory landscape dissected by single-cell four-omics
+    sequencing
+
+- id: ev-2026-05-41933187
+  pmid: "41933187"
+  date: 2026-05-01
+  source: nature-computational-science
+  threads: [method-credibility, single-cell-3d-genome]
+  stance: refutes
+  type: benchmark
+  title_sufficient: false
+  claim: >-
+    Systematic benchmark of leading spatial-transcriptomics slice-
+    alignment methods across 295 alignment tasks found substantial
+    limitations in challenging real-world scenarios, with downstream
+    consequences for 3D tissue reconstruction. The registration step that
+    spatial multi-omics pipelines assume is solved is not reliable off the
+    shelf.
+  title: >-
+    Benchmarking alignment methods for spatial transcriptomics data
+
+- id: ev-2026-05-41986499
+  pmid: "41986499"
+  date: 2026-05-01
+  source: nature-cancer
+  threads: [immunotherapy-resistance]
+  stance: supports
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    Multi-omic profiling of 240 nasopharyngeal carcinomas defined an
+    immune-exhausted S3 subtype with high IgA-positive plasma-cell
+    infiltration that resists gemcitabine and cisplatin induction but
+    responds to anti-PD-1; single-cell RNA-seq showed IgA plasma cell to
+    CD8 T cell interaction in non-responders and the association was
+    validated across three phase III trials plus spatial analysis. A
+    B-lineage stromal population, not T-cell exhaustion, determines who
+    benefits from checkpoint blockade.
+  title: >-
+    Multi-omic characterization of nasopharyngeal carcinoma delineates the
+    subtype-specific landscape of response to induction chemotherapy
+
+- id: ev-2026-05-41991688
+  pmid: "41991688"
+  date: 2026-05-01
+  source: nature-medicine
+  threads: [interception]
+  stance: supports
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    In 3,100 prospectively collected oesophageal adenocarcinomas (710 with
+    whole-genome, 87 with multiregion exome sequencing), tumours with no
+    clinical evidence of Barrett's oesophagus carried the same demographic
+    and genomic features, early-Barrett's molecular signatures, shared
+    phylogenetic trajectories and intestinal-metaplasia lineage markers as
+    Barrett's-positive cases; only advanced stage predicted
+    Barrett's-negative status. The precursor state is present even when
+    clinically invisible.
+  title: >-
+    Integrated epidemiological and molecular data inform the relationship
+    between precancer and cancer states of esophageal adenocarcinoma
+
+- id: ev-2026-05-42020549
+  pmid: "42020549"
+  date: 2026-05-01
+  source: nature-cancer
+  threads: [foundation-models]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    DeepFAN, a transformer trained on more than 10,000 pathology-confirmed
+    nodules, reached AUC 0.954 in a prospective multireader multicase
+    trial (400 cases, three institutions) and raised 12 junior
+    radiologists' AUC by 10.9% (95% CI 8.3-13.5), specificity by 12.6%,
+    and interreader agreement from kappa 0.313 to 0.421. Transfer into
+    clinical use with a measured human-performance delta, the positive
+    counterweight to the null LungIMPACT prioritisation trial.
+  title: >-
+    DeepFAN, a transformer-based model for human-artificial intelligence
+    collaborative assessment of incidental pulmonary nodules in CT scans:
+    a multireader, multicase trial
+
+- id: ev-2026-05-42020743
+  pmid: "42020743"
+  date: 2026-05-01
+  source: nature
+  threads: [interception]
+  stance: supports
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    KrasG12D alveolar type II cells build a tumour-permissive niche before
+    malignant outgrowth via amphiregulin-driven EGFR activation in
+    fibroblasts and downstream macrophage reprogramming; disrupting the
+    amphiregulin-EGFR axis prevents niche formation and abrogates tumour
+    initiation, with the programme conserved in human KRASG12D alveolar
+    organoids and early-stage lung adenocarcinoma. A druggable target in
+    the pre-malignant window.
+  title: >-
+    Early fibrotic niches establish tumour-permissive microenvironments
+
+- id: ev-2026-05-42067582
+  pmid: "42067582"
+  date: 2026-05-01
+  source: nature-biomed-eng
+  threads: [foundation-models]
+  stance: neutral
+  type: benchmark
+  title_sufficient: true
+  claim: >-
+    Across 32 datasets spanning diverse medical modalities, a medical
+    generalist foundation model needed lightweight task-specific
+    specialists supplying diagnostic predictions and similar cases as
+    context to beat either component alone at image diagnosis and report
+    generation. Qualifies rather than flips the transfer claim: generality
+    alone did not reach specialist precision.
+  title: >-
+    Towards generalizable AI in medicine via Generalist-Specialist
+    Collaboration
+
+- id: ev-2026-05-42067655
+  pmid: "42067655"
+  date: 2026-05-01
+  source: nature-cancer
+  threads: [next-gen-checkpoints]
+  stance: refutes
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Phase 1 of MP0317, a FAP by CD40 DARPin, in 46 patients across nine
+    cohorts (0.03-10 mg/kg): one unconfirmed partial response and 14
+    stable disease, maximum tolerated dose not reached, with confirmed
+    tumour colocalisation and CD40-pathway activation. Convergent with the
+    RO7300490 readout: tumour-localised CD40 agonism reprograms the
+    microenvironment without delivering responses.
+  title: >-
+    Tumor-localized CD40 agonism with MP0317, a FAP x CD40 DARPin,
+    reprograms the tumor microenvironment in patients with advanced solid
+    tumors: an open-label, nonrandomized, dose-escalation phase 1 study
+
+- id: ev-2026-05-42067656
+  pmid: "42067656"
+  date: 2026-05-01
+  source: nature-cancer
+  threads: [next-gen-checkpoints]
+  stance: refutes
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Phase 1 of RO7300490, a FAP-targeted CD40 agonist, in 80 patients
+    (16-1,100 mg): zero objective responses, disease control rate 42.5%,
+    despite confirmed tumour uptake and clear intratumoral
+    pharmacodynamics including increased DC-LAMP-positive dendritic cell
+    density and pre-tertiary lymphoid structures. Mechanism engaged,
+    clinical benefit absent.
+  title: >-
+    Safety and activity of RO7300490, a bispecific CD40 agonist targeted
+    to fibroblast activation protein, in patients with advanced solid
+    tumors: a single-arm, multicenter, first-in-human, phase 1 trial
+
+- id: ev-2026-05-42092136
+  pmid: "42092136"
+  date: 2026-05-01
+  source: nature
+  threads: [neuro-immune-microbiome-axis, immunotherapy-resistance]
+  stance: supports
+  type: mechanism
+  title_sufficient: true
+  claim: >-
+    Castration accelerated intracranial glioma growth while delaying
+    extracranial tumour growth in mice, via hypothalamic-pituitary-adrenal
+    axis hyperactivation, raised serum glucocorticoids acting on myeloid
+    cells, IL-1beta and TNF neuroinflammatory signalling and microglial
+    inflammasome activation; in male glioblastoma patients testosterone
+    treatment significantly reduced risk of death. An organ-specific
+    neuroendocrine circuit sets antitumour immunity, not the tumour cell.
+  title: >-
+    Androgen loss accelerates brain tumour growth via HPA axis activation
+
+- id: ev-2026-05-42120728
+  pmid: "42120728"
+  date: 2026-05-01
+  source: nature-medicine
+  threads: [cell-therapy]
+  stance: neutral
+  type: new-modality
+  title_sufficient: false
+  claim: >-
+    A CRISPR CD33-deleted allogeneic graft (trem-cel) designed to shield
+    donor cells from a CD33 antibody-drug conjugate met its primary safety
+    endpoint, 30 of 30 patients engrafting by day 28 with median 10 days
+    (95% CI 9-10), and gemtuzumab ozogamicin maintenance was tolerated to
+    2 mg/m2 without prolonged high-grade cytopenias in the 19 who received
+    it. But the trial was stopped early with no efficacy endpoint reported
+    and three transplant-related deaths, so the shielded-graft modality is
+    demonstrated mechanically and unproven clinically.
+  title: >-
+    CRISPR-Cas9 CD33-deleted allogeneic hematopoietic cell transplantation
+    with gemtuzumab ozogamicin maintenance in AML: a phase 1/2 trial
+
+- id: ev-2026-05-42135531
+  pmid: "42135531"
+  date: 2026-05-01
+  source: nature-medicine
+  threads: [agentic-ai, foundation-models]
+  stance: supports
+  type: benchmark
+  title_sufficient: false
+  claim: >-
+    Moves the agent claim past leaderboards into a controlled clinical
+    comparison: in a randomized, blinded study of 105 simulated telehealth
+    consultations including dermatology photographs, ECGs and clinical
+    documents, a state-aware multimodal system outperformed primary care
+    physicians on 29 of 32 axes rated by 18 specialists, including 7 of 9
+    multimodal-reasoning metrics, and on conversation quality and empathy
+    as well as diagnostic accuracy. Still simulated patients, not deployed
+    care.
+  title: >-
+    Advancing conversational diagnostic AI with multimodal reasoning
+
+- id: ev-2026-05-42082388
+  pmid: "42082388"
+  date: 2026-05-03
+  source: bioinformatics
+  threads: [agentic-ai]
+  stance: neutral
+  type: benchmark
+  title_sufficient: false
+  claim: >-
+    A concrete measurement of how far frontier LLMs are from usable
+    single-cell infrastructure: on a batch-level cell-type annotation
+    benchmark, the best off-the-shelf baseline reached only 19.0% batch-
+    level accuracy. A 7B model fine-tuned on distilled reasoning traces
+    plus reinforcement learning with batch-level rewards beat it by over
+    73%, so the capability comes from task-specific training rather than
+    from general agents, which qualifies the general-agents-as-
+    infrastructure claim without flipping it.
+  title: >-
+    Cell-o1 : training LLMs to solve single-cell reasoning puzzles with
+    reinforcement learning
+
+- id: ev-2026-05-41879666
+  pmid: "41879666"
+  date: 2026-05-04
+  source: jem
+  threads: [suppressive-population-inversion, immunotherapy-resistance]
+  stance: refutes
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    A documented inversion of a canonical suppressive axis: local CRISPR
+    knockout of Tgfbr2 in cancer-associated fibroblasts, that is, removing
+    the signalling arm that stromal-TGF-beta blockade is meant to remove,
+    produced a Col18a1-high fibroblast state associated with worse
+    survival in pancreatic cancer patients, which recruits Siglec-F-high
+    neutrophils via Cxcl5 and depends on TNFR1 and canonical Wnt. Blocking
+    the suppressive pathway remodels the microenvironment in the adverse
+    direction.
+  title: >-
+    Local gene editing of fibroblasts in tumors reveals a new cancer-
+    associated fibroblast state
+
+- id: ev-2026-05-41954928
+  pmid: "41954928"
+  date: 2026-05-05
+  source: jama
+  threads: [interception]
+  stance: refutes
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    In 91,952 US veterans who had colonoscopy before age 75, prior adenoma
+    raised 10-year colorectal cancer incidence only from 0.7% (95% CI
+    0.5-0.8) to 1.1% (0.8-1.3) and CRC death from 0.4% to 0.5%, while
+    competing non-CRC death reached 46.9-48.4% and, among adenoma
+    carriers, 34.2% (nonfrail) to 82.0% (severely frail). A measurable
+    precursor state existed and was still not worth acting on; the authors
+    conclude older adults may deprioritize surveillance.
+  title: >-
+    Colorectal Cancer and Mortality Risk Among Older Adults With vs
+    Without Adenoma on Prior Colonoscopy
+
+- id: ev-2026-05-42084533
+  pmid: "42084533"
+  date: 2026-05-05
+  source: cancer-discovery
+  threads: [interception]
+  stance: supports
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    Quantifies the precursor pool that interception would have to act on:
+    a polyclonal-competition model fit independently to variant
+    trajectories and to haematopoietic stem cell genetic heterogeneity
+    converges on roughly three fit clones entering the stem cell pool per
+    year, with rarely more than five exceeding 1.5% frequency in a
+    lifetime, and the fittest clones emerging late in life. DNMT3A
+    variants were enriched for single-hit clones whereas TET2, ASXL1,
+    JAK2, SF3B1 and SRSF2 were enriched for multi-hit evolution.
+  title: >-
+    The evolution of polyclonal competition in aging hematopoiesis
+
+- id: ev-2026-05-42109248
+  pmid: "42109248"
+  date: 2026-05-05
+  source: nar
+  threads: [method-credibility, single-cell-3d-genome]
+  stance: refutes
+  type: benchmark
+  title_sufficient: false
+  claim: >-
+    Adversarial benchmark of established sketching and subsampling tools
+    (Geosketch, scSampler, leverage-score, uniform) across mouse ovary,
+    MERFISH brain, human breast cancer and lung spatial datasets:
+    expression-only designs systematically distort tissue architecture by
+    over-sampling high-variability regions and under-sampling homogeneous
+    ones, while coordinate-only sampling misses transcriptional extremes.
+    Methods imported unchanged from scRNA-seq introduce spatial bias.
+  title: >-
+    Benchmarking sketching methods on spatial transcriptomics data
+
+- id: ev-2026-05-42082400
+  pmid: "42082400"
+  date: 2026-05-06
+  source: genome-research
+  threads: [method-credibility]
+  stance: refutes
+  type: refutation
+  title_sufficient: true
+  claim: >-
+    Strand-seq plus whole-genome sequencing and FISH across multiple
+    batches of a Nomascus siki cell line found 22 shared inversions
+    confirming clonal origin but also batch-specific large rearrangements,
+    including trisomy 14 and iso-q and iso-p isochromosomes, with evidence
+    of clonal expansion, despite about 99% of SNPs being shared across
+    batches. Nucleotide-level identity checks pass while karyotype drifts,
+    so standard whole-genome QC misses the subclonal structural
+    divergence.
+  title: >-
+    Single-cell template strand sequencing reveals culture-induced
+    chromosomal instability in a gibbon cell line
+
+- id: ev-2026-05-42090477
+  pmid: "42090477"
+  date: 2026-05-06
+  source: science-translational-medicine
+  threads: [suppressive-population-inversion, cell-therapy]
+  stance: refutes
+  type: mechanism
+  title_sufficient: true
+  claim: >-
+    CD39, normally read as an immunosuppressive adenosine-axis marker,
+    instead marks the most cytolytic tissue-resident NK subset:
+    CD39-positive CD49a-positive CD103-positive NK cells outperformed
+    conventionally activated peripheral NK cells at killing tumour
+    targets, infiltrating solid tumour microenvironments and controlling
+    epithelial tumour growth in mice. The suppressive label attached to
+    this phenotype is wrong in this context, and the cells expand ex vivo,
+    giving a solid-tumour adoptive-therapy handle.
+  title: >-
+    CD39(+)CD49a(+)CD103(+) cytotoxic tissue-resident natural killer cells
+    infiltrate and control solid epithelial tumor growth in mice
+
+- id: ev-2026-05-42091162
+  pmid: "42091162"
+  date: 2026-05-06
+  source: jitc
+  threads: [cell-therapy]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Solid-tumour tumour-infiltrating-lymphocyte therapy gets a functional
+    response predictor with an outcome attached: among 30 patients with
+    metastatic epithelial cancer (67% colorectal), 15 infusion products
+    recognizing autologous patient-derived organoids yielded 8 objective
+    responses (53%) versus 1 of 15 without recognition (7%, p=0.014); at
+    initial screening 0 of 9 patients lacking organoid recognition
+    responded versus 7 of 18 with reactivity (p=0.059). Recognition was
+    MHC class I-restricted.
+  title: >-
+    Correlation between recognition of autologous tumor organoids by
+    tumor-infiltrating lymphocytes from metastatic epithelial cancers and
+    clinical response
+
+- id: ev-2026-05-41525466
+  pmid: "41525466"
+  date: 2026-05-07
+  source: blood
+  threads: [cell-therapy]
+  stance: supports
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Extends engineered autologous cell therapy well outside CD19 B-cell
+    malignancy with durable data: 63 patients with transfusion-dependent
+    beta-thalassemia followed a median 5.9 years (range 2.9-10.1) after
+    beti-cel achieved transfusion independence in 15 of 22 (68.2%) phase
+    1/2 and 37 of 41 (90.2%) phase 3 participants, sustained to last
+    follow-up, with 38 of 52 (73%) off iron chelation and no malignancy,
+    insertional oncogenesis or replication-competent lentivirus.
+  title: >-
+    Long-term efficacy and safety results of betibeglogene autotemcel gene
+    therapy for transfusion-dependent β-thalassemia
+
+- id: ev-2026-05-41564438
+  pmid: "41564438"
+  date: 2026-05-07
+  source: blood
+  threads: [interception]
+  stance: supports
+  type: mechanism
+  title_sufficient: false
+  claim: >-
+    Gives interception a near-fully-penetrant, detectable precursor state:
+    UK Biobank carriers of pathogenic POT1 variants reached 45% lymphoid
+    malignancy by age 80 (HR 8.28, 95% CI 5.29-13.0), and among
+    asymptomatic carriers 12 of 20 (60%) already had immunophenotype-
+    detected B- and/or T-cell clonality, rising to 7 of 7 after age 65,
+    with preclinical clonal lymphoma-associated cytogenetic changes in 9
+    of 10 carriers over 60. Ultralong lymphocyte telomere length above the
+    99th percentile identified carriers with 58% sensitivity versus 38%
+    for granulocytes.
+  title: >-
+    Lymphoid malignancy and clonality in the POT1-mediated long telomere
+    syndrome
+
+- id: ev-2026-05-41662627
+  pmid: "41662627"
+  date: 2026-05-07
+  source: blood
+  threads: [ctdna-mrd]
+  stance: neutral
+  type: clinical-readout
+  title_sufficient: false
+  claim: >-
+    Another well-powered ctDNA result that stops at prognosis. Using a
+    validated assay on GHSG HD21 samples after two cycles, minimal-
+    residual-disease positivity predicted worse outcome (4-year PFS 36.7%
+    versus 82.2%, HR 5.3, 95% CI 2.0-13.8, p=0.0008; 72.2% versus 95.3%
+    after inverse probability weighting), and combining it with interim
+    PET separated very-low from very-high risk. No treatment was changed
+    on the result, so it cannot support the treatment-guiding claim.
+  title: >-
+    MRD-2 in the GHSG HD21 trial assessed by a validated circulating tumor
+    DNA sequencing assay
