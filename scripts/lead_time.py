@@ -9,9 +9,14 @@ was never tested, because until August 2026 the journal index started at
 overlapped, so no lead was measurable in either direction.
 
 The test needs a conference old enough for the literature to have
-answered it. AACR 2024 (abstracts published March-April 2024) and ASCO
-2024 (symposia in January and February, annual meeting in June) against
-a journal index running 2024-01 to 2026-08.
+answered it. AACR and ASCO both qualify: `--cohort 2024` (AACR abstracts
+March-April, ASCO symposia in January and February and the annual
+meeting in June) and `--cohort 2023`. Which months each cohort actually
+occupies is read from data/conference.sqlite, and the journal window is
+read from data/index.sqlite, because both keep growing — the index ran
+2024-01..2026-08 when this was written and every boundary below used to
+be a literal, which meant a harvest could move the data underneath the
+script without moving any of its arithmetic.
 
 The first version of this script measured first appearance: earliest
 conference month for a term against its earliest journal month. It
@@ -27,17 +32,18 @@ What replaced it is a prediction with a baseline, which is the only
 version of this question that can come out negative:
 
   TEST A  Vocabulary genuinely absent from the journals. Terms said at
-          the 2024 meetings that appear in *no* journal title in all of
-          2024. How many arrive later, and when? Descriptive — there is
-          no control group for "things nobody said anywhere".
+          the cohort's meetings that appear in *no* journal title in all
+          of the meeting year. How many arrive later, and when?
+          Descriptive — there is no control group for "things nobody
+          said anywhere".
 
   TEST B  The real test. Rank terms by how over-represented they are at
-          the meetings relative to the 2024 journals, then ask whether
-          that over-representation predicts growth in the journals by
-          2026. The baseline is the journals' own 2024 rate. If the
-          meeting carries no information the journals did not already
-          have, high-excess and low-excess terms grow alike and the
-          correlation is zero.
+          the meetings relative to the meeting-year journals, then ask
+          whether that over-representation predicts growth in the
+          journals by the index's last full year. The baseline is the
+          journals' own meeting-year rate. If the meeting carries no
+          information the journals did not already have, high-excess and
+          low-excess terms grow alike and the correlation is zero.
 
 Titles are compared against titles. Conference records carry full
 abstract text and journal records carry only titles; letting the
@@ -49,6 +55,7 @@ realistic picture of what someone sitting at the meeting actually sees.
 Usage:
     python3 scripts/lead_time.py
     python3 scripts/lead_time.py --abstracts
+    python3 scripts/lead_time.py --papers --cohort 2023
 """
 
 from __future__ import annotations
@@ -66,8 +73,23 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 INDEX = ROOT / "data" / "index.sqlite"
 CONF = ROOT / "data" / "conference.sqlite"
 
-BASE = ("2024-01", "2024-12")   # the year the meetings happened
-LATER = ("2026-01", "2026-12")  # far enough out for the literature to answer
+DEFAULT_COHORT = 2024
+
+# Share of the cohort's abstracts that has to be deposited before the meeting
+# window is called closed. ASCO deposits a long thin tail — two 2023 abstracts
+# land in November — and taking a bare MAX(month) would push the "after the
+# meetings" boundary five months later on the strength of two records. The
+# handful of abstracts past the boundary are dropped from the conference side
+# too, so that every abstract compared here really does predate every journal
+# title in the "after" arm.
+COHORT_COVERAGE = 0.99
+
+# Words in more than this share of a matcher pool are skipped: they cannot
+# narrow a candidate list. It has to be a share and not the absolute 400 this
+# was written as, because the pools below are deliberately resized — an
+# absolute ceiling would mean "top 1.4% of a 29,000-title pool" in one arm and
+# "top 3.6%" in another, so the two arms would not be running the same matcher.
+DF_CEILING_FRAC = 0.014
 
 WORD = re.compile(r"[a-z0-9][a-z0-9\-']*")
 
@@ -80,6 +102,59 @@ approach effect effects role expression response associated association
 identification characterization evaluation assessment development potential
 significant increased decreased via through among against without within
 """.split())
+
+
+def index_span(jcon: sqlite3.Connection) -> tuple[str, str]:
+    """First and last month the journal index actually holds."""
+    lo, hi = jcon.execute("SELECT MIN(month), MAX(month) FROM papers").fetchone()
+    if not lo:
+        sys.exit("data/index.sqlite has no papers — run scripts/build_index.py")
+    return lo, hi
+
+
+def cohort_window(ccon: sqlite3.Connection, year: int) -> tuple[str, str, int, int]:
+    """(first month, last month, abstracts kept, abstracts dropped as tail).
+
+    The meeting window is a fact about the cohort, not a constant. AACR 2024
+    deposits across 2024-03..04 and ASCO 2024 across 2024-01..08; the 2023
+    cohort sits in different months again, and everything downstream — which
+    journal months count as "before" and which as "after" — hangs off it.
+    """
+    rows = ccon.execute(
+        "SELECT month, COUNT(*) FROM abstracts WHERE year=? GROUP BY month "
+        "ORDER BY month", (year,)).fetchall()
+    if not rows:
+        sys.exit(f"data/conference.sqlite holds no {year} abstracts — "
+                 f"run scripts/harvest_conference.py")
+    total = sum(c for _, c in rows)
+    seen = 0
+    for month, count in rows:
+        seen += count
+        if seen >= COHORT_COVERAGE * total:
+            return rows[0][0], month, seen, total - seen
+    return rows[0][0], rows[-1][0], total, 0
+
+
+def thinned(rows, target: int):
+    """Deterministically cut `rows` down to `target` records.
+
+    Evenly spaced indices over a (month, pmid)-sorted list take the same share
+    out of every month, so the thinned pool keeps the shape of the full one,
+    and it picks the same records on every rerun — the script must not use
+    randomness it cannot reproduce.
+    """
+    if target >= len(rows):
+        return rows
+    ordered = sorted(rows, key=lambda r: (r[0], r[1]))
+    step = len(ordered) / target
+    return [ordered[int(i * step)] for i in range(target)]
+
+
+def span_of(rows) -> str:
+    if not rows:
+        return "empty"
+    months = {r[0] for r in rows}
+    return f"{min(months)}..{max(months)}, {len(months)} months"
 
 
 def grams(text: str, n_max: int = 3):
@@ -134,30 +209,41 @@ def spearman(pairs) -> float:
 
 
 def papers_test(ccon: sqlite3.Connection, jcon: sqlite3.Connection,
-                threshold: float) -> int:
+                threshold: float, year: int) -> int:
     """Match abstracts to later papers, one document at a time.
 
     The vocabulary tests answer a question nobody actually asked. The
     premise is not "words are said earlier at meetings" — it is "this
     result was shown at the meeting before it was published", and a term
-    that was already common in 2024 is invisible to any frequency method
-    however early the work appeared. So: match the abstract to the paper.
+    that was already common in the meeting year is invisible to any
+    frequency method however early the work appeared. So: match the
+    abstract to the paper.
 
     Conference abstracts that become papers usually keep most of their
     title. Jaccard overlap on content words, candidates generated from an
-    inverted index on the rarer tokens so this does not become 14,895 x
-    35,542 comparisons.
+    inverted index on the rarer tokens so this does not become
+    tens-of-thousands x tens-of-thousands comparisons.
 
     The false-match rate is estimated by running the identical matcher
-    against journal titles published BEFORE the meetings opened, where a
-    match cannot be a prediction and can only be coincidence.
+    against journal titles published BEFORE the first abstract of the
+    cohort was deposited, where a match cannot be a prediction and can
+    only be coincidence. That null is only fair if the two arms are the
+    same size: the matcher keeps the best candidate above the threshold,
+    so a pool with twice the titles is roughly twice the chance of
+    finding a spurious one, and the "excess over chance" figure would
+    then be measuring the shape of the index rather than the meeting.
+    Both arms are therefore thinned to whichever is smaller before the
+    comparison is made, and both pool sizes are printed.
     """
+    jlo, jhi = index_span(jcon)
+    meet_first, meet_last, kept, tail = cohort_window(ccon, year)
     conf = list(ccon.execute(
-        "SELECT venue, month, title FROM abstracts WHERE LENGTH(title) > 30"))
+        "SELECT venue, month, title FROM abstracts "
+        "WHERE year=? AND month<=? AND LENGTH(title) > 30", (year, meet_last)))
     after = list(jcon.execute(
-        "SELECT month, pmid, title FROM papers WHERE month >= '2024-07'"))
+        "SELECT month, pmid, title FROM papers WHERE month > ?", (meet_last,)))
     before = list(jcon.execute(
-        "SELECT month, pmid, title FROM papers WHERE month < '2024-04'"))
+        "SELECT month, pmid, title FROM papers WHERE month < ?", (meet_first,)))
 
     def content(title):
         return {w for w in WORD.findall(title.lower())
@@ -168,10 +254,11 @@ def papers_test(ccon: sqlite3.Connection, jcon: sqlite3.Connection,
         df: collections.Counter[str] = collections.Counter()
         for s in sets:
             df.update(s)
+        ceiling = max(1, round(DF_CEILING_FRAC * len(docs)))
         inv: dict[str, list[int]] = {}
         for i, s in enumerate(sets):
             for w in s:
-                if df[w] <= 400:      # skip words too common to narrow anything
+                if df[w] <= ceiling:  # skip words too common to narrow anything
                     inv.setdefault(w, []).append(i)
         return sets, inv
 
@@ -197,21 +284,58 @@ def papers_test(ccon: sqlite3.Connection, jcon: sqlite3.Connection,
                              best_score, ctitle))
         return hits
 
-    sets_a, inv_a = build(after)
-    real = match(after, sets_a, inv_a)
-    sets_b, inv_b = build(before)
-    fake = match(before, sets_b, inv_b)
+    real = match(after, *build(after))
 
     n = len(conf)
-    print("TEST C — abstracts matched to the papers they became")
-    print(f"  conference abstracts with a usable title: {n:,}")
+    print(f"TEST C — {year} abstracts matched to the papers they became")
+    print(f"  journal index spans {jlo}..{jhi}")
+    print(f"  {year} cohort deposited {meet_first}..{meet_last}"
+          + (f"  ({tail:,} later stragglers dropped)" if tail else ""))
+    print(f"  conference abstracts with a usable title: {n:,} of {kept:,}")
+    print()
+    print("  Matcher pools, in journal titles:")
+    print(f"    after  the meetings (> {meet_last}):  {len(after):7,}   "
+          f"[{span_of(after)}]")
+    print(f"    before the meetings (< {meet_first}):  {len(before):7,}   "
+          f"[{span_of(before)}]")
     print(f"  matched to a journal paper published later (Jaccard >= {threshold}): "
           f"{len(real):,}  ({len(real) / n:.1%})")
-    print(f"  same matcher against papers published BEFORE the meetings: "
-          f"{len(fake):,}  ({len(fake) / n:.1%})")
-    print("    The second line is the coincidence rate. A match there cannot be")
-    print("    a prediction, so it is what this method scores on pure chance.")
     print()
+
+    # The null and the yield are two different questions and they need two
+    # different pools. The line above is the yield: how much of the cohort this
+    # method recovers from everything the index holds after the meetings. The
+    # block below is the null, and there the two arms have to be the same size
+    # or the difference between them is partly just the difference in how many
+    # titles each had to get lucky with.
+    fair_n = min(len(after), len(before))
+    print("  Excess over chance, both arms thinned to the same number of titles:")
+    if not fair_n:
+        print(f"    NOT AVAILABLE. The index starts at {jlo}, which is not before")
+        print(f"    {meet_first}, so there are no journal titles that predate the")
+        print("    cohort and no coincidence rate can be measured. Every figure")
+        print("    above is a raw yield with no baseline subtracted from it —")
+        print("    extend the index below the meeting months, or run a cohort")
+        print("    whose meetings fall inside it.")
+        print()
+    else:
+        fair_after = thinned(after, fair_n)
+        fair_before = thinned(before, fair_n)
+        real_fair = (real if fair_n == len(after)
+                     else match(fair_after, *build(fair_after)))
+        fake_fair = match(fair_before, *build(fair_before))
+        print(f"    pool size, each arm: {fair_n:,} titles")
+        print(f"    after  the meetings [{span_of(fair_after)}]:  "
+              f"{len(real_fair):,}  ({len(real_fair) / n:.2%})")
+        print(f"    before the meetings [{span_of(fair_before)}]:  "
+              f"{len(fake_fair):,}  ({len(fake_fair) / n:.2%})")
+        print("    The second line is the coincidence rate. A match there cannot")
+        print("    be a prediction, so it is what this method scores on pure")
+        print("    chance against a pool of exactly this size.")
+        if fake_fair:
+            print(f"    excess: x{len(real_fair) / len(fake_fair):.1f} over chance")
+        print()
+
     if not real:
         return 0
     lags = sorted((int(jm[:4]) - int(cm[:4])) * 12 + int(jm[5:7]) - int(cm[5:7])
@@ -242,6 +366,9 @@ def main() -> int:
                     help="term must occur this often across both corpora (TEST B)")
     ap.add_argument("--min-conf", type=int, default=5,
                     help="term must occur in this many conference records (TEST A)")
+    ap.add_argument("--cohort", type=int, default=DEFAULT_COHORT,
+                    help="conference year under test (data/conference.sqlite "
+                         "holds AACR/ASCO 2023 and 2024)")
     args = ap.parse_args()
 
     if not CONF.exists():
@@ -249,31 +376,52 @@ def main() -> int:
 
     if args.papers:
         return papers_test(sqlite3.connect(CONF), sqlite3.connect(INDEX),
-                           args.threshold)
+                           args.threshold, args.cohort)
 
     jcon = sqlite3.connect(INDEX)
+    jlo, jhi = index_span(jcon)
+    # The baseline is the meeting year itself and the answer is the last
+    # calendar year the index reaches, both read off the data. Written as
+    # literals these silently stopped meaning what they said the first time
+    # either the index or the cohort moved.
+    base = (f"{args.cohort}-01", f"{args.cohort}-12")
+    later_year = int(jhi[:4])
+    later = (f"{later_year}-01", f"{later_year}-12")
+    if later_year - args.cohort < 2:
+        print(f"WARNING: the index ends in {later_year}, only "
+              f"{later_year - args.cohort} year(s) after the {args.cohort} "
+              f"meetings. TEST B needs more room than that to see growth.")
+
     base_docs = list(jcon.execute(
-        "SELECT month, title FROM papers WHERE month BETWEEN ? AND ?", BASE))
+        "SELECT month, title FROM papers WHERE month BETWEEN ? AND ?", base))
     # Deterministic half of the same year, used as the null predictor.
     # Splitting on the PMID's last digit is stable across rebuilds; the
     # script must not use randomness it cannot reproduce.
     half_docs = list(jcon.execute(
         "SELECT month, title FROM papers WHERE month BETWEEN ? AND ? "
-        "AND CAST(SUBSTR(pmid,-1) AS INTEGER) < 5", BASE))
+        "AND CAST(SUBSTR(pmid,-1) AS INTEGER) < 5", base))
     later_docs = list(jcon.execute(
-        "SELECT month, title FROM papers WHERE month BETWEEN ? AND ?", LATER))
+        "SELECT month, title FROM papers WHERE month BETWEEN ? AND ?", later))
     all_docs = list(jcon.execute("SELECT month, title FROM papers"))
 
     ccon = sqlite3.connect(CONF)
+    meet_first, meet_last, _, _ = cohort_window(ccon, args.cohort)
     field = "title || ' ' || abstract" if args.abstracts else "title"
-    conf_docs = list(ccon.execute(f"SELECT month, {field} FROM abstracts"))
+    # Only the cohort under test. Left unfiltered this swept in every other
+    # venue in the file — the 2026 congresses included — and then compared
+    # them against a baseline year they postdate.
+    conf_docs = list(ccon.execute(
+        f"SELECT month, {field} FROM abstracts WHERE year=?", (args.cohort,)))
 
     if not base_docs:
-        sys.exit(f"index has no papers in {BASE[0]}..{BASE[1]} — rebuild it first")
+        sys.exit(f"index ({jlo}..{jhi}) has no papers in {base[0]}..{base[1]} — "
+                 f"rebuild it, or pick a cohort inside the index")
 
-    print(f"journal titles {BASE[0]}..{BASE[1]}   {len(base_docs):,}")
-    print(f"journal titles {LATER[0]}..{LATER[1]}   {len(later_docs):,}")
-    print(f"conference records 2024      {len(conf_docs):,}"
+    print(f"journal index span            {jlo}..{jhi}")
+    print(f"journal titles {base[0]}..{base[1]}   {len(base_docs):,}")
+    print(f"journal titles {later[0]}..{later[1]}   {len(later_docs):,}")
+    print(f"conference records {args.cohort} ({meet_first}..{meet_last})  "
+          f"{len(conf_docs):,}"
           + ("  (titles + abstract bodies)" if args.abstracts else "  (titles only)"))
     print()
 
@@ -289,17 +437,23 @@ def main() -> int:
     # ---- TEST A -------------------------------------------------------
     novel = {t for t, c in conf.items()
              if c >= args.min_conf and jbase.get(t, 0) == 0}
-    arrived = {t: jfirst[t] for t in novel if t in jfirst and jfirst[t] > "2024-12"}
-    print("TEST A — conference vocabulary absent from every 2024 journal title")
-    print(f"  terms said at >= {args.min_conf} meeting records, unseen in 2024 journals: {len(novel):,}")
+    arrived = {t: jfirst[t] for t in novel if t in jfirst and jfirst[t] > base[1]}
+    print(f"TEST A — conference vocabulary absent from every {args.cohort} journal title")
+    print(f"  terms said at >= {args.min_conf} meeting records, unseen in "
+          f"{args.cohort} journals: {len(novel):,}")
     print(f"  later appear in a journal title:  {len(arrived):,}"
           f"  ({len(arrived) / max(len(novel), 1):.0%})")
     print(f"  never appear at all:              {len(novel) - len(arrived):,}"
           f"  ({1 - len(arrived) / max(len(novel), 1):.0%})")
     if arrived:
-        delays = sorted(
-            (int(m[:4]) - 2024) * 12 + int(m[5:7]) - 6 for m in arrived.values())
-        print(f"  median delay from the meetings closing: {statistics.median(delays):.0f} months")
+        # Measured from the month the cohort finished depositing, not from a
+        # fixed mid-year month, so the figure means the same thing for a
+        # cohort whose meetings sat in February as for one that ran to August.
+        close_y, close_m = int(meet_last[:4]), int(meet_last[5:7])
+        delays = sorted((int(m[:4]) - close_y) * 12 + int(m[5:7]) - close_m
+                        for m in arrived.values())
+        print(f"  median delay from the meetings closing ({meet_last}): "
+              f"{statistics.median(delays):.0f} months")
     # The two buckets have to be shown, not just counted. A large part of
     # the "never arrived" side is not a failed prediction at all — it is
     # abstract register (`pts with`, `mcrpc`, `real world`) that journal
@@ -336,29 +490,34 @@ def main() -> int:
 
     rho = spearman([(r[0], r[1]) for r in rows])
     rho_null = spearman([(r[3], r[1]) for r in rows])
-    # Terms absent from journal titles in 2024 are mostly register, not
-    # content: `pts with metastatic`, `real world`, `mcrpc`. Abstracts are
-    # written in a compressed clinical shorthand that journal titles never
-    # use, so those terms score maximum conference excess while saying
-    # nothing about where the field went. Requiring one journal title
-    # anywhere in 2024 removes the register layer and leaves the topical one.
+    # Terms absent from the meeting year's journal titles are mostly
+    # register, not content: `pts with metastatic`, `real world`, `mcrpc`.
+    # Abstracts are written in a compressed clinical shorthand that journal
+    # titles never use, so those terms score maximum conference excess while
+    # saying nothing about where the field went. Requiring one journal title
+    # anywhere in the base year removes the register layer and leaves the
+    # topical one.
     grounded = [r for r in rows if jbase.get(r[2], 0) >= 1]
     rho_grounded = spearman([(r[0], r[1]) for r in grounded])
-    print(f"  rho(conference excess, 2024->2026 growth)  = {rho:+.3f}")
-    print(f"  rho(null: half of 2024 itself, same growth) = {rho_null:+.3f}")
-    print(f"  rho, register-controlled (term in >= 1 journal title in 2024,"
-          f" n={len(grounded):,}) = {rho_grounded:+.3f}")
-    print("    Both predictors carry the 2024 rate in their denominator, so a term")
-    print("    that was low in 2024 by chance scores high on excess AND on growth.")
+    print(f"  rho(conference excess, {args.cohort}->{later_year} growth)  "
+          f"= {rho:+.3f}")
+    print(f"  rho(null: half of {args.cohort} itself, same growth) = {rho_null:+.3f}")
+    print(f"  rho, register-controlled (term in >= 1 journal title in "
+          f"{args.cohort}, n={len(grounded):,}) = {rho_grounded:+.3f}")
+    print(f"    Both predictors carry the {args.cohort} rate in their denominator,")
+    print(f"    so a term that was low in {args.cohort} by chance scores high on")
+    print("    excess AND on growth.")
     print("    That artefact alone produces the null figure. Only the gap between")
     print("    the two lines is evidence that the meeting knows anything.")
     print()
 
-    # Stratified estimate: within a band of identical 2024 journal counts,
-    # the shared denominator is held fixed and cannot manufacture anything.
-    print("  Held-fixed check — within bands of equal 2024 journal frequency,")
-    print("  does the conference rate still rank the 2026 journal rate?")
-    print(f"    {'2024 journal titles':>22}  {'terms':>6}  {'rho':>7}")
+    # Stratified estimate: within a band of identical base-year journal
+    # counts, the shared denominator is held fixed and cannot manufacture
+    # anything.
+    print(f"  Held-fixed check — within bands of equal {args.cohort} journal")
+    print(f"  frequency, does the conference rate still rank the {later_year}"
+          f" journal rate?")
+    print(f"    {f'{args.cohort} journal titles':>22}  {'terms':>6}  {'rho':>7}")
     # Bands must be narrow at the top or they defeat their own purpose: an
     # unbounded 31+ band spans 31 to several thousand, so the prevalence
     # the band was meant to hold fixed is still varying inside it, and the
@@ -386,15 +545,18 @@ def main() -> int:
           f"x{math.exp(statistics.median(r[1] for r in bottom)):.2f}")
     print()
 
-    print("  Most over-represented at the meetings, and what the journals did by 2026:")
-    print(f"    {'term':38} {'conf':>5} {'j2024':>6} {'j2026':>6}  growth")
+    print(f"  Most over-represented at the meetings, and what the journals did"
+          f" by {later_year}:")
+    print(f"    {'term':38} {'conf':>5} {f'j{args.cohort}':>6} "
+          f"{f'j{later_year}':>6}  growth")
     for row in sorted(top, key=lambda r: -r[0])[:25]:
         t, growth = row[2], row[1]
         print(f"    {t:38} {conf.get(t,0):5} {jbase.get(t,0):6} "
               f"{jlater.get(t,0):6}  x{math.exp(growth):5.2f}")
 
     print()
-    print("  Biggest journal growth 2024->2026, and whether the meetings saw it:")
+    print(f"  Biggest journal growth {args.cohort}->{later_year}, and whether"
+          f" the meetings saw it:")
     for row in sorted(rows, key=lambda r: -r[1])[:25]:
         t, growth = row[2], row[1]
         seen = f"{conf.get(t,0):5}" if conf.get(t, 0) else "    -"

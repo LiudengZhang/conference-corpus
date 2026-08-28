@@ -252,7 +252,7 @@ def main() -> int:
                     default="europepmc",
                     help="europepmc is the default: OpenAlex meters by daily "
                          "spend and one full pass exhausts the free budget")
-    ap.add_argument("--since", default="2024-01-01")
+    ap.add_argument("--since", default="2023-01-01")
     ap.add_argument("--limit", type=int, default=0, help="first N speakers only")
     args = ap.parse_args()
 

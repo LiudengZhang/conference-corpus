@@ -1342,7 +1342,8 @@ sources:
     notes: >-
       The feed serves 20 items, but it is WordPress and honours `?paged=N`,
       so the same public feed walks backwards to the start of the window:
-      9,497 items across all 32 months, evenly distributed. Headlines and
+      9,497 items across 2024-01..2026-08, evenly distributed — this layer's
+      own span, which is narrower than the corpus's. Headlines and
       summaries only — the articles themselves are metered, which is why
       access is `mixed` and why nothing here should be cited as evidence.
       Broad health news; roughly one item in seven is on this corpus's
@@ -1391,7 +1392,7 @@ sources:
     endpoint: "https://www.aacr.org/blog/feed/"
     notes: >-
       The only narrative record of AACR IO 2026 — meeting recaps land here.
-      WordPress, so `?paged=N` backfills: 324 items across all 32 months.
+      WordPress, so `?paged=N` backfills: 324 items across 2024-01..2026-08.
       Low volume and high hit rate, the inverse of STAT.
   vault: null
   status: harvested
@@ -1420,7 +1421,7 @@ sources:
     endpoint: "https://acir.org/weekly-digests/"
     notes: >-
       Curated expert recap — high signal, low volume. Best news source here.
-      118 digests, all 32 months, ~3.7/month. No feed exists at any path:
+      118 digests across 2024-01..2026-08, ~3.7/month. No feed at any path:
       /feed/, /rss, /atom.xml and /feed/rss2/ are 404,
       /weekly-digests/feed/ is 500, ?feed=rss2 silently serves the
       homepage, and the /wp-json/ routes 404 because the site is not the
@@ -1787,7 +1788,9 @@ sources:
       Dated on studyFirstPostDate. Trap: query.cond matches free text across a
       record's entire condition list, so a COPD rehabilitation study that
       lists "Lung Neoplasms" fourth comes back as oncology. Every row carries
-      an onc_conditions flag instead; 16,145 of 18,139 clear it.
+      an onc_conditions flag instead. Widened to 2023-01 on 2026-08-27:
+      23,868 trials over 44 months, of which 16,145 of the original 18,139
+      cleared the flag.
   vault: null
   status: harvested
 

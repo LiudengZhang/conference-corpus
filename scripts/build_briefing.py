@@ -122,6 +122,35 @@ def months_in_index(con: sqlite3.Connection) -> list[str]:
     return [r[0] for r in con.execute("SELECT DISTINCT month FROM papers ORDER BY month")]
 
 
+def journal_gaps(con: sqlite3.Connection):
+    """(months in the index, journals that read, gap records worst first).
+
+    A gap record is (journal, months missing, papers contributed, the missing
+    months).
+
+    This used to be a remembered list in the warning prose below — *Nucleic
+    Acids Research* 2025-12, *Bioinformatics* 2024-04 and three more — which
+    was true of the window it was written against and quietly false of every
+    window after it. Survey the index instead: the gaps move whenever the
+    index grows, and a warning that recites last year's gaps teaches a reader
+    to distrust exactly the wrong months.
+    """
+    months = months_in_index(con)
+    present: dict[str, set[str]] = collections.defaultdict(set)
+    totals: collections.Counter[str] = collections.Counter()
+    for journal, m, n in con.execute(
+            "SELECT journal, month, COUNT(*) FROM papers GROUP BY journal, month"):
+        present[journal].add(m)
+        totals[journal] += n
+    gaps = []
+    for journal, seen in present.items():
+        missing = {m for m in months if m not in seen}
+        if missing:
+            gaps.append((journal, len(missing), totals[journal], missing))
+    gaps.sort(key=lambda g: (-g[1], g[0]))
+    return months, sorted(present), gaps
+
+
 def section_volume(con: sqlite3.Connection, month: str) -> str:
     total = con.execute("SELECT COUNT(*) FROM papers WHERE month=?", (month,)).fetchone()[0]
     by_dom = dict(
@@ -155,11 +184,11 @@ def section_volume(con: sqlite3.Connection, month: str) -> str:
             drift[d] = (cur - median) / median * 100
 
     # Say how many journals actually contributed, not how many are on the
-    # list. Every briefing said "33 journals" for a year. Nature Machine
-    # Intelligence contributes 64 papers across the whole 32-month corpus
-    # and is absent from fifteen months of it, because PubMed indexes only
-    # the deposited fraction of it — so the roster and the reading are not
-    # the same number, and it was the roster that got printed.
+    # list. Every briefing said "33 journals" for a year, when several of
+    # them deposit nothing in a given month and one — see the gap survey
+    # below — is absent from about half of them, because PubMed indexes only
+    # the deposited fraction. The roster and the reading are not the same
+    # number, and it was the roster that got printed.
     n_journals = len(by_j)
     lines = [
         "## 1. What was read",
@@ -176,17 +205,33 @@ def section_volume(con: sqlite3.Connection, month: str) -> str:
     swung = {d: v for d, v in drift.items() if abs(v) >= 25}
     if swung:
         detail = ", ".join(f"{d} {v:+.0f}%" for d, v in sorted(swung.items()))
+        # Name the journals that are actually missing from THIS month, and
+        # size the problem from the current index. The previous version
+        # recited five journal-months from the window it was written against
+        # and went on reciting them after the window moved, which trains a
+        # reader to distrust the wrong months.
+        months, reading, gaps = journal_gaps(con)
+        here = sorted(j for j, _, _, missing in gaps if month in missing)
+        worst = [(j, n, tot) for j, n, tot, _ in gaps[:2]]
         lines += [
             f"!!! warning \"Volume swing against the median month: {detail}\"",
-            "    Check the source before reading anything into this. Two benign causes "
-            "account for most of these. `bioinfo` every January carries the Nucleic "
-            "Acids Research database issue and runs high. And several journals simply "
-            "deposit nothing in some months — queried directly, PubMed returns zero "
-            "*Nucleic Acids Research* research articles dated 2025-12, and zero "
-            "*Bioinformatics* in 2024-04, 2025-01, 2025-04 and 2026-03. Those holes are "
-            "in the source and are reproduced exactly by re-running the harvest, so a "
-            "swing here is not evidence that a field went quiet and is not usually "
-            "evidence that the pipeline broke either.",
+            "    Check the source before reading anything into this. Two benign "
+            "causes account for most of these. `bioinfo` every January carries the "
+            "Nucleic Acids Research database issue and runs high. And several "
+            "journals simply deposit nothing in some months: across the "
+            f"{len(months)} months read, {len(gaps)} of {len(reading)} journals "
+            "are absent from at least one"
+            + (f", worst being "
+               + " and ".join(f"*{j}* ({n} months missing, {tot:,} papers in total)"
+                              for j, n, tot in worst)
+               if worst else "")
+            + ". "
+            + (f"This month is missing {', '.join('*' + j + '*' for j in here)}. "
+               if here else "Every journal on the roster contributed this month. ")
+            + "Queried directly, PubMed returns zero for those journal-months too "
+            "— the holes are in the source, reproduced exactly by re-running the "
+            "harvest. So a swing here is not evidence that a field went quiet, and "
+            "is not usually evidence that the pipeline broke either.",
             "",
         ]
     top = ", ".join(f"{j} {c}" for j, c in by_j[:6])

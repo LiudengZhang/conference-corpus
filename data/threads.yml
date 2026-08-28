@@ -120,7 +120,7 @@ threads:
     measured_series: >-
       Both series above were produced by readers, not by a rule, and neither can
       be compared across months. On 2026-08-26 scripts/scan_titles.py was run
-      over all 32 months with one written pattern set, giving the first
+      over all months read with one written pattern set, giving the first
       comparable series this thread has ever had. As a share of general+bioinfo
       titles: 2024 is 1 in 210 (40 hits / 8,413), 2025 is 1 in 189 (51 / 9,661),
       2026-01..08 is 1 in 102 (75 / 7,633). Aggregate by year, because the
@@ -184,9 +184,12 @@ threads:
       the first. Both are superseded by `registry_check` below, which tested
       the first sentence against the trial registry rather than the literature.
     registry_check: >-
-      Checked 2026-08-27 against data/regulatory.sqlite (ct_trials, 16,145
-      oncology trials first posted 2024-01..2026-08), which did not exist when
-      the claim was written. Rule, fixed before counting: phases in PHASE1 /
+      Checked 2026-08-27 against data/regulatory.sqlite (ct_trials), which did
+      not exist when the claim was written. First run covered 2024-01..2026-08;
+      the table was widened to 2023-01..2026-08 the same day and the check
+      re-run over 5,666 phase-1 oncology trials in 44 months. Both runs agree
+      on the Tier C result below. They do not agree on the `denominator`
+      field's list of zeroes — see `retraction`. Rule, fixed before counting: phases in PHASE1 /
       PHASE1;PHASE2 / EARLY_PHASE1, onc_conditions=1, binned on
       studyFirstPostDate; target implicated in `title` or `interventions` by
       name or by agent INN; every non-PD-1 hit read individually and classified
@@ -195,11 +198,11 @@ threads:
       checkpoint-context sentences in the AACR/ASCO 2024 abstracts, plus a sweep
       of every "anti-X / targeting X" string in the registry's own phase-1 rows.
       THE CLAIM SURVIVES, NARROWLY AND ONLY AS STATED ABOUT NEW TARGETS. Of the
-      seventeen checkpoint targets this corpus first named in 2024-01..2026-08 —
+      seventeen checkpoint targets this corpus first named inside its window —
       IGSF8, ITPRIPL1, BTN1A1, SLC6A6, LRIG1, Siglec-10, PSGL-1, CISH, CLEVER-1,
       CD300e, TIPE2, NEAT1, CD161/LLT1, GARP, VSIG4, TIM-4, Siglec-E — zero
       entered a phase 1 in 2025. The tier produced four phase-1 registrations in
-      32 months: LLT1 (NCT06451497, Zumutor, 2024-06) and CD200AR-L
+      44 months: LLT1 (NCT06451497, Zumutor, 2024-06) and CD200AR-L
       (NCT06305910, 2024-03); GARP (NCT06964737, Ohio State, 2025-05); and
       bexmarilimab twice in 2026. Unchanged when binned on start_date.
       ONE TRIAL SITS ON THE LINE. NCT06964737 is an anti-GARP CAR-T posted
@@ -215,17 +218,49 @@ threads:
       rather than a blockade target, the phase-1 pipeline for EVERY non-PD-1
       co-inhibitory checkpoint — prior wave and new together — is 6 trials in
       2024, 6 in 2025 and 4 in 2026-to-August, against 175 PD-1 phase 1s in 2025
-      alone. VISTA, NKG2A, IDO1, CD39, HPK1, Siglec-15, TREM2, CD96, B7-H4 and
-      MERTK each returned zero phase-1 rows across all 32 months. The emptiness
-      is a property of the whole window, not of 2025.
+      alone. THE SECOND SENTENCE OF THIS FIELD WAS WRONG AND IS RETRACTED. It
+      read: "VISTA, NKG2A, IDO1, CD39, HPK1, Siglec-15, TREM2, CD96, B7-H4 and
+      MERTK each returned zero phase-1 rows across all 32 months." Five of the
+      ten have phase-1 trials, and they were missed two different ways. See
+      `retraction` below. The surviving claim is the ratio, not the zeroes.
+    retraction: >-
+      Re-run 2026-08-27 against 5,666 phase-1 oncology trials over 44 months.
+      Two mechanisms, and only one of them is about the window.
+      THE WINDOW: VISTA had three phase-1 starts in 2023 alone — SNS-101
+      (NCT05864144), KVA12123 in a trial actually named VISTA-101
+      (NCT05708950), and PMC-309 (NCT05957081). NKG2A had two, both S095029
+      (NCT06116136, NCT06162572). All five predate 2024-01 and were invisible
+      to a table that started there. The earlier check had already guessed this
+      about NKG2A and recorded it as a caveat; extending the trial table to
+      2023-01 confirmed it.
+      THE FIELDS, WHICH IS THE WORSE ONE: IDO1 (NCT07732413, 2026-07), TREM2
+      (EOS006215, NCT06877533, 2025-03) and B7-H4 (NCT06336707, 2024-03) all
+      sit INSIDE the original 2024-01..2026-08 window and were missed anyway,
+      because the target is named only in `brief_summary` — a field the harvest
+      did not store when the claim was made. So this was not a window error at
+      all. It was a claim about the world made from the columns that happened
+      to be in the table.
+      CD39 stays at zero. Its only hit, NCT05902520, uses CD39 to select
+      tumour-reactive TIL — a biomarker, not a target — which is the kind of
+      hit that a keyword count would have scored and a reader catches. HPK1,
+      Siglec-15, CD96 and MERTK remain genuinely zero across 44 months.
+      The Tier C result is unchanged and has now survived a second test: no
+      newly nominated checkpoint entered a phase 1 in 2025, and the widened
+      window adds no 2023 Tier C registrations either.
     blind_spot: >-
-      Confirmed only up to a 42% target-opaque residue. Of 1,473 phase-1
-      oncology trials first posted in 2025, 614 name only a bare code in title
-      and interventions, 69 of them immune-therapeutic (IPN01203, DT-7012,
-      BNT329, CER-1236, KK2845 and others). A first-in-human antibody against a
-      2025-nominated checkpoint registered as XYZ-101 is invisible to this
-      method — the same failure mode that hides MK-7684 behind a code name.
-      Storing armGroups and briefSummary in the harvest would close it.
+      REDUCED FROM 42% TO 34%, NOT CLOSED. Storing brief_summary and the
+      arm-group fields on 2026-08-27 closed 112 of 612 opaque trials; of
+      1,473 phase-1 oncology trials first posted in 2025, 500 still name
+      nothing but a bare code. brief_summary did almost all the work (173
+      trials legible on that field alone) and arm_interventions did none,
+      being fully redundant with the flat interventions column.
+      Twenty survivors were read individually and are genuinely opaque —
+      SHR-4394, HS387, BI 765049, MB0151, KK2845, MK-4716 — code-named
+      programmes whose summaries state only safety, tolerability and PK. So a
+      first-in-human antibody against a newly nominated checkpoint can still
+      hide here, and one third of the 2025 phase-1 field is still dark. The
+      retraction above is what that darkness looks like when it is measured
+      rather than assumed away.
 
   - id: immunotherapy-resistance
     claim: >-
