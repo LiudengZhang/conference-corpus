@@ -88,9 +88,13 @@ threads:
       the arrival of "virtual cell" in these journals at 2025-11, twelve months
       after the Cell challenge. Both halves were wrong. The phrase is in a Nature
       Biotechnology title in 2025-04, two months BEFORE the challenge launched in
-      2025-06, and again in Cell in 2025-08; single-cell foundation models were
-      evaluated as a class in 2025-04 and 2025-06. Vocabulary and critique have
-      been co-present since spring 2025.
+      2025-06, and again in Cell in 2025-08. The clause that used to follow —
+      "single-cell foundation models were evaluated as a class in 2025-04 and
+      2025-06" — was ONE STUDY COUNTED TWICE: the 2025-06 item is a Nature
+      Methods research highlight of the Genome Biology evaluation already
+      carded in 2025-04. Two months of independent co-presence were one month
+      and an echo. Vocabulary and critique are still co-present since spring
+      2025, on the remaining evidence.
     dating_caution: >-
       Every "first appearance" claim in this corpus is bounded by which months
       were read. Three moved when 2025-01..07 was backfilled; all moved AGAIN
@@ -411,7 +415,32 @@ threads:
   - id: clinical-practice
     claim: >-
       Tracked meetings predict practice-changing readouts months before they publish.
-    opened: 2024-03
+    not_cardable: >-
+      `opened` is null because this thread now has no cards, and that is
+      correct rather than missing. It read 2024-03 until 2026-08-27, anchored
+      on the single primary trial report among its eight — a journal title
+      setting the floor of a thread whose whole justification is that journal
+      titles cannot evidence it. Note that check_corpus.py PASSES a thread with
+      no cards: the `opened` check skips when there is nothing to compute
+      from, so a stale value here would have survived indefinitely. That is the
+      silent-pass this file's header warns about, met in the wild.
+      THIS THREAD CANNOT BE EVIDENCED BY A JOURNAL CARD, IN EITHER DIRECTION,
+      and eight cards were written for it anyway before that was noticed. Every
+      one was `refutes`, and reading them against their abstracts on 2026-08-27
+      showed they track something else entirely — "the readout says do less" or
+      "this trial was negative". Two report positive findings (less frequent
+      mammograms pose no greater risk; GLP-1 drugs do not raise aspiration
+      risk) and were still carded as refutations, because the reader was
+      scoring the direction of clinical advice rather than the thread's claim.
+      No paper among them mentions a meeting. A title or abstract carries no
+      presentation history, so a podium-to-paper interval is not visible in the
+      journal index at any level of reading care — which is also why four
+      independent readers wrote no 2023 card for this thread.
+      The thread is measured, but by scripts/lead_time.py rather than by cards:
+      see `measured` and `negative_result` below. Its cards are being removed
+      rather than re-stanced, because a mis-assigned card is not a wrong answer
+      to this thread's question, it is an answer to a different question.
+    opened: null
     note: >-
       The corpus's self-test, not a claim about biology. It was measured for the
       first time on 2026-08-26 by scripts/lead_time.py, against AACR and ASCO

@@ -190,13 +190,43 @@ def section_volume(con: sqlite3.Connection, month: str) -> str:
     # the deposited fraction. The roster and the reading are not the same
     # number, and it was the roster that got printed.
     n_journals = len(by_j)
-    lines = [
-        "## 1. What was read",
-        "",
-        f"**{total:,} research articles** from {n_journals} of the 33 journals on "
-        f"the roster, filtered to `journal article` and excluding reviews, "
-        f"editorials, news, comment and case reports.",
-        "",
+    # PubMed types news, correspondence and front matter identically as
+    # "Journal Article", so the publication-type filter cannot exclude them and
+    # the raw count is not a count of research articles. Having an abstract is
+    # the only separator, measured at 22.7% of the whole index and 35% of
+    # `general`. Lead with the corrected figure and show what it removed.
+    research = con.execute(
+        "SELECT SUM(has_abstract), COUNT(has_abstract) FROM papers WHERE month=?",
+        (month,)).fetchone()
+    n_research, n_known = (research or (None, 0))
+    lines = ["## 1. What was read", ""]
+    if n_research is not None and n_known == total and total:
+        dropped_fm = total - n_research
+        lines += [
+            f"**{n_research:,} research articles** from {n_journals} of the 33 "
+            f"journals on the roster.",
+            "",
+            f"A further **{dropped_fm:,}** records ({dropped_fm/total*100:.0f}% of "
+            f"the {total:,} this month's harvest returned) carry no abstract and "
+            f"are not research: news, correspondence, editor highlights and "
+            f"obituaries. PubMed types them `Journal Article` and nothing else, "
+            f"so the publication-type filter cannot see them — across the whole "
+            f"index they are 22.7% of it and 35% of `general`, and 3,801 of "
+            f"them are JAMA. Every count below is over the full harvest and is "
+            f"inflated by this; the figure above is not.",
+            "",
+        ]
+    else:
+        lines += [
+            f"**{total:,} records** from {n_journals} of the 33 journals on "
+            f"the roster, filtered to `journal article` and excluding reviews, "
+            f"editorials, news, comment and case reports. Abstracts have not "
+            f"been harvested in this checkout, so the share of these that are "
+            f"news and front matter — about a fifth, index-wide — is not known "
+            f"here and this number is an overcount.",
+            "",
+        ]
+    lines += [
         "| " + " | ".join(d.capitalize() for d in DOMAINS) + " |",
         "|" + "---|" * len(DOMAINS),
         "| " + " | ".join(f"{by_dom.get(d, 0):,}" for d in DOMAINS) + " |",

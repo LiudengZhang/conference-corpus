@@ -49,7 +49,8 @@ DOMAINS = {"general", "cancer", "immune", "bioinfo", "sysbio"}
 SCHEMA = """
 DROP TABLE IF EXISTS papers;
 CREATE TABLE papers(pmid TEXT PRIMARY KEY, pubdate TEXT, month TEXT,
-                    journal TEXT, domain TEXT, authors TEXT, title TEXT);
+                    journal TEXT, domain TEXT, authors TEXT, title TEXT,
+                    has_abstract INTEGER);
 CREATE INDEX i_month ON papers(month);
 CREATE INDEX i_journal ON papers(journal);
 CREATE INDEX i_domain ON papers(domain);
@@ -105,8 +106,34 @@ def main() -> int:
     INDEX.parent.mkdir(parents=True, exist_ok=True)
     con = sqlite3.connect(INDEX)
     con.executescript(SCHEMA)
-    con.executemany("INSERT INTO papers VALUES (?,?,?,?,?,?,?)", seen.values())
+    con.executemany("INSERT INTO papers VALUES (?,?,?,?,?,?,?,NULL)", seen.values())
     con.commit()
+
+    # `has_abstract` is the only signal that separates a research article from
+    # the news, correspondence and front matter PubMed types identically as
+    # "Journal Article" and nothing else. Measured 2026-08-27 over the whole
+    # index: 22.7% of it has no abstract, 35.0% of `general`, and 3,801 of
+    # JAMA's rows alone — "CDC Recommends Single-Visit Hepatitis C Testing" is
+    # in this corpus as a research article. No publication-type filter reaches
+    # them, because PubMed's own metadata is what is wrong.
+    #
+    # Filled from data/abstracts.sqlite when it exists, and left NULL when it
+    # does not, so a fresh clone gets an index that says "unknown" rather than
+    # one that quietly claims everything is a paper.
+    abstracts = INDEX.parent / "abstracts.sqlite"
+    if abstracts.exists():
+        con.execute("ATTACH ? AS ab", (str(abstracts),))
+        n = con.execute("""UPDATE papers SET has_abstract = (
+                SELECT CASE WHEN COALESCE(a.abstract,'') = '' THEN 0 ELSE 1 END
+                FROM ab.abstracts a WHERE a.pmid = papers.pmid)""").rowcount
+        con.commit()
+        known, research = con.execute(
+            "SELECT COUNT(has_abstract), SUM(has_abstract) FROM papers").fetchone()
+        print(f"has_abstract        {known:,} known, {research:,} with an abstract "
+              f"({(known-research)/known*100:.1f}% front matter)")
+        con.execute("DETACH ab")
+    else:
+        print("has_abstract        left NULL — no data/abstracts.sqlite")
 
     print(f"harvested rows      {raw:,}")
     print(f"out of window       {dropped:,}  ({', '.join(f'{m} {c}' for m, c in sorted(per_month_dropped.items()))})")

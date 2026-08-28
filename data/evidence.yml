@@ -83,7 +83,7 @@ evidence:
   date: 2026-01-01
   source: nature
   threads: [next-gen-checkpoints]
-  stance: refutes
+  stance: neutral
   type: mechanism
   claim: >-
     The inhibitory PD-1 axis maintains high-avidity stem-like CD8 T cells; blockade
@@ -91,13 +91,20 @@ evidence:
   title: >-
     Inhibitory PD-1 axis maintains high-avidity stem-like CD8(+) T cells
   companions: ["41449151", "41611245"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral. The claim is faithful to the abstract,
+    but the paper is about the PD-1 axis itself, not about a target beyond
+    PD-1/CTLA-4, so it cannot refute a claim about second-generation targets -
+    if anything it motivates them. It was counting on the refutes side of a
+    thread it does not address.
 
 - id: ev-2026-01-41315757
   pmid: "41315757"
   date: 2026-01-01
   source: nature-medicine
-  threads: [neuro-immune-microbiome-axis]
-  stance: supports
+  threads: []
+  stance: neutral
   type: mechanism
   claim: >-
     HIF2-driven cachexia makes wasting a druggable tumour-intrinsic syndrome rather than
@@ -105,6 +112,13 @@ evidence:
   title: >-
     Targeting of HIF2-driven cachexia in kidney cancer
   companions: ["41429981"]
+  revised: 2026-08-27
+  revised_note: >-
+    Thread removed and stance set neutral. The abstract reports a HIF2->PTHLH
+    endocrine mechanism for hypercalcaemia and cachexia and two drugs that
+    relieve it; there is no neural, microbial or lymphoid-structure content
+    anywhere in it, so it cannot bear on that thread's claim about control of
+    the tumour microenvironment.
 
 - id: ev-2026-01-41315816
   pmid: "41315816"
@@ -212,11 +226,21 @@ evidence:
   stance: refutes
   type: benchmark
   claim: >-
-    Leading LLMs reach only ~48-50% balanced accuracy on 8,432 curated TF-target
-    interactions - near chance.
+    Four LLMs queried on 8,432 curated TF-target interactions reach 48-50%
+    balanced accuracy under single-turn prompting - near chance - rising
+    towards 70% only with multi-turn prompting and after excluding pairs of
+    unknown regulation type; the authors read the result as usable support for
+    regulatory biology.
   title: >-
     Benchmarking large language models for identifying transcription factor regulatory
     interactions
+  revised: 2026-08-27
+  revised_note: >-
+    Claim corrected; stance unchanged. The card quoted only the near-chance
+    single-turn numbers and omitted both the multi-turn and filtered results
+    and the paper's own conclusion that the models have potential. The
+    negative reading survives on the headline condition, but the card stated
+    half the abstract.
 
 - id: ev-2026-01-41491253
   pmid: "41491253"
@@ -308,15 +332,23 @@ evidence:
   date: 2026-01-21
   source: cell-systems
   threads: [foundation-models]
-  stance: refutes
-  type: benchmark
+  stance: neutral
+  type: meta
   claim: >-
-    AlphaFold-class predictors fail on flexible and disordered interfaces; reported
-    success does not generalize.
+    A Cell Systems preview of two other papers, reporting that modelling
+    protein dynamics IMPROVES binding-site prediction for flexible systems; it
+    presents no failure of AlphaFold-class predictors of its own.
   title: >-
     Predicting protein interfaces in the age of AlphaFold: Why dynamics and disorder
     remain a challenge
   companions: ["41495833", "41315816", "41491253"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral, type benchmark->meta, claim rewritten.
+    The card asserted that AlphaFold-class predictors fail on disordered
+    interfaces and that reported success does not generalize. The record is a
+    preview of two studies whose message is the opposite - accuracy improves -
+    and the card was written from a subtitle that names a challenge.
 
 - id: ev-2026-01-41338193
   pmid: "41338193"
@@ -427,13 +459,22 @@ evidence:
   date: 2026-02-01
   source: nature-immunology
   threads: [neuro-immune-microbiome-axis]
-  stance: supports
+  stance: neutral
   type: mechanism
   claim: >-
-    Serotonin drives chemoresistance.
+    A Nature Immunology research highlight titled "Serotonin drives
+    chemoresistance": single author, no abstract, and the primary study it
+    summarises is not in the index, so nothing about the finding can be
+    checked from this record.
   title: >-
     Serotonin drives chemoresistance
   companions: ["41639447", "41650969"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed supports->neutral. The card restated the four-word title of
+    an editor-written research highlight as if it were a finding. The file's
+    own schema says a claim is not a title; here there was nothing else to
+    read.
 
 - id: ev-2026-02-41639447
   pmid: "41639447"
@@ -500,14 +541,21 @@ evidence:
   date: 2026-02-06
   source: cancer-discovery
   threads: [interception]
-  stance: refutes
+  stance: neutral
   type: mechanism
   claim: >-
-    Colorectal precursor lesions arise from convergence of distinct mutant clones,
-    rewriting the clonal-origin model.
+    A Cancer Discovery research-watch restatement of 41291291 (Nature, five
+    days earlier) on the polyclonal origin of colorectal lesions, which is
+    carded separately on this thread; no independent data.
   title: >-
     Colorectal Lesions Arise from Convergence of Distinct Mutant Clones
   companions: ["41291291", "41380103"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral. No abstract and no named authors in the
+    index: this is a research-watch item restating 41291291, already carded on
+    the same thread and already listed here as a companion. Counting both put
+    one study on the interception curve twice.
 
 - id: ev-2026-02-41650969
   pmid: "41650969"
@@ -530,13 +578,23 @@ evidence:
   source: jitc
   threads: [next-gen-checkpoints]
   stance: supports
-  type: mechanism
+  type: meta
   claim: >-
-    Engineered macrophages address the haematotoxicity that sank CD47 agents.
+    A JITC commentary on Du et al.: an Arg1-promoter-driven CD47 CAR
+    macrophage regressed breast and gastric tumours in mice with minimal
+    erythrocyte toxicity. Secondary reporting of another group's preclinical
+    work, not primary data.
   title: >-
     Engineering macrophages for effective and safe targeting of CD47 cancer cells in the
     tumor microenvironment
   companions: ["41735000"]
+  revised: 2026-08-27
+  revised_note: >-
+    Type mechanism->meta and claim corrected. The card read as primary
+    evidence that engineered macrophages solve the haematotoxicity which sank
+    the CD47 antibodies; the record is a commentary describing another group's
+    mouse work, and the comparison with the failed antibody programmes is the
+    card's inference rather than the paper's result.
 
 - id: ev-2026-02-41735000
   pmid: "41735000"
@@ -558,15 +616,24 @@ evidence:
   date: 2026-02-25
   source: genome-biology
   threads: [ctdna-mrd]
-  stance: refutes
+  stance: neutral
   type: refutation
   claim: >-
-    Published cfDNA-methylation cancer classifiers carry demographic bias that inflates
-    apparent performance.
+    DeBias removes demographic-bias subspaces from cell-free DNA methylation
+    features and improves cancer-detection performance for minority
+    populations, validated in independent cohorts; the abstract makes no claim
+    about the performance of published classifiers.
   title: >-
     Reducing demographic bias in biomedical machine learning for cancer detection using
     cfDNA methylation
   companions: ["41125211"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral and claim corrected. The card said
+    published cfDNA-methylation classifiers carry bias that "inflates apparent
+    performance"; the abstract says demographic imbalance degrades performance
+    for minority populations, and reports a correction that improves it.
+    Nothing in it bears on ctDNA as a treatment-guiding biomarker.
 
 - id: ev-2026-02-41742311
   pmid: "41742311"
@@ -627,7 +694,7 @@ evidence:
   date: 2026-03-01
   source: jco
   threads: [next-gen-checkpoints]
-  stance: refutes
+  stance: neutral
   type: clinical-readout
   claim: >-
     BR.31: adjuvant durvalumab gives no disease-free survival benefit in resected NSCLC at
@@ -635,6 +702,13 @@ evidence:
   title: >-
     Adjuvant Durvalumab in Completely Resected Early-Stage Non-Small Cell Lung Cancer
   companions: ["41529214", "41698381"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral. The result is a genuine null and the
+    claim is accurate, but durvalumab is PD-L1 blockade: the trial tests the
+    existing generation in a new setting and cannot bear on a claim about
+    targets beyond PD-1/CTLA-4 in either direction. It was counting on the
+    refutes side of that thread.
 
 - id: ev-2026-03-41535459
   pmid: "41535459"
@@ -684,22 +758,39 @@ evidence:
   stance: supports
   type: mechanism
   claim: >-
-    Collective intelligence for AI-assisted chemical synthesis.
+    MOSAIC, 2,498 specialized LLM experts trained over millions of reaction
+    protocols, delivers executable synthesis protocols at a 71% success rate,
+    realising more than 35 new compounds and finding reaction methodology
+    absent from its training.
   title: >-
     Collective intelligence for AI-assisted chemical synthesis
   companions: ["41742414", "41708847"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim corrected; stance unchanged. The claim was the title verbatim and
+    recorded no result.
 
 - id: ev-2026-03-41559415
   pmid: "41559415"
   date: 2026-03-01
   source: nature-medicine
   threads: [foundation-models]
-  stance: refutes
+  stance: neutral
   type: benchmark
   claim: >-
-    MedHELM shows exam-style medical QA does not measure clinical capability.
+    MedHELM benchmarks nine frontier LLMs over 121 clinician-validated tasks
+    in five categories; reasoning models won 66% of comparisons and Claude 3.5
+    Sonnet matched them at 15% lower cost. The exam-versus-practice gap is the
+    paper's premise, not its result.
   title: >-
     Holistic evaluation of large language models for medical tasks with MedHELM
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral and claim corrected. The card carried the
+    abstract's opening premise - that licensing-exam scores do not reflect
+    practice - as though it were the finding. What is reported is a model
+    comparison on realistic tasks, and it is not negative; the framework is
+    offered for evidence-based selection of medical AI.
 
 - id: ev-2026-03-41698381
   pmid: "41698381"
@@ -778,19 +869,29 @@ evidence:
   date: 2026-03-09
   source: cancer-cell
   threads: [neuro-immune-microbiome-axis]
-  stance: refutes
+  stance: supports
   type: mechanism
   claim: >-
-    IGLL5+ B cells disassemble TLS, inverting the assumption that B cells build them.
+    IGLL5+ B cells bind high endothelial venules and disassemble tertiary
+    lymphoid structures, impairing immunotherapy response; blocking IGLL5
+    preserves TLS and improves immunotherapy in PDX and pan-cancer models. It
+    inverts the assumption that B cells build TLS, not the thread's claim.
   title: >-
     B cells disrupt tertiary lymphoid structure formation and suppress anti-tumor immunity
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. The card's `refutes` was aimed at a
+    field assumption about B cells, not at this thread's claim. What the paper
+    shows is lymphoid-structure integrity governing immunotherapy response and
+    made druggable, which is the thread's claim, and it was recorded against
+    it.
 
 - id: ev-2026-03-41529214
   pmid: "41529214"
   date: 2026-03-10
   source: jco
   threads: [next-gen-checkpoints]
-  stance: refutes
+  stance: neutral
   type: clinical-readout
   claim: >-
     LU005: adding atezolizumab to chemoradiation does not improve survival in limited-
@@ -799,19 +900,35 @@ evidence:
     Chemoradiation ± Atezolizumab in Limited-Stage Small Cell Lung Cancer: Results of NRG
     Oncology/Alliance LU005
   companions: ["41529222", "41698381"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral. As with BR.31 above: a genuine null,
+    accurately carded, but atezolizumab is PD-L1 blockade and the trial tests
+    the existing generation with chemoradiation, so it cannot bear on a claim
+    about targets beyond PD-1/CTLA-4.
 
 - id: ev-2026-03-41653917
   pmid: "41653917"
   date: 2026-03-11
   source: cell-genomics
   threads: [ctdna-mrd]
-  stance: refutes
-  type: refutation
+  stance: neutral
+  type: new-modality
   claim: >-
-    Prior cfDNA end-motif and fragmentomic analyses used partial end representations,
-    biasing published classifiers.
+    Single-stranded "2-end" and "4-end" sequencing recovers the native 3'
+    cfDNA end motifs that standard protocols modify, giving AUC 0.95-0.97 for
+    hepatocellular carcinoma detection; the abstract makes no claim about
+    published classifiers.
   title: >-
     Holistic determination of ends of cfDNA molecules
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral, type refutation->new-modality, claim
+    corrected. The card said prior fragmentomics work was biased; the abstract
+    says 3' ends were overlooked for a protocol reason and adds a method that
+    detects cancer better. A method advance was carded as a refutation of the
+    work it builds on, and detection performance does not bear on ctDNA as a
+    treatment-guiding biomarker in either direction.
 
 - id: ev-2026-03-41818359
   pmid: "41818359"
@@ -917,13 +1034,22 @@ evidence:
   date: 2026-04-01
   source: cancer-discovery
   threads: [neuro-immune-microbiome-axis]
-  stance: supports
+  stance: neutral
   type: mechanism
   claim: >-
-    Sensory neurons drive a fibrotic immune microenvironment in breast cancer.
+    A Cancer Discovery research-watch restatement of 41650969 (Cell,
+    2026-02-19) on sensory neurons and the fibrotic breast tumour
+    microenvironment, which is carded separately on this thread; no
+    independent data.
   title: >-
     Sensory Neurons Drive a Fibrotic Immune Microenvironment in Breast Cancer
   companions: ["41735533", "41785384", "41416996", "41606121"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed supports->neutral. No abstract and no named authors: a
+    research-watch item summarising the Cell sensory-neuron/ECM breast paper
+    already carded two months earlier. Counted as support it made one study
+    look like two on the thread with the largest supports side in the corpus.
 
 - id: ev-2026-04-41735533
   pmid: "41735533"
@@ -956,13 +1082,20 @@ evidence:
   date: 2026-04-01
   source: cancer-discovery
   threads: [neuro-immune-microbiome-axis]
-  stance: supports
+  stance: neutral
   type: mechanism
   claim: >-
-    Sympathetic nerves set baseline immunosurveillance in skin.
+    A Cancer Discovery research-watch restatement of 41616781 (Cell,
+    2026-03-05) on sympathetic nerves and skin immunosurveillance, which is
+    carded separately on this thread; no independent data.
   title: >-
     Sympathetic Nerves Regulate Immunosurveillance in the Skin
   companions: ["41735533", "41677804", "41416996", "41606121"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed supports->neutral. Same pattern as 41677804: a research-
+    watch echo of a Cell paper already carded on this thread, counted as a
+    second supporting observation.
 
 - id: ev-2026-04-41813900
   pmid: "41813900"
@@ -1012,38 +1145,63 @@ evidence:
   stance: supports
   type: clinical-readout
   claim: >-
-    First-in-human in vivo generation of anti-BCMA CAR-T cells in relapsed/refractory
-    myeloma.
+    In vivo generation of anti-BCMA CAR-T with ESO-T01 in five heavily
+    pretreated myeloma patients, without leukapheresis, ex vivo manufacture or
+    lymphodepletion: four of five responded, three stringent complete
+    remissions, all evaluable responders MRD-negative by day 60. The trial was
+    stopped early and every patient had a grade 3 or higher adverse event.
   title: >-
     In vivo generation of anti-BCMA CAR-T cells in relapsed or refractory multiple
     myeloma: a phase 1 study
   companions: ["41851456"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim corrected; stance unchanged. "First-in-human" is contradicted by the
+    abstract's own opening sentence, which cites existing clinical experience
+    with in vivo CAR-T generation; the card also omitted that the trial
+    stopped early after five patients.
 
 - id: ev-2026-04-41912799
   pmid: "41912799"
   date: 2026-04-01
   source: nature-methods
   threads: [foundation-models]
-  stance: refutes
+  stance: supports
   type: benchmark
   claim: >-
-    An ensemble's worth of ESM capability distils into one small model, undercutting
-    scale-first assumptions.
+    Co-distilling ESM protein language models against each other reaches
+    state-of-the-art variant-effect prediction from raw sequence alone,
+    without structure, homology or population-genetics inputs, and quantifies
+    variant severity on continuous clinical phenotypes in biobank data.
   title: >-
     Compressing the collective knowledge of ESM into a single protein language model
   companions: ["41922570", "41863324", "40500472"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports and claim corrected. The card read the
+    paper as distilling an ensemble into a small model and undercutting scale;
+    the abstract states the opposite case - it challenges the prevailing view
+    that sequence-only PLMs are intrinsically limited and shows they suffice.
+    Nothing in it concerns model size.
 
 - id: ev-2026-04-41918354
   pmid: "41918354"
   date: 2026-04-01
   source: cancer-discovery
   threads: [interception]
-  stance: supports
+  stance: neutral
   type: meta
   claim: >-
-    The Seven Ps of Cancer Interception defines the field.
+    A Cancer Discovery commentary framing interception around seven principles
+    - purpose, prevalence, potential, precision, practicality, partnership,
+    persistence. Advocacy, not a result.
   title: >-
     The Seven Ps of Cancer Interception
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed supports->neutral. The record is a framing commentary with
+    no data. A thread whose supporting side includes the field's own advocacy
+    is measuring publication rather than evidence.
 
 - id: ev-2026-04-41922570
   pmid: "41922570"
@@ -1190,10 +1348,17 @@ evidence:
   stance: supports
   type: mechanism
   claim: >-
-    Precancerous niche remodelling, not the mutant clone, gates whether nascent tumours
-    persist.
+    The stromal response to a nascent tumour builds a fibronectin-rich
+    precancerous niche that is by itself sufficient to confer tumour
+    properties on healthy epithelium; the abstract's model is that mutation
+    and niche together set whether early lesions persist.
   title: >-
     Precancerous niche remodelling dictates nascent tumour persistence
+  revised: 2026-08-27
+  revised_note: >-
+    Claim corrected; stance unchanged. "Not the mutant clone" is contradicted
+    by the abstract's own conclusion, which puts mutations and the stromal
+    response together.
 
 - id: ev-2026-05-41817436
   pmid: "41817436"
@@ -1201,13 +1366,22 @@ evidence:
   source: cancer-discovery
   threads: [ctdna-mrd]
   stance: refutes
-  type: clinical-readout
+  type: meta
   claim: >-
-    The GRAIL Galleri multi-cancer early detection trial did not deliver the expected
-    mortality or stage-shift evidence.
+    A Cancer Discovery news report on the Galleri trial: NHS-Galleri, the
+    first randomised trial of a multi-cancer early detection test, missed its
+    primary endpoint of fewer late-stage cancers, and researchers attribute
+    this partly to the use of a surrogate endpoint rather than cancer-specific
+    mortality. Secondary reporting, not the trial paper.
   title: >-
     More Questions Than Answers in Trial of GRAIL's Galleri
   companions: ["41616224", "41544704"]
+  revised: 2026-08-27
+  revised_note: >-
+    Type clinical-readout->meta and claim corrected. This is a news item
+    rather than a trial readout, and the card credited the trial with
+    mortality evidence it never collected - mortality was not its endpoint,
+    which is the point the piece makes.
 
 - id: ev-2026-05-41882360
   pmid: "41882360"
@@ -1217,11 +1391,16 @@ evidence:
   stance: refutes
   type: refutation
   claim: >-
-    DNA supercoiling drives Cas9 off-target cleavage invisible to standard specificity
-    assays.
+    Negative supercoiling drives Cas9 off-target cleavage: cryo-EM shows the
+    HNH domain held in a more catalytically competent conformation, with new
+    RNA-DNA mismatch geometries accommodated in a topology-dependent way.
   title: >-
     Structural basis of supercoiling-induced CRISPR-Cas9 off-target activity
   companions: ["42141119", "42129548", "42133765"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim corrected; stance unchanged. "Invisible to standard specificity
+    assays" is a methodological verdict the abstract never states.
 
 - id: ev-2026-05-42020757
   pmid: "42020757"
@@ -1242,14 +1421,21 @@ evidence:
   date: 2026-05-01
   source: nature-methods
   threads: [method-credibility]
-  stance: refutes
+  stance: neutral
   type: refutation
   claim: >-
-    Analysis results shift with software package choice and version, undermining pipeline
-    reproducibility.
+    A Nature Methods research highlight, single author and no abstract,
+    restating 41903535 (Cell Systems, 2026-04) on package selection and
+    versioning in single-cell analysis, which is carded separately on this
+    thread; no independent data.
   title: >-
     Package selection and versioning matter
   companions: ["42141119", "41882360", "42133765"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral. The card restated the highlight's four-
+    word title as a finding, and the finding belongs to a paper already carded
+    on this thread one month earlier.
 
 - id: ev-2026-05-41981726
   pmid: "41981726"
@@ -1299,13 +1485,20 @@ evidence:
   date: 2026-05-07
   source: blood
   threads: [cell-therapy]
-  stance: refutes
+  stance: neutral
   type: clinical-readout
   claim: >-
     Time of infusion does not affect CAR-T outcomes in large B-cell lymphoma.
   title: >-
     Time of infusion does not significantly impact outcomes following CAR T-cell therapy
     in large B-cell lymphoma
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral. The result is a true null about
+    chronobiology in 584 CD19 CAR-T recipients and bears on neither half of
+    this thread's claim about generalization beyond CD19-positive B-cell
+    disease. Carded `refutes`, a null on an incidental variable was counting
+    against the platform.
 
 - id: ev-2026-05-42103358
   pmid: "42103358"
@@ -1326,14 +1519,21 @@ evidence:
   date: 2026-05-10
   source: jco
   threads: [next-gen-checkpoints]
-  stance: refutes
-  type: refutation
+  stance: neutral
+  type: meta
   claim: >-
     Argues the first generation of anti-TIGIT antibodies failed on Fc isotype design,
     meaning the target was never properly tested.
   title: >-
     Is Unmutated IgG1 a Wrong Choice for Therapeutic Antibodies Targeting Immune
     Checkpoints? Lessons From the Clinical Failures of the First Anti-TIGIT Antibodies
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral, type refutation->meta. There is no
+    abstract: the record is a JCO commentary title. Its argument, as the card
+    itself states it, is that the first anti-TIGIT antibodies used the wrong
+    Fc isotype and the target was therefore never properly tested - which
+    withholds judgement on the target rather than refuting the thread.
 
 - id: ev-2026-05-42121287
   pmid: "42121287"
@@ -1343,12 +1543,20 @@ evidence:
   stance: refutes
   type: benchmark
   claim: >-
-    scArchon shows deep perturbation-response predictors fail to beat trivial baselines on
-    held-out perturbations.
+    scArchon benchmarks nine perturbation-response predictors on six single-
+    cell datasets: performance is heterogeneous, several tools fall below
+    linear or control baselines, and models with good aggregate scores can
+    still lose the biological perturbation signature.
   title: >-
     scArchon: a scalable benchmarking framework for assessing single-cell perturbation
     models
   companions: ["41981726", "41992491", "42036821", "42020757"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim corrected; stance unchanged. The card said the deep predictors fail
+    to beat trivial baselines on held-out perturbations; the abstract reports
+    that four of them are robust across datasets, that others "occasionally"
+    underperform, and says nothing about held-out perturbations.
 
 - id: ev-2026-05-41916312
   pmid: "41916312"
@@ -1368,15 +1576,22 @@ evidence:
   date: 2026-05-14
   source: science
   threads: [method-credibility]
-  stance: refutes
-  type: refutation
+  stance: neutral
+  type: meta
   claim: >-
-    Mouse-line genetic quality control is inadequate; unmonitored drift is a hidden
-    artifact behind irreproducible phenotypes.
+    A Science policy piece arguing that mouse genetic quality control should
+    be modernized; its one-sentence abstract reports no measurement.
   title: >-
     Improve genetic quality control to increase rigor and reproducibility of mouse
     research
   companions: ["42141119", "42129548", "41882360"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral, type refutation->meta, claim corrected.
+    The card asserted that unmonitored genetic drift is a hidden artifact
+    behind irreproducible phenotypes. The record is a policy forum with a one-
+    sentence abstract and no data; the assertion was supplied by the reader,
+    which is the failure mode this file exists to catch.
 
 - id: ev-2026-05-42141119
   pmid: "42141119"
@@ -1425,10 +1640,17 @@ evidence:
   stance: supports
   type: new-modality
   claim: >-
-    First pan-cancer spatial atlas of TLS maturation states.
+    Pan-cancer spatial atlas of tertiary lymphoid structure maturation across
+    12 cancer types, with a model that predicts maturation state from H&E and
+    a maturation-aware composite score that stratifies patients better than
+    conventional TLS metrics.
   title: >-
     Pan-cancer spatial atlas of tertiary lymphoid structures
   companions: ["42103358", "41661076"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim corrected; stance unchanged. "First" is a priority claim the
+    abstract does not make, and this corpus has now retracted ten such claims.
 
 - id: ev-2026-06-40739072
   pmid: "40739072"
@@ -1492,11 +1714,18 @@ evidence:
   stance: supports
   type: mechanism
   claim: >-
-    Oncofetal plasticity is ubiquitous in early colorectal cancers, defining an
-    interception window.
+    Metastasis-associated oncofetal states appear at the earliest stage of
+    colorectal cancer, induced by trophocyte-like fibroblasts at the invasive
+    front - but they are present in early non-metastatic cancers too, so
+    further bottlenecks such as immune evasion decide the outcome.
   title: >-
     Emergence of oncofetal plasticity is ubiquitous in early colorectal cancers
   companions: ["42242224"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim corrected; stance unchanged. "Defining an interception window" is
+    not in the abstract, which stresses that the state is ubiquitous among
+    non-metastatic early cancers and therefore not by itself discriminating.
 
 - id: ev-2026-06-42056496
   pmid: "42056496"
@@ -1610,13 +1839,20 @@ evidence:
   date: 2026-06-22
   source: cancer-discovery
   threads: [neoantigen-vaccines]
-  stance: refutes
+  stance: neutral
   type: refutation
   claim: >-
     The reported survival benefit of incidental COVID mRNA vaccination around checkpoint
     therapy is selection bias, not immune synergy.
   title: >-
     Deconvolving SARS-CoV-2 mRNA vaccine impact on immunotherapy-related survival
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral. The finding - that the reported peri-ICI
+    COVID-vaccination survival advantage is selection bias - is accurately
+    stated, but the subject is non-tumour-specific mRNA vaccination given
+    alongside checkpoint therapy, and it bears on neither the size nor the
+    predictability of the neoantigen target space.
 
 - id: ev-2026-06-41999744
   pmid: "41999744"
@@ -1655,11 +1891,18 @@ evidence:
   stance: supports
   type: clinical-readout
   claim: >-
-    Ten-year outcomes after CAR-T for B-cell lymphoma anchor every durability and late-
-    toxicity argument.
+    Ten years after a single tisagenlecleucel infusion, 32% of large B-cell
+    and 47% of follicular lymphoma patients remain lymphoma-free with no
+    relapse beyond 5.4 years, against a 21% ten-year incidence of second
+    primary cancers and 18% non-relapse mortality.
   title: >-
     Ten-Year Outcomes after CAR T-Cell Therapy for B-Cell Lymphomas
   companions: ["42284198"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim corrected; stance unchanged. The claim asserted the paper's
+    importance and recorded none of its numbers, including the late-toxicity
+    numbers it named.
 
 - id: ev-2026-06-42218899
   pmid: "42218899"
@@ -1669,12 +1912,21 @@ evidence:
   stance: supports
   type: clinical-readout
   claim: >-
-    HARMONi-6: PD-1xVEGF bispecific tested head to head against a PD-1 antibody with
-    overall-survival readout.
+    HARMONi-6: the PD-1xVEGF bispecific ivonescimab plus chemotherapy beat the
+    PD-1 antibody tislelizumab plus chemotherapy on overall survival in
+    advanced squamous NSCLC, 27.9 versus 23.7 months (HR 0.66, 95% CI
+    0.50-0.87), with more grade 3 or higher treatment-related adverse events
+    and more haemorrhage.
   title: >-
     Ivonescimab plus chemotherapy versus tislelizumab plus chemotherapy in advanced
     squamous non-small-cell lung cancer (HARMONi-6): interim overall survival analysis of
     a randomised, double-blind, phase 3 trial in China
+  revised: 2026-08-27
+  revised_note: >-
+    Claim corrected; stance unchanged. The claim named the comparison and the
+    endpoint and omitted the result - the same defect as the trial titles this
+    file now forbids as the basis for a stance, which here happened to land on
+    the right side.
 
 - id: ev-2026-07-42010117
   pmid: "42010117"
@@ -1752,11 +2004,18 @@ evidence:
   stance: refutes
   type: benchmark
   claim: >-
-    Sequence-to-function models tested against real inter-individual variation.
+    Training sequence-to-function models on personal genomes improves
+    expression prediction for held-out individuals, but the gain comes from
+    identifying predictive variants rather than learning a cis-regulatory
+    grammar that transfers to unseen loci.
   title: >-
     A scalable approach to investigating sequence-to-function predictions from personal
     genomes
   companions: ["42265212", "42265208", "42286322"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim corrected; stance unchanged. The claim described the experiment and
+    recorded no result.
 
 - id: ev-2026-07-42265208
   pmid: "42265208"
@@ -1778,28 +2037,45 @@ evidence:
   date: 2026-07-01
   source: nature-methods
   threads: [foundation-models]
-  stance: refutes
+  stance: neutral
   type: benchmark
   claim: >-
-    Scaling transcriptomic AI training data is 'much pain with little gain'.
+    A Nature Methods research highlight, no abstract, restating 42265208 in
+    the same issue on scaling pretraining dataset size for transcriptomic
+    models - carded separately on this thread; no independent data.
   title: >-
     Scaling up training dataset size for transcriptomic AI models is much pain with little
     gain
   companions: ["42265208", "42260311", "42286322"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral. The card restated the highlight's
+    headline as a finding; the finding belongs to the paper it summarises,
+    which this file already cards and already lists here as a companion.
 
 - id: ev-2026-07-42286322
   pmid: "42286322"
   date: 2026-07-01
   source: nature-medicine
   threads: [foundation-models]
-  stance: refutes
+  stance: supports
   type: benchmark
   claim: >-
-    General-purpose LLMs outperform specialized clinical AI tools.
+    Frontier general-purpose LLMs beat two purpose-built clinical AI products
+    across MedQA, HealthBench and 100 real physician queries blind-reviewed by
+    12 clinicians; the specialized tools performed comparably to Google Search
+    AI Overview.
   title: >-
     General-purpose large language models outperform specialized clinical AI tools on
     medical benchmarks
   companions: ["42265212", "42265208", "42260311"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. General-purpose models outperforming
+    purpose-built clinical tools is precisely this thread's claim about
+    general-purpose models transferring into clinical use; the card counted
+    the paper against the thread because the verdict it delivers on the
+    specialized products is negative.
 
 - id: ev-2026-07-42310457
   pmid: "42310457"
@@ -1845,13 +2121,22 @@ evidence:
   date: 2026-07-01
   source: bioinformatics
   threads: [agentic-ai]
-  stance: supports
+  stance: neutral
   type: benchmark
   claim: >-
-    First dedicated benchmark for AI scientists on omics-driven discovery.
+    BAISBench evaluates AI scientists on cell-type annotation across 15
+    expert-labelled datasets and on 193 questions drawn from 41 published
+    single-cell studies, against five graduate bioinformaticians: they fall
+    short of autonomous discovery while showing substantial value as support.
   title: >-
     Benchmarking AI scientists for omics data-driven biological discovery
   companions: ["42156546", "42310457"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed supports->neutral and claim corrected. "First dedicated
+    benchmark" is a priority claim the abstract does not make, and the result
+    the card omitted is two-sided: short of autonomous discovery, useful as
+    assistance.
 
 - id: ev-2026-07-41985452
   pmid: "41985452"
@@ -2017,11 +2302,18 @@ evidence:
   stance: refutes
   type: mechanism
   claim: >-
-    A senescent CD8 state induced by interferon reduces anti-PD-1 efficacy, so
-    CD8 infiltration and interferon signature both fail as benefit predictors.
+    An interferon-induced senescent CD8 state, driven by HLA-DR+ monocytes,
+    marks anti-PD-1 non-response in early triple-negative breast cancer across
+    171 patients, and is reversed by nicotinamide mononucleotide.
   title: >-
     Interferon-induced senescent CD8(+) T cells reduce anti-PD1 immunotherapy
     efficacy in early triple-negative breast cancer
+  revised: 2026-08-27
+  revised_note: >-
+    Dropped "so CD8 infiltration and interferon signature both fail as benefit
+    predictors" - the abstract reports one IFN-induced CD8 subset predicting
+    non-response, not the failure of either marker as a class - and added the
+    rescue the card omitted.
 
 - id: ev-2025-09-40954074
   pmid: "40954074"
@@ -2059,10 +2351,16 @@ evidence:
   stance: refutes
   type: mechanism
   claim: >-
-    Injury fibroblasts are not purely scar-forming; the title retracts the
-    premise that would justify targeting them.
+    An Immunity preview of Ewing-Crystal et al. in Nature, which is not carded:
+    injury fibroblasts hold dynamic states that limit initial injury and
+    promote repair, so they are not purely scar-forming.
   title: >-
     Fibroblasts are not so scar-y in brain injury
+  revised: 2026-08-27
+  revised_note: >-
+    Claim rested on the title - "the title retracts the premise". The record is
+    a commentary on another journal's paper, which the card did not say; the
+    underlying study is not in this corpus.
 
 - id: ev-2025-10-40700578
   pmid: "40700578"
@@ -2127,13 +2425,20 @@ evidence:
   date: 2025-11-01
   source: nature-immunology
   threads: [next-gen-checkpoints, suppressive-population-inversion]
-  stance: refutes
-  type: mechanism
+  stance: neutral
+  type: meta
   claim: >-
-    A co-stimulatory signal runs through the receptor named coinhibitory —
-    TIGIT's assigned sign is wrong for at least one signalling mode.
+    The Nature Immunology front-matter piece accompanying 41094201, the TIGIT
+    tissue-repair paper carded from the same issue. A restatement, not a second
+    observation.
   title: >-
     A co-stimulatory signal via the coinhibitory TIGIT
+  companions: ["41094201"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance refutes->neutral, type mechanism->meta. PubMed carries no abstract
+    for this record; it is the commentary on 41094201, and both were carded
+    refutes on the same two threads, counting one study twice.
 
 - id: ev-2025-12-41272165
   pmid: "41272165"
@@ -2188,11 +2493,16 @@ evidence:
   stance: refutes
   type: mechanism
   claim: >-
-    TET2 clonal haematopoiesis, treated as an adverse host factor, boosts
-    checkpoint therapy.
+    An Immunity preview of Herbrich et al. in Cancer Cell, which is not carded:
+    TET2-mutant clonal haematopoiesis, treated as an adverse host factor,
+    reprograms tumour macrophages and boosts checkpoint therapy.
   title: >-
     A surprising link: TET2 clonal hematopoiesis boosts immune checkpoint
     therapy
+  revised: 2026-08-27
+  revised_note: >-
+    Card read as a primary finding. Its whole abstract is two sentences
+    pointing at a paper in another journal, which the card did not say.
 
 - id: ev-2026-01-41106379
   pmid: "41106379"
@@ -2297,14 +2607,20 @@ evidence:
   date: 2025-10-01
   source: nature-computational-science
   threads: [foundation-models]
-  stance: refutes
-  type: benchmark
+  stance: neutral
+  type: meta
   claim: >-
-    Vision-language models excel at perception and fail at scientific
-    reasoning — a capability boundary on the step agentic systems depend on.
+    The Nature Computational Science research briefing accompanying MaCBench
+    (40789967), carded in the same month. The same result, not a second one.
   title: >-
     Vision language models excel at perception but struggles with scientific
     reasoning
+  companions: ["40789967"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance refutes->neutral, type benchmark->meta. Same journal, same month and
+    the same finding as 40789967, with no abstract of its own, carded as
+    independent evidence on the same thread.
 
 - id: ev-2025-10-40789967
   pmid: "40789967"
@@ -2314,24 +2630,37 @@ evidence:
   stance: refutes
   type: benchmark
   claim: >-
-    Multimodal language models are probed for limitations in chemistry and
-    materials research, with the limitation claim in the title.
+    On MaCBench, vision-language models are near-perfect at equipment
+    identification and standardised data extraction and fail at spatial
+    reasoning, cross-modal synthesis and multi-step logical inference.
   title: >-
     Probing the limitations of multimodal language models for chemistry and
     materials research
+  companions: ["40931098"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim described the paper's genre - "are probed for limitations, with the
+    limitation claim in the title" - rather than its result, and so recorded
+    neither what the models do well nor what they fail at. Companion added:
+    40931098 is this paper's research briefing and was carded separately.
 
 - id: ev-2025-10-41023433
   pmid: "41023433"
   date: 2025-10-01
   source: nature-methods
   threads: [foundation-models]
-  stance: refutes
-  type: benchmark
+  stance: neutral
+  type: meta
   claim: >-
-    Nature Methods asks what a protein language model actually knows — the
-    question is the finding.
+    A Nature Methods front-matter piece asking what a language model knows
+    about proteins. PubMed carries no abstract and the title states no result.
   title: >-
     What does a language model know about proteins?
+  revised: 2026-08-27
+  revised_note: >-
+    Stance refutes->neutral, type benchmark->meta. A question in a title is not
+    a benchmark result, and there is no abstract behind it; the card read the
+    interrogative as a finding against the thread.
 
 - id: ev-2025-11-41131148
   pmid: "41131148"
@@ -2341,11 +2670,17 @@ evidence:
   stance: refutes
   type: meta
   claim: >-
-    Single-cell LLMs face substantive barriers to adoption, published in the
-    same month the vocabulary reached these journals.
+    A Nature Biotechnology Comment: single-cell large language models remain
+    little used in practice, with technical gaps and practical barriers between
+    the benchmark studies and the bench.
   title: >-
     Overcoming barriers to the wide adoption of single-cell large language
     models in biomedical research
+  revised: 2026-08-27
+  revised_note: >-
+    Removed "published in the same month the vocabulary reached these
+    journals". threads.yml records that dating as retracted - "virtual cell" is
+    in a Nature Biotechnology title in 2025-04 and in Cell in 2025-08.
 
 - id: ev-2025-08-40460825
   pmid: "40460825"
@@ -2385,10 +2720,18 @@ evidence:
   stance: supports
   type: new-modality
   claim: >-
-    A multimodal whole-slide pathology foundation model reaches clinical
-    grade.
+    TITAN, a whole-slide pathology foundation model pretrained on 335,645
+    slides with report and synthetic-caption alignment, beats region-of-interest
+    and slide models on linear probing, few-shot and zero-shot classification,
+    rare-cancer retrieval and report generation.
   title: >-
     A multimodal whole-slide foundation model for pathology
+  revised: 2026-08-27
+  revised_note: >-
+    Claim said the model "reaches clinical grade". The abstract reports
+    benchmark comparisons and generalisation to resource-limited scenarios; no
+    clinical deployment, prospective evaluation or regulatory status is
+    claimed.
 
 - id: ev-2025-09-40739342
   pmid: "40739342"
@@ -2438,12 +2781,17 @@ evidence:
   stance: neutral
   type: meta
   claim: >-
-    Nature Methods runs a research highlight titled 'The virtual cell' —
-    twelve months after the Cell challenge, the vocabulary lands in-journal
-    alongside the models and the skepticism.
+    Nature Methods runs a research highlight titled "The virtual cell",
+    alongside its AI-agents piece in the same issue.
   title: >-
     The virtual cell
   companions: ["41360947"]
+  revised: 2026-08-27
+  revised_note: >-
+    Removed "twelve months after the Cell challenge, the vocabulary lands
+    in-journal". threads.yml records that dating as retracted: "virtual cell"
+    is in a Nature Biotechnology title in 2025-04, two months before the
+    challenge launched, and in Cell in 2025-08.
 
 - id: ev-2025-12-41372623
   pmid: "41372623"
@@ -2466,10 +2814,17 @@ evidence:
   stance: supports
   type: new-modality
   claim: >-
-    The first single-cell foundation model in this corpus to move off RNA onto
-    chromatin accessibility.
+    EpiAgent, a foundation model pretrained on a curated human scATAC corpus,
+    encodes accessibility as "cell sentences" and handles annotation,
+    imputation, perturbation-response prediction and zero-shot cell typing.
   title: >-
     EpiAgent: foundation model for single-cell epigenomics
+  revised: 2026-08-27
+  revised_note: >-
+    Removed "the first single-cell foundation model in this corpus to move off
+    RNA onto chromatin accessibility". The abstract makes no precedence claim,
+    and no first-appearance claim in this corpus has survived an extension of
+    the reading window.
 
 - id: ev-2025-12-39747647
   pmid: "39747647"
@@ -2493,10 +2848,17 @@ evidence:
   stance: refutes
   type: refutation
   claim: >-
-    Functional microRNA targeting occurs without seed pairing — the rule
-    underneath essentially every miRNA target-prediction algorithm.
+    Sites with no complementarity to the microRNA seed can bind and repress as
+    well as top canonical sites, so seed pairing is not required - but such
+    3'-only sites are estimated at under 1% of endogenous target sites.
   title: >-
     Functional microRNA targeting without seed pairing
+  revised: 2026-08-27
+  revised_note: >-
+    Claim called this "the rule underneath essentially every miRNA
+    target-prediction algorithm" without the abstract's own bound: 3'-only
+    sites are under 1% of endogenous sites, which limits how much of the
+    prediction literature the result unsettles.
 
 - id: ev-2025-10-41039119
   pmid: "41039119"
@@ -2685,11 +3047,18 @@ evidence:
   stance: refutes
   type: refutation
   claim: >-
-    Better tandem-repeat detection exposes ubiquitous sequence reuse that
-    standard pipelines miss.
+    Existing tandem-repeat finders return markedly different results and it is
+    unclear which are correct; a new detector recovers highly divergent repeats
+    with relatively few false positives.
   title: >-
     Accurate detection of tandem repeats exposes ubiquitous reuse of
     biological sequences
+  revised: 2026-08-27
+  revised_note: >-
+    Claim credited existing pipelines with missing "ubiquitous sequence reuse",
+    which conflates the paper's biological discovery with its audit content.
+    What the abstract says about published methods is that they disagree with
+    each other and that no one can tell which is right.
 
 - id: ev-2025-09-40963104
   pmid: "40963104"
@@ -2728,11 +3097,18 @@ evidence:
   stance: refutes
   type: refutation
   claim: >-
-    DNA methylation encodes gene activity as a dimmer, not a binary switch.
+    A Cell Genomics preview of Del Vecchio and colleagues (40930103, same
+    issue, not carded): DNA methylation locks in gene expression at analog
+    levels over time rather than switching it binary.
   title: >-
     The dimmer switch in epigenetics: How DNA methylation encodes gene
     activity over time
   companions: ["40930103"]
+  revised: 2026-08-27
+  revised_note: >-
+    Card read as a primary finding. Its whole abstract is one sentence pointing
+    at 40930103, which is the study the claim describes and is not itself
+    carded.
 
 - id: ev-2025-11-40864493
   pmid: "40864493"
@@ -2794,13 +3170,20 @@ evidence:
   date: 2025-12-18
   source: science
   threads: [method-credibility, agentic-ai]
-  stance: refutes
+  stance: neutral
   type: meta
   claim: >-
-    Large language models are documented as distorting scientific production
-    itself.
+    A Science policy piece on how large language models change scientific
+    production and how institutions might evolve in response. It reports no
+    measured effect.
   title: >-
     Scientific production in the era of large language models
+  revised: 2026-08-27
+  revised_note: >-
+    Stance refutes->neutral. The card said LLMs are "documented as distorting
+    scientific production itself". The title says "in the era of"; the whole
+    abstract is one sentence saying science policy must consider how
+    institutions could evolve. Nothing is documented and nothing is refuted.
 
 - id: ev-2025-10-40963011
   pmid: "40963011"
@@ -2994,13 +3377,20 @@ evidence:
   date: 2025-09-01
   source: jem
   threads: [neuro-immune-microbiome-axis]
-  stance: refutes
-  type: mechanism
+  stance: neutral
+  type: meta
   claim: >-
-    Antibiotic-driven microbiome depletion is not an inert manipulation — it
-    unleashes neuroinflammation.
+    The JEM commentary on Chatterjee et al. - the TMAVA CNS-GVHD paper carded
+    this month as 40627379. A restatement of that study, not a second one.
   title: >-
     Antibiotics unleash neuroinflammation
+  companions: ["40627379"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance refutes->neutral, type mechanism->meta. Its whole abstract is one
+    sentence pointing at 40627379, which this corpus already cards `supports`
+    in the same month, so the pair counted a single study twice and in
+    opposite directions.
 
 - id: ev-2025-10-40903586
   pmid: "40903586"
@@ -3118,12 +3508,18 @@ evidence:
   stance: supports
   type: mechanism
   claim: >-
-    Colorectal cancer hijacks a named brain-to-gut polysynaptic circuit, with
-    a second independent statement of the same result in the same issue.
+    Colorectal cancer cells hijack a polysynaptic circuit running from
+    GABAergic lateral septum neurons to enteric cholinergic neurons to sustain
+    tumour growth, and chronic restraint stress potentiates it.
   title: >-
     Colorectal cancer cells hijack a brain-gut polysynaptic circuit from the
     lateral septum to enteric neurons to sustain tumor growth
   companions: ["41057693"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim credited "a second independent statement of the same result in the
+    same issue". The companion 41057693 is the Nature Cancer News & Views on
+    this very paper - one study, not two.
 
 - id: ev-2025-11-40829591
   pmid: "40829591"
@@ -3133,10 +3529,16 @@ evidence:
   stance: supports
   type: mechanism
   claim: >-
-    Long-range cholinergic input promotes glioblastoma, adding a third named
-    neurotransmitter axis in glioma.
+    Basal forebrain cholinergic projections are a conserved long-range input to
+    glioblastoma and promote progression through the muscarinic receptor CHRM3;
+    scopolamine slows growth and donepezil worsens it.
   title: >-
     Long-range cholinergic input promotes glioblastoma progression
+  revised: 2026-08-27
+  revised_note: >-
+    Removed "adding a third named neurotransmitter axis in glioma", a count of
+    this corpus's own cards that the abstract does not make, and replaced it
+    with the paper's result including the opposite-signed drug effects.
 
 - id: ev-2025-11-41187761
   pmid: "41187761"
@@ -3230,7 +3632,14 @@ evidence:
   pmid: "41167211"
   date: 2025-11-01
   source: lancet-oncology
-  threads: [clinical-practice]
+  threads: []
+  revised: 2026-08-27
+  revised_note: >-
+    clinical-practice removed. That thread claims meetings lead journals;
+    this card is a journal readout and says nothing about a meeting. All
+    eight of its cards were the same mistake, scoring the direction of
+    clinical advice rather than the thread's claim. See `not_cardable`
+    in data/threads.yml.
   stance: refutes
   type: clinical-readout
   claim: >-
@@ -3244,7 +3653,14 @@ evidence:
   pmid: "41045939"
   date: 2025-10-11
   source: lancet
-  threads: [clinical-practice]
+  threads: []
+  revised: 2026-08-27
+  revised_note: >-
+    clinical-practice removed. That thread claims meetings lead journals;
+    this card is a journal readout and says nothing about a meeting. All
+    eight of its cards were the same mistake, scoring the direction of
+    clinical advice rather than the thread's claim. See `not_cardable`
+    in data/threads.yml.
   stance: refutes
   type: clinical-readout
   claim: >-
@@ -3298,14 +3714,20 @@ evidence:
   date: 2025-11-27
   source: science
   threads: [agentic-ai]
-  stance: supports
+  stance: neutral
   type: new-modality
   claim: >-
-    A closed-loop active-learning framework proposes and tests modulators of
-    disease phenotypes.
+    A closed-loop active-learning framework over transcriptomic signatures
+    raised phenotypic hit rates 13- to 17-fold across two discovery campaigns.
+    Deep learning with a lab in the loop, not a language-model agent.
   title: >-
     Active learning framework leveraging transcriptomics identifies modulators
     of disease phenotypes
+  revised: 2026-08-27
+  revised_note: >-
+    Stance supports->neutral. Nothing in the abstract involves a language model
+    or an agent; the card counted a closed-loop active-learning pipeline as
+    evidence for this thread's claim about LLM agents.
 
 - id: ev-2025-10-40835791
   pmid: "40835791"
@@ -3383,10 +3805,18 @@ evidence:
   stance: supports
   type: clinical-readout
   claim: >-
-    Biomarker-selected chemoprevention with a generic drug in PI3K-altered
-    localized colorectal cancer.
+    ALASCCA: three years of adjuvant low-dose aspirin cut 3-year recurrence in
+    resected PI3K-pathway-altered colorectal cancer, 7.7% against 14.1% (HR
+    0.49) - genotype-directed prevention of recurrence, not of a precursor
+    lesion.
   title: >-
     Low-Dose Aspirin for PI3K-Altered Localized Colorectal Cancer
+  revised: 2026-08-27
+  revised_note: >-
+    Claim called this "chemoprevention". The trial randomises patients with
+    resected stage I-III colorectal cancer and its endpoint is recurrence, so
+    it is secondary prevention; this thread's claim is about precursor states
+    and the card should not be read as evidence about them.
 
 - id: ev-2025-10-40897974
   pmid: "40897974"
@@ -3410,23 +3840,40 @@ evidence:
   stance: supports
   type: clinical-readout
   claim: >-
-    Anti-progestin therapy targets hallmarks of breast cancer risk in the
-    normal-risk breast rather than a lesion.
+    Twelve weeks of ulipristal acetate in 24 premenopausal women reduced
+    surrogate markers of breast-cancer risk - Ki67, luminal progenitor
+    proliferation, fibroglandular volume, collagen VI and tissue stiffness -
+    prevention aimed at tissue state rather than at a lesion.
   title: >-
     Anti-progestin therapy targets hallmarks of breast cancer risk
+  revised: 2026-08-27
+  revised_note: >-
+    Claim asserted a "normal-risk breast" and read as an outcome. BC-APPS1 is a
+    24-woman early-phase study reporting surrogate markers only, and the
+    abstract does not describe the cohort as normal-risk.
 
 - id: ev-2025-11-41125896
   pmid: "41125896"
   date: 2025-11-01
   source: nature
-  threads: [neoantigen-vaccines, interception]
-  stance: supports
+  threads: [neoantigen-vaccines]
+  stance: refutes
   type: mechanism
   claim: >-
-    SARS-CoV-2 mRNA vaccines sensitize tumours to checkpoint blockade,
-    sidestepping personalization entirely.
+    An off-the-shelf mRNA vaccine against a non-tumour antigen sensitises
+    tumours to checkpoint blockade, with a survival association in large
+    retrospective cohorts - the effect personalised neoantigen vaccines are
+    built to produce, obtained without selecting an antigen.
   title: >-
     SARS-CoV-2 mRNA vaccines sensitize tumours to immune checkpoint blockade
+  revised: 2026-08-27
+  revised_note: >-
+    Stance supports->refutes and `interception` removed. The abstract's own
+    framing is that personalised vaccines are limited by complex manufacturing
+    and that a generic vaccine achieves the same sensitisation, which cuts
+    against this thread's claim rather than supporting it - the card already
+    said "sidestepping personalization entirely" while counting as support.
+    The study treats established tumours, so it bears on no precursor state.
 
 - id: ev-2025-09-40521799
   pmid: "40521799"
@@ -3436,24 +3883,48 @@ evidence:
   stance: supports
   type: clinical-readout
   claim: >-
-    Measurable residual disease is the randomization and stopping rule, not a
-    prognostic annotation.
+    FLAIR: undetectable measurable residual disease is the primary endpoint and
+    the treatment-duration rule rather than a prognostic annotation - 66.2%
+    uMRD in bone marrow with ibrutinib-venetoclax against none of 263 on
+    ibrutinib alone, with 5-year progression-free survival 93.9% versus 79.0%.
   title: >-
     Measurable Residual Disease-Guided Therapy for Chronic Lymphocytic
     Leukemia
+  revised: 2026-08-27
+  revised_note: >-
+    Claim said MRD was "the randomization and stopping rule". Patients were
+    randomised up front; MRD is the primary endpoint and governs duration of
+    therapy. Numbers added from the abstract.
 
 - id: ev-2025-12-41337735
   pmid: "41337735"
   date: 2025-12-18
   source: nejm
-  threads: [clinical-practice]
-  stance: refutes
+  threads: []
+  revised: 2026-08-27
+  revised_note: >-
+    clinical-practice removed. That thread claims meetings lead journals;
+    this card is a journal readout and says nothing about a meeting. All
+    eight of its cards were the same mistake, scoring the direction of
+    clinical advice rather than the thread's claim. See `not_cardable`
+    in data/threads.yml.
+  stance: supports
   type: clinical-readout
   claim: >-
-    One HPV vaccine dose is non-inferior to two — population-scale de-
-    escalation with immediate policy consequence.
+    ESCUDDO: one HPV vaccine dose was noninferior to two for persistent HPV16
+    or HPV18 infection in 20,330 girls, on both the bivalent and the nonavalent
+    vaccine, with effectiveness of at least 97% in every group - a met
+    endpoint, and population-scale de-escalation with immediate policy
+    consequence.
   title: >-
     Noninferiority of One HPV Vaccine Dose to Two Doses
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. The trial met its prespecified
+    noninferiority margin on both vaccines; it was carded refutes because this
+    corpus reads de-escalation as null-shaped. A met endpoint is a positive
+    readout. Note separately that nothing in this paper bears on the thread's
+    actual claim, which is about meetings leading journals.
 
 - id: ev-2025-10-40993398
   pmid: "40993398"
@@ -3596,14 +4067,24 @@ evidence:
   date: 2025-01-14
   source: immunity
   threads: [suppressive-population-inversion]
-  stance: refutes
+  stance: supports
   type: mechanism
   claim: >-
-    Antigen presentation by tumour-associated macrophages drives T cells from
-    progenitor to terminal exhaustion — the presenting cell does the damage.
+    Tumour-associated macrophages, not tumour cells, supply the antigen that
+    drives T cells from progenitor to terminal exhaustion, and TAM depletion
+    raises the progenitor fraction and restores anti-PD-1 responsiveness.
   title: >-
     Antigen presentation by tumor-associated macrophages drives T cells from a
     progenitor exhaustion state to terminal exhaustion
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. Carded as an inversion because the
+    damage is done by an antigen-PRESENTING cell, which reads as a reversal of
+    role. The thread's claim is about depletion outcomes, and on that the
+    abstract is canonical: "TAM depletion increased frequencies of Tex_prog
+    cells in multiple tumor models, increased PETER, and promoted
+    responsiveness to αPD1 immunotherapy" — depleting a suppressive population
+    improved antitumour outcome, which is the claim, not its negation.
 
 - id: ev-2025-02-39892391
   pmid: "39892391"
@@ -3776,14 +4257,24 @@ evidence:
   date: 2025-04-30
   source: jitc
   threads: [suppressive-population-inversion]
-  stance: refutes
-  type: mechanism
+  stance: neutral
+  type: meta
   claim: >-
-    Tumour-infiltrating mast cells act as a chemoimmunotherapy enhancer in
-    triple-negative breast cancer.
+    A JITC commentary on Zhang et al., Cancer Cell, reporting that
+    tumour-infiltrating mast cells enrich and fuel immune clusters in
+    triple-negative breast cancer rather than suppressing them.
   title: >-
     Tumor-infiltrating mast cells as potential chemoimmunotherapy enhancer in
     triple-negative breast cancer
+  revised: 2026-08-27
+  revised_note: >-
+    Stance refutes->neutral, type mechanism->meta. Read as a primary finding;
+    the abstract is a commentary — "In a recent issue of Cancer Cell, Zhang et
+    al integrated murine and human single-cell sequencing data, and unveiled
+    that..." — reporting someone else's result. The inversion may well be
+    real, but this card is not evidence for it, and the Zhang paper is not in
+    the corpus. Carding the echo is how this corpus opened two threads on the
+    wrong paper (see threads.yml dating_caution).
 
 - id: ev-2025-05-40306274
   pmid: "40306274"
@@ -3833,13 +4324,23 @@ evidence:
   date: 2025-05-01
   source: nature-immunology
   threads: [suppressive-population-inversion]
-  stance: refutes
-  type: mechanism
+  stance: neutral
+  type: meta
   claim: >-
-    Treg cells augment self-tolerance during infection — the suppressive
-    population is required, not disposable.
+    A Nature Immunology News and Views on the soluble-CTLA-4 paper already
+    carded at ev-2025-04-40168991; it restates that result — effector-Treg
+    sCTLA-4 augments self-tolerance — and adds no evidence of its own.
   title: >-
     T(reg) cells augment self-tolerance during infection
+  revised: 2026-08-27
+  revised_note: >-
+    Stance refutes->neutral, type mechanism->meta. This is a three-page News
+    and Views (Nat Immunol 26:650-652) whose subject reference is Osaki and
+    Sakaguchi, Immunity 2025, PMID 40168991 — the card immediately above it on
+    the same thread, with the same stance. Two cards, one study, counted
+    twice: a convergence argument that double-counts is worse than a wrong
+    stance because it reads as independent evidence. No abstract in the index,
+    so the genre was invisible to the reader who carded it.
 
 - id: ev-2025-07-40457060
   pmid: "40457060"
@@ -3860,14 +4361,23 @@ evidence:
   date: 2025-06-02
   source: jem
   threads: [suppressive-population-inversion]
-  stance: refutes
+  stance: supports
   type: mechanism
   claim: >-
-    CD301b+ monocyte-derived dendritic cells mediate resistance to
-    radiotherapy.
+    CD301b+ monocyte-derived dendritic cells generate Tregs and mediate
+    resistance to radiotherapy, and depleting them limits Treg generation and
+    improves the outcome of radiotherapy.
   title: >-
     CD301b+ monocyte-derived dendritic cells mediate resistance to
     radiotherapy
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. Carded as an inversion because a
+    dendritic cell — a presenting, stimulatory population by convention — is
+    the suppressor. But the abstract's outcome is the thread's claim verbatim:
+    "moDC depletion limits Treg generation and improves the therapeutic
+    outcome of RT". A newly identified suppressive population whose depletion
+    helps supports the claim; only the identity of the population is new.
 
 - id: ev-2025-06-40457062
   pmid: "40457062"
@@ -3931,7 +4441,7 @@ evidence:
   date: 2025-07-08
   source: immunity
   threads: [suppressive-population-inversion]
-  stance: refutes
+  stance: supports
   type: mechanism
   claim: >-
     Mitochondrial complex IV remodelling in tumour-associated macrophages
@@ -3939,6 +4449,14 @@ evidence:
   title: >-
     Mitochondrial complex IV remodeling in tumor-associated macrophages
     amplifies interferon signaling and promotes anti-tumor immunity
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. Nothing in the abstract inverts: the
+    paper nominates NDUFA4 in tumour-associated macrophages, represses it,
+    amplifies interferon signalling and improves tumour control and checkpoint
+    efficacy in mice. That is the shape this thread's `denominator` field
+    describes as the SUPPORTING side, and the card's own claim states a
+    positive result while the stance called it a documented inversion.
 
 - id: ev-2025-10-40624238
   pmid: "40624238"
@@ -4058,13 +4576,22 @@ evidence:
   date: 2025-01-01
   source: nature
   threads: [foundation-models]
-  stance: supports
+  stance: neutral
   type: meta
   claim: >-
-    The Human Cell Atlas is reframed from a cell census into a unified
-    foundation model.
+    A Nature perspective proposes that cell atlases culminate in foundation
+    models of biology — a programme statement, with no model built or
+    evaluated in it.
   title: >-
     The Human Cell Atlas from a cell census to a unified foundation model
+  revised: 2026-08-27
+  revised_note: >-
+    Stance supports->neutral. The abstract is a roadmap — atlases "are poised
+    to provide" benefits and are "ultimately" foundation models — and reports
+    no result. Counting a statement of intent as evidence that scaling
+    produces transferable models is the confirmation the thread is most
+    exposed to; the corpus already treats the comparable programmatic pieces
+    (40229360, 40578317) as neutral and this is the same genre.
 
 - id: ev-2025-01-39779852
   pmid: "39779852"
@@ -4149,11 +4676,19 @@ evidence:
   stance: neutral
   type: meta
   claim: >-
-    The phrase 'virtual cell' enters this corpus, in Nature Biotechnology, two
-    months before the Cell challenge launches and seven months before the
-    vocabulary reaches the methods journals.
+    A Nature Biotechnology comment proposes virtual-cell models for predicting
+    immunotherapy response — the earliest 'virtual cell' title in the months
+    read, two months before the Cell challenge launched.
   title: >-
     Virtual cells for predictive immunotherapy
+  revised: 2026-08-27
+  revised_note: >-
+    Claim rewritten; stance unchanged at neutral. The old claim ended "seven
+    months before the vocabulary reaches the methods journals", which encodes
+    a 2025-11 arrival date that threads.yml records as wrong — the phrase is
+    in Cell in 2025-08, three months later, not seven. The rest is restated as
+    a bound on the months read rather than a first appearance, per the
+    dating_caution: ten such claims have been made and ten have moved.
 
 - id: ev-2025-06-40578317
   pmid: "40578317"
@@ -4173,12 +4708,23 @@ evidence:
   date: 2025-06-01
   source: nature-methods
   threads: [foundation-models]
-  stance: refutes
-  type: benchmark
+  stance: neutral
+  type: meta
   claim: >-
-    Single-cell foundation models are evaluated as a class in Nature Methods.
+    A Nature Methods research highlight of the zero-shot evaluation of
+    single-cell foundation models already carded at ev-2025-04-40251685; it
+    reports that evaluation and no new one.
   title: >-
     Single-cell foundation models evaluated
+  revised: 2026-08-27
+  revised_note: >-
+    Stance refutes->neutral, type benchmark->meta. A single page (Nat Methods
+    22:1129) in the research-highlights section, summarising Kedzierska, Lu
+    and colleagues — the Genome Biology zero-shot evaluation of Geneformer and
+    scGPT carded two months earlier as ev-2025-04-40251685. The corpus was
+    counting one evaluation twice against the same thread. Note that
+    threads.yml cites "evaluated as a class in 2025-04 and 2025-06" as
+    co-presence: those two months are the same study.
 
 - id: ev-2025-06-40407144
   pmid: "40407144"
@@ -4258,10 +4804,20 @@ evidence:
   stance: neutral
   type: meta
   claim: >-
-    The first use of the word 'agentic' in a title in this corpus, four days
-    after the first agent paper.
+    A Lancet comment argues for LLM agents as clinical teammates rather than
+    tools — advocacy, and the earliest title in the months read to use the
+    word 'agentic'.
   title: >-
     The rise of agentic AI teammates in medicine
+  revised: 2026-08-27
+  revised_note: >-
+    Claim rewritten; stance unchanged at neutral. The old claim was not about
+    the paper at all — it asserted "the first use of the word 'agentic' in a
+    title in this corpus, four days after the first agent paper", which was a
+    link in the diffusion chain threads.yml voided and removed on 2026-08-27
+    (the four-day interval was measured against ESCARGOT, itself not the first
+    agent paper). Restated as a fact about the months read, which is all a
+    first-appearance date in this corpus ever is.
 
 - id: ev-2025-02-39910355
   pmid: "39910355"
@@ -4281,14 +4837,23 @@ evidence:
   date: 2025-03-01
   source: nature-methods
   threads: [agentic-ai]
-  stance: supports
+  stance: neutral
   type: new-modality
   claim: >-
-    Self-driving multiscale microscopy images cellular dynamics from whole
-    organism to subcellular scale.
+    A light-sheet microscope tracks moving regions of interest for hours;
+    'self-driving' here is closed-loop instrument control from custom Python,
+    with no language model anywhere in it.
   title: >-
     Imaging of cellular dynamics from a whole organism to subcellular scale
     with self-driving, multiscale microscopy
+  revised: 2026-08-27
+  revised_note: >-
+    Stance supports->neutral. Carded off the words "self-driving" in the
+    title. The abstract describes "custom Python-based software" driving a
+    multiresolution light-sheet platform; there is no LLM and no agent, so it
+    cannot evidence a claim about LLM agents becoming research infrastructure.
+    The thread is left attached rather than deleted so the mis-assignment
+    stays visible; the card contributes to no ratio while neutral.
 
 - id: ev-2025-08-40481323
   pmid: "40481323"
@@ -4406,17 +4971,26 @@ evidence:
   pmid: "39660643"
   date: 2025-02-08
   source: nar
-  threads: [method-credibility, foundation-models]
+  threads: [method-credibility]
   stance: refutes
   type: benchmark
   claim: >-
-    Chromatin deep learning models' expression predictions depend on histone
-    mark function, regulatory distance and cellular state rather than on
-    general learning.
+    No single histone mark is the strongest predictor of expression across
+    genomic and cellular contexts, and the published in silico models omitted
+    mark function, regulatory distance and cell state.
   title: >-
     Predicting gene expression from histone marks using chromatin deep
     learning models depends on histone mark function, regulatory distance and
     cellular states
+  revised: 2026-08-27
+  revised_note: >-
+    Thread `foundation-models` removed; `method-credibility` kept at refutes.
+    The models here are task-specific convolutional and attention networks the
+    authors trained themselves, not foundation models, and the abstract ends
+    by endorsing their use to "uncover new biological insight" — so the card
+    was contributing a refutation to a thread the paper does not address, with
+    a sign the paper does not carry. The methods critique it does make — that
+    prior work omitted mark function, distance and cell state — is unchanged.
 
 - id: ev-2025-02-39820264
   pmid: "39820264"
@@ -4549,14 +5123,24 @@ evidence:
   date: 2025-04-01
   source: nature-methods
   threads: [method-credibility]
-  stance: refutes
+  stance: supports
   type: benchmark
   claim: >-
-    Feature selection method choice changes single-cell integration and
-    querying performance.
+    Benchmarking feature selection across integration, query mapping, label
+    transfer and unseen-population detection reinforces common practice:
+    highly variable gene selection produces high-quality integrations.
   title: >-
     Feature selection methods affect the performance of scRNA-seq data
     integration and querying
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. The title names the object ("methods
+    affect performance") and was read as a finding of unreliability; the
+    abstract states the verdict the other way — "We reinforce common practice
+    by showing that highly variable feature selection is effective for
+    producing high-quality integrations" — and the paper's output is guidance,
+    not a defect report. This is the audit genre the corpus warns about, with
+    the sign running the unexpected way: an audit that clears the method.
 
 - id: ev-2025-06-40240607
   pmid: "40240607"
@@ -4784,14 +5368,24 @@ evidence:
   date: 2025-02-11
   source: immunity
   threads: [neuro-immune-microbiome-axis]
-  stance: refutes
+  stance: supports
   type: mechanism
   claim: >-
-    Bi-directional enteric neuron-ILC2 communication inhibits host defence
-    against helminth infection — the axis operating against the host.
+    ILC2-derived IL-13 activates intrinsic enteric neurons to release
+    beta-CGRP, which feeds back to suppress ILC2 responses — a bi-directional
+    neuroimmune circuit with a neuropeptide as its currency.
   title: >-
     Bi-directional communication between intrinsic enteric neurons and ILC2s
     inhibits host defense against helminth infection
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. The card read "inhibits host defense"
+    as the axis failing, but the thread's claim is mechanistic — that neural
+    and lymphoid control are one network with neurotransmitters as the shared
+    currency — and says nothing about which direction the effect runs. A
+    neuron-ILC2 circuit signalling through IL-13 and beta-CGRP evidences that
+    claim whichever way it points. Recorded here because the setting is
+    helminth infection, not a tumour microenvironment.
 
 - id: ev-2025-03-39513738
   pmid: "39513738"
@@ -4827,16 +5421,26 @@ evidence:
   date: 2025-04-02
   source: cancer-discovery
   threads: [neuro-immune-microbiome-axis]
-  stance: refutes
+  stance: supports
   type: clinical-readout
   claim: >-
-    Non-selective beta-adrenergic blockade impairs haematopoietic regeneration
-    in mice and humans after transplant — the neural axis cutting against an
-    intervention built on it.
+    Non-selective but not beta1-selective adrenergic blockade delays platelet
+    engraftment and reduces survival after allogeneic transplant in patients
+    and in mice — sympathetic signalling is load-bearing in human recovery.
   title: >-
     Nonselective β-Adrenergic Receptor Inhibitors Impair Hematopoietic
     Regeneration in Mice and Humans after Hematopoietic Cell Transplants
   companions: ["40170537"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports, and the "neural axis cutting against an
+    intervention built on it" gloss dropped: no intervention built on the axis
+    was tested. Carvedilol and metoprolol are cardiac drugs, and the finding
+    is that blocking beta2/beta3 signalling — but not beta1 — impairs
+    engraftment in two patient cohorts. That is neural control of a
+    haematopoietic-immune process demonstrated in humans, which evidences the
+    thread's mechanism claim rather than contradicting it. The setting is
+    transplant engraftment, not a tumour microenvironment.
 
 - id: ev-2025-04-40208971
   pmid: "40208971"
@@ -4982,13 +5586,23 @@ evidence:
   date: 2025-06-01
   source: nature
   threads: [interception]
-  stance: refutes
+  stance: neutral
   type: mechanism
   claim: >-
-    Oncogene aberrations drive medulloblastoma progression rather than
-    initiation, moving the interception window.
+    In group 3/4 medulloblastoma the initiating events are large-scale
+    chromosomal aberrations, dated to the first gestational trimester, with
+    single-gene oncogene hits arriving late and mostly subclonal.
   title: >-
     Oncogene aberrations drive medulloblastoma progression, not initiation
+  revised: 2026-08-27
+  revised_note: >-
+    Stance refutes->neutral. The title reads as bad news for interception and
+    was carded that way, but the abstract's own conclusion runs the other
+    direction — "our findings demonstrate how single-cell technologies can be
+    applied for early detection and diagnosis of this fatal disease" — while
+    also placing initiation in utero. It re-times the driver events; it
+    neither treats a precursor state nor shows interception failing, so it
+    should sit on neither side of the ratio.
 
 - id: ev-2025-08-40405018
   pmid: "40405018"
@@ -5096,11 +5710,19 @@ evidence:
   stance: refutes
   type: mechanism
   claim: >-
-    Age-associated NAD decline drives CAR-T failure — a host-intrinsic ceiling
-    on the platform.
+    Age-associated NAD decline drives CAR-T failure in aged mice, and age and
+    NAD metabolism track responsiveness in human data - a host-intrinsic limit
+    on the platform, which the same paper reverses by targeting NAD metabolism
+    in cells from older adults.
   title: >-
     Age-associated nicotinamide adenine dinucleotide decline drives CAR-T cell
     failure
+  revised: 2026-08-27
+  revised_note: >-
+    Claim called the age-NAD effect "a host-intrinsic ceiling on the platform".
+    The abstract reports the deficit as repairable: targeting NAD pathways
+    recovered mitochondrial fitness and function in CAR-T cells from older
+    adults. A ceiling and a fixable defect are not the same finding.
 
 - id: ev-2025-06-40359942
   pmid: "40359942"
@@ -5161,7 +5783,14 @@ evidence:
   pmid: "40228181"
   date: 2025-08-01
   source: jco
-  threads: [clinical-practice]
+  threads: []
+  revised: 2026-08-27
+  revised_note: >-
+    clinical-practice removed. That thread claims meetings lead journals;
+    this card is a journal readout and says nothing about a meeting. All
+    eight of its cards were the same mistake, scoring the direction of
+    clinical advice rather than the thread's claim. See `not_cardable`
+    in data/threads.yml.
   stance: refutes
   type: clinical-readout
   claim: >-
@@ -5175,7 +5804,14 @@ evidence:
   pmid: "40184047"
   date: 2025-05-06
   source: jama
-  threads: [clinical-practice]
+  threads: []
+  revised: 2026-08-27
+  revised_note: >-
+    clinical-practice removed. That thread claims meetings lead journals;
+    this card is a journal readout and says nothing about a meeting. All
+    eight of its cards were the same mistake, scoring the direction of
+    clinical advice rather than the thread's claim. See `not_cardable`
+    in data/threads.yml.
   stance: refutes
   type: clinical-readout
   claim: >-
@@ -5189,7 +5825,14 @@ evidence:
   pmid: "40053343"
   date: 2025-04-08
   source: jama
-  threads: [clinical-practice]
+  threads: []
+  revised: 2026-08-27
+  revised_note: >-
+    clinical-practice removed. That thread claims meetings lead journals;
+    this card is a journal readout and says nothing about a meeting. All
+    eight of its cards were the same mistake, scoring the direction of
+    clinical advice rather than the thread's claim. See `not_cardable`
+    in data/threads.yml.
   stance: refutes
   type: clinical-readout
   claim: >-
@@ -5201,7 +5844,14 @@ evidence:
   pmid: "40152891"
   date: 2025-04-22
   source: jama
-  threads: [clinical-practice]
+  threads: []
+  revised: 2026-08-27
+  revised_note: >-
+    clinical-practice removed. That thread claims meetings lead journals;
+    this card is a journal readout and says nothing about a meeting. All
+    eight of its cards were the same mistake, scoring the direction of
+    clinical advice rather than the thread's claim. See `not_cardable`
+    in data/threads.yml.
   stance: refutes
   type: clinical-readout
   claim: >-
@@ -5275,11 +5925,19 @@ evidence:
   stance: refutes
   type: benchmark
   claim: >-
-    Plain Z-scores outperform purpose-built methods for CRISPR paralog
-    synthetic-lethality screens.
+    Analysis pipelines for CRISPR paralog synthetic-lethality screens vary
+    considerably, and both Z-transformed and rescaled dLFC identify synthetic
+    lethal pairs more consistently than the unscaled dLFC in use; the Z-score's
+    advantage is needing no training set of known interactors.
   title: >-
     Z-scores outperform similar methods for analyzing CRISPR paralog synthetic
     lethality screens
+  revised: 2026-08-27
+  revised_note: >-
+    Claim asserted that plain Z-scores beat purpose-built methods. The abstract
+    reports ZdLFC and RdLFC performing comparably, both better than unscaled
+    dLFC, and gives the Z-score only the training-set advantage. The
+    superiority is in the title, not in the results.
 
 - id: ev-2025-07-40794862
   pmid: "40794862"
@@ -5301,13 +5959,20 @@ evidence:
   stance: refutes
   type: refutation
   claim: >-
-    Untargeted CUT&RUN-style reads enrich at accessible chromatin and restrict
-    identification of G4-forming sequences, making G4 maps an accessibility
-    artifact.
+    Untargeted CUT&Tag signal tracks chromatin accessibility and correlates
+    genome-wide with G4-targeted signal; calling peaks against a matched
+    untargeted library slightly improves precision but excludes real
+    G4-forming sequences, so published G4 maps need that control.
   title: >-
     Untargeted CUT&Tag reads are enriched at accessible chromatin and restrict
     identification of potential G4-forming sequences in G4-targeted CUT&Tag
     experiments
+  revised: 2026-08-27
+  revised_note: >-
+    Claim called G4 maps "an accessibility artifact". The abstract reports
+    colocalisation with accessibility and a modest precision-for-recall
+    trade-off, and recommends care in interpretation - it does not say the
+    maps are artefacts.
 
 - id: ev-2025-07-40560601
   pmid: "40560601"
@@ -5330,11 +5995,18 @@ evidence:
   stance: supports
   type: new-modality
   claim: >-
-    A self-verification language agent performs gene-set analysis against
-    domain databases — the first wet-lab-adjacent agent in this corpus.
+    A self-verification language agent performs gene-set analysis by querying
+    biological databases to check its own output, reducing hallucination and
+    beating GPT-4 across 1,106 gene sets.
   title: >-
     GeneAgent: self-verification language agent for gene-set analysis using
     domain databases
+  revised: 2026-08-27
+  revised_note: >-
+    Removed "the first wet-lab-adjacent agent in this corpus". The abstract
+    claims no precedence, gene-set analysis is not wet-lab-adjacent, and
+    threads.yml has voided the diffusion chain that dated that step to 2025-08.
+    Ten first-appearance claims have been made in this corpus; ten have moved.
 
 - id: ev-2026-02-40738974
   pmid: "40738974"
@@ -5409,14 +6081,24 @@ evidence:
   date: 2025-07-01
   source: jama
   threads: [ctdna-mrd, interception]
-  stance: supports
+  stance: neutral
   type: clinical-readout
   claim: >-
-    Clinical validation of a circulating-tumour-DNA blood test for colorectal
-    cancer screening.
+    In 27,010 average-risk adults the test met every primary endpoint for
+    cancer detection - 79.2% sensitivity for colorectal cancer, 91.5%
+    specificity - but sensitivity for advanced precancerous lesions was 12.5%
+    and missed its prespecified criterion.
   title: >-
     Clinical Validation of a Circulating Tumor DNA-Based Blood Test to Screen
     for Colorectal Cancer
+  revised: 2026-08-27
+  revised_note: >-
+    Stance supports->neutral; claim was the title. The abstract splits in two.
+    The cancer-detection endpoints were all met, which supports `ctdna-mrd`;
+    the 12.5% sensitivity for advanced precancerous lesions failed its
+    prespecified criterion, and that is the half bearing on `interception`.
+    One stance cannot be both, and supports counted the failed half as
+    evidence for the thread it fails.
 
 - id: ev-2026-07-42478469
   pmid: "42478469"
@@ -5522,24 +6204,50 @@ evidence:
   date: 2024-01-12
   source: cancer-discovery
   threads: [neuro-immune-microbiome-axis]
-  stance: supports
+  stance: neutral
   type: mechanism
   claim: >-
-    Gliomas hijack adaptive plasticity to strengthen neuron-tumour synapses.
+    NOT INDEPENDENT EVIDENCE. This is a one-sentence Cancer Discovery Research
+    Watch item (p13, no named authors, whole abstract: "Blocking BDNF-driven
+    synaptic plasticity extends survival in patient-derived glioma xenograft
+    models") restating 37914930, Taylor et al., Nature 2023-11, carded
+    separately as ev-2023-11-37914930. It reports no data of its own.
   title: >-
     Gliomas Hijack Adaptive Plasticity to Strengthen Neuron-Tumor Synapses
+  companions: ["37914930"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed supports->neutral. Carded as a `mechanism` from a title that
+    is a near-copy of the Nature paper it summarises, so one study counted
+    twice on this thread — and this was the card threads.yml credited with
+    opening the neuro-immune thread at 2024-01. threads.yml recorded the
+    attribution error on 2026-08-27; the card itself was never changed, so the
+    ratio still carried it. Neutral removes it from the ratio while keeping the
+    id, per the never-delete rule.
 
 - id: ev-2024-01-38071995
   pmid: "38071995"
   date: 2024-01-01
   source: lancet-oncology
   threads: [cell-therapy]
-  stance: refutes
+  stance: neutral
   type: regulatory
   claim: >-
-    The FDA investigates the risk of secondary lymphomas after CAR-T. The platform's safety case is reopened by the regulator, not by a trial.
+    NOT INDEPENDENT EVIDENCE. A single-page Lancet Oncology news brief (p21,
+    one staff writer, no abstract) reporting the same FDA investigation as
+    38071978, the Lancet news brief one month earlier carded as
+    ev-2023-12-38071978, and as 38265704, the FDA's own NEJM perspective carded
+    as ev-2024-02-38265704. One regulatory action, three cards.
   title: >-
     FDA investigates risk of secondary lymphomas after CAR-T immunotherapy
+  companions: ["38071978", "38265704"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral. threads.yml recorded on 2026-08-27 that
+    this card restates 38071978 and that the corpus "opened a thread on the
+    echo rather than the paper"; the card was never changed to match, so the
+    cell-therapy ratio still counted the echo. Neutral leaves the primary
+    statement of the FDA action (38265704) carrying the weight.
 
 - id: ev-2024-01-37874957
   pmid: "37874957"
@@ -5581,13 +6289,24 @@ evidence:
   pmid: "38082179"
   date: 2024-01-01
   source: nature-biomed-eng
-  threads: [method-credibility, foundation-models]
+  threads: [method-credibility]
   stance: refutes
   type: audit
   claim: >-
-    Macroscopic resting-state brain dynamics are best described by LINEAR models. Simple beats complex, stated in a title, in January 2024.
+    Linear autoregressive models fit resting-state iEEG and fMRI better than
+    nonlinear families on predictive power, complexity and residual dynamics
+    across 822 participants, and the paper names the four reasons microscopic
+    nonlinearity is masked at the macroscopic scale.
   title: >-
     Macroscopic resting-state brain dynamics are best described by linear models
+  revised: 2026-08-27
+  revised_note: >-
+    `foundation-models` removed. Nothing in this paper involves a foundation
+    model, pretraining, scale or transfer — it compares autoregressive model
+    families on brain recordings. It was placed on the thread on the strength
+    of "simple beats complex" being a slogan the thread uses, which is an
+    analogy, not evidence. Stance on method-credibility is unchanged: the
+    abstract does state an assumption in the literature and challenge it.
 
 - id: ev-2024-02-38341654
   pmid: "38341654"
@@ -5607,11 +6326,21 @@ evidence:
   source: nejm
   threads: [cell-therapy]
   stance: refutes
-  type: clinical
+  type: regulatory
   claim: >-
-    Secondary cancers after CAR-T, in the New England Journal of Medicine. The risk the FDA opened in January is documented in the flagship clinical venue a month later.
+    The FDA states its own case: a three-page NEJM perspective by Verdun and
+    Marks of CBER on secondary T-cell cancers after CAR-T. This is the primary
+    statement of the regulatory action that the two news briefs on this thread
+    (38071978, 38071995) report second-hand.
   title: >-
     Secondary Cancers after Chimeric Antigen Receptor T-Cell Therapy
+  companions: ["38071978", "38071995"]
+  revised: 2026-08-27
+  revised_note: >-
+    Type clinical->regulatory. The record has no abstract because it is not a
+    study: it is a 584-586 perspective authored by two FDA officials. Carding
+    it `clinical` made the corpus read one regulatory action as a clinical
+    readout plus two news items. Stance unchanged.
 
 - id: ev-2024-02-38195751
   pmid: "38195751"
@@ -5651,13 +6380,25 @@ evidence:
   pmid: "38200587"
   date: 2024-02-01
   source: bioinformatics
-  threads: [method-credibility, foundation-models]
+  threads: [method-credibility]
   stance: refutes
   type: audit
   claim: >-
-    Pitfalls of machine learning models for protein-protein interaction networks. The direct ancestor of the 2025 finding that sequence-based interaction predictors plateau, seventeen months earlier.
+    An open benchmarking framework for protein-protein interaction prediction
+    finds that algorithm design has little impact on performance when
+    functional-genomics features are used, and that the field's models are
+    difficult to compare because no consistent evaluation framework exists.
   title: >-
     Pitfalls of machine learning models for protein-protein interaction networks
+  revised: 2026-08-27
+  revised_note: >-
+    Claim rewritten and `foundation-models` removed. The abstract does not say
+    sequence-based predictors plateau; it says sequence-based and
+    functional-genomics models are COMPLEMENTARY, the former on hub proteins
+    and the latter on lone ones. The old claim asserted a 2025 result
+    seventeen months early on a paper that does not contain it. These are
+    classic supervised models on human and yeast PPIs, with no pretrained or
+    general-purpose model anywhere in the paper.
 
 - id: ev-2024-02-38331411
   pmid: "38331411"
@@ -5676,36 +6417,65 @@ evidence:
   date: 2024-02-01
   source: nature-biotechnology
   threads: [ctdna-mrd]
-  stance: supports
-  type: method
+  stance: neutral
+  type: commentary
   claim: >-
-    Boosting circulating tumour DNA to improve liquid biopsies — the sensitivity problem is being attacked at the assay level.
+    NO PRIMARY CONTENT. A single-page Nature Biotechnology research highlight
+    (v42(2) p184, one journal editor, no abstract) summarising work published
+    elsewhere on raising cell-free DNA yield.
   title: >-
     Boosting circulating tumor DNA to improve liquid biopsies
+  revised: 2026-08-27
+  revised_note: >-
+    Stance supports->neutral, type method->commentary. Carded as a method paper
+    from its title; the record is a one-page editor-written highlight with no
+    abstract and no data. Even at face value an assay-yield note does not
+    evidence this thread, whose claim is specifically that ctDNA guides
+    treatment rather than merely reporting risk.
 
 - id: ev-2024-02-37972346
   pmid: "37972346"
   date: 2024-02-01
   source: jco
   threads: [ctdna-mrd]
-  stance: supports
+  stance: neutral
   type: clinical
   claim: >-
-    Clinical validation of HPV circulating tumour DNA for early detection of residual disease after chemoradiation in cervical cancer.
+    PROGNOSTIC, NOT TREATMENT-GUIDING. In 70 patients, detectable HPV ctDNA
+    after chemoradiation is independently associated with inferior 2-year PFS
+    (82% v 24% at 3 months); the abstract's own conclusion is that this
+    identifies patients "for FUTURE treatment intensification trials". No
+    treatment decision was made from the assay.
   title: >-
     Clinical Validation of Human Papilloma Virus Circulating Tumor DNA for Early Detection of Residual Disease After Chemoradiation in Cervical Cancer
+  revised: 2026-08-27
+  revised_note: >-
+    Stance supports->neutral. This thread's claim is that ctDNA is
+    treatment-guiding NOT ONLY prognostic, and the corpus polices that
+    distinction elsewhere (ev-2023-01-36646802, ev-2023-03-36343306). A
+    prognostic-association study carded `supports` counts the very use the
+    thread is defined against.
 
 - id: ev-2024-02-37992871
   pmid: "37992871"
   date: 2024-02-01
   source: annals-oncology
   threads: [ctdna-mrd]
-  stance: supports
+  stance: neutral
   type: clinical
   claim: >-
-    ctDNA and radiological tumour volume identify patients at risk of relapse in resected early-stage NSCLC.
+    PROGNOSTIC, NOT TREATMENT-GUIDING. In 85 resected NSCLC patients plus a
+    32-patient validation set, ctDNA detectability combined with CT-derived
+    tumour volume stratifies relapse risk. The abstract suggests the pair
+    "could be valuable tools" for guiding decisions; no decision was guided.
   title: >-
     Circulating tumor DNA and radiological tumor volume identify patients at risk for relapse with resected, early-stage non-small-cell lung cancer
+  revised: 2026-08-27
+  revised_note: >-
+    Stance supports->neutral, same defect as ev-2024-02-37972346: a
+    risk-stratification study carded as support for a thread whose claim is
+    that ctDNA does more than stratify risk. A stated hope in a discussion is
+    not a readout.
 
 - id: ev-2024-02-38381673
   pmid: "38381673"
@@ -5751,9 +6521,22 @@ evidence:
   stance: supports
   type: model
   claim: >-
-    Towards a general-purpose foundation model for computational pathology.
+    UNI, a general-purpose self-supervised pathology model pretrained on >100
+    million tiles from >100,000 whole slides across 20 tissue types, evaluated
+    on 34 tasks. Its companion paper in the same issue (38504017) is from the
+    same laboratory, not an independent group.
   title: >-
     Towards a general-purpose foundation model for computational pathology
+  companions: ["38504017"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim rewritten; stance unchanged. The card carried no finding of its own,
+    and its sibling card 38504017 asserted the pair were "convergence, not a
+    single lab". Both papers have Faisal Mahmood as senior author and share most
+    of their author list, so the two cards are one group's back-to-back release,
+    not two labs agreeing. Both remain `supports` — UNI and CONCH are distinct
+    models with distinct evaluations — but they are one piece of convergence
+    evidence, not two.
 
 - id: ev-2024-03-38504017
   pmid: "38504017"
@@ -5763,9 +6546,21 @@ evidence:
   stance: supports
   type: model
   claim: >-
-    A visual-language foundation model for computational pathology, in the same journal and month as the general-purpose one. Convergence, not a single lab.
+    CONCH, a visual-language pathology foundation model trained on 1.17 million
+    image-caption pairs, state of the art across 14 benchmarks — published
+    back-to-back with UNI (38504018) in the same issue of Nature Medicine. NOT
+    independent convergence: both papers carry Faisal Mahmood as senior author
+    and share most of their author list.
   title: >-
     A visual-language foundation model for computational pathology
+  companions: ["38504018"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim rewritten; stance unchanged. "Convergence, not a single lab" was
+    false: 38504018 and this paper share a senior author and most of their
+    author list. The corpus's most-repeated inference — same journal, same
+    month, therefore independent groups — fails whenever a laboratory publishes
+    back-to-back, and nothing in a title reveals that.
 
 - id: ev-2024-03-38418879
   pmid: "38418879"
@@ -5783,13 +6578,22 @@ evidence:
   pmid: "38200243"
   date: 2024-03-01
   source: nature-cancer
-  threads: [next-gen-checkpoints, suppressive-population-inversion]
+  threads: [next-gen-checkpoints]
   stance: refutes
   type: mechanism
   claim: >-
     SIRPα on tumour-associated myeloid cells restrains antitumour immunity INDEPENDENT of its interaction with CD47. The don't-eat-me axis that the entire CD47 programme is premised on is not the operative mechanism.
   title: >-
     Sirpα on tumor-associated myeloid cells restrains antitumor immunity in colorectal cancer independent of its interaction with CD47
+  revised: 2026-08-27
+  revised_note: >-
+    `suppressive-population-inversion` removed. On that thread the card's sign
+    was inverted: Sirpa-/- mice resist tumours and the abstract closes by
+    proposing "Sirpα blockade could be a promising strategy", which is the
+    thread's claim CONFIRMED, not inverted. It is also the target-nomination
+    genre that threads.yml `denominator` says is deliberately not carded. The
+    next-gen-checkpoints reading — the CD47 interaction is not the operative
+    mechanism — is what the abstract supports, and is kept unchanged.
 
 - id: ev-2024-03-38489352
   pmid: "38489352"
@@ -5831,7 +6635,14 @@ evidence:
   pmid: "38096462"
   date: 2024-03-10
   source: jco
-  threads: [clinical-practice]
+  threads: []
+  revised: 2026-08-27
+  revised_note: >-
+    clinical-practice removed. That thread claims meetings lead journals;
+    this card is a journal readout and says nothing about a meeting. All
+    eight of its cards were the same mistake, scoring the direction of
+    clinical advice rather than the thread's claim. See `not_cardable`
+    in data/threads.yml.
   stance: refutes
   type: trial
   claim: >-
@@ -5931,9 +6742,22 @@ evidence:
   stance: supports
   type: resource
   claim: >-
-    A pan-cancer analysis of the microbiome in metastatic cancer — published in the same journal and month as the other pan-cancer metastasis microbiome map. Independent convergence.
+    Metagenomics, genomics and transcriptomics over 4,160 metastatic biopsies
+    from 26 cancer types: organ-specific microbial tropism, anaerobe enrichment
+    in hypoxic tumours, and Fusobacterium associated with checkpoint-blockade
+    resistance in lung cancer. THE ONLY STUDY OF ITS KIND IN THIS MONTH — the
+    "other pan-cancer metastasis microbiome map" the old claim paired it with
+    is 38670070, which is this paper's own Cell preview.
   title: >-
     A pan-cancer analysis of the microbiome in metastatic cancer
+  companions: ["38670070"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim rewritten; stance unchanged. 38670070 was corrected to neutral on
+    2026-08-27 for being a preview of this paper, but this card still asserted
+    "independent convergence" with it, so half the double-count survived the
+    fix. A correction that repairs one side of a pair and leaves the other
+    reading as replication has not removed the error, only hidden it.
 
 - id: ev-2024-04-38538867
   pmid: "38538867"
@@ -5975,13 +6799,26 @@ evidence:
   pmid: "38490738"
   date: 2024-04-25
   source: genome-research
-  threads: [method-credibility]
-  stance: refutes
-  type: audit
+  threads: []
+  stance: neutral
+  type: mechanism
   claim: >-
-    Experimentally evolved Drosophila populations may FAIL to establish an effective piRNA-based defence — a textbook mechanism does not reproduce.
+    P-elements were introduced into naive Drosophila erecta lines and tracked
+    for 50+ generations in three replicates: piRNA defence established in two
+    and failed in the third, where the ping-pong cycle never activated despite
+    piRNA-cluster insertions and siRNAs. Activation of the defence is a
+    stochastic event in a population, not a failure of anything published.
   title: >-
     Experimentally evolving Drosophila erecta populations may fail to establish an effective piRNA-based host defense against invading P-elements
+  revised: 2026-08-27
+  revised_note: >-
+    `method-credibility` removed and stance refutes->neutral. The old claim
+    read "may fail" in the title as "a textbook mechanism does not reproduce"
+    and filed the paper in a ledger of published methods, resources and
+    reagents found unreliable. The abstract audits nothing: it is experimental
+    evolution in fruit flies, and the replicate that failed is the result, not
+    a reproducibility failure. This is the genre the corpus was warned about —
+    a title read for a general moral it does not carry.
 
 - id: ev-2024-05-38689063
   pmid: "38689063"
@@ -5991,21 +6828,45 @@ evidence:
   stance: refutes
   type: audit
   claim: >-
-    Microbiome confounders and quantitative profiling CHALLENGE predicted microbial targets in colorectal cancer development. The single most direct refutation on this thread anywhere in the corpus, and it is from May 2024 — sixteen months before the thread's first recorded card.
+    In 589 patients plus up to 15 published studies (4,439 subjects), quantitative
+    16S profiling with transit time, faecal calprotectin and BMI as covariates
+    dissolves the association between Fusobacterium nucleatum and CRC stage.
+    Six other taxa survive the same control, so this refutes the field's most
+    cited microbial target rather than the microbial account as a whole.
   title: >-
     Microbiome confounders and quantitative profiling challenge predicted microbial targets in colorectal cancer development
+  revised: 2026-08-27
+  revised_note: >-
+    Claim rewritten; stance unchanged. Two defects. The old claim called this
+    "sixteen months before the thread's first recorded card" — the thread now
+    opens 2023-01, so the sentence has been false since the backfill and is the
+    kind of window-dependent boast threads.yml says has never once survived an
+    extension. And it read the title's "challenge predicted microbial targets"
+    as a wholesale refutation; the abstract dissolves Fusobacterium nucleatum
+    but leaves six taxa standing under the same confounder control.
 
 - id: ev-2024-05-38758808
   pmid: "38758808"
   date: 2024-05-17
   source: science-immunology
   threads: [suppressive-population-inversion]
-  stance: refutes
+  stance: supports
   type: mechanism
   claim: >-
-    TREM2 DEFICIENCY reprograms intestinal macrophages and microbiota to enhance anti-PD-1 therapy. Removing a population improves the outcome.
+    Deleting TREM2 — a receptor nominated as suppressive on tumour macrophages
+    two years earlier in this corpus (ev-2023-05-37081148) — reprograms
+    intestinal macrophages, expands Ruminococcus gnavus, and enhances anti-PD-1
+    tumour elimination, which R. gnavus gavage reproduces in wild-type mice.
   title: >-
     TREM2 deficiency reprograms intestinal macrophages and microbiota to enhance anti-PD-1 tumor immunotherapy
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. The old claim's own last sentence —
+    "Removing a population improves the outcome" — is a word-for-word statement
+    of this thread's claim, filed as a refutation of it. On this thread
+    `refutes` is reserved for inversions, where a population assumed
+    suppressive turns out protective (ev-2024-05-38684922, ev-2025-11-40924026);
+    deletion improving the outcome is the supporting case.
 
 - id: ev-2024-05-38664585
   pmid: "38664585"
@@ -6036,12 +6897,23 @@ evidence:
   date: 2024-05-01
   source: cancer-discovery
   threads: [immunotherapy-resistance]
-  stance: supports
+  stance: refutes
   type: mechanism
   claim: >-
-    TREX1 inactivation unleashes cancer-cell STING-interferon signalling and promotes antitumour immunity.
+    Cancer cells adaptively induce TREX1 through autocrine interferon and STAT1
+    to degrade cytosolic DNA and cap their own STING-IFN signalling; inactivating
+    it in the cancer cell recruits T and NK cells and cooperates with PD-1
+    blockade. The brake on immunogenicity is inside the tumour cell.
   title: >-
     TREX1 Inactivation Unleashes Cancer Cell STING-Interferon Signaling and Promotes Antitumor Immunity
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed supports->refutes. This thread claims resistance is being
+    explained OUTSIDE the tumour cell; the abstract locates the mechanism in
+    "cancer cell TREX1" five times over. The corpus already cards the identical
+    shape as a refutation — ev-2023-08-37553183, tumour-cell-intrinsic and not
+    host STING — so the sign here was set by the title's upbeat verb rather
+    than by where the paper puts the machinery.
 
 - id: ev-2024-05-38689062
   pmid: "38689062"
@@ -6168,12 +7040,22 @@ evidence:
   date: 2024-07-01
   source: genome-biology
   threads: [method-credibility]
-  stance: refutes
+  stance: neutral
   type: audit
   claim: >-
-    Benchmarking computational variant-effect predictors by their ability to infer human traits — evaluated against the endpoint that matters rather than against curated labels.
+    Twenty-four variant-effect predictors evaluated against rare-variant trait
+    associations in UK Biobank and All of Us, sidestepping circularity with
+    training labels. AlphaMissense wins in both cohorts and the two rankings
+    agree — a benchmark with no adverse finding.
   title: >-
     Benchmarking computational variant effect predictors by their ability to infer human traits
+  revised: 2026-08-27
+  revised_note: >-
+    Stance refutes->neutral. Nothing here is found unreliable: the top method
+    outperforms and the rankings replicate across two independent cohorts. The
+    corpus already cards result-free benchmarks neutral (ev-2024-01-38172966,
+    ev-2024-06-37537502, ev-2024-08-39152456, ev-2024-08-39123269); this one was
+    carded refutes because "benchmarking" in a title was read as a verdict.
 
 - id: ev-2024-07-39030569
   pmid: "39030569"
@@ -6207,9 +7089,22 @@ evidence:
   stance: refutes
   type: retraction
   claim: >-
-    Expression of Concern on durable suppression of acquired MEK-inhibitor resistance — the second concern notice in the same journal and month.
+    Expression of Concern on durable suppression of acquired MEK-inhibitor
+    resistance. NOT AN INDEPENDENT SECOND SIGNAL: this notice and 38946327,
+    issued in the same journal and month, share their first author (Hong A) and
+    come from one laboratory's body of work, so they are two papers from one
+    investigation rather than two investigations.
   title: >-
     Expression of Concern: Durable Suppression of Acquired MEK Inhibitor Resistance in Cancer by Sequestering MEK from ERK and Promoting Antitumor T-cell Immunity
+  companions: ["38946327"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim rewritten; stance unchanged. Both notices are genuine and concern
+    distinct papers, so both stay on the ledger, but the old phrasing — "the
+    second concern notice in the same journal and month" — presented them as an
+    independent second signal. They share a first author and a laboratory. This
+    is the same same-journal-same-month inference that failed on 38504017 and
+    38504018 in the other direction.
 
 - id: ev-2024-07-38870944
   pmid: "38870944"
@@ -6227,25 +7122,47 @@ evidence:
   pmid: "38969522"
   date: 2024-07-05
   source: jitc
-  threads: [immunotherapy-resistance]
-  stance: supports
+  threads: []
+  stance: neutral
   type: clinical
   claim: >-
-    Infliximab in steroid-refractory immune-related hepatitis does not demonstrate hepatotoxicity and may shorten time on steroids.
+    A ten-patient single-centre retrospective series: infliximab controlled
+    steroid-refractory grade >=3 immune-related hepatitis in 7 of 10 without
+    hepatotoxicity, resolved in 9 of 10 at a median 487 days.
   title: >-
     Infliximab in steroid-refractory immune-related hepatitis does not demonstrate hepatotoxicity and may shorten time on steroids
+  revised: 2026-08-27
+  revised_note: >-
+    `immunotherapy-resistance` removed and stance supports->neutral. This is the
+    management of an immune-related ADVERSE EVENT, not a mechanism of checkpoint
+    resistance; no other card among the thirty on that thread is about toxicity.
+    Carding it `supports` added a case to a supports/refutes ratio it has no
+    bearing on. The finding is real and the card is kept; it simply has no
+    thread in this corpus.
 
 - id: ev-2024-07-38533987
   pmid: "38533987"
   date: 2024-07-01
   source: cancer-discovery
-  threads: [next-gen-checkpoints]
-  stance: supports
-  type: commentary
+  threads: []
+  stance: neutral
+  type: mechanism
   claim: >-
-    Paradoxical activation of oncogenic signalling as a cancer treatment strategy — the sign of an intervention is treated as an open question.
+    PP2A inhibition hyperactivates multiple oncogenic pathways in colon cancer
+    cells; combined PP2A and WEE1 inhibition collapses DNA replication and is
+    synergistic in vivo, and acquired resistance to the combination costs the
+    cells their ability to form tumours — tumour-suppressive drug resistance.
   title: >-
     Paradoxical Activation of Oncogenic Signaling as a Cancer Treatment Strategy
+  revised: 2026-08-27
+  revised_note: >-
+    `next-gen-checkpoints` removed, type commentary->mechanism, stance
+    supports->neutral. Three errors from one title. The record is a primary
+    research article with genetic and compound screens and PDX work, not a
+    commentary; it concerns PP2A/WEE1 synthetic lethality and contains no
+    checkpoint, no immune target and no antibody; and the old claim ("the sign
+    of an intervention is treated as an open question") was a thematic gloss
+    with no counterpart in the paper.
 
 - id: ev-2024-08-38409223
   pmid: "38409223"
@@ -6353,9 +7270,21 @@ evidence:
   stance: refutes
   type: clinical
   claim: >-
-    Evaluation and mitigation of the LIMITATIONS of large language models in clinical decision-making, in Nature Medicine. The clinical-AI counterweight this corpus dated to mid-2025 is in the flagship venue in September 2024.
+    Across 2,400 real MIMIC cases and four abdominal pathologies in a simulated
+    clinical workflow, state-of-the-art LLMs diagnose significantly worse than
+    physicians, follow neither diagnostic nor treatment guidelines, cannot
+    interpret laboratory results, and are sensitive to the quantity and order of
+    information: "not ready for autonomous clinical decision-making".
   title: >-
     Evaluation and mitigation of the limitations of large language models in clinical decision-making
+  revised: 2026-08-27
+  revised_note: >-
+    Claim rewritten; stance unchanged and correct — this is one of the few 2024
+    cards whose refutation the abstract states outright and in detail. What was
+    removed is the dating: "the clinical-AI counterweight this corpus dated to
+    mid-2025 is in the flagship venue in September 2024" was already superseded
+    in threads.yml, which puts the same statement in Nature Medicine titles in
+    2023-10 and 2023-12. The finding needed no date to carry it.
 
 - id: ev-2024-09-39322959
   pmid: "39322959"
@@ -6386,12 +7315,23 @@ evidence:
   date: 2024-09-20
   source: genome-research
   threads: [method-credibility]
-  stance: refutes
-  type: audit
+  stance: neutral
+  type: method
   claim: >-
-    A SIMPLE method for finding related sequences by adding probabilities of alternative alignments.
+    A minimal change to standard sequence alignment that sums the probabilities
+    of alternative alignments instead of scoring one, making chance similarity
+    easier to judge and improving detection of distant relationships at
+    negligible run-time cost.
   title: >-
     A simple method for finding related sequences by adding probabilities of alternative alignments
+  revised: 2026-08-27
+  revised_note: >-
+    Stance refutes->neutral, type audit->method. A single-author methods paper
+    proposing an improvement, carded as an audit because "simple" in the title
+    was read as the corpus's simple-beats-complex motif. It examines no
+    published tool and reports no adverse finding, so it does not belong in a
+    ledger of things found unreliable; it stays on the thread as a neutral
+    method note.
 
 - id: ev-2024-10-39232164
   pmid: "39232164"
@@ -6446,24 +7386,46 @@ evidence:
   date: 2024-10-01
   source: nature
   threads: [method-credibility]
-  stance: supports
+  stance: neutral
   type: method
   claim: >-
-    Scalable watermarking for identifying large language model outputs.
+    SynthID-Text, a production text watermarking scheme evaluated over nearly
+    20 million live Gemini responses with no measured loss of quality — machinery
+    for telling generated text from written text, premised on their being
+    otherwise indistinguishable.
   title: >-
     Scalable watermarking for identifying large language model outputs
+  revised: 2026-08-27
+  revised_note: >-
+    Stance supports->neutral. This was the ONLY `supports` card among the 151 on
+    method-credibility, and it was carrying the claim that published methods,
+    resources and reagents are reliable enough to build on without re-checking
+    — which this paper says nothing about, in either direction. A provenance
+    tool is not a finding of reliability. Its stance alone moved the thread's
+    supports count off zero.
 
 - id: ev-2024-10-39333790
   pmid: "39333790"
   date: 2024-10-01
   source: nature-computational-science
-  threads: [foundation-models, method-credibility]
-  stance: refutes
-  type: audit
+  threads: [foundation-models]
+  stance: neutral
+  type: method
   claim: >-
-    Toward subtask-decomposition-based learning and benchmarking for predicting genetic perturbation outcomes — the perturbation-prediction task that simple baselines later win is already being rebuilt around its own weaknesses.
+    STAMP splits genetic-perturbation prediction into three ordered subtasks —
+    which genes change, in which direction, by how much — and reports
+    substantial improvement over existing approaches on single, multiple and
+    cross-cell-line perturbations.
   title: >-
     Toward subtask-decomposition-based learning and benchmarking for predicting genetic perturbation outcomes and beyond
+  revised: 2026-08-27
+  revised_note: >-
+    Stance refutes->neutral, type audit->method, `method-credibility` removed.
+    The abstract reports an improvement and no adverse finding, so it is not a
+    ledger entry. The old claim — "the perturbation-prediction task that simple
+    baselines later win is already being rebuilt around its own weaknesses" —
+    is a narrative supplied by a reader who knew what 2025 would say; the word
+    "benchmarking" in the title is the only thing in the paper it attaches to.
 
 - id: ev-2024-11-39112796
   pmid: "39112796"
@@ -6530,12 +7492,22 @@ evidence:
   date: 2024-12-01
   source: nature-cancer
   threads: [foundation-models]
-  stance: supports
+  stance: neutral
   type: commentary
   claim: >-
-    Foundation models in clinical oncology, in Nature Cancer, in the same issue as the AI-agents piece.
+    NO PRIMARY CONTENT. A single-page Nature Cancer research highlight (v5(12)
+    p1790, one author, a journal editor, no abstract, no reference list)
+    summarising work published elsewhere.
   title: >-
     Foundation models in clinical oncology
+  revised: 2026-08-27
+  revised_note: >-
+    Stance supports->neutral. Carded as a second Nature Cancer item "in the same
+    issue as the AI-agents piece", which reads as convergence between two
+    independent statements; 39690222 is a three-page comment by five named
+    authors and this is a one-page editorial highlight of somebody else's paper.
+    A journal's own front matter cannot be evidence for the thread the journal
+    is reporting on.
 
 - id: ev-2024-12-39322717
   pmid: "39322717"
@@ -6566,24 +7538,44 @@ evidence:
   date: 2024-12-01
   source: nature-medicine
   threads: [foundation-models]
-  stance: supports
-  type: model
+  stance: neutral
+  type: commentary
   claim: >-
-    An explainable foundation model for drug repurposing.
+    NOT INDEPENDENT EVIDENCE. A two-page Nature Medicine News & Views (v30(12)
+    p3422-3423, Bessadok and Grisoni) on TxGNN — 39322717, carded separately as
+    ev-2024-12-39322717 from pages 3601-3613 of the same issue. Its reference
+    list cites that paper directly. It reports no model of its own.
   title: >-
     An explainable foundation model for drug repurposing
+  companions: ["39322717"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance supports->neutral, type model->commentary. Carded as a foundation
+    model from a title nearly identical to the paper it comments on, so one
+    model counted as two supporting cards in the same month — the same failure
+    as ev-2024-04-38670070, in the same corpus, eight months later. Confirmed
+    from the Crossref reference list, not inferred from the title.
 
 - id: ev-2024-12-39572717
   pmid: "39572717"
   date: 2024-12-01
   source: nature-methods
   threads: [foundation-models]
-  stance: supports
-  type: method
+  stance: neutral
+  type: commentary
   claim: >-
-    Large language modelling and deep learning shed light on RNA structure prediction.
+    NO PRIMARY CONTENT. An unsigned two-page Nature Methods research highlight
+    (v21(12) p2237-2238, no authors, no abstract, five background references)
+    on RNA structure prediction. It presents no method and no result.
   title: >-
     Large language modeling and deep learning shed light on RNA structure prediction
+  revised: 2026-08-27
+  revised_note: >-
+    Stance supports->neutral, type method->commentary. Carded as a method paper
+    on the strength of its title; the record has no authors because it is
+    journal front matter. Along with 38361060, 39448863 and 39690213 this is the
+    fourth 2024 card in which a journal's own highlight or News & Views was
+    counted as a primary result.
 
 - id: ev-2024-12-39718779
   pmid: "39718779"
@@ -6698,12 +7690,23 @@ evidence:
   date: 2026-08-01
   source: annals-oncology
   threads: [next-gen-checkpoints]
-  stance: refutes
+  stance: neutral
   type: trial
   claim: >-
-    DART (NCI/SWOG S1609) final results for dual CTLA-4 and PD-1 blockade in rare cancers — the comprehensive readout of the combination strategy.
+    DART/S1609 final results across 53 refractory rare-cancer cohorts: 24
+    cohorts (45%) showed clinical activity on ipilimumab plus nivolumab,
+    median ORR 12% and clinical benefit rate 27%, and 82 of 727 treated
+    patients (11%) had immune-related progression-free survival of two years
+    or more. The regimen is PD-1 plus CTLA-4 - the existing generation.
   title: >-
     DART (NCI/SWOG S1609): comprehensive final results from dual checkpoint inhibition with CTLA-4 and PD-1 blockade in rare cancers
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed refutes->neutral and claim corrected. Carded from a trial
+    title that gives no result, and the abstract's conclusion is that patients
+    with refractory rare cancers derived meaningful response. It is also dual
+    PD-1/CTLA-4 blockade, so it cannot bear on a claim about targets beyond
+    PD-1/CTLA-4 in either direction.
 
 - id: ev-2026-08-42361796
   pmid: "42361796"
@@ -6722,24 +7725,43 @@ evidence:
   date: 2026-08-01
   source: lancet-oncology
   threads: [neuro-immune-microbiome-axis]
-  stance: supports
+  stance: neutral
   type: clinical
   claim: >-
-    Co-medications and the gut microbiome in NSCLC immunotherapy.
+    A Lancet Oncology comment title with no abstract, naming co-medications
+    and the gut microbiome in NSCLC immunotherapy; nothing in the record
+    states a finding.
   title: >-
     Co-medications and gut microbiome in NSCLC immunotherapy
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed supports->neutral. The claim was the title and the record
+    has no abstract: a comment title naming two variables is not evidence that
+    one controls the other.
 
 - id: ev-2026-08-42362867
   pmid: "42362867"
   date: 2026-08-01
   source: nature-medicine
   threads: [foundation-models]
-  stance: supports
+  stance: refutes
   type: trial
   claim: >-
-    A generative-AI clinical decision support system in primary care: a pragmatic, CLUSTER-RANDOMIZED trial. The randomised clinical evidence for generative AI that this corpus spent 2025 recording as absent.
+    In a pragmatic cluster-randomized trial across 16 Kenyan primary care
+    facilities - 9,691 patients, 103 clinical officers - LLM assistance was
+    safe but did NOT reduce 14-day treatment failure: 2.2% versus 2.0%,
+    adjusted odds ratio 0.77 (95% CI 0.55-1.08), P = 0.13, primary endpoint
+    not met. The randomised clinical evidence the corpus recorded as absent
+    arrived, and it is null.
   title: >-
     Generative AI-enabled clinical decision support system in primary care: a pragmatic, cluster-randomized trial
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed supports->refutes. The card counted the existence of a
+    randomised trial as support and never read its result: the primary
+    endpoint was not met. This is the mirror image of the six trial-title
+    reversals - a null carded as support because the study design, rather than
+    the outcome, was what the reader was looking for.
 
 - id: ev-2026-08-42377339
   pmid: "42377339"
