@@ -58,12 +58,56 @@ meta:
 
 sources:
 
-# ─────────────────── Conferences: 2024, harvested as the control ─────────────
-# These two are not here to be read. They are here because every other
-# conference in this file is 2026, the journal index only reaches 2026-08,
-# and a meeting cannot be shown to lead the literature by three months.
-# AACR and ASCO 2024 are far enough back that the literature has had two
-# years to answer them, which is what makes scripts/lead_time.py possible.
+# ────────────── Conferences: 2023 and 2024, harvested as the control ─────────
+# These four are not here to be read. They are here because every other
+# conference in this file is 2026, and a meeting cannot be shown to lead the
+# literature by three months. AACR and ASCO are far enough back that the
+# literature has had time to answer them, which is what makes
+# scripts/lead_time.py possible.
+#
+# 2023 was added on 2026-08-27, when the journal index was extended to
+# 2023-01. It is the better cohort and exists to answer a question the 2024
+# pair cannot: with about three and a half years of follow-up against a
+# 10-13 month lag, versus two and a third, is that lag a property of the
+# field or of the single year it was first measured in?
+
+- id: aacr-2023
+  name: AACR Annual Meeting 2023
+  type: conference
+  cadence: annual
+  start: 2023-04-14
+  end: 2023-04-19
+  location: Orlando, FL
+  topics: [oncology-clinical, immuno-oncology, single-cell-spatial, ai-ml]
+  access: open
+  harvest:
+    method: crossref
+    endpoint: "https://api.crossref.org/journals/1538-7445/works?filter=from-pub-date:2023-01-01,until-pub-date:2023-12-31"
+    notes: >-
+      Same route as 2024 — the Cancer Research supplement, Annual Meeting
+      isolated on DOIs containing `am2023`. 6,386 of 8,733 records for the
+      year, full abstract text on every one.
+  vault: null
+  status: harvested
+
+- id: asco-2023
+  name: ASCO Annual Meeting and symposia 2023
+  type: conference
+  cadence: annual
+  start: 2023-06-02
+  end: 2023-06-06
+  location: Chicago, IL
+  topics: [oncology-clinical, immuno-oncology]
+  access: open
+  harvest:
+    method: crossref
+    endpoint: "https://api.crossref.org/journals/1527-7755/works?filter=from-pub-date:2023-01-01,until-pub-date:2023-12-31"
+    notes: >-
+      JCO supplement, 7,306 abstracts. Same shape as 2024: the June block is
+      the Annual Meeting, February is the GI and GU symposia. Full text on
+      every one.
+  vault: null
+  status: harvested
 
 - id: aacr-2024
   name: AACR Annual Meeting 2024

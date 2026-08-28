@@ -119,6 +119,13 @@ VENUES = [
     # registry check started enforcing the join.
     Venue("aacr-2024", "AACR Annual Meeting 2024", 2024, "1538-7445", doi="am{year}"),
     Venue("asco-2024", "ASCO Annual Meeting 2024", 2024, "1527-7755", doi="_suppl"),
+    # 2023 is the better cohort and was added second only because the index
+    # did not reach back that far. It has roughly three and a half years of
+    # follow-up against a 10-13 month lag, where 2024 has two and a third —
+    # which makes it the first chance to ask whether that lag is a property
+    # of the field or of the one year it was measured in.
+    Venue("aacr-2023", "AACR Annual Meeting 2023", 2023, "1538-7445", doi="am{year}"),
+    Venue("asco-2023", "ASCO Annual Meeting 2023", 2023, "1527-7755", doi="_suppl"),
     # --- ESMO family, one abstract book per supplement ----------------
     Venue("elcc-2026", "European Lung Cancer Congress 2026", 2026,
           "2059-7029", suppl="S3",
