@@ -20,10 +20,17 @@ the true limit is not published as a token count. Calibrate it once — run
 `/usage`, compare, and set BUDGET to whatever makes this agree — then treat it
 as a rough brake with margin, never as a precise threshold.
 
-Weights: the limit is not a raw token count, so components are converted to
-input-token-equivalents using Anthropic's published price ratios (output costs
-5x input, cache writes 1.25x, cache reads 0.1x). That is a proxy for cost, not
-a claim about how the limiter works.
+CALIBRATE IT OR DO NOT TRUST IT. The first version of this script weighted
+cache reads at 0.1 and reported 82% against a real 20% — wrong by a factor of
+four, and it stopped work on the strength of that. The cause is structural:
+cache reads are ~98% of all tokens in a normal session, so the estimate is
+almost entirely one uncertain weight, and the script did not say so.
+
+The fix is not a better guess. Record an observation from /usage —
+`--calibrate 20` — and the scalar is fitted to it. One observation fits one
+number, so the weights below are held fixed and only the budget moves; with
+several observations taken at different work mixes you could fit more.
+Uncalibrated, this prints a warning and no percentage.
 
 Usage:
     python3 scripts/check_claude_usage.py
@@ -45,16 +52,43 @@ PROJECTS = pathlib.Path.home() / ".claude" / "projects"
 # Input-token-equivalents, from published price ratios. Visible on purpose:
 # if they are wrong the number is wrong, and a reader should be able to see
 # which assumption to attack.
+# Price ratios, used as a cost proxy. The cache-read weight dominates every
+# result — see the docstring — so it is the one to attack if calibration keeps
+# drifting. 0.02 rather than the 0.1 price ratio because rate limiting appears
+# to discount cached input far more heavily than billing does.
 WEIGHTS = {
     "input_tokens": 1.0,
     "output_tokens": 5.0,
     "cache_creation_input_tokens": 1.25,
-    "cache_read_input_tokens": 0.1,
+    "cache_read_input_tokens": 0.02,
 }
 
-# No published figure exists for the subscription 5-hour cap, so this default
-# is a placeholder to be calibrated against /usage, not a real limit.
-DEFAULT_BUDGET = int(os.environ.get("CLAUDE_5H_BUDGET", 40_000_000))
+CALIB = pathlib.Path.home() / ".claude" / "usage-calibration.json"
+
+def calibrated_budget() -> int | None:
+    """Budget fitted to recorded /usage observations, or None if never told.
+
+    Returns None rather than a guess. A number with no provenance is what
+    produced the 4x error this file exists to not repeat.
+    """
+    env = os.environ.get("CLAUDE_5H_BUDGET")
+    if env:
+        return int(env)
+    if not CALIB.exists():
+        return None
+    try:
+        obs = json.loads(CALIB.read_text()).get("observations") or []
+    except Exception:  # noqa: BLE001
+        return None
+    if not obs:
+        return None
+    # Each observation implies a budget; take the median so one mistyped
+    # reading cannot move the answer much.
+    implied = sorted(o["weighted"] / (o["observed_pct"] / 100.0)
+                     for o in obs if o.get("observed_pct"))
+    if not implied:
+        return None
+    return int(implied[len(implied) // 2])
 
 
 def scan(hours: float):
@@ -121,8 +155,10 @@ def scan(hours: float):
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--hours", type=float, default=5.0)
-    ap.add_argument("--budget", type=int, default=DEFAULT_BUDGET,
-                    help="input-token-equivalents; calibrate against /usage")
+    ap.add_argument("--budget", type=int, default=None,
+                    help="override the fitted budget")
+    ap.add_argument("--calibrate", type=float, metavar="PCT",
+                    help="record what /usage says right now, and fit to it")
     ap.add_argument("--quiet", action="store_true",
                     help="one line, for hooks and CLAUDE.md gating")
     args = ap.parse_args()
@@ -134,7 +170,38 @@ def main() -> int:
     totals, by_model, calls, earliest = result
 
     weighted = sum(totals[f] * w for f, w in WEIGHTS.items())
-    pct = weighted / args.budget * 100 if args.budget else 0.0
+
+    if args.calibrate is not None:
+        CALIB.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            blob = json.loads(CALIB.read_text())
+        except Exception:  # noqa: BLE001
+            blob = {}
+        blob.setdefault("observations", []).append({
+            "at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+            "observed_pct": args.calibrate,
+            "weighted": weighted,
+            "raw": totals,
+            "weights": WEIGHTS,
+        })
+        CALIB.write_text(json.dumps(blob, indent=2))
+        fitted = calibrated_budget()
+        print(f"recorded: /usage says {args.calibrate:g}% while this window "
+              f"weighs {weighted:,.0f}")
+        print(f"fitted budget now {fitted:,} equiv "
+              f"(from {len(blob['observations'])} observation(s))")
+        print("take another reading at a different work mix to improve it.")
+        return 0
+
+    budget = args.budget or calibrated_budget()
+    if not budget:
+        print("NOT CALIBRATED — no percentage will be shown.")
+        print(f"  this window weighs {weighted:,.0f} equiv over {calls:,} calls")
+        print("  run /usage, then: ./check-claude-usage --calibrate <pct>")
+        print("  a guessed budget is what made this report 82% against a real")
+        print("  20% the first time, so it guesses nothing now.")
+        return 0
+    pct = weighted / budget * 100
 
     if args.quiet:
         print(f"5h usage: {pct:.0f}% ({weighted/1e6:.1f}M of "
@@ -163,7 +230,11 @@ def main() -> int:
     print()
     bar = "#" * min(40, int(pct / 2.5))
     print(f"  ESTIMATED {pct:.0f}% of budget   [{bar:<40}]")
-    print(f"  budget {args.budget:,} equiv — set CLAUDE_5H_BUDGET or --budget")
+    print(f"  budget {budget:,} equiv, fitted from /usage observations")
+    dom = max(WEIGHTS, key=lambda k: totals[k] * WEIGHTS[k])
+    share = totals[dom] * WEIGHTS[dom] / weighted * 100 if weighted else 0
+    print(f"  {share:.0f}% of that total is `{dom}` — if its weight is wrong,")
+    print(f"  this number is wrong, and that is the failure mode to watch.")
     print()
     print("  This is an estimate from local transcripts, not the real quota.")
     print("  It cannot see usage from claude.ai or another machine. Calibrate")
