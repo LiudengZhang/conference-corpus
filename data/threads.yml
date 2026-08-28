@@ -208,11 +208,12 @@ threads:
       the first sentence against the trial registry rather than the literature.
     registry_check: >-
       Checked 2026-08-27 against data/regulatory.sqlite (ct_trials), which did
-      not exist when the claim was written. First run covered 2024-01..2026-08;
-      the table was widened to 2023-01..2026-08 the same day and the check
-      re-run over 5,666 phase-1 oncology trials in 44 months. Both runs agree
-      on the Tier C result below. They do not agree on the `denominator`
-      field's list of zeroes — see `retraction`. Rule, fixed before counting: phases in PHASE1 /
+      not exist when the claim was written. Run three times as the table grew:
+      2024-01..2026-08 (5,666 phase-1 oncology trials), then 2023-01..2026-08,
+      then 2013-01..2026-08 — 164 months and 18,023 phase-1 oncology trials,
+      70,116 trials in all. Every run agrees on the narrow 2025 claim. None of
+      them agree on the `denominator` field's list of zeroes, and the third run
+      also broke this field's own framing — see `retraction` and `tier_c`. Rule, fixed before counting: phases in PHASE1 /
       PHASE1;PHASE2 / EARLY_PHASE1, onc_conditions=1, binned on
       studyFirstPostDate; target implicated in `title` or `interventions` by
       name or by agent INN; every non-PD-1 hit read individually and classified
@@ -249,13 +250,20 @@ threads:
     retraction: >-
       Re-run 2026-08-27 against 5,666 phase-1 oncology trials over 44 months.
       Two mechanisms, and only one of them is about the window.
-      THE WINDOW: VISTA had three phase-1 starts in 2023 alone — SNS-101
-      (NCT05864144), KVA12123 in a trial actually named VISTA-101
-      (NCT05708950), and PMC-309 (NCT05957081). NKG2A had two, both S095029
-      (NCT06116136, NCT06162572). All five predate 2024-01 and were invisible
-      to a table that started there. The earlier check had already guessed this
-      about NKG2A and recorded it as a caveat; extending the trial table to
-      2023-01 confirmed it.
+      THE WINDOW, AND IT IS WORSE THAN FIRST RECORDED. This field originally
+      said VISTA had three phase-1 starts in 2023 and NKG2A two. Extending the
+      registry to 2013-01 gives VISTA eight, beginning 2016-02 (JNJ-61610588),
+      then CA-170 2016, CI-8993 2020, W0180 2020, HMBD-002 2021 and the three
+      in 2023; and NKG2A ten, beginning 2015-01 with monalizumab, eight of them
+      before 2023 — including an S095029 phase 1 in 2021-12 that predates the
+      two 2023 trials this field credited. IDO1 is the extreme case: 49 phase-1
+      starts before 2023, peaking at fourteen in 2017, against one from 2023
+      on. The entire IDO1 wave happened before the corpus opened and the corpus
+      recorded it as a target with no clinical activity.
+      Each widening has made this worse rather than settling it, which is the
+      point: a registry that begins in 2024 cannot see a 2016 first-in-human,
+      and no amount of care applied inside the window substitutes for the
+      window reaching far enough back.
       THE FIELDS, WHICH IS THE WORSE ONE: IDO1 (NCT07732413, 2026-07), TREM2
       (EOS006215, NCT06877533, 2025-03) and B7-H4 (NCT06336707, 2024-03) all
       sit INSIDE the original 2024-01..2026-08 window and were missed anyway,
@@ -263,13 +271,40 @@ threads:
       did not store when the claim was made. So this was not a window error at
       all. It was a claim about the world made from the columns that happened
       to be in the table.
-      CD39 stays at zero. Its only hit, NCT05902520, uses CD39 to select
-      tumour-reactive TIL — a biomarker, not a target — which is the kind of
-      hit that a keyword count would have scored and a reader catches. HPK1,
-      Siglec-15, CD96 and MERTK remain genuinely zero across 44 months.
+      A THIRD MECHANISM, FOUND 2026-08-27 AND THE ONLY ONE STILL LIVE.
+      MERTK was listed here as genuinely zero. It has two phase-1 trials,
+      NCT06525246 (2024-07) and NCT06532331 (2024-08), both ONO-7475 from Ono.
+      Both sit INSIDE the original 2024-01..2026-08 window, so this is neither
+      a window failure nor a missing-field failure: the string "MERTK" appears
+      nowhere in either record, because the agent is named only by its sponsor
+      code. Code-name opacity is a distinct third way this thread has been
+      wrong, it is the one the corpus has no fix for yet, and it is what
+      data/code_names.tsv exists to attack.
+      CD39, HPK1, Siglec-15 and CD96 stay at zero inside the window. CD39's
+      only hit, NCT05902520, uses CD39 to select tumour-reactive TIL — a
+      biomarker, not a target — which a keyword count scores and a reader
+      catches. But the zeroes should not be read as "unclinical": over 164
+      months CD39 has eight anti-CD39 phase 1s in 2019-2022, HPK1 four in
+      2019-2021, Siglec-15 two, CD96 one. The targets were clinical before the
+      corpus was.
       The Tier C result is unchanged and has now survived a second test: no
       newly nominated checkpoint entered a phase 1 in 2025, and the widened
       window adds no 2023 Tier C registrations either.
+    tier_c: >-
+      THE PHRASE "FIRST NAMED INSIDE ITS WINDOW" WAS BEING READ AS "NEW". It
+      does not mean that. Extending the registry to 2013-01 shows four of the
+      seventeen were already in phase 1 years before this corpus opened:
+      CLEVER-1 (FP-1305/bexmarilimab, 2018-11), GARP (livmoniplimab 2019-01,
+      DS-1055a 2020-06, HLX60 2022-11), BTN1A1 (NC762 2021-05, hSTC810
+      2022-02) and CISH (CISH-inactivated TIL, 2020-06). For those four,
+      "newly nominated" recorded only that the corpus arrived late. Over 164
+      months the tier holds 19 phase-1 registrations, not four.
+      What survives, and it is the strongest part of the thread: twelve of the
+      seventeen are absolute zeros across all 164 months — IGSF8, ITPRIPL1,
+      SLC6A6, LRIG1, Siglec-10, PSGL-1, CD300e, TIPE2, NEAT1, VSIG4, TIM-4,
+      Siglec-E. Fourteen years of registry and not one phase 1 between them.
+      The narrow claim — no newly nominated checkpoint entered a phase 1 in
+      2025 — is about 2025 and is untouched by any of this.
     blind_spot: >-
       REDUCED FROM 42% TO 34%, NOT CLOSED. Storing brief_summary and the
       arm-group fields on 2026-08-27 closed 112 of 612 opaque trials; of

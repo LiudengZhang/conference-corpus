@@ -1788,9 +1788,21 @@ sources:
       Dated on studyFirstPostDate. Trap: query.cond matches free text across a
       record's entire condition list, so a COPD rehabilitation study that
       lists "Lung Neoplasms" fourth comes back as oncology. Every row carries
-      an onc_conditions flag instead. Widened to 2023-01 on 2026-08-27:
-      23,868 trials over 44 months, of which 16,145 of the original 18,139
-      cleared the flag.
+      an onc_conditions flag instead. Widened twice on 2026-08-27, first to
+      2023-01 and then to 2013-01: 70,116 trials over 164 months, 18,023 of
+      them phase-1 oncology.
+      The harvester now chunks by calendar year, because the whole-window count
+      is 70,116 against a 40,000 cap and a one-shot run would have silently
+      narrowed to Phase 1/2/3 — leaving early years phase-filtered and late
+      years not, so every combined count would compare two populations. The cap
+      is now per-chunk and crossing it REFUSES the chunk rather than narrowing
+      it: a missing chunk is a visible hole, a narrowed one is invisible. A
+      ct_chunks table records whether any chunk was narrowed, so the question
+      is answered from the database rather than from a note a later run
+      overwrites.
+      Also fixed a latent data-loss bug found while chunking: this path used to
+      DELETE the whole table and re-INSERT, so a run dying midway left the
+      table emptier than it found it. It is a merge now.
   vault: null
   status: harvested
 

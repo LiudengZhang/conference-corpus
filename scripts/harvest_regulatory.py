@@ -74,16 +74,37 @@ installed but is not imported: the FDA tables are two hand-checked shapes,
 and the EMA workbook is read with zipfile + ElementTree because xlsx is a
 zip of XML and openpyxl would be a dependency for forty lines of code.
 
-Volume note: the window 2023-01..2026-08 yields ~25k interventional
-oncology trials, still under --max-trials (40,000) and so under the point
-where narrowing to Phase 1-3 would kick in; no phase filter is applied and
-early-phase and device/behavioural oncology trials are all retained. That
-threshold matters for comparability, not just for volume: if it ever trips,
-the whole table silently becomes Phase-1/2/3-only, including the years
-already published from it, so a run that reports "narrowed to Phase 1/2/3"
-in the sources note is not an incremental widening but a different table.
-Note also that a re-run is a full re-download per source (DELETE then
-INSERT), never a merge -- shrinking the window discards rows. ClinicalTrials.gov
+Volume note, and the reason the ClinicalTrials.gov harvest is chunked.
+
+The window was widened from 2023-01 to 2013-01, because scripts/approval_lead.py
+returned n=0 measurable / 185 censored and named the cause: with a table
+starting 2023-01 no drug approved in 2023-2026 has a visible first-in-human,
+so every lead time it could compute was the distance to the window edge.
+2013-01..2026-08 is ~70k interventional oncology trials against ~24k before.
+
+That crosses --max-trials (40,000), and the old code responded to crossing it
+by silently re-issuing the query narrowed to Phase 1/2/3. The consequence is
+not a smaller harvest, it is a different table: the 2023+ rows already on disk
+contain PHASE4, NA and EARLY_PHASE1, so a phase-narrowed backfill would have
+made every count spanning 2022 and 2023 a comparison between two populations
+with nothing in the schema to say so. Three changes close that off:
+
+  * the window is harvested one CALENDAR YEAR at a time. The largest year in
+    the range is ~6.4k, a sixth of the cap, so the narrowing branch is out of
+    reach structurally rather than by the cap happening to be generous;
+  * --max-trials is now a per-chunk ceiling and crossing it REFUSES the chunk.
+    Narrowing requires --allow-phase-narrowing, passed by hand. A missing
+    chunk is a visible hole; a phase-restricted one is an invisible one;
+  * `ct_chunks` records phases per chunk, so "is this table one population?"
+    is answered by SUM(phases)=0 against the database rather than by a prose
+    note in `sources` that the next run would overwrite.
+
+A re-run of ClinicalTrials.gov is now a MERGE, not the DELETE-then-INSERT
+full re-download it used to be. Completed chunks are skipped (--refetch-ct
+overrides), rows are committed page by page, and nothing is ever deleted, so
+an interruption at year 7 resumes at year 7 instead of restarting -- and,
+more importantly, cannot leave the table emptier than it found it. The other
+three sources are still per-source refreshes. ClinicalTrials.gov
 matches `query.cond` as free text over a record's whole condition list, so
 a multi-condition trial gets pulled in on one oncology term among five
 (a COPD rehabilitation study lists "Lung Neoplasms" fourth). Rather than
@@ -245,6 +266,23 @@ CREATE TABLE IF NOT EXISTS ct_trials(
 CREATE INDEX IF NOT EXISTS r_ct_month ON ct_trials(month);
 CREATE INDEX IF NOT EXISTS r_ct_sponsor ON ct_trials(sponsor_class);
 CREATE INDEX IF NOT EXISTS r_ct_onc ON ct_trials(onc_conditions);
+
+-- Resume log for the ClinicalTrials.gov harvest, one row per calendar-year
+-- chunk. The point of this table is that a 14-year harvest is long enough to
+-- be interrupted, and a restart must not re-download what already landed or
+-- (worse) discard it. `done=1` means every page of that chunk was written and
+-- committed; a chunk that died mid-page stays done=0 and is re-fetched whole
+-- on the next run, which is safe because nct_id is the primary key and the
+-- writes are INSERT OR REPLACE.
+--
+-- `phases` records, per chunk, whether the Phase-1/2/3 narrowing was applied.
+-- It exists so the question "is this table one population or two?" is
+-- answerable from the database itself rather than from a prose note that a
+-- later run could overwrite. SUM(phases) must be 0 for the table to be a
+-- single population.
+CREATE TABLE IF NOT EXISTS ct_chunks(
+    chunk TEXT PRIMARY KEY, start TEXT, end TEXT,
+    expected INTEGER, n INTEGER, phases INTEGER, done INTEGER, captured TEXT);
 
 -- Provenance / run log, one row per sources.yml id.
 CREATE TABLE IF NOT EXISTS sources(
@@ -739,18 +777,71 @@ def ct_count(start: str, end: str, phases: bool) -> int | None:
     return None if page is None else page.get("totalCount")
 
 
-def harvest_ctgov(con, sid: str, captured: str,
-                  start: str, end: str, cap: int) -> tuple[int, str]:
+def year_chunks(start: str, end: str) -> list[tuple[str, str, str]]:
+    """Split a YYYY-MM..YYYY-MM window into (label, start, end) calendar years.
+
+    Chunking is not an optimisation, it is the correctness fix. `harvest_ctgov`
+    used to probe the count for the WHOLE window and, above --max-trials,
+    silently re-issue the query narrowed to Phase 1/2/3. Widening this harvest
+    from 44 months to 14 years takes the single-window count from ~24k to ~70k,
+    which is over the 40,000 default, so a one-shot run would have tripped that
+    branch and rewritten the already-published 2023-2026 years as a
+    Phase-1/2/3-only table -- while the 2023+ rows already on disk contain
+    PHASE4, NA and EARLY_PHASE1. Every count computed across the combined
+    table would then have compared two different populations without saying so.
+    The largest calendar year in 2013..2026 is ~6.4k, a sixth of the cap, so
+    per-year chunks put the whole harvest structurally out of reach of that
+    branch instead of relying on a threshold being generous enough.
+
+    Binning by studyFirstPostDate also makes the chunks genuinely disjoint:
+    first-post is the one date ClinicalTrials.gov cannot revise backwards, so
+    a trial belongs to exactly one year forever and re-running one chunk can
+    never duplicate or strand a row in another.
+    """
+    out = []
+    for y in range(int(start[:4]), int(end[:4]) + 1):
+        lo = start if y == int(start[:4]) else f"{y}-01"
+        hi = end if y == int(end[:4]) else f"{y}-12"
+        out.append((str(y), lo, hi))
+    return out
+
+
+def harvest_ct_chunk(con, sid: str, captured: str, label: str,
+                     start: str, end: str, cap: int,
+                     allow_narrow: bool) -> tuple[int, int, str]:
+    """Download one chunk and commit it page by page. (n, phases, status).
+
+    Rows are written and committed as each page arrives rather than
+    accumulated and flushed at the end, so an interruption costs at most the
+    page in flight. There is no DELETE anywhere in this function: the old
+    whole-table DELETE-then-INSERT meant a run that died at year 7 left the
+    table emptier than it found it, which for a multi-hour harvest is the one
+    failure mode that must not exist.
+    """
     total = ct_count(start, end, phases=False)
     if total is None:
-        return 0, "count probe failed after retries"
-    phases = total > cap
-    if phases:
+        return 0, 0, "count probe failed after retries"
+
+    phases = False
+    if total > cap:
+        # Deliberately NOT a silent fallback. Narrowing changes what the table
+        # IS, so it now requires --allow-phase-narrowing to be passed by hand
+        # and the chunk is abandoned otherwise. A chunk missing from the table
+        # is a visible hole; a chunk quietly restricted to Phase 1/2/3 is an
+        # invisible one, and only the second kind corrupts a downstream count.
+        if not allow_narrow:
+            return 0, 0, (f"REFUSED: {total:,} studies exceeds --max-trials "
+                          f"{cap:,}; narrowing to Phase 1/2/3 would make this "
+                          f"chunk a different population from the rest of the "
+                          f"table. Re-run with a higher --max-trials (or "
+                          f"--allow-phase-narrowing if you really want a "
+                          f"phase-restricted chunk).")
+        phases = True
         total = ct_count(start, end, phases=True)
         if total is None:
-            return 0, "phase-narrowed count probe failed after retries"
+            return 0, 0, "phase-narrowed count probe failed after retries"
 
-    out, token, pages = [], None, 0
+    token, pages, got = None, 0, 0
     while True:
         params = {
             "query.cond": ONC_COND,
@@ -761,12 +852,13 @@ def harvest_ctgov(con, sid: str, captured: str,
             params["pageToken"] = token
         page = fetch_json(CTGOV + "?" + urllib.parse.urlencode(params))
         if page is None:
-            print(f"  giving up at page {pages + 1}; keeping {len(out):,} rows",
-                  flush=True)
-            break
+            return got, int(phases), (f"page {pages + 1} failed after retries; "
+                                      f"{got:,}/{total:,} rows committed, chunk "
+                                      f"left incomplete for the next run")
         studies = page.get("studies") or []
         if not studies:
             break
+        out = []
         for s in studies:
             p = s.get("protocolSection", {})
             ident = p.get("identificationModule", {})
@@ -810,30 +902,85 @@ def harvest_ctgov(con, sid: str, captured: str,
                            for a in arms if a.get("description"))[:TEXT_CAP],
                 " | ".join("; ".join(a.get("interventionNames") or [])
                            for a in arms if a.get("interventionNames"))))
+        # 21 columns; the tuple built above is positional, so this count and
+        # the CREATE TABLE have to be recounted together whenever either moves.
+        con.executemany(
+            "INSERT OR REPLACE INTO ct_trials VALUES ("
+            + ",".join("?" * 21) + ")", out)
+        con.commit()
+        got += len(out)
         pages += 1
         token = page.get("nextPageToken")
-        print(f"  page {pages}: {len(out):,}/{total:,}", flush=True)
+        print(f"    {label} page {pages}: {got:,}/{total:,}", flush=True)
         if not token:
             break
         time.sleep(0.2)
 
-    con.execute("DELETE FROM ct_trials WHERE source_id=?", (sid,))
-    # 21 columns; the tuple built above is positional, so this count and the
-    # CREATE TABLE have to be recounted together whenever either moves.
-    con.executemany(
-        "INSERT OR REPLACE INTO ct_trials VALUES (" + ",".join("?" * 21) + ")",
-        out)
+    con.execute("INSERT OR REPLACE INTO ct_chunks VALUES (?,?,?,?,?,?,?,?)",
+                (label, start, end, total, got, int(phases), 1, captured))
     con.commit()
-    onc = sum(r[15] for r in out)
-    prose = sum(1 for r in out if r[17] or r[19])
-    note = (f"interventional, studyFirstPostDate in {start}..{end}, "
-            f"condition query widened beyond 'cancer'; {onc:,}/{len(out):,} "
-            f"name an oncology condition outright (onc_conditions=1); "
-            f"{prose:,} carry brief_summary or arm-group prose, the fields "
-            f"that name a mechanism where `interventions` gives only a code")
-    if phases:
-        note += (f"; result set exceeded {cap:,} so narrowed to Phase 1/2/3")
-    return len(out), note
+    return got, int(phases), "ok"
+
+
+def harvest_ctgov(con, sid: str, captured: str, start: str, end: str,
+                  cap: int, allow_narrow: bool = False,
+                  refetch: bool = False) -> tuple[int, str]:
+    """Harvest the window one calendar year at a time, resumably.
+
+    A re-run is now a MERGE, not the full re-download the old version did.
+    Chunks already marked done in ct_chunks are skipped unless --refetch-ct,
+    so an interrupted 14-year harvest resumes where it stopped and a rerun
+    over a narrower window no longer silently discards the years outside it.
+    """
+    chunks = year_chunks(start, end)
+    done = {r[0] for r in con.execute(
+        "SELECT chunk FROM ct_chunks WHERE done=1")} if not refetch else set()
+
+    fetched, skipped, failures = 0, 0, []
+    for label, lo, hi in chunks:
+        if label in done:
+            skipped += 1
+            print(f"  {label}: already complete, skipping", flush=True)
+            continue
+        print(f"  {label}: {lo}..{hi}", flush=True)
+        got, ph, status = harvest_ct_chunk(con, sid, captured, label, lo, hi,
+                                           cap, allow_narrow)
+        fetched += got
+        if status != "ok":
+            failures.append(f"{label}: {status}")
+            print(f"    !! {status}", flush=True)
+
+    # Totals are read back from the table, not accumulated in memory, so they
+    # describe what is actually on disk after a resumed or partial run.
+    n = con.execute("SELECT COUNT(*) FROM ct_trials").fetchone()[0]
+    onc = con.execute("SELECT COUNT(*) FROM ct_trials "
+                      "WHERE onc_conditions=1").fetchone()[0]
+    prose = con.execute(
+        "SELECT COUNT(*) FROM ct_trials WHERE COALESCE(brief_summary,'') <> '' "
+        "OR COALESCE(arm_descriptions,'') <> ''").fetchone()[0]
+    narrowed = con.execute(
+        "SELECT COALESCE(SUM(phases),0) FROM ct_chunks").fetchone()[0]
+    lo, hi = con.execute("SELECT MIN(month), MAX(month) FROM ct_trials "
+                         "WHERE month <> ''").fetchone()
+
+    note = (f"interventional, studyFirstPostDate in {lo}..{hi}, harvested in "
+            f"{len(chunks)} calendar-year chunks ({fetched:,} rows fetched this "
+            f"run, {skipped} chunks already complete and skipped); condition "
+            f"query widened beyond 'cancer'; {onc:,}/{n:,} name an oncology "
+            f"condition outright (onc_conditions=1); {prose:,} carry "
+            f"brief_summary or arm-group prose, the fields that name a "
+            f"mechanism where `interventions` gives only a code")
+    if narrowed:
+        note += (f"; WARNING: {narrowed} chunk(s) were narrowed to Phase 1/2/3 "
+                 f"and this table is NOT a single population")
+    else:
+        note += ("; NO phase filter was applied to any chunk (every chunk's "
+                 f"count was under --max-trials {cap:,}), so the table is one "
+                 "population across all years: PHASE4, NA and EARLY_PHASE1 "
+                 "are present throughout")
+    if failures:
+        note += "; INCOMPLETE -- " + " | ".join(failures)
+    return n, note
 
 
 # --------------------------------------------------------------------------
@@ -862,12 +1009,19 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--only", default="",
                     help="sources.yml source id to restrict to")
-    ap.add_argument("--from", dest="start", default="2023-01",
+    ap.add_argument("--from", dest="start", default="2013-01",
                     help="ClinicalTrials.gov window start, YYYY-MM")
     ap.add_argument("--to", dest="end", default="2026-08",
                     help="ClinicalTrials.gov window end, YYYY-MM")
     ap.add_argument("--max-trials", type=int, default=40000,
-                    help="above this, narrow ClinicalTrials.gov to Phase 1/2/3")
+                    help="per-CHUNK ceiling, not a whole-window one; a chunk "
+                         "over it is refused, never silently phase-narrowed")
+    ap.add_argument("--allow-phase-narrowing", action="store_true",
+                    help="opt in to Phase 1/2/3 narrowing for oversized chunks."
+                         " Makes the table two populations; do not use.")
+    ap.add_argument("--refetch-ct", action="store_true",
+                    help="re-download ClinicalTrials.gov chunks already marked "
+                         "complete in ct_chunks (default is to resume)")
     ap.add_argument("--rebuild", action="store_true",
                     help="drop every table first instead of per-source refresh")
     args = ap.parse_args()
@@ -882,6 +1036,7 @@ def main() -> int:
         con.executescript(
             "DROP VIEW IF EXISTS events;"
             + "".join(f"DROP TABLE IF EXISTS {t};" for t in TABLES.values())
+            + "DROP TABLE IF EXISTS ct_chunks;"
             + "DROP TABLE IF EXISTS sources;")
     con.executescript(SCHEMA)
     migrate(con)
@@ -900,7 +1055,9 @@ def main() -> int:
             n, note = harvest_ema(con, sid, captured)
         else:
             n, note = harvest_ctgov(con, sid, captured,
-                                    args.start, args.end, args.max_trials)
+                                    args.start, args.end, args.max_trials,
+                                    args.allow_phase_narrowing,
+                                    args.refetch_ct)
 
         table = TABLES[sid]
         if kind == "event-stream":
@@ -938,12 +1095,12 @@ def main() -> int:
         " SUM(kind='fda-approval'), SUM(kind='ema-authorisation'), "
         " SUM(kind='trial-first-posted'), COUNT(*) "
         "FROM events WHERE month<>'' GROUP BY y "
-        "HAVING y>='2020' ORDER BY y").fetchall()
+        "HAVING y>='2013' ORDER BY y").fetchall()
     for y, f, e, t, all_ in years:
         print(f"{y:6} {f:8,} {e:8,} {t:9,} {all_:12,}")
     pre = con.execute("SELECT COUNT(*) FROM events "
-                      "WHERE month<>'' AND month<'2020-01'").fetchone()[0]
-    print(f"{'<2020':6} {'':8} {'':8} {'':9} {pre:12,}")
+                      "WHERE month<>'' AND month<'2013-01'").fetchone()[0]
+    print(f"{'<2013':6} {'':8} {'':8} {'':9} {pre:12,}")
     total = con.execute("SELECT COUNT(*) FROM events").fetchone()[0]
     roster = con.execute("SELECT COUNT(*) FROM fda_cgt_roster").fetchone()[0]
     print(f"\n{total:,} dated events in the `events` view; "

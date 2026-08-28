@@ -1,0 +1,4 @@
+#!/bin/sh
+# Rough 5-hour usage estimate, computed from Claude Code's own transcripts.
+# Not the real quota — see the docstring in scripts/check_claude_usage.py.
+exec python3 "$(dirname "$0")/scripts/check_claude_usage.py" "$@"
