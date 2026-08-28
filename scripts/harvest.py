@@ -50,7 +50,25 @@ ESUMMARY = ("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
 
 RESEARCH = ('"journal article"[pt] NOT review[pt] NOT editorial[pt] '
             'NOT news[pt] NOT comment[pt] NOT "published erratum"[pt] '
-            'NOT biography[pt] NOT "case reports"[pt]')
+            'NOT biography[pt] NOT "case reports"[pt] '
+            'NOT "retraction of publication"[pt] NOT "retracted publication"[pt] '
+            'NOT "expression of concern"[pt]')
+
+# The filter above is the best available and it is not sufficient, which was
+# measured on 2026-08-27 rather than assumed. Of 1,232 papers sampled from the
+# index and re-fetched with abstracts, 201 have no abstract at all — 21.7% of
+# the `general` domain. They are typed "Journal Article" by PubMed AND NOTHING
+# ELSE, so no publication-type filter can exclude them, but they are Nature
+# news items ("Abstracts written by ChatGPT fool scientists"), Lancet
+# correspondence and JCO commentary.
+#
+# Two consequences worth carrying. Volume in section 1 of every briefing is
+# inflated, worst in `general` by roughly a fifth. And the absence of an
+# abstract is the only reliable signal of it — which means the index cannot
+# detect its own contamination, because the index stores no abstracts.
+#
+# The retraction and expression-of-concern exclusions above were simply
+# missing and are a real fix: 22 of the 201 were those.
 
 # The 33 journals of the corpus, by domain. Curated by tier, not by
 # coverage: Cancer Discovery / Nature Cancer level and above. Cancer

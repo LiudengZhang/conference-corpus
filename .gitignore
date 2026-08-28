@@ -53,6 +53,10 @@ data/regulatory.sqlite
 # Regenerable from public RSS/Atom feeds by scripts/harvest_news.py.
 # Comment stays on its own line: .gitignore has no inline comments.
 data/news.sqlite
+# Abstract layer: regenerable by scripts/harvest_abstracts.py from PubMed
+# efetch, so it is not stored.
+# Comment stays on its own line: .gitignore has no inline comments.
+data/abstracts.sqlite
 
 # L1 harvest TSVs: regenerable from PubMed, but retained so the next
 # window extension is incremental instead of re-pulling every month.

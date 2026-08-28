@@ -13,6 +13,37 @@
 #   type        mechanism | clinical-readout | benchmark | refutation | approval |
 #               podium-to-paper | new-modality | meta
 #   claim       one sentence. Not the title.
+#   revised     date a card was corrected after the fact; absent on cards that
+#               have never been changed. A silently repaired card is
+#               indistinguishable from one that was always right.
+#   revised_note what was wrong. Required whenever `revised` is set.
+#
+# THE TRIAL-TITLE RULE, adopted 2026-08-27:
+#
+#   A CLINICAL-TRIAL TITLE MAY NEVER SUPPORT A `refutes` CARD WITHOUT THE
+#   ABSTRACT.
+#
+# Trial titles name the trial, the drugs, the population and the phase. By
+# convention they do not name the endpoint or whether it was met. A reading
+# brief that ranks refutations first — which is how 2023 and much of 2025-2026
+# were read, and which the briefings disclose — therefore does not merely
+# over-select null results from that genre. It MANUFACTURES them, because the
+# reader supplies the missing outcome and the brief tells them which way to
+# supply it. That is a sign error, not a sampling one, and no denominator
+# caveat corrects it.
+#
+# Measured, not assumed: all 712 cards were read against their PubMed abstracts
+# on 2026-08-27 (see _Temp/title-floor.md). 17 cards had their sign wrong.
+# Six of the 17 are this exact shape — a trial carded `refutes` whose abstract
+# reports a positive result — and only one reversal runs the other way. This
+# one rule would have prevented a third of the reversals in the corpus.
+#
+# The same reading measured the instrument itself: against a seeded 300-paper
+# control of 2023 papers never carded and never cited, between 25% and 53% of
+# cardable findings are invisible in a title. Titles under-report, and the
+# genres they under-report worst are trials, which hide the endpoint, and
+# audits, whose titles name the object ("Evaluation of X") while the abstract
+# names the verdict.
 #
 # Built 2026-08-25 from a 7-month scan of 33 journals (9,035 deduplicated
 # research articles). Cards are curated, not exhaustive: the triage surfaced
@@ -124,16 +155,26 @@ evidence:
   date: 2026-01-01
   source: lancet-oncology
   threads: [next-gen-checkpoints]
-  stance: refutes
+  stance: supports
   type: clinical-readout
   claim: >-
-    MORPHEUS-EC: anti-TIGIT adds no meaningful benefit over PD-L1 blockade plus
-    chemotherapy.
+    MORPHEUS-EC: adding anti-TIGIT tiragolumab to atezolizumab and chemotherapy
+    raised confirmed ORR to 67.7% against 53.8% for atezolizumab plus
+    chemotherapy and 47.8% for chemotherapy alone in first-line oesophageal
+    cancer, and the investigators read it as additional benefit from a
+    non-PD-1 checkpoint. Phase 1b/2, ORR endpoint, not powered for survival.
   title: >-
     First-line tiragolumab plus atezolizumab and chemotherapy in patients with previously
     untreated, locally advanced unresectable or metastatic oesophageal cancer (MORPHEUS-
     EC): a randomised, open-label, phase 1b/2 trial
   companions: ["41299179", "41611245"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. Carded from a trial title that names the
+    drugs, the population and the phase and never the result; the abstract
+    reports a 14-point ORR advantage and interprets it as "support the
+    additional benefit of tiragolumab". One of six reversals with this exact
+    shape.
 
 - id: ev-2026-01-41482545
   pmid: "41482545"
@@ -309,16 +350,25 @@ evidence:
   date: 2026-02-01
   source: annals-oncology
   threads: [ctdna-mrd]
-  stance: refutes
+  stance: supports
   type: clinical-readout
   claim: >-
-    SERENA-6 patient-reported outcomes: ctDNA-guided early switching yields no patient-
-    perceived quality-of-life gain.
+    SERENA-6 patient-reported outcomes favour ctDNA-guided switching: reduced
+    risk of deterioration in pain (HR 0.57), dyspnoea (0.52) and emotional
+    functioning (0.51), alongside the previously reported GHS/QoL hazard ratio
+    of 0.54 — the molecularly triggered switch ahead of radiographic
+    progression is what patients report as better, not only what the scan says.
   title: >-
     Patient-reported outcomes in the SERENA-6 trial of camizestrant plus CDK4/6 inhibitor
     in patients with advanced breast cancer and emergent ESR1 mutations during first-line
     endocrine-based therapy
   companions: ["41736096"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. The title names the trial, the drugs and
+    the population and gives no result; the card supplied a null. Every
+    reported PRO hazard ratio favours the switching arm. One of six reversals
+    with this exact shape.
 
 - id: ev-2026-02-41291291
   pmid: "41291291"
@@ -338,15 +388,26 @@ evidence:
   date: 2026-02-01
   source: jco
   threads: [interception]
-  stance: refutes
-  type: refutation
+  stance: supports
+  type: clinical-readout
   claim: >-
-    Genomically, smoldering myeloma is not a distinct entity but a mixture of MGUS and
-    myeloma, undermining precursor staging.
+    Paired sequencing shows progressor smoldering myeloma is already genomically
+    myeloma and nonprogressor SMM is MGUS-like; a genomic score validated on
+    101 independent samples identifies low-risk SMM unlikely to progress and
+    adds to 20/2/20 — precursor staging is sharpened by genomics, not
+    dissolved by it.
   title: >-
     Genomically Smoldering Multiple Myeloma Is Not a Distinct Entity But a Collection of
     Monoclonal Gammopathy of Undetermined Significance or Multiple Myeloma
   companions: ["41528342", "41291291"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports, type refutation->clinical-readout. The
+    title is unusually assertive and the card followed it verbatim; the
+    abstract's conclusion is that genomics SEPARATES progressor from
+    nonprogressor SMM and yields a validated low-risk score with additive value
+    over 20/2/20. A title that states a negative about the old taxonomy was
+    read as a negative about precursor staging as such.
 
 - id: ev-2026-02-41559218
   pmid: "41559218"
@@ -387,18 +448,37 @@ evidence:
     Tumour-brain crosstalk restrains cancer immunity via a sensory-sympathetic axis
   companions: ["41629655", "41650969"]
 
-- id: ev-2026-02-41643692
-  pmid: "41643692"
-  date: 2026-02-01
-  source: lancet-oncology
+- id: ev-2026-04-41643192
+  pmid: "41643192"
+  date: 2026-04-23
+  source: blood
   threads: [cell-therapy]
   stance: refutes
   type: clinical-readout
   claim: >-
-    Blinatumomab non-response predicts poor survival after CD19 CAR-T, refuting sequential
-    CD19-targeting logic.
+    In a real-world cohort of 278 recipients of brexucabtagene autoleucel for
+    relapsed/refractory B-cell ALL, failure to respond to prior blinatumomab
+    correlated with significantly worse outcomes after CAR-T — CD19 antigen
+    experience carries across agents, so sequential CD19-targeting is not
+    independent of what came before. Within the CD19 indication rather than
+    beyond it, so this bears on the platform's durability, not on the thread's
+    generalization claim.
   title: >-
-    Time to act: a global call for oral cancer prevention and early detection
+    Blinatumomab nonresponse correlates with poor survival after brexucabtagene
+    autoleucel in B-cell ALL
+  revised: 2026-08-27
+  revised_note: >-
+    RE-POINTED, not restated. Superseded id ev-2026-02-41643692 and pmid
+    41643692 — a single-digit error. 41643692 is "Time to act: a global call
+    for oral cancer prevention and early detection", a Lancet Oncology comment
+    with no abstract and no bearing on cell-therapy; the claim was always about
+    41643192. Verified in the index and uncarded. Date moves 2026-02-01 ->
+    2026-04-23 and source lancet-oncology -> blood to match the index, so this
+    refutation moves two months later on the cell-therapy curve. Note the
+    original card passed every existing invariant: its `title` matched the
+    index exactly for the PMID it cited, because the title was copied from the
+    index after the wrong PMID was entered. docs/briefings/2026-02.md still
+    links 41643692 and needs the same correction.
 
 - id: ev-2026-02-41601205
   pmid: "41601205"
@@ -998,13 +1078,26 @@ evidence:
   date: 2026-04-13
   source: cancer-cell
   threads: [neuro-immune-microbiome-axis]
-  stance: refutes
-  type: refutation
+  stance: supports
+  type: benchmark
   claim: >-
-    Most published tumour-microbiome signatures are contamination artifacts and do not
-    reproduce without stringent controls.
+    PRISM decontaminates low-biomass sequencing, benchmarks on 230 datasets with
+    known true-positive and contaminant taxa, and then recovers consistent
+    microbial signatures in gastrointestinal, head-and-neck and urogenital
+    tumours — with sparse signal elsewhere — linking microbial detection in
+    pancreatic cancer to host protein glycosylation and smoking exposure. The
+    signal survives stringent decontamination in some tumour types and not
+    others.
   title: >-
     Reliable detection of Host-Microbe Signatures in cancer using PRISM
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports, type refutation->benchmark. The card
+    asserted that most published tumour-microbiome signatures are contamination
+    artifacts and do not reproduce. The paper never tests published signatures;
+    its one sentence about "recent controversy" is framing, and its result is
+    that real signal survives decontamination in three tumour groups. The card
+    turned a method paper's motivation into its finding.
 
 - id: ev-2026-04-41775267
   pmid: "41775267"
@@ -1053,15 +1146,26 @@ evidence:
   date: 2026-05-01
   source: annals-oncology
   threads: [ctdna-mrd]
-  stance: refutes
+  stance: supports
   type: clinical-readout
   claim: >-
-    TOMBOLA: ctDNA-triggered atezolizumab after cystectomy does not deliver the
-    anticipated relapse control.
+    TOMBOLA: ctDNA-triggered atezolizumab after cystectomy met its primary
+    endpoint, with 60% (50/84) of treated ctDNA-positive patients achieving
+    molecular and radiographic complete response, a 90-day median lead time
+    over imaging, and 1-year RFS of 97% in ctDNA-negative versus 76% in
+    ctDNA-positive patients — ctDNA used as the treatment trigger, not as a
+    prognostic label.
   title: >-
     ctDNA-guided immunotherapy following radical cystectomy for muscle-invasive bladder
     cancer: results from the TOMBOLA trial
   companions: ["41616224", "41817436"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. Carded from a title giving trial name,
+    intervention and population and no endpoint; the trial met its primary
+    endpoint. This is the strongest single card on the ctdna-mrd thread's
+    treatment-guiding claim and it was recorded as a refutation. One of six
+    reversals with this exact shape.
 
 - id: ev-2026-05-41661076
   pmid: "41661076"
@@ -1296,12 +1400,22 @@ evidence:
   stance: refutes
   type: clinical-readout
   claim: >-
-    Tumour-naive ctDNA MRD underperforms expectations for outcome prediction in a phase 3
-    cohort.
+    In 2,260 patients from Alliance N0147 a tissue-free ctDNA assay gave strong
+    independent prognostication (DFS HR 5.03; 5-year DFS 27.7% versus 77.1%)
+    and was used for nothing else — the assay performs, and its application
+    stops at risk stratification rather than guiding therapy.
   title: >-
     Tissue-Free Circulating Tumor DNA Assay and Patient Outcome in a Phase III Trial of
     FOLFOX-Based Adjuvant Chemotherapy (Alliance N0147)
   companions: ["41544704", "41817436"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim corrected; stance unchanged. The old claim said the assay
+    "underperforms expectations", which the abstract contradicts outright —
+    it reports robust and independent prognostic value. The stance is still
+    `refutes` but for the opposite reason: the thread claims ctDNA is not ONLY
+    prognostic, and this is a large, excellent, purely prognostic application.
+    Right answer, wrong reasoning, and the reasoning is what a reader inherits.
 
 - id: ev-2026-05-42207882
   pmid: "42207882"
@@ -1350,14 +1464,25 @@ evidence:
   date: 2026-06-01
   source: nature-medicine
   threads: [next-gen-checkpoints]
-  stance: refutes
+  stance: supports
   type: clinical-readout
   claim: >-
-    PRESERVE-003: a next-generation pH-sensitive anti-CTLA-4 fails to outperform
-    chemotherapy after PD-1 failure.
+    PRESERVE-003 stage 1: gotistobart, a pH-sensitive anti-CTLA-4 that
+    selectively depletes intratumoural Tregs, gave median overall survival not
+    reached against 10.0 months for docetaxel (HR 0.46, 95% CI 0.25-0.84) in
+    PD-(L)1- and chemotherapy-resistant squamous NSCLC. Stage 1 of two, n=87,
+    nominal P.
   title: >-
     Gotistobart or docetaxel in metastatic squamous non-small cell lung cancer: stage 1 of
     the randomized phase 3 PRESERVE-003 trial
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. The title is "Gotistobart or docetaxel"
+    — the trial, the comparator, the population, the stage, and no result — and
+    the card supplied a failure. The abstract reports an overall-survival
+    hazard ratio of 0.46. One of six reversals with this exact shape, and the
+    one that most changes a thread: with this and MORPHEUS-EC corrected,
+    next-gen-checkpoints moves from `contested` to `splitting`.
 
 - id: ev-2026-06-41986711
   pmid: "41986711"
@@ -1446,11 +1571,21 @@ evidence:
   date: 2026-06-11
   source: cell
   threads: [neuro-immune-microbiome-axis]
-  stance: supports
-  type: new-modality
+  stance: refutes
+  type: refutation
+  revised: 2026-08-27
+  revised_note: >-
+    Stance inverted. Carded `supports` off the title, as a map that re-grounds
+    the field. Across 16,369 tumour genomes the abstract reports that after
+    decontamination microbial signatures were indistinguishable from background
+    in most cancer types, with real communities only in orodigestive tumours.
+    That is a largely negative result for a thread claiming the microbiome is a
+    general mechanism, and it was recorded as support for it.
   claim: >-
-    Contamination-aware pan-cancer map of intratumoral bacteria and fungi re-grounds the
-    field.
+    Across 16,369 tumour genomes, decontamination leaves microbial signatures
+    indistinguishable from background in most cancer types; genuine communities
+    survive only in orodigestive tumours. The map narrows the claim rather than
+    grounding it.
   title: >-
     Biodiversity and biogeography of the multi-kingdom cancer microbiome
   companions: ["41999744"]
@@ -1674,10 +1809,22 @@ evidence:
   stance: supports
   type: mechanism
   claim: >-
-    Framing paper defining autonomy levels for clinical AI agents.
+    MIRA, an autonomous agent operating inside a sandboxed electronic health
+    record, obtained patient histories, ordered and interpreted laboratory,
+    imaging and microbiology tests, generated differential diagnoses and
+    formulated treatment plans, outperforming physicians on diagnostic accuracy
+    in simulations on real cases — an agent taking structured EHR actions
+    rather than producing free-text advice.
   title: >-
     Towards autonomous medical artificial intelligence agents
   companions: ["42412809", "42156546"]
+  revised: 2026-08-27
+  revised_note: >-
+    Claim corrected; stance unchanged. "Towards ..." was read as a position
+    piece and carded as a framing paper defining autonomy levels. It is a
+    primary report of a working agent that outperformed physicians. The thread
+    direction survives, but the card described a genre rather than a result and
+    would have been quoted as one.
 
 - id: ev-2026-07-42337052
   pmid: "42337052"
@@ -2082,16 +2229,27 @@ evidence:
   date: 2025-12-21
   source: jitc
   threads: [suppressive-population-inversion]
-  stance: refutes
+  stance: supports
   type: mechanism
   claim: >-
-    A CCR4-directed Treg-depleting bispecific advertises 'without inducing
-    systemic toxicity' in its own title — the carve-out concedes that systemic
-    Treg depletion causes harm.
+    A tumour-targeted anti-HER2xCCR4 bispecific depletes tumour-infiltrating
+    and tumour-chemotactic Tregs, raises the CD8/Treg ratio, controls advanced
+    HER2-positive tumours in humanised mice without reducing Tregs
+    systemically, and synergises with anti-PD-1 — depleting a suppressive
+    population improves outcomes when the depletion is confined to the tumour.
   title: >-
     Anti-HER2×CCR4 bispecific antibody enhances antitumor immunity in advanced
     HER2-positive tumors by chemotaxis blockade and depletion of tumor-
     associated Tregs, without inducing systemic toxicity
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. The card was built entirely on a
+    rhetorical carve-out in the title — reading "without inducing systemic
+    toxicity" as a concession that systemic Treg depletion harms. The paper's
+    own result is a straightforwardly positive Treg-depletion efficacy study;
+    the systemic-toxicity limitation it works around is attributed in the
+    abstract to mogamulizumab, not to this agent. Carding a phrase in a title
+    rather than a finding in a paper.
 
 - id: ev-2025-12-41258436
   pmid: "41258436"
@@ -3517,19 +3675,33 @@ evidence:
     Terminal differentiation and persistence of effector regulatory T cells
     essential for preventing intestinal inflammation
 
-- id: ev-2025-04-40139186
-  pmid: "40139186"
+- id: ev-2025-04-40139188
+  pmid: "40139188"
   date: 2025-04-08
   source: immunity
   threads: [suppressive-population-inversion]
   stance: refutes
   type: mechanism
   claim: >-
-    Metallophilic marginal zone macrophages cross-prime CD8 T cell-mediated
-    protective immunity against blood-borne tumours.
+    Splenic metallophilic marginal zone macrophages cross-prime CD8 T cells and
+    are required for protective antitumour immunity against blood-borne
+    tumours, matching cDC1s in cross-priming and depending on Batf3 rather than
+    on cDC1 handover — a macrophage population whose depletion would remove
+    antitumour immunity rather than release it.
   title: >-
-    The transcription factor MEF2C restrains microglial overactivation by
-    inhibiting kinase CDK2
+    Metallophilic marginal zone macrophages cross-prime CD8(+) T cell-mediated
+    protective immunity against blood-borne tumors
+  revised: 2026-08-27
+  revised_note: >-
+    RE-POINTED, not restated. Superseded id ev-2025-04-40139186 and pmid
+    40139186 — a two-digit transposition. 40139186 is "The transcription factor
+    MEF2C restrains microglial overactivation by inhibiting kinase CDK2", a
+    microglia paper bearing on no thread; the claim was always about 40139188,
+    an adjacent PMID in the same journal and issue. Verified in the index,
+    uncarded, and the date is unchanged because both share 2025-04-08. The
+    stance and the substance of the claim were correct all along; only the
+    pointer was wrong. docs/briefings/2025-04.md still links 40139186 and needs
+    the same correction.
 
 - id: ev-2025-04-40097655
   pmid: "40097655"
@@ -3579,14 +3751,25 @@ evidence:
   date: 2025-06-02
   source: jem
   threads: [suppressive-population-inversion]
-  stance: refutes
+  stance: supports
   type: mechanism
   claim: >-
-    Neutrophil MYO1F is required for the response to checkpoint blockade: a
-    canonically suppressive population is necessary for immunotherapy to work.
+    Tumour-derived TGF-beta1 silences MYO1F in tumour-associated neutrophils,
+    reprogramming them into a STAT3-driven immunosuppressive state that induces
+    CTL exhaustion and blunts checkpoint blockade — the canonical suppressive
+    role of neutrophils, and restoring MYO1F removes the suppression.
   title: >-
     MYO1F in neutrophils is required for the response to immune checkpoint
     blockade therapy
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. "MYO1F in neutrophils is required for
+    the response to ICB" was read as a suppressive population being necessary
+    for immunotherapy, i.e. a sign inversion. The abstract says the opposite:
+    TANs are "a significant barrier", MYO1F is what restrains their
+    suppression, and its loss is what makes them suppressive. No inversion —
+    this is the canonical account, so it supports the thread rather than
+    refuting it.
 
 - id: ev-2025-04-40306958
   pmid: "40306958"
@@ -5435,12 +5618,22 @@ evidence:
   date: 2024-02-01
   source: nature-medicine
   threads: [cell-therapy]
-  stance: refutes
+  stance: supports
   type: commentary
   claim: >-
-    Unanswered questions following reports of secondary malignancies after CAR-T.
+    Reviewing the reports of T cell malignancies after CAR-T, existing
+    follow-up data are held to show a low risk compared with other cancer
+    treatments — the safety signal that would have constrained expansion of the
+    platform is not borne out.
   title: >-
     Unanswered questions following reports of secondary malignancies after CAR-T cell therapy
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. The old claim was the title restated,
+    and the title's "unanswered questions" was read as a refutation; the
+    abstract's actual conclusion is reassuring. Mapping a safety-reassurance
+    commentary onto a thread about generalization beyond CD19 is a weak fit and
+    is stated plainly here so a later reader can drop it rather than inherit it.
 
 - id: ev-2024-02-38246194
   pmid: "38246194"
@@ -5711,12 +5904,24 @@ evidence:
   date: 2024-04-25
   source: cell
   threads: [neuro-immune-microbiome-axis]
-  stance: supports
+  stance: neutral
   type: resource
   claim: >-
-    Mapping the pan-cancer metastasis tumour microbiome.
+    NOT INDEPENDENT EVIDENCE. This is a three-sentence Cell preview OF
+    38599211, the pan-cancer metastasis microbiome analysis carded separately
+    in the same month. It reports no data of its own. Stance is neutral so that
+    it cannot contribute to the thread ratio twice.
   title: >-
     Mapping the pancancer metastasis tumor microbiome
+  companions: ["38599211"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance changed supports->neutral. Carded as a `resource` from its title,
+    which is nearly identical to the title of the study it previews, so the
+    corpus counted one study as two supporting cards. A convergence argument
+    that double-counts a single study is worse than a wrong stance, because it
+    reads as independent replication; neutral removes it from the ratio while
+    keeping the id, per the never-delete rule.
 
 - id: ev-2024-04-38599211
   pmid: "38599211"
@@ -5735,12 +5940,24 @@ evidence:
   date: 2024-04-01
   source: nature-medicine
   threads: [neoantigen-vaccines]
-  stance: supports
+  stance: refutes
   type: trial
   claim: >-
-    A shared neoantigen vaccine with checkpoint blockade for advanced metastatic solid tumours: phase 1 interim results. Shared rather than personalised — the manufacturing objection is being routed around.
+    A 20-epitope shared-neoantigen vaccine with ipilimumab and nivolumab
+    produced an objective response rate of 0% (median PFS 1.9 months), and
+    T cell responses went to HLA-matched TP53 epitopes rather than the KRAS
+    neoantigens the patients' tumours actually expressed — an immunodominance
+    hierarchy that undercuts multiepitope shared-neoantigen design.
   title: >-
     A shared neoantigen vaccine combined with immune checkpoint blockade for advanced metastatic solid tumors: phase 1 trial interim results
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed supports->refutes. The card was written from a title that
+    names the design and not the outcome, and read "shared rather than
+    personalised" as routing around the manufacturing objection. The abstract
+    reports ORR 0%, two dose-limiting toxicities, and a previously unknown
+    neoantigen immunodominance hierarchy. This is the one reversal in the
+    corpus that runs supports->refutes on a trial.
 
 - id: ev-2024-04-38504015
   pmid: "38504015"
@@ -6058,13 +6275,27 @@ evidence:
   pmid: "38528186"
   date: 2024-08-01
   source: nature-methods
-  threads: [foundation-models, method-credibility]
-  stance: refutes
-  type: audit
+  threads: [foundation-models]
+  stance: supports
+  type: benchmark
   claim: >-
-    Assessing GPT-4 for cell-type annotation in single-cell RNA-seq — the evaluation is published in the same journal and the same month as the models it evaluates. Vocabulary and critique are co-present from the start, not separated by the months this corpus once recorded.
+    GPT-4 annotates cell types from marker genes with strong concordance with
+    manual annotation across hundreds of tissue and cell types, shipped as the
+    R package GPTCelltype — a general-purpose model transferring to a
+    specialist single-cell task.
   title: >-
     Assessing GPT-4 for cell type annotation in single-cell RNA-seq analysis
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports, `method-credibility` removed, type
+    audit->benchmark. "Assessing" in the title was read as an audit and
+    therefore as a critique; the abstract is an endorsement — "can accurately
+    annotate cell types", "strong concordance" — and contains no adverse
+    finding, so it is not a ledger entry of something found unreliable. NOTE
+    FOR threads.yml: this card is one of the three (38409223, 38844628,
+    38528186) cited there as evidence that single-cell foundation models and
+    their audits arrive in the same journal in the same month. It is not an
+    audit, and that claim now rests on two cards, not three.
 
 - id: ev-2024-08-39121849
   pmid: "39121849"
@@ -6867,16 +7098,26 @@ evidence:
   date: 2023-02-09
   source: blood
   threads: [ctdna-mrd]
-  stance: refutes
+  stance: supports
   type: clinical-readout
   claim: >-
-    The stated purpose of serial MRD in 1,280 trial patients is improved
-    prognostication, not a treatment decision; four MRD reports this month
-    across myeloma, CLL, ALL and AML all stop at risk stratification.
+    In TOURMALINE-MM3/-MM4 (n=1,280), ixazomib maintenance improved PFS in
+    patients who were MRD-positive at randomization (median 18.8 vs 11.6
+    months, HR 0.65) and gave no benefit in those who were MRD-negative — an
+    MRD-by-treatment interaction, which is the treatment-guiding use rather
+    than prognostication.
   title: >-
     MRD dynamics during maintenance for improved prognostication of 1280
     patients with myeloma in the TOURMALINE-MM3 and -MM4 trials
   companions: ["36084320", "36240445", "36315929"]
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed refutes->supports. The card was written from a title that
+    says "for improved prognostication"; the abstract opens "MRD evaluation may
+    help to guide treatment duration" and reports the MRD-by-treatment
+    interaction. The old claim's generalization that four MRD reports that
+    month "all stop at risk stratification" was asserted from titles and is
+    withdrawn; it was never checked against the three companions.
 
 - id: ev-2023-02-36423745
   pmid: "36423745"
@@ -9270,15 +9511,23 @@ evidence:
   date: 2023-10-01
   source: nature-medicine
   threads: [interception]
-  stance: supports
+  stance: refutes
   type: clinical-readout
   claim: >-
-    Reports neoplasia risk in a hereditary-predisposition population given
-    checkpoint blockade, testing immunotherapy in people who are at risk
-    rather than in people who have established cancer.
+    In 172 Lynch syndrome patients who already had cancer, checkpoint blockade
+    left the overall rate of subsequent neoplasia unchanged, 21 (12%) developed
+    new malignancies and 24 of 61 rescreened still had premalignant polyps —
+    ICB does not eliminate neoplasia risk and LS surveillance must continue.
   title: >-
     Neoplasia risk in patients with Lynch syndrome treated with immune
     checkpoint blockade
+  revised: 2026-08-27
+  revised_note: >-
+    Stance reversed supports->refutes, and the population was wrong. The card
+    read the title as immunotherapy given to people at risk rather than with
+    established cancer; the cohort is 172 CANCER-AFFECTED Lynch patients, and
+    the measured result is that tumour development was unchanged. The card had
+    both the population and the sign wrong.
 
 - id: ev-2023-10-37523714
   pmid: "37523714"
@@ -9670,13 +9919,22 @@ evidence:
   pmid: "37943909"
   date: 2023-11-10
   source: science
-  threads: [method-credibility]
-  stance: refutes
-  type: refutation
+  threads: []
+  stance: neutral
+  type: meta
+  revised: 2026-08-27
+  revised_note: >-
+    Fabricated from a title pun, and withdrawn. The claim said a chromatin mark
+    had been reassigned across the published record, invalidating prior work
+    that used it. The paper's entire abstract is one sentence — "The
+    specialized packaging of sperm DNA preserves genome stability in the fruit
+    fly zygote" — and the title is wordplay about sperm chromatin, not a
+    reproducibility finding. It inflated the method-credibility ledger, which
+    is the ledger this corpus uses to argue that self-audit is growing, so a
+    fabricated entry there is worse than a wrong stance anywhere else. Kept
+    with an empty thread list rather than deleted, so the error stays visible.
   claim: >-
-    A chromatin mark in the published record is reassigned, which
-    invalidates the identification and not merely the interpretation of
-    prior work using it.
+    WITHDRAWN — carries no evidence for any thread. See revised_note.
   title: >-
     A case of mistaken epigenetic identity
 

@@ -26,6 +26,15 @@ This is that reading, written down.
   8  Every source named by a store — a venue in the conference store, a
      journal name in the index — is one the registry defines, and every
      source with rows says so, so the two can actually be joined.
+  9  ADVISORY, not a failure: cards whose `claim` shares no content word
+     with their own `title`. Two cards were found on 2026-08-27 carrying a
+     claim about an entirely different paper than the PMID they cite — one
+     claimed metallophilic macrophages cross-prime CD8 T cells while citing
+     a MEF2C microglia paper. Checks 1 and 2 passed both, because the PMID
+     existed and the date matched; all 712 titles match the index exactly,
+     so a title check would not have caught them either. Nothing can decide
+     mechanically whether a paraphrase is faithful, so this prints a review
+     queue and never fails the run.
 
 Checks 7 and 8 skip, rather than fail, when a regenerable side store is
 absent — a fresh clone has the journal index and nothing else, and a
@@ -215,6 +224,27 @@ def main() -> int:
                 f"source `{owner[key]}` has rows in data/{filename} but status is "
                 f"not `harvested`")
 
+    # 9 ------------------------------------------------------------------
+    # A claim legitimately paraphrases, so low overlap is a smell and not a
+    # defect. Printed for a human to read, deliberately outside `problems`.
+    stop = set("the a an of and or in for to with by on from as is are be been that this "
+               "these those at into over under after before during than then not no its "
+               "their it we our study patients cancer tumour tumor cell cells human "
+               "clinical trial results data new using via can may show shows shown "
+               "reveal reveals identify identifies".split())
+
+    def content(text: str) -> set[str]:
+        return {w for w in re.findall(r"[a-z0-9-]{4,}", (text or "").lower())
+                if w not in stop}
+
+    incoherent = []
+    for c in cards:
+        ct, cl = content(c.get("title", "")), content(c.get("claim", ""))
+        if not ct or not cl:
+            continue
+        if not (ct & cl):
+            incoherent.append(c.get("id", c.get("pmid")))
+
     # --------------------------------------------------------------------
     print(f"cards      {len(cards):,}   missing PMID {missing}, date drift {drifted}")
     print(f"threads    {len(threads):,}   undefined names {len(unknown)}, "
@@ -225,6 +255,15 @@ def main() -> int:
     for line in store_lines:
         print(f"{line}")
     print()
+
+    if incoherent:
+        print(f"review     {len(incoherent)} card(s) whose claim shares no content word "
+              f"with their title — advisory, not a failure:")
+        for cid in incoherent[:12]:
+            print(f"  {cid}")
+        if len(incoherent) > 12:
+            print(f"  ... and {len(incoherent) - 12} more")
+        print()
 
     if not problems:
         print("all invariants hold")

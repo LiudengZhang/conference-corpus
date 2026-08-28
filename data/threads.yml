@@ -112,10 +112,14 @@ threads:
       investigating secondary lymphomas after CAR-T) restates 38071978, an
       adjacent PMID in the Lancet one month earlier. In both cases the corpus
       opened a thread on the echo rather than the paper.
-      What survives unchanged: single-cell foundation models and their audits
-      arrive in the same journal in the same month, 2024-08 (38409223,
-      38844628, 38528186), and three independent 2023 readers found the same
-      co-presence throughout 2023 — the critique was never lagging.
+      That trio is now a pair. Read against its abstract on 2026-08-27,
+      38528186 is not an audit: it endorses GPT-4 cell-type annotation as
+      accurate, with strong concordance and an R package. It was carded as the
+      critique co-published with the models purely on its title. The
+      co-presence claim still holds on 38409223 and 38844628, and three
+      independent 2023 readers found the same co-presence throughout 2023 — but
+      it now rests on two papers rather than three, and one leg of it was an
+      artefact of reading titles.
       Assume any such claim is an upper bound on the date, never the date.
       Ten have been made; ten have moved.
 
