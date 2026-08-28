@@ -323,6 +323,25 @@ threads:
       hide here, and one third of the 2025 phase-1 field is still dark. The
       retraction above is what that darkness looks like when it is measured
       rather than assumed away.
+      THE MEETING LAYER DOES NOT FIX IT, AND THAT WAS THE HYPOTHESIS. Since 45
+      development code names had been recoverable from AACR/ASCO abstract text
+      and none from FDA announcements, the meeting layer looked like the
+      decoder for exactly this dark interval. data/code_names.tsv was built to
+      test that — 177 validated code-to-INN pairs at roughly 99% precision,
+      from 29,168 full-text abstracts.
+      It closes ONE of the 465 dark trials. The reason is the finding, not the
+      yield: those trials name 266 distinct codes, of which 40 appear anywhere
+      in four years of AACR and ASCO, 16 sit near any INN-shaped word, and 1
+      has a validated INN. The two populations are near-disjoint, and where
+      they do overlap the agent has no INN yet — the meeting is inside the same
+      dark interval, not ahead of it. No improvement in extraction reaches
+      this, because the name does not exist to be extracted.
+      The decoder is kept for the retrospective direction it is genuinely good
+      at: reading old abstracts and pre-INN registrations, and establishing
+      cross-licensing identity such as SKB264 = MK-2870, which a registry query
+      on either code alone will not return. Its coverage is a function of drug
+      age by construction, so it will always be strongest on the drugs that no
+      longer need decoding.
 
   - id: immunotherapy-resistance
     claim: >-

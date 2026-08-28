@@ -1,0 +1,223 @@
+code	inn	target	inn_stem	resolved_by	support	confidence	n_abstracts	dois	ncts	spellings	target_how	target_votes	venues
+AB122	zimberelimab	PD-1	relimab	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.tps4195	NCT03628677;NCT03629756;NCT04087018;NCT04104672	AB122	anti-X	8/9	asco-2024
+AB154	domvanalimab	PD-1	limab	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.tps8609	NCT03628677;NCT04262856;NCT04656535;NCT04736173	AB154	X inhibitor	1/2	asco-2023
+AB680	quemliclustat	CD73	stat	inn(code)	ctgov+repeat+trial	high	2	10.1158/1538-7445.am2024-lb131;10.1200/jco.2024.42.16_suppl.tps4195	NCT04381832;NCT06048133	AB680	X inhibitor+anti-X	5/6	aacr-2024|asco-2024
+ABBV-151	livmoniplimab	GARP	limab	inn(code)	ctgov+repeat+trial	high	2	10.1200/jco.2024.42.16_suppl.tps4189;10.1200/jco.2024.42.16_suppl.tps4190	NCT03821935;NCT06632951	ABBV-151	targeting X	4/4	asco-2024
+ABBV-155	mirzotamab clezutoclax		toclax	inn(code)	none	unsupported	1	10.1200/jco.2023.41.16_suppl.3027		ABBV-155		0/0	asco-2023
+ABBV-181	budigalimab	PD-1	limab	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.tps4190	NCT03000257;NCT03639194;NCT03821935;NCT03893955	ABBV-181	anti-X	1/1	asco-2024
+ABL503	ragistomig	PD-L1	mig	inn(code)	none	unsupported	1	10.1200/jco.2024.42.16_suppl.2529		ABL503	targeting X	1/2	asco-2024
+ABSK011	irpagratinib	FGFR4	tinib	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2024-1228	NCT07010497	ABSK011	X inhibitor	4/4	aacr-2024
+ABSK021	pimicotinib	CSF-1R	tinib	inn(code)	ctgov+repeat+trial	high	3	10.1158/1538-7445.am2024-lb077;10.1200/jco.2023.41.16_suppl.11559;10.1200/jco.2023.41.16_suppl.3100	NCT05804045;NCT06111274;NCT06186583	ABSK021	X inhibitor	7/12	aacr-2024|asco-2023
+ABT-199	venetoclax	BCL-2	toclax	code(inn)+inn(code)	cooc+ctgov+repeat+trial	high	5	10.1158/1538-7445.am2023-3950;10.1158/1538-7445.am2023-4978;10.1158/1538-7445.am2023-5089;10.1158/1538-7445.am2023-5098	NCT01794520;NCT01889186;NCT01994837;NCT02141282	ABT-199	X inhibitor+targeting X	30/81	aacr-2023
+ABT-263	navitoclax	BCL-2	toclax	code(inn)+inn(code)	cooc+ctgov+repeat+trial	high	4	10.1158/1538-7445.am2023-3950;10.1158/1538-7445.am2023-4792;10.1158/1538-7445.am2024-675;10.1200/jco.2024.42.3_suppl.507	NCT01828476;NCT02591095;NCT05864742	ABT-263|ABT263	X inhibitor+targeting X	4/10	aacr-2023|aacr-2024|asco-2024
+ABT-700	telisotuzumab	MET	zumab	inn(code)	cooc+ctgov+repeat	high	3	10.1200/jco.2023.41.16_suppl.9032;10.1200/jco.2023.41.16_suppl.e21105;10.1200/jco.2023.41.16_suppl.tps9149	NCT07323641	ABT-700	X bispecific+X-directed	4/4	asco-2023
+ACR-368	prexasertib	CHK1/2	sertib	code(inn)+inn(code)	ctgov+repeat+trial	high	2	10.1158/1538-7445.am2023-1562;10.1158/1538-7445.am2024-4749	NCT05548296;NCT06597565	ACR-368	X inhibitor	6/12	aacr-2023|aacr-2024
+ACY-1215	ricolinostat		nostat	code(inn)	ctgov+trial	high	1	10.1158/1538-7445.am2023-6235	NCT01997840;NCT02189343;NCT02632071	ACY-1215		0/0	aacr-2023
+AG-120	ivosidenib	IDH1	sidenib	inn(code)	ctgov+repeat+trial	high	3	10.1158/1538-7445.am2023-3701;10.1200/jco.2023.41.16_suppl.3152;10.1200/jco.2024.42.16_suppl.2040	NCT03173248;NCT03564821;NCT03839771;NCT04044209	AG-120	X inhibitor	10/22	aacr-2023|asco-2023|asco-2024
+AK104	cadonilimab	PD-1	limab	inn(code)	cooc+ctgov+repeat+trial	high	2	10.1200/jco.2024.42.16_suppl.e17552;10.1200/jco.2024.42.16_suppl.e20518	NCT05063916;NCT05571644;NCT05578430;NCT05687851	AK104	X inhibitor+targeting X	9/20	asco-2024
+AK112	ivonescimab	PD-1/VEGF	mab	inn(code)	ctgov+journal+repeat+trial	high	2	10.1200/jco.2023.41.16_suppl.9087;10.1200/jco.2024.42.16_suppl.8508	NCT05184712;NCT06196697;NCT06375486;NCT06402435	AK112	X bispecific+anti-X	2/3	asco-2023|asco-2024
+ALX148	evorpacept	CD47	cept	inn(code)	ctgov+repeat+trial	high	3	10.1158/1538-7445.am2024-ct037;10.1200/jco.2023.41.4_suppl.tps257;10.1200/jco.2024.42.16_suppl.3530	NCT03013218;NCT04675294;NCT04675333;NCT04755244	ALX148	X inhibitor	5/6	aacr-2024|asco-2023|asco-2024
+AMG-176	tapotoclax	CLK	toclax	inn(code)	none	unsupported	1	10.1200/jco.2024.42.16_suppl.6570		AMG-176	X inhibitor	1/4	asco-2024
+AMG-509	xaluritamig	STEAP2	mig	inn(code)	ctgov	medium	1	10.1158/1538-7445.am2024-6348	NCT07493512	AMG-509	anti-X	1/1	aacr-2024
+AMG510	sotorasib	G12C	rasib	code(inn)+inn(code)	cooc+ctgov+repeat+trial	high	15	10.1158/1538-7445.am2023-1079;10.1158/1538-7445.am2023-257;10.1158/1538-7445.am2023-26;10.1158/1538-7445.am2023-2692	NCT05398094;NCT06068153	AMG-510|AMG510	X inhibitor+X-directed	40/114	aacr-2023|aacr-2024|asco-2023|asco-2024
+ANZUP-1603	docetaxel	PD-1	taxel	inn(code)	none	unsupported	1	10.1200/jco.2024.42.16_suppl.5055		ANZUP-1603	X inhibitor+anti-X	2/7	asco-2024
+APG-2575	lisaftoclax	BCL-2	toclax	inn(code)	ctgov+repeat+trial	high	3	10.1158/1538-7445.am2023-1631;10.1200/jco.2023.41.16_suppl.7569;10.1200/jco.2024.42.16_suppl.7078	NCT04215809;NCT04501120;NCT06104566;NCT06319456	APG-2575	X inhibitor	14/14	aacr-2023|asco-2023|asco-2024
+APL-101	vebreltinib	MET	tinib	inn(code)	cooc+ctgov	high	1	10.1158/1538-7445.am2024-6500	NCT03655613	APL-101	X inhibitor	1/1	aacr-2024
+ARI0002H	cesnicabtagene autoleucel		leucel	code(inn)	trial	medium	1	10.1200/jco.2024.42.16_suppl.7544	NCT06830733	ARI0002H		0/0	asco-2024
+ARQ-531	nemtabrutinib	BTK	tinib	inn(code)	ctgov	medium	1	10.1200/jco.2023.41.16_suppl.tps7593	NCT06688045	ARQ-531	X inhibitor	2/2	asco-2023
+ARV-471	vepdegestrant	ER	estrant	code(inn)+inn(code)	ctgov+repeat+trial	high	2	10.1158/1538-7445.am2024-595;10.1200/jco.2024.42.16_suppl.tps1131	NCT04606446;NCT05463952;NCT05548127;NCT05573555	ARV-471	X inhibitor+X-directed	9/11	aacr-2024|asco-2024
+ASTX727	decitabine cedazuridine	DNA	uridine	code(inn)	cooc+ctgov+repeat+trial	high	2	10.1200/jco.2023.41.16_suppl.11531;10.1200/jco.2024.42.16_suppl.11526	NCT03306264;NCT03813186;NCT03922555;NCT04093570	ASTX727	targeting X	1/3	asco-2023|asco-2024
+ATG-008	onatasertib	TORC1/2	sertib	inn(code)	repeat	medium	3	10.1158/1538-7445.am2023-ct150;10.1200/jco.2023.41.16_suppl.2526;10.1200/jco.2024.42.16_suppl.5509		ATG-008	X inhibitor	6/16	aacr-2023|asco-2023|asco-2024
+AUM001	tinodasertib	MNK	sertib	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2024-5932	NCT05462236	AUM001	X inhibitor	1/2	aacr-2024
+AUTO1	obecabtagene autoleucel		leucel	inn(code)	ctgov+repeat	high	2	10.1200/jco.2023.41.16_suppl.7000;10.1200/jco.2024.42.16_suppl.6504	NCT04404660	AUTO1		0/0	asco-2023|asco-2024
+AUY922	luminespib	HSP90	ib	inn(code)	none	unsupported	1	10.1158/1538-7445.am2023-4912		AUY922	X inhibitor	3/3	aacr-2023
+AZD1775	adavosertib	WEE1	sertib	inn(code)	ctgov+journal+trial	high	1	10.1200/jco.2024.42.16_suppl.8545	NCT02101775;NCT02381548;NCT02617277;NCT03253679	AZD1775	X inhibitor	9/10	asco-2024
+AZD2171	cediranib	VEGFR2	anib	inn(code)	ctgov	medium	1	10.1200/jco.2023.41.4_suppl.194	NCT00303862	AZD2171	X inhibitor	1/1	asco-2023
+AZD2281	olaparib	PARP	parib	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.tps4607	NCT02576444;NCT04394858;NCT06419179	AZD2281	X inhibitor	71/93	asco-2023
+AZD2936	rilvegostomig	PD-1/TIGIT	mig	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.tps6122	NCT04686305;NCT04995523;NCT05123482;NCT05489211	AZD2936	X bispecific+anti-X	6/10	asco-2024
+AZD3759	zorifertinib		ertinib	code(inn)	ctgov	medium	1	10.1200/jco.2023.41.16_suppl.9001	NCT07361705	AZD3759		0/0	asco-2023
+AZD5305	saruparib	PARP1	parib	inn(code)	cooc+ctgov+repeat+trial	high	2	10.1158/1538-7445.am2024-lb406;10.1200/jco.2024.42.16_suppl.tps5123	NCT04005690;NCT05123482;NCT05938270;NCT06120491	AZD5305	X inhibitor	12/19	aacr-2024|asco-2024
+AZD5363	capivasertib	AKT	sertib	code(inn)+inn(code)	ctgov+repeat+trial	high	4	10.1158/1538-7445.am2023-6142;10.1158/1538-7445.am2024-lb115;10.1158/1538-7445.am2024-lb452;10.1200/jco.2023.41.16_suppl.tps5629	NCT02208375;NCT02423603;NCT04087174;NCT04439123	AZD5363	X inhibitor	8/17	aacr-2023|aacr-2024|asco-2023
+AZD6244	selumetinib	MEK	metinib	inn(code)	ctgov+repeat+trial	high	2	10.1158/1538-7445.am2024-4652;10.1200/jco.2023.41.16_suppl.tps7084	NCT01222689;NCT01949870;NCT01960374;NCT01974349	AZD6244	X inhibitor	8/10	aacr-2024|asco-2023
+AZD6738	ceralasertib	ATR	sertib	code(inn)+inn(code)	cooc+ctgov+repeat+trial	high	4	10.1158/1538-7445.am2023-5061;10.1158/1538-7445.am2023-6195;10.1158/1538-7445.am2023-lb227;10.1200/jco.2024.42.16_suppl.e20035	NCT02813135;NCT03022409;NCT03328273;NCT03330847	AZD6738	X inhibitor	16/20	aacr-2023|asco-2024
+AZD9291	osimertinib	EGFR	ertinib	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2024-5868	NCT02151981;NCT02465060;NCT02503722;NCT02664935	AZD9291	X bispecific+X inhibitor+X-directed+anti-X+targeting X	35/59	aacr-2024
+BAL101553	lisavanbulin		bulin	inn(code)	cooc+ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.2058	NCT02490800	BAL101553		0/0	asco-2023
+BAY1521152	enitociclib	CDK9	ciclib	inn(code)	none	unsupported	1	10.1158/1538-7445.am2023-1558		BAY1521152	X inhibitor	2/2	aacr-2023
+BAY1895344	elimusertib	ATR	sertib	code(inn)+inn(code)	ctgov+repeat+trial	high	5	10.1158/1538-7445.am2023-5061;10.1158/1538-7445.am2023-6180;10.1158/1538-7445.am2023-6195;10.1200/jco.2024.42.16_suppl.3076	NCT03188965;NCT04095273;NCT04267939;NCT04491942	BAY-1895344|BAY1895344	X inhibitor	17/20	aacr-2023|asco-2024
+BAYK8644	boritinib	PD-1	tinib	inn(code)	none	unsupported	1	10.1158/1538-7445.am2023-5116		BAYK8644	anti-X	3/5	aacr-2023
+BB2121	idecabtagene vicleucel		leucel	inn(code)	ctgov	medium	1	10.1200/jco.2023.41.16_suppl.e20005	NCT06045806	BB2121		0/0	asco-2023
+BCD-100	prolgolimab	PD-1	olimab	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.e14701	NCT05732805	BCD-100	anti-X	6/6	asco-2023
+BCD-145	nurulimab	PD-1	limab	code(inn)	none	unsupported	1	10.1200/jco.2024.42.16_suppl.9526		BCD-145	targeting X	1/1	asco-2024
+BGB-11417	sonrotoclax	BCL2	toclax	inn(code)	ctgov+journal+repeat+trial	high	2	10.1200/jco.2024.42.16_suppl.tps7087;10.1200/jco.2024.42.16_suppl.tps7090	NCT04277637;NCT04973605;NCT05471843;NCT05952037	BGB-11417	X inhibitor	4/5	asco-2024
+BGB-290	pamiparib	PARP	parib	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.tps5621	NCT02660034;NCT03150810;NCT03333915;NCT03427814	BGB-290	X inhibitor	2/2	asco-2024
+BGB324	bemcentinib	AXL	tinib	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.e15116	NCT02424617;NCT02488408;NCT03184558;NCT03184571	BGB324	X inhibitor	4/5	asco-2024
+BGJ398	infigratinib	FGFR	tinib	inn(code)	ctgov+repeat+trial	high	2	10.1200/jco.2023.41.16_suppl.4511;10.1200/jco.2024.42.3_suppl.516	NCT02150967;NCT02706691;NCT03773302;NCT05019794	BGJ398	X inhibitor	2/3	asco-2023|asco-2024
+BIDX3	elimusertib	ATR	sertib	inn(code)	none	unsupported	1	10.1158/1538-7445.am2023-6195		BIDX3	X inhibitor	10/13	aacr-2023
+BLU-667	pralsetinib	RET	tinib	inn(code)	ctgov+repeat+trial	high	4	10.1158/1538-7445.am2023-3419;10.1158/1538-7445.am2023-3851;10.1158/1538-7445.am2024-4660;10.1158/1538-7445.am2024-lb389	NCT03037385	BLU-667|BLU667	X inhibitor+X-directed+targeting X	8/10	aacr-2023|aacr-2024
+BMN-673	talazoparib	PARP	parib	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2024-lb260	NCT02878785;NCT04901702	BMN-673	X inhibitor	29/32	aacr-2024
+BVD-523	ulixertinib	ERK	ertinib	inn(code)	ctgov+repeat+trial	high	3	10.1158/1538-7445.am2023-2692;10.1158/1538-7445.am2023-2693;10.1200/jco.2023.41.16_suppl.tps4174	NCT03155620;NCT03454035;NCT04145297	BVD-523	X inhibitor	3/5	aacr-2023|asco-2023
+BXCL701	talabostat		stat	code(inn)	ctgov+repeat+trial	high	2	10.1200/jco.2023.41.16_suppl.tps5109;10.1200/jco.2023.41.6_suppl.176	NCT00080080;NCT04123574	BXCL701		0/0	asco-2023
+BYL719	alpelisib	PI3K	lisib	code(inn)+inn(code)	cooc+ctgov+repeat+trial	high	3	10.1158/1538-7445.am2023-2484;10.1158/1538-7445.am2024-1955;10.1158/1538-7445.am2024-4693	NCT01923168;NCT02058381;NCT02379247;NCT04208178	BYL719	X inhibitor	17/38	aacr-2023|aacr-2024
+CA-4948	emavusertib	PD-1	sertib	code(inn)+inn(code)	ctgov+repeat+trial	high	8	10.1158/1538-7445.am2023-4492;10.1158/1538-7445.am2023-lb203;10.1158/1538-7445.am2024-2902;10.1158/1538-7445.am2024-ct150	NCT03328078;NCT04278768;NCT05685602;NCT06439836	CA-4948	anti-X	12/16	aacr-2023|aacr-2024|asco-2023|asco-2024
+CAN04	nadunolimab	IL1RAP	olimab	inn(code)	ctgov+repeat+trial	high	3	10.1158/1538-7445.am2023-2172;10.1158/1538-7445.am2023-6429;10.1200/jco.2023.41.16_suppl.9089	NCT05116891	CAN04	anti-X+targeting X	12/16	aacr-2023|asco-2023
+CB-839	teleglenastat	GLS	stat	inn(code)	none	unsupported	1	10.1200/jco.2023.41.6_suppl.378		CB-839	X inhibitor	5/6	asco-2023
+CC-220	iberdomide		domide	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.e20043	NCT03310619;NCT04564703;NCT04882163;NCT04884035	CC-220		0/0	asco-2023
+CC-930	tanzisertib	JNK	sertib	inn(code)	none	unsupported	1	10.1200/jco.2024.42.16_suppl.e14520		CC-930	X inhibitor	2/2	asco-2024
+CC-99282	golcadomide		domide	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2024-3305	NCT05169515;NCT06209619;NCT06835530;NCT07763418	CC-99282		0/0	aacr-2024
+CCS1477	inobrodib	CBP/P300	ib	code(inn)+inn(code)	ctgov+repeat+trial	high	3	10.1158/1538-7445.am2023-1449;10.1158/1538-7445.am2023-ct136;10.1158/1538-7445.am2024-7116	NCT04068597;NCT07096778	CCS1477	X inhibitor+targeting X	3/6	aacr-2023|aacr-2024
+CEP701	lestaurtinib		tinib	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2023-6730	NCT00494585;NCT02428543	CEP701		0/0	aacr-2023
+CGT9486	bezuclastinib		lastinib	inn(code)	ctgov+repeat+trial	high	3	10.1200/jco.2024.42.16_suppl.11533;10.1200/jco.2024.42.16_suppl.tps11588;10.1200/jco.2024.42.3_suppl.tps766	NCT04996875;NCT05186753;NCT05208047	CGT9486		0/0	asco-2024
+CH14	dinutuximab	GD2	ximab	inn(code)	repeat+trial	high	2	10.1158/1538-7445.am2024-nd08;10.1200/jco.2024.42.16_suppl.10044	NCT02743429;NCT02914405;NCT06071897	CH14	X-directed+anti-X	10/14	aacr-2024|asco-2024
+CLN-081	zipalertinib		ertinib	inn(code)	ctgov+repeat	high	3	10.1200/jco.2024.42.16_suppl.tps8670;10.1200/jco.2024.42.16_suppl.tps8671;10.1200/jco.2024.42.23_suppl.tps219	NCT05973773	CLN-081		0/0	asco-2024
+CPI-0209	tulmimetostat	EZH2/EZH1	stat	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.3094	NCT04104776	CPI-0209	X inhibitor	6/6	asco-2023
+CPI-0610	pelabresib	BET	ib	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.7019	NCT02158858;NCT04603495;NCT05391022	CPI-0610	X inhibitor	2/2	asco-2023
+CPI-613	devimistat		stat	code(inn)	cooc+ctgov+journal+repeat+trial	high	3	10.1158/1538-7445.am2023-527;10.1158/1538-7445.am2024-ct080;10.1200/jco.2023.41.4_suppl.tps760	NCT03504410;NCT04203160;NCT04593758;NCT05070104	CPI-613		0/0	aacr-2023|aacr-2024|asco-2023
+CT7001	samuraciclib	CDK7	ciclib	inn(code)	ctgov+repeat+trial	high	2	10.1158/1538-7445.am2023-5981;10.1200/jco.2024.42.16_suppl.tps1126	NCT03363893;NCT04802759	CT7001	X inhibitor	4/5	aacr-2023|asco-2024
+CTL-002	visugromab	PD1	omab	inn(code)	ctgov+repeat+trial	high	4	10.1200/jco.2023.41.16_suppl.2501;10.1200/jco.2023.41.6_suppl.tps595;10.1200/jco.2024.42.16_suppl.2513;10.1200/jco.2024.42.4_suppl.tps712	NCT04725474;NCT06059547;NCT07098988;NCT07112196	CTL-002	anti-X	2/2	asco-2023|asco-2024
+CX-4945	silmitasertib	CK2	sertib	code(inn)+inn(code)	ctgov+repeat+trial	high	2	10.1158/1538-7445.am2024-3271;10.1158/1538-7445.am2024-4325	NCT03904862;NCT06541262	CX-4945	X inhibitor	5/7	aacr-2024
+CYC065	fadraciclib	CDK2/9	ciclib	inn(code)	ctgov+repeat+trial	high	3	10.1158/1538-7445.am2024-518;10.1200/jco.2024.42.16_suppl.3125;10.1200/jco.2024.42.16_suppl.3596	NCT02813135;NCT04983810;NCT05168904;NCT05817890	CYC065	X inhibitor	9/14	aacr-2024|asco-2024
+DRP-104	sirpiglenastat	GLUTAMINE	stat	code(inn)	trial	medium	1	10.1158/1538-7445.am2023-4904	NCT04471415	DRP-104	X inhibitor	3/5	aacr-2023
+DS-7300	ifinatamab deruxtecan	B7-H3	tecan	inn(code)	repeat	medium	2	10.1158/1538-7445.am2023-4891;10.1158/1538-7445.am2024-lb402		DS-7300	X-directed+anti-X	9/13	aacr-2023|aacr-2024
+DS-8201	transtuzumab deruxtecan	HER2	tecan	inn(code)	repeat	ambiguous	2	10.1158/1538-7445.am2023-4000;10.1158/1538-7445.am2023-6307		DS-8201	X bispecific+X-directed+targeting X	5/6	aacr-2023
+DS-8201	trastuzumab deruxotecan	HER2	tecan	inn(code)	none	ambiguous	1	10.1158/1538-7445.am2023-2643		DS-8201	X bispecific+X inhibitor+X-directed+anti-X+targeting X	45/70	aacr-2023
+DS-8201A	trastuzumab deruxtecan	HER2	tecan	inn(code)	ctgov+repeat+trial	high	4	10.1158/1538-7445.am2023-3242;10.1158/1538-7445.am2024-5820;10.1200/jco.2023.41.16_suppl.11527;10.1200/jco.2023.41.16_suppl.e14509	NCT03368196;NCT03505710;NCT03523585;NCT03529110	DS-8201A	X bispecific+X inhibitor+X-directed+anti-X+targeting X	41/65	aacr-2023|aacr-2024|asco-2023
+DZD9008	sunvozertinib	EGFR	ertinib	inn(code)	ctgov+repeat+trial	high	4	10.1200/jco.2023.41.16_suppl.9002;10.1200/jco.2023.41.16_suppl.9073;10.1200/jco.2024.42.16_suppl.8513;10.1200/jco.2024.42.16_suppl.8563	NCT05668988;NCT05712902;NCT06563999	DZD9008	X inhibitor+targeting X	5/5	asco-2023|asco-2024
+EPZ-6438	tazemetostat	EZH2	stat	inn(code)	ctgov	medium	1	10.1200/jco.2023.41.16_suppl.e17620	NCT03155620	EPZ-6438	X inhibitor+anti-X+targeting X	16/21	asco-2023
+ERAS-254	naporafenib	PAN-RAF	rafenib	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.tps3178	NCT05907304;NCT06346067	ERAS-254	X inhibitor	1/1	asco-2024
+ETCTN-10402	topotecan	TOP1	tecan	inn(code)	none	unsupported	1	10.1200/jco.2024.42.16_suppl.3076		ETCTN-10402	X inhibitor	2/5	asco-2024
+FD-895	rebecsinib	ADAR1	nib	inn(code)	ctgov	medium	1	10.1158/1538-7445.am2023-123	NCT07250646	FD-895	X inhibitor	1/1	aacr-2023
+FF-10832	gemcitabine	PKC	citabine	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.2615	NCT03440450;NCT04233866;NCT05318573	FF-10832	targeting X	2/8	asco-2024
+FP-1305	bexmarilimab	CLEVER-1	limab	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2023-4334	NCT03733990;NCT05171062;NCT07672769	FP-1305	X-directed+anti-X	3/3	aacr-2023
+FPA144	bemarituzumab	FGFR2B	zumab	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.e15019	NCT03343301;NCT03694522	FPA144	X-directed+anti-X+targeting X	4/4	asco-2024
+GB226	geptanolimab		olimab	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.5535	NCT03374007;NCT03502629;NCT03623581;NCT03639181	GB226		0/0	asco-2023
+GB491	lerociclib	CDK4/6	ciclib	inn(code)	none	unsupported	1	10.1200/jco.2023.41.16_suppl.1017		GB491	X inhibitor	2/2	asco-2023
+GEN1046	acasunlimab	BB	limab	inn(code)	ctgov+trial	high	1	cimt-2026:poster-session-i/128-cross-presentation-and-pd-l1-expression-by-cdc1s-are-key-for	NCT03917381;NCT04937153;NCT05117242;NCT06046274	GEN1046	X bispecific	2/3	cimt-2026
+GEN3013	epcoritamab	CD3XCD20	mab	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2023-3248	NCT03625037;NCT04623541;NCT04628494;NCT05660967	GEN3013	X bispecific	3/8	aacr-2023
+GFH925	fulzerasib	G12C	rasib	inn(code)	none	unsupported	1	10.1200/jco.2024.42.17_suppl.lba8511		GFH925	X inhibitor	2/2	asco-2024
+GM6001	ilomostat	MMP	stat	inn(code)	none	unsupported	1	10.1158/1538-7445.am2024-4699		GM6001	X inhibitor	4/5	aacr-2024
+GNC-038	emfizatamab	TETRA	mab	code(inn)	none	unsupported	1	10.1158/1538-7445.am2023-5681		GNC-038	X-directed	2/4	aacr-2023
+GSK525762	molibresib		ib	inn(code)	ctgov	medium	1	10.1200/jco.2023.41.16_suppl.1073	NCT04116359	GSK525762		0/0	asco-2023
+HB1801	docetaxel	PD-1	taxel	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.e16018	NCT05838066;NCT06136988;NCT06319313;NCT06525350	HB1801	X inhibitor+anti-X	2/8	asco-2024
+HBM4003	porustobart	CTLA-4	bart	inn(code)	ctgov+repeat	high	2	10.1158/1538-7445.am2023-ct263;10.1200/jco.2023.41.16_suppl.e16106	NCT05167071	HBM4003	anti-X+targeting X	9/9	aacr-2023|asco-2023
+HC-1119	deutenzalutamide		lutamide	inn(code)	none	unsupported	1	10.1200/jco.2023.41.16_suppl.5065		HC-1119		0/0	asco-2023
+HE072	irinotecan	VEGF	tecan	inn(code)	cooc+repeat	medium	2	10.1200/jco.2024.42.16_suppl.1080;10.1200/jco.2024.42.16_suppl.4141		HE072	anti-X	5/24	asco-2024
+HL-085	tunlametinib	MEK	metinib	inn(code)	ctgov+repeat+trial	high	3	10.1200/jco.2023.41.16_suppl.9510;10.1200/jco.2024.42.16_suppl.9545;10.1200/jco.2024.42.16_suppl.tps9606	NCT07170293	HL-085	X inhibitor	2/5	asco-2023|asco-2024
+HM06	vepafestinib		tinib	inn(code)	none	unsupported	1	10.1158/1538-7445.am2023-4007		HM06		0/0	aacr-2023
+HQP1351	olverembatinib	BCR-ABL1	tinib	inn(code)	ctgov+repeat+trial	high	4	10.1158/1538-7445.am2023-1631;10.1158/1538-7445.am2023-5071;10.1200/jco.2023.41.16_suppl.11540;10.1200/jco.2024.42.16_suppl.11502	NCT05311943;NCT05376852;NCT05604755;NCT06423911	HQP1351	targeting X	2/3	aacr-2023|asco-2023|asco-2024
+HSTC810	nelmastobart	BTN1A1	bart	inn(code)	repeat+trial	high	2	10.1158/1538-7445.am2023-ct238;10.1200/jco.2023.41.16_suppl.2633	NCT07656038	HSTC810	anti-X+targeting X	5/5	aacr-2023|asco-2023
+HX008	pucotenlimab	PD-1	limab	inn(code)	ctgov+repeat+trial	high	3	10.1200/jco.2023.41.16_suppl.e16180;10.1200/jco.2023.41.4_suppl.799;10.1200/jco.2024.42.16_suppl.6013	NCT05652894;NCT07589049;NCT07627321;NCT07707167	HX008	X inhibitor+anti-X	5/6	asco-2023|asco-2024
+HX301	narazaciclib	CDK4/6	ciclib	code(inn)+inn(code)	ctgov+repeat	high	3	10.1158/1538-7445.am2024-2262;10.1158/1538-7445.am2024-7161;10.1200/jco.2024.42.16_suppl.e15106	NCT05705505	HX301	X inhibitor	5/8	aacr-2024|asco-2024
+ICEC0942	samuraciclib	CDK7	ciclib	code(inn)	ctgov	medium	1	10.1158/1538-7445.am2023-1557	NCT04802759	ICEC0942	X inhibitor	4/5	aacr-2023
+ICP-192	gunagratinib	FGFR	tinib	code(inn)	none	unsupported	1	10.1200/jco.2023.41.4_suppl.572		ICP-192	X inhibitor	3/3	asco-2023
+IGM-2323	imvotamab	CD20	mab	inn(code)	ctgov	medium	1	10.1158/1538-7445.am2023-4120	NCT04082936	IGM-2323	anti-X	2/3	aacr-2023
+IGM-8444	aplitabart	DR5	bart	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2024-1899	NCT04553692	IGM-8444	X inhibitor	5/5	aacr-2024
+IMAB362	zolbetuximab	CLDN18.2	ximab	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2024-6706	NCT03504397;NCT03505320;NCT03528629;NCT03653507	IMAB362	X-directed+anti-X+targeting X	7/8	aacr-2024
+IMGN853	mirvetuximab soravtansine	FR	tansine	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2024-ct008	NCT02996825;NCT03045393;NCT03832361;NCT03835819	IMGN853	targeting X	1/1	aacr-2024
+IMM01	timdarpacept	PD-1	cept	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.7017	NCT06647862	IMM01	anti-X	1/3	asco-2024
+IMMU-132	sacituzumab govitecan	TROP2	tecan	inn(code)	cooc+ctgov+trial	high	1	10.1158/1538-7445.am2024-1912	NCT04251416;NCT04448886;NCT04468061;NCT04639986	IMMU-132	X bispecific+X-directed+anti-X+targeting X	22/46	aacr-2024
+INCB000928	zilurgisertib	ALK2	sertib	inn(code)	ctgov+repeat	high	2	10.1158/1538-7445.am2023-ct243;10.1200/jco.2023.41.16_suppl.7017	NCT05090891	INCB000928	X inhibitor	3/3	aacr-2023|asco-2023
+INCMGA00012	retifanlimab	PD-1	limab	inn(code)	cooc+ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.2599	NCT02475213;NCT03059823;NCT03406949;NCT03589651	INCMGA00012	X inhibitor+anti-X	4/12	asco-2023
+ING-41	elraglusib	GSK-3	ib	inn(code)	ctgov+repeat	high	7	10.1158/1538-7445.am2024-6426;10.1200/jco.2023.41.16_suppl.3079;10.1200/jco.2023.41.16_suppl.e15138;10.1200/jco.2023.41.16_suppl.e16289	NCT05077800	ING-41	X inhibitor	22/28	aacr-2024|asco-2023|asco-2024
+IOA-244	roginolisib		lisib	inn(code)	ctgov+repeat+trial	high	2	10.1200/jco.2023.41.16_suppl.3110;10.1200/jco.2024.42.16_suppl.9597	NCT06644183;NCT06717126;NCT06879717	IOA-244		0/0	asco-2023|asco-2024
+IPH2201	monalizumab	NKG2A	zumab	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.tps8610	NCT02557516;NCT02671435;NCT03088059;NCT03801902	IPH2201	anti-X+targeting X	6/9	asco-2023
+IPI-145	duvelisib	CLL	lisib	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2023-4933	NCT02049515;NCT02292225;NCT02711852;NCT05044039	IPI-145	targeting X	1/1	aacr-2023
+IPI-549	eganelisib	PI3K	lisib	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2024-170	NCT02637531;NCT03961698;NCT03980041	IPI-549	targeting X	1/3	aacr-2024
+JAB-21822	glecirasib	G12C	rasib	inn(code)	cooc+ctgov+repeat+trial	high	2	10.1200/jco.2024.42.36_suppl.468214;10.1200/jco.2024.42.3_suppl.604	NCT05009329;NCT06008288;NCT06563999	JAB-21822	X inhibitor	5/5	asco-2024
+JS004	tifcemalimab	BTLA	limab	inn(code)	ctgov	medium	1	10.1200/jco.2023.41.16_suppl.8579	NCT06095583	JS004	anti-X	1/1	asco-2023
+JTX-4014	pimivalimab	PD1	limab	code(inn)	ctgov	medium	1	10.1200/jco.2024.42.16_suppl.4531	NCT04669899	JTX-4014	anti-X	2/4	asco-2024
+KEL-0	docetaxel	PD-1	taxel	inn(code)	none	unsupported	1	10.1158/1538-7445.am2024-7173		KEL-0	X inhibitor+anti-X	2/7	aacr-2024
+KIN-2787	exarafenib	PAN-RAF	rafenib	inn(code)	ctgov+repeat	high	2	10.1158/1538-7445.am2023-4927;10.1158/1538-7445.am2023-ct032	NCT04913285	KIN-2787	X inhibitor	12/15	aacr-2023
+KO-539	ziftomenib		nib	inn(code)	ctgov	medium	1	10.1200/jco.2023.41.16_suppl.tps7079	NCT06440135	KO-539		0/0	asco-2023
+LIMBER-104	zilurgisertib	ALK2	sertib	inn(code)	none	unsupported	1	10.1200/jco.2023.41.16_suppl.7017		LIMBER-104	X inhibitor	3/3	asco-2023
+LMP400	indotecan		tecan	inn(code)	none	unsupported	1	10.1158/1538-7445.am2023-3103		LMP400		0/0	aacr-2023
+LMP776	indimitecan		tecan	inn(code)	none	unsupported	1	10.1158/1538-7445.am2023-3103		LMP776		0/0	aacr-2023
+LN-144	lifileucel		leucel	inn(code)	cooc+ctgov+repeat+trial	high	2	10.1200/jco.2023.41.16_suppl.tps9606;10.1200/jco.2024.42.16_suppl.tps9603	NCT02360579;NCT03645928;NCT05176470;NCT05607095	LN-144		0/0	asco-2023|asco-2024
+LOXO-195	selitrectinib	NTRK	tinib	inn(code)	ctgov	medium	1	10.1158/1538-7445.am2023-lb006	NCT04771390	LOXO-195	X inhibitor	2/3	aacr-2023
+LOXO-292	selpercatinib	RET	tinib	inn(code)	ctgov+repeat+trial	high	4	10.1158/1538-7445.am2023-3419;10.1158/1538-7445.am2023-3851;10.1158/1538-7445.am2024-4660;10.1158/1538-7445.am2024-lb389	NCT03157128;NCT03899792	LOXO-292	X inhibitor+X-directed	17/19	aacr-2023|aacr-2024
+LOXO-305	pirtobrutinib	BTK	tinib	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2024-ct147	NCT03740529;NCT04662255;NCT04666038;NCT04965493	LOXO-305	X inhibitor	6/10	aacr-2024
+LP-10	tacrolimus	CALCINEURIN	rolimus	inn(code)	ctgov	medium	1	10.1200/jco.2023.41.16_suppl.e24064	NCT06233591	LP-10	X inhibitor	1/1	asco-2023
+LUAD12C	capmatinib	MET	tinib	inn(code)	none	unsupported	1	10.1158/1538-7445.am2023-6127		LUAD12C	X inhibitor+targeting X	5/6	aacr-2023
+LY2606368	prexasertib	CHK1	sertib	inn(code)	cooc+ctgov+trial	high	1	10.1158/1538-7445.am2023-482	NCT02124148;NCT02203513;NCT02514603;NCT02555644	LY2606368	X inhibitor	4/8	aacr-2023
+LY3527723	selpercatinib	RET	tinib	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2023-3851	NCT03899792;NCT04194944;NCT04211337;NCT04280081	LY3527723	X inhibitor+X-directed	15/17	aacr-2023
+LY3537982	olomorasib	G12C	rasib	inn(code)	ctgov+repeat+trial	high	5	10.1200/jco.2024.42.16_suppl.3007;10.1200/jco.2024.42.16_suppl.8510;10.1200/jco.2024.42.16_suppl.tps8649;10.1200/jco.2024.42.23_suppl.195	NCT06119581;NCT06890598	LY3537982	X inhibitor	7/7	asco-2024
+MAS98	paclitaxel	PD-1	taxel	inn(code)	none	unsupported	1	10.1158/1538-7445.am2023-4675		MAS98	anti-X	3/15	aacr-2023
+MCF7	fulvestrant	ER	estrant	inn(code)	cooc	low	1	10.1200/jco.2023.41.16_suppl.e13077		MCF7	X inhibitor	8/19	asco-2023
+MCLA-128	zenocutuzumab	HER2XHER3	zumab	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2024-1903	NCT02912949;NCT03321981;NCT05588609	MCLA-128	X bispecific	2/4	aacr-2024
+MCLA-158	petosemtamab	IGG1	mab	code(inn)+inn(code)	ctgov+repeat+trial	high	3	10.1158/1538-7445.am2023-ct012;10.1158/1538-7445.am2023-ct156;10.1200/jco.2024.42.16_suppl.6014	NCT06496178;NCT07775287	MCLA-158	X bispecific	11/20	aacr-2023|asco-2024
+MDX-1097	kappamab		mab	inn(code)	none	unsupported	1	10.1158/1538-7445.am2023-4074		MDX-1097		0/0	aacr-2023
+MEDI4736	durvalumab	PD-L1	umab	inn(code)	cooc+ctgov+repeat+trial	high	6	10.1200/jco.2023.41.16_suppl.e16217;10.1200/jco.2023.41.16_suppl.tps5629;10.1200/jco.2023.41.16_suppl.tps8612;10.1200/jco.2023.41.4_suppl.tps282	NCT01975831;NCT02027961;NCT02087423;NCT02205333	MEDI-4736|MEDI4736	X inhibitor+anti-X	30/39	asco-2023|asco-2024
+MEDI5752	volrustomig	PD-1/CTLA	mig	code(inn)+inn(code)	ctgov+repeat+trial	high	5	10.1158/1538-7445.am2024-3627;10.1200/jco.2023.41.16_suppl.tps8604;10.1200/jco.2024.42.16_suppl.tps6120;10.1200/jco.2024.42.16_suppl.tps8652	NCT05489211;NCT05984277;NCT06097728;NCT06129864	MEDI5752	anti-X	3/6	aacr-2024|asco-2023|asco-2024
+MEDI9447	oleclumab	CD73	umab	inn(code)	ctgov+repeat+trial	high	2	10.1158/1538-7445.am2024-lb131;10.1200/jco.2023.41.16_suppl.tps8610	NCT02503774;NCT03381274;NCT03611556;NCT03616886	MEDI9447	X-directed+anti-X	6/8	aacr-2024|asco-2023
+MGD013	tebotelimab	LAG-3	limab	inn(code)	cooc+ctgov+trial	high	1	10.1200/jco.2023.41.4_suppl.402	NCT03219268;NCT04634825	MGD013	targeting X	1/1	asco-2023
+MGD019	lorigerlimab	CTLA-4	limab	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.6_suppl.155	NCT03761017;NCT05293496;NCT05475171;NCT07565155	MGD019	targeting X	1/1	asco-2023
+MK-1026	nemtabrutinib	BTK	tinib	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.tps7593	NCT03162536;NCT04728893;NCT05347225;NCT06136559	MK-1026	X inhibitor	2/2	asco-2023
+MK-2870	sacituzumab tirumotecan	TROP2	tecan	inn(code)	ctgov+repeat+trial	high	2	10.1200/jco.2024.42.16_suppl.104;10.1200/jco.2024.42.16_suppl.8502	NCT06049212;NCT06074588;NCT06132958;NCT06170788	MK-2870	X bispecific+X-directed+anti-X+targeting X	28/54	asco-2024
+MK-3475	pembrolizumab	PD-1	zumab	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.6_suppl.165	NCT01840579;NCT01848834;NCT01866319;NCT01905657	MK-3475	X inhibitor+X-directed+anti-X	20/37	asco-2023
+MK-5890	boserolimab	CD27	olimab	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2024-ct095	NCT03396445;NCT04165070;NCT04165096;NCT04924101	MK-5890	anti-X	6/13	aacr-2024
+MLN8237	alisertib	AURKA	sertib	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2023-1572	NCT01154816;NCT01898078;NCT02038647;NCT02109328	MLN8237	X inhibitor	10/12	aacr-2023
+MORAB-202	farletuzumab ecteribulin	FOLR1	bulin	code(inn)+inn(code)	ctgov+repeat+trial	high	2	10.1158/1538-7445.am2023-ct056;10.1200/jco.2023.41.16_suppl.e17634	NCT03386942;NCT04300556;NCT05613088	MORAB-202	X bispecific+anti-X	2/3	aacr-2023|asco-2023
+MRTX849	adagrasib	G12C	rasib	code(inn)+inn(code)	ctgov+repeat+trial	high	8	10.1158/1538-7445.am2023-1079;10.1158/1538-7445.am2023-26;10.1158/1538-7445.am2023-2692;10.1158/1538-7445.am2023-lb316	NCT03785249;NCT03994796;NCT04330664;NCT04613596	MRTX-849|MRTX849	X inhibitor	14/39	aacr-2023|aacr-2024|asco-2023
+MS-275	entinostat	HDAC	nostat	inn(code)	ctgov	medium	1	10.1200/jco.2023.41.16_suppl.e17620	NCT00750698	MS-275	X inhibitor	8/8	asco-2023
+NTPX-07	bioplatin		platin	inn(code)	none	unsupported	1	10.1158/1538-7445.am2023-ct169		NTPX-07		0/0	aacr-2023
+ODM-201	darolutamide	AR	lutamide	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.4_suppl.tps349	NCT02200614;NCT02799602;NCT04237584	ODM-201	X inhibitor	3/6	asco-2024
+ONO-7475	tamnorzatinib		tinib	inn(code)	none	unsupported	1	10.1158/1538-7445.am2024-ct062		ONO-7475		0/0	aacr-2024
+OP-1250	palazestrant	ER	estrant	inn(code)	ctgov+repeat+trial	high	2	10.1200/jco.2024.42.16_suppl.tps1135;10.1200/jco.2024.42.23_suppl.tps22	NCT05266105;NCT05508906;NCT06016738	OP-1250	X inhibitor	2/2	asco-2024
+ORY-1001	iadademstat	LSD1	demstat	inn(code)	ctgov	medium	1	10.1200/jco.2023.41.16_suppl.tps7075	NCT06661915	ORY-1001	X inhibitor	1/1	asco-2023
+OXC-101	karonudib	MTH1	ib	code(inn)	repeat	medium	3	10.1158/1538-7445.am2023-1569;10.1158/1538-7445.am2023-6204;10.1158/1538-7445.am2023-ct182		OXC-101	X inhibitor+targeting X	7/7	aacr-2023
+PARTS-1B	fulvestrant	ER	estrant	inn(code)	none	unsupported	1	10.1200/jco.2023.41.16_suppl.3009		PARTS-1B	X inhibitor	8/14	asco-2023
+PCLX-001	zelenirstat	NMT	stat	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2024-ct194	NCT06613217	PCLX-001	X inhibitor	4/8	aacr-2024
+PIC-50	oxaliplatin	VEGF	platin	inn(code)	none	unsupported	1	10.1200/jco.2023.41.16_suppl.e16337		PIC-50	X inhibitor+anti-X	4/18	asco-2023
+PLB1001	vebreltinib	MET	tinib	inn(code)	cooc+ctgov	high	1	10.1200/jco.2024.42.16_suppl.8557	NCT06970782	PLB1001	X inhibitor	1/1	asco-2024
+PLX8394	plixorafenib	BRAF-MUTANT	rafenib	inn(code)	cooc+ctgov	high	1	10.1158/1538-7445.am2024-5137	NCT05503797	PLX8394	targeting X	1/2	aacr-2024
+POL6326	balixafortide		tide	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2023-492	NCT03786094;NCT04826016	POL6326		0/0	aacr-2023
+PTG-300	rusfertide		tide	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.tps6592	NCT04767802;NCT06033586	PTG-300		0/0	asco-2024
+QDX21	celecoxib	COX-2	ib	inn(code)	none	unsupported	1	10.1158/1538-7445.am2024-5275		QDX21	X inhibitor	4/6	aacr-2024
+QL1604	iparomlimab	PD-1	limab	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.3578	NCT06789796;NCT07091305	QL1604	anti-X	2/3	asco-2024
+REGN1979	odronextamab	CD3	mab	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2023-ct129	NCT02651662;NCT05991388	REGN1979	X bispecific	9/11	aacr-2023
+REGN2810	cemiplimab	PD-1	limab	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.e14539	NCT02383212;NCT02651662;NCT02760498;NCT03005782	REGN2810	X inhibitor+anti-X	19/26	asco-2024
+REGN4018	ubamatamab	CD3	mab	inn(code)	ctgov+repeat+trial	high	2	10.1200/jco.2023.41.16_suppl.tps5624;10.1200/jco.2024.42.16_suppl.tps5632	NCT03564340;NCT04590326	REGN4018	X bispecific	2/4	asco-2023|asco-2024
+REGN5458	linvoseltamab	CD3	mab	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.8006	NCT05730036;NCT06669247;NCT07428369	REGN5458	X bispecific	4/6	asco-2023
+RP6530	tenalisib	SIK3	lisib	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.1064	NCT03471351;NCT03711578;NCT03711604;NCT03770000	RP6530	X inhibitor	2/2	asco-2023
+SAR408701	tusamitamab ravtansine	CEACAM5	tansine	inn(code)	ctgov+repeat+trial	high	2	10.1158/1538-7445.am2023-ct213;10.1158/1538-7445.am2024-3740	NCT03324113;NCT04154956;NCT04394624;NCT04524689	SAR408701	anti-X	4/7	aacr-2023|aacr-2024
+SDX-7320	evexomostat	METAP2	stat	inn(code)	cooc+ctgov+repeat+trial	high	2	10.1200/jco.2023.41.16_suppl.tps1129;10.1200/jco.2023.41.16_suppl.tps1131	NCT05455619	SDX-7320	X inhibitor	6/6	asco-2023
+SG001	enlonstobart	PD-1	bart	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.5526	NCT06989671;NCT07251062	SG001	X inhibitor	3/3	asco-2024
+SGI-110	guadecitabine		citabine	code(inn)	ctgov+repeat+trial	high	2	10.1200/jco.2023.41.16_suppl.11531;10.1200/jco.2024.42.16_suppl.11526	NCT01896856;NCT02348489;NCT02429466;NCT02907359	SGI-110		0/0	asco-2023|asco-2024
+SHR-1210	camrelizumab	PD-1	zumab	code(inn)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.e16007	NCT02738489;NCT02742935;NCT03099382;NCT03427827	SHR-1210	X inhibitor+anti-X+targeting X	21/26	asco-2024
+SKB264	sacituzumab tirumotecan	TROP2	tecan	inn(code)	ctgov+repeat+trial	high	2	10.1200/jco.2024.42.16_suppl.104;10.1200/jco.2024.42.16_suppl.8502	NCT06706219;NCT07054242;NCT07068542;NCT07109284	SKB264	X bispecific+X-directed+anti-X+targeting X	28/55	asco-2024
+SMT112	ivonescimab	PD-1/VEGF	mab	inn(code)	ctgov+journal+repeat+trial	high	2	10.1200/jco.2023.41.16_suppl.9087;10.1200/jco.2024.42.16_suppl.8508	NCT05184712;NCT06491472;NCT06760520;NCT06913218	SMT112	X bispecific+anti-X	5/6	asco-2023|asco-2024
+SNDX-275	entinostat	HDAC	nostat	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.e17620	NCT00750698;NCT02115594	SNDX-275	X inhibitor	7/7	asco-2023
+SNDX-5613	revumenib		nib	code(inn)	ctgov+repeat+trial	high	2	10.1158/1538-7445.am2023-3457;10.1158/1538-7445.am2024-577	NCT05886049;NCT06222580;NCT06229912;NCT06313437	SNDX-5613		0/0	aacr-2023|aacr-2024
+SNDX-6352	axatilimab	CSF-1R	limab	code(inn)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.e16217	NCT06959537;NCT07011810;NCT07015853;NCT07128381	SNDX-6352	X inhibitor	1/1	asco-2023
+SPL9111	cabazitaxel		taxel	inn(code)	none	unsupported	1	10.1200/jco.2024.42.3_suppl.374		SPL9111		0/0	asco-2024
+SPX6326	balixafortide		tide	inn(code)	none	unsupported	1	10.1158/1538-7445.am2023-492		SPX6326		0/0	aacr-2023
+SRF388	casdozokitug		tug	inn(code)	ctgov	medium	1	10.1200/jco.2024.42.3_suppl.470	NCT04374877	SRF388		0/0	asco-2024
+SRK-181	linavonkibart		bart	code(inn)	none	unsupported	1	10.1200/jco.2024.42.16_suppl.2507		SRK-181		0/0	asco-2024
+STRO-002	luveltamab tazevibulin		bulin	inn(code)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.5508	NCT05870748;NCT06555263;NCT06679582	STRO-002		0/0	asco-2023
+TAB004	tifcemalimab	BTLA	limab	inn(code)	ctgov	medium	1	10.1200/jco.2023.41.16_suppl.8579	NCT06095583	TAB004	anti-X	1/1	asco-2023
+TAK228	sapanisertib	MTOR	sertib	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2023-419	NCT02159989;NCT02503722;NCT04267913;NCT06385496	TAK228	X inhibitor	3/6	aacr-2023
+TAK-788	mobocertinib	EXON20INS	ertinib	code(inn)+inn(code)	ctgov+repeat+trial	high	2	10.1158/1538-7445.am2023-4488;10.1158/1538-7445.am2023-lb327	NCT02716116;NCT03811834	TAK-788|TAK788	X-directed	2/2	aacr-2023
+TAK-981	subasumstat	SAE1/2	stat	inn(code)	ctgov+repeat	high	2	10.1158/1538-7445.am2024-7071;10.1158/1538-7445.am2024-ct061	NCT05976334	TAK-981	X inhibitor	3/6	aacr-2024
+TAR-200	gemcitabine	PKC	citabine	code(inn)	cooc+ctgov+trial	high	1	10.1200/jco.2023.41.6_suppl.tps584	NCT02720367;NCT02722538;NCT03404791;NCT03518320	TAR-200	targeting X	2/8	asco-2023
+TAS0953	vepafestinib		tinib	inn(code)	none	unsupported	1	10.1158/1538-7445.am2023-4007		TAS0953		0/0	aacr-2023
+TAS6417	zipalertinib		ertinib	inn(code)	ctgov+repeat+trial	high	3	10.1200/jco.2024.42.16_suppl.tps8670;10.1200/jco.2024.42.16_suppl.tps8671;10.1200/jco.2024.42.23_suppl.tps219	NCT05967689;NCT05973773;NCT07128199	TAS6417		0/0	asco-2024
+TG02	zotiraciclib	CDK	ciclib	code(inn)+inn(code)	ctgov+repeat+trial	high	3	10.1158/1538-7445.am2023-3538;10.1200/jco.2023.41.16_suppl.2054;10.1200/jco.2024.42.16_suppl.2058	NCT02942264	TG02	X inhibitor	3/7	aacr-2023|asco-2023|asco-2024
+TG4001	sovacivec	HPV	vec	inn(code)	none	unsupported	1	10.1200/jco.2023.41.16_suppl.2630		TG4001	targeting X	1/1	asco-2023
+TIW-3	eribulin	STING	bulin	inn(code)	none	unsupported	1	10.1200/jco.2023.41.16_suppl.e17634		TIW-3	X inhibitor	4/19	asco-2023
+TQB2450	benmelstobart	PD-L1	bart	inn(code)	ctgov+trial	high	1	10.1200/jco.2024.42.16_suppl.5593	NCT06528847;NCT06699498	TQB2450	anti-X	3/3	asco-2024
+TST001	osemitamab	CLDN18.2	mab	code(inn)+inn(code)	cooc+ctgov+repeat+trial	high	3	10.1158/1538-7445.am2024-2535;10.1200/jco.2023.41.4_suppl.tps476;10.1200/jco.2024.42.16_suppl.4048	NCT06093425	TST001	anti-X	1/2	aacr-2024|asco-2023|asco-2024
+TT-00420	tinengotinib	FGFR	tinib	inn(code)	ctgov+repeat+trial	high	2	10.1200/jco.2023.41.4_suppl.539;10.1200/jco.2024.42.3_suppl.473	NCT03654547;NCT04742959;NCT04919642;NCT05253053	TT-00420	X inhibitor	3/5	asco-2023|asco-2024
+TT3A	bortezomib	MCL-1	zomib	inn(code)	none	unsupported	1	10.1200/jco.2023.41.16_suppl.8059		TT3A	X inhibitor	2/4	asco-2023
+TT3B	lenalidomide	IKZF1	domide	inn(code)	none	unsupported	1	10.1200/jco.2023.41.16_suppl.8059		TT3B	X inhibitor	1/7	asco-2023
+UCB6114	ginisortamab	GREMLIN-1	mab	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2023-ct094	NCT04393298	UCB6114	anti-X	4/4	aacr-2023
+VAY736	ianalumab		umab	inn(code)	ctgov	medium	1	10.1158/1538-7445.am2023-ct021	NCT05124925	VAY736		0/0	aacr-2023
+VB-111	obadenovec		adenovec	inn(code)	ctgov+journal+trial	high	1	10.1200/jco.2023.41.16_suppl.5505	NCT03398655;NCT04406272	VB-111		0/0	asco-2023
+VERU-111	sabizabulin		bulin	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2023-1670	NCT04842747;NCT04844749	VERU-111		0/0	aacr-2023
+VIP152	enitociclib	CDK9	ciclib	inn(code)	ctgov+trial	high	1	10.1158/1538-7445.am2023-1558	NCT05371054	VIP152	X inhibitor	5/5	aacr-2023
+VX-970	berzosertib	ATR	sertib	inn(code)	cooc+ctgov+trial	high	1	10.1158/1538-7445.am2024-7171	NCT02567422;NCT02589522;NCT02627443;NCT03641313	VX-970	X inhibitor	14/16	aacr-2024
+WEEKS-0	ipilimumab	CTLA-4	umab	inn(code)	none	unsupported	1	10.1200/jco.2023.41.16_suppl.9584		WEEKS-0	X inhibitor+anti-X	15/39	asco-2023
+XL092	zanzalintinib	VEGFR	tinib	inn(code)	ctgov+repeat+trial	high	3	10.1200/jco.2024.42.16_suppl.tps3634;10.1200/jco.2024.42.16_suppl.tps4611;10.1200/jco.2024.42.3_suppl.tps229	NCT03337698;NCT06082167;NCT06191796;NCT06571734	XL092	targeting X	2/4	asco-2024
+XL184	cabozantinib	VEGF	tinib	inn(code)	cooc+ctgov+trial	high	1	10.1158/1538-7445.am2024-4555	NCT01834651;NCT01865747;NCT01866293;NCT01896479	XL184	X-directed	4/18	aacr-2024
+XMAB14045	vibecotamab	CD3-CD123	mab	inn(code)	ctgov	medium	1	10.1200/jco.2023.41.16_suppl.tps7076	NCT05285813	XMAB14045	X bispecific	3/3	asco-2023
+XMAB20717	vudalimab	PD-L1	limab	code(inn)	ctgov+trial	high	1	10.1200/jco.2023.41.16_suppl.tps4184	NCT05005728;NCT05032040;NCT05733351;NCT05900648	XMAB20717	X inhibitor	2/4	asco-2023
+YES-81	bevacizumab	VEGF	zumab	inn(code)	none	unsupported	1	10.1200/jco.2024.42.3_suppl.105		YES-81	X inhibitor+anti-X	7/16	asco-2024
+ZGJAK006	ruxolitinib	JAK	tinib	inn(code)	none	unsupported	1	10.1200/jco.2024.42.16_suppl.e18527		ZGJAK006	X inhibitor	12/32	asco-2024

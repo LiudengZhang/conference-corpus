@@ -194,6 +194,17 @@ def main() -> int:
         return 0
 
     budget = args.budget or calibrated_budget()
+
+    if args.quiet:
+        if not budget:
+            print(f"5h usage: NOT CALIBRATED ({weighted/1e6:.1f}M equiv, "
+                  f"{calls} calls) — run --calibrate <pct>")
+            return 0
+        pct = weighted / budget * 100
+        print(f"5h usage: {pct:.0f}% ({weighted/1e6:.1f}M of "
+              f"{budget/1e6:.0f}M equiv, {calls} calls) — ESTIMATE")
+        return 0 if pct < 80 else 1
+
     if not budget:
         print("NOT CALIBRATED — no percentage will be shown.")
         print(f"  this window weighs {weighted:,.0f} equiv over {calls:,} calls")
@@ -203,10 +214,6 @@ def main() -> int:
         return 0
     pct = weighted / budget * 100
 
-    if args.quiet:
-        print(f"5h usage: {pct:.0f}% ({weighted/1e6:.1f}M of "
-              f"{args.budget/1e6:.0f}M equiv, {calls} calls) — ESTIMATE")
-        return 0 if pct < 80 else 1
 
     short = {"input_tokens": "input", "output_tokens": "output",
              "cache_creation_input_tokens": "cache write",
