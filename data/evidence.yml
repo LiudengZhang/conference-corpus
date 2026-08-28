@@ -2211,8 +2211,10 @@ evidence:
   stance: supports
   type: clinical-readout
   claim: >-
-    A domain foundation model is taken to a randomized controlled trial — the
-    first in this corpus to clear a randomized bar.
+    A domain foundation model is taken to a randomized controlled trial. This
+    card said "the first in this corpus to clear a randomized bar" until
+    2026-08-27; the 2024 backfill had already found a randomized LLM trial in
+    Nature Medicine in 2024-10 (39009780), twelve months earlier.
   title: >-
     An eyecare foundation model for clinical assistance: a randomized
     controlled trial
@@ -3180,9 +3182,11 @@ evidence:
   stance: neutral
   type: meta
   claim: >-
-    The first appearance of AI-as-discovery-agent framing in the immunology
-    journals, eleven months after it entered the general and methods journals
-    — and it arrives as an assessment, not a result.
+    AI-as-discovery-agent framing reaches the immunology journals, and arrives
+    as an assessment rather than a result. This card claimed "eleven months
+    after it entered the general and methods journals" — measured from a floor
+    that then moved to 2024-01, which makes the true figure 23 months and the
+    whole interval an artefact of where reading started.
   title: >-
     Assessing AI's cognitive abilities for scientific discovery in the field
     of systems vaccinology
@@ -4055,8 +4059,10 @@ evidence:
   stance: supports
   type: new-modality
   claim: >-
-    The first LLM-agent paper in this corpus: graph-of-thoughts reasoning over
-    biomedical knowledge graphs.
+    Graph-of-thoughts reasoning over biomedical knowledge graphs. Called "the
+    first LLM-agent paper in this corpus" until 2026-08-27, which the 2024
+    backfill had already refuted: 38799228 is an LLM agent with tools in a
+    tracked journal in 2024-01, thirteen months earlier.
   title: >-
     ESCARGOT: an AI agent leveraging large language models, dynamic graph of
     thoughts, and biomedical knowledge graphs for enhanced reasoning
@@ -4110,8 +4116,9 @@ evidence:
   type: clinical-readout
   claim: >-
     An autonomous AI agent for clinical decision-making in oncology is
-    developed and validated — the first agentic paper to reach an oncology
-    journal.
+    developed and validated. Called "the first agentic paper to reach an
+    oncology journal" until 2026-08-27; 39690222 put one in Nature Cancer in
+    2024-12, six months earlier.
   title: >-
     Development and validation of an autonomous artificial intelligence agent
     for clinical decision-making in oncology

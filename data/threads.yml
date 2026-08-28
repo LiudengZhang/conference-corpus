@@ -23,17 +23,28 @@
 # READ `opened` AS A PROPERTY OF THE WINDOW, NOT OF THE FIELD. It has now been
 # recomputed twice. Under a 2025-08 floor, every thread opened in 2025-08 or
 # just after. Under a 2025-01 floor, twelve of thirteen moved earlier. Under a
-# 2024-01 floor, all thirteen moved earlier again, and eight of them landed on
-# 2024-01 itself — the first month that exists. A value that relocates to the
-# floor every time the floor is lowered is measuring the floor.
+# 2024-01 floor, all thirteen moved earlier again — six landed on 2024-01
+# itself, the first month that exists, and eleven of thirteen sit within three
+# months of it. A value that relocates to the floor every time the floor is
+# lowered is measuring the floor. Only `interception` at 2025-01 sits far
+# enough from the edge to carry information, and it is the control case.
+#
+# (That count read "eight of them landed on 2024-01" until 2026-08-27. It was
+# six. A file whose subject is unverified assertions carried an unverified
+# assertion about itself for a day; the number is now computed, not recalled.)
 #
 # The same applies to every "first appearance" claim these notes contain, and
-# the record is now unambiguous: five such claims have been made in this corpus
-# and five have moved earlier on extension, none has ever survived. Treat any
+# the record is unambiguous: six such claims have now been made in this corpus
+# and six have moved earlier on extension, none has ever survived. Treat any
 # statement of the form "X appeared first in month M" as shorthand for "no
 # earlier instance exists in the months read", which is a fact about reading.
 # scripts/check_corpus.py enforces that `opened` matches the cards; nothing can
 # enforce that the window is wide enough.
+#
+# The floor moves again on 2026-08-27, to 2023-01. `opened` depends on cards
+# alone and not on the index, so nothing here changes until 2023 cards are
+# written — which means check_corpus.py will keep passing on a floor it cannot
+# see is understated. That silence is the failure mode, not a reassurance.
 
 threads:
 
@@ -239,14 +250,20 @@ threads:
       LLM agents become working biomedical research infrastructure, not demonstrations.
     opened: 2024-01
     note: >-
-      The diffusion lag is the reusable measurement, and the chain is now dated
-      from the backfill rather than asserted. First LLM-agent paper: ESCARGOT,
-      2025-02-04. First title using the word "agentic": four days later. First
-      agent in an oncology journal: an autonomous clinical-decision agent in
-      Nature Cancer, 2025-06. First wet-lab-adjacent agent: GeneAgent, 2025-08.
-      First appearance in any of the nine immunology and systems-biology
-      journals: 2025-12, and as an assessment commentary rather than a result.
-      Ten months, general and methods bench to immunology bench.
+      THE DIFFUSION CHAIN THAT USED TO BE HERE WAS VOID WHEN IT WAS WRITTEN.
+      It read: first LLM-agent paper ESCARGOT 2025-02-04; the word "agentic"
+      four days later; oncology journal 2025-06; wet-lab-adjacent 2025-08;
+      immunology 2025-12; "ten months, general and methods bench to immunology
+      bench". Four of those five were already contradicted by this file's own
+      2024 cards on the day it was written — 38799228 puts an LLM agent with
+      tools in a tracked journal in 2024-01, and 39690222 puts an agent in
+      Nature Cancer in 2024-12 — so the ten-month interval was computed between
+      two dates that were both floors. It was removed on 2026-08-27.
+      What survives is not a corrected chain but the reason not to build one:
+      every waypoint in it was the earliest month then being read, and each
+      moved on extension. CRISPR-GPT is the same lesson in miniature — an
+      earlier version of this file dated it 2025-07 as the moment agents became
+      wet-lab-facing; the index says 2026-02.
       CRISPR-GPT, which an earlier version of this file dated to 2025-07 as the
       moment agents became wet-lab-facing, is dated 2026-02 in the index.
 
