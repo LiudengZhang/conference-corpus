@@ -345,14 +345,23 @@ threads:
       part of the result. It replaces the previous estimate of 4-6 months, which
       came from five hand-picked cases and was low by roughly a factor of two.
       The hit rate is the bad news: matching abstract titles to later papers
-      gives 0.7% at a Jaccard cutoff of 0.5 against a 0.2% coincidence rate
+      gives 0.7% at a Jaccard cutoff of 0.5, so of the order of one abstract in
+      a hundred becomes a paper in these 33 journals within two years. The
+      meeting leads, and it leads by about a year — but as a filter it is close
+      to useless, and any claim that a direction was "seen first at a meeting"
+      has to survive the fact that roughly 99% of what is said there never
+      arrives.
+      RETRACTED 2026-08-27, and this field said it twice so it had to be fixed
+      twice. The clause removed here read "against a 0.2% coincidence rate
       measured by running the same matcher against papers published BEFORE the
       meetings. Excess over chance across thresholds runs 0.2 to 1.2 percentage
-      points, so of the order of one abstract in a hundred becomes a paper in
-      these 33 journals within two years. The meeting leads, and it leads by
-      about a year — but as a filter it is close to useless, and any claim that
-      a direction was "seen first at a meeting" has to survive the fact that
-      roughly 99% of what is said there never arrives.
+      points." That baseline was selected with `month < 2024-04` from an index
+      whose first month is 2024-01, so the "before the meetings" arm was
+      2024-01..2024-03 — the exact months this cohort deposits into: ASCO's GI
+      and GU symposia in January and February, AACR in March. It measured
+      simultaneity, which is the one thing a coincidence arm has to exclude, and
+      it was a tenth the size of the arm it was compared with. The lag and the
+      hit rate do not depend on it and stand. See does-the-podium-lead.md.
     negative_result: >-
       The vocabulary version of this claim is refuted outright. Ranking terms by
       how over-represented they are at the meetings relative to the 2024 journals
