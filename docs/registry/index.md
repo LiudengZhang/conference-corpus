@@ -13,12 +13,12 @@ Registry last updated **2026-08-26** · views generated for **2026-08-27**.
 
 | | Count |
 |---|---|
-| Events tracked (conferences + webinar series) | **61** |
+| Events tracked (conferences + webinar series) | **63** |
 | — with a built vault | 8 |
 | — scaffolded, awaiting material | 33 |
 | — no vault yet | 4 |
 | Journals and news feeds on the watchlist | **42** |
-| **Concluded, reachable, not yet built** | **31** |
+| **Concluded, reachable, not yet built** | **33** |
 
 That last row is the one that matters. See **[Harvest queue](harvest-queue.md)**.
 

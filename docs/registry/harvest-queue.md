@@ -8,7 +8,7 @@ Generated for **2026-08-27**.
 **Meetings that have already happened, whose material is reachable, and which have no built
 vault.** This is the working list — pick from it rather than asking what is missing.
 
-18 not yet harvested, of which **6** are fully open access. A further 13 are harvested into a store but have no vault written.
+18 not yet harvested, of which **6** are fully open access. A further 15 are harvested into a store but have no vault written.
 
 ## Not yet harvested
 
@@ -54,6 +54,8 @@ judgement work, not harvesting work.
 | **AAAI-26** | Jan 20–27, 2026 | ai-ml, foundation-models | `ojs-tracks` | [link](https://aaai.org/proceeding/aaai-40-2026/) |
 | **ASCO Annual Meeting and symposia 2024** | May 31 – Jun 4, 2024 | oncology-clinical, immuno-oncology | `crossref` | [link](https://api.crossref.org/journals/1527-7755/works?filter=from-pub-date:2024-01-01,until-pub-date:2024-12-31) |
 | **AACR Annual Meeting 2024** | Apr 5–10, 2024 | oncology-clinical, immuno-oncology, single-cell-spatial, ai-ml | `crossref` | [link](https://api.crossref.org/journals/1538-7445/works?filter=from-pub-date:2024-01-01,until-pub-date:2024-12-31) |
+| **ASCO Annual Meeting and symposia 2023** | Jun 2–6, 2023 | oncology-clinical, immuno-oncology | `crossref` | [link](https://api.crossref.org/journals/1527-7755/works?filter=from-pub-date:2023-01-01,until-pub-date:2023-12-31) |
+| **AACR Annual Meeting 2023** | Apr 14–19, 2023 | oncology-clinical, immuno-oncology, single-cell-spatial, ai-ml | `crossref` | [link](https://api.crossref.org/journals/1538-7445/works?filter=from-pub-date:2023-01-01,until-pub-date:2023-12-31) |
 
 ### Notes on individual entries
 
@@ -77,6 +79,8 @@ judgement work, not harvesting work.
 - **AAAI-26** — A deliberate subset, not the conference. Two filters applied uniformly: (1) only the four OJS issues whose section is defined by application rather than method — Application Domains I/II, AI for Social Impact I/II — with the other 44 method tracks excluded wholesale; (2) of those 369 papers, keep those matching a fixed ~90-term biomedical word list. 100 kept. Dated to the meeting start, not OJS's 2026-03-17 proceedings posting, because a lead-time corpus wants when work was presented. Caveat: `health`, `molecular` and `hospitals` are deliberately left in the word list despite over-matching, so roughly 4-5 of the 100 are false positives.
 - **ASCO Annual Meeting and symposia 2024** — JCO supplement. 7,569 abstracts: the June block is the Annual Meeting, January and February are the GI and GU symposia, which are kept because they are the earliest oncology readouts of any year.
 - **AACR Annual Meeting 2024** — Abstracts deposit into the Cancer Research supplement. That ISSN also carries the AACR special conferences, so the Annual Meeting is isolated on DOIs containing `am2024` — 7,326 of the 11,114 records for the year. Full abstract text present on every one. scripts/harvest_conference.py.
+- **ASCO Annual Meeting and symposia 2023** — JCO supplement, 7,306 abstracts. Same shape as 2024: the June block is the Annual Meeting, February is the GI and GU symposia. Full text on every one.
+- **AACR Annual Meeting 2023** — Same route as 2024 — the Cancer Research supplement, Annual Meeting isolated on DOIs containing `am2023`. 6,386 of 8,733 records for the year, full abstract text on every one.
 
 ## Concluded but not reachable
 

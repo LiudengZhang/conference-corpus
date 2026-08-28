@@ -10,10 +10,12 @@ Sources appear under each topic they carry, so entries repeat.
 
 ## Clinical oncology and trial readouts
 
-`oncology-clinical` · 49 sources
+`oncology-clinical` · 51 sources
 
 | Event | When | Access | Vault |
 |---|---|---|---|
+| AACR Annual Meeting 2023 | Apr 14–19, 2023 | open | — |
+| ASCO Annual Meeting and symposia 2023 | Jun 2–6, 2023 | open | — |
 | AACR Annual Meeting 2024 | Apr 5–10, 2024 | open | — |
 | ASCO Annual Meeting and symposia 2024 | May 31 – Jun 4, 2024 | open | — |
 | ASCO Gastrointestinal Cancers Symposium 2026 | Jan 8–10, 2026 | partly open | [scaffold](../conferences/asco-gi-2026/index.md) |
@@ -46,10 +48,12 @@ Sources appear under each topic they carry, so entries repeat.
 
 ## Immunotherapy, checkpoint, cell therapy
 
-`immuno-oncology` · 25 sources
+`immuno-oncology` · 27 sources
 
 | Event | When | Access | Vault |
 |---|---|---|---|
+| AACR Annual Meeting 2023 | Apr 14–19, 2023 | open | — |
+| ASCO Annual Meeting and symposia 2023 | Jun 2–6, 2023 | open | — |
 | AACR Annual Meeting 2024 | Apr 5–10, 2024 | open | — |
 | ASCO Annual Meeting and symposia 2024 | May 31 – Jun 4, 2024 | open | — |
 | AACR Immuno-Oncology Conference 2026 | Feb 18–21, 2026 | partly open | [built](../conferences/aacr-io-2026/index.md) |
@@ -64,10 +68,11 @@ Sources appear under each topic they carry, so entries repeat.
 
 ## Single-cell and spatial omics
 
-`single-cell-spatial` · 24 sources
+`single-cell-spatial` · 25 sources
 
 | Event | When | Access | Vault |
 |---|---|---|---|
+| AACR Annual Meeting 2023 | Apr 14–19, 2023 | open | — |
 | AACR Annual Meeting 2024 | Apr 5–10, 2024 | open | — |
 | European Bioconductor Conference 2025 | Sep 17–19, 2025 | open | [built](../conferences/eurobioc-2025/index.md) |
 | AACR Immuno-Oncology Conference 2026 | Feb 18–21, 2026 | partly open | [built](../conferences/aacr-io-2026/index.md) |
@@ -88,10 +93,11 @@ Sources appear under each topic they carry, so entries repeat.
 
 ## Machine learning methods and venues
 
-`ai-ml` · 32 sources
+`ai-ml` · 33 sources
 
 | Event | When | Access | Vault |
 |---|---|---|---|
+| AACR Annual Meeting 2023 | Apr 14–19, 2023 | open | — |
 | AACR Annual Meeting 2024 | Apr 5–10, 2024 | open | — |
 | Pacific Symposium on Biocomputing 2026 | Jan 3–7, 2026 | open | [built](../conferences/psb-2026/index.md) |
 | AAAI-26 | Jan 20–27, 2026 | open | — |
