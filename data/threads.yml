@@ -18,47 +18,55 @@
 # happened to the first version of this file: every `status` in it was asserted
 # from a single month's reading and none of them recomputed.
 #
-# Rebuilt 2026-08-28 from 1,241 cards; 2023 and 2024 re-scanned from abstracts
-# 2026-09-04, now 2,307 cards spanning 2023-01 .. 2026-08.
+# Rebuilt 2026-08-28 from 1,241 cards. On 2026-09-04 the whole record was
+# re-read from abstracts: 2,875 cards spanning 2023-01 .. 2026-08, every month
+# read with one instrument.
 #
-# CARD DENSITY IS COMPARABLE ACROSS 2023, 2024 AND 2026, AND NOT WITH 2025.
-# Per thousand research papers read:
+# CARD DENSITY IS NOW COMPARABLE ACROSS THE WHOLE RECORD. Per thousand research
+# papers read:
 #
-#     2023  80.4     2024  69.8     2025  24.0     2026  84.8
+#     2023  80.4     2024  69.8     2025  80.1     2026  84.8
 #
-# Three of the four years are now read from abstracts and they agree: 70 to 85
-# per thousand. 2025 alone is still title-only at 24.0, and it is the one number
-# on this line that describes a reading practice rather than a literature. Do not
-# compare a 2025 count with any other year's.
+# On 2026-09-04 every research abstract in the corpus — 36,597 of them across
+# 2023-01..2026-08 — had been read with one instrument. Before that day the same
+# line read 25.1 / 10.0 / 24.0 / 84.8, an eight-fold spread between adjacent
+# years, and every ratio in this file inherited it.
 #
-# 2023 and 2024 were re-scanned from abstracts on 2026-09-04 with the same
-# instrument 2026 was read with: 8,905 and 9,343 research abstracts, 504 and 562
-# new cards. 2023 went 25.1 -> 80.4 and 2024 went 10.0 -> 69.8. Two years that
-# differed EIGHT-FOLD under the old instrument differ by 13% under the new one.
-# Whatever the 2024 trough was, it was not the field being quiet.
+# The spread was the reading. 1,634 cards were added by the re-scan (504 for
+# 2023, 562 for 2024, 568 for 2025) and the four years now sit inside a 15%
+# band. Nothing about the literature changed; the instrument stopped varying.
 #
-# The residual 2023/2024 gap is small but it is not nothing, and it has not been
-# explained. Do not assume it is signal; four readers per year with a shared brief
-# is not four identical instruments, and a 13% spread is about what reader
-# variation would produce. Treat 70-85 as one regime.
+# The residual spread is real but small, and it is NOT explained. 2024 is the
+# low year at 69.8 and no reader offered a reason. Twelve readers across three
+# waves shared one brief, and a brief is not an instrument — a 15% band is about
+# what reader variation alone would produce. Do not build an argument on a
+# difference of this size between years.
 #
-# The title census now has three independent years and the asymmetry holds in
-# every one:
+# The title census now has four independent years and the asymmetry holds in
+# every one, which makes it the most replicated finding in this corpus:
 #
-#     2023   59% hidden    refutations 82%   supports 44%
-#     2024   67%           refutations 77%   supports 58%
-#     2026   65%           refutations 74%   supports 54%
+#     year   hidden    refutations   supports
+#     2023     59%         82%          44%
+#     2024     67%         77%          58%
+#     2025     67%         82%          58%
+#     2026     65%         74%          54%
 #
-# Audits name their object and trials name their cohort, so what a title hides is
-# disproportionately the result that would have counted against something. This is
-# now the most replicated finding in the corpus, and it was invisible until the
-# instrument was changed and the change was measured against itself.
+# Roughly two thirds of what a card says cannot be reached from the paper's title
+# and journal, and the shortfall is worst for refutations in every year measured.
+# The mechanism is genre and it was confirmed by readers who went looking for it:
+# a trial names its cohort and not its outcome, an audit names its object and not
+# its verdict. So the results that count AGAINST something are the ones a title
+# scan preferentially loses. This corpus already knew it under-collected
+# refutations — that is why method-credibility carries a denominator note — but it
+# had attributed that to its own selection, not to the instrument. Both were true
+# and only one was written down.
 #
-# `status_of` sums supports and refutes over the whole window, so a thread's
-# status is dominated by 2023, 2024 and 2026 jointly. Read any status here as a
-# statement about those three years with a thin 2025 inside it, and do not read a
-# change across the 2024/2025 or 2025/2026 boundary as a change in the field —
-# both are instrument boundaries until 2025 is re-scanned.
+# What this does NOT license. Card counts are comparable across years now; they
+# were not before, and no analysis published off the earlier numbers has been
+# re-run. `status_of` sums supports and refutes over the whole window and every
+# status in this file was computed after the re-scan, but any figure quoted
+# ELSEWHERE in this repository from before 2026-09-04 rests on the old, uneven
+# denominators. Check the date on a number before trusting it.
 #
 # READ `opened` AS A PROPERTY OF THE WINDOW, NOT OF THE FIELD. It has now been
 # recomputed three times, and the reading gets less ambiguous each time:
@@ -456,6 +464,24 @@ threads:
       deterministic rules — no agent loop at all. The thread claims agents become
       infrastructure rather than demonstrations. Through 2024 the agents are
       demonstrations and the infrastructure is not an agent.
+      2025 was censused the same way and the rate did not move: roughly two to
+      three agent-shaped systems per quarter, still overwhelmingly in
+      Bioinformatics. What DID move is the venue spread — by 2025 Q4, Nature
+      Medicine, Nature Biotechnology and Annals of Oncology each carry an LLM
+      paper. But the genre in those journals is retrieval pipelines, chat
+      interfaces and coaching models, not autonomous agents, and the only
+      unambiguously agentic closed-loop DEPLOYED system in the entire year is
+      CRESt (40987343, Nature, 2025-11) — which is electrocatalysis. The pattern
+      that held through 2024 holds through 2025: where there is an agent it is a
+      demonstration, and where something is deployed it is not an agent.
+      Two cautions for anyone counting. The word "agent" in a title is not
+      evidence of one — 40316422 CellAgentChat is an agent-based MODEL of cell
+      signalling and 40889285 MRDagent is a parameter-optimisation loop, neither
+      containing a language model. And 39985504 (AskBeacon) and 40577785
+      (AI-HOPE) are the closest things in the corpus to biomedical agent
+      plumbing; both are single-institution reports evidenced by one cohort
+      question each. This note records a rate and a venue profile. It records no
+      date, and it must never be turned back into a chain.
 
   - id: neoantigen-vaccines
     claim: >-
