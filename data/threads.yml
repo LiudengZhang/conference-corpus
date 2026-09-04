@@ -18,30 +18,38 @@
 # happened to the first version of this file: every `status` in it was asserted
 # from a single month's reading and none of them recomputed.
 #
-# Rebuilt 2026-08-28 from 1,241 cards spanning 2023-01 .. 2026-08.
+# Rebuilt 2026-08-28 from 1,241 cards; 2023 re-scanned from abstracts 2026-09-04,
+# now 1,745 cards spanning 2023-01 .. 2026-08.
 #
-# CARD DENSITY IS NOT COMPARABLE ACROSS YEARS AND THE RATIOS BELOW INHERIT
+# CARD DENSITY IS NOT YET COMPARABLE ACROSS YEARS AND THE RATIOS BELOW INHERIT
 # THAT. Per thousand research papers read:
 #
-#     2023  25.1     2024  10.0     2025  24.0     2026  84.8
+#     2023  80.4     2024  10.0     2025  24.0     2026  84.8
 #
-# 2026 is three times denser than any other year because it is the only year
-# scanned from abstracts. Every earlier card was written from a title, and a
-# census of 2026 measured what that costs: 65% of findings are invisible to a
-# title, rising to 74% for refutations against 54% for supports, because audits
-# name their object and trials name their cohort. So the earlier years are not quieter — they were
-# read with an instrument that cannot see most of what it is measuring.
+# The comparable years are 2023 and 2026, the two read from abstracts. 2024 and
+# 2025 are still title-only and are the ones now out of line: the middle of the
+# record is thinner than both ends, which is a fact about reading, not a lull in
+# the field. Until they are re-scanned, do not compare a 2024 or 2025 count with
+# a 2023 or 2026 one.
+#
+# 2023 was re-scanned from abstracts on 2026-09-04, with the same instrument
+# 2026 was read with: 8,905 research abstracts, 504 new cards. Its density went
+# 25.1 -> 80.4, landing within 5% of 2026 without either year being tuned to the
+# other. That is the strongest evidence available that the earlier gap was the
+# instrument and not the field, and it is why the same scan is owed to 2024-2025.
+#
+# The title census now has two independent years and they agree. Of the 504 new
+# 2023 cards, 59% could not have been reached from the title (2026: 65%), and the
+# stance asymmetry replicates in all four quarters: refutations 82% invisible
+# against supports 44% (2026: 74% against 54%). Audits name their object and
+# trials name their cohort, so what a title hides is disproportionately the
+# result that would have counted against something.
 #
 # `status_of` sums supports and refutes over the whole window, so a thread's
-# status is now dominated by 2026. Read any status here as a statement about
-# 2026 with three years of thinner evidence attached, not as a trend. The
-# honest fix is to re-scan 2023-2025 from abstracts; until that is done, do
-# not read a change in a thread's status across this boundary as a change in
-# the field.
-#
-# The discontinuity is deliberate. 2026 is where the instrument changes and
-# every month from here is read with abstracts, so the step sits at the
-# boundary between practices rather than in the middle of the record.
+# status is now dominated by 2023 and 2026 jointly. Read any status here as a
+# statement about those two years with two thinner years in between, not as a
+# trend, and do not read a change across the 2023/2024 or 2025/2026 boundary as
+# a change in the field — both are instrument boundaries.
 #
 # READ `opened` AS A PROPERTY OF THE WINDOW, NOT OF THE FIELD. It has now been
 # recomputed three times, and the reading gets less ambiguous each time:
@@ -63,8 +71,17 @@
 # The two threads not on the floor are informative precisely because of how
 # they got there. `agentic-ai` (2023-03) is the only thread whose floor is set
 # by evidence rather than by the window: three independent readers found zero
-# LLM-agent papers across 8,844 titles in 2023-01..2023-09, so its absence
-# early in the year is measured rather than assumed. `clinical-practice`
+# LLM-agent papers across 8,844 titles in 2023-01..2023-09, and the 2026-09-04
+# abstract re-scan looked again at the same window with the instrument that sees
+# 59% more — 6,772 abstracts, three separate readers — and still found none. The
+# near misses are consistently not agents: symptom-inquiry transformers, a
+# consultation benchmark, a reasoning tool, ProGen generating proteins, Bayesian
+# optimization beating human process engineers. This is the one absence in the
+# corpus that survived a change of instrument, which is what makes it a finding
+# rather than a floor. The first thing the scan did find is 38030721 (2023-12,
+# Nature): a literature-trained language model, active learning and robotics in a
+# closed loop synthesizing 41 compounds in 17 days — in materials science, not
+# biomedicine. It is carded neutral for exactly that reason. `clinical-practice`
 # (2024-03) has no 2023 cards at all, because its claim — that meetings lead
 # journals — cannot be evidenced by a journal title in either direction.
 #
@@ -158,7 +175,14 @@ threads:
     aliases: [reproducibility, self-audit]
     denominator: >-
       Structurally one-sided by construction: this is a ledger of things found
-      unreliable, so every card refutes and the derived status is uninformative.
+      unreliable, so the derived status is uninformative. "Every card refutes"
+      stood here and was already untrue when written; computed on 2026-09-04
+      over 370 cards it is 347 refutes, 13 neutral, 10 supports — 94%, not 100%.
+      The exceptions are worth keeping visible: a randomized-trial confirmation
+      that the SP263 and 22C3 companion diagnostics are interchangeable
+      (ev-2023-10-37903590), and benchmarks that vindicated the method they
+      tested rather than faulting it. A ledger that cannot record a pass is not
+      measuring reliability, it is assuming the answer.
       Read the volume instead — with the denominator attached, because the two
       series in this corpus do not join.
       Over general+bioinfo together, 2025-01..07 runs 1 in 70, 1 in 73, 1 in 44,
