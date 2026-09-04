@@ -18,38 +18,47 @@
 # happened to the first version of this file: every `status` in it was asserted
 # from a single month's reading and none of them recomputed.
 #
-# Rebuilt 2026-08-28 from 1,241 cards; 2023 re-scanned from abstracts 2026-09-04,
-# now 1,745 cards spanning 2023-01 .. 2026-08.
+# Rebuilt 2026-08-28 from 1,241 cards; 2023 and 2024 re-scanned from abstracts
+# 2026-09-04, now 2,307 cards spanning 2023-01 .. 2026-08.
 #
-# CARD DENSITY IS NOT YET COMPARABLE ACROSS YEARS AND THE RATIOS BELOW INHERIT
-# THAT. Per thousand research papers read:
+# CARD DENSITY IS COMPARABLE ACROSS 2023, 2024 AND 2026, AND NOT WITH 2025.
+# Per thousand research papers read:
 #
-#     2023  80.4     2024  10.0     2025  24.0     2026  84.8
+#     2023  80.4     2024  69.8     2025  24.0     2026  84.8
 #
-# The comparable years are 2023 and 2026, the two read from abstracts. 2024 and
-# 2025 are still title-only and are the ones now out of line: the middle of the
-# record is thinner than both ends, which is a fact about reading, not a lull in
-# the field. Until they are re-scanned, do not compare a 2024 or 2025 count with
-# a 2023 or 2026 one.
+# Three of the four years are now read from abstracts and they agree: 70 to 85
+# per thousand. 2025 alone is still title-only at 24.0, and it is the one number
+# on this line that describes a reading practice rather than a literature. Do not
+# compare a 2025 count with any other year's.
 #
-# 2023 was re-scanned from abstracts on 2026-09-04, with the same instrument
-# 2026 was read with: 8,905 research abstracts, 504 new cards. Its density went
-# 25.1 -> 80.4, landing within 5% of 2026 without either year being tuned to the
-# other. That is the strongest evidence available that the earlier gap was the
-# instrument and not the field, and it is why the same scan is owed to 2024-2025.
+# 2023 and 2024 were re-scanned from abstracts on 2026-09-04 with the same
+# instrument 2026 was read with: 8,905 and 9,343 research abstracts, 504 and 562
+# new cards. 2023 went 25.1 -> 80.4 and 2024 went 10.0 -> 69.8. Two years that
+# differed EIGHT-FOLD under the old instrument differ by 13% under the new one.
+# Whatever the 2024 trough was, it was not the field being quiet.
 #
-# The title census now has two independent years and they agree. Of the 504 new
-# 2023 cards, 59% could not have been reached from the title (2026: 65%), and the
-# stance asymmetry replicates in all four quarters: refutations 82% invisible
-# against supports 44% (2026: 74% against 54%). Audits name their object and
-# trials name their cohort, so what a title hides is disproportionately the
-# result that would have counted against something.
+# The residual 2023/2024 gap is small but it is not nothing, and it has not been
+# explained. Do not assume it is signal; four readers per year with a shared brief
+# is not four identical instruments, and a 13% spread is about what reader
+# variation would produce. Treat 70-85 as one regime.
+#
+# The title census now has three independent years and the asymmetry holds in
+# every one:
+#
+#     2023   59% hidden    refutations 82%   supports 44%
+#     2024   67%           refutations 77%   supports 58%
+#     2026   65%           refutations 74%   supports 54%
+#
+# Audits name their object and trials name their cohort, so what a title hides is
+# disproportionately the result that would have counted against something. This is
+# now the most replicated finding in the corpus, and it was invisible until the
+# instrument was changed and the change was measured against itself.
 #
 # `status_of` sums supports and refutes over the whole window, so a thread's
-# status is now dominated by 2023 and 2026 jointly. Read any status here as a
-# statement about those two years with two thinner years in between, not as a
-# trend, and do not read a change across the 2023/2024 or 2025/2026 boundary as
-# a change in the field — both are instrument boundaries.
+# status is dominated by 2023, 2024 and 2026 jointly. Read any status here as a
+# statement about those three years with a thin 2025 inside it, and do not read a
+# change across the 2024/2025 or 2025/2026 boundary as a change in the field —
+# both are instrument boundaries until 2025 is re-scanned.
 #
 # READ `opened` AS A PROPERTY OF THE WINDOW, NOT OF THE FIELD. It has now been
 # recomputed three times, and the reading gets less ambiguous each time:
@@ -430,9 +439,23 @@ threads:
       every waypoint in it was the earliest month then being read, and each
       moved on extension. CRISPR-GPT is the same lesson in miniature — an
       earlier version of this file dated it 2025-07 as the moment agents became
-      wet-lab-facing; the index says 2026-02.
-      CRISPR-GPT, which an earlier version of this file dated to 2025-07 as the
-      moment agents became wet-lab-facing, is dated 2026-02 in the index.
+      wet-lab-facing; the index says 2026-02. (That sentence stood twice in this
+      note, in two phrasings, until 2026-09-04.)
+      What replaces the chain is a census. On 2026-09-04 all 9,343 research
+      abstracts of 2024 were read for this thread specifically, and every LLM
+      system found was reported whether carded or not. The tally: 2024-01
+      FunSearch (Nature, an LLM in a closed evaluator loop, non-biomedical) and
+      38799228; 2024-03 SPIRES/OntoGPT; 2024-06 Self-BioRAG and KRAGEN, both in
+      Bioinformatics, both evaluated only on QA benchmarks; 2024-10 GENEVIC;
+      2024-12 39690222. Q3 contains none at all. That is roughly one agent a
+      quarter, every one of them in a methods or bioinformatics venue, and none
+      of them deployed.
+      The one LLM in the year that demonstrably changed clinical practice is
+      38664535 (Nature Medicine, 2024-06): it cut near-miss events by a third in
+      a working pharmacy, and it does so with single-pass extraction and
+      deterministic rules — no agent loop at all. The thread claims agents become
+      infrastructure rather than demonstrations. Through 2024 the agents are
+      demonstrations and the infrastructure is not an agent.
 
   - id: neoantigen-vaccines
     claim: >-
