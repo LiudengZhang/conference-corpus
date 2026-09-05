@@ -39,6 +39,17 @@ This is that reading, written down.
      mechanically whether a paraphrase is faithful, so this prints a review
      queue and never fails the run.
 
+ 10  ADVISORY, not a failure: a `+n / −m` in a briefing's hand-written
+     sections 3-4 that matches no row in the generated table of the same
+     briefing's section 2. Sections 1, 2 and 5-8 regenerate from the stores
+     and sections 3 and 4 do not, so the two halves of one file can drift
+     apart. On 2026-09-04 twenty of them had — the abstract re-scan tripled
+     the card set and every hand-written ratio stayed where it was, each one
+     contradicting the table printed directly above it. Nothing caught it
+     because nothing compared them. Ratios inside an admonition are skipped:
+     a "Corrected …" note quotes the figure it is withdrawing, and that is
+     the practice, not the defect.
+
 Checks 7 and 8 skip, rather than fail, when a regenerable side store is
 absent — a fresh clone has the journal index and nothing else, and a
 missing store is a thing you have not built, not a broken invariant.
@@ -248,6 +259,39 @@ def main() -> int:
         if not (ct & cl):
             incoherent.append(c.get("id", c.get("pmid")))
 
+    # 10 -----------------------------------------------------------------
+    # A briefing's sections 1, 2 and 5-8 are regenerated from the stores;
+    # sections 3 and 4 are written by hand. So a `+n / −m` quoted in the prose
+    # can silently stop matching the generated table directly above it, and on
+    # 2026-09-04 twenty of them had: the abstract re-scan tripled the card set
+    # and every hand-written ratio describing a thread-month stayed where it
+    # was. Nothing caught it, because nothing compared the two halves of the
+    # same file. This does.
+    #
+    # Ratios inside an admonition are skipped: a "Corrected …" note quotes the
+    # figure it is retracting, and quoting a wrong number in order to withdraw
+    # it is the practice this corpus wants, not a defect.
+    ratio = re.compile(r"\+\s?(\d+)\s*/\s*[−-]\s?(\d+)")
+    row_re = re.compile(r"\|\s*`([\w-]+)`\s*\|\s*([^|]+)\|\s*([^|]+)\|")
+    mismatched = []
+    for path in sorted(BRIEFINGS.glob("20*.md")):
+        text = path.read_text()
+        s2, s3, s5 = text.find("## 2."), text.find("## 3."), text.find("## 5.")
+        if min(s2, s3, s5) < 0:
+            continue
+        known = set()
+        for m in row_re.finditer(text[s2:s3]):
+            known.add(re.sub(r"\s", "", m.group(2)))
+            known.add(re.sub(r"\s", "", m.group(3)))
+        for line in text[s3:s5].split("\n"):
+            if line.startswith("!!!") or line.startswith("    "):
+                continue
+            for m in ratio.finditer(line):
+                quoted = f"+{m.group(1)}/−{m.group(2)}"
+                if quoted not in known:
+                    mismatched.append(f"{path.name}: prose says {quoted}, "
+                                      f"no such row in its own section 2")
+
     # --------------------------------------------------------------------
     print(f"cards      {len(cards):,}   missing PMID {missing}, date drift {drifted}")
     print(f"threads    {len(threads):,}   undefined names {len(unknown)}, "
@@ -266,6 +310,15 @@ def main() -> int:
             print(f"  {cid}")
         if len(incoherent) > 12:
             print(f"  ... and {len(incoherent) - 12} more")
+        print()
+
+    if mismatched:
+        print(f"review     {len(mismatched)} hand-written ratio(s) that no row in the "
+              f"same briefing's section 2 supports — advisory, not a failure:")
+        for line in mismatched[:12]:
+            print(f"  {line}")
+        if len(mismatched) > 12:
+            print(f"  ... and {len(mismatched) - 12} more")
         print()
 
     if not problems:
