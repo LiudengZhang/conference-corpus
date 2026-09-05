@@ -29,18 +29,33 @@
 #
 # On 2026-09-04 every research abstract in the corpus — 36,597 of them across
 # 2023-01..2026-08 — had been read with one instrument. Before that day the same
-# line read 25.1 / 10.0 / 24.0 / 84.8, an eight-fold spread between adjacent
-# years, and every ratio in this file inherited it.
+# line read 25.1 / 10.0 / 24.0 / 84.8 — 2024 and 2026 eight-fold apart — and
+# every ratio in this file inherited it.
 #
 # The spread was the reading. 1,634 cards were added by the re-scan (504 for
-# 2023, 562 for 2024, 568 for 2025) and the four years now sit inside a 15%
-# band. Nothing about the literature changed; the instrument stopped varying.
+# 2023, 562 for 2024, 568 for 2025) and the four years now sit in a band of
+# 69.8 to 84.8, 15 points wide on that scale. Quote it as points: as a ratio it
+# reads 18% or 21% depending which year goes in the denominator, and this corpus
+# has already published one figure that moved with its denominator.
+# Nothing about the literature changed; the instrument stopped varying.
 #
 # The residual spread is real but small, and it is NOT explained. 2024 is the
 # low year at 69.8 and no reader offered a reason. Twelve readers across three
-# waves shared one brief, and a brief is not an instrument — a 15% band is about
-# what reader variation alone would produce. Do not build an argument on a
+# waves shared one brief, and a brief is not an instrument — a band this wide is
+# about what reader variation alone would produce. Do not build an argument on a
 # difference of this size between years.
+#
+# AND IT MOVED THE VERDICTS. Status is derived from the cards at render time, so
+# adding 1,634 of them to past months rewrote the thread history in place:
+# 160 of 528 thread-months changed status, and three threads ended somewhere
+# else — neoantigen-vaccines and next-gen-checkpoints contested -> splitting,
+# suppressive-population-inversion crisis -> contested. The endpoint hid most of
+# it: cell-therapy and immunotherapy-resistance end where they always ended and
+# were read as `splitting` for 33 and 35 of their 44 months when, read
+# completely, they were `forming` throughout. The threads that moved are the
+# threads that were most refutation-heavy, which is the reading regressing to
+# its own mean rather than the field changing its mind. Measured by
+# scripts/thread_diff.py; written up in docs/briefings/what-the-back-scan-did.md.
 #
 # The title census now has four independent years and the asymmetry holds in
 # every one, which makes it the most replicated finding in this corpus:
@@ -193,15 +208,25 @@ threads:
     denominator: >-
       Structurally one-sided by construction: this is a ledger of things found
       unreliable, so the derived status is uninformative. "Every card refutes"
-      stood here and was already untrue when written; computed on 2026-09-04
-      over 370 cards it is 347 refutes, 13 neutral, 10 supports — 94%, not 100%.
+      stood here and was already untrue when written. Its replacement was also
+      wrong and worse, because it carried a current date: "computed on 2026-09-04
+      over 370 cards it is 347 refutes, 13 neutral, 10 supports — 94%" was
+      computed midway through the back-scan and never re-run when the last wave
+      landed. Recomputed 2026-09-04 over the finished set: 654 cards, 610 refutes,
+      19 neutral, 25 supports — 93%, not 100%. Note how it hid. The percentage
+      moved one point while the counts nearly doubled, so the ratio stayed
+      plausible and nothing looked stale.
       The exceptions are worth keeping visible: a randomized-trial confirmation
       that the SP263 and 22C3 companion diagnostics are interchangeable
       (ev-2023-10-37903590), and benchmarks that vindicated the method they
       tested rather than faulting it. A ledger that cannot record a pass is not
       measuring reliability, it is assuming the answer.
       Read the volume instead — with the denominator attached, because the two
-      series in this corpus do not join.
+      series in this corpus do not join. Both series below come from
+      scripts/scan_titles.py over the index, not from the cards, so the
+      2026-09-04 re-scan does not move them: they count how often the audit
+      genre appears in titles, which is a different measurement from how often
+      it got carded, and it is the one that survives a change in reading depth.
       Over general+bioinfo together, 2025-01..07 runs 1 in 70, 1 in 73, 1 in 44,
       1 in 36, 1 in 33, 1 in 40, 1 in 36: roughly a doubling across the half-year.
       Over bioinfo alone, 2025-06..12 runs 1 in 24, 1 in 21, 1 in 14, 1 in 15,
@@ -236,17 +261,27 @@ threads:
     note: >-
       Opened 2026-08-26 by the 2025 backfill. This thread did not exist in the
       version of this file derived from a single month of 2026 reading, and finding
-      it is the clearest thing the backfill bought. Nineteen title-stated inversions
-      in twelve months, spread across NK cells, pDCs, Tregs, MAIT cells, fibroblasts,
-      neutrophils, MDSCs, TIGIT and CD47 — several of them published in the same
-      journal and the same month as papers proposing to target the same population.
+      it is the clearest thing the backfill bought. "Nineteen title-stated inversions
+      in twelve months" stood here and was a count of what a title-only reading of
+      2025 could see; the 2026-09-04 abstract re-scan puts 2025 alone at 50 and the
+      whole record at 112, spread across NK cells, pDCs, Tregs, MAIT cells,
+      fibroblasts, neutrophils, MDSCs, TIGIT and CD47 — several of them published in
+      the same journal and the same month as papers proposing to target the same
+      population.
     denominator: >-
-      The supporting side is not carded and cannot be, because it is a genre rather
-      than a set of citable findings: the templated preclinical block that nominates
-      a suppressive target, deletes it, and reverses immune suppression in mice. It
-      runs at roughly 12-33 papers a month across the eight oncology journals.
-      Treat the ratio as "documented inversions against a steady stream of
-      nominations", never as a bare count against zero.
+      RETRACTED 2026-09-04, AND THE RETRACTION IS THE FINDING. This field said "the
+      supporting side is not carded and cannot be, because it is a genre rather than
+      a set of citable findings: the templated preclinical block that nominates a
+      suppressive target, deletes it, and reverses immune suppression in mice."
+      The abstract re-scan carded 58 of them, 49 as mechanism cards. Half the claim
+      survives and half does not: it IS a genre, running at roughly 12-33 papers a
+      month across the eight oncology journals, but "cannot be carded" was a
+      property of a reading brief that recognised "population X turns out to be
+      protective" as a finding and "we depleted X and the tumour shrank" as
+      wallpaper. The thread read +20/-73 and `crisis` for 42 of its 44 months on
+      that basis; it now reads +58/-112 and `contested`. Still refutation-led,
+      which was the honest core of the original observation, and no longer a
+      ratio against a side that was never counted.
     counting_caution: >-
       An earlier version of this file gave the block as 55, 35, 23, 30, 19, 11, 14,
       18, 14, 23 for 2025-03..12 and read a decline into it. That series is void.
@@ -278,6 +313,17 @@ threads:
       sentence is a fact about one month's reading and was never evidence for
       the first. Both are superseded by `registry_check` below, which tested
       the first sentence against the trial registry rather than the literature.
+      On 2026-09-04 the derived verdict moved contested -> splitting, and the
+      thread is now `splitting` in 43 of its 44 months rather than swinging
+      between contested and splitting. Do not read that as the category
+      recovering. It is the same regression the whole corpus shows: the added
+      cards are 38.5% refutations against 53.5% in the cards this thread already
+      held, because title-only reading over-collected the refutations here and
+      under-collected the nominations. The card curve and the registry now point
+      in different directions, and that is the useful part — the literature
+      keeps producing targets and the clinic keeps not testing them, which is
+      the dissolution this note describes, stated as the gap between two
+      instruments rather than as one thread's ratio.
     registry_check: >-
       Checked 2026-08-27 against data/regulatory.sqlite (ct_trials), which did
       not exist when the claim was written. Run three times as the table grew:
@@ -482,12 +528,41 @@ threads:
       plumbing; both are single-institution reports evidenced by one cohort
       question each. This note records a rate and a venue profile. It records no
       date, and it must never be turned back into a chain.
+      One more thing the re-scan moved, recorded because it is the same error in
+      miniature: `opened` was 2023-12 and is now 2023-03. The 2023-12 briefing
+      said "agentic-ai opens this month at two cards" and that is no longer true.
+      It is also not a contradiction of the generated table beside it, which
+      still prints "(opens as too-early)" for 2023-12 — the derived marker fires
+      on the first card that carries a stance the status rule counts, and this
+      thread's earliest card is neutral. Two different senses of "opens", one
+      word, and only one of them recomputes.
+    counting_caution: >-
+      This thread's verdict is computed on less of its own evidence than any
+      other: 30 of its 81 cards are `neutral`, which `status_of` ignores
+      entirely, so `forming` is derived from 51 cards and 37% of the thread is
+      invisible to it. That is not a defect — a neutral card genuinely does not
+      move the claim — but a thread about whether demonstrations become
+      infrastructure will accumulate neutrals faster than most, because
+      "a system exists" is exactly the card that states no direction. Read the
+      census above, not the status.
 
   - id: neoantigen-vaccines
     claim: >-
       Neoantigens are a large enough and predictable enough target space to support
       personalized cancer vaccines at scale.
     opened: 2023-01
+    note: >-
+      Verdict moved contested -> splitting on 2026-09-04, on the largest
+      proportional growth of any thread: 52 cards to 151. The direction is not a
+      change in the field but a change in what was read — the added cards are
+      31% refutations against 51% in the cards this thread already held, the
+      second-largest such shift in the corpus. Under title-only reading this
+      thread looked like a fight; read completely it is a thread whose supporting
+      side had been systematically under-collected, and it is `forming` for 32 of
+      its 44 months rather than 21. What did NOT change is the shape of the
+      argument, which remains split between a clinical arm that keeps producing
+      readouts and a target-space arm that keeps attacking the premise those
+      readouts rest on. See docs/briefings/what-the-back-scan-did.md.
 
   - id: cell-therapy
     claim: >-
