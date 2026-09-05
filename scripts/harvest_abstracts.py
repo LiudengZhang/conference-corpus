@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
 """Harvest PubMed abstracts for the title-floor measurement.
 
-The journal layer (data/index.sqlite) stores titles only. Every 2023 evidence
-card was therefore written against a title and a journal name, and every 2023
-briefing says so. This script pulls the abstracts needed to measure what that
-costs, into a regenerable data/abstracts.sqlite.
+The journal layer (data/index.sqlite) stores titles only — it still does, and
+that is why this script exists. Until 2026-09-04 every 2023 evidence card had
+therefore been written against a title and a journal name, and every 2023
+briefing said so. This script pulled the abstracts needed to measure what that
+cost, into a regenerable data/abstracts.sqlite.
+
+That measurement has since been made and acted on: the whole record was re-read
+from those abstracts on 2026-09-04, 1,634 cards were added, and the 2023
+briefings no longer carry the titles-only limitation. Read the second sentence
+above as history. See docs/briefings/the-gap-was-the-instrument.md.
 
 Two arms, and the control is the point:
 

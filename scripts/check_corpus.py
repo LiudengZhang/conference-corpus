@@ -31,8 +31,11 @@ This is that reading, written down.
      claim about an entirely different paper than the PMID they cite — one
      claimed metallophilic macrophages cross-prime CD8 T cells while citing
      a MEF2C microglia paper. Checks 1 and 2 passed both, because the PMID
-     existed and the date matched; all 712 titles match the index exactly,
-     so a title check would not have caught them either. Nothing can decide
+     existed and the date matched; all 712 titles then in the corpus matched
+     the index exactly, so a title check would not have caught them either.
+     (712 was the card count on 2026-08-27, when this was written. It is 2,875
+     now, and the review queue this check prints is correspondingly longer.)
+     Nothing can decide
      mechanically whether a paraphrase is faithful, so this prints a review
      queue and never fails the run.
 

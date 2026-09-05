@@ -5,8 +5,8 @@ meta:
   watchlist: data/speakers.yml
   blind_spot: Speakers are selected by program committees, which select for results that worked.
     Nobody is invited to give a plenary on the compound that did nothing. This route cannot
-    surface refutations, and 225 of the corpus's 483 cards are refutations, so it must never
-    be the only input to a briefing.
+    surface refutations, and 1,137 of the corpus's 2,875 cards are refutations, so it must
+    never be the only input to a briefing.
   count_caveat: '`works` is an upper bound: Europe PMC is queried on author name without an
     affiliation filter, because filtering on affiliation drops most of a person''s output
     when their institution is usually written as an acronym. `in_corpus` does not have this

@@ -15,7 +15,12 @@ The watchlist is a list of people selected by program committees, and
 program committees select for results that worked. Nobody is invited to
 give a plenary on the compound that did nothing. So this route is
 structurally blind to exactly the evidence class that the corpus weights
-most heavily — 225 of its 377 cards are refutations. Author tracking can
+most heavily — 1,137 of its 2,875 cards are refutations, as of 2026-09-04.
+(This line said "225 of its 377" and the string written into
+data/authors.yml said "225 of the corpus's 483": two totals for one
+quantity, neither ever true at the same time. The emitted one is computed
+now; see refutation_share(). This one is dated instead, because a docstring
+cannot recompute.) Author tracking can
 tell you what is arriving. It cannot tell you what is failing, and a
 briefing built only from it would read as unbroken progress no matter
 what the field actually did.
@@ -309,6 +314,20 @@ def main() -> int:
     return 0
 
 
+def refutation_share() -> str:
+    """Computed, not asserted.
+
+    This sentence shipped a hardcoded "225 of the corpus's 483 cards" into
+    data/authors.yml, and the module docstring above it said 377 — two
+    different totals for the same quantity, neither of them ever true at the
+    same time, both of them regenerated into a user-facing file on every run.
+    The corpus has tripled since. Read it from the cards instead.
+    """
+    cards = yaml.safe_load((ROOT / "data" / "evidence.yml").read_text())["evidence"]
+    refutes = sum(1 for c in cards if c["stance"] == "refutes")
+    return f"{refutes:,} of the corpus's {len(cards):,} cards are refutations"
+
+
 def write_out(records, args, confidence, covered, missed, preprints) -> None:
     OUT.write_text(yaml.safe_dump({
         "meta": {
@@ -320,7 +339,7 @@ def write_out(records, args, confidence, covered, missed, preprints) -> None:
                 "Speakers are selected by program committees, which select for "
                 "results that worked. Nobody is invited to give a plenary on the "
                 "compound that did nothing. This route cannot surface "
-                "refutations, and 225 of the corpus's 483 cards are refutations, "
+                f"refutations, and {refutation_share()}, "
                 "so it must never be the only input to a briefing."),
             "count_caveat": (
                 "`works` is an upper bound: Europe PMC is queried on author name "
