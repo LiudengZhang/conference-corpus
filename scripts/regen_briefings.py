@@ -51,7 +51,13 @@ def main() -> int:
                 # presence means nobody has written the month yet, so there
                 # is nothing to preserve.
                 if "HAND-WRITTEN" not in mid:
-                    body = mid.rstrip() + "\n\n"
+                    # strip, not rstrip. Keeping the leading newlines and then
+                    # writing S3 + "\n" in front of them added one blank line
+                    # per run, for as many runs as the corpus has had — the
+                    # stacked blanks under every "## 3." heading were that bug
+                    # accumulating, and it made every regen produce a diff even
+                    # when nothing changed, which is how a real change hides.
+                    body = mid.strip() + "\n\n"
 
         result = subprocess.run(
             [sys.executable, "scripts/build_briefing.py", month, "--write"],
@@ -69,7 +75,7 @@ def main() -> int:
         text = path.read_text()
         head, _, rest = text.partition(S3)
         _, _, tail = rest.partition(S5)
-        path.write_text(f"{head}{S3}\n{body}{S5}{tail}")
+        path.write_text(f"{head}{S3}\n\n{body}{S5}{tail}")
         kept += 1
 
     print(f"regenerated {kept + made} briefings: {kept} with prose preserved, "
