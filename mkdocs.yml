@@ -533,6 +533,8 @@ nav:
       - Extraction method: notes/extraction.md
       - Caveats: notes/caveats.md
   - Briefings:
+    - The gap was the instrument: briefings/the-gap-was-the-instrument.md
+    - What the back-scan did: briefings/what-the-back-scan-did.md
     - Does the podium lead?: briefings/does-the-podium-lead.md
     - Monthly:
       - 2026-08: briefings/2026-08.md
