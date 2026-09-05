@@ -19775,18 +19775,48 @@ BTG1 mutation makes B cells supercompetitive and primes them for transformation.
 latency and relapse in the same month. <code>interception</code> needs states that are
 measurable <em>and</em> mechanistically distinct from cancer, and clonal competition is
 the form both of these take.</p>
-<p><strong>What is thin: foundation models.</strong> The month's entire signal on that thread is a
+<p><strong>Foundation models open on a resource and two failures.</strong> The only support is a
 resource announcement — <a href="https://pubmed.ncbi.nlm.nih.gov/36420884/">36420884</a> (<em>NAR</em>), the RCSB PDB now serving a million
-machine-computed structures alongside solved ones — plus news coverage of a
-chatbot. Model output entering the reference layer that everything downstream
-reads is a real change in the substrate, and it is not a result. Nothing in the
-1,177 titles read this month is a foundation-model finding, and saying so is more
-useful than promoting the resource to one.</p>
+machine-computed structures alongside solved ones. Model output entering the
+reference layer that everything downstream reads is a real change in the
+substrate, and it is not a result. The two findings the month does carry both run
+against the models: <a href="https://pubmed.ncbi.nlm.nih.gov/36355460/">36355460</a>
+(<em>Bioinformatics</em>) optimises multiple sequence alignments end-to-end against
+AlphaFold's own confidence and gets self-inconsistent, adversarial inputs, so the
+confidence score can be gamed; <a href="https://pubmed.ncbi.nlm.nih.gov/36692561/">36692561</a>
+(<em>JAMA</em>) finds machine learning adds nothing over the pooled cohort equations for
+stroke risk and performs worse in Black individuals. <code>foundation-models</code> opens
++1 / −2: a resource on the supporting side, and results only where the models
+fail.</p>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-09-04</p>
+<p>This paragraph said the month's entire signal on the thread was the PDB
+resource plus news coverage of a chatbot, and that nothing in the 1,177
+titles read this month was a foundation-model finding. Two of them are, and
+the 2026-09-04 abstract re-scan carded both. Neither title states its verdict
+— one reads as a method paper, the other as an accuracy comparison — which is
+how a title-only pass came to read the month as empty rather than as adverse.
+The reading to withdraw is "thin", not the point about the resource.</p>
+</div>
 <h2 id="4-refutations">4. Refutations<a class="headerlink" href="#4-refutations" title="Permanent link">&para;</a></h2>
 <h3 id="a-landing-on-a-tracked-thread">(a) Landing on a tracked thread<a class="headerlink" href="#a-landing-on-a-tracked-thread" title="Permanent link">&para;</a></h3>
 <p>Three of this month's cards invert a population the field is organised around
-removing, which is why <code>suppressive-population-inversion</code> and <code>next-gen-checkpoints</code>
-both open at zero support.</p>
+removing, which is why <code>suppressive-population-inversion</code> opens at +0 / −4 — the
+fourth card being <a href="https://pubmed.ncbi.nlm.nih.gov/36577929/">36577929</a> (<em>Nat
+Immunol</em>), where deleting PD-1 destabilises the lineage identity of
+tumour-infiltrating regulatory T cells rather than only releasing the CD8
+compartment. <code>next-gen-checkpoints</code> opens +1 / −3 on much of the same material;
+its single support is <a href="https://pubmed.ncbi.nlm.nih.gov/36585453/">36585453</a> (<em>Nat
+Cancer</em>), where blocking 4-1BB, LAG-3 and CXCR1/2 together produces durable
+responses in pancreatic cancer that PD-1 blockade alone does not.</p>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-09-04</p>
+<p>This sentence said both threads open at zero support. <code>next-gen-checkpoints</code>
+opens +1 / −3: the abstract re-scan carded a combination-blockade result that
+a title-only pass had not collected. <code>suppressive-population-inversion</code> does
+open with no support, on four refutations rather than the three described
+below.</p>
+</div>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/36652534/">36652534</a> (<em>Sci Transl Med</em>): CD200-positive cytotoxic T lymphocytes are
 required for anti-PD-1/PD-L1 therapy to work. CD200 is an inhibitory ligand and its
 axis is a standing checkpoint nomination; here the cells carrying it are the
@@ -19815,8 +19845,8 @@ claim says is insufficient.</p>
 checkpoint resistance in the humoral compartment: the therapy itself alters IgG
 glycosylation and the sialylated antibody blunts type I interferon.</p>
 <h3 id="b-method-credibility">(b) Method credibility<a class="headerlink" href="#b-method-credibility" title="Permanent link">&para;</a></h3>
-<p>The three cards here escalate through different objects, and none of them is a
-model.</p>
+<p>Nine cards this month. The three described here escalate through different
+objects, and none of those three is a model.</p>
 <p><a href="https://pubmed.ncbi.nlm.nih.gov/36522432/">36522432</a> (<em>Nat Genet</em>): guide RNAs validated against the reference genome
 behave differently in different people, so a therapeutic editor's off-target
 profile does not transfer from the reference to the patient. A reagent failing at
@@ -19830,10 +19860,25 @@ devices that had themselves been recalled are more likely to be recalled in turn
 with <a href="https://pubmed.ncbi.nlm.nih.gov/36625811/">36625811</a> on which submission characteristics predict it. The object
 here is neither a model nor an assay but the regulatory chain that certifies
 instruments.</p>
-<p><code>method-credibility</code> reads −3 and will keep reading negative. Its <code>denominator</code>
+<p><code>method-credibility</code> reads −9 and will keep reading negative. Its <code>denominator</code>
 field in <code>threads.yml</code> says why: the thread is a ledger of things found
-unreliable, so every card on it refutes by construction and the ratio carries no
+unreliable, so the sign is very nearly fixed before any reading happens — 93% of
+its cards across the whole corpus refute — and the ratio carries almost no
 information. Read the volume and the object, never the sign.</p>
+<div class="admonition note">
+<p class="admonition-title">Corrected 2026-09-04</p>
+<p>Two figures here were wrong. The month reads −9, not −3. The five cards the
+original pass missed are wild-type Cas13's collateral transcriptome cleavage,
+a spatial-transcriptomics deconvolution benchmark, a fresh-versus-frozen
+protocol artefact in single-cell composition, and the two model audits
+described in section 3 — so the month's objects do include models, even
+though the three described above do not. And "every card on it refutes by
+construction" was already untrue when it was written: <code>threads.yml</code> now
+records 25 supports among 654 cards, and a ledger
+that cannot record a pass is assuming its answer rather than measuring it.
+The instruction — read the volume and the object, never the sign — is
+unchanged.</p>
+</div>
 <h2 id="5-open-items">5. Open items<a class="headerlink" href="#5-open-items" title="Permanent link">&para;</a></h2>
 <p>Nothing carried forward.</p>
 <h2 id="6-meetings">6. Meetings<a class="headerlink" href="#6-meetings" title="Permanent link">&para;</a></h2>
